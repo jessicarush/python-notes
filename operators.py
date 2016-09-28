@@ -44,4 +44,3 @@ print(a)
 c = divmod(a, b) # will return the quotient and the remainder as a tuple
 print(c)
 print(type(c))
-
