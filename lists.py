@@ -1,8 +1,6 @@
 # Working with Lists
 
-# There are several ways to make a list.
-
-# Standard way to create a list
+# There are several ways to make a list
 
 weekdays = [
     'Sunday',
@@ -50,87 +48,100 @@ print(dates[0][1])
 dates[0] = a_list
 print(dates)
 
-# Get a slice or range [
+# Get a slice or range [start : end : step]
 
 print(weekdays[::2])
 print(weekdays[::-2])
 print(weekdays[::-1])
 
-# Add a list item
+# Add a list item with .append()
 
 months.append('apr')
 print(months)
 
-# Add a list item by position
+# Add a list item by position with .insert()
 
 months.insert(2, 'mar')
 print(months)
 
-# Combine lists
+# Combine lists with .extend()
 
 list1 = ['one', 'two']
 list2 = ['three', 'four']
 list1.extend(list2)
 print(list1)
 
-# or combine like this:
+# Or combine like this:
+
 list2 += list1
 print(list2)
 
-# delete an item by position:
+# Delete an item by position with del
+
 del list1[3]
 print(list1)
 
-# remove an item by value:
+# Remove an item by value with .remove()
+
 list2.remove('four')
 print("List2 : ", list2)
 
-# get an item by position and delete with pop()
+# Get an item by position and delete with .pop()
+
 list2.pop(0)
 print("List2 : ", list2)
 
-# find and items position by value with index()
+# Find and items position by value with .index()
+
 print(list2.index('three'))
 
-# test for value in list
+# Test for a value in a list
+
 print('four' in list2)
 
-# count occurences of a value
+# Count the occurences of a value
+
 print(list2.count('one'))
 print(list2.count('five'))
 
-# convert to a string with join and split again:
-friends = ['Harry', 'Ron', 'Hermione']
+# Convert to a string with .join()
+
+bands = ['Melvins', 'Ghost', 'Pucifer']
 separator = ' * '
-joined = separator.join(friends)
+joined = separator.join(bands)
 print(joined)
+
+# And split again with .split()
+
 separated = joined.split(separator)
 print(separated)
 
-# reorder items with sort() or sorted()
-# sort() sorts the list in place, sorted() returns a copy
-sorted_friends = sorted(friends)
-print('sorted friends: ', sorted_friends)
-print('friends: ', friends)
-friends.sort()
-print('sort friends: ', friends)
+# Reorder items with sorted() - this returns a copy of the list
+
+sorted_bands = sorted(bands)
+print('sorted bands: ', sorted_bands)
+
+# Reorder items with .sort() - this sorts the list in place
+
+bands.sort()
+print('sort bands: ', bands)
 
 numbers = [1, 2.5, 6, 3.2]
 numbers.sort(reverse = True)
 print(numbers)
 
-# get length by len()
-print(len(friends))
+# Get length by len()
 
-# create a copy with copy(), list() or slice[:]
-a = [1, 2, 3]
-b = a
-c = a.copy()
-d = list(a)
+print(len(bands))
+
+# Create a copy with copy(), list() or slice[:]
+
+a = [1, 2, 3]  # original list
+b = a          # not a copy
+c = a.copy()   
+d = list(a)    
 e = a[:]
 
-print(a, '\n', b, '\n', c, '\n', d, '\n', e)
-
-a[0] = 'haha'
+a[0] = 'changed'
 
 print(a, '\n', b, '\n', c, '\n', d, '\n', e)
