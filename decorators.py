@@ -3,7 +3,7 @@
 # A decorator is a function that takes one function as an input and returns another function.
 
 """
-the function document_it() defines a decorator that will:
+The function document_it() below defines a decorator that will:
  - print the functions name and values of its arguments
  - run the function with the arguments
  - print the result
@@ -20,41 +20,36 @@ def document_it(func):
         return result
     return new_function
 
+# Here's our simple test function:
 def add_ints(a, b):
     return a + b
 
-print(add_ints(3, 5))
+# Here's one way to incorporate the document_it() function:
+decorated_add_ints = document_it(add_ints)
+print(decorated_add_ints(3,5))
 
-cooler_add_ints = document_it(add_ints)
-print(cooler_add_ints(3,5))
-
-#or do this:
-
+# Or do this:
 @document_it
 def add_ints(a, b):
     return a + b
 
 add_ints(4, 5)
 
+# You can have more that one decorator applied to a function.
 def square_it(func):
     def new_function(*args, **kwargs):
         result = func(*args, **kwargs)
         return result * result
     return new_function
 
-# you can have more that one decorator for a function
-# the decorator thats closest to the actual function (above the def) runs first and then the one above that will run. The results will be the same no matter what order but the intermedate steps are different obv.
-
+"""
+The decorator that's closest to the actual function (above the def) runs first 
+and then the one above that will run. The results will be the same no matter 
+what order but the intermedate steps are different obv.
+"""
+   
 @document_it
 @square_it
-def add_ints(a, b):
-    return a + b
-
-print(add_ints(4, 3))
-
-
-@square_it
-@document_it
 def add_ints(a, b):
     return a + b
 
