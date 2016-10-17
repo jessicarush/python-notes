@@ -19,11 +19,11 @@ colours_list = ['orange', 'yellow', 'purple']
 colours_tuple = tuple(colours_list)
 print(colours_tuple)
 
-print("""
+"""
 Benefits of using tuples:
 - Tuples use less space
 - You can't mess with tuple items by mistake
 - You can use tuples and dictionary keys
 - Named tuples can be a simple alternative to objects
 - Function arguments are passed as tuples
-""")
+"""
