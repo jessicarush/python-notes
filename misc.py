@@ -5,3 +5,18 @@ import this
 long_text = 'A long time ago' + \
     ' in a galaxy far, far away' + \
     ' blah blah bla'
+
+# None is not the same as False, though it may look valse when evaluated as a boolean
+# None is technically none as seen here:
+    
+thing = None 
+
+def is_none(thing):
+    if thing is None:
+        print("it's none")
+    elif thing:
+        print("it's True")
+    else:
+        print("it must be False")
+
+is_none(thing)
