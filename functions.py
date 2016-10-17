@@ -11,31 +11,38 @@ def myfunction(one, two): # one, two are parameters
 myfunction(1, 2) # 1, 2 are arguments
 
 # Positional Arguments
+
 def menu(wine, cheese, dessert):
     return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
 
 print (menu('chardonnay', 'cake', 'swiss'))
 
 # Keyword Arguments
+
 print (menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 
 # Default parameters
+
 def menu(wine, cheese, dessert='ice cream'):
     return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
 
 print (menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 print (menu(wine='chardonnay', cheese='swiss'))
 
-
-
-
+"""
+In this example the function is expected to run each time with a fresh empty result list, 
+add the arg argument to it, and then print a single-item list. However, it's only empty the
+first time it's called. The second time, result still has one item from the previus call.
+"""
 
 def buggy(arg, result=[]):
     result.append(arg)
     print(result)
 
 buggy('a')
-buggy('b')
+buggy('b') 
+
+# This works better:
 
 def works(arg):
     result=[]
@@ -44,6 +51,9 @@ def works(arg):
 
 print(works('a'))
 print(works('b'))
+
+# Or fix the first one by passing in something else to indicate the first call:
+# Seems a little overly verbose to me, but perhaps this will be useful later
 
 def nonbuggy(arg, result=None):
     if result is None:
@@ -54,7 +64,8 @@ def nonbuggy(arg, result=None):
 nonbuggy('a')
 nonbuggy('b')
 
-#Gather positional Arguments
+# Gather positional Arguments
+
 def print_args(*args):
     print('Positional argument tuple:', args)
 
@@ -66,9 +77,9 @@ def print_more(required1, required2, *args):
     print('second argument is required:', required2)
     print('the rest:', args)
 
-print_more('chicken', 'hen', 'one', 'two', 'three')
+print_more('red', 'green', 'one', 'two', 'three')
 
-#Gather Keyword Arguments (makes a Dictionary)
+# Gather Keyword Arguments (makes a Dictionary)
 
 def print_kwargs(**kwargs):
     print('Keyword arguments:', kwargs)
@@ -77,10 +88,10 @@ def print_kwargs(**kwargs):
 print_kwargs(wine='merlot', cheese='swiss', fruit='grapes')
 print(type(print_kwargs))
 
-#Docstrings
+# Docstrings
 
 def myfunction1(arg):
-    '''this provides a description of the function'''
+    '''this is where you can provide a brief description of the function'''
     print(arg)
 
 def myfunction2(arg):
@@ -94,3 +105,4 @@ def myfunction2(arg):
     print(arg)
 
 print(myfunction1.__doc__)
+print(myfunction2.__doc__)
