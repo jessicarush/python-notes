@@ -28,7 +28,7 @@ dict_from_tos = dict(tuple_of_two_char_strings)
 info['age'] = 40
 info['height'] = '5\'5"'
 
-# Combine dicts with update()
+# Combine dicts with .update()
 
 location = {
     'street' : 'Main',
@@ -42,7 +42,7 @@ info.update(location)
 
 del info['age']
 
-# delete all items with clear()
+# delete all items with .clear()
 
 info.clear()
 
@@ -57,7 +57,7 @@ print(location['street'])
 print(location.get('street'))
 print(location.get('country', 'country not specified'))
 
-# get all keys using keys()
+# get all keys using .keys()
 
 print(location.keys())
 
@@ -66,7 +66,7 @@ print(location.keys())
 list_of_keys = list(location.keys())
 print(list_of_keys)
 
-# get all values with values()
+# get all values with .values()
 
 print(location.values())
 
@@ -75,7 +75,7 @@ print(location.values())
 list_of_values = list(location.values())
 print(list_of_values)
 
-# get all key-value pairs with items()
+# get all key-value pairs with .items()
 
 print(location.items())
 
@@ -84,7 +84,7 @@ print(location.items())
 list_of_items = list(location.items())
 print(list_of_items)
 
-# copy a dict with copy()
+# copy a dict with .copy()
 
 location_copy = location.copy()
 location['city'] = 'montreal'
