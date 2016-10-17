@@ -13,9 +13,9 @@ weekdays = [
     ]
 print(weekdays)
 
-# Use the list() function, then add items with .append()
+# Create a blank list, then add items with .append()
 
-months = list()
+months = []
 months.append('Jan')
 months.append('Feb')
 print(months)
