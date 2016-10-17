@@ -1,12 +1,12 @@
 # SETS
 
-print("""
+"""
 Sets:
  - a set is like a dictionary but without the values
  - like a dictionary, each key must be unique
  - use a set when you only want to know that somehting exists
  - use a dict when you want to attach information to each key
- """)
+"""
 
 # create a set with {}:
 
