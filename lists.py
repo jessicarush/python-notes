@@ -11,26 +11,22 @@ weekdays = [
     'Friday',
     'Saturday',
     ]
-print(weekdays)
 
 # Create a blank list, then add items with .append()
 
 months = []
 months.append('Jan')
 months.append('Feb')
-print(months)
 
 # Convert a tuple into a list using the list() function
 
 a_tuple  = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul')
 a_list = list(a_tuple)
-print(a_list)
 
 # Use .split() to break up a string into a list via some separator like space or comma
 
 a_string = "11-7-24-19-74"
 a_list = a_string.split('-')
-print(a_list)
 
 # Get an item by [position]
 
@@ -46,7 +42,6 @@ print(dates[0][1])
 # Change a list item
 
 dates[0] = a_list
-print(dates)
 
 # Get a slice or range [start : end : step]
 
@@ -57,12 +52,10 @@ print(weekdays[::-1])
 # Add a list item with .append()
 
 months.append('apr')
-print(months)
 
 # Add a list item by position with .insert()
 
 months.insert(2, 'mar')
-print(months)
 
 # Combine lists with .extend()
 
@@ -79,7 +72,6 @@ print(list2)
 # Delete an item by position with del
 
 del list1[3]
-print(list1)
 
 # Remove an item by value with .remove()
 
@@ -99,7 +91,7 @@ print(list2.index('three'))
 
 print('four' in list2)
 
-# Count the occurences of a value
+# Count the occurrences of a value
 
 print(list2.count('one'))
 print(list2.count('five'))
