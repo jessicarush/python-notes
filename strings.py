@@ -1,4 +1,4 @@
-# Working with strings
+# STRINGS
 
 # .replace()
 
