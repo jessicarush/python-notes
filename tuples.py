@@ -1,4 +1,4 @@
-# Tuples
+# TUPLES
 
 # remember tuples are immutable: you can't add, change or delete items
 colours_tuple = ('green', 'blue', 'red')
