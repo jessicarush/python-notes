@@ -33,13 +33,6 @@ for number in range(1,10):
     if number % 2 == 1:
         number_list.append(number)
         
-        
-        
-        
-        
-        
-        
-
 # Nested loops. Traditional way:
 rows = range(1,4)
 cols = range(1,3)
@@ -48,14 +41,13 @@ for row in rows:
     for col in cols:
         print (row, col)
 
-# OR Assign to a variable making a list of (row, col) tuples:
+# Or use a comprehension: Assign it to a variable 'cells' making it a list of (row, col) tuples:
 rows = range(1,4)
 cols = range(1,3)
 cells = [(row, col) for row in rows for col in cols]
 for cell in cells:
     print(cell)
 
-# Use tuple unpacking to pull the row an col values from each tuple:
-
+# You can also use tuple unpacking to pull the row an col values from each tuple:
 for row, col in cells:
     print(row, col)
