@@ -33,7 +33,7 @@ for number in range(1,10):
     if number % 2 == 1:
         number_list.append(number)
         
-# Nested loops. Traditional way:
+# Another example with nested loops. Here's the traditional way:
 rows = range(1,4)
 cols = range(1,3)
 
@@ -51,3 +51,26 @@ for cell in cells:
 # You can also use tuple unpacking to pull the row an col values from each tuple:
 for row, col in cells:
     print(row, col)
+
+# Dictionary Comprehensions
+# { key_expression : value_expression for expression in iterable}
+
+word = 'letters'
+letter_counts = {letter : word.count(letter) for letter in word}
+
+# Technically we are counting some letters twice.
+# By converting the word into a set(), we remove any duplicates for the checking part.
+
+word = 'letters'
+letter_counts = {letter : word.count(letter) for letter in set(word)}
+
+# Set comprehensions
+# { expression for expression in iterable}
+
+a_set = {number for number in range(1,6) if number % 3 == 1}
+
+# Generator comprehensions
+# Tuples don't have comprehensions. 
+# Changing the [] or {} of a comprehesion to () is actually a generator comprehesion and returns a generator object.
+
+number_thing = (number for number in range(1,6))
