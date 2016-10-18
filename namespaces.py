@@ -1,4 +1,6 @@
-# Namespaces (local and global variable names)
+# Namespaces 
+
+# Local and global variable names.
 
 # You can get the value of a global variable from within a function
 
@@ -50,3 +52,15 @@ def testing_local():
 
 testing_local()
 print('globals:', globals())
+
+# The name of a function is in the system variable: function.__name__
+# The functions document string in in the variable: function.__doc__
+
+def amazing():
+    '''This is the functions description'''
+    print('Ths function is named:', amazing.__name__)
+    print('And its docstring says:', amazing.__doc__)
+
+amazing()
+
+# FYI the main program itself is assigned the special variable name __main__
