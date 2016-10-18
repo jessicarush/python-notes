@@ -1,4 +1,4 @@
-# Namespaces (local and global)
+# Namespaces (local and global variable names)
 
 # You can get the value of a global variable from within a function
 
