@@ -6,7 +6,7 @@ position = 5
 try:
     shortlist[position]
 except:
-    print('Need a position between 0 and', len(shortlist)-1, '. Value inserted is no good:', position)
+    print('Need a position between 0 and ', len(shortlist)-1)
 
 
 # Handle different types of exceptions using Pyhton standard exception names:
@@ -14,7 +14,7 @@ except:
 newshortlist = [1, 2, 3]
 
 while True:
-    value = input('Position [q to quit]? ')
+    value = input('Position [q to quit]: ')
     if value == 'q':
         break
     try:
@@ -25,8 +25,7 @@ while True:
     except Exception as other:
         print('Something else broke:', other)
 
-# Make you rown exceptions
-# an exception is a class, It's a child of the base class Exception
+# Make your own exceptions. An exception is a class, It's a child of the base class Exception
 
 class UppercaseException(Exception):
     pass
