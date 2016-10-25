@@ -8,7 +8,7 @@ number_list.append(3)
 number_list.append(4)
 number_list.append(5)
 
-# or use and iterator and range() like this:
+# or use an iterator and range() like this:
 number_list = []
 for number in range(1,6):
     number_list.append(number)
