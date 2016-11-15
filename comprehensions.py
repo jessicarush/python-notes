@@ -51,9 +51,17 @@ for cell in cells:
 # You can also use tuple unpacking to pull the row an col values from each tuple:
 for row, col in cells:
     print(row, col)
+    
+# Review list comprehensions [expression for item in iterable]:
+even_numbers = [i for i in range(0, 10, 2)]
+print(even_numbers)
+
+# ... or [expression for item in iterable if condition]:
+even_numbers = [i for i in range(10) if i % 2 == 0]
+print(even_numbers)
 
 # Dictionary Comprehensions
-# { key_expression : value_expression for expression in iterable}
+# {key_expression : value_expression for expression in iterable}:
 
 word = 'letters'
 letter_counts = {letter : word.count(letter) for letter in word}
@@ -64,13 +72,25 @@ letter_counts = {letter : word.count(letter) for letter in word}
 word = 'letters'
 letter_counts = {letter : word.count(letter) for letter in set(word)}
 
+# Review dictionary comprehensions {key_expression: value_expression for expression in iterable}:
+squares = { number: number*number for number in range(10)}
+print(squares)
+
 # Set comprehensions
-# { expression for expression in iterable}
+# {expression for expression in iterable}
 
 a_set = {number for number in range(1,6) if number % 3 == 1}
+
+# Review set comprehensions {expression for expression in iterable}:
+odds = {number for number in range(10) if number % 2 != 0}
+print(odds)
 
 # Generator comprehensions
 # Tuples don't have comprehensions. 
 # Changing the [] or {} of a comprehesion to () is actually a generator comprehesion and returns a generator object.
 
 number_thing = (number for number in range(1,6))
+
+# Review generator comprehensions (expression for expression in iterable):
+for thing in (number for number in range(10)):
+    print ('Got', thing)
