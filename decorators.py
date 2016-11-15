@@ -54,3 +54,18 @@ def add_ints(a, b):
     return a + b
 
 print(add_ints(4, 3))
+
+# Review: The following decorator called 'test', will print start when the function is called and 'end' when it finfishes
+def test(func):
+    def new_func(*args, **kwargs):
+        print('start')
+        result = func(*args, **kwargs)
+        print('end')
+        return result
+    return new_func
+
+@test
+def greeting():
+    print('hello')
+
+greeting()
