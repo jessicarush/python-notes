@@ -18,3 +18,12 @@ f2e = dict(zip(french, english))
 
 print(e2f['Tuesday'])
 print(f2e['Mardi'])
+
+# Another example
+
+colours = ['Red', 'Cyan', 'Magenta', 'Orange']
+hexadecimal = ['FA200C', '0CD3FA', 'FF0D91', 'FF690D']
+
+colour_values = dict(zip(colours, hexadecimal))
+
+print(colour_values)
