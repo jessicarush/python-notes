@@ -63,11 +63,11 @@ def test4():
             print('test 4: ', name)
 test4()
 
-# check for a set of values with & {} ...this is called a set operator:
+# check for this OR that values with & {} ...this is called a set operator:
 
 def test5():
     for name, ingredients in drinks.items():
-        if ingredients & {'vermouth', 'orange juice'}:
+        if ingredients & {'vermouth', 'orange juice'}:   # has vermouth or orange juice
             print('test 5: ', name)
 test5()
 
