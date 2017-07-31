@@ -57,7 +57,7 @@ months.append('apr')
 
 months.insert(2, 'mar')
 
-# Combine lists with .extend()
+# Combine lists with .extend() - this would be like .update() for dicts
 
 list1 = ['one', 'two']
 list2 = ['three', 'four']
