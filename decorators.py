@@ -55,7 +55,7 @@ def add_ints(a, b):
 
 print(add_ints(4, 3))
 
-# Review: The following decorator called 'test', will print start when the function is called and 'end' when it finfishes
+# Review: The following decorator called 'test', will print start when the function is called and 'end' when it finishes
 def test(func):
     def new_func(*args, **kwargs):
         print('start')
