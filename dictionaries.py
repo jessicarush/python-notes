@@ -28,7 +28,7 @@ dict_from_tos = dict(tuple_of_two_char_strings)
 info['age'] = 40
 info['height'] = '5\'5"'
 
-# Combine dicts with .update()
+# Combine dicts with .update() - this would be like extend() for lists
 
 location = {
     'street' : 'Main',
