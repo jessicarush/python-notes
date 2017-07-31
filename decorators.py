@@ -1,6 +1,33 @@
-# Decorators
+# Decorators - functions that take one function as an input and return another function.
 
-# A decorator is a function that takes one function as an input and returns another function.
+# Here is a simplified example:
+def my_decorator(some_function):
+    def wrapper():
+        print('Something happens before some_function() is called.')
+        some_function()
+        print('Something happens after some_function() is called.')
+    return wrapper
+
+@my_decorator
+def my_function():
+    print("The function runs")
+
+my_function()
+
+# Another example... this decorator will print start when the function is called and 'end' when it finishes:
+def test(func):
+    def new_func(*args, **kwargs):
+        print('start')
+        result = func(*args, **kwargs)
+        print('end')
+        return result
+    return new_func
+
+@test
+def greeting():
+    print('hello')
+
+greeting()
 
 """
 The function document_it() below defines a decorator that will:
@@ -54,18 +81,3 @@ def add_ints(a, b):
     return a + b
 
 print(add_ints(4, 3))
-
-# Review: The following decorator called 'test', will print start when the function is called and 'end' when it finishes
-def test(func):
-    def new_func(*args, **kwargs):
-        print('start')
-        result = func(*args, **kwargs)
-        print('end')
-        return result
-    return new_func
-
-@test
-def greeting():
-    print('hello')
-
-greeting()
