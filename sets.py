@@ -4,7 +4,7 @@
 Sets:
  - a set is like a dictionary but without the values
  - like a dictionary, each key must be unique
- - use a set when you only want to know that somehting exists
+ - use a set when you only want to know that something exists
  - use a dict when you want to attach information to each key
 """
 
