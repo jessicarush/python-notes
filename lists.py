@@ -1,4 +1,4 @@
-# LISTS
+# LISTS are mutable and ordered. May contain duplicate items and can be changed in place.
 
 # There are several ways to make a list
 
