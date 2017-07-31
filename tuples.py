@@ -1,6 +1,5 @@
-# TUPLES
+# TUPLES are immutable: you can't add, change or delete items
 
-# remember tuples are immutable: you can't add, change or delete items
 colours_tuple = ('green', 'blue', 'red')
 
 #tuples let you assign multiple variables at once:
