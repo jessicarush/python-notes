@@ -42,3 +42,51 @@ print(astronaut.name)
 # and this overrides the behaviour of the old class. 
 # The original class is the parent, superclass or base class. 
 # The new one is the child, subclass or derived class.
+
+class Car():
+    pass
+
+class Honda(Car):
+    pass
+
+a_car = Car()
+a_honda = Honda()
+
+# the object called a_honda is an instance of the class Honda, but it also inherits whatever Car can do.
+# unless there is an override of a parents function in the child's:
+
+class Person():
+    def __init__(self, name):
+        self.name = name
+
+class MDPerson(Person):
+    def __init__(self, name):
+        self.name = "Doctor " + name
+
+person = Person('Fudd')
+doctor = MDPerson('Fudd')
+
+print(person.name)
+print(doctor.name)
+
+# super()
+# If you override a method like __init__ , you can retrieve attributes back from the parent using super():
+
+class Person():
+    def __init__(self, name):
+        self.name = name
+
+class EmailPerson(Person):
+    def __init__(self, name, email):
+        super().__init__(name)
+        self.email = email
+
+# The above could be written like this:
+
+class EmailPerson(Person):
+    def __init__(self, name, email):
+        self.name = name 
+        self.email = email
+
+# But then we would loose our inheritance. If the definition of the parent class changes, 
+# using super() ensures the child will inherit the changes.
