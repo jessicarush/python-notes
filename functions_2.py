@@ -84,6 +84,6 @@ def headline(testing):
 
 edit_story(sounds, headline)
 
-# The headline function can be replaced this way:
+# Using lambda, the headline function can be replaced this way:
 
 edit_story(sounds, lambda word: word.capitalize() + '!')
