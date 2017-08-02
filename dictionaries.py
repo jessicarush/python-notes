@@ -135,3 +135,18 @@ jellybeans = defaultdict(int)
 for key in ['red', 'red', 'orange', 'red']:
     jellybeans[key] += 1
 
+# OrderedDict() rememebers the order of key addition and returns them in that same order 
+# (remember, dictionaries are NOT usually ordered like lists
+
+from collections import OrderedDict
+
+numbers = OrderedDict([
+    ('one', 'uno'),
+    ('two', 'dos'),
+    ('three', 'tres'),
+    ('four', 'quatro')
+])
+
+numbers['five'] = 'cinqo'
+
+print(numbers)
