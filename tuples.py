@@ -50,7 +50,10 @@ print(kitchen[0])
 
 parts = {'floor': 'linoleum', 'windows': '2'}
 
-bedroom = Room(**parts)
+bedroom = Room(**parts)  
+
+# BTW **parts is a keyword argument. It extracts the keys and values from the parts dict 
+# and supplies them as arguments to Room()
 
 # Testing:
 
