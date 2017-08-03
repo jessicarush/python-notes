@@ -253,3 +253,20 @@ who_says(person1)
 who_says(person2)
 who_says(person3)
 who_says(brook)
+
+#When to Use Classes and Objects versus Modules
+# Objects are most useful when you need a number of individual instances that have 
+# similar behavior (methods), but differ in their internal states (attributes).
+# Classes support inheritance, modules don’t.
+# If you want only one of something, a module might be best. No matter how many times a 
+# Python module is referenced in a program, only one copy is loaded. 
+# If you have a number of variables that contain multiple values and can be passed as 
+# arguments to multiple functions, it might be better to define them as classes. 
+# For example, you might use a dictionary with keys size and color to represent an image. 
+# You could create a different dictionary for each image in your program, and pass them as 
+# arguments to functions such as scale() or transform(). 
+# This can get messy as you add more keys and functions. 
+# It’s simpler to define an Image class with attributes size or color and methods scale() and transform(). 
+# Then, all the data and methods for a color image are defined in one place.
+# Use the simplest solution to the problem. 
+# A dict, list, or tuple is simpler, smaller, and faster than a module, which is usually simpler than a class.
