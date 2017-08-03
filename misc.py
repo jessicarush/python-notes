@@ -1,12 +1,15 @@
 # Python philosophy
+
 import this 
 
 # Continuing lines with \
+
 long_text = 'A long time ago' + \
     ' in a galaxy far, far away' + \
     ' blah blah bla'
 
 # None
+
 """
 None is not the same as False. Though it may look false when evaluated as a boolean,
 None is technically none as seen here:
@@ -23,3 +26,19 @@ def is_none(thing):
         print("it must be False")
 
 is_none(thing)
+
+# Keyword arguments: **name
+# The keyword argument **h extracts the keys and values from the dictionary
+# and supplies them as arguments to the class Element()
+
+class Element():
+    def __init__(self, name, symbol, number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+
+h = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
+
+hydrogen = Element(**h) 
+
+print(hydrogen.symbol)
