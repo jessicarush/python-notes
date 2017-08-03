@@ -155,3 +155,45 @@ class Circle():
         self.radius = diameter / 2.0    # remember to specify floats when dividing 
 
 c.diameter = 20     # now this will work
+
+# instance methods
+# Some data(attributes) and functions(methods) are part of the class itself and some are part of the 
+# objects that are created from that class. When you see an initial self argument in methods within a 
+# class def, it's an instance method. These are the types of methods you normally write. 
+# The first parameter of an instance method is self.
+
+# class methods
+# A class method affects the class as a whole. Any change you make to the class affects all of its objects. 
+# Use a @classmethod decorator to indicate the following function is a class method. 
+# The first parameter to the method is the class itself, cls (which is used because class is already taken).
+
+# this class method will count how many objects have been made from it:
+
+class A():
+    count = 0
+    def __init__(self):
+        A.count += 1
+    def exclaim(self):
+        print("I'm an A")
+    @classmethod
+    def children(cls):
+        print("A has", A.count, "objects made from it.")
+
+# testing:
+
+test1 = A()
+test2 = A()
+test3 = A()
+test4 = A()
+A.children()
+
+# static methods
+# The third type of method in a class definition is a static method. If affects neither the class nor its objects.
+# It's just there for convenience. begin with an @static method decorator with no initial self or class parameter:
+
+class A():
+    @staticmethod
+    def note():
+        print('This is a static method')
+
+A.note()
