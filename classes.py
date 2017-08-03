@@ -254,7 +254,8 @@ who_says(person2)
 who_says(person3)
 who_says(brook)
 
-#When to Use Classes and Objects versus Modules
+# Classes and Objects versus Modules:
+
 # Objects are most useful when you need a number of individual instances that have 
 # similar behavior (methods), but differ in their internal states (attributes).
 # Classes support inheritance, modules don’t.
