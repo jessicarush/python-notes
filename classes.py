@@ -1,17 +1,17 @@
+# Classes
 # A string and an integer are examples of built-in Python classes. 
-# A class is logical grouping of data and functions. The "integer" class 
-# is like an instruction manual for constructing "integer" objects.
-
-# to make your own custom object, you'll need to first define a class by using the class keyword.
+# A class is logical grouping of data and functions. 
+# The "integer" class is like an instruction manual for constructing "integer" objects.
+# To make your own custom object, you'll need to first define a class by using the class keyword.
 
 class Person():
     pass
 
-# you can create an object from a class by calling it as if it were a function:
+# You can create an object from a class by calling it as if it were a function:
 
 henry = Person()
 
-# in this case, Person() creates an individual object from the Person class and assigns it the name henry.
+# In this case, Person() creates an individual object from the Person class and assigns it the name henry.
 
 class Person():
     def __init__(self):
@@ -28,18 +28,18 @@ class Person():
 
 astronaut = Person('Roberta Bondar')
 
-# note the name value passed in is saved with the object as an attribute. You can read and write it directly:
+# Note the name value passed in is saved with the object as an attribute. You can read and write it directly:
 
 print(astronaut.name)
 
-# it is NOT necessary to have an __init__ method in every class definition. 
-# It's used to do anything that's needed to distinguish this object from others created from the same class
+# It is NOT necessary to have an __init__ method in every class definition. 
+# It is used to do anything that's needed to distinguish this object from others created from the same class
 
 # Inheritance
 # Creating a new class from an existing class but with some additions or changes. 
 # When you use inheritance, the new class can automatically use all the code from the old class 
-# without copying any of it. You only define what you need to add or change in the new class 
-# and this overrides the behaviour of the old class. 
+# without copying any of it. You only define what you need to add or change in the new class and
+# this overrides the behaviour of the old class. 
 # The original class is the parent, superclass or base class. 
 # The new one is the child, subclass or derived class.
 
@@ -52,8 +52,8 @@ class Honda(Car):
 a_car = Car()
 a_honda = Honda()
 
-# the object called a_honda is an instance of the class Honda, but it also inherits whatever Car can do.
-# unless there is an override of a parents function in the child's:
+# The object called a_honda is an instance of the class Honda, but it also inherits whatever Car can do.
+# Unless there is an override of a parents function in the child's:
 
 class Person():
     def __init__(self, name):
@@ -91,10 +91,10 @@ class EmailPerson(Person):
 # But then we would loose our inheritance. If the definition of the parent class changes, 
 # using super() ensures the child will inherit the changes.
 
-# some object oriented languages support private object attributes that can't be accessed from the outside. 
+# Some object oriented languages support private object attributes that can't be accessed from the outside. 
 # They have to write getter and setter methods to read and write the values on these private attributes. 
 # Python doesn't need these because all attributes and methods are public. 
-# A good way to hide attributes is to use property(). The naming convention for hidden attributes is __whatever
+# A good way to hide attributes is to use property(). The naming convention for hidden attributes is __whatever.
 
 class Person():
     def __init__(self, input_name):
@@ -125,9 +125,8 @@ someone = Person('howard')
 someone.name = 'harry'
 print(someone.__name)    # This will raise an exception
 
-
 # @property
-# making a method behave like an attribute. This essentially makes a read-only attribute.
+# Makes a method behave like an attribute. This essentially creates a read-only attribute.
 
 class Circle():
     def __init__(self, radius):
@@ -136,13 +135,15 @@ class Circle():
     def diameter(self):
         return 2 * self.radius
 
+# testing:
+
 c = Circle(5)
 print(c.diameter)
 c.radius = 7
 print(c.diameter)
 c.diameter = 4      # This will raise an exception
 
-# Set a setter for the method too:
+# Create a setter to make the method also accept new values:
 
 class Circle():
     def __init__(self, radius):
@@ -154,20 +155,22 @@ class Circle():
     def diameter(self, diameter):
         self.radius = diameter / 2.0    # remember to specify floats when dividing 
 
+# testing:
+
 c.diameter = 20     # now this will work
 
-# instance methods
+# Instance methods
 # Some data(attributes) and functions(methods) are part of the class itself and some are part of the 
 # objects that are created from that class. When you see an initial self argument in methods within a 
 # class def, it's an instance method. These are the types of methods you normally write. 
 # The first parameter of an instance method is self.
 
-# class methods
-# A class method affects the class as a whole. Any change you make to the class affects all of its objects. 
-# Use a @classmethod decorator to indicate the following function is a class method. 
-# The first parameter to the method is the class itself, cls (which is used because class is already taken).
+# Class methods
+# A class method affects the class as a whole. Any change made to the class affects all of its objects. 
+# Use the @classmethod decorator to indicate the following function is a class method. 
+# The first parameter to the method is the class itself: cls (is used because class is already taken).
 
-# this class method will count how many objects have been made from it:
+# This class method will count how many objects have been made from it:
 
 class A():
     count = 0
@@ -187,9 +190,9 @@ test3 = A()
 test4 = A()
 A.children()
 
-# static methods
-# The third type of method in a class definition is a static method. If affects neither the class nor its objects.
-# It's just there for convenience. begin with an @static method decorator with no initial self or class parameter:
+# Static methods
+# The third type of method in a class def is a static method. If affects neither the class nor its objects.
+# It's just there for convenience. Begin with the @static method decorator, no initial self or class parameter:
 
 class A():
     @staticmethod
@@ -197,3 +200,56 @@ class A():
         print('This is a static method')
 
 A.note()
+
+# In this example note how the subclasses are using the parents __init__ method. 
+# Because of this we can use the variable self.words in the subclasses.
+
+class Quote():
+    def __init__(self, person, words):
+        self.person = person
+        self.words = words
+    def who(self):
+        return self.person
+    def says(self):
+        return self.words + '.'
+
+class QuestionQuote(Quote):
+    def says(self):
+        return self.words + '?'
+
+class ExclamationQuote(Quote):
+    def says(self):
+        return self.words + '!'
+
+person1 = Quote('Bob', 'Hello')
+person2 = QuestionQuote('Bill', 'What')
+person3 = ExclamationQuote('Bruce', 'OK')
+
+# testing:
+
+print(person1.who(), ': ', person1.says())
+print(person2.who(), ': ', person2.says())
+print(person3.who(), ': ', person3.says())
+
+# Here's another class that has no relation to the previous classes (descendants of Quote), 
+# but will use the same method names:
+
+class BabblingBrook():
+    def who(self):
+        return 'Brook'
+    def says(self):
+        return 'Babble'
+
+brook = BabblingBrook()
+
+# Now a function that runs the who() and says() methods of any object:
+
+def who_says(obj):
+    print(obj.who(), ': ', obj.says())
+
+# testing:
+
+who_says(person1)
+who_says(person2)
+who_says(person3)
+who_says(brook)
