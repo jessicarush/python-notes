@@ -90,3 +90,68 @@ class EmailPerson(Person):
 
 # But then we would loose our inheritance. If the definition of the parent class changes, 
 # using super() ensures the child will inherit the changes.
+
+# some object oriented languages support private object attributes that can't be accessed from the outside. 
+# They have to write getter and setter methods to read and write the values on these private attributes. 
+# Python doesn't need these because all attributes and methods are public. 
+# A good way to hide attributes is to use property(). The naming convention for hidden attributes is __whatever
+
+class Person():
+    def __init__(self, input_name):
+        self.__name = input_name
+    def get_name(self):                     # the getter
+        print('inside the getter')
+        return self.__name
+    def set_name(self, input_name):         # the setter
+        print('inside the setter')
+        self.__name = input_name
+    name = property(get_name, set_name)
+
+# similar too:
+
+class Person():
+    def __init__(self, input_name):
+        self.__name = input_name
+    @property
+    def name(self):
+        print('inside the getter')
+        return self.__name
+    @name.setter
+    def name(self, input_name):
+        print('inside the setter')
+        self.__name = input_name
+
+someone = Person('howard')
+someone.name = 'harry'
+print(someone.__name)    # This will raise an exception
+
+
+# @property
+# making a method behave like an attribute. This essentially makes a read-only attribute.
+
+class Circle():
+    def __init__(self, radius):
+        self.radius = radius
+    @property
+    def diameter(self):
+        return 2 * self.radius
+
+c = Circle(5)
+print(c.diameter)
+c.radius = 7
+print(c.diameter)
+c.diameter = 4      # This will raise an exception
+
+# Set a setter for the method too:
+
+class Circle():
+    def __init__(self, radius):
+        self.radius = radius
+    @property
+    def diameter(self):
+        return 2 * self.radius
+    @diameter.setter
+    def diameter(self, diameter):
+        self.radius = diameter / 2.0    # remember to specify floats when dividing 
+
+c.diameter = 20     # now this will work
