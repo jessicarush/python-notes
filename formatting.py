@@ -27,7 +27,7 @@ print('The %s is %f' % (name, goldenratio))
 
 print('The {} is {}'.format(name, goldenratio))
 
-# You can out args into the {} like this:
+# You can put args into the {} like this:
 
 info = {'name': 'boktoktok', 'address': 'the moon', 'age': 100} # a dictionary
 other = 'the end'
@@ -36,6 +36,12 @@ print('{0[name]} who is {0[age]} years old, lives at {0[address]}. {1}.'.format(
 
 # The number {0} or {1} or whatever, indicates the variable to use according to their order 
 # in the .format() arguments
+
+# As a side note, remember you can also use keyword arguments **name to extract the keys and 
+# values from the dictionary and feed into a thing:
+
+statement = '{name} who is {age} years old, lives at {address}'
+print(statement.format(**info))
 
 # to specify the type of data as with %d or %f in old style, use {0:d} like:
 
