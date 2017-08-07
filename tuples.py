@@ -9,6 +9,15 @@ print(a)
 print(b)
 print(c)
 
+# This is sometimes called 'tuple unpacking':
+
+text = """
+leaves are %s,
+violets are %s,
+roses are %s
+"""
+print(text % colours_tuple)
+
 # You can use tuples to swap variable values in one line:
 
 a, c = c, a
