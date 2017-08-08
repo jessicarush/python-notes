@@ -2,14 +2,14 @@
 
 import re
 
-# Define a string pattern, and a source string to compare against.
+# Define a pattern string, and a source string to compare against.
 # match () checks whether the source begins with the pattern.
 
-result = re.match('You', 'Young Frankenstein')
+r = re.match('You', 'Young Frankenstein')
 
 # 'You' is the pattern 'Young Frankenstein' is the source
 
-print(result)
+print(r)
 
 # For more complex matches, you can compile your pattern first to speed up the match later:
 
@@ -17,63 +17,64 @@ pattern = re.compile('You')
 
 # Then, you can perform your match against the compiled pattern:
 
-result = pattern.match('Young Frankenstein')
-print(result)
+r = pattern.match('Young Frankenstein')
 
-# or vice versa
+# Here's another way:
 
 source = 'blue red green yellow blueish blue'
-m = re.match('blue', source)
-if m:
-    print(m.group())
+r = re.match('blue', source)
+if r:
+    print(r.group())
 
-# m returns nothing because match only checks out if the beginning of the source matches:
+# In the following, m returns nothing because match only checks out if the beginning of 
+# the source matches:
 
-m = re.match('green', source)
-if m:
-    print(m.group())
+r = re.match('green', source)
+if r:
+    print(r.group())
 
 # search() returns the first match, if any.
 
-m = re.search('green', source)
-if m:
-    print(m.group())
+r = re.search('green', source)
+if r:
+    print(r.group())
 
-# .* says there can be any amount of characters before
 # . means any character
 # * means any number of the preceding character
+# .* says there can be any amount of any characters before
 
-m = re.match('.*green', source)
-if m:
-    print(m.group())
+r = re.match('.*green', source)
+if r:
+    print(r.group())
 
 # findall() returns a list of all non-overlapping matches, if any.
 
-m = re.findall('blue', source)
-print(m)
-print('Found', len(m), 'matches')
+r = re.findall('blue', source)
+print(r)
+print('Found', len(r), 'matches')
 
 # this says find 'e' followed by any character:
 
-m = re.findall('e.', source)
-print(m)
+r = re.findall('e.', source)
+print(r)
 
-# the above will not return the last e because no character follows it.
-# indicate the character after 'e' is optional with '?':
+# The above will not return the last e because no character follows it. 
+# Indicate the charcter after 'e' is optional with '?':
 
-m = re.findall('e.?', source)
-print(m)
+r = re.findall('e.?', source)
+print(r)
 
-# split() splits the source at using the patter as the split point and returns a list of the string pieces.
+# split() splits the source at using the pattern as the split point and returns a list of 
+# the string pieces.
 
-m = re.split(' ', source)
-print(m)
+r = re.split(' ', source)
+print(r)
 
-# sub() takes another replacement argument, and changes all parts of source that are matched by pattern 
-# to the replacement.
+# sub() takes another replacement argument, and changes all parts of source that are matched 
+# by pattern to the replacement.
 
-m = re.sub('blue', 'black', source)
-print(m)
+r = re.sub('blue', 'black', source)
+print(r)
 
 # Special characters
 
@@ -83,130 +84,171 @@ print(m)
 # \W an non-alphanumeric character
 # \s a whitespace character
 # \S a non-whitespace character
-# \b a word boundary (between a \w and a \W, in either order)
-# \B a non-word boundary
-
-# The Python string module has predefined string constants that we can use for testing. 
-# Printable contains 100 ASCII characters:
-
-import string
-printable = string.printable
+# \b a word boundary (the beginning or end of a word)
+# \B a non-word boundary (not the beginning or end of a word)
 
 # testing:
 
-print(len(printable))
-print(printable[0:50])
-print(printable[50:])
+sample = """
+Intro:
+Is this the real Life? Is this just fantasy?
+Caught in a landslide, no escape from reality.
+Open your eyes, look up to the skies and see.
+I'm just a poor boy, I need no sympathy.
+Because I'm easy come, easy go, little high, little low.
+Any way the wind blows doesn't really matter to me, to me.
+(Verse 1-4, Outro)
+Extra stuff for testing: dish, wish, fish, surreal
+"""
 
 # which characters are digits:
 
-re.findall('\d', printable)
+r = re.findall('\d', sample)
+print(r)
 
 # which characters are digits, letters or underscore:
 
-re.findall('\w', printable)
+r = re.findall('\w', sample)
+print(r)
 
 # note \d and \w work on whatever Unicode defines as a digit or character for example:
 
 test = 'abc' + '-/&' + '\u00ea' +'\u0115'
-re.findall('\w', test)
+r = re.findall('\w', test)
+print(r)
+
+# There are a few cases in which the regular expression pattern rules conflict with the 
+# Python string rules. The following pattern should match any word that begins with b:
+
+r = re.findall('\bb', sample)
+print(r)
+
+# In the mini-language of regular expressions \b means the beginning or end of a word but 
+# in Python strings it means backspace. Avoid the accidental use of escape characters by 
+# using Python’s "raw strings" when you define your regular expression string. Always put 
+# an r character before your regular expression pattern string, and Python escape characters 
+# will be disabled:
+
+r = re.findall(r'\bb', sample)
+print(r)
+
+# The above isn't very helpful as we only get the 'b' part of the match. 
+# This says, find all complete words that start with the letter 'b'
+
+r = re.findall(r'\bb\w*', sample)
+print(r)
+
+# breakdown:
+# \b    - indicates the beginning of a word
+# b     - starts with b
+# \w*   - followed by any number of alphanumeric characters
+
+# This says, find all words that start with the letter 'b' or 'B'
+
+r = re.findall(r'\b[bB]\w*', sample)
+print(r)
 
 # Pattern Specifiers:
 
-"""
-abc                 literal abc
-(expr)              expr (any valid regular expression)
-expr1|expr2         expr1 or expr2
-.                   any character except \n
-^                   start or source string
-$                   end of source string
-prev?               zero or one prev
-prev *              zero or more prev, as many as possible
-prev *?             zero or more prev, as few as possible
-prev +              one or more prev, as many as possible
-prev +?             one or more prev, as few as possible
-prev {m}            m consecutive prev
-prev {m, n}         m to n consecutive prev, as many as possible
-prev {m, n}?        m to n consecutive prev, as few as possible
-[abc]               a or b or c (same as a|b|c)
-[^abc]              not (a or b or c)
-prev (?= next )     prev if followed by next
-prev (?! next )     prev if not followed by next
-(?<=prev)next       next if preceded by prev
-(?<!prev)next       next if not preceded by prev
-"""
+# abc                 literal abc
+# (...)               any valid regular expression
+# a|b                 a or b
+# .                   any character except \n
+# *                   any number of the preceding character
+# ^                   start of source string
+# $                   end of source string
+# abc?                c is optional, a(bc)? means bc is optional
+# abc*                c (and repetitions of c) is optional, will return ab, abc, abcccc
+# abc*?               zero or more c, as few as possible, will return ab
+# abc+                one or more c, as many as possible
+# abc+?               one or more c, as few as possible
+# a{m}                number of consecutive a, a{3} is aaa
+# a{m, n}             m to n consecutive a, as many as possible
+# a{m, n}?            m to n consecutive a, as few as possible
+# [abc]               a or b or c (same as a|b|c)
+# [^abc]              not (a or b or c)
+# prev(?= next)       prev if followed by next
+# prev(?! next)       prev if not followed by next
+# (?<=prev)next       next if preceded by prev
+# (?<!prev)next       next if not preceded by prev
 
-# testing:
+# More testing:
 
-source = '''I wish I may, I wish I might
-...Have a dish of fish tonight.'''
+# find real anywhere:
 
-# find wish  anywhere:
+r = re.findall('real', sample)
+print(r)
 
-re.findall('wish', source)
+# find real where it's at the beginning of a word:
 
-# find wish or fish anywhere:
+r = re.findall(r'\breal\w*', sample)
+print(r)
 
-print(re.findall('wish|fish', source))
+# find real where it's at the end of a word:
 
-# find wish at the beginning:
+r = re.findall(r'\w*real\b', sample)
+print(r)
 
-print(re.findall('^wish', source))
+# find real where it's at the beggining and end of a word:
 
-# find I wish at the beginning:
+r = re.findall(r'\breal\b', sample)
+print(r)
 
-print(re.findall('^I wish', source))
+# find real where it's at the beggining OR end of a word:
 
-# find fish at the end:
+r = re.findall(r'\breal\w*|\w*real\b', sample)
+print(r)
 
-print(re.findall('fish$', source))
+# The characters ^ and $ are called anchors. ^ anchors the search to the beginning of 
+# the string, and $ anchors it to the end.
 
-# find fish tonight. at the end:
+# find Intro at the beginning:
 
-print(re.findall('fish tonight.$', source))
+r = re.findall('^Intro', sample)
+print(r)
 
-# The characters ^ and $ are called anchors. ^ anchors the search to the beginning of the string, 
-# and $ anchors it to the end. .$ matches any character at the end of the line, including a period.
+# find \nIntro at the beginning:
 
-# find w or f followed by ish:
+r = re.findall('^\nIntro', sample)
+print(r)
 
-print(re.findall('[wfd]ish', source))
+# find surreal at the end:
 
-# find one or more runs of w, s, or h:
+r = (re.findall('surreal$', sample))
+print(r)
 
-print(re.findall('[wsh]+', source))
+# find w or f or d followed by ish:
 
-# find ght followed by a non-alphanumeric:
+r = re.findall('[wfd]ish', sample)
+print(r)
 
-print(re.findall('ght\W', source))
+# find one or more runs of b or c:
 
-# find I followed by wish:
+r = re.findall('[bc]+\w*', sample)
+print(r)
 
-print(re.findall('I (?=wish)', source))
+# find me followed by a non-alphanumeric:
 
-# find wish preceded by I:
+r = re.findall('me\W', sample)
+print(r)
 
-print(re.findall('(?<=I) wish', source))
+# find poor followed by boy:
 
-# There are a few cases in which the regular expression pattern rules conflict with the 
-# Python string rules. The following pattern should match any word that begins with fish:
+r = re.findall('poor (?=boy)', sample)
+print(r)
 
-print(re.findall('\bfish', source))
+# find blows preceded by wind:
 
-# \b means backspace in strings, but in the mini-language of regular expressions it means 
-# the beginning of a word. Avoid the accidental use of escape characters by using Python’s 
-# raw strings when you define your regular expression string. Always put an r character 
-# before your regular expression pattern string, and Python escape characters will be disabled:
-
-print(re.findall(r'\bfish', source))
+r = re.findall('(?<=wind) blows', sample)
+print(r)
 
 # Match Output
 
-# When using match() or search(), all matches are returned from the result object m as m.group(). 
-# If you enclose a pattern in parentheses, the match will be saved to its own group, and a tuple 
-# of them will be available as m.groups(), as shown here:
+# When using match() or search(), all matches are returned from the result object 
+# r as r.group(). If you enclose a pattern in parentheses, the match will be saved 
+# to its own group, and a tuple of them will be available as r.groups(), as shown here:
 
-m = re.search(r'(. dish\b).*(\bfish)', source)
+r = re.search(r'(escape).*(reality)', sample)
 
-print(m.group())
-print(m.group())
+print(r.group())
+print(r.groups())
