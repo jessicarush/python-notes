@@ -5,21 +5,15 @@
 # for data to be considered persistent, it must write to non-volatile storage
 # such as a disk (as opposed to memory).
 
-# Examples of ways data can be stored:
-# Pure in-memory (RAM), no persistence at all
-# In-memory with periodic snapshots
-# Disk-based with update-in-place writes (MySQL)
-# Commitlog-based, such as all traditional OLTP databases (SQL)
-
 # The simplest kind of persistence is a plain old file, sometimes called a flat
 # file. This is just a sequence of bytes stored under a filename. You read from
 # a file into memory and write from memory to a file.
 
 # Before reading or writing a file, you need to open it:
 
-# fileobject = open('filename', 'mode')
+fileobject = open('filename', 'r')
 
-# The first letter of mode indicates the operation:
+# The arg after the filename is the mode. The first letter indicates the operation:
 
 # r    read - default mode if not specified
 # w    write - if file doesn't exist, it's created. If file does exist, is overwritten
@@ -33,11 +27,9 @@
 
 # After opening a file, you call functions to read or write data, then you need to close the file:
 
-# fileobject.close() - closes the file
-# filename.read() - reads the contents, you can assign the result to a variable.
-# filename.readline() - Reads just one line of a text file.
-# filename.truncate() - Empties the file.
-# filename.write() - Writes to the file.
+fileobject.close()
+
+# Testing: 
 
 text1 = '...Some content...'
 text2 = """
@@ -219,7 +211,8 @@ fin.close()
 with open('testfile2', 'w') as fout:
     fout.write(text1)
 
-# After the block of code completes (normally or by a raised exception), the # file is closed automatically.
+# After the block of code completes (normally or by a raised exception), the 
+# file is closed automatically.
 
 # seek(), tell()
 
@@ -250,3 +243,5 @@ fin.close()
 # These functions are most useful for binary files. Though you can use them
 # with text files, you would have a hard time calculating offsets as the
 # most popular encoding (UTF-8) uses varying numbers of bytes per character.
+
+# filename.truncate() - Empties the file.
