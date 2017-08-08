@@ -172,19 +172,20 @@ print(r)
 
 # abc                 literal abc
 # (...)               any valid regular expression
-# a|b                 a or b
+# a|b                 a or b - these can be expressions too (...)|(...)
 # .                   any character except \n
-# *                   any number of the preceding character (0 or more)
 # ^                   start of source string
 # $                   end of source string
+# *                   zero or more of the preceding character, ab* will return a, ab, abbb
+# +                   one or more of the preceding character, ab+ will return ab, abbb
+# ?                   means the preceding character is optional (zero or one)
 # abc?                c is optional, a(bc)? means bc is optional
-# abc*                c (and repetitions of c) is optional, will return ab, abc, abcccc
 # abc*?               zero or more c, as few as possible, will return ab
 # abc+                one or more c, as many as possible
 # abc+?               one or more c, as few as possible
 # a{m}                number of consecutive a, a{3} is aaa
-# a{m, n}             m to n consecutive a, as many as possible
-# a{m, n}?            m to n consecutive a, as few as possible
+# a{m,n}              m to n consecutive a, as many as possible
+# a{m,n}?             m to n consecutive a, as few as possible
 # [abc]               a or b or c (same as a|b|c)
 # [^abc]              not (a or b or c)
 # prev(?= next)       prev if followed by next
