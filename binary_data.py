@@ -90,4 +90,6 @@ print(testing)
 # Use big-endian integer format (>)
 # Skip 16 bytes (16x)
 # Read 8 bytes—two unsigned long integers (2L)
-# Skip the final 6 bytes (6x
+# Skip the final 6 bytes (6x)
+
+# To read and write binary files see files_read_write.py
