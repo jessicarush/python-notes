@@ -6,18 +6,18 @@ blist = [1, 2, 3, 255]
 the_bytes = bytes(blist)            # returns b'\x01\x02\x03\xff'
 the_byte_array = bytearray(blist)   # returns bytearray(b'\x01\x02\x03\xff')
 
-the_byte_array[1] = 127      # this works because bytearray is mutable (like a list of bytes)
-the_bytes[1] = 127           # this doesn't work because is immutable (like a tuple of bytes)
+the_byte_array[1] = 127             # works because bytearray is mutable (like a list)
+the_bytes[1] = 127                  # doesn't work because bytes is immutable (like a tuple)
 
 # The representation of a bytes value begins with a b and a quote character, followed by hex 
 # sequences such as \x02 or ASCII characters, and ends with a matching quote character. 
 # When printing bytes or bytearray data, Python uses \x xx for non-printable bytes and their 
-# ASCII equivalents for printable ones (plus some common escape characters, such as \n instead of \x0a).
+# ASCII equivalents for printable ones (plus some common escape characters, such as \n).
 
 # Convert Binary Data with struct
 
-# The standard library contains the struct module. With it you can convert binary data to and from 
-# Python data structures.
+# The standard library contains the struct module. With it you can convert binary data to and 
+# from Python data structures.
 
 # The following program will extract the width and height of an image from some PNG file data:
 
@@ -48,7 +48,7 @@ else:
 print(data[16:20])
 print(data[20:24])
 
-# When you want to go in the other direction and convert Python data to bytes, use the struct pack() function:
+# When you want to go the other way and convert Python data to bytes, use the struct pack() function:
 
 import struct
 
