@@ -3,7 +3,7 @@
 import re
 
 # Define a pattern string, and a source string to compare against.
-# match () checks whether the source begins with the pattern.
+# match() checks whether the source begins with the pattern.
 
 r = re.match('You', 'Young Frankenstein')
 
@@ -97,8 +97,7 @@ Open your eyes, look up to the skies and see.
 I'm just a poor boy, I need no sympathy.
 Because I'm easy come, easy go, little high, little low.
 Any way the wind blows doesn't really matter to me, to me.
-(Verse 1-4, Outro)
-Extra stuff for testing: dish, wish, fish, surreal
+For testing: (Verse 1-4, Outro) dish, wish, fish, surreal
 """
 
 # which characters are digits:
@@ -148,13 +147,34 @@ print(r)
 r = re.findall(r'\b[bB]\w*', sample)
 print(r)
 
+# This says, find all 5 letter words that with 'b' or 'B'
+
+r = re.findall(r'\b[bB]\w\w\w\w\b', sample)
+print(r)
+
+# Same as above:
+
+r = re.findall(r'\b[bB]\w{4}\b', sample)
+print(r)
+
+# Find all words that end in the letter 'r':
+
+r = re.findall(r'\b\w*r\b', sample)
+print(r)
+
+# Doesn't work well for words ending in 't' on account of apostrophes aren't matched by \w
+# This says match any number of letters or apostrophes: [\w']* 
+
+r = re.findall(r"\b[\w']*t\b", sample)
+print(r)
+
 # Pattern Specifiers:
 
 # abc                 literal abc
 # (...)               any valid regular expression
 # a|b                 a or b
 # .                   any character except \n
-# *                   any number of the preceding character
+# *                   any number of the preceding character (0 or more)
 # ^                   start of source string
 # $                   end of source string
 # abc?                c is optional, a(bc)? means bc is optional
@@ -240,6 +260,11 @@ print(r)
 # find blows preceded by wind:
 
 r = re.findall('(?<=wind) blows', sample)
+print(r)
+
+# find words that contain 3 vowels in a row:
+
+r = re.findall(r'\b\w*[aeiuo]{3}\w*\b', sample)
 print(r)
 
 # Match Output
