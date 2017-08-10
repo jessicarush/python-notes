@@ -350,3 +350,16 @@ print(now1 == now2)
 # If you can save your spreadsheet to a CSV file, you can read it by using
 # the standard csv module that was described earlier. If you have a binary
 # xls file, xlrd is a third-party package for reading and writing.
+
+# HDF5
+
+# is a binary data format for multidimensional or hierarchical numeric data.
+# It’s used mainly in science, where fast random access to large datasets
+# (gigabytes to terabytes) is a common requirement. It’s best suited to WORM
+# (write once/read many) applications for which database protection against
+# conflicting writes is not needed. Consider HDF5 when you need to store and
+# retrieve large amounts of data and are willing to consider something
+# outside the box (as well as the usual database solutions). HDF5 modules:
+
+# h5py is a full-featured low-level interface
+# PyTables is a bit higher-level, with database-like features
