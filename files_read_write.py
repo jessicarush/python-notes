@@ -150,7 +150,8 @@ while True:
 
 fin.close()
 
-# The easiest way to read a text file is by using an iterator. This returns # one line at a time... similar to previous example but less code:
+# The easiest way to read a text file is by using an iterator. This returns 
+# one line at a time... similar to previous example but less code:
 
 poem = ''
 fin = open('testfile1', 'r')
@@ -206,7 +207,7 @@ fin.close()
 
 # If you forget to close a file that you’ve opened, you can end up wasting
 # system resources or accidentally overwriting a file. Python has 'context
-# managers' to clean up things such as open files.
+# managers' to clean up things such as open files:
 
 with open('testfile2', 'w') as fout:
     fout.write(text1)
