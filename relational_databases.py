@@ -45,6 +45,8 @@ ins = 'INSERT INTO inventory (things, count, cost) VALUES(?, ?, ?)'
 curs.execute(ins, ('erasers', 85, 0.25))
 curs.execute(ins, ('widgets', 2, 10.0))
 
+# the above is a common method to protect against SQL injection!
+
 # retrieve items (as a list) from the database:
 
 curs.execute('SELECT * FROM inventory')
