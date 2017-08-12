@@ -252,7 +252,7 @@ session.commit()
 # Summary
 
 # This was a brief overview to help decide which of the following levels would
-# best fits your needs:
+# best fit your needs:
 
 # • Plain DB-API, as in the earlier SQLite section
 # • The SQLAlchemy engine room
