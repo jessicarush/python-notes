@@ -50,31 +50,27 @@ if r:
 # findall() returns a list of all non-overlapping matches, if any.
 
 r = re.findall('blue', source)
-print(r)
 print('Found', len(r), 'matches')
 
 # this says find 'e' followed by any character:
 
 r = re.findall('e.', source)
-print(r)
+
 
 # The above will not return the last e because no character follows it. 
 # Indicate the charcter after 'e' is optional with '?':
 
 r = re.findall('e.?', source)
-print(r)
 
 # split() splits the source at using the pattern as the split point and returns a list of 
 # the string pieces.
 
 r = re.split(' ', source)
-print(r)
 
 # sub() takes another replacement argument, and changes all parts of source that are matched 
 # by pattern to the replacement.
 
 r = re.sub('blue', 'black', source)
-print(r)
 
 # Special characters
 
@@ -103,24 +99,20 @@ For testing: (Verse 1-4, Outro) dish, wish, fish, surreal
 # which characters are digits:
 
 r = re.findall('\d', sample)
-print(r)
 
 # which characters are digits, letters or underscore:
 
 r = re.findall('\w', sample)
-print(r)
 
 # note \d and \w work on whatever Unicode defines as a digit or character for example:
 
 test = 'abc' + '-/&' + '\u00ea' +'\u0115'
 r = re.findall('\w', test)
-print(r)
 
 # There are a few cases in which the regular expression pattern rules conflict with the 
 # Python string rules. The following pattern should match any word that begins with b:
 
 r = re.findall('\bb', sample)
-print(r)
 
 # In the mini-language of regular expressions \b means the beginning or end of a word but 
 # in Python strings it means backspace. Avoid the accidental use of escape characters by 
@@ -129,13 +121,11 @@ print(r)
 # will be disabled:
 
 r = re.findall(r'\bb', sample)
-print(r)
 
 # The above isn't very helpful as we only get the 'b' part of the match. 
 # This says, find all complete words that start with the letter 'b'
 
 r = re.findall(r'\bb\w*', sample)
-print(r)
 
 # breakdown:
 # \b    - indicates the beginning of a word
@@ -145,28 +135,23 @@ print(r)
 # This says, find all words that start with the letter 'b' or 'B'
 
 r = re.findall(r'\b[bB]\w*', sample)
-print(r)
 
 # This says, find all 5 letter words that with 'b' or 'B'
 
 r = re.findall(r'\b[bB]\w\w\w\w\b', sample)
-print(r)
 
 # Same as above:
 
 r = re.findall(r'\b[bB]\w{4}\b', sample)
-print(r)
 
 # Find all words that end in the letter 'r':
 
 r = re.findall(r'\b\w*r\b', sample)
-print(r)
 
 # Doesn't work well for words ending in 't' on account of apostrophes aren't matched by \w
 # This says match any number of letters or apostrophes: [\w']* 
 
 r = re.findall(r"\b[\w']*t\b", sample)
-print(r)
 
 # Pattern Specifiers:
 
@@ -198,27 +183,22 @@ print(r)
 # find real anywhere:
 
 r = re.findall('real', sample)
-print(r)
 
 # find real where it's at the beginning of a word:
 
 r = re.findall(r'\breal\w*', sample)
-print(r)
 
 # find real where it's at the end of a word:
 
 r = re.findall(r'\w*real\b', sample)
-print(r)
 
 # find real where it's at the beggining and end of a word:
 
 r = re.findall(r'\breal\b', sample)
-print(r)
 
 # find real where it's at the beggining OR end of a word:
 
 r = re.findall(r'\breal\w*|\w*real\b', sample)
-print(r)
 
 # The characters ^ and $ are called anchors. ^ anchors the search to the beginning of 
 # the string, and $ anchors it to the end.
@@ -226,47 +206,38 @@ print(r)
 # find Intro at the beginning:
 
 r = re.findall('^Intro', sample)
-print(r)
 
 # find \nIntro at the beginning:
 
 r = re.findall('^\nIntro', sample)
-print(r)
 
 # find surreal at the end:
 
 r = (re.findall('surreal$', sample))
-print(r)
 
 # find w or f or d followed by ish:
 
 r = re.findall('[wfd]ish', sample)
-print(r)
 
 # find one or more runs of b or c:
 
 r = re.findall('[bc]+\w*', sample)
-print(r)
 
 # find me followed by a non-alphanumeric:
 
 r = re.findall('me\W', sample)
-print(r)
 
 # find poor followed by boy:
 
 r = re.findall('poor (?=boy)', sample)
-print(r)
 
 # find blows preceded by wind:
 
 r = re.findall('(?<=wind) blows', sample)
-print(r)
 
 # find words that contain 3 vowels in a row:
 
 r = re.findall(r'\b\w*[aeiuo]{3}\w*\b', sample)
-print(r)
 
 # Match Output
 
