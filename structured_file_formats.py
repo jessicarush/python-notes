@@ -47,8 +47,6 @@ with open('singers', 'r') as fin:
     csvin = csv.reader(fin)
     singers  = [row for row in csvin]  # list comprehension
 
-print(singers)
-
 # Using reader() and writer() with their default options, columns are
 # separated by commas and rows by line feeds.
 
@@ -59,8 +57,6 @@ print(singers)
 with open('singers', 'r') as fin:
     csvin = csv.DictReader(fin, fieldnames=['first', 'last'])
     singers = [row for row in csvin]
-
-print(singers)
 
 # DictWriter() will use a list of dictionaries to write the CSV file.
 
@@ -85,8 +81,6 @@ with open('singers', 'w') as fout:
 with open('singers', 'r') as fin:
     csvin = csv.DictReader(fin)
     singers = [row for row in csvin]
-
-print(singers)
 
 # XML
 
