@@ -197,7 +197,7 @@ run(host='localhost', port=9999)
 
 # In the run() function, the setting debug=True creates a debugging page if
 # you get an HTTP error and reloads the page in the browser if you change any
-# of the Python code.
+# of the Python code. Flask1.py:
 
 from flask import Flask
 
@@ -218,7 +218,7 @@ app.run(port=9999, debug=True)
 
 # jinja2 and flask
 
-# save the following as another .py file and run it.
+# Flask2.py:
 
 from flask import Flask, render_template
 
@@ -236,7 +236,7 @@ app.run(port=9999, debug=True)
 
 # Somewhere in the HTML content type {{ thing }} to receive the value
 
-# To pass a second argument you can do this:
+# To pass a second argument you can do this, Flask3.py:
 
 from flask import Flask, render_template
 
@@ -250,7 +250,7 @@ app.run(port=9999, debug=True)
 
 # The URL would be http://localhost:9999/echo/lovely/blah
 
-# or you can provide arguments as GET parameters:
+# or you can provide arguments as GET parameters, Flask4.py:
 
 from flask import Flask, render_template, request
 
@@ -269,7 +269,7 @@ app.run(port=9999, debug=True)
 # http://localhost:9999/echo?thing=lovely&another=blah
 
 # You can also use the dictionary operator ** to pass multiple arguments to a
-# template from a single dictionary:
+# template from a single dictionary, Flask5.py:
 
 from flask import Flask, render_template, request
 
