@@ -14,7 +14,6 @@ import calendar
 print(calendar.isleap(2016))
 print(calendar.isleap(2017))
 
-
 # The datetime module defines four main objects... each with many methods:
 
 # date - for years, months, days
