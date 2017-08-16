@@ -6,7 +6,6 @@
 # are a few new ones.
 
 # Create a file with open()
-
 # open() function is used to open a file or create one if it doesn’t exist:
 
 fout = open('practice.txt', 'w')
@@ -14,7 +13,6 @@ print('File created.', file=fout)
 fout.close()
 
 # Check Existence with exists()
-
 # you can provide exists(), with a relative or absolute pathname:
 
 import os
@@ -24,7 +22,6 @@ os.path.exists('./practice.txt')
 os.path.exists('.')
 
 # Check Type with isfile(), isdir(), isabs()
-
 # These functions check whether a name refers to a file, directory, or link
 
 name = 'practice.txt'
@@ -34,20 +31,17 @@ os.path.isdir(name)
 os.path.isabs('/templates/home.html')
 
 # Copy with copy()
-
 # The copy() function comes from another module, shutil:
+# The shutil.move() function copies a file and then removes the original.
 
 import shutil
 shutil.copy('practice.txt', 'practice_copy.txt')
-
-# The shutil.move() function copies a file and then removes the original
 
 # Change Name with rename()
 
 os.rename('practice_copy.txt', 'practice2.txt')
 
 # Link with link() or symlink()
-
 # Make a hard link to practice.txt from the new file p_link.txt:
 
 os.link('practice.txt', 'p_link')
@@ -77,12 +71,11 @@ os.chmod('practice.txt', 0o4644)
 # group ownership of a file by specifying the numeric user ID (uid) and group
 # ID (gid). I can't get this to work but in theory:
 
-#uid = 100
-#gid = -1
-#os.chown('practice.txt', uid, gid)
+uid = 501
+gid = 20
+os.chown('practice.txt', uid, gid)
 
 # Get a Pathname with abspath()
-
 # This function expands a relative name to an absolute one.
 
 print(os.path.abspath('practice.txt'))
@@ -117,7 +110,6 @@ os.mkdir('practice/stuff')
 print(os.listdir('practice'))
 
 # Change Current Directory with chdir()
-
 # go from one directory to another:
 
 os.chdir('../')         # go up one directory
