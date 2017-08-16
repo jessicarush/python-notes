@@ -135,3 +135,133 @@ print(glob.glob('T*'))
 
 os.chdir('Introducing Python')
 print(glob.glob('[fg]*py'))
+
+# Programs and Processes
+
+# The Python os module provides some ways to access some system 
+# information similar to what you would see in Activity Monitor.
+
+import os
+
+# Get Process ID for the running Python interpreter:
+
+print(os.getpid())
+
+# Get current working directory:
+
+print(os.getcwd())
+
+# Get user and group IDs:
+
+print(os.getuid())
+print(os.getgid())
+
+# Create a Process with subprocess:
+
+# All of the programs here so far have been individual processes. Individual
+# processes are isolated from other processes. You can start and stop other
+# existing programs from Python by using the subprocess module.
+
+
+# Example: run another program in a shell and grab the output it creates using
+# the getoutput() function. Here, we’ll get the output of the Unix date program:
+
+import subprocess
+ret = subprocess.getoutput('date')
+print(ret)
+
+# You won’t get anything back until the process ends. If you need to call
+# something that might take a long time, look into “concurrency”.
+
+# Because the argument to getoutput() is a string representing a complete
+# shell command, you can include arguments, pipes, < and > so on:
+
+ret = subprocess.getoutput('date -u')
+print(ret)
+
+# Piping to this wc command does a count of lines, words, and characters.
+# I have no idea why it formats like it does:
+
+ret = subprocess.getoutput('date -u | wc')
+print(ret)
+
+# A variant method called check_output() takes a list of the command and
+# arguments. By default it only returns standard output as type bytes rather
+# than a string and does not use the shell:
+
+ret = subprocess.check_output(['date', '-u'])
+print(ret)
+
+# To show the exit status of the other program, getstatusoutput() returns a
+# tuple with the status code and output:
+
+ret = subprocess.getstatusoutput('date')
+print(ret)
+
+# (In Unix-like systems, 0 is usually the exit status for success.)
+
+# If you only want the status and no output use call():
+
+ret = subprocess.call('date')
+print(ret)
+
+# Create a Process with Multiprocessing:
+
+# You can run a Python function as a separate process or run multiple
+# independent processes in a single program with the multiprocessing module:
+
+import multiprocessing
+import os
+
+def do_this(what):
+     name(what)
+
+def name(what):
+    print("Process %s is: %s" % (os.getpid(), what))
+
+if __name__ == "__main__":
+    name("the main program")
+    for n in range(4):
+        p = multiprocessing.Process(target=do_this,
+            args=("function %s" % n,))
+        p.start()
+
+# The Process() function spawned a new process and ran the do_this() function
+# in it. Because we did this in a loop, we generated four new processes that
+# executed do_this() and then exited.
+
+# The intention is that you can spread out some task to multiple processes to
+# save overall time; for example, downloading web pages for scraping, resizing
+# images... It includes ways to queue tasks, enable intercommunication among
+# processes, and wait for all the processes to finish.
+
+# Kill a Process with Terminate()
+
+# If you created one or more processes and want to terminate one for some reason (perhaps it’s stuck in a loop), use terminate().
+
+# In this example, the process would count to a thousand, sleeping at each
+# step for a second, and printing a message. However, our main program will
+# terminate it at 5 seconds:
+
+import multiprocessing
+import time
+import os
+
+def whoami(name):
+    print('%s, in process %s' % (name, os.getpid()))
+
+def counter(name):
+    whoami(name)
+    start = 1
+    stop = 1000
+    for num in range(start, stop):
+        print('%s of %s' % (num, stop))
+        time.sleep(1)
+
+if __name__ == "__main__":
+    whoami("main")
+    p = multiprocessing.Process(target=counter, args=("counter",))
+    p.start()
+    time.sleep(5)
+    p.terminate()
+    
