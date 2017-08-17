@@ -171,8 +171,8 @@ print(time.mktime(tm))
 # Read and Write Dates & Times
 
 # isoformat() for date, time and datetime objects and, ctime() for epochs
-# aren't the only way to write dates and times. We can also convert dates,
-# times to strings using strftime().
+# aren't the only way to write dates and times as strings. We can also convert
+# dates and times to strings using strftime().
 
 # This is provided as a method in the datetime, date, and time objects, and
 # as a function in the time module. strftime() uses format strings to specify
