@@ -39,6 +39,10 @@ print(halloween.isoformat())
 # and times. It goes from most general (year) to most specific (day). It also
 # sorts correctly: by year, then month, then day.
 
+# weekday() method tells you the day of the week. Monday is 0, Sunday is 6
+
+print(halloween.weekday())
+
 # today() method to generate today’s date:
 
 from datetime import date
