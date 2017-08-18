@@ -1,4 +1,4 @@
-# Binary data
+'''Binary data'''
 
 # bytes() and bytearray() are sequences of eight-bit integers, with possible values of 0 to 255:
 
