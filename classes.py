@@ -1,4 +1,5 @@
-# Classes
+'''Classes'''
+
 # A string and an integer are examples of built-in Python classes. 
 # A class is logical grouping of data and functions. 
 # The "integer" class is like an instruction manual for constructing "integer" objects.
