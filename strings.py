@@ -67,6 +67,7 @@ test_string = test_string.replace('unicorn', 'red bull')
 print(test_string)
 
 # Change case:
+
 test_string = test_string.lower()
 print(test_string)
 
@@ -81,6 +82,14 @@ print(test_string)
 
 test_string = test_string.swapcase()
 print(test_string)
+
+# NOTE: title() doesn't handle apostrophes very well. Use capwords() instead:
+
+example = "I'm super fun."
+print(example.title())
+
+from string import capwords
+print(capwords(example))
 
 # Alignemnt (not sure why you would ever do this):
 
