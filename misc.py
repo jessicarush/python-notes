@@ -1,14 +1,14 @@
-# Python philosophy
+# Python philosophy:
 
 import this 
 
-# Continuing lines with \
+# Continuing lines with \:
 
 long_text = 'A long time ago' + \
     ' in a galaxy far, far away' + \
     ' blah blah bla'
 
-# None
+# None:
 
 """
 None is not the same as False. Though it may look false when evaluated as a boolean,
@@ -42,3 +42,16 @@ h = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
 hydrogen = Element(**h) 
 
 print(hydrogen.symbol)
+
+# Measuring Time:
+
+# A quick way of timing something is to get the current time, do something, get
+# the new time, and then subtract the original time from the new time.
+
+from time import time, sleep
+
+t1 = time()
+
+sleep(2.0)
+
+print(time() - t1)
