@@ -1,16 +1,12 @@
 '''Testing Python Code'''
 
-# The very simplest way to test Python programs is to add print()statements.
-# However, you probably don’t want print() statements in production code, so
-# you need to remember to take them all out. Not very efficient.
-
 # Run a Python Code Checker
 
 # These check for code errors and style issues. Examples are:
 # pylint - $ pip3 install pylint
 # pep8 - $ pip3 install pep8
 
-# Test this file: pylint myfile.py
+# Test this file: $ pylint myfile.py or $ pep8 ch12_3.py
 
 A = 1
 B = 2
