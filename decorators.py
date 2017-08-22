@@ -1,4 +1,5 @@
-# Decorators - functions that take one function as an input and return another function.
+# Decorators - functions that take one function as an input and return another
+# function.
 
 # Here is a simplified example:
 def my_decorator(some_function):
@@ -14,7 +15,9 @@ def my_function():
 
 my_function()
 
-# Another example... this decorator will print start when the function is called and 'end' when it finishes:
+# Another example... this decorator will print start when the function is
+# called and 'end' when it finishes:
+
 def test(func):
     def new_func(*args, **kwargs):
         print('start')
@@ -70,11 +73,11 @@ def square_it(func):
     return new_function
 
 """
-The decorator that's closest to the actual function (above the def) runs first 
-and then the one above that will run. The results will be the same no matter 
+The decorator that's closest to the actual function (above the def) runs first
+and then the one above that will run. The results will be the same no matter
 what order but the intermedate steps are different obv.
 """
-   
+
 @document_it
 @square_it
 def add_ints(a, b):

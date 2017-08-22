@@ -3,8 +3,8 @@
 # Working with dates and times can be a bit of a pain on account of varying
 # formats, time zones, daylight savings times, and so on.
 
-# Python’s standard library has many date and time modules: datetime, time,
-# calendar, dateutil, and others. There’s some overlap, and it’s a bit
+# Python's standard library has many date and time modules: datetime, time,
+# calendar, dateutil, and others. There's some overlap, and it's a bit
 # confusing.
 
 # Example: test if a year is a leap year:
@@ -43,7 +43,7 @@ print(halloween.isoformat())
 
 print(halloween.weekday())
 
-# today() method to generate today’s date:
+# today() method to generate today's date:
 
 from datetime import date
 now = date.today()
@@ -61,10 +61,10 @@ print(now + 18*one_day)
 # See also: timedelta_example.py
 
 # Note: The range of date is from date.min (year=1, month=1, day=1) to
-# date.max (year=9999, month=12, day=31). As a result, you can’t use it for
+# date.max (year=9999, month=12, day=31). As a result, you can't use it for
 # historic or astronomical calculations.
 
-# The datetime module’s time object is used to represent a time of day:
+# The datetime module's time object is used to represent a time of day:
 
 from datetime import time
 
@@ -76,7 +76,7 @@ print(noon.second)
 print(noon.microsecond)
 
 # The arguments go from the largest time unit (hours) to the smallest
-# (microseconds). If you don’t provide all the arguments, time assumes all the
+# (microseconds). If you don't provide all the arguments, time assumes all the
 # rest are zero.
 
 # The datetime object includes both the date and time of day. The following
@@ -131,7 +131,7 @@ print(noonish_today.time())
 # are a useful least-common denominator for date and time exchange with
 # different systems, such as JavaScript.
 
-# The time module’s time() function returns the current time as an epoch
+# The time module's time() function returns the current time as an epoch
 # value (number of seconds since 1970-01-01):
 
 import time
@@ -144,14 +144,14 @@ new_now = time.ctime(now)
 print(new_now)
 print(type(new_now)) # it's a string
 
-# Sometimes, though, you need actual days, hours, and so on, which time provides 
-# as struct_time objects. localtime() provides the time in your system’s time zone, 
+# Sometimes, though, you need actual days, hours, and so on, which time provides
+# as struct_time objects. localtime() provides the time in your system's time zone,
 # and gmtime() provides it in UTC.
 
 # Note: UTC is the time standard commonly used across the world. It is not a
 # time zone but a time standard that is the basis for civil time and time
 # zones worldwide. This means that no country or territory officially uses
-# UTC as a local time. Formerly GMT (Greenwich Mean Time) which is now a time zone.
+# UTC as a local time. Formerly GMT (Greenwich Mean Time - is now a time zone).
 
 print(time.localtime(now))
 print(time.gmtime(now))
@@ -163,7 +163,7 @@ type(time.localtime(now)) # <class 'time.struct_time'>
 tm = time.localtime(now)
 print(time.mktime(tm))
 
-# Note this doesn’t exactly match the earlier epoch value of now() because
+# Note this doesn't exactly match the earlier epoch value of now() because
 # the struct_time object preserves time only to the second.
 
 # Some advice: wherever possible, use UTC instead of time zones. UTC is an
@@ -195,7 +195,7 @@ print(time.mktime(tm))
 # %M  minute                  59
 # %S  second                  59
 
-# Here’s the strftime() function with the time module. It converts a
+# Here's the strftime() function with the time module. It converts a
 # struct_time object to a string:
 
 import time
@@ -268,14 +268,14 @@ print(de_names)
 
 # Alternative Modules
 
-# If you find the standard library modules confusing, or lacking a particular 
+# If you find the standard library modules confusing, or lacking a particular
 # conversion that you want, there are many third-party alternatives:
 
 # arrow - https://arrow.readthedocs.io/en/latest/
 # This combines many date and time functions with a simple API.
 
 # dateutil - http://labix.org/python-dateutil
-# This module parses almost any date format and handles relative dates and 
+# This module parses almost any date format and handles relative dates and
 # times well.
 
 # iso8601 - https://pypi.python.org/pypi/iso8601

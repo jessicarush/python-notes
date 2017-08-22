@@ -2,7 +2,7 @@
 
 # For obvious reasons, it helps to document your code. Documentation can
 # include comments and docstrings, but it can also incorporate informative
-# naming of variables, functions, modules, and classes. Don’t be obsessive, say
+# naming of variables, functions, modules, and classes. Don't be obsessive, say
 # why you assigned the value. Point out why you called the variable whatever.
 # If you were writing a Fahrenheit to Celsius converter:
 
@@ -18,7 +18,7 @@ def ftoc(f_temp):
     c_temp = (f_temp - f_freeze_temp) * f_c_ratio + c_freeze_temp
     return c_temp
 
-# And a little test code wouldn’t hurt:
+# And a little test code wouldn't hurt:
 
 if __name__ == '__main__':
     for f_temp in [-40.0, 0.0, 32.0, 100.0, 212.0]:
@@ -27,12 +27,12 @@ if __name__ == '__main__':
 
 # Two imporivements can be made:
 
-# Python doesn’t have constants, but the PEP8 stylesheet recommends using
+# Python doesn't have constants, but the PEP8 stylesheet recommends using
 # capital letters and underscores (e.g., ALL_CAPS) when naming variables that
 # should be considered constants.
 
 # Because we precompute values based on constant values, move them to the top
-# level of the module. Then, they’ll only be calculated once rather than in
+# level of the module. Then, they'll only be calculated once rather than in
 # every call to the ftoc() function:
 
 F_BOIL_TEMP = 212.0

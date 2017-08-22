@@ -17,7 +17,7 @@ def test2():
             number = int(value)
         except ValueError:
             continue
-        number = int(value) 
+        number = int(value)
         print(number, 'squared is', number * number)
 
 test1()

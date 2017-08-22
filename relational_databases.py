@@ -14,8 +14,8 @@
 
 # SQLite
 
-# A good, light, open source relational database. It’s implemented as a standard
-# Python library, and stores databases in normal files. It isn’t as full-featured
+# A good, light, open source relational database. It's implemented as a standard
+# Python library, and stores databases in normal files. It isn't as full-featured
 # as MySQL, but it does support SQL, and manages multiple simultaneous users. Web
 # browsers, smart phones, and other apps use SQLite as an embedded database.
 
@@ -79,7 +79,7 @@ conn.close()
 
 # MySQL
 
-# Unlike SQLite, it’s an actual server, so clients can access it from different
+# Unlike SQLite, it's an actual server, so clients can access it from different
 # devices across the network. MysqlDB is the most popular driver, but hasn't
 # yet been ported to Python 3. You can use these to access MySQL from Python:
 
@@ -101,7 +101,7 @@ conn.close()
 # reflecting its features and philosophy. Many libraries try to bridge these
 # differences. The most popular cross-database Python library is SQLAlchemy.
 
-# you don’t need to import the driver; the initial connection string you
+# you don't need to import the driver; the initial connection string you
 # provide to SQLAlchemy will determine it:
 
 # dialect + driver :// user : password @ host : port / dbname
@@ -109,16 +109,16 @@ conn.close()
 # dialect - the database type
 # driver - the particular driver you want to use for that database
 # user and password - our database authentication strings
-# host and port - the database server’s location
-# (: port is only needed if it’s not the standard one for this server)
+# host and port - the database server's location
+# (: port is only needed if it's not the standard one for this server)
 # dbname - the database to initially connect to on the server
 
 # SQLite skips the host, port, user, and password.
 
 # The dbname informs SQLite as to what file to use to store your database.
 # If you omit the dbname, SQLite builds a database in memory. If the dbname
-# starts with a slash (/), it’s an absolute filename on your computer
-# Otherwise, it’s relative to your current directory.
+# starts with a slash (/), it's an absolute filename on your computer
+# Otherwise, it's relative to your current directory.
 
 # The Engine Layer
 
@@ -157,9 +157,9 @@ for row in rows:
 
 # SQL Expression Language
 
-# SQLAlchemy’s SQL Expression Language introduces functions to create the SQL
+# SQLAlchemy's SQL Expression Language introduces functions to create the SQL
 # for various operations. The Expression Language handles more of the SQL
-# dialect differences. Here’s how to create and populate the a table using
+# dialect differences. Here's how to create and populate the a table using
 # some of the Expression Language instead of SQL:
 
 import sqlalchemy as sa

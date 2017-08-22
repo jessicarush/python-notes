@@ -1,6 +1,6 @@
 # Python philosophy:
 
-import this 
+import this
 
 # Continuing lines:
 
@@ -10,10 +10,10 @@ long_text = 'A long time ago' + \
 
 # About None:
 
-# None is not the same as False. Though it may look false when evaluated as a boolean,
-# None is technically none as seen here:
-    
-thing = None 
+# None is not the same as False. Though it may look false when evaluated as a
+# boolean, None is technically none as seen here:
+
+thing = None
 
 def is_none(thing):
     if thing is None:
@@ -37,7 +37,7 @@ class Element():
 
 h = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
 
-hydrogen = Element(**h) 
+hydrogen = Element(**h)
 
 print(hydrogen.symbol)
 

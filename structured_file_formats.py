@@ -17,7 +17,7 @@
 # Delimited files are often used as an exchange format for spreadsheets and
 # databases. You could read CSV files manually, a line at a time, splitting 
 # each line into fields at comma separators, and adding the results to data 
-# structures such as lists and dictionaries. But it’s better to use the standard 
+# structures such as lists and dictionaries. But it's better to use the standard 
 # csv module, because parsing these files can be more complicated.
 
 # Some have alternate delimiters besides a comma like '|' and '\t' (tab)
@@ -103,7 +103,7 @@ with open('singers', 'r') as fin:
 """
 
 # A few things to keep in mind when working with XML: though much like HTML,
-# the choice of where to put attributes, values and nested tags—is somewhat
+# the choice of where to put attributes, values and nested tags-is somewhat
 # arbitrary. For instance, we could see the following:
 # <item price="8.00">spaghetti</item>
 # <item price="$8.00" food="spaghetti"/>
@@ -144,7 +144,7 @@ print(len(root[0])) # number of breakfast items
 
 # HTML
 
-# The problem here is so much of it doesn’t follow the HTML rules, which can
+# The problem here is so much of it doesn't follow the HTML rules, which can
 # make it difficult to parse. Also, much of HTML is intended more to format 
 # output than interchange data. More to come...
 
@@ -204,7 +204,7 @@ print(menu2)
 
 # If the datetime value could occur in the middle of normally converted data
 # types, it might be annoying to make these special conversions. You can
-# modify how JSON is encoded by using inheritance. Python’s JSON
+# modify how JSON is encoded by using inheritance. Python's JSON
 # documentation gives an example of this for complex numbers, which can be
 # modified for datetime:
 
@@ -289,8 +289,8 @@ print(len(data['poems']))
 print(data['poems'][1]['title'])
 
 # PyYAML can load() Python objects from strings, and this is dangerous.
-# Always Use safe_load() instead of load(), especially if you’re importing
-# YAML that you don’t trust.
+# Always Use safe_load() instead of load(), especially if you're importing
+# YAML that you don't trust.
 
 # Configuration files
 
@@ -335,8 +335,8 @@ print(now2)
 print(now1 == now2)
 
 # Use dump() to pickle to a file, and load() to unpickle from one. As with
-# PyYAML load(), pickle can create Python objects. Don’t unpickle something
-# that you don’t trust.
+# PyYAML load(), pickle can create Python objects. Don't unpickle something
+# that you don't trust.
 
 # Spreadsheets
 
@@ -348,8 +348,8 @@ print(now1 == now2)
 # HDF5
 
 # is a binary data format for multidimensional or hierarchical numeric data.
-# It’s used mainly in science, where fast random access to large datasets
-# (gigabytes to terabytes) is a common requirement. It’s best suited to WORM
+# It's used mainly in science, where fast random access to large datasets
+# (gigabytes to terabytes) is a common requirement. It's best suited to WORM
 # (write once/read many) applications for which database protection against
 # conflicting writes is not needed. Consider HDF5 when you need to store and
 # retrieve large amounts of data and are willing to consider something

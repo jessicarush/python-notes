@@ -1,25 +1,28 @@
 '''Binary data'''
 
-# bytes() and bytearray() are sequences of eight-bit integers, with possible values of 0 to 255:
+# bytes() and bytearray() are sequences of eight-bit integers, with possible
+# values of 0 to 255:
 
 blist = [1, 2, 3, 255]
 the_bytes = bytes(blist)            # returns b'\x01\x02\x03\xff'
 the_byte_array = bytearray(blist)   # returns bytearray(b'\x01\x02\x03\xff')
 
-the_byte_array[1] = 127             # works because bytearray is mutable (like a list)
-the_bytes[1] = 127                  # doesn't work because bytes is immutable (like a tuple)
+the_byte_array[1] = 127   # works because bytearray is mutable (like a list)
+the_bytes[1] = 127        # doesn't work because bytes is immutable (like a tuple)
 
-# The representation of a bytes value begins with a b and a quote character, followed by hex 
-# sequences such as \x02 or ASCII characters, and ends with a matching quote character. 
-# When printing bytes or bytearray data, Python uses \x xx for non-printable bytes and their 
-# ASCII equivalents for printable ones (plus some common escape characters, such as \n).
+# The representation of a bytes value begins with a b and a quote character,
+# followed by hex sequences such as \x02 or ASCII characters, and ends with a
+# matching quote character. When printing bytes or bytearray data, Python uses
+# \x xx for non-printable bytes and their ASCII equivalents for printable ones
+# (plus some common escape characters, such as \n).
 
 # Convert Binary Data with struct
 
-# The standard library contains the struct module. With it you can convert binary data to and 
-# from Python data structures.
+# The standard library contains the struct module. With it you can convert
+# binary data to and from Python data structures.
 
-# The following program will extract the width and height of an image from some PNG file data:
+# The following program will extract the width and height of an image from some
+# PNG file data:
 
 import struct
 
@@ -39,16 +42,18 @@ if data[:8] == valid_png_header:
 else:
     print('Not a valid PNG')
 
-# The >LL is the format string that instructs unpack() how to interpret its input byte sequences and
-# assemble them into Python data types. The > means that integers are stored in big-endian format. 
-# Each L specifies a 4-byte unsigned long integer.
+# The >LL is the format string that instructs unpack() how to interpret its
+# input byte sequences and assemble them into Python data types. The > means
+# that integers are stored in big-endian format. Each L specifies a 4-byte
+# unsigned long integer.
 
 # You can examine each 4-byte value directly:
 
 print(data[16:20])
 print(data[20:24])
 
-# When you want to go the other way and convert Python data to bytes, use the struct pack() function:
+# When you want to go the other way and convert Python data to bytes, use the
+# struct pack() function:
 
 import struct
 
@@ -75,21 +80,21 @@ struct.pack('>L', 141)
 # p     count and characters        1 + count
 # s     characters                  count
 
-# The type specifiers follow the endian character. Any specifier may be preceded by a number 
-# that indicates the count. 2L is the same as LL:
+# The type specifiers follow the endian character. Any specifier may be preceded
+# by a number that indicates the count. 2L is the same as LL:
 
 testing = struct.unpack('>2L', data[16:24])
 print(testing)
 
-# We used the slice data[16:24] to grab the interesting bytes directly. We could also use the 
-# x specifier to skip the uninteresting parts:
+# We used the slice data[16:24] to grab the interesting bytes directly.
+# We could also use the x specifier to skip the uninteresting parts:
 
 testing = struct.unpack('>16x2L6x', data)
 print(testing)
 
 # Use big-endian integer format (>)
 # Skip 16 bytes (16x)
-# Read 8 bytes—two unsigned long integers (2L)
+# Read 8 bytes-two unsigned long integers (2L)
 # Skip the final 6 bytes (6x)
 
 # To read and write binary files see files_read_write.py

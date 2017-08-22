@@ -55,9 +55,9 @@ print('Van' in location)
 
 print(location['street'])
 
-# if the key is not present, you'll get an exception. To avoid this use the get() function.
-# provide the key and an optional value. If the exists, you'll get its value. If not, you'll
-# get the optional one if you provided one:
+# if the key is not present, you'll get an exception. To avoid this use the
+# get() function. Provide the key and an optional value. If the exists, you'll
+# get its value. If not, you'll get the optional one if you provided one:
 
 print(location.get('country', 'country not specified'))
 
@@ -96,21 +96,24 @@ location['city'] = 'montreal'
 print(location)
 print(location_copy)
 
-# setdefault() method is like get() for dictionaries. It looks for the key and if missing, creates it,
-# but it does not change the value if the key is already there. 
-# If you don't provide a value as with 'Canada' below, the value will be set to None
+# setdefault() method is like get() for dictionaries. It looks for the key and
+# if missing, creates it, but it does not change the value if the key is already
+# there. If you don't provide a value as with 'Canada' below, the value will be
+# set to None
 
 country = location.setdefault('country', 'Canada')
 
-# defaultdict() specifies a default value for any new key up front when the dictionary is created. 
-# In this example, any missing value will be an integer with a value 0
+# defaultdict() specifies a default value for any new key up front when the
+# dictionary is created. In this example, any missing value will be an integer
+# with a value 0
 
 from collections import defaultdict
 
 jellybeans = defaultdict(int)
 jellybeans['red']
 
-# The argument to defaultdict() is a function. The function returns the value for the missing key
+# The argument to defaultdict() is a function. The function returns the value
+# for the missing key
 
 def missing():
     return 'what?'
@@ -118,13 +121,15 @@ def missing():
 jellybeans = defaultdict(missing)
 jellybeans['orange']
 
-# you can use int(), list(), or dict() functions to return empty values for those types
+# you can use int(), list(), or dict() functions to return empty values for
+# those types
 
 jellybeans = defaultdict(int)   # returns 0
 jellybeans = defaultdict(list)  # returns an empty list
 jellybeans = defaultdict(dict)  # returns an empty dictionary
 
-# if you wanted to add a key and items to the value list as with jellybeans = defaultdict(list):
+# if you wanted to add a key and items to the value list as with
+# jellybeans = defaultdict(list):
 
 jellybeans['newkey'].append('item1')
 jellybeans['newkey'].append('item2')
@@ -133,15 +138,15 @@ jellybeans['newkey'].append('item2')
 
 jellybeans = defaultdict(lambda: 'what?')
 
-# an example of a counter: 
+# an example of a counter:
 
 jellybeans = defaultdict(int)
 
 for key in ['red', 'red', 'orange', 'red']:
     jellybeans[key] += 1
 
-# OrderedDict() rememebers the order of key addition and returns them in that same order 
-# (remember, dictionaries are NOT usually ordered like lists
+# OrderedDict() rememebers the order of key addition and returns them in that
+# same order (remember, dictionaries are NOT usually ordered like lists
 
 from collections import OrderedDict
 

@@ -11,7 +11,8 @@ r = re.match('You', 'Young Frankenstein')
 
 print(r)
 
-# For more complex matches, you can compile your pattern first to speed up the match later:
+# For more complex matches, you can compile your pattern first to speed up the
+# match later:
 
 pattern = re.compile('You')
 
@@ -26,8 +27,8 @@ r = re.match('blue', source)
 if r:
     print(r.group())
 
-# In the following, m returns nothing because match only checks out if the beginning of
-# the source matches:
+# In the following, m returns nothing because match only checks out if the
+# beginning of the source matches:
 
 r = re.match('green', source)
 if r:
@@ -62,13 +63,13 @@ r = re.findall('e.', source)
 
 r = re.findall('e.?', source)
 
-# split() splits the source at using the pattern as the split point and returns a list of
-# the string pieces.
+# split() splits the source at using the pattern as the split point and returns
+# a list of the string pieces.
 
 r = re.split(' ', source)
 
-# sub() takes another replacement argument, and changes all parts of source that are matched
-# by pattern to the replacement.
+# sub() takes another replacement argument, and changes all parts of source
+# that are matched by pattern to the replacement.
 
 r = re.sub('blue', 'black', source)
 
@@ -104,7 +105,8 @@ r = re.findall('\d', sample)
 
 r = re.findall('\w', sample)
 
-# note \d and \w work on whatever Unicode defines as a digit or character for example:
+# note \d and \w work on whatever Unicode defines as a digit or character
+# for example:
 
 test = 'abc' + '-/&' + '\u00ea' +'\u0115'
 r = re.findall('\w', test)
@@ -117,7 +119,7 @@ r = re.findall('\bb', sample)
 
 # In the mini-language of regular expressions \b means the beginning or end of
 # a word but in Python strings it means backspace. Avoid the accidental use of
-# escape characters by using Python’s "raw strings" when you define your
+# escape characters by using Python's "raw strings" when you define your
 # regular expression string. Always put an r character before your regular
 # expression pattern string, and Python escape characters will be disabled:
 

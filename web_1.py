@@ -3,14 +3,14 @@
 # Python 3 has bundled all its web client and server modules into 2 packages:
 
 # http manages all the client-server HTTP details:
-# — client does the client-side stuff
-# — server helps you write Python web servers
-# — cookies and cookiejar manage cookies, which save data between site visits
+# - client does the client-side stuff
+# - server helps you write Python web servers
+# - cookies and cookiejar manage cookies, which save data between site visits
 
 # urllib runs on top of http:
-# — request handles the client request
-# — response handles the server response
-# — parse cracks the parts of a URL
+# - request handles the client request
+# - response handles the server response
+# - parse cracks the parts of a URL
 
 import urllib.request as ur
 url = 'http://cyan.red'
@@ -91,13 +91,13 @@ print(resp.text)
 
 # localhost and 127.0.0.1 are TCP for your local computer.
 
-# 127.0.0.1 is the client’s IP address
+# 127.0.0.1 is the client's IP address
 # The first '-' is the remote username, if found
 # The second '-' is the login username, if required
 # [14/Aug/2017 13:10:46] is the access date and time
 # "GET / HTTP/1.1" is the command sent to the web server:
-# — The HTTP method (GET)
-# — The resource requested (/, the top) — The HTTP version (HTTP/1.1)
+# - The HTTP method (GET)
+# - The resource requested (/, the top) - The HTTP version (HTTP/1.1)
 # The final 200 is the HTTP status code returned by the web server
 
 # the default port is 8000 but you can choose your own:
@@ -140,7 +140,7 @@ print(resp.text)
 
 # Bottle (microframework, doesn't include direct support for databases)
 
-# Bottle consists of a single Python file, so it’s very easy to try out, and
+# Bottle consists of a single Python file, so it's very easy to try out, and
 # to deploy later. To install it: $ pip3 install bottle
 
 # Save as bottle1.py:
@@ -159,8 +159,8 @@ run(host='localhost', port=9999)
 
 # in your web browser go to http://localhost:9999/
 
-# The run() function executes bottle’s built-in Python test web server. You
-# don’t need to use this for bottle programs, but it’s useful for initial
+# The run() function executes bottle's built-in Python test web server. You
+# don't need to use this for bottle programs, but it's useful for initial
 # development and testing.
 
 # try making bottle return the contents of an HTML page. Save the following
@@ -188,7 +188,7 @@ run(host='localhost', port=9999)
 # authentication and database integration. The Flask package includes the
 # werkzeug WSGI library and jinja2 template library.
 
-# Flask’s default directory home for static files is static, and URLs for
+# Flask's default directory home for static files is static, and URLs for
 # files there also begin with /static. For example, a linked stylesheet
 # should be like this: /static/css/desktop.css instead of css/desktop.css
 # If you don't want to use the static directory, change the folder to '.'
@@ -292,12 +292,12 @@ app.run(port=9999, debug=True)
 # If you want to build a website backed by a relational database, you can use
 # bottle and flask with relational database modules, or use SQLAlchemy. But if
 # you're building larger database-backed websites, and the database design
-# doesn’t change very often, it might be worth working with one of the larger 
+# doesn't change very often, it might be worth working with one of the larger 
 # Python web frameworks like:
 
 # Django - he most popular, especially for large sites. It includes ORM code
 # to create automatic web pages for the typical database CRUD functions
-# (create, replace, update, delete). You don’t have to use django’s ORM if you
+# (create, replace, update, delete). You don't have to use django's ORM if you
 # prefer another, such as SQLAlchemy, or direct SQL queries.
 
 # web2py - same as django, with a different style

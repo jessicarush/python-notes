@@ -67,7 +67,8 @@ test4()
 
 def test5():
     for name, ingredients in drinks.items():
-        if ingredients & {'vermouth', 'orange juice'}:   # has vermouth or orange juice
+        # has vermouth or orange juice
+        if ingredients & {'vermouth', 'orange juice'}:
             print('test 5: ', name)
 test5()
 
@@ -108,7 +109,7 @@ print(bruss.union(wruss))
 print(a - b)
 print(a.difference(b))
 
-print(bruss - wruss) 
+print(bruss - wruss)
 print(wruss.difference(bruss))
 
 # test for exclusive items (items in the one set or the other not both:
@@ -119,7 +120,7 @@ print(a.symmetric_difference(b))
 print(bruss ^ wruss)
 print(bruss.symmetric_difference(wruss))
 
-# test if one set is a subset of another(all items in first set are also in second):
+# test if one set is a subset of another (all items in first set are also in second):
 
 print(a <= b)
 print(a.issubset(b))

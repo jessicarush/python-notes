@@ -57,7 +57,7 @@ print(test_string.isalnum())
 test_string = test_string.strip('.')
 print(test_string)
 
-# Replace characters or words. You can also use a number argument 
+# Replace characters or words. You can also use a number argument
 # to limit the number of replacements like this: test_string.replace(' ', '-', 2)
 
 test_string = test_string.replace(' ', '-')

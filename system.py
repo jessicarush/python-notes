@@ -6,7 +6,7 @@
 # are a few new ones.
 
 # Create a file with open()
-# open() function is used to open a file or create one if it doesn’t exist:
+# open() function is used to open a file or create one if it doesn't exist:
 
 fout = open('practice.txt', 'w')
 print('File created.', file=fout)
@@ -138,7 +138,7 @@ print(glob.glob('[fg]*py'))
 
 # Programs and Processes
 
-# The Python os module provides some ways to access some system 
+# The Python os module provides some ways to access some system
 # information similar to what you would see in Activity Monitor.
 
 import os
@@ -164,14 +164,14 @@ print(os.getgid())
 
 
 # Example: run another program in a shell and grab the output it creates using
-# the getoutput() function. Here, we’ll get the output of the Unix date program:
+# the getoutput() function. Here, we'll get the output of the Unix date program:
 
 import subprocess
 ret = subprocess.getoutput('date')
 print(ret)
 
-# You won’t get anything back until the process ends. If you need to call
-# something that might take a long time, look into “concurrency”.
+# You won't get anything back until the process ends. If you need to call
+# something that might take a long time, look into "concurrency".
 
 # Because the argument to getoutput() is a string representing a complete
 # shell command, you can include arguments, pipes, < and > so on:
@@ -237,7 +237,8 @@ if __name__ == "__main__":
 
 # Kill a Process with Terminate()
 
-# If you created one or more processes and want to terminate one for some reason (perhaps it’s stuck in a loop), use terminate().
+# If you created one or more processes and want to terminate one for some reason
+# (perhaps it's stuck in a loop), use terminate().
 
 # In this example, the process would count to a thousand, sleeping at each
 # step for a second, and printing a message. However, our main program will
@@ -264,4 +265,3 @@ if __name__ == "__main__":
     p.start()
     time.sleep(5)
     p.terminate()
-    

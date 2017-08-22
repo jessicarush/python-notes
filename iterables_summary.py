@@ -1,4 +1,4 @@
-# REVIEW of Lists, Tuples, Dictionaries & Sets 
+# REVIEW of Lists, Tuples, Dictionaries & Sets
 
 # Compare data structures:
 
@@ -7,7 +7,8 @@ colours_tuple = ('red', 'orange', 'black')
 colours_dict = {'red' : 'Pantone 185C' , 'orange' : 'Pantone 021C' , 'black' : 'Pantone 6C'}
 colours_set = {'red', 'orange', 'black'}
 
-# in each case use [] brackets to access a single element (except sets which don't support indexing):
+# in each case use [] brackets to access a single element
+# (except sets which don't support indexing):
 
 print(colours_list[2])
 print(colours_tuple[2])

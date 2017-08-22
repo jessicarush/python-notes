@@ -1,6 +1,7 @@
 # Composition
-# Inheritance is a good technique (child is-a parent) but it can be tempting to build elaborate
-# inheritance hierarchies. Sometimes composition or aggregation (x has-a y) makes more sense.
+# Inheritance is a good technique (child is-a parent) but it can be tempting
+# to build elaborate inheritance hierarchies. Sometimes composition or
+# aggregation (x has-a y) makes more sense.
 
 class Floor():
     def __init__(self, kind):

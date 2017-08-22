@@ -15,21 +15,22 @@ fileobject = open('filename', 'r')
 
 # The arg after the filename is the mode. The first letter indicates the operation:
 
-# r    read - default mode if not specified
-# w    write - if file doesn't exist, it's created. If file does exist, is overwritten
-# x    write - but only if the file does not already exist
-# a    append - write after the end if the file exists
+# r  read - default mode if not specified
+# w  write - if file doesn't exist, it's created. If file does exist, is overwritten
+# x  write - but only if the file does not already exist
+# a  append - write after the end if the file exists
 
 # The second letter of mode indicates the file type:
 
 # t   text  - default type if not specified
 # b   binary
 
-# After opening a file, you call functions to read or write data, then you need to close the file:
+# After opening a file, you call functions to read or write data, then you need
+# to close the file:
 
 fileobject.close()
 
-# Testing: 
+# Testing:
 
 text1 = '...Some content...'
 text2 = """
@@ -132,7 +133,7 @@ while True:
 
 fin.close()
 
-# After you’ve read all the way to the end, further calls to read() will
+# After you've read all the way to the end, further calls to read() will
 # return an empty string (''), which is treated as False in if not fragment.
 # This breaks out of the while True loop.
 
@@ -150,7 +151,7 @@ while True:
 
 fin.close()
 
-# The easiest way to read a text file is by using an iterator. This returns 
+# The easiest way to read a text file is by using an iterator. This returns
 # one line at a time... similar to previous example but less code:
 
 poem = ''
@@ -205,14 +206,14 @@ fin.close()
 
 # Close files automatically using: with expression as variable
 
-# If you forget to close a file that you’ve opened, you can end up wasting
+# If you forget to close a file that you've opened, you can end up wasting
 # system resources or accidentally overwriting a file. Python has 'context
 # managers' to clean up things such as open files:
 
 with open('testfile2', 'w') as fout:
     fout.write(text1)
 
-# After the block of code completes (normally or by a raised exception), the 
+# After the block of code completes (normally or by a raised exception), the
 # file is closed automatically.
 
 # seek(), tell()
@@ -220,7 +221,7 @@ with open('testfile2', 'w') as fout:
 # Reminder: As you read and write, Python keeps track of where you are in
 # the file. The tell() function returns your current offset position in
 # bytes. The seek() function lets you jump to another offset in the file.
-# This means you don’t have to read every byte in a file to read the last one.
+# This means you don't have to read every byte in a file to read the last one.
 # Note: seek() also returns the current offset.
 
 fin = open('testbinary', 'rb')

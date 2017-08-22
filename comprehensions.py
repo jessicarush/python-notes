@@ -19,7 +19,7 @@ for number in range(1,6):
 
 number_list = list(range(1,6))
 
-# or use list comprehensions: 
+# or use list comprehensions:
 # [expression for item in iterable]
 
 number_list = [number for number in range(1,6)]
@@ -39,7 +39,7 @@ number_list = []
 for number in range(1,10):
     if number % 2 == 1:
         number_list.append(number)
-        
+
 # Another example with nested loops. Here's the traditional way:
 
 rows = range(1,4)
@@ -49,7 +49,8 @@ for row in rows:
     for col in cols:
         print (row, col)
 
-# or use a comprehension: Assign it to a variable 'cells' making it a list of (row, col) tuples:
+# or use a comprehension: Assign it to a variable 'cells' making it a list of
+# (row, col) tuples:
 
 rows = range(1,4)
 cols = range(1,3)
@@ -57,11 +58,11 @@ cells = [(row, col) for row in rows for col in cols]
 for cell in cells:
     print(cell)
 
-# You can also use tuple unpacking to pull the row an col values from each tuple:
+# You can also use tuple unpacking to pull the row col values from each tuple:
 
 for row, col in cells:
     print(row, col)
-    
+
 # Review list comprehensions [expression for item in iterable]:
 
 even_numbers = [i for i in range(0, 10, 2)]
@@ -79,12 +80,14 @@ word = 'letters'
 letter_counts = {letter : word.count(letter) for letter in word}
 
 # Technically we are counting some letters twice.
-# By converting the word into a set(), we remove any duplicates for the checking part.
+# By converting the word into a set(), we remove any duplicates for the
+# checking part.
 
 word = 'letters'
 letter_counts = {letter : word.count(letter) for letter in set(word)}
 
-# Review dictionary comprehensions {key_expression: value_expression for expression in iterable}:
+# Review dictionary comprehensions
+# {key_expression: value_expression for expression in iterable}:
 
 squares = { number: number*number for number in range(10)}
 print(squares)
@@ -100,8 +103,9 @@ odds = {number for number in range(10) if number % 2 != 0}
 print(odds)
 
 # Generator comprehensions
-# Tuples don't have comprehensions. 
-# Changing the [] or {} of a comprehesion to () is actually a generator comprehesion and returns a generator object.
+# Tuples don't have comprehensions.
+# Changing the [] or {} of a comprehesion to () is actually
+# a generator comprehesion and returns a generator object.
 
 number_thing = (number for number in range(1,6))
 

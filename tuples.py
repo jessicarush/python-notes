@@ -40,7 +40,7 @@ Benefits of using tuples:
 """
 
 # Named Tuples
-# A named tuple is a subclass of tuples with which you can access values by name (with .name) 
+# A named tuple is a subclass of tuples with which you can access values by name (with .name)
 # as well as position (with [offset])
 
 from collections import namedtuple
@@ -59,9 +59,9 @@ print(kitchen[0])
 
 parts = {'floor': 'linoleum', 'windows': '2'}
 
-bedroom = Room(**parts)  
+bedroom = Room(**parts)
 
-# BTW **parts is a keyword argument. It extracts the keys and values from the parts dict 
+# BTW **parts is a keyword argument. It extracts the keys and values from the parts dict
 # and supplies them as arguments to Room()
 
 # Testing:
@@ -73,4 +73,4 @@ print(bedroom[0])
 
 # Named tuples look and act like an immutable object
 # You can access attributes by using dot notation instead of dict style []
-# You can use it as a dict key 
+# You can use it as a dict key

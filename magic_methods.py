@@ -1,5 +1,5 @@
 # Special (Magic) Methods
-# Names of these methods begin with __. An example is __init__ which initializes 
+# Names of these methods begin with __. An example is __init__ which initializes
 # a newly created object from its class def and any arguments that were passed in.
 # Example: create a method that compares two words but is case insensitive.
 
@@ -90,6 +90,6 @@ class Word():
         return self.text
     def __repr__(self):
         return 'Word("' + self.text + '")'
-        
+
 first = Word('ha')
 print(first)    # returns ha

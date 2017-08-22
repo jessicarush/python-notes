@@ -1,4 +1,5 @@
-# LISTS are mutable and ordered. May contain duplicate items and can be changed in place.
+# LISTS are mutable and ordered. May contain duplicate items and can be
+# changed in place.
 
 # There are several ways to make a list
 
@@ -23,7 +24,8 @@ months.append('Feb')
 a_tuple  = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul')
 a_list = list(a_tuple)
 
-# Use .split() to break up a string into a list via some separator like space or comma
+# Use .split() to break up a string into a list via some separator like space
+# or comma:
 
 a_string = "11-7-24-19-74"
 a_list = a_string.split('-')
@@ -130,8 +132,8 @@ print(len(bands))
 
 a = [1, 2, 3]  # original list
 b = a          # not a copy
-c = a.copy()   
-d = list(a)    
+c = a.copy()
+d = list(a)
 e = a[:]
 
 a[0] = 'changed'

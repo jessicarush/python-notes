@@ -1,7 +1,7 @@
 # Concurrency and Networks
 
-# Normally we run programs in one place (on a single machine) and one line at a 
-# time (sequential). Concurrency is running more than one thing at at time. 
+# Normally we run programs in one place (on a single machine) and one line at a
+# time (sequential). Concurrency is running more than one thing at at time.
 # Distributed computing or Networking is running in more than one place.
 
 # Concurrency: https://docs.python.org/3/library/concurrency.html
@@ -45,7 +45,7 @@
 # just implement asynchronousness.
 
 # On a single machine, if you want to perform multiple tasks as fast as
-# possible, you want to make them independent. Slow tasks shouldn’t block all
+# possible, you want to make them independent. Slow tasks shouldn't block all
 # the others.
 
 # If you needed to resize an image, your web server code could call a separate,
@@ -54,7 +54,7 @@
 # processes.
 
     # Vertical Scaling - improving the capabilities of a node/server
-    # Horizontal Scaling - increasing the number of nodes/servers. The capacity 
+    # Horizontal Scaling - increasing the number of nodes/servers. The capacity
     # of each individual does not change, but its load is decreased by sharing.
 
 # The trick is getting them all to work with one another. Any shared control or
@@ -65,6 +65,6 @@
 
 # A queue is like a list: things are added at one end and taken away from the
 # other. The most common is referred to as FIFO (first in, first out). Also: a
-# sequence of work objects that are waiting to be processed. 
+# sequence of work objects that are waiting to be processed.
 
-... more to come
+# ... more to come

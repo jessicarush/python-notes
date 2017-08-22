@@ -1,9 +1,9 @@
 '''Classes'''
 
-# A string and an integer are examples of built-in Python classes. 
-# A class is logical grouping of data and functions. 
-# The "integer" class is like an instruction manual for constructing "integer" objects.
-# To make your own custom object, you'll need to first define a class by using the class keyword.
+# A string and an integer are examples of built-in Python classes.
+# A class is logical grouping of data and functions.
+# The "integer" class is like an instruction manual for making "integer" objects.
+# To make your own object, you'll need to first define a class:
 
 class Person():
     pass
@@ -12,16 +12,18 @@ class Person():
 
 henry = Person()
 
-# In this case, Person() creates an individual object from the Person class and assigns it the name henry.
+# In this case, Person() creates an individual object from the Person class and
+# assigns it the name henry.
 
 class Person():
     def __init__(self):
         pass
 
-# The __init__ is a special method that initializes an individual object from its class definition. 
-# The self argument specifies that it refers to the individual object itself. 
-# When you define __init__() in a class definition, its firs parameter should always be self. 
-# Although self is not a reserved word in Python, it's common usage.
+# The __init__ is a special method that initializes an individual object from
+# its class definition. The self argument specifies that it refers to the
+# individual object itself. When you define __init__() in a class definition,
+# its firs parameter should always be self. Although self is not a reserved word
+# in Python, it's common usage.
 
 class Person():
     def __init__(self, name):
@@ -29,19 +31,21 @@ class Person():
 
 astronaut = Person('Roberta Bondar')
 
-# Note the name value passed in is saved with the object as an attribute. You can read and write it directly:
+# Note the name value passed in is saved with the object as an attribute.
+# You can read and write it directly:
 
 print(astronaut.name)
 
-# It is NOT necessary to have an __init__ method in every class definition. 
-# It is used to do anything that's needed to distinguish this object from others created from the same class
+# It is NOT necessary to have an __init__ method in every class definition.
+# It is used to do anything that's needed to distinguish this object from
+# others created from the same class
 
 # Inheritance
-# Creating a new class from an existing class but with some additions or changes. 
-# When you use inheritance, the new class can automatically use all the code from the old class 
-# without copying any of it. You only define what you need to add or change in the new class and
-# this overrides the behaviour of the old class. 
-# The original class is the parent, superclass or base class. 
+# Creating a new class from an existing class but with some additions or changes.
+# When you use inheritance, the new class can automatically use all the code
+# from the old class without copying any of it. You only define what you need
+# to add or change in the new class and this overrides the behaviour of the old
+# class. The original class is the parent, superclass or base class.
 # The new one is the child, subclass or derived class.
 
 class Car():
@@ -53,8 +57,9 @@ class Honda(Car):
 a_car = Car()
 a_honda = Honda()
 
-# The object called a_honda is an instance of the class Honda, but it also inherits whatever Car can do.
-# Unless there is an override of a parents function in the child's:
+# The object called a_honda is an instance of the class Honda, but it also
+# inherits whatever Car can do. Unless there is an override of a parents
+# function in the child's:
 
 class Person():
     def __init__(self, name):
@@ -71,7 +76,8 @@ print(person.name)
 print(doctor.name)
 
 # super()
-# If you override a method like __init__ , you can retrieve attributes back from the parent using super():
+# If you override a method like __init__ , you can retrieve attributes back
+# from the parent using super():
 
 class Person():
     def __init__(self, name):
@@ -86,16 +92,18 @@ class EmailPerson(Person):
 
 class EmailPerson(Person):
     def __init__(self, name, email):
-        self.name = name 
+        self.name = name
         self.email = email
 
-# But then we would loose our inheritance. If the definition of the parent class changes, 
-# using super() ensures the child will inherit the changes.
+# But then we would loose our inheritance. If the definition of the parent
+# class changes, using super() ensures the child will inherit the changes.
 
-# Some object oriented languages support private object attributes that can't be accessed from the outside. 
-# They have to write getter and setter methods to read and write the values on these private attributes. 
-# Python doesn't need these because all attributes and methods are public. 
-# A good way to hide attributes is to use property(). The naming convention for hidden attributes is __whatever.
+# Some object oriented languages support private object attributes that can't
+# be accessed from the outside. They have to write getter and setter methods to
+# read and write the values on these private attributes. Python doesn't need
+# these because all attributes and methods are public. A good way to hide
+# attributes is to use property(). The naming convention for hidden attributes
+# is __whatever.
 
 class Person():
     def __init__(self, input_name):
@@ -127,7 +135,8 @@ someone.name = 'harry'
 print(someone.__name)    # This will raise an exception
 
 # @property
-# Makes a method behave like an attribute. This essentially creates a read-only attribute.
+# Makes a method behave like an attribute. This essentially creates a read-only
+# attribute.
 
 class Circle():
     def __init__(self, radius):
@@ -154,22 +163,24 @@ class Circle():
         return 2 * self.radius
     @diameter.setter
     def diameter(self, diameter):
-        self.radius = diameter / 2.0    # remember to specify floats when dividing 
+        self.radius = diameter / 2.0  # remember to specify floats when dividing
 
 # testing:
 
 c.diameter = 20     # now this will work
 
 # Instance methods
-# Some data(attributes) and functions(methods) are part of the class itself and some are part of the 
-# objects that are created from that class. When you see an initial self argument in methods within a 
-# class def, it's an instance method. These are the types of methods you normally write. 
-# The first parameter of an instance method is self.
+# Some data(attributes) and functions(methods) are part of the class itself and
+# some are part of the objects that are created from that class. When you see
+# an initial self argument in methods within a class def, it's an instance
+# method. These are the types of methods you normally write. The first parameter
+# of an instance method is self.
 
 # Class methods
-# A class method affects the class as a whole. Any change made to the class affects all of its objects. 
-# Use the @classmethod decorator to indicate the following function is a class method. 
-# The first parameter to the method is the class itself: cls (is used because class is already taken).
+# A class method affects the class as a whole. Any change made to the class
+# affects all of its objects. Use the @classmethod decorator to indicate the
+# following function is a class method. The first parameter to the method is
+# the class itself: cls (is used because class is already taken).
 
 # This class method will count how many objects have been made from it:
 
@@ -192,8 +203,9 @@ test4 = A()
 A.children()
 
 # Static methods
-# The third type of method in a class def is a static method. If affects neither the class nor its objects.
-# It's just there for convenience. Begin with the @static method decorator, no initial self or class parameter:
+# The third type of method in a class def is a static method. If affects neither
+# the class nor its objects. It's just there for convenience. Begin with the
+# @static method decorator, no initial self or class parameter:
 
 class A():
     @staticmethod
@@ -202,7 +214,7 @@ class A():
 
 A.note()
 
-# In this example note how the subclasses are using the parents __init__ method. 
+# In this example note how the subclasses are using the parents __init__ method.
 # Because of this we can use the variable self.words in the subclasses.
 
 class Quote():
@@ -232,8 +244,8 @@ print(person1.who(), ': ', person1.says())
 print(person2.who(), ': ', person2.says())
 print(person3.who(), ': ', person3.says())
 
-# Here's another class that has no relation to the previous classes (descendants of Quote), 
-# but will use the same method names:
+# Here's another class that has no relation to the previous classes
+# (descendants of Quote), but will use the same method names:
 
 class BabblingBrook():
     def who(self):
@@ -257,18 +269,19 @@ who_says(brook)
 
 # Classes and Objects versus Modules:
 
-# Objects are most useful when you need a number of individual instances that have 
-# similar behavior (methods), but differ in their internal states (attributes).
-# Classes support inheritance, modules don’t.
-# If you want only one of something, a module might be best. No matter how many times a 
-# Python module is referenced in a program, only one copy is loaded. 
-# If you have a number of variables that contain multiple values and can be passed as 
-# arguments to multiple functions, it might be better to define them as classes. 
-# For example, you might use a dictionary with keys size and color to represent an image. 
-# You could create a different dictionary for each image in your program, and pass them as 
-# arguments to functions such as scale() or transform(). 
-# This can get messy as you add more keys and functions. 
-# It’s simpler to define an Image class with attributes size or color and methods scale() and transform(). 
-# Then, all the data and methods for a color image are defined in one place.
-# Use the simplest solution to the problem. 
-# A dict, list, or tuple is simpler, smaller, and faster than a module, which is usually simpler than a class.
+# Objects are most useful when you need a number of individual instances that
+# have similar behavior (methods), but differ in their internal states (attributes).
+# Classes support inheritance, modules don't.
+# If you want only one of something, a module might be best. No matter how many
+# times a Python module is referenced in a program, only one copy is loaded.
+# If you have a number of variables that contain multiple values and can be
+# passed as arguments to multiple functions, it might be better to define them
+# as classes. For example, you might use a dictionary with keys size and color
+# to represent an image. You could create a different dictionary for each image
+# in your program, and pass them as arguments to functions such as scale() or
+# transform(). This can get messy as you add more keys and functions.
+# It's simpler to define an Image class with attributes size or color and
+# methods scale() and transform(). Then, all the data and methods for a color
+# image are defined in one place. Use the simplest solution to the problem.
+# A dict, list, or tuple is simpler, smaller, and faster than a module, which
+# is usually simpler than a class.

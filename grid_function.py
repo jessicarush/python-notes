@@ -1,5 +1,5 @@
 def print_grid(cols, rows, width, height):
-    """Draws a grid from arguments for cols, rows, cell width & height"""
+    '''Draws a grid from arguments for cols, rows, cell width & height'''
 
     line_a = '+ ' + '- '* width
     line_b = '| ' + '  '* width

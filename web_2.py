@@ -30,9 +30,9 @@ webbrowser.open_new_tab(url)
 
 # HEAD - gets information about the resource, but not its data.
 
-# GET - retrieves the resource’s data from the server. This is the standard
+# GET - retrieves the resource's data from the server. This is the standard
 # method used by a browser. Any time you see a URL with a question mark (?)
-# followed by a bunch of arguments, that’s a GET request. GET should not be
+# followed by a bunch of arguments, that's a GET request. GET should not be
 # used to create, change, or delete data.
 
 # POST - updates data on the server, often used by HTML forms and web APIs.
@@ -46,7 +46,7 @@ webbrowser.open_new_tab(url)
 # interface might prefer its input and output to be JSON strings.
 
 # JSON is especially well suited to web client- server data interchange.
-# It’s especially popular in web-based APIs, such as OpenStack.
+# It's especially popular in web-based APIs, such as OpenStack.
 
 # Crawl and Scrape
 
@@ -58,7 +58,7 @@ webbrowser.open_new_tab(url)
 # If you need an industrial-strength combined crawler and scraper, Scrapy is
 # worth downloading: $ pip3 install scrapy
 
-# Scrapy is a framework, not a module. It does more, but it’s more complex to
+# Scrapy is a framework, not a module. It does more, but it's more complex to
 # set up. Learn more about Scrapy: https://scrapy.org
 
 # Scrape with BeautifulSoup

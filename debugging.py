@@ -15,7 +15,7 @@
 # Remove any extra spaces extra spaces
 # Stop the program if we find the word quit (uppercase or lowercase)
 
-# Here’s a sample data file cities1.csv:
+# Here's a sample data file cities1.csv:
 '''
 France, Paris
  venuzuela,caracas
@@ -42,7 +42,7 @@ def process_cities(filename):
         for line in file:
             line = line.strip()
             if 'quit' in line.lower(): # should be if 'quit' == line.lower():
-                return                     
+                return
             country, city = line.split(',')
             city = city.strip()
             country = country.strip()

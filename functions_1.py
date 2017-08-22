@@ -1,11 +1,11 @@
 # Functions, parameters and arguments
 
-# Function names can start with letters or _ and contain only letters, numbers and _
-# pass means do noting but move on. It's a placeholder.
+# Function names can start with letters or _ and contain only letters, numbers
+# and _. Pass means do noting but move on. It's a placeholder.
 
 def myfunction(one, two): # one, two are parameters
     pass
-    
+
 # Call the function like this:
 
 myfunction(1, 2) # 1, 2 are arguments
@@ -30,9 +30,10 @@ print (menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 print (menu(wine='chardonnay', cheese='swiss'))
 
 """
-In this example the function is expected to run each time with a fresh empty result list, 
-add the arg argument to it, and then print a single-item list. However, it's only empty the
-first time it's called. The second time, result still has one item from the previus call.
+In this example the function is expected to run each time with a fresh empty
+result list, add the arg argument to it, and then print a single-item list.
+However, it's only empty the first time it's called. The second time, result
+still has one item from the previus call.
 """
 
 def buggy(arg, result=[]):
@@ -40,7 +41,7 @@ def buggy(arg, result=[]):
     print(result)
 
 buggy('a')
-buggy('b') 
+buggy('b')
 
 # This works better:
 

@@ -38,4 +38,3 @@ end_of_fall = end_of_summer + (count_fall * freq_fall)
 
 for num in range(1, count_winter+1):
     print(end_of_fall+ (num * freq_winter))
-    

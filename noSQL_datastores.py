@@ -1,6 +1,6 @@
 # NoSQL Data Stores
 
-# Some databases are not relational and don’t support SQL. These were written to
+# Some databases are not relational and don't support SQL. These were written to
 # handle very large data sets, allow more flexible data definitions, or support
 # custom data operations.
 
@@ -14,7 +14,7 @@ import dbm
 db = dbm.open('definitions', 'c')
 
 # The second argument to the following open() method is 'r' to read, 'w' to
-# write, and 'c' for both, creating the file if it doesn’t exist. To create
+# write, and 'c' for both, creating the file if it doesn't exist. To create
 # key-value pairs, just assign a value to a key just as you would a dictionary:
 
 db['jaune'] = 'yellow'
@@ -36,12 +36,12 @@ db = dbm.open('definitions', 'r')
 print(db['jaune'])
 
 # Keys and values are stored as bytes. You cannot iterate over the database
-# object db, but you can get the number of keys by using len(). Note that get() 
+# object db, but you can get the number of keys by using len(). Note that get()
 # and setdefault() work as they do for dictionaries.
 
 # Memcached
 
-# memcached is a fast in-memory key-value cache server. It’s often put in front
+# memcached is a fast in-memory key-value cache server. It's often put in front
 # of a database, or used to store web server session data. To try it out, you
 # need a memcached server and Python driver. There are many drivers; one that
 # works with Python 3 is python3-memcached, which you can install by using the
@@ -54,7 +54,7 @@ print(db['jaune'])
 # Delete a key
 
 # Data is not persistent, and data that you wrote earlier might disappear. This
-# is inherent in memcached, being that it’s a cache server. It avoids running
+# is inherent in memcached, being that it's a cache server. It avoids running
 # out of memory by discarding old data.
 
 # Redis
@@ -67,7 +67,7 @@ print(db['jaune'])
 # Keep old data
 # Provide more data structures than simple strings
 
-# The Redis data types are a close match to Python’s, and a Redis server can be
+# The Redis data types are a close match to Python's, and a Redis server can be
 # a useful intermediary for one or more Python applications to share data.
 
 # install the Python driver redis-py: pip3 install redis
@@ -264,7 +264,7 @@ conn.smembers('c')
 
 # Is a set of unique values, each with an associated floating point 'score'.
 # You can access each item by its value or score. This example tracks user
-# logins via timestamps using the Unix epoch value that’s returned by the
+# logins via timestamps using the Unix epoch value that's returned by the
 # Python time() function:
 
 import time
@@ -382,7 +382,7 @@ conn.get(key)   # returns None
 
 # Full-Text Databases
 
-# There’s a special category of databases for full-text search. They index
+# There's a special category of databases for full-text search. They index
 # everything, so you can search for anything. Some popular open source
 # examples, and their Python APIs:
 

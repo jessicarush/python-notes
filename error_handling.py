@@ -25,7 +25,8 @@ while True:
     except Exception as other:
         print('Something else broke:', other)
 
-# Make your own exceptions. An exception is a class, It's a child of the base class Exception
+# Make your own exceptions. An exception is a class, It's a child of the base
+# class Exception
 
 class UppercaseException(Exception):
     pass
