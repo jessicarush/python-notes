@@ -18,8 +18,8 @@
 # Here’s a sample data file cities1.csv:
 '''
 France, Paris
- venuzuela,caracas
-  LithuniA,vilnius
+ Venuzuela,Caracas
+  LithuniA,Vilnius
     quit
 '''
 
