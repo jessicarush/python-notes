@@ -26,7 +26,7 @@ r = re.match('blue', source)
 if r:
     print(r.group())
 
-# In the following, m returns nothing because match only checks out if the beginning of 
+# In the following, m returns nothing because match only checks out if the beginning of
 # the source matches:
 
 r = re.match('green', source)
@@ -57,17 +57,17 @@ print('Found', len(r), 'matches')
 r = re.findall('e.', source)
 
 
-# The above will not return the last e because no character follows it. 
+# The above will not return the last e because no character follows it.
 # Indicate the charcter after 'e' is optional with '?':
 
 r = re.findall('e.?', source)
 
-# split() splits the source at using the pattern as the split point and returns a list of 
+# split() splits the source at using the pattern as the split point and returns a list of
 # the string pieces.
 
 r = re.split(' ', source)
 
-# sub() takes another replacement argument, and changes all parts of source that are matched 
+# sub() takes another replacement argument, and changes all parts of source that are matched
 # by pattern to the replacement.
 
 r = re.sub('blue', 'black', source)
@@ -109,20 +109,21 @@ r = re.findall('\w', sample)
 test = 'abc' + '-/&' + '\u00ea' +'\u0115'
 r = re.findall('\w', test)
 
-# There are a few cases in which the regular expression pattern rules conflict with the 
-# Python string rules. The following pattern should match any word that begins with b:
+# There are a few cases in which the regular expression pattern rules conflict
+# with the Python string rules. The following pattern should match any word
+# that begins with b:
 
 r = re.findall('\bb', sample)
 
-# In the mini-language of regular expressions \b means the beginning or end of a word but 
-# in Python strings it means backspace. Avoid the accidental use of escape characters by 
-# using Python’s "raw strings" when you define your regular expression string. Always put 
-# an r character before your regular expression pattern string, and Python escape characters 
-# will be disabled:
+# In the mini-language of regular expressions \b means the beginning or end of
+# a word but in Python strings it means backspace. Avoid the accidental use of
+# escape characters by using Python’s "raw strings" when you define your
+# regular expression string. Always put an r character before your regular
+# expression pattern string, and Python escape characters will be disabled:
 
 r = re.findall(r'\bb', sample)
 
-# The above isn't very helpful as we only get the 'b' part of the match. 
+# The above isn't very helpful as we only get the 'b' part of the match.
 # This says, find all complete words that start with the letter 'b'
 
 r = re.findall(r'\bb\w*', sample)
@@ -148,8 +149,8 @@ r = re.findall(r'\b[bB]\w{4}\b', sample)
 
 r = re.findall(r'\b\w*r\b', sample)
 
-# Doesn't work well for words ending in 't' on account of apostrophes aren't matched by \w
-# This says match any number of letters or apostrophes: [\w']* 
+# Doesn't work well for words ending in 't' on account of apostrophes aren't
+# matched by \w - This says match any number of letters or apostrophes: [\w']*
 
 r = re.findall(r"\b[\w']*t\b", sample)
 
@@ -200,8 +201,8 @@ r = re.findall(r'\breal\b', sample)
 
 r = re.findall(r'\breal\w*|\w*real\b', sample)
 
-# The characters ^ and $ are called anchors. ^ anchors the search to the beginning of 
-# the string, and $ anchors it to the end.
+# The characters ^ and $ are called anchors. ^ anchors the search to the
+# beginning of the string, and $ anchors it to the end.
 
 # find Intro at the beginning:
 
@@ -241,9 +242,10 @@ r = re.findall(r'\b\w*[aeiuo]{3}\w*\b', sample)
 
 # Match Output
 
-# When using match() or search(), all matches are returned from the result object 
-# r as r.group(). If you enclose a pattern in parentheses, the match will be saved 
-# to its own group, and a tuple of them will be available as r.groups(), as shown here:
+# When using match() or search(), all matches are returned from the result
+# object r as r.group(). If you enclose a pattern in parentheses, the match
+# will be saved to its own group, and a tuple of them will be available as
+# r.groups(), as shown here:
 
 r = re.search(r'(escape).*(reality)', sample)
 
