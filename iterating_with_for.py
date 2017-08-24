@@ -66,3 +66,10 @@ for x in range(5, -1, -1):
 
 evennumberlist = list(range(0, 20, 2))
 print(evennumberlist)
+
+# using multiple for loops:
+
+for i in range(1, 13):
+    for j in range(1, 13):
+        print(i, 'times',  j, 'is', i*j)
+    print('------------------')

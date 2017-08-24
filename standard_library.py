@@ -1,5 +1,17 @@
 # More Functions from the Standard Library
 
+# print()
+# Remember there are additional args you can provide to print:
+
+for i in range(0, 6):
+    print(i, end=' ') # remove the default line break at the end of the print()
+
+for i in range(0, 6):
+    print(i, i, sep='.') # adds a separator if printing more than one thing
+
+for i in range(0, 6):
+    print(i, file=fileobject) # prints to a file if you've got one open
+
 # enumerate()
 # takes apart a list and feeds each item to the for loop, adding a number to
 # each item as a bonus. To compare, test a regular for loop first.

@@ -67,3 +67,11 @@ print('{0:^40}'.format(name)) # centres within 40 spaces
 # Fill spaces with characters:
 
 print('{0:-^40}'.format(name)) # centres within 40 spaces
+
+# Conclusion:
+
+for i in range(1, 13):
+    for j in range(1, 13):
+        print(i, 'times',  j, 'is', i*j)
+        # will print the dame as:
+        print('{0} times {1} is {2}'.format(i, j, i*j))
