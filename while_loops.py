@@ -1,16 +1,25 @@
-# While loop with break, continue examples
+'''While loops with break and continue'''
 
-def test1():
-    while True:
-        stuff = input('Capitalize text [type q to quit]: ')
-        if stuff == 'q':
-            break
+print('Guess a number between 1 and 10')
+
+while True:
+    guess = (int(input('> ')))
+    if guess != 7:
+        if guess > 7:
+            print('No, lower')
+            continue
         else:
-            print(stuff.capitalize())
+            print('No, higher')
+            continue
+    else:
+        print('You guessed it!')
+        break
 
-def test2():
+# Another example:
+
+def squared():
     while True:
-        value = input('Interger [q to quit]:')
+        value = input('Integer [q to quit]:')
         if value == 'q':
             break
         try:
@@ -20,5 +29,13 @@ def test2():
         number = int(value)
         print(number, 'squared is', number * number)
 
-test1()
-test2()
+squared()
+
+# And Another:
+
+x = 10
+while x > 0:
+    print(x)
+    x -= 1
+    if x == 5:
+        break

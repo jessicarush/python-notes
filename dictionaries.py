@@ -128,9 +128,10 @@ jellybeans = defaultdict(int)   # returns 0
 jellybeans = defaultdict(list)  # returns an empty list
 jellybeans = defaultdict(dict)  # returns an empty dictionary
 
-# if you wanted to add a key and items to the value list as with
+# if you wanted to add items to the the key's value list as with
 # jellybeans = defaultdict(list):
 
+jellybeans = defaultdict(list)
 jellybeans['newkey'].append('item1')
 jellybeans['newkey'].append('item2')
 

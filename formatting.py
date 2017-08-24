@@ -1,4 +1,4 @@
-# Formatting
+'''Formatting'''
 
 # Interpolate data values into strings (put values into strings using various
 # formats). There are two ways of formatting strings: old style and new style.
@@ -25,13 +25,15 @@ name = 'golden ratio'
 
 print('The %s is %f' % (name, goldenratio))
 
-# New style formatting with {} and format()
+# NOTE: Old style formatting has been marked as deprecated for Pyhton 3
 
-print('The {} is {}'.format(name, goldenratio))
+# NEW style formatting with {} and format()
 
-# You can put args into the {} like this:
+print('The {0} is {1}'.format(name, goldenratio))
 
-info = {'name': 'boktoktok', 'address': 'the moon', 'age': 100} # a dictionary
+# You can specify dict values like this:
+
+info = {'name': 'boktoktok', 'address': 'the moon', 'age': 100}
 other = 'the end'
 
 print('{0[name]} who is {0[age]} years old, lives at {0[address]}. {1}.'.format(info, other))
@@ -54,10 +56,14 @@ print('The {0:s} is {1:f}'.format(name, goldenratio))
 print('The {0:.2s} is {1:.2f}'.format(name, goldenratio))
 print('The {0:.10s} is {1:.10f}'.format(name, goldenratio))
 
+# adding a number without the dot says use at least this many spaces:
+
+print('The {0:20} is {1:20}'.format(name, goldenratio))
+
 # Alignment can be specified with <>^ (left, right, centered):
 
-print('{0:^40s}'.format(name)) # centres within 40 spaces
+print('{0:^40}'.format(name)) # centres within 40 spaces
 
 # Fill spaces with characters:
 
-print('{0:-^40s}'.format(name)) # centres within 40 spaces
+print('{0:-^40}'.format(name)) # centres within 40 spaces

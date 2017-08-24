@@ -8,6 +8,15 @@ type(now)       # <class 'datetime.datetime'>
 type(234)       # <class 'int'>
 type('hello')   # <class 'str'>
 
+# bool()
+# will tell you whether something is True or False
+
+x = []
+y = ['one']
+
+bool(x)        # False
+bool(y)        # True
+
 # isinstance()
 # because everything in Python is an object, isinsatnce works everywhere:
 

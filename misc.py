@@ -2,12 +2,6 @@
 
 import this
 
-# Continuing lines:
-
-long_text = 'A long time ago' + \
-    ' in a galaxy far, far away' + \
-    ' blah blah bla'
-
 # About None:
 
 # None is not the same as False. Though it may look false when evaluated as a

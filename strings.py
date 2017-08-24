@@ -1,5 +1,24 @@
 # STRINGS
 
+# String together strings with +, if the lines are long add \:
+
+long_string = 'A long time ago ' + \
+    'in a galaxy far, far away ' + \
+    'blah blah bla...'
+
+# You can use triple quotes for long strings:
+
+long_string = """This string uses
+    triple quotes because we're pretending
+    it's very, very long"""
+
+# Each line in teh above will appear on a new line. If you don't want that,
+# escape the last invisible line break character with \
+
+long_string = """This string uses \
+    triple quotes because we're pretending \
+    it's very, very long"""
+
 # .replace()
 
 name = 'Yello'
@@ -17,7 +36,7 @@ print(letters[2:8:2])
 
 # Break a string up into a list with .split()
 
-test_string = "Yeti Bigfoot Loch Ness Unicorn..."
+test_string = 'Yeti Bigfoot Loch Ness Unicorn...'
 test_list = test_string.split()
 print(test_list)
 print(type(test_list))
@@ -33,6 +52,7 @@ print(type(test_string))
 print(len(test_string))
 print(test_string.startswith('Yeti'))
 print(test_string.endswith('Yeti'))
+print('Bigfoot' in test_string)
 
 word = 'Ness'
 
