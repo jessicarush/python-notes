@@ -1,11 +1,25 @@
 '''While loops with break and continue'''
 
-print('Guess a number between 1 and 10')
+# while is a looping mechanism that's used with if, elif, else
+
+# break is useful when you want to terminate the loop early if some condition
+# is met
+
+# continue is useful for when you want to skip past in interation to the next
+
+import random
+
+print('Guess a number between 1 and 10 (0 to quit)')
+
+answer = random.randint(1, 9)
 
 while True:
     guess = (int(input('> ')))
-    if guess != 7:
-        if guess > 7:
+    if guess != answer:
+        if guess == 0:
+            print('bye')
+            break
+        elif guess > answer:
             print('No, lower')
             continue
         else:
@@ -14,7 +28,6 @@ while True:
     else:
         print('You guessed it!')
         break
-
 # Another example:
 
 def squared():

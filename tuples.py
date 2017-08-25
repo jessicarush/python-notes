@@ -1,22 +1,30 @@
-# TUPLES are immutable: you can't add, change or delete items
+# TUPLES are ordered (like lists) and immutable (unlike lists)
 
-colours_tuple = ('green', 'blue', 'red')
+# It's the intention that lists contain items of the same type,
+# whereas tuples contain related items, not necessarily the same type.
+# Lists contain items that could change.
+# Tuples contain items that are not likely to change.
+
+# for example:
+
+colour_list = ('green', 'blue', 'red')
+colour_tuple = ('Emerald', 'Pantone 17-5641', 'sRGB 0 148 115')
+
+# Tuples are ordered:
+
+print(colour_tuple[1])
 
 # Tuples let you assign multiple variables at once:
 
-a, b, c = colours_tuple
+a, b, c = colour_tuple
 print(a)
 print(b)
 print(c)
 
-# This is sometimes called 'tuple unpacking':
+# This is sometimes called 'tuple unpacking'
 
-text = """
-leaves are %s,
-violets are %s,
-roses are %s
-"""
-print(text % colours_tuple)
+text = "spot colour: {0[1]}, name: {0[0]}, screen value: {0[2]}"
+print(text.format(colour_tuple))
 
 # You can use tuples to swap variable values in one line:
 
@@ -28,20 +36,19 @@ print(b)
 
 colours_list = ['orange', 'yellow', 'purple']
 colours_tuple = tuple(colours_list)
-print(colours_tuple)
+print(type(colours_tuple)) # tuple
 
-"""
-Benefits of using tuples:
-- Tuples use less space
-- You can't mess with tuple items by mistake
-- You can use tuples and dictionary keys
-- Named tuples can be a simple alternative to objects
-- Function arguments are passed as tuples
-"""
+# Benefits of using tuples:
+# - Tuples use less space
+# - You can't mess with tuple items by mistake
+# - You can use tuples as dictionary keys (you can't use a list because lists
+#   are mutable and dictionary keys are not allowed to be mutable)
+# - Named tuples can be a simple alternative to objects
+# - Function arguments are passed as tuples
 
 # Named Tuples
-# A named tuple is a subclass of tuples with which you can access values by name (with .name)
-# as well as position (with [offset])
+# A named tuple is a subclass of tuples with which you can access values by
+# name (with .name) as well as position (with [offset])
 
 from collections import namedtuple
 
@@ -55,14 +62,14 @@ print(kitchen.floor)
 print(kitchen.windows)
 print(kitchen[0])
 
-# You can also make a names tuple from a dict
+# You can also make a named tuple from a dictionary
 
 parts = {'floor': 'linoleum', 'windows': '2'}
 
 bedroom = Room(**parts)
 
-# BTW **parts is a keyword argument. It extracts the keys and values from the parts dict
-# and supplies them as arguments to Room()
+# BTW **parts is a keyword argument. It extracts the keys and values from the
+# parts dict and supplies them as arguments to Room()
 
 # Testing:
 
@@ -74,3 +81,7 @@ print(bedroom[0])
 # Named tuples look and act like an immutable object
 # You can access attributes by using dot notation instead of dict style []
 # You can use it as a dict key
+
+# Though tuples are immutable, tuples can contain mutable items. For example,
+# You could have a tuple of lists where the lists themselves cannot be changed
+# in the tuple but the list contents can change.

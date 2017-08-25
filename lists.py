@@ -24,6 +24,11 @@ months.append('Feb')
 a_tuple  = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul')
 a_list = list(a_tuple)
 
+# as in the first example, you could start with an empty list, then append:
+
+a_list = list()
+a_list.append('item')
+
 # Use .split() to break up a string into a list via some separator like space
 # or comma:
 
@@ -69,7 +74,12 @@ print(list1)
 # Or combine like this:
 
 list2 += list1
-print(list2)
+
+# To confirm:
+
+list3 = [list1, list2] # creates a list of two lists
+
+list3 = [list1 + list2] # creates a list of one list
 
 # Delete an item by position with del
 
@@ -93,7 +103,11 @@ print(list2.index('three'))
 
 print('four' in list2)
 
-# Count the occurrences of a value
+# Test for a value NOT in a list
+
+print('four' not in list2)
+
+# Count the occurrences of a value with .count()
 
 print(list2.count('one'))
 print(list2.count('five'))

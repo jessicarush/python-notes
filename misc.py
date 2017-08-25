@@ -47,3 +47,12 @@ t1 = time()
 sleep(2.0)
 
 print(time() - t1)
+
+# About range()
+
+# NOTE: when using range() alone, you're actually creating a range object
+
+numbers = range(0, 100)
+print(type(numbers)) # class 'range'
+
+print(numbers[0:50:2] == range(0,50,2)) # True

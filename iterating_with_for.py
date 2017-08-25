@@ -73,3 +73,54 @@ for i in range(1, 13):
     for j in range(1, 13):
         print(i, 'times',  j, 'is', i*j)
     print('------------------')
+
+# using break and continue:
+# break is useful when you want to terminate a loop early if some condition
+# is met, and continue skips past to the next iteration
+
+colours = ['red', 'orange', 'yellow', 'purple', 'white', 'cyan']
+
+for colour in colours:
+    if colour == 'white':
+        continue
+    print('I like ' + colour)
+
+for colour in colours:
+    if colour == 'yellow':
+        break
+    print('I like ' + colour)
+
+# NOTE: a for loop actually creates an iterator object that will return each
+# item that it's iterating over. When there are no more items, the iterator
+# returns an error and the for loop handles the error and terminates
+
+# We can create our own iterator with iter() and next():
+
+string = '12345'
+my_iterator = iter(string)
+print(my_iterator) # str_iterator object
+print(next(my_iterator))
+print(next(my_iterator))
+print(next(my_iterator))
+
+# to confirm, the following two are the same thing, we don't need to explicity
+# add the iter() as the for loop will do it for us:
+
+for char in string:
+    print(char)
+
+for char in iter(string):
+    print(char)
+
+# Again, the long verion:
+
+my_list = [1, 2, 3, 4, 5]
+my_iterator = iter(my_list)
+
+for i in range(0, len(my_list)):
+    print(next(my_iterator))
+
+# The same as:
+
+for i in my_list:
+    print(i)
