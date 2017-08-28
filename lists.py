@@ -112,17 +112,25 @@ print('four' not in list2)
 print(list2.count('one'))
 print(list2.count('five'))
 
-# Convert to a string with .join()
+# Convert a list to a string with .join()
 
 bands = ['Melvins', 'Ghost', 'Pucifer']
-separator = ' * '
-joined = separator.join(bands)
-print(joined)
+joined_string= ' * '.join(bands)
+print(joined_string)
 
-# And split again with .split()
+# NOTE: you could also create a string from a list like the following, but this
+# is considered not efficient because everytime through the for loop, a copy of
+# new_string is created and uses up more computer memory:
 
-separated = joined.split(separator)
-print(separated)
+new_string = ''
+for item in bands:
+    new_string += item
+print(new_string)
+
+# Convert a string to a list with .split()
+
+split_list = joined_string.split(' * ')
+print(split_list)
 
 # Reorder items with sorted() - this returns a copy of the list
 

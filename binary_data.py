@@ -1,5 +1,37 @@
 '''Binary data'''
 
+# FYI, this will print numbers in binary (base 2):
+
+for i in range(17):
+    print("{0:>2} in binary is {0:>08b}".format(i))
+
+# this will print numbers in hex (base 16):
+
+for i in range(17):
+    print("{0:>2} in hex is {0:>02x}".format(i))
+
+# and in octal (base 8):
+
+for i in range(17):
+    print("{0:>2} in octal is {0:>4o}".format(i))
+
+# typing binary and hex numbers:
+
+w = 32        # normal number (base 10)
+x = 0x20      # hexadecimal (base 16) starts with 0x
+y = 0b100000  # binary number (base 2) starts with 0b
+z = 0o40      # octal number (base 8) starts with 0o
+
+print (w, x, y, z)
+
+# convert integers:
+
+x = hex(32)   # hexadecimal (base 16)
+y = bin(32)   # binary number (base 2)
+z = oct(32)   # octal number (base 8)
+
+print (x, y, z)
+
 # bytes() and bytearray() are sequences of eight-bit integers, with possible
 # values of 0 to 255:
 
@@ -8,9 +40,9 @@ the_bytes = bytes(blist)            # returns b'\x01\x02\x03\xff'
 the_byte_array = bytearray(blist)   # returns bytearray(b'\x01\x02\x03\xff')
 
 the_byte_array[1] = 127   # works because bytearray is mutable (like a list)
-the_bytes[1] = 127        # doesn't work because bytes is immutable (like a tuple)
+# the_bytes[1] = 127        # doesn't work because bytes is immutable (like a tuple)
 
-# The representation of a bytes value begins with a b and a quote character,
+# The representation of a bytes value begins with a b'' and a quote character,
 # followed by hex sequences such as \x02 or ASCII characters, and ends with a
 # matching quote character. When printing bytes or bytearray data, Python uses
 # \x xx for non-printable bytes and their ASCII equivalents for printable ones
@@ -80,8 +112,8 @@ struct.pack('>L', 141)
 # p     count and characters        1 + count
 # s     characters                  count
 
-# The type specifiers follow the endian character. Any specifier may be preceded
-# by a number that indicates the count. 2L is the same as LL:
+# The type specifiers follow the endian character. Any specifier may be
+# preceded by a number that indicates the count. 2L is the same as LL:
 
 testing = struct.unpack('>2L', data[16:24])
 print(testing)

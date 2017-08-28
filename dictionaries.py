@@ -31,6 +31,8 @@ info['height'] = '5\'5"'
 # Combine dicts with .update() - this would be like extend() for lists
 
 location = {
+    'apt' : '2',
+    'number' : '1234',
     'street' : 'Main',
     'city' : 'Vancouver',
     'province' : 'BC',
@@ -57,9 +59,30 @@ print(location['street'])
 
 # if the key is not present, you'll get an exception. To avoid this use the
 # get() function. Provide the key and an optional value. If the exists, you'll
-# get its value. If not, you'll get the optional one if you provided one:
+# get its value. If not, you'll get None or the optional value:
 
+print(location.get('country')) # returns None
 print(location.get('country', 'country not specified'))
+
+# example using in to avoid an exception when getting by key:
+
+while True:
+    dict_key = input('Enter a key (q to quit): ')
+    if dict_key == 'q':
+        break
+    elif dict_key in location:
+        print(location[dict_key])
+    else:
+        print('There is no ' + dict_key)
+
+# example using get() to avoid an exception:
+
+while True:
+    dict_key = input('Enter a key (q to quit): ')
+    if dict_key == 'q':
+        break
+    dict_value = location.get(dict_key, 'There is no ' + dict_key)
+    print(dict_value)
 
 # get all keys using .keys()
 
@@ -88,6 +111,12 @@ print(location.items())
 list_of_items = list(location.items())
 print(list_of_items)
 
+# sort keys with sorted()
+# location.keys() behaves like a sequence and can therefor be passed to sorted
+
+for dict_key in sorted(location.keys()):
+    print(dict_key + '-' + location[dict_key])
+
 # copy a dict with .copy()
 
 location_copy = location.copy()
@@ -95,6 +124,14 @@ location['city'] = 'montreal'
 
 print(location)
 print(location_copy)
+
+# Convert to a string with join()
+
+string_of_keys = ', '.join(location.keys())
+print(string_of_keys)
+
+string_of_values = ', '.join(location.values())
+print(string_of_values)
 
 # setdefault() method is like get() for dictionaries. It looks for the key and
 # if missing, creates it, but it does not change the value if the key is already

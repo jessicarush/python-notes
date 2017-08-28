@@ -1,24 +1,63 @@
 # SETS
 
-"""
-Sets:
- - a set is like a dictionary but without the values
- - like a dictionary, each key must be unique
- - use a set when you only want to know that something exists
- - use a dict when you want to attach information to each key
-"""
+# Sets:
+#  - a set is like a dictionary but without the values
+#  - like a dictionary, sets are unordered
+#  - like a dictionary, each key must be unique
+#  - sets are mutable (except frozen sets - see below)
 
 # create a set with {}:
 
-even_numbers = {1, 2, 4, 6, 8}
-print(type(even_numbers))
+colours = {'red', 'orange', 'yellow', 'green'}
+print(type(colours))
 
-# convert to a set with set():
+# create an empty set with set() - using {} would make a dictionary:
+
+empty_set = set()
+
+# obviously you can also convert iterable data to a set with set():
 
 from_string = set('letters')
 from_list = set(['one', 'two', 'three'])
 from_tuple = set(('four', 'five', 'six'))
 from_dict = set({'apple' : 'red', 'pear' : 'green', 'banana' : 'yellow'})
+from_range = set(range(1, 5))
+
+print(from_string)
+print(from_list)
+print(from_tuple)
+print(from_dict)
+print(from_range)
+
+# add to a set with .add():
+
+colours.add('cyan')
+
+# remove from a set with .remove():
+# .remove will raise an error if it does not find the item
+
+colours.remove('cyan')
+
+# remove from a set with .discard():
+# .discard will NOT raise an error if it does not find the item
+
+colours.discard('cyan')
+
+# use one or the other depending on whether you want to know if the item was
+# missing in the first place:
+
+try:
+    colours.remove('cyan')
+except KeyError:
+    print("the item is not there to remove")
+
+# sort a set with sorted():
+
+print(sorted(colours))
+
+# create a copy of a set with .copy():
+
+new_colours = colours.copy()
 
 # sets can be used in place of values in dictionaries:
 
@@ -32,14 +71,14 @@ drinks = {
 
 # check for a value with if, in:
 
-def test():
+def test1():
     for key, values in drinks.items():
         if 'vodka' in values:
             print('test 1: ', key)
-test()
+test1()
 
-# the first two words after for are linked to the key and value in the dictionary
-# you can use whatever names you want:
+# the first two words after for are linked to the key and value in the
+# dictionary since we're saying 'in drinks.items()':
 
 def test2():
     for name, ingredients in drinks.items():
@@ -120,7 +159,16 @@ print(a.symmetric_difference(b))
 print(bruss ^ wruss)
 print(bruss.symmetric_difference(wruss))
 
-# test if one set is a subset of another (all items in first set are also in second):
+# for all of these (union, intersection, difference, symmetric_difference),
+# you can update the set to the result using update() or _update():
+
+a.intersection_update(b)
+a.update(b) # union
+a.difference_update(b)
+a.symmetric_difference_update(b)
+
+# test if one set is a subset of another (all items in first set
+# are also in the second):
 
 print(a <= b)
 print(a.issubset(b))
@@ -128,10 +176,24 @@ print(a.issubset(b))
 print(bruss <= wruss)
 print(bruss.issubset(wruss))
 
-# test if one set is a subset of another(all items in second set are also in first):
+# test if one set is a subset of another(all items in second set
+# are also in the first):
 
 print(a >= b)
 print(a.issuperset(b))
 
 print(bruss >= wruss)
 print(bruss.issuperset(wruss))
+
+# Frozen Sets
+
+#  - frozen sets are immutable
+#  - as a result, can be used as dictionary keys
+#  - can be used as items in other sets
+#  - frozenset() takes 1 argument so if not using a variable, enclose with ()
+#  - while you can't add or remove items from a frozen set, you can still use
+#    them to calculate unions, differnces etc.
+
+beer = frozenset(('IPA', 'Pale Ale', 'Stout', 'Pilsner', 'Wheat'))
+print(type(beer))
+print(beer)
