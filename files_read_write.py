@@ -87,10 +87,11 @@ with open('testfile1.txt', 'w') as fout:
 
 # If you have a very large source string, you can write it in chunks:
 
+size = len(text2)
+offset = 0
+chunk = 100
+
 with open('testfile1.txt', 'w') as fout:
-    size = len(text2)
-    offset = 0
-    chunk = 100
     while True:
         if offset > size:
             break
@@ -222,10 +223,11 @@ with open('testbinary', 'wb') as fout:
 
 # as with text you can write binary in chunks:
 
+size = len(bdata)
+offset = 0
+chunk = 100
+
 with open('testbinary', 'wb') as fout:
-    size = len(bdata)
-    offset = 0
-    chunk = 100
     while True:
         if offset > size:
             break
