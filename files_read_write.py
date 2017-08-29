@@ -1,22 +1,24 @@
-# Persistence
+# Persistence ----------------------------------------------------------------
 
 # In the context of storing data in a computer system, this means that the data
-# survives after the process with which it was created has ended. In other words,
-# for data to be considered persistent, it must write to non-volatile storage
-# such as a disk (as opposed to memory).
+# survives after the process with which it was created has ended. In other
+# words, for data to be considered persistent, it must write to non-volatile
+# storage such as a disk (as opposed to memory).
 
 # The simplest kind of persistence is a plain old file, sometimes called a flat
 # file. This is just a sequence of bytes stored under a filename. You read from
 # a file into memory and write from memory to a file.
 
+# File Handling Basics -------------------------------------------------------
+
 # Before reading or writing a file, you need to open it:
 
-fileobject = open('filename', 'r')
+fileobject = open('filename.txt', 'w')
 
 # The arg after the filename is the mode. The first letter indicates the operation:
 
 # r  read - default mode if not specified
-# w  write - if file doesn't exist, it's created. If file does exist, is overwritten
+# w  write - if file doesn't exist, it's created. If exists, it's overwritten
 # x  write - but only if the file does not already exist
 # a  append - write after the end if the file exists
 
@@ -30,7 +32,21 @@ fileobject = open('filename', 'r')
 
 fileobject.close()
 
-# Testing:
+# Close files automatically --------------------------------------------------
+
+# using: with expression as variable
+
+# If you forget to close a file that you've opened, you can end up wasting
+# system resources or accidentally overwriting a file. Python has 'context
+# managers' to clean up things such as open files:
+
+with open('filename.txt', 'r') as fileobject:
+    pass
+
+# After the block of code completes (normally or by a raised exception),
+# the file is closed automatically.
+
+# write() --------------------------------------------------------------------
 
 text1 = '...Some content...'
 text2 = """
@@ -61,162 +77,167 @@ W is for Winie, embedded in ice.
 X is for Xerxes, devoured by mice.
 Y is for Yoric whose head was bashed in.
 Z is for Zilla who drank too much gin.
-
+The end
 """
 
 # This writes the contents of text to the file testfile1:
 
-fout = open('testfile1', 'w')
-fout.write(text1)
-fout.close()
-
-# You can also print to a text file:
-
-fout = open('testfile2', 'w')
-print(text1, file=fout)
-fout.close()
-
-# When printing additional data to a file you'll get a space between each
-# argument and a newline at the end. These are due to the following arguments:
-
-# sep (separator, which default to a space ' ')
-# end (end string, which defaults to a newline '\n')
-
-# If you want print() to write like write() do this:
-
-fout = open('testfile2', 'w')
-print(text1, file=fout, sep='', end='')
-fout.close()
+with open('testfile1.txt', 'w') as fout:
+    fout.write(text1)
 
 # If you have a very large source string, you can write it in chunks:
 
-fout = open('testfile1', 'w')
-size = len(text2)
-offset = 0
-chunk = 100
-
-while True:
-    if offset > size:
-        break
-    fout.write(text2[offset:offset+chunk])
-    offset += chunk
-
-fout.close()
+with open('testfile1.txt', 'w') as fout:
+    size = len(text2)
+    offset = 0
+    chunk = 100
+    while True:
+        if offset > size:
+            break
+        fout.write(text2[offset:offset+chunk])
+        offset += chunk
 
 # Test 'x' with our own exception handler:
 
 try:
-    fout = open('testfile1', 'x')
+    fout = open('testfile1.txt', 'x')
     fout.write('stuff')
 except FileExistsError:
     print('testfile1 file already exists!')
 
-# read()
 
-fin = open('testfile1', 'r')
-poem = fin.read()
-fin.close()
+# print() to a file ----------------------------------------------------------
+
+# You can also print to a text file. NOTE: when typing out file=fileoject, its
+# actually the convention to NOT have spaces around the equals sign because
+# these are named arguments as opposed to variable assignemnts. Same goes for
+# sep='' and end='' coming up.
+
+with open('testfile2.txt', 'w') as fout:
+    print(text1, file=fout)
+
+# When printing additional data to a file you'll get a space between each
+# argument and a newline at the end. These are due to the following arguments:
+
+# sep (separator, which defaults to a space ' ')
+# end (end string, which defaults to a newline '\n')
+
+# If you want to change these print() defaults:
+
+with open('testfile2.txt', 'w') as fout:
+    print(text1, file=fout, sep='', end='')
+
+# read() ---------------------------------------------------------------------
+
+# read() reads all contents of the file and returns a single string
+
+with open('testfile1.txt', 'r') as fin:
+    poem = fin.read()
 
 # You can provide a max character count for how much is read in at a time.
-# The following will read 100 characters at a time and append each chunk to a string:
+# The following will read 100 characters at a time and append each chunk to
+# the string:
 
 poem = ''
-fin = open('testfile1', 'r')
-chunk = 100
-
-while True:
-    fragment = fin.read(chunk)
-    # As you read and write, Python keeps track of where you are in the file.
-    if not fragment:
-        break
-    poem += fragment
-
-fin.close()
+with open('testfile1.txt', 'r') as fin:
+    chunk = 100
+    while True:
+        fragment = fin.read(chunk)
+        # As you read, write, Python keeps track of where you are in the file.
+        if not fragment:
+            break
+        poem += fragment
 
 # After you've read all the way to the end, further calls to read() will
-# return an empty string (''), which is treated as False in if not fragment.
+# return an empty string (''), which is treated as False in 'if not fragment'.
 # This breaks out of the while True loop.
 
-# readline() - this example does the same as above but feeds one line at a
-# time instead of chunks of 100 characters:
+# readline() -----------------------------------------------------------------
+
+# this example does the same as above but feeds one line at a time instead of
+# chunks of 100 characters:
 
 poem = ''
-fin = open('testfile1', 'r')
+with open('testfile1.txt', 'r') as fin:
+    while True:
+        line = fin.readline()
+        if not line:
+            break
+        poem += line
 
-while True:
+# Another approach:
+
+with open("testfile1.txt", 'r') as fin:
     line = fin.readline()
-    if not line:
-        break
-    poem += line
+    while line:
+        print(line, end='')
+        line = fin.readline()
 
-fin.close()
+# Read a file by iterating ---------------------------------------------------
 
 # The easiest way to read a text file is by using an iterator. This returns
-# one line at a time... similar to previous example but less code:
+# one line at a time... similar to previous examples but less code:
 
 poem = ''
-fin = open('testfile1', 'r')
+with open('testfile1.txt', 'r') as fin:
+    for line in fin:
+        poem += line
 
-for line in fin:
-    poem += line
+# a variation:
 
-fin.close()
+with open("testfile1.txt", 'r') as fin:
+    for line in fin:
+        if "by" in line.lower():
+            print(line, end='')
+
+# readlines() ----------------------------------------------------------------
 
 # readlines() - the previous examples read and built up a single string.
-# This call reads a line t a time and returns a list of one-line strings:
+# This call reads a line at a time and returns a list of one-line strings:
 
-fin = open('testfile1', 'r')
-lines = fin.readlines()
-fin.close()
+with open('testfile1.txt', 'r') as fin:
+    lines = fin.readlines()
+    print('Lines read: ', len(lines))
+    for line in lines:
+        print(line, end='')
 
-# Testing:
+# with readlines() you can go from the last line to the first:
 
-print('Lines read: ', len(lines))
-for line in lines:
-    print(line, end='')
+with open("testfile1.txt", 'r') as fin:
+    lines  = fin.readlines()
+    for line in lines[::-1]:
+        print(line, end='')
+
+# NOTE: If you tried using fin.read() or fin.readline() in the above, all the
+# letters would be printed in reverse, not just the lines.
+
+# Binary Files ---------------------------------------------------------------
 
 # Write a Binary file:
 
 bdata = bytes(range(0, 256))
 
-fout = open('testbinary', 'wb')
-fout.write(bdata)
-fout.close()
+with open('testbinary', 'wb') as fout:
+    fout.write(bdata)
 
 # as with text you can write binary in chunks:
 
-fout = open('testbinary', 'wb')
-size = len(bdata)
-offset = 0
-chunk = 100
-
-while True:
-    if offset > size:
-        break
-    fout.write(bdata[offset:offset+chunk])
-    offset += chunk
-
-fout.close()
+with open('testbinary', 'wb') as fout:
+    size = len(bdata)
+    offset = 0
+    chunk = 100
+    while True:
+        if offset > size:
+            break
+        fout.write(bdata[offset:offset+chunk])
+        offset += chunk
 
 # read() a Binary file:
 
-fin = open('testbinary', 'rb')
-bdata = fin.read()
-fin.close()
+with open('testbinary', 'rb') as fin:
+    bdata = fin.read()
 
-# Close files automatically using: with expression as variable
-
-# If you forget to close a file that you've opened, you can end up wasting
-# system resources or accidentally overwriting a file. Python has 'context
-# managers' to clean up things such as open files:
-
-with open('testfile2', 'w') as fout:
-    fout.write(text1)
-
-# After the block of code completes (normally or by a raised exception), the
-# file is closed automatically.
-
-# seek(), tell()
+# seek(), tell() -------------------------------------------------------------
 
 # Reminder: As you read and write, Python keeps track of where you are in
 # the file. The tell() function returns your current offset position in
@@ -224,12 +245,11 @@ with open('testfile2', 'w') as fout:
 # This means you don't have to read every byte in a file to read the last one.
 # Note: seek() also returns the current offset.
 
-fin = open('testbinary', 'rb')
-fin.tell()          # returns 0
-fin.seek(255)       # moves to one byte before the end of the file
-bdata = fin.read()  # reads the last byte
-len(bdata)          # returns 1
-fin.close()
+with open('testbinary', 'rb') as fin:
+    fin.tell()          # returns 0
+    fin.seek(255)       # moves to one byte before the end of the file
+    bdata = fin.read()  # reads the last byte
+    len(bdata)          # returns 1
 
 # You can call seek() with a second argument: seek(offset, origin)
 # If origin is 0 (the default), move offset bytes from the start
@@ -238,12 +258,38 @@ fin.close()
 
 # So to get to the last byte we could also do:
 
-fin = open('testbinary', 'rb')
-fin.seek(-1, 2)
-fin.close()
+with open('testbinary', 'rb') as fin:
+    fin.seek(-1, 2)
 
 # These functions are most useful for binary files. Though you can use them
 # with text files, you would have a hard time calculating offsets as the
 # most popular encoding (UTF-8) uses varying numbers of bytes per character.
 
-# filename.truncate() - Empties the file.
+# eval() ---------------------------------------------------------------------
+
+# Problems can arise when trying to read data structure from files. Example:
+
+unkle = ('The Road, Pt. 1', 'UNKLE', '2017', (
+         (1, 'Inter 1'),
+         (2, 'Farewell'),
+         (3, 'Looking for the Rain'),
+         (4, 'Cowboys or Indians')))
+
+with open('music.txt', 'w') as music_file:
+    print(unkle, file=music_file)
+
+# the problem here is that there's no easy way to read the data in the file
+# back in as a tuple because it's now just a string with brackets. That's when
+# eval() can help:
+
+with open ('music.txt', 'r') as music_file:
+    music_contents = music_file.readline()
+
+unkle = eval(music_contents)
+album, artist, year, tracks = unkle # tuple unpacking
+print(album)
+print(tracks[3])
+
+# truncate() -----------------------------------------------------------------
+
+# filename.truncate() - Empties the file

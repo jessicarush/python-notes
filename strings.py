@@ -78,7 +78,7 @@ test_string = test_string.strip('.')
 print(test_string)
 
 # Replace characters or words. You can also use a number argument
-# to limit the number of replacements like this: test_string.replace(' ', '-', 2)
+# to limit the number of replacements like: test_string.replace(' ', '-', 2)
 
 test_string = test_string.replace(' ', '-')
 print(test_string)
@@ -91,17 +91,24 @@ print(test_string)
 test_string = test_string.lower()
 print(test_string)
 
+test_string = test_string.upper()
+print(test_string)
+
 test_string = test_string.capitalize()
 print(test_string)
 
 test_string = test_string.title()
 print(test_string)
 
-test_string = test_string.upper()
-print(test_string)
-
 test_string = test_string.swapcase()
 print(test_string)
+
+# NOTE: .lower() and .upper() are particularly useful when you're iterating
+# over a string looking for something but you don't care about the case or,
+# you receive input and you don't want to handle upper and lower variations:
+
+if 'bigfoot' in test_string.lower():
+    print("He's there")
 
 # NOTE: title() doesn't handle apostrophes very well. Use capwords() instead:
 
