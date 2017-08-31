@@ -1,4 +1,4 @@
-# Calendars & Clocks
+'''Calendars & Clocks'''
 
 # Working with dates and times can be a bit of a pain on account of varying
 # formats, time zones, daylight savings times, and so on.
@@ -7,12 +7,15 @@
 # calendar, dateutil, and others. There's some overlap, and it's a bit
 # confusing.
 
-# Example: test if a year is a leap year:
+# calendar module ------------------------------------------------------------
 
 import calendar
 
+# test if a year is a leap year:
 print(calendar.isleap(2016))
 print(calendar.isleap(2017))
+
+# datetime module ------------------------------------------------------------
 
 # The datetime module defines four main objects... each with many methods:
 
@@ -119,7 +122,7 @@ print(type(noonish_today))
 print(noonish_today.date())
 print(noonish_today.time())
 
-# Time Module
+# Time module ----------------------------------------------------------------
 
 # It is confusing that Python has a datetime module with a time object, and a
 # separate time module. Furthermore, the time module has a function called...
@@ -135,18 +138,23 @@ print(noonish_today.time())
 # value (number of seconds since 1970-01-01):
 
 import time
+
 now = time.time()
 print(now)
+print(type(now)) # <class 'float'>
 
 # convert an epoch value to a string by using ctime():
 
-new_now = time.ctime(now)
-print(new_now)
-print(type(new_now)) # it's a string
+str_now = time.ctime(now)
+print(str_now)
+print(type(str_now)) # <class 'str'>
 
-# Sometimes, though, you need actual days, hours, and so on, which time provides
-# as struct_time objects. localtime() provides the time in your system's time zone,
-# and gmtime() provides it in UTC.
+test_time = time.ctime() # if no arg is provided the current time is used
+print(test_time)
+
+# Sometimes, though, you need actual days, hours, and so on, which time
+# provides as struct_time objects. localtime() provides the time in your
+# system's time zone, and gmtime() provides it in UTC.
 
 # Note: UTC is the time standard commonly used across the world. It is not a
 # time zone but a time standard that is the basis for civil time and time
@@ -154,14 +162,24 @@ print(type(new_now)) # it's a string
 # UTC as a local time. Formerly GMT (Greenwich Mean Time - is now a time zone).
 
 print(time.localtime(now))
+print(time.localtime())
+
 print(time.gmtime(now))
+print(time.gmtime())
+
 type(time.localtime(now)) # <class 'time.struct_time'>
 
-# The opposite of these is mktime(), which converts a struct_time object to
-# epoch seconds:
+t = time.localtime()
+
+print('Year: {0[0]} Month: {0[1]} Day: {0[2]} Hour: {0[3]} Minute: {0[4]} Second {0[5]} Weekday {0[6]} Yearday: {0[7]} DST: {0[8]}'.format(t))
+
+# mktime() converts the above struct_time objects back to epoch seconds:
 
 tm = time.localtime(now)
-print(time.mktime(tm))
+tme = time.mktime(tm)
+
+print(type(tm)) # <class 'time.struct_time'>
+print(type(tme)) # <class 'float'>
 
 # Note this doesn't exactly match the earlier epoch value of now() because
 # the struct_time object preserves time only to the second.
@@ -172,7 +190,7 @@ print(time.mktime(tm))
 
 # Also, if possible, avoid the use of daylight savings time.
 
-# Read and Write Dates & Times
+# Read and Write Dates & Times -----------------------------------------------
 
 # isoformat() for date, time and datetime objects and, ctime() for epochs
 # aren't the only way to write dates and times as strings. We can also convert
@@ -182,18 +200,32 @@ print(time.mktime(tm))
 # as a function in the time module. strftime() uses format strings to specify
 # the output:
 
-# %Y  year                    2017
-# %m  month                   08
-# %B  month name              August
-# %b  month abbreviation      Aug
-# %d  day of month            16
-# %A  weekday name            Wednesday
-# %a  weekday abbreviation    Wed
-# %H  hour (24 hr)            15
-# %I  hour (12 hr)            03
-# %p  AM/PM                   PM
-# %M  minute                  59
-# %S  second                  59
+# %Y  year                          2017
+# %y  year 0-99                     17
+# %m  month                         08
+# %B  month name                    August
+# %b  month abbreviation            Aug
+# %d  day of month                  16
+# %A  weekday name                  Wednesday
+# %a  weekday abbreviation          Wed
+# %H  hour (24 hr)                  15
+# %I  hour (12 hr)                  03
+# %p  AM/PM                         PM
+# %M  minute                        59
+# %S  second                        59
+# %c  date and time                 Wed Aug 30 17:26:39 2017
+# %x  date                          08/30/17
+# %X  time                          17:26:39
+# %j  day in 1-366                  242
+# %U  week in 1-53 (Sun start)      35
+# %W  week in 1-53 (Mon start)      35
+# %w  weekday as a decimal 0-6      3
+# %z  time zone offset from UTC     -0700
+# %Z  time zone name                PDT
+
+# NOTE: Time zone offset indicates a positive or negative time difference from
+# UTC of the form +HHMM or -HHMM, where H represents decimal hour digits and M
+# represents decimal minute digits [-23:59, +23:59].
 
 # Here's the strftime() function with the time module. It converts a
 # struct_time object to a string:
@@ -266,7 +298,65 @@ print(de_names)
 # language codes - https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 # country codes - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 
-# Alternative Modules
+# Measuring time -------------------------------------------------------------
+
+# A quick way of timing something is to get the current time, do something, get
+# the new time, and then subtract the original time from the new time.
+
+# time()
+
+# from time import time as my_timer
+# this does an ok job but in this application could end up with problems - if
+# DST happens during that timing or the OS might have its internal clock synced
+# with a time server.
+
+# perf_counter()
+
+# from time import perf_counter as my_timer
+# perf_counter (for performance counter) is the most precise timer. It gives
+# a highly accurate measure of the elapsed time - often used for benchmarking
+# code. Note, the value returned doesn't represent an actual time.
+
+# process_time()
+
+# from time import process_time as my_timer
+# This returns the value (in fractional seconds) of the sum of the system and
+# user CPU time of the current process (not the actual elapsed time). It does
+# not include time elapsed with sleep. Is apparently useful for profiling code.
+
+import time
+from time import process_time as my_timer
+import random
+
+input('Press enter to start')
+wait_time = random.randint(1,6)
+time.sleep(wait_time)
+start_time = my_timer()
+
+input('Press enter to stop')
+end_time = my_timer()
+
+print('Elapsed time: {} seconds'.format(end_time - start_time))
+
+# Extra formatting review:
+# (these only work with time module above, not perf_counter or process_time):
+
+# convert epoch time (time.time()) to string using ctime():
+# print('started at:', time.ctime(start_time))
+# print('ended at:', time.ctime(end_time))
+
+# convert epoch time (time.time()) to a struct_time (time.localtime())
+# to a string using strftime():
+# print('started at:', time.strftime("%X", time.localtime(start_time)))
+# print('ended at:', time.strftime("%X", time.localtime(end_time)))
+
+# summary
+
+# Use time() when you want to record actual time.
+# Use perf_counter() when you want to record elapsed time
+# use process_time() when you want to record elapsed CPU time
+
+# Alternative Modules --------------------------------------------------------
 
 # If you find the standard library modules confusing, or lacking a particular
 # conversion that you want, there are many third-party alternatives:

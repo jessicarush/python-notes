@@ -1,8 +1,22 @@
-# Python philosophy:
+'''Misc Terms''''
 
-import this
+# Literal --------------------------------------------------------------------
 
-# About None:
+# a literal lets you assign values of an object in a single assignment,
+# for example:
+
+# assign a string literal to message
+message = "some information"
+
+# assign an int literal to x
+x = 100
+
+# assign a dictionary literal to plants
+plants = {'spider': 'long, slender leaves',
+          'succulent': 'like a cactus',
+          'fern': 'perfers the forest'}
+
+# None -----------------------------------------------------------------------
 
 # None is not the same as False. Though it may look false when evaluated as a
 # boolean, None is technically none as seen here:
@@ -19,7 +33,8 @@ def is_none(thing):
 
 is_none(thing)
 
-# Keyword arguments: **name
+# Keyword arguments: **name --------------------------------------------------
+
 # The keyword argument **h extracts the keys and values from the dictionary
 # and supplies them as arguments to the class Element()
 
@@ -34,25 +49,3 @@ h = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
 hydrogen = Element(**h)
 
 print(hydrogen.symbol)
-
-# Measuring Time:
-
-# A quick way of timing something is to get the current time, do something, get
-# the new time, and then subtract the original time from the new time.
-
-from time import time, sleep
-
-t1 = time()
-
-sleep(2.0)
-
-print(time() - t1)
-
-# About range()
-
-# NOTE: when using range() alone, you're actually creating a range object
-
-numbers = range(0, 100)
-print(type(numbers)) # class 'range'
-
-print(numbers[0:50:2] == range(0,50,2)) # True

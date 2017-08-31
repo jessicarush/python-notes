@@ -1,7 +1,10 @@
-# What dates do I need to water the plants if watering schedule is:
-# every 4 days in summer - summer is 3 more weeks from today
-# every 6 days in fall - fall is 3 months following summer
-# every 8 days in winter - winter is 3 months following fall
+
+# timedelta example ----------------------------------------------------------
+
+# What dates do I need to water the plants if the watering schedule is:
+# – every 4 days in summer - summer is 3 more weeks from today
+# – every 6 days in fall - fall is 14 weeks following summer
+# – every 8 days in winter - winter is 14 weeks following fall
 
 from datetime import date
 from datetime import timedelta
@@ -13,8 +16,8 @@ freq_fall = 6
 freq_winter = 8
 
 count_summer = ((7*3) // freq_summer)
-count_fall = ((7*13) // freq_fall)
-count_winter = ((7*13) // freq_winter)
+count_fall = ((7*14) // freq_fall)
+count_winter = ((7*14) // freq_winter)
 
 freq_summer = timedelta(days = freq_summer)
 freq_fall = timedelta(days = freq_fall)

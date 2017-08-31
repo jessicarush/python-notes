@@ -1,37 +1,6 @@
-# More Functions from the Standard Library
+'''More from the Standard Library''''
 
-# print()
-# Remember there are additional args you can provide to print:
-
-for i in range(0, 6):
-    print(i, end=' ') # remove the default line break at the end of the print()
-
-for i in range(0, 6):
-    print(i, i, sep='.') # adds a separator if printing more than one thing
-
-for i in range(0, 6):
-    print(i, file=fileobject) # prints to a file if you've got one open
-
-# enumerate()
-# takes apart a list and feeds each item to the for loop, adding a number to
-# each item as a bonus. To compare, test a regular for loop first.
-
-colours = ['red', 'cyan', 'yellow', 'green']
-
-for colour in colours:
-    print(colour)
-
-# If a start number isn't specified, the first item is 0
-
-for colour in enumerate(colours):
-    print(colour)
-
-# Start at 1 instead:
-
-for number, colour in enumerate(colours, 1):
-    print(number, colour)
-
-# Counter()
+# Counter() ------------------------------------------------------------------
 
 from collections import Counter
 
@@ -57,9 +26,11 @@ jb_counter1 - jb_counter2   # returns {'red': 2, 'green': 2, 'orange': 1}
 jb_counter2 - jb_counter1   # returns {'yellow': 2, 'black': 1}
 jb_counter1 & jb_counter2   # returns {'red': 1}
 
-# deque()
+# deque() --------------------------------------------------------------------
+
 # is a double-ended queue which has features of both a stack and a queue.
-# It's useful for when you want to add/delete items from either end of a sequence.
+# It's useful for when you want to add/delete items from either end of a
+# sequence.
 
 def palindrome(word):
     from collections import deque
@@ -81,6 +52,8 @@ def palindrome_better(word):
     return word == word[::-1]
 
 palindrome_better('radar')    # returns True
+
+# itertools ------------------------------------------------------------------
 
 # itertools are special purpose iterator functions.
 # each returns one item at a time when called within a for... in loop and

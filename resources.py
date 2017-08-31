@@ -1,4 +1,8 @@
-# Resources:
+'''Resources''''
+
+# Python philosophy:
+
+import this
 
 # When looking for code:
 

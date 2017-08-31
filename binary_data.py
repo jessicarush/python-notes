@@ -1,11 +1,11 @@
 '''Binary data'''
 
-# FYI, this will print numbers in binary (base 2):
+# this will format numbers in binary (base 2):
 
 for i in range(17):
     print("{0:>2} in binary is {0:>08b}".format(i))
 
-# this will print numbers in hex (base 16):
+# this will format numbers in hex (base 16):
 
 for i in range(17):
     print("{0:>2} in hex is {0:>02x}".format(i))
@@ -15,7 +15,7 @@ for i in range(17):
 for i in range(17):
     print("{0:>2} in octal is {0:>4o}".format(i))
 
-# typing binary and hex numbers:
+# typing binary, hex, octal:
 
 w = 32        # normal number (base 10)
 x = 0x20      # hexadecimal (base 16) starts with 0x
@@ -24,13 +24,15 @@ z = 0o40      # octal number (base 8) starts with 0o
 
 print (w, x, y, z)
 
-# convert integers:
+# convert integers to binary, hex, octal:
 
 x = hex(32)   # hexadecimal (base 16)
 y = bin(32)   # binary number (base 2)
 z = oct(32)   # octal number (base 8)
 
 print (x, y, z)
+
+# bytes() and bytearray() ----------------------------------------------------
 
 # bytes() and bytearray() are sequences of eight-bit integers, with possible
 # values of 0 to 255:
@@ -39,8 +41,11 @@ blist = [1, 2, 3, 255]
 the_bytes = bytes(blist)            # returns b'\x01\x02\x03\xff'
 the_byte_array = bytearray(blist)   # returns bytearray(b'\x01\x02\x03\xff')
 
-the_byte_array[1] = 127   # works because bytearray is mutable (like a list)
-# the_bytes[1] = 127        # doesn't work because bytes is immutable (like a tuple)
+print(type(the_bytes))              # class 'bytes'
+print(type(the_byte_array))         # class 'bytearray'
+
+the_byte_array[1] = 127             # works because bytearray is mutable
+# the_bytes[1] = 127                # doesn't work because bytes is immutable
 
 # The representation of a bytes value begins with a b'' and a quote character,
 # followed by hex sequences such as \x02 or ASCII characters, and ends with a
@@ -48,7 +53,26 @@ the_byte_array[1] = 127   # works because bytearray is mutable (like a list)
 # \x xx for non-printable bytes and their ASCII equivalents for printable ones
 # (plus some common escape characters, such as \n).
 
-# Convert Binary Data with struct
+# to_bytes() and from_bytes() ------------------------------------------------
+
+# These two are methods that can be applied to integer objects
+
+# to_bytes() - return an array of bytes representing an integer.
+
+x = (1024).to_bytes(2, byteorder='big')
+y = (1024).to_bytes(2, byteorder='little')
+
+print("Using to_bytes:", x, y)
+print(type(x)) # class 'bytes'
+
+# from_bytes() - return the integer represented by the given array of bytes.
+
+x = int.from_bytes(b'\x00\x10', byteorder='big')
+y = int.from_bytes(b'\x00\x10', byteorder='little')
+
+print("Using from_bytes:", x, y)
+
+# Convert Binary Data with struct --------------------------------------------
 
 # The standard library contains the struct module. With it you can convert
 # binary data to and from Python data structures.
@@ -58,16 +82,16 @@ the_byte_array[1] = 127   # works because bytearray is mutable (like a list)
 
 import struct
 
-# valid_png_header contains the 8-byte sequence that marks the start of a valid PNG:
+# valid_png contains the 8-byte sequence that marks the start of a valid PNG:
 
-valid_png_header = b'\x89PNG\r\n\x1a\n'
+valid_png = b'\x89PNG\r\n\x1a\n'
 
 # data contains the first 30 bytes from the PNG file:
 
 data = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR' + \
     b'\x00\x00\x00\x9a\x00\x00\x00\x8d\x08\x02\x00\x00\x00\xc0'
 
-if data[:8] == valid_png_header:
+if data[:8] == valid_png:
     # width is extracted from bytes 16-20, height from bytes 21-24:
     width, height = struct.unpack('>LL', data[16:24])
     print('Valid PNG, width', width, 'height', height)
@@ -84,15 +108,16 @@ else:
 print(data[16:20])
 print(data[20:24])
 
-# When you want to go the other way and convert Python data to bytes, use the
-# struct pack() function:
+# struct.pack() --------------------------------------------------------------
+
+# When you want to go the other way and convert Python data to bytes:
 
 import struct
 
 struct.pack('>L', 154)
 struct.pack('>L', 141)
 
-# Format specifiers fot pack() and unpack()
+# Format specifiers for pack() and unpack()
 
 # <     little endian
 # >     big endian
@@ -124,9 +149,21 @@ print(testing)
 testing = struct.unpack('>16x2L6x', data)
 print(testing)
 
-# Use big-endian integer format (>)
+# Use big endian integer format (>)
 # Skip 16 bytes (16x)
 # Read 8 bytes-two unsigned long integers (2L)
 # Skip the final 6 bytes (6x)
+
+# big endian and little endian -----------------------------------------------
+
+# Big Endian Byte Order: The most significant byte (the "big end") of the data
+# is placed at the byte with the lowest address. The rest of the data is placed
+# in order in the next three bytes in memory.
+
+# Little Endian Byte Order: The least significant byte (the "little end") of
+# the data is placed at the byte with the lowest address. The rest of the data
+# is placed in order in the next three bytes in memory
+
+# https://en.wikipedia.org/wiki/Endianness
 
 # To read and write binary files see files_read_write.py

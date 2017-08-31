@@ -1,5 +1,15 @@
 # STRINGS
 
+# valid strings:
+
+my_string = 'Some content'
+my_string = "Some content"
+
+# str() - to convert to a string:
+
+number = 4.5 * 3.25
+print(str(number))
+
 # String together strings with +, if the lines are long add \:
 
 long_string = 'A long time ago ' + \
@@ -12,7 +22,7 @@ long_string = """This string uses
     triple quotes because we're pretending
     it's very, very long"""
 
-# Each line in teh above will appear on a new line. If you don't want that,
+# Each line in the above will appear on a new line. If you don't want that,
 # escape the last invisible line break character with \
 
 long_string = """This string uses \

@@ -1,4 +1,4 @@
-# DICTIONARIES
+'''Dictionaries'''
 
 # create a dict with = {}
 
@@ -9,7 +9,12 @@ info = {
     'weight' : 130,
 }
 
-# convert to a dict with dict()
+# Add or change an item
+
+info['age'] = 40
+info['height'] = '5\'5"'
+
+# convert to a dict with dict() ----------------------------------------------
 
 list_of_lists = [['a', 'A'], ['b', 'B'], ['c', 'C']]
 list_of_tuples = [('d', 'D'), ('e', 'E'), ('f', 'F')]
@@ -23,12 +28,9 @@ dict_from_tol = dict(tuple_of_lists)
 dict_from_los = dict(list_of_two_char_strings)
 dict_from_tos = dict(tuple_of_two_char_strings)
 
-# Add or change an item:
+# Combine dicts with .update() -----------------------------------------------
 
-info['age'] = 40
-info['height'] = '5\'5"'
-
-# Combine dicts with .update() - this would be like extend() for lists
+# this would be like extend() for lists
 
 location = {
     'apt' : '2',
@@ -40,20 +42,15 @@ location = {
 
 info.update(location)
 
-# delete an item by key with del
+# delete an item by key with del ---------------------------------------------
 
 del info['age']
 
-# delete all items with .clear()
+# delete all items with .clear() ---------------------------------------------
 
 info.clear()
 
-# check for a key with in
-
-print('city' in location)
-print('Van' in location)
-
-# get an value by [key]
+# get an value by [key] and get() --------------------------------------------
 
 print(location['street'])
 
@@ -64,7 +61,7 @@ print(location['street'])
 print(location.get('country')) # returns None
 print(location.get('country', 'country not specified'))
 
-# example using in to avoid an exception when getting by key:
+# Or use 'in' to test when looking for a key:
 
 while True:
     dict_key = input('Enter a key (q to quit): ')
@@ -75,7 +72,7 @@ while True:
     else:
         print('There is no ' + dict_key)
 
-# example using get() to avoid an exception:
+# Again, using get() to avoid an exception:
 
 while True:
     dict_key = input('Enter a key (q to quit): ')
@@ -84,11 +81,11 @@ while True:
     dict_value = location.get(dict_key, 'There is no ' + dict_key)
     print(dict_value)
 
+# .keys() .values() .items() -------------------------------------------------
+
 # get all keys using .keys()
 
 print(location.keys())
-
-#or
 
 list_of_keys = list(location.keys())
 print(list_of_keys)
@@ -97,8 +94,6 @@ print(list_of_keys)
 
 print(location.values())
 
-#or
-
 list_of_values = list(location.values())
 print(list_of_values)
 
@@ -106,10 +101,15 @@ print(list_of_values)
 
 print(location.items())
 
-#or
-
 list_of_items = list(location.items())
 print(list_of_items)
+
+# .sort() and sorted() -------------------------------------------------------
+
+ordered_keys = list(location.keys())
+ordered_keys.sort()
+for key in ordered_keys:
+    print(key)
 
 # sort keys with sorted()
 # location.keys() behaves like a sequence and can therefor be passed to sorted
@@ -117,7 +117,7 @@ print(list_of_items)
 for dict_key in sorted(location.keys()):
     print(dict_key + '-' + location[dict_key])
 
-# copy a dict with .copy()
+# copy a dict with .copy() ---------------------------------------------------
 
 location_copy = location.copy()
 location['city'] = 'montreal'
@@ -125,7 +125,7 @@ location['city'] = 'montreal'
 print(location)
 print(location_copy)
 
-# Convert to a string with join()
+# Convert to a string with join() --------------------------------------------
 
 string_of_keys = ', '.join(location.keys())
 print(string_of_keys)
@@ -133,12 +133,16 @@ print(string_of_keys)
 string_of_values = ', '.join(location.values())
 print(string_of_values)
 
+# setdefault() ---------------------------------------------------------------
+
 # setdefault() method is like get() for dictionaries. It looks for the key and
-# if missing, creates it, but it does not change the value if the key is already
-# there. If you don't provide a value as with 'Canada' below, the value will be
-# set to None
+# if missing, creates it, but it does not change the value if the key is
+# already there. If you don't provide a value as with 'Canada' below, the
+# value will be set to None
 
 country = location.setdefault('country', 'Canada')
+
+# defaultdict() --------------------------------------------------------------
 
 # defaultdict() specifies a default value for any new key up front when the
 # dictionary is created. In this example, any missing value will be an integer
@@ -182,6 +186,8 @@ jellybeans = defaultdict(int)
 
 for key in ['red', 'red', 'orange', 'red']:
     jellybeans[key] += 1
+
+# OrderedDict() --------------------------------------------------------------
 
 # OrderedDict() rememebers the order of key addition and returns them in that
 # same order (remember, dictionaries are NOT usually ordered like lists

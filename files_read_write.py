@@ -1,3 +1,5 @@
+'''Reading and Writing Files'''
+
 # Persistence ----------------------------------------------------------------
 
 # In the context of storing data in a computer system, this means that the data
@@ -212,6 +214,31 @@ with open("testfile1.txt", 'r') as fin:
 # NOTE: If you tried using fin.read() or fin.readline() in the above, all the
 # letters would be printed in reverse, not just the lines.
 
+# eval() ---------------------------------------------------------------------
+
+# Problems can arise when trying to read data structure from files. Example:
+
+unkle = ('The Road, Pt. 1', 'UNKLE', '2017', (
+         (1, 'Inter 1'),
+         (2, 'Farewell'),
+         (3, 'Looking for the Rain'),
+         (4, 'Cowboys or Indians')))
+
+with open('music.txt', 'w') as music_file:
+    print(unkle, file=music_file)
+
+# the problem here is that there's no easy way to read the data in the file
+# back in as a tuple because it's now just a string with brackets. That's when
+# eval() can help:
+
+with open ('music.txt', 'r') as music_file:
+    music_contents = music_file.readline()
+
+unkle = eval(music_contents)
+album, artist, year, tracks = unkle # tuple unpacking
+print(album)
+print(tracks[3])
+
 # Binary Files ---------------------------------------------------------------
 
 # Write a Binary file:
@@ -266,31 +293,6 @@ with open('testbinary', 'rb') as fin:
 # These functions are most useful for binary files. Though you can use them
 # with text files, you would have a hard time calculating offsets as the
 # most popular encoding (UTF-8) uses varying numbers of bytes per character.
-
-# eval() ---------------------------------------------------------------------
-
-# Problems can arise when trying to read data structure from files. Example:
-
-unkle = ('The Road, Pt. 1', 'UNKLE', '2017', (
-         (1, 'Inter 1'),
-         (2, 'Farewell'),
-         (3, 'Looking for the Rain'),
-         (4, 'Cowboys or Indians')))
-
-with open('music.txt', 'w') as music_file:
-    print(unkle, file=music_file)
-
-# the problem here is that there's no easy way to read the data in the file
-# back in as a tuple because it's now just a string with brackets. That's when
-# eval() can help:
-
-with open ('music.txt', 'r') as music_file:
-    music_contents = music_file.readline()
-
-unkle = eval(music_contents)
-album, artist, year, tracks = unkle # tuple unpacking
-print(album)
-print(tracks[3])
 
 # truncate() -----------------------------------------------------------------
 

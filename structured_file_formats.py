@@ -1,30 +1,30 @@
-# Structured Text files
+'''Structured Text files'''
 
 # In simple text files, the only level of organization is the line. Sometimes,
-# you want more structure than that. You might want to save data for your
+# you need more structure than that. You might want to save data for your
 # program to use later, or send data to another program. There are many
 # formats. Each of these can be read and written by at least one Python module:
 
-# A separator (or delimiter) character like tab '\t', comma ',', or vertical
-# bar '|'. This is an example of the comma-separated values (CSV) format.
-# '<' and '>' around tags. Examples include XML and HTML.
-# Punctuation. An example is JavaScript Object Notation (JSON).
-# Indentation. An example is YAML (.yaml, .yml)
-# Miscellaneous, such as configuration files for programs.
+# – A separator (or delimiter) character like tab '\t', comma ',', or vertical
+#   bar '|'. This is an example of the comma-separated values (CSV) format.
+# – < and > around tags. Examples include XML and HTML.
+# – Punctuation. An example is JavaScript Object Notation (JSON).
+# – Indentation. An example is YAML (.yaml, .yml)
+# – Miscellaneous, such as configuration files for programs.
 
-# CSV
+# CSV ------------------------------------------------------------------------
 
 # Delimited files are often used as an exchange format for spreadsheets and
-# databases. You could read CSV files manually, a line at a time, splitting 
-# each line into fields at comma separators, and adding the results to data 
-# structures such as lists and dictionaries. But it's better to use the standard 
-# csv module, because parsing these files can be more complicated.
+# databases. You could read CSV files manually, a line at a time, splitting
+# each line into fields at comma separators, and adding the results to data
+# structures such as lists and dictionaries. But it's better to use the
+# standard csv module, because parsing these files can be more complicated.
 
 # Some have alternate delimiters besides a comma like '|' and '\t' (tab)
 # Some have escape sequences. If the delimiter character can occur within a
-# field, the entire field might be surrounded by quote characters or preceded 
-# by some escape character. Files have different line-ending characters. Unix uses 
-# '\n', Microsoft uses '\r \n', and Apple used to use '\r' but now uses '\n'.
+# field, the entire field might be surrounded by quote characters or preceded
+# by some escape character. Files have different line-ending characters. Unix
+# uses '\n', Microsoft uses '\r \n', and Apple used to use '\r' but now '\n'.
 # There can be column names in the first line.
 
 import csv
@@ -82,7 +82,7 @@ with open('singers', 'r') as fin:
     csvin = csv.DictReader(fin)
     singers = [row for row in csvin]
 
-# XML
+# XML ------------------------------------------------------------------------
 
 # practice.xml code for example below:
 
@@ -132,7 +132,7 @@ print(len(root))    # number of menu sections
 print(len(root[0])) # number of breakfast items
 
 # ElementTree has many other ways of searching XML-derived data, modifying
-# it, and even writing XML files. The ElementTree documentation can be found at:
+# it, and even writing XML files. The ElementTree documentation can be found:
 # https://docs.python.org/3.3/library/xml.etree.elementtree.html
 
 # Other standard Python XML libraries include:
@@ -142,19 +142,19 @@ print(len(root[0])) # number of breakfast items
 # to load everything into memory at once. A good choice if you need to
 # process very large streams of XML.
 
-# HTML
+# HTML -----------------------------------------------------------------------
 
 # The problem here is so much of it doesn't follow the HTML rules, which can
-# make it difficult to parse. Also, much of HTML is intended more to format 
+# make it difficult to parse. Also, much of HTML is intended more to format
 # output than interchange data. More to come...
 
-# JSON
+# JSON -----------------------------------------------------------------------
 
 # Has become a very popular data interchange format. The JSON format is a
 # subset of JavaScript, and often legal Python syntax as well. Its close fit
 # to Python makes it a good choice for data interchange among programs.
 
-# The JSON module encodes (dumps) data to a JSON string and decodes (loads) 
+# The JSON module encodes (dumps) data to a JSON string and decodes (loads)
 # a JSON string back to data.
 
 # Here's a pythonic data structure to use:
@@ -223,8 +223,8 @@ class DTEncoder(json.JSONEncoder):
 
 json.dumps(now, cls=DTEncoder)
 
-# The new class DTEncoder is a subclass, or child class, of JSONEncoder. We
-# only need to override its default() method to add datetime handling.
+# The new class DTEncoder is a subclass, or child class, of JSONEncoder.
+# We only need to override its default() method to add datetime handling.
 # Inheritance ensures that everything else will be handled by the parent
 # class. The isinstance() function checks whether the object obj is of the
 # class datetime.datetime.
@@ -236,7 +236,7 @@ json.dumps(now, cls=DTEncoder)
 # the items is a dictionary, you can extract contents through keys(),
 # values(), and items().
 
-# YAML
+# YAML -----------------------------------------------------------------------
 
 # practice.yaml code for example below:
 
@@ -292,9 +292,9 @@ print(data['poems'][1]['title'])
 # Always Use safe_load() instead of load(), especially if you're importing
 # YAML that you don't trust.
 
-# Configuration files
+# Configuration files --------------------------------------------------------
 
-# The standard configparser module handles Windows-style .ini files. 
+# The standard configparser module handles Windows-style .ini files.
 # Such files have sections of key = value definitions.
 
 # practice.cfg code for examle below:
@@ -317,12 +317,13 @@ cfg.read('practice.cfg')
 
 print(cfg['french']['greeting'])
 
-# Serialize with pickle
+# Serialize with pickle ------------------------------------------------------
 
-# Saving data structures to a file is called serializing. Formats such as
-# JSON might require some custom converters to serialize all the data types
-# from a Python program. Python's pickle module can save and restore any
-# object in a special binary format.
+# Serialization is the process that allows objects to be saved to a file so
+# that they can be restored from the file later. Formats such as JSON might
+# require some custom converters to serialize all the data types from a Python
+# program. Python's pickle module can save and restore any object in a
+# special binary format.
 
 import pickle
 import datetime
@@ -330,22 +331,84 @@ import datetime
 now1 = datetime.datetime.utcnow()
 pickled = pickle.dumps(now1)
 now2 = pickle.loads(pickled)
-print(now1)
-print(now2)
-print(now1 == now2)
 
-# Use dump() to pickle to a file, and load() to unpickle from one. As with
-# PyYAML load(), pickle can create Python objects. Don't unpickle something
-# that you don't trust.
+print(now1 == now2) # True
 
-# Spreadsheets
+# Use dump() to pickle to a file, and load() to unpickle from one.
+
+import pickle
+
+unkle = ('The Road, Pt. 1', 'UNKLE', '2017', (
+         (1, 'Inter 1'),
+         (2, 'Farewell'),
+         (3, 'Looking for the Rain'),
+         (4, 'Cowboys or Indians')))
+
+with open('music.pickle', 'wb') as pickle_file:
+    pickle.dump(unkle, pickle_file)
+
+with open('music.pickle', 'rb') as unpickle_file:
+    unkle2 = pickle.load(unpickle_file)
+
+print(unkle == unkle2) # True
+
+# You can picke as many objects as you want to one file, you just have to
+# rememeber to load them back in the same order:
+
+queens = ('Villians', 'QOTSA', '2017', (
+         (1, "Feet Don't Fail Me"),
+         (2, 'The Way You Used to Do'),
+         (3, 'Domesticated Animals'),
+         (4, 'Fortess')))
+
+arcade = ('Everything Now', 'Arcade Fire', '2017', (
+         (1, 'Everything Now'),
+         (2, 'Signs of Life'),
+         (3, 'Creature Comfort'),
+         (4, 'Peter Pan')))
+
+with open('music.pickle', 'wb') as pickle_file:
+    pickle.dump(unkle, pickle_file)
+    pickle.dump(queens, pickle_file)
+    pickle.dump(arcade, pickle_file)
+    pickle.dump(2348990008, pickle_file)
+
+with open('music.pickle', 'rb') as unpickle_file:
+    unkle2 = pickle.load(unpickle_file)
+    queens2 = pickle.load(unpickle_file)
+    arcade2 = pickle.load(unpickle_file)
+    x = pickle.load(unpickle_file)
+
+# pickle can use different protocols when serializing data. These protocols are
+# released with new versions of Python and will include better support for more
+# complex data objects. That being said, the protocols aren't backwards
+# compatible. If you pickle something with the latest version you may not be
+# able to load back in with an older version. Keep in mind too that some of the
+# older versions have major security issues. To specify a protocol:
+
+pickle.dump(unkle, pickle_file, protocol=3) # default released with Python 3
+pickle.dump(unkle, pickle_file, protocol=pickle.HIGHEST_PROTOCOL)
+pickle.dump(unkle, pickle_file, protocol=pickle.DEFAULT_PROTOCOL)
+
+# Final Note: as with PyYAML load(), pickle can create Python objects.
+# Don't unpickle something that you don't trust. Here's an example of code
+# that would delete a file called text.txt if run:
+
+pickle.loads(b"cos\nsystem\n(S'rm text.txt'\ntR.")      # mac/linux
+pickle.loads(b"cos\nsystem\n(S'del text.txt'\ntR.")     # windows
+
+# Shelve module --------------------------------------------------------------
+
+# see shelve_module.py
+
+# Spreadsheets ---------------------------------------------------------------
 
 # Spreadsheets, notably Microsoft Excel, are widespread binary data formats.
 # If you can save your spreadsheet to a CSV file, you can read it by using
 # the standard csv module that was described earlier. If you have a binary
 # xls file, xlrd is a third-party package for reading and writing.
 
-# HDF5
+# HDF5 -----------------------------------------------------------------------
 
 # is a binary data format for multidimensional or hierarchical numeric data.
 # It's used mainly in science, where fast random access to large datasets
