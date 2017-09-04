@@ -25,7 +25,7 @@ name = 'golden ratio'
 
 print('The %s is %f' % (name, goldenratio))
 
-# NOTE: Old style formatting has been marked as deprecated for Pyhton 3
+# NOTE: Old style formatting has been marked as deprecated for Python 3
 
 # NEW style formatting with {} and format()
 
@@ -75,3 +75,18 @@ for i in range(1, 13):
         print(i, 'times',  j, 'is', i*j)
         # will print the same as:
         print('{0} times {1} is {2}'.format(i, j, i*j))
+
+# In the above examples where numbers are used, you can always replace these as
+# variables. This makes for more wordy code, but if something needs to be
+# configurable, this would be the way to go as the variable could be defined
+# elsewhere:
+
+def heading(arg):
+    print('{0:-^80}'.format(str(arg).title()))
+
+width = 80
+
+def heading(arg):
+    print('{0:-^{1}}'.format(str(arg).title(), width))
+
+heading('Fomatting is fun')

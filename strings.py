@@ -66,15 +66,15 @@ print('Bigfoot' in test_string)
 
 word = 'Ness'
 
-# Find the offset of the first occurence of a word
+# Find the offset of the first occurrence of a word
 
 print(test_string.find(word))
 
-# Find the offset of the last occurence of a word
+# Find the offset of the last occurrence of a word
 
 print(test_string.rfind(word))
 
-# Find the total number of occurences
+# Find the total number of occurrences
 
 print(test_string.count(word))
 

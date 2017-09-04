@@ -1,11 +1,23 @@
 '''Calendars & Clocks'''
 
 # Working with dates and times can be a bit of a pain on account of varying
-# formats, time zones, daylight savings times, and so on.
+# formats, time zones, daylight savings times, and so on. Python's standard
+# library has many date and time modules: datetime, time, calendar, locale
+# and others. There's some overlap, and a bit confusing:
 
-# Python's standard library has many date and time modules: datetime, time,
-# calendar, dateutil, and others. There's some overlap, and it's a bit
-# confusing.
+# calendar module:
+#   General calendar-related functions.
+
+# datetime module:
+#   Object-oriented interface to dates and times with similar functionality
+#   to the time module.
+
+# time module:
+#   Low-level time related functions (time access and conversions)
+#
+# locale module:
+#   Internationalization services. The locale setting affects the
+#   interpretation of many format specifiers in strftime() and strptime().
 
 # calendar module ------------------------------------------------------------
 
@@ -17,14 +29,16 @@ print(calendar.isleap(2017))
 
 # datetime module ------------------------------------------------------------
 
-# The datetime module defines four main objects... each with many methods:
+# Note with datetime objects some are considered naive and some are aware.
+# Aware objects are aware of the timezone offset and naive objects are not.
 
-# date - for years, months, days
-# time - for hours, minutes, seconds, and fractions
-# datetime - for dates and times together
-# timedelta - for date and/or time intervals
+# The datetime module defines four main objects, each with many methods:
+# – datetime.date() for years, months, days
+# – datetime.time() for hours, minutes, seconds, and fractions
+# – datetime,datetime() for dates and times together
+# – datetime.delta() for date and/or time intervals
 
-# make a date object by specifying a year, month, and day. Those values are
+# make a date() object by specifying a year, month, and day. Those values are
 # then available as attributes:
 
 from datetime import date
@@ -52,7 +66,7 @@ from datetime import date
 now = date.today()
 print(now)
 
-# This makes use of a timedelta object to add a time interval to a date:
+# This makes use of a timedelta() object to add a time interval to a date:
 
 from datetime import timedelta
 
@@ -67,7 +81,7 @@ print(now + 18*one_day)
 # date.max (year=9999, month=12, day=31). As a result, you can't use it for
 # historic or astronomical calculations.
 
-# The datetime module's time object is used to represent a time of day:
+# The datetime module's time() object is used to represent a time of day:
 
 from datetime import time
 
@@ -82,7 +96,7 @@ print(noon.microsecond)
 # (microseconds). If you don't provide all the arguments, time assumes all the
 # rest are zero.
 
-# The datetime object includes both the date and time of day. The following
+# The datetime() object includes both the date and time of day. The following
 # would be for August 16, 2017, at 2:09 P.M., plus 5 seconds, 6 microseconds:
 
 from datetime import datetime
@@ -93,9 +107,16 @@ a_day = datetime(2017, 8, 16, 14, 9, 5, 6)
 
 print(a_day.isoformat())
 
-# datetime has a now() method with which you can get the current date and time:
+# datetime has methods with which you can get the current date and time, utc:
+
+print(datetime.today())
+print(datetime.now())
+print(datetime.utcnow()):
+
+# now() and today() are similar. now() allows us to provide timezone with a tzinfo object (see timezones.py)
 
 now = datetime.now()
+
 print(now.isoformat())
 print(now.month)
 print(now.day)
@@ -114,7 +135,7 @@ this_day = date.today()
 noonish_today = datetime.combine(this_day, noonish)
 
 print(noonish_today)
-print(type(noonish_today))
+print(type(noonish_today)) # <class 'datetime.datetime'>
 
 # You can pull the date and time out from a datetime by using the date() and
 # time() methods:
@@ -188,7 +209,30 @@ print(type(tme)) # <class 'float'>
 # absolute time, independent of time zones. If you have a server, set its
 # time to UTC; do not use local time.
 
-# Also, if possible, avoid the use of daylight savings time.
+# Also, if possible, avoid the use of daylight savings time. That being said:
+
+# Timezones and DST ----------------------------------------------------------
+
+import time
+
+# time.tzname[]:
+# A tuple of two strings: the first is the name of the local non-DST timezone,
+# the second is the name of the local DST timezone.
+
+# time.timezone:
+# The int offset of the local (non-DST) timezone, in seconds west of UTC
+# (negative in most of Western Europe, positive in the US, zero in the UK).
+
+print('current timezone is {0} with offset of {1} seconds'.format(
+       time.tzname[0], time.timezone))
+
+if time.daylight != 0:
+    print('\tDST is in effect')
+    print('\tThe DST timezone is ' + time.tzname[1])
+    print('\tOffset is actually {} seconds'.format(time.timezone - (60 * 60)))
+
+print('local time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
+print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 
 # Read and Write Dates & Times -----------------------------------------------
 
@@ -220,8 +264,8 @@ print(type(tme)) # <class 'float'>
 # %U  week in 1-53 (Sun start)      35
 # %W  week in 1-53 (Mon start)      35
 # %w  weekday as a decimal 0-6      3
-# %z  time zone offset from UTC     -0700
-# %Z  time zone name                PDT
+# %z  time zone offset from UTC     -0700  ** Doesn't work with all libraries
+# %Z  time zone name                PDT    ** Deprecated
 
 # NOTE: Time zone offset indicates a positive or negative time difference from
 # UTC of the form +HHMM or -HHMM, where H represents decimal hour digits and M
@@ -262,6 +306,8 @@ import time
 fmt = '%Y-%m-%d'
 a_date = time.strptime('2017-08-16', fmt)
 print(a_date)
+
+# locale module --------------------------------------------------------------
 
 # Note: Names are specific to your locale (internationalization settings for
 # your os). To print different month and day names, change your locale by
@@ -350,8 +396,7 @@ print('Elapsed time: {} seconds'.format(end_time - start_time))
 # print('started at:', time.strftime("%X", time.localtime(start_time)))
 # print('ended at:', time.strftime("%X", time.localtime(end_time)))
 
-# summary
-
+# Summary:
 # Use time() when you want to record actual time.
 # Use perf_counter() when you want to record elapsed time
 # use process_time() when you want to record elapsed CPU time

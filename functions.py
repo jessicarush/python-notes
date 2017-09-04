@@ -1,9 +1,11 @@
 '''Functions, parameters and arguments'''
 
-# Write a functon with def() -------------------------------------------------
+# Write a function with def() -------------------------------------------------
 
 # Function names can start with letters or _ and contain only letters, numbers
 # and _. Pass means do noting but move on. It's a placeholder.
+# NOTE: it's good practice to put two spaces after each function definition,
+# unless they're nested inside another function or class.
 
 def myfunction(num1, num2): # num1, num2 are parameters
     pass
@@ -12,14 +14,28 @@ def myfunction(num1, num2): # num1, num2 are parameters
 
 myfunction(1, 2) # 1, 2 are arguments
 
-# Positional Arguments
+# Reminder: return vs print --------------------------------------------------
+
+def myfunction1(num1, num2):
+    print(num1 * num2) # prints the result but returns None
+
+def myfunction2(num1, num2):
+    return num1 * num2 # prints nothing but returns the result
+
+# example:
+def heading(arg):
+    print('{0:-^80}'.format(str(arg).title()))
+
+heading('Positional Arguments')
+
+# Positional Arguments -------------------------------------------------------
 
 def menu(wine, cheese, dessert):
     return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
 
 print(menu('chardonnay', 'cake', 'swiss'))
 
-# Keyword Arguments
+# Keyword Arguments ----------------------------------------------------------
 
 print(menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 
@@ -93,6 +109,8 @@ def print_kwargs(**kwargs):
 
 print_kwargs(wine='merlot', cheese='swiss', fruit='grapes')
 
+# see also terminology.py for another example
+
 # Docstrings -----------------------------------------------------------------
 
 def myfunction1(arg):
@@ -126,7 +144,7 @@ def run_something(func):
 
 run_something(answer)
 
-# The paramater names arg1 and arg2 don't need to match those in the following
+# The parameter names arg1 and arg2 don't need to match those in the following
 # function, just using those names as examples:
 
 def add_args(arg1, arg2):
