@@ -25,8 +25,8 @@ print('caf\xe9')
 #
 # ----------------------------------------------------------------------------
 # bool()
-#
-#
+# see reflection.py
+# converts a value to Boolean (True or False)
 # ----------------------------------------------------------------------------
 # bytearray()
 # see binary_data.py
@@ -37,8 +37,13 @@ print('caf\xe9')
 # returns a bytes object (immmutable)
 # ----------------------------------------------------------------------------
 # callable()
-#
-#
+# see reflection.py
+# returns True if the object passed appears callable
+
+def test():
+    pass
+
+callable(test)  #True
 # ----------------------------------------------------------------------------
 # chr()
 #
@@ -124,8 +129,14 @@ for number, colour in enumerate(colours, 1): # starts the numbering at 1
 # creates an immutable set
 # ----------------------------------------------------------------------------
 # getattr()
-#
-#
+# returns the value of an attribute of an object, given the attribute name
+class Person:
+    age = 43
+    name = "Kali"
+
+person = Person()
+print(getattr(person, "age"))  # returns 43
+print(person.age)              # same thing
 # ----------------------------------------------------------------------------
 # globals()
 # see namespaces.py
@@ -191,8 +202,9 @@ help(documenting_naming)
 # creates a list object
 # ----------------------------------------------------------------------------
 # locals()
-#
-#
+# see namespaces.py
+# returns a dictionary of the current local symbol table (variable names,
+# methods, classes, etc)
 # ----------------------------------------------------------------------------
 # map()
 #
@@ -254,11 +266,18 @@ for i in range(0, 6):
 #
 # ----------------------------------------------------------------------------
 # range()
-# returns an immutable sequence object of integers - when using range() alone, # you're creating a range object:
+# returns an immutable sequence object of integers - when using range() alone,
+# you're creating a range object:
 
 numbers = range(0, 100)
 print(type(numbers)) # class 'range'
 print(numbers[0:50:2] == range(0,50,2)) # True
+# ----------------------------------------------------------------------------
+# repr()
+# returns a printable representation of the given object:
+
+now = datetime.datetime.utcnow()
+print(repr(now))  # datetime.datetime(2017, 9, 5, 18, 23, 30, 607281)
 # ----------------------------------------------------------------------------
 # reversed()
 #
@@ -309,10 +328,6 @@ print(numbers[0:50:2] == range(0,50,2)) # True
 # if a single object is passed, returns type of the given object
 # ----------------------------------------------------------------------------
 # vars()
-#
-#
-# ----------------------------------------------------------------------------
-# repr()
 #
 #
 # ----------------------------------------------------------------------------
