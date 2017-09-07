@@ -12,7 +12,9 @@ def print_global():
 print_global()
 
 # But if you get the value of a global variable and and try to change it within
-# a function, you get an error:
+# a function, you get an error because as soon as you start assigning to a
+# variable, python wants to make it a local variable, amd since no local
+# variable has been initialized... error:
 """
 def change_and_print_global():
     print('inside change_and_print_global:', animal)
@@ -20,12 +22,12 @@ def change_and_print_global():
     print('after the change:', animal)
 """
 
-# If you change the variable you are actually changing a differnt variable
-# (also named animal) inside of the function. Use ID to see they are diferent:
+# So, if you reassign the variable you are actually making a new local variable
+# (also named animal) inside of the function. Use ID to see they're different:
 
 def change_local():
     animal = 'wombat'
-    print('inside change_local:', animal, id(animal))
+    print('local animal:', animal, id(animal))
 
 change_local()
 print('global animal:', animal, id(animal))

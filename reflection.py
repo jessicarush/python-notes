@@ -69,11 +69,34 @@ for obj in dir(random.Random):
 
 # getattr() ------------------------------------------------------------------
 
-# returns the value of an attribute of an object, given the attribute name
+# returns the value of an attribute of an object, given the attribute name,
+# but also lets you provide a default value to avoid raising an errors:
+
 class Person:
     age = 43
-    name = "Kali"
+#   name = 'Ghost'
 
+# These two return - 43
 person = Person()
-print(getattr(person, "age"))  # returns 43
-print(person.age)              # same thing
+print(getattr(person, "age"))
+print(person.age)
+
+# These two return - AttributeError: 'Person' object has no attribute 'name'
+# print(getattr(person, 'name'))
+# print(person.name)
+
+# This will return the default value if name doesn't exist
+print(getattr(person, 'name', 'No Name'))
+
+# id() -----------------------------------------------------------------------
+
+# returns the identity (unique integer) of an object
+
+animal = 'fruitbat'
+
+def example():
+    animal = 'wombat'
+    print('local animal:', animal, id(animal))
+
+example()
+print('global animal:', animal, id(animal))

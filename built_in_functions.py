@@ -129,14 +129,9 @@ for number, colour in enumerate(colours, 1): # starts the numbering at 1
 # creates an immutable set
 # ----------------------------------------------------------------------------
 # getattr()
-# returns the value of an attribute of an object, given the attribute name
-class Person:
-    age = 43
-    name = "Kali"
-
-person = Person()
-print(getattr(person, "age"))  # returns 43
-print(person.age)              # same thing
+# see reflection.py
+# returns the value of an attribute of an object, given the attribute name,
+# but also lets you provide a default value to avoid raising an errors:
 # ----------------------------------------------------------------------------
 # globals()
 # see namespaces.py
@@ -169,8 +164,8 @@ help(documenting_naming)
 # convert itegers to hexadecimal (base 16)
 # ----------------------------------------------------------------------------
 # id()
-#
-#
+# see reflection.py
+# returns the identity (unique integer) of an object
 # ----------------------------------------------------------------------------
 # input()
 # see while_loops.py
