@@ -53,7 +53,11 @@ def testing_local():
     print('locals:', locals())
 
 testing_local()
-print('globals:', globals())
+
+print('globals:')
+g = sorted(globals())
+for x in g:
+    print(x)
 
 # The name of a function is in the system variable: function.__name__
 # The functions document string in in the variable: function.__doc__

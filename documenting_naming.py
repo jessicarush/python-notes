@@ -1,5 +1,7 @@
 # Documenting and Naming
 
+# docstrings -----------------------------------------------------------------
+
 # For obvious reasons, it helps to document your code. Documentation can
 # include comments and docstrings, but it can also incorporate informative
 # naming of variables, functions, modules, and classes. Don't be obsessive, say
@@ -25,7 +27,7 @@ if __name__ == '__main__':
         c_temp = ftoc(f_temp)
         print('%f F => %f C' % (f_temp, c_temp))
 
-# Two imporivements can be made:
+# Constants ------------------------------------------------------------------
 
 # Python doesn't have constants, but the PEP8 stylesheet recommends using
 # capital letters and underscores (e.g., ALL_CAPS) when naming variables that
@@ -47,3 +49,25 @@ def ftoc(f_temp):
     "Convert Fahrenheit temperature <f_temp> to Celsius and return it."
     c_temp = (f_temp - F_FREEZE_TEMP) * F_C_RATIO + C_FREEZE_TEMP
     return c_temp
+
+# Private functions ----------------------------------------------------------
+
+# If you're building a module that will be imported, you can identity functions
+# that aren't intended to be called on their own by naming them with a leading
+# underscore.
+
+def _guts():
+    pass
+
+# Throwaway values -----------------------------------------------------------
+
+# in the event that you need to give something a name but you have no intention
+# of using it, it's acceptable to use the name '-'. The perfect example of this
+# is with tuple unpacking. In the example below, I don't want the age
+# information, but I need to give it a name in order to unpack the rest:
+
+person = ('Kali', '50', 'Peru')
+
+name, _, country = person
+
+print(name, country)
