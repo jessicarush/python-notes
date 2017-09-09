@@ -59,6 +59,22 @@ def ftoc(f_temp):
 def _guts():
     pass
 
+# Private attributes ---------------------------------------------------------
+
+# The naming convention for hidden attributes in classes is a leading double
+# underscore:
+
+class Person():
+    def __init__(self, name, alias):
+        self.name = name       # public attribute
+        self.__alias = alias   # private attribute
+
+x = Person(name='Bob', alias='boktoktok')
+print(x.name)
+print(x.alias)   # AttributeError: 'Person' object has no attribute 'alias'
+print(x.__alias)  # AttributeError: 'Person' object has no attribute '__alias'
+print(x._Person__alias)  # This will actually return the attribute
+
 # Throwaway values -----------------------------------------------------------
 
 # in the event that you need to give something a name but you have no intention

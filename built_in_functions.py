@@ -257,8 +257,15 @@ for i in range(0, 6):
     print(i, file=fileobject)
 # ----------------------------------------------------------------------------
 # property()
-#
-#
+# see classes.py
+# returns a property attribute.
+# the syntax is:  property(fget=None, fset=None, fdel=None, doc=None)
+
+# The parameters for property() are all optional:
+# – fget (Optional) - function for getting the attribute value
+# – fset (Optional) - function for setting the attribute value
+# – fdel (Optional) - function for deleting the attribute value
+# – doc (Optional) - string that contains the docstring for the attribute
 # ----------------------------------------------------------------------------
 # range()
 # returns an immutable sequence object of integers - when using range() alone,
