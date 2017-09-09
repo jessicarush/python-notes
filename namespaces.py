@@ -76,6 +76,13 @@ g = sorted(globals())
 for x in g:
     print(x)
 
+# NOTE: when you reference a variable name, python will start by looking for the variable definition locally, and then move outward until if finds it. The order of scopes is as follows:
+
+# – local
+# – enclosing
+# – global
+# – built-ins
+
 # __name__, __doc__ ----------------------------------------------------------
 
 # The name of a function is in the system variable: function.__name__
