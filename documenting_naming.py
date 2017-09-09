@@ -71,3 +71,9 @@ person = ('Kali', '50', 'Peru')
 name, _, country = person
 
 print(name, country)
+
+# Variables names using Python words -----------------------------------------
+
+# If you're desperate to name something using one of Pythons keywords, the accepted standard is to follow the with an underscore:
+
+from_ = 'example'

@@ -45,7 +45,7 @@ for i in range(20):
 # Fibonacci ------------------------------------------------------------------
 
 def fib_r(n):
-    '''Calculates fibonacci recursively F(n) = F(n - 1) + F(n -2)'''
+    '''Calculates fibonacci recursively'''
     if n  < 2:
         return n
     else:
@@ -78,3 +78,46 @@ for i in range(20):
 fib_generator = fib_g(20)
 for i in fib_generator:
     print(i)
+
+# Directory Listings ---------------------------------------------------------
+
+import os
+
+# os.walk() returns a list of tuples. Each tuple contains a directory name and
+# two lists, one for the directories and one for the files. This is a
+# non-recursive example:
+
+# listing = os.walk('.')
+# for root, directories, files in listing:
+#     print(root)
+#     for d in directories:
+#         print(d)
+#     for f in files:
+#         print(f)
+
+# here we use os.listdir and os.path to create a recursive example:
+
+def list_directory(s):
+
+    def dir_list(d):
+        nonlocal tab_stop
+        files = os.listdir(d)
+        for f in files:
+            current_dir = os.path.join(d, f)
+            if os.path.isdir(current_dir):
+                print('\t' * tab_stop + 'Directory' + f)
+                tab_stop += 1
+                dir_list(current_dir)
+                tab_stop -= 1
+            else:
+                print('\t' * tab_stop + f)
+
+    tab_stop = 0
+    if os.path.exists(s):
+        print('Directory listing of ' + s)
+        dir_list(s)
+    else:
+        print(s + ' does not exist')
+
+
+list_directory('.')
