@@ -1,4 +1,8 @@
-# List Comprehensions
+'''Comprehensions'''
+
+# List Comprehensions ----------------------------------------------------------
+
+# [expression for item in iterable if condition]
 
 # You could build a list of integers like this:
 
@@ -73,7 +77,8 @@ print(even_numbers)
 even_numbers = [i for i in range(10) if i % 2 == 0]
 print(even_numbers)
 
-# Dictionary Comprehensions
+# Dictionary Comprehensions ----------------------------------------------------
+
 # {key_expression : value_expression for expression in iterable}:
 
 word = 'letters'
@@ -92,7 +97,8 @@ letter_counts = {letter : word.count(letter) for letter in set(word)}
 squares = { number: number*number for number in range(10)}
 print(squares)
 
-# Set comprehensions
+# Set comprehensions -----------------------------------------------------------
+
 # {expression for expression in iterable}
 
 a_set = {number for number in range(1,6) if number % 3 == 1}
@@ -102,7 +108,8 @@ a_set = {number for number in range(1,6) if number % 3 == 1}
 odds = {number for number in range(10) if number % 2 != 0}
 print(odds)
 
-# Generator comprehensions
+# Generator comprehensions -----------------------------------------------------
+
 # Tuples don't have comprehensions.
 # Changing the [] or {} of a comprehesion to () is actually
 # a generator comprehesion and returns a generator object.

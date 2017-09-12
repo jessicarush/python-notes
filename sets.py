@@ -1,4 +1,4 @@
-# SETS
+'''Sets'''
 
 # Sets:
 #  - a set is like a dictionary but without the values
@@ -69,7 +69,7 @@ drinks = {
     'screwdriver' : {'orange juice', 'vodka'},
 }
 
-# check for a value with if, in:
+# check for a value with if, in, and, not, or, & {} ----------------------------
 
 def test1():
     for key, values in drinks.items():
@@ -118,7 +118,7 @@ def test6():
             print('test 6: ', name)
 test6()
 
-# More set operators:
+# More set operators -----------------------------------------------------------
 
 bruss = drinks['black russian']
 wruss = drinks['white russian']
@@ -185,7 +185,7 @@ print(a.issuperset(b))
 print(bruss >= wruss)
 print(bruss.issuperset(wruss))
 
-# Frozen Sets
+# Frozen Sets ------------------------------------------------------------------
 
 #  - frozen sets are immutable
 #  - as a result, can be used as dictionary keys

@@ -1,4 +1,4 @@
-# Iterating with FOR
+'''Iterating with for'''
 
 # Iterating over lists, tuples and sets returns items.
 list1 = ['one' , 'two', 'three']
@@ -20,7 +20,7 @@ string1 = "ten"
 for char in string1:
     print(char)
 
-# Iterating over dictionaies returns keys.
+# Iterating over dictionaries returns keys.
 dict1 = {'eleven' : '11', 'twelve': '12', 'thirteen': '13'}
 
 for item in dict1: # will choose keys
@@ -42,15 +42,8 @@ for item in dict1.items():
 for key, value in dict1.items():
     print(key, 'is', value)
 
-# testing break:
-cheeses = []
-for cheese in cheeses:
-    print('This shop has', cheese)
-    break
-else:
-    print('no cheese')
+# Iterating over multiple sequences with zip() ---------------------------------
 
-# Iterating over multiple sequences with zip()
 days = ['Monday', 'Tuesday', 'Wednesday']
 fruits = ['Apple', 'Banana', 'Pear']
 drinks = ['Tea', 'Juice', 'Wine']
@@ -59,7 +52,7 @@ desserts = ['Ice cream', 'Cookies', 'Cake', 'Candy']
 for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
     print(day, ': eat', fruit, ', drink', drink, ', cheat with', dessert)
 
-# for using range(start, stop, step)
+# for using range(start, stop, step) -------------------------------------------
 
 for x in range(5, -1, -1):
     print(x, end='...')
@@ -67,14 +60,22 @@ for x in range(5, -1, -1):
 evennumberlist = list(range(0, 20, 2))
 print(evennumberlist)
 
-# using multiple for loops:
+# using multiple for loops ----------------------------------------------------
 
 for i in range(1, 13):
     for j in range(1, 13):
         print(i, 'times',  j, 'is', i*j)
     print('------------------')
 
-# using break and continue:
+# break and continue -----------------------------------------------------
+
+cheeses = []
+for cheese in cheeses:
+    print('This shop has', cheese)
+    break
+else:
+    print('no cheese')
+
 # break is useful when you want to terminate a loop early if some condition
 # is met, and continue skips past to the next iteration
 
@@ -94,7 +95,7 @@ for colour in colours:
 # item that it's iterating over. When there are no more items, the iterator
 # returns an error and the for loop handles the error and terminates
 
-# We can create our own iterator with iter() and next():
+# Create your own iterator with iter() and next() ------------------------------
 
 string = '12345'
 my_iterator = iter(string)
@@ -103,7 +104,7 @@ print(next(my_iterator))
 print(next(my_iterator))
 print(next(my_iterator))
 
-# to confirm, the following two are the same thing, we don't need to explicity
+# to confirm, the following two are the same thing, we don't need to explicitly
 # add the iter() as the for loop will do it for us:
 
 for char in string:
@@ -112,7 +113,7 @@ for char in string:
 for char in iter(string):
     print(char)
 
-# Again, the long verion:
+# Again, the long version:
 
 my_list = [1, 2, 3, 4, 5]
 my_iterator = iter(my_list)

@@ -1,11 +1,12 @@
-# Composition
+'''Composition'''
+
 # Inheritance is a good technique (child is-a parent) but it can be tempting
 # to build elaborate inheritance hierarchies. Sometimes composition or
 # aggregation (x has-a y) makes more sense.
 
 class Floor():
-    def __init__(self, kind):
-        self.kind = kind
+    def __init__(self, material):
+        self.material = material
 
 class Windows():
     def __init__(self, quantity):
@@ -16,7 +17,7 @@ class Room():
         self.floor = floor
         self.windows = windows
     def about(self):
-        print('This room has a', floor.kind, 'floor and', windows.quantity, 'windows')
+        print('This room has a', floor.material, 'floor and', windows.quantity, 'windows')
 
 floor = Floor('hardwood')
 windows = Windows('4')

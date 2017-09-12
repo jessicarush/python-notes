@@ -1,10 +1,10 @@
-# NoSQL Data Stores
+'''NoSQL Data Stores'''
 
 # Some databases are not relational and don't support SQL. These were written to
 # handle very large data sets, allow more flexible data definitions, or support
 # custom data operations.
 
-# dbm Family
+# dbm Family -------------------------------------------------------------------
 
 # key-value stores often embedded in apps such as web browsers to maintain
 # settings. A dbm database is like a Python dictionary. Example:
@@ -39,7 +39,7 @@ print(db['jaune'])
 # object db, but you can get the number of keys by using len(). Note that get()
 # and setdefault() work as they do for dictionaries.
 
-# Memcached
+# Memcached --------------------------------------------------------------------
 
 # memcached is a fast in-memory key-value cache server. It's often put in front
 # of a database, or used to store web server session data. To try it out, you
@@ -57,7 +57,7 @@ print(db['jaune'])
 # is inherent in memcached, being that it's a cache server. It avoids running
 # out of memory by discarding old data.
 
-# Redis
+# Redis ------------------------------------------------------------------------
 
 # Redis is a data structure server. Like memcached, all of the data in a Redis
 # server should fit in memory (though there is now an option to save to disk).
@@ -369,7 +369,7 @@ conn.get(key)   # returns None
 # The expireat() command expires a key at a given epoch time. Key expiration
 # is useful to keep caches fresh and to limit login sessions.
 
-# Other NoSQL databases
+# Other NoSQL databases --------------------------------------------------------
 
 # These handle data larger than memory, and many of them use multiple computers:
 
@@ -380,7 +380,7 @@ conn.get(key)   # returns None
 # MongoDB       https://www.mongodb.com/            Python API: mongodb
 # Riak          http://basho.com/riak/              Python API: riak-python-client
 
-# Full-Text Databases
+# Full-Text Databases ----------------------------------------------------------
 
 # There's a special category of databases for full-text search. They index
 # everything, so you can search for anything. Some popular open source

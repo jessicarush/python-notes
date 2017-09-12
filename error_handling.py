@@ -1,3 +1,5 @@
+'''Error Handling'''
+
 # Handle errors with try and except
 
 shortlist = [1, 2, 3]
@@ -9,7 +11,7 @@ except:
     print('Need a position between 0 and ', len(shortlist)-1)
 
 
-# Handle different types of exceptions using Pyhton standard exception names:
+# Handle different types of exceptions using Python standard exception names:
 
 newshortlist = [1, 2, 3]
 

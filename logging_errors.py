@@ -5,8 +5,8 @@
 # The logging module includes:
 
 # The message that you want to save to the log
-# Ranked priority levels as functions: debug(), info(), warn(), error(), and
-# critical()
+# Ranked priority levels as functions:
+# debug(), info(), warn(), error(), and critical()
 # One or more logger objects as the main connection with the module
 # Handlers that direct the message to your terminal, a file, a database, or
 # somewhere else

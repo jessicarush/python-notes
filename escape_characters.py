@@ -1,4 +1,4 @@
-# Escape Characters
+'''Escape Characters'''
 
 # \ allows you to escape characters or run an escape sequence
 # for example, escape the single-quote inside the string:

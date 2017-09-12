@@ -1,4 +1,4 @@
-# Regular Expressions using the standard module re
+'''Regular Expressions using the standard module re'''
 
 import re
 
@@ -73,7 +73,7 @@ r = re.split(' ', source)
 
 r = re.sub('blue', 'black', source)
 
-# Special characters
+# Special characters -----------------------------------------------------------
 
 # \d a single digit
 # \D a single non-digit
@@ -84,7 +84,7 @@ r = re.sub('blue', 'black', source)
 # \b a word boundary (the beginning or end of a word)
 # \B a non-word boundary (not the beginning or end of a word)
 
-# testing:
+# testing ----------------------------------------------------------------------
 
 sample = """
 Intro:
@@ -156,7 +156,7 @@ r = re.findall(r'\b\w*r\b', sample)
 
 r = re.findall(r"\b[\w']*t\b", sample)
 
-# Pattern Specifiers:
+# Pattern Specifiers -----------------------------------------------------------
 
 # abc                 literal abc
 # (...)               any valid regular expression
@@ -181,7 +181,7 @@ r = re.findall(r"\b[\w']*t\b", sample)
 # (?<=prev)next       next if preceded by prev
 # (?<!prev)next       next if not preceded by prev
 
-# More testing:
+# More testing -----------------------------------------------------------------
 
 # find real anywhere:
 
@@ -242,7 +242,7 @@ r = re.findall('(?<=wind) blows', sample)
 
 r = re.findall(r'\b\w*[aeiuo]{3}\w*\b', sample)
 
-# Match Output
+# Match Output -----------------------------------------------------------------
 
 # When using match() or search(), all matches are returned from the result
 # object r as r.group(). If you enclose a pattern in parentheses, the match

@@ -1,4 +1,4 @@
-# Systems (Files, Directories, Programs and Processes)
+'''Systems (Files, Directories, Programs and Processes)'''
 
 # Python provides many operating system functions through a module named os
 # Like many other languages, Python patterned its file operations after Unix.
@@ -89,7 +89,7 @@ print(os.path.realpath('p_slink'))
 os.remove('p_link')
 os.remove('p_slink')
 
-# Directories
+# Directories -----------------------------------------------------------------
 
 # Create with mkdir()
 
@@ -115,7 +115,7 @@ print(os.listdir('practice'))
 os.chdir('../')         # go up one directory
 print(os.listdir('.'))  # list content of current directory
 
-# List Matching Files with glob()
+# List Matching Files with glob() ---------------------------------------------
 
 # The glob() function matches file or directory names by using Unix shell
 # rules rather than regular expression syntax. Here are those rules:
@@ -136,7 +136,7 @@ print(glob.glob('T*'))
 os.chdir('Introducing Python')
 print(glob.glob('[fg]*py'))
 
-# Programs and Processes
+# Programs and Processes ------------------------------------------------------
 
 # The Python os module provides some ways to access some system
 # information similar to what you would see in Activity Monitor.
@@ -161,7 +161,6 @@ print(os.getgid())
 # All of the programs here so far have been individual processes. Individual
 # processes are isolated from other processes. You can start and stop other
 # existing programs from Python by using the subprocess module.
-
 
 # Example: run another program in a shell and grab the output it creates using
 # the getoutput() function. Here, we'll get the output of the Unix date program:

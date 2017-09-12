@@ -3,9 +3,9 @@
 # while is a looping mechanism that's used with if, elif, else
 
 # break is useful when you want to terminate the loop early if some condition
-# is met
+# is met.
 
-# continue is useful for when you want to skip past in interation to the next
+# continue is useful for when you want to skip past in iteration to the next.
 
 import random
 
@@ -28,7 +28,8 @@ while True:
     else:
         print('You guessed it!')
         break
-# Another example:
+
+# Another example -------------------------------------------------------------
 
 def squared():
     while True:
@@ -44,7 +45,7 @@ def squared():
 
 squared()
 
-# And Another:
+# And Another -----------------------------------------------------------------
 
 x = 10
 while x > 0:

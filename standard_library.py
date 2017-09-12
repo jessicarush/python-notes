@@ -8,8 +8,8 @@ jellybeans = ['red', 'red', 'orange', 'red', 'green', 'green']
 jb_counter = Counter(jellybeans)
 print(jb_counter)
 
-# most_common()
-# returns all elements in descending order (or just the top count if provided)
+# most_common() returns all elements in descending order
+# (or just the top count if provided)
 
 jb_counter.most_common(1)
 

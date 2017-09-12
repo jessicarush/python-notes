@@ -1,10 +1,10 @@
-# Relational Databases
+'''Relational Databases'''
 
 # DB-API is Python's standard API (application programming interface) for
 # accessing relational databases. It's main functions:
 
-# connect() - make a connection to the database.
-# can include args like username, password, server address etc.
+# connect() - make a connection to the database. can include args like
+# username, password, server address etc.
 
 # cursor() - create a cursor object to manage queries
 
@@ -12,12 +12,13 @@
 
 # fetchone(), fetchmany(), fetchall() - get the result from execute()
 
-# SQLite
+# SQLite -----------------------------------------------------------------------
 
 # A good, light, open source relational database. It's implemented as a standard
-# Python library, and stores databases in normal files. It isn't as full-featured
-# as MySQL, but it does support SQL, and manages multiple simultaneous users. Web
-# browsers, smart phones, and other apps use SQLite as an embedded database.
+# Python library, and stores databases in normal files. It isn't as
+# full-featured as MySQL, but it does support SQL, and manages multiple
+# simultaneous users. Web browsers, smart phones, and other apps use SQLite as
+# an embedded database.
 
 # This example creates a table called inventory in a file called practice.db
 # things is a variable length string and the primary key (a column or group of
@@ -77,7 +78,7 @@ print(rows)
 curs.close()
 conn.close()
 
-# MySQL
+# MySQL ------------------------------------------------------------------------
 
 # Unlike SQLite, it's an actual server, so clients can access it from different
 # devices across the network. MysqlDB is the most popular driver, but hasn't
@@ -87,7 +88,7 @@ conn.close()
 # PYMySQL - https://github.com/petehunt/ PyMySQL/
 # oursql - http://pythonhosted.org/oursql/
 
-# PostgreSQL
+# PostgreSQL -------------------------------------------------------------------
 
 # is a full-featured open source relational database, in many ways more
 # advanced than MySQL. Pyhton drivers for PostgreSQL:
@@ -95,7 +96,7 @@ conn.close()
 # psycopg2 - http://initd.org/psycopg/
 # py-postgresql - http://python.projects.pgfoundry.org/
 
-# SQLAlchemy
+# SQLAlchemy -------------------------------------------------------------------
 
 # DB-API takes you only so far. Each database implements a particular dialect
 # reflecting its features and philosophy. Many libraries try to bridge these
@@ -251,7 +252,7 @@ session.commit()
 # .tables
 # select * from inventory;
 
-# Summary
+# Summary ----------------------------------------------------------------------
 
 # This was a brief overview to help decide which of the following levels would
 # best fit your needs:

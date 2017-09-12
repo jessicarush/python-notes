@@ -1,4 +1,6 @@
-# TUPLES are ordered (like lists) and immutable (unlike lists)
+'''Tuples'''
+
+# Tuples are ordered (like lists) and immutable (unlike lists)
 
 # It's the intention that lists contain items of the same type,
 # whereas tuples contain related items, not necessarily the same type.
@@ -38,7 +40,8 @@ colours_list = ['orange', 'yellow', 'purple']
 colours_tuple = tuple(colours_list)
 print(type(colours_tuple)) # tuple
 
-# Benefits of using tuples:
+# Benefits of using tuples ----------------------------------------------------
+
 # - Tuples use less space
 # - You can't mess with tuple items by mistake
 # - You can use tuples as dictionary keys (you can't use a list because lists
@@ -46,7 +49,8 @@ print(type(colours_tuple)) # tuple
 # - Named tuples can be a simple alternative to objects
 # - Function arguments are passed as tuples
 
-# Named Tuples
+# Named Tuples ----------------------------------------------------------------
+
 # A named tuple is a subclass of tuples with which you can access values by
 # name (with .name) as well as position (with [offset])
 

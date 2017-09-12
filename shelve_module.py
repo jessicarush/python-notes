@@ -14,7 +14,7 @@
 # use with a dictionary, can be used with shelf objects. Use the same caution
 # with shelves as you would with pickle: no untrusted sources.
 
-# shelve.open() --------------------------------------------------------------
+# shelve.open() ---------------------------------------------------------------
 
 # Note: keys & values can only be added to shelves via individual assignments:
 
@@ -55,7 +55,7 @@ with shelve.open('plants_shelf') as plants:
     for k in ordered_keys:
         print(k)
 
-# Check for keys -------------------------------------------------------------
+# Check for keys --------------------------------------------------------------
 
 plants = shelve.open('plants_shelf')
 while True:
@@ -75,7 +75,7 @@ while True:
 
 plants.close()
 
-# Example of more complex values ---------------------------------------------
+# Example of more complex values ----------------------------------------------
 
 import shelve
 
@@ -90,7 +90,7 @@ with shelve.open('pizzas') as pizzas:
     pizzas['prosciutto'] = prosciutto
     pizzas['Italian'] = italian
 
-# Append to a shelved list ---------------------------------------------------
+# Append to a shelved list ----------------------------------------------------
 
 # Ideally we would say -  pizzas['Pesto'].append('garlic') but it doesn't work
 # because the data is actually appended to a copy of the list in memory.
@@ -116,7 +116,7 @@ with shelve.open('pizzas', writeback=True) as pizzas:
 # heavier memory usage. Regarding sync, it writes everything to the file, but
 # also clears the memory cache.
 
-# Reminder -------------------------------------------------------------------
+# Reminder --------------------------------------------------------------------
 
 # To reiterate, keys & values can only be added to shelves via individual
 # assignments, not as dictionary literals. If you had a bunch of dictionaries
@@ -163,7 +163,7 @@ books.close()
 # open it as above (books = shelve.open('books'), have access to the data...
 # and close it at the end.
 
-# When NOT to use shelve -----------------------------------------------------
+# When NOT to use shelve ------------------------------------------------------
 
 # Keep in mind that since values are being pickled as they're stored and
 # unpickled as they're read back in, if the values are really complex, this
@@ -173,7 +173,7 @@ books.close()
 # it, shelve may not be a good choice as it may not work properly on the new
 # system.
 
-# Summary --------------------------------------------------------------------
+# Summary ---------------------------------------------------------------------
 
 # Shelve is just a persistent dictionary. With a regular dictionary, you'd
 # have to run the code to re-create it every time your program starts up.

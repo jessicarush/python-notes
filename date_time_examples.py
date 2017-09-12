@@ -1,5 +1,6 @@
+'''datetime Examples'''
 
-# timedelta example ----------------------------------------------------------
+# timedelta example ------------------------------------------------------------
 
 # What dates do I need to water the plants if the watering schedule is:
 # – every 4 days in summer - summer is 3 more weeks from today

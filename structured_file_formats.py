@@ -353,7 +353,7 @@ with open('music.pickle', 'rb') as unpickle_file:
 print(unkle == unkle2) # True
 
 # You can picke as many objects as you want to one file, you just have to
-# rememeber to load them back in the same order:
+# remember to load them back in the same order:
 
 queens = ('Villians', 'QOTSA', '2017', (
          (1, "Feet Don't Fail Me"),

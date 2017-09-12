@@ -1,4 +1,5 @@
-# Special (Magic) Methods
+'''Special (Magic) Methods'''
+
 # Names of these methods begin with __. An example is __init__ which initializes
 # a newly created object from its class and any arguments that were passed in.
 # Example: create a method that compares two words but is case insensitive.
@@ -34,7 +35,7 @@ third = Word('nope')
 print(first == second)
 print(first == third)
 
-# Magic Methods for comparison:
+# Magic Methods for comparison -------------------------------------------------
 
 def __eq__(self, other):        # self == other
     pass
@@ -49,7 +50,7 @@ def __le__(self, other):        # self <= other
 def __ge__(self, other):        # self >= other
     pass
 
-# Magic Methods for math:
+# Magic Methods for math -------------------------------------------------------
 
 def __add__(self, other):       # self + other
     pass
@@ -66,7 +67,7 @@ def __mod__(self, other):       # self % other
 def __pow__(self, other):       # self ** other
     pass
 
-# Other common Magic Methods:
+# Other common Magic Methods ---------------------------------------------------
 
 def __str__(self):
     pass
@@ -76,11 +77,9 @@ def __len__(self):
     pass
 
 # testing:
-
 print(first)    # returns <__main__.Word object at 0x1010d9fd0>
 
 # Add __str__ and __repr__ to clean up the output:
-
 class Word():
     def __init__(self, text):
         self.text = text
@@ -93,6 +92,8 @@ class Word():
 
 first = Word('ha')
 print(first)    # returns ha
+
+# __dict__ ---------------------------------------------------------------------
 
 # Another magic method is __dict__. It's used to return the dictionary used to
 # store an object’s attributes

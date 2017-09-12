@@ -1,8 +1,7 @@
 import time
 
 def timing(func):
-
-    """Outputs the time a function takes to execute."""
+    '''Outputs the time a function takes to execute.'''
 
     def new_func():
         t1 = time.time()

@@ -34,8 +34,8 @@ print (x, y, z)
 
 # bytes() and bytearray() ----------------------------------------------------
 
-# bytes() and bytearray() are sequences of eight-bit integers, with possible
-# values of 0 to 255:
+# These two are sequences of eight-bit integers, with possible values of
+# 0 to 255:
 
 blist = [1, 2, 3, 255]
 the_bytes = bytes(blist)            # returns b'\x01\x02\x03\xff'

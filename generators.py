@@ -1,21 +1,21 @@
-# Generators
+'''Generators'''
 
-"""
-A generator is a Python sequence creation object. With it you can itereate
-through huge sequences without creating and storing the entire sequence in
-memory at once. range() is an example of a generator. Everytime you iterate
-over a generator, it keeps track of where it was the last time it was called
-and returns the next value. This is different from a normal function, which has
-no memory of previous calls and always starts at its first line in the same state.
-"""
+# A generator is a Python sequence creation object. With it you can iterate
+# through huge sequences without creating and storing the entire sequence in
+# memory at once. range() is an example of a generator. Every time you iterate
+# over a generator, it keeps track of where it was the last time it was called
+# and returns the next value. This is different from a normal function, which
+# has no memory of previous calls and always starts at its first line in the
+# same state.
 
 # Here's an example of a generator function that would do what range() does:
+
 def my_range(first=0, last=10, step=1):
     number = first
     while number < last:
         yield number
         # the yield statement is where the execution leaves the function.
-        # the exection then comes back into the function at this point,
+        # the execution then comes back into the function at this point,
         # preserving the state of the function.
         number += step
 
@@ -30,12 +30,11 @@ print(type(ranger))
 for x in ranger:
     print(x)
 
-# Another Generator example:
-"""
-This example shows a function that opens and searches a file for text.
-The search words and the filename are entered as arguments. Each time
-We call the generator, it remembers where it left of and continues.
-"""
+# Another Generator example ----------------------------------------------------
+
+# This example shows a function that opens and searches a file for text.
+# The search words and the filename are entered as arguments. Each time
+# We call the generator, it remembers where it left of and continues.
 
 def search(keyword, filename):
     print('generator started')
@@ -47,18 +46,16 @@ def search(keyword, filename):
 
 search_generator = search('Mama', 'bohemian_rhapsody_lyrics.txt')
 
-"""
-At this point, nothing is printed because the body code of the search function
-doesn't actually run. The generator function will only return a generator object.
-To make the generator run we need to do something like:
-"""
+# At this point, nothing is printed because the body code of the search function
+# doesn't actually run. The generator function will only return a generator
+# object. To make the generator run we need to do something like:
 
 print(next(search_generator))
 print(next(search_generator))
 print(next(search_generator))
 print(next(search_generator))
 
-# Another Generator example:
+# Another Generator example ----------------------------------------------------
 
 def fibonacci(n):
     curr = 1

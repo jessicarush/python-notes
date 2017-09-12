@@ -1,4 +1,4 @@
-# Namespaces
+'''Namespaces'''
 
 # Local and global variables -------------------------------------------------
 

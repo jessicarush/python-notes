@@ -1,7 +1,9 @@
-# Decorators - functions that take one function as an input and return another
-# function.
+'''Decorators'''
+
+# functions that take one function as an input and return another function.
 
 # Here is a simplified example:
+
 def my_decorator(some_function):
     def wrapper():
         print('Something happens before some_function() is called.')
@@ -32,13 +34,11 @@ def greeting():
 
 greeting()
 
-"""
-The function document_it() below defines a decorator that will:
- - print the functions name and values of its arguments
- - run the function with the arguments
- - print the result
- - return the modified function for use
-"""
+# The function document_it() below defines a decorator that will:
+#  - print the functions name and values of its arguments
+#  - run the function with the arguments
+#  - print the result
+#  - return the modified function for use
 
 def document_it(func):
     def new_function(*args, **kwargs):
@@ -66,17 +66,16 @@ def add_ints(a, b):
 add_ints(4, 5)
 
 # You can have more that one decorator applied to a function.
+
 def square_it(func):
     def new_function(*args, **kwargs):
         result = func(*args, **kwargs)
         return result * result
     return new_function
 
-"""
-The decorator that's closest to the actual function (above the def) runs first
-and then the one above that will run. The results will be the same no matter
-what order but the intermedate steps are different obv.
-"""
+# The decorator that's closest to the actual function (above the def) runs first
+# and then the one above that will run. The results will be the same no matter
+# what order but the intermediate steps are different obv.
 
 @document_it
 @square_it

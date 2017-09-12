@@ -32,7 +32,7 @@ dict_of_lists = {'Colors' : colors,
 # NOTE: Dictionary keys are immutable, therefor you cannot use a list or
 # another dictionary as a key, but you CAN use a tuple because tuples
 # are immutable too. A good example of this is with mapping – the GPS
-# coorinates may be the key:
+# coordinates may be the key:
 
 places = {(44, -93, 344) : 'home',
           (27, -80, 200) : 'work',}

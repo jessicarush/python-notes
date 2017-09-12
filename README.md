@@ -1,7 +1,7 @@
 # python-examples
 Notes for beginner-level python3
 
-In my independent endeavour to learn python, I'll be collecting some bits of code here for reference and review purposes.
+In my independent endeavor to learn python, I'll be collecting some bits of code here for reference and review purposes.
 To date, my training is self-guided through the use of text books and online resources including:
 
 'Introducing Python' - Bill Lubanovic  

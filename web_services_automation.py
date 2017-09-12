@@ -1,6 +1,6 @@
-# Web Services Automation
+'''Web Services Automation'''
 
-# The webbrowser Module
+# The webbrowser Module -------------------------------------------------------
 
 import webbrowser
 url = "http://www.python.org/"
@@ -14,7 +14,7 @@ webbrowser.open_new(url)
 
 webbrowser.open_new_tab(url)
 
-# Web APIs and Representational State Transfer (REST)
+# Web APIs and Representational State Transfer (REST) -------------------------
 
 # Instead of publishing web pages, you can provide data through a web
 # application programming interface (API). Clients access your service by
@@ -48,7 +48,7 @@ webbrowser.open_new_tab(url)
 # JSON is especially well suited to web client- server data interchange.
 # It's especially popular in web-based APIs, such as OpenStack.
 
-# Crawl and Scrape
+# Crawl and Scrape ------------------------------------------------------------
 
 # Sometimes, you might want a little bit of information available only in HTML
 # pages, surrounded by ads and extraneous content. An automated web fetcher

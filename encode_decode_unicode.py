@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Unicode
+'''Unicode'''
 
 # Note: Python 3 strings are Unicode strings not byte arrays.
 # Therefor you can use unicode IDs or names in a string:
@@ -25,7 +25,7 @@ unicode_test('A')
 unicode_test('\u00E9')
 unicode_test('∞')
 
-# Encoding
+# Encoding ---------------------------------------------------------------------
 
 # It's best to stick with UTF-8. Be careful when copying & pasting from other
 # sources (such as web pages) into python strings as they ma be encoded in
@@ -48,7 +48,7 @@ character.encode('ascii', 'replace')            # replace anything that won't en
 character.encode('ascii', 'backslashreplace')   # produce python unicode character string
 character.encode('ascii', 'xmlcharrefreplace')  # produce character entity for HTML
 
-# Decoding
+# Decoding ---------------------------------------------------------------------
 
 # We decode byte strings to Unicode strings. Whenever we get text from some
 # external source (files, databases, websites), it's encoded as byte strings.

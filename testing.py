@@ -1,6 +1,6 @@
 '''Testing Python Code'''
 
-# Run a Python Code Checker
+# Run a Python Code Checker ---------------------------------------------------
 
 # These check for code errors and style issues. Examples are:
 # pylint - $ pip3 install pylint
@@ -24,11 +24,11 @@ print(C)
 # docmenting_naming.py). The error will read: Invalid constant name "b"
 # (invalid-name).
 
-# pep8 always expects 2 blank lines followind an import
+# pep8 always expects 2 blank lines following an import, function def or class
 
-# pep8 expects all imports to be at te top of the file
+# pep8 expects all imports to be at the top of the file
 
-# Run a Python Code Tester
+# Run a Python Code Tester ----------------------------------------------------
 
 # These check for errors in code logic using your own tests. Examples are:
 # pytest - https://docs.pytest.org/en/latest/contents.html
