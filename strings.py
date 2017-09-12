@@ -1,41 +1,48 @@
-# STRINGS
+'''Strings'''
 
-# valid strings:
+# String Literals --------------------------------------------------------------
 
 my_string = 'Some content'
 my_string = "Some content"
 
-# str() - to convert to a string:
-
-number = 4.5 * 3.25
-print(str(number))
-
 # String together strings with +, if the lines are long add \:
 
-long_string = 'A long time ago ' + \
-    'in a galaxy far, far away ' + \
+long_string = 'A long time ago ' + 'in a galaxy far, far away ' + \
     'blah blah bla...'
 
-# You can use triple quotes for long strings:
+print(long_string)
+
+# That being said, many feel the use of \ should be minimized. When possible,
+# use parenthesis and concatenation instead:
+
+long_string = ('A long time ago '
+               'in a galaxy far, far away '
+               'blah blah blabity...')
+
+print(long_string)
+
+# You can also use triple quotes for long strings, but I think these are best
+# reserves for docstrings myself:
 
 long_string = """This string uses
-    triple quotes because we're pretending
-    it's very, very long"""
+triple quotes because we're pretending
+it's very, very long"""
+print(long_string)
 
 # Each line in the above will appear on a new line. If you don't want that,
 # escape the last invisible line break character with \
 
 long_string = """This string uses \
-    triple quotes because we're pretending \
-    it's very, very long"""
+triple quotes because we're pretending \
+it's very, very long"""
+print(long_string)
 
-# .replace()
+# str() - to convert to a string -----------------------------------------------
 
-name = 'Yello'
-name = name.replace('Y', 'H')
-print(name)
+number = 4.5 * 3.25
+print(str(number))
 
-# Slice with [start : end : step]
+# Slice with [start : end : step] ----------------------------------------------
 
 letters = 'abcdefghijk'
 print(letters[:-1])
@@ -44,7 +51,7 @@ print(letters[2:8])
 print(letters[:8])
 print(letters[2:8:2])
 
-# Break a string up into a list with .split()
+# Break a string up into a list with .split() ----------------------------------
 
 test_string = 'Yeti Bigfoot Loch Ness Unicorn...'
 test_list = test_string.split()
@@ -57,7 +64,7 @@ test_string = ' '.join(test_list)
 print(test_string)
 print(type(test_string))
 
-# Information you can get from strings
+# Information you can get from strings -----------------------------------------
 
 print(len(test_string))
 print(test_string.startswith('Yeti'))
@@ -82,7 +89,9 @@ print(test_string.count(word))
 
 print(test_string.isalnum())
 
-# remove characters from the beginning and end:
+# Remove and Replace -----------------------------------------------------------
+
+# remove characters from the beginning and end with strip():
 
 test_string = test_string.strip('.')
 print(test_string)
@@ -90,13 +99,16 @@ print(test_string)
 # Replace characters or words. You can also use a number argument
 # to limit the number of replacements like: test_string.replace(' ', '-', 2)
 
+name = 'Yello'
+print(name.replace('Y', 'H'))
+
 test_string = test_string.replace(' ', '-')
 print(test_string)
 
 test_string = test_string.replace('unicorn', 'red bull')
 print(test_string)
 
-# Change case:
+# Change Case ------------------------------------------------------------------
 
 test_string = test_string.lower()
 print(test_string)
@@ -128,7 +140,7 @@ print(example.title())
 from string import capwords
 print(capwords(example))
 
-# Alignemnt (not sure why you would ever do this):
+# Alignment --------------------------------------------------------------------
 
 test_string = test_string.center(20)
 print(test_string)
@@ -138,3 +150,12 @@ print(test_string)
 
 test_string = test_string.rjust(20)
 print(test_string)
+
+# Raw string type literals -----------------------------------------------------
+
+raw_string = (r"The r at the start of a string before the quotation mark"
+r"tells python it's a raw string, so any escape characters like backlash \t"
+r"will be ignored... unless it's at the end of the string - then you need to"
+r"do a double backlash or a space. This can come into play when creating raw" r"strings for directory pathnames like C:\ ")
+
+print(raw_string)

@@ -6,7 +6,41 @@
 # include comments and docstrings, but it can also incorporate informative
 # naming of variables, functions, modules, and classes. Don't be obsessive, say
 # why you assigned the value. Point out why you called the variable whatever.
-# If you were writing a Fahrenheit to Celsius converter:
+
+def example():
+    '''A brief, clear description'''
+    pass
+
+# In larger or more complex projects however, it is often a good idea to give
+# more information like, what it does, any exceptions it may raise, what it
+# returns, or relevant details about the parameters, arguments, methods,
+# variables or attributes . In multiline functions it's best to start with a
+# single summary line, a space and then the rest of the information. For more
+# detailed documentation of code a popular style is one often called Numpy
+# style. While it can take up more lines, it allows the developer to include a
+# more information about a method, function, class.
+
+def example(arg1=0.0, arg2=None):
+    '''
+    Summary line.
+
+    Extended description of function - The docstring should describe the function, class, or method in a way that is easy to understand.
+
+    Parameters:
+    arg1 (int) - Description of arg1, default 0.0
+    arg2 (str) - Description of arg2, default None
+
+    Returns:
+    int - Description of return value
+    '''
+    pass
+
+help(example)  # output all the docstrings (a class could have many)
+print(example.__doc__)  # print just the one docstring
+
+# Example --------------------------------------------------------------------
+
+# if you were writing a Fahrenheit to Celsius converter:
 
 def ftoc(f_temp):
     '''Convert Fahrenheit temperature <f_temp> to Celsius and return it.'''
@@ -59,10 +93,12 @@ def ftoc(f_temp):
 def _guts():
     pass
 
-# Private attributes ---------------------------------------------------------
+# Private attributes (name mangling) -----------------------------------------
 
 # The naming convention for hidden attributes in classes is a leading double
-# underscore:
+# underscore. Python "mangles" the names of attributes that start with two
+# underscores to make it more difficult to accidentally mess with it. The
+# mangling is this: _Classname__attibutename
 
 class Person():
     def __init__(self, name, alias):

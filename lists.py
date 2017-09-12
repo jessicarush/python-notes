@@ -64,7 +64,7 @@ print(weekdays[::-1])
 
 months.append('apr')
 
-# Add a list item by position with .insert()
+# Add/insert a list item by position with .insert()
 
 months.insert(2, 'mar')
 

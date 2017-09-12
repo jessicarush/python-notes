@@ -1,14 +1,15 @@
 '''Classes'''
 
 # A string and an integer are examples of built-in Python classes.
-# A class is logical grouping of data and functions.
-# The "integer" class is like an instruction manual for making integer objects.
-# To make your own object, you'll need to first define a class:
+# A class is logical grouping of data and functions. The "integer" class is
+# like an instruction manual for making integer objects. To make your own
+# object, you'll need to first define a class:
 
 class Person():
     pass
 
-# You can create an object from a class by calling it as if it were a function:
+# You can create an object from a class (instantiating) by calling it as if it
+# were a function:
 
 henry = Person()
 
@@ -25,11 +26,17 @@ class Person():
 # its first parameter should always be self. Although self is not a reserved
 # word in Python, it's common usage.
 
-class Person():
-    def __init__(self, name):
-        self.name = name
+# NOTE: It's NOT necessary to have an __init__ method in every class definition.
+# It's used to do anything that's needed to distinguish this object from
+# others created from the same class.
 
-astronaut = Person('Roberta Bondar')
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+astronaut = Person('Roberta Bondar', 40)
+baker = Person('Mrs. Lovett', 35)
 
 # NOTE: the name value passed in is saved with the object as an attribute.
 # When a variable is bound to an instance of a class, it's called a data
@@ -37,11 +44,49 @@ astronaut = Person('Roberta Bondar')
 # notation:
 
 print(astronaut.name)
-astronaut.name = 'Something else'
+astronaut.age = 20
 
-# It is NOT necessary to have an __init__ method in every class definition.
-# It is used to do anything that's needed to distinguish this object from
-# others created from the same class.
+# You aren't limited to the attributes set in the class. You can still assign
+# new instance variables not present in the class:
+
+baker.friend = 'Todd'
+print(baker.friend)
+
+# Data attributes can be obtained in several ways when it comes to working with
+# replacement fields. The second example is easier to read.
+
+print('Name {} age {}, name {} age {}'.format(
+    astronaut.name, astronaut.age, baker.name, baker.age))
+
+print('Name {0.name} age {0.age}, name {1.name} age {1.age}'.format(
+    astronaut, baker))
+
+# Class attributes -----------------------------------------------------------
+
+class Person():
+
+    nationality = 'Canadian'  # class attribute
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+# Class attributes will be available to all instances. Basically if you type
+# something like baker.nationality, it will check first in baker for the value,
+# if it doesn't fins it there it will look in the class. Note that if you do a
+# new assignment for an instance, you are not reassigning the original
+# variable, you are creating a new local instance variable with the same name:
+
+baker.nationality = 'British' # local instance variable
+
+# __dict__ -------------------------------------------------------------------
+
+# A dictionary or other mapping object is used to store an object’s (writable)
+# attributes. Use __dict__ to see all the attributes:
+
+print(baker.__dict__)
+print(astronaut.__dict__)
+print(Person.__dict__)
 
 # Inheritance ----------------------------------------------------------------
 
@@ -102,6 +147,29 @@ class EmailPerson(Person):
 
 # But then we would loose our inheritance. If the definition of the parent
 # class changes, using super() ensures the child will inherit the changes.
+
+# Calling methods from a class -----------------------------------------------
+
+# There are a couple of ways to call a method from a class:
+
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.alive = True
+
+    def deceased(self):
+        self.alive = False
+
+snape = Person('Severus Snape', 38)
+
+# call the function like this:
+snape.deceased()
+print(snape.alive)
+
+# or like this:
+Person.deceased(snape)
+print(snape.alive)
 
 # property() -----------------------------------------------------------------
 
@@ -312,10 +380,19 @@ who_says(person2)
 who_says(person3)
 who_says(brook)
 
+# Summary of Terms -----------------------------------------------------------
+
+# Class: template for creating objects. All objects created using the same
+# class will have the same characteristics.
+# Object: an instance of a class.
+# Instantiate: create an instance of a class.
+# Method: a function defined in a class.
+# Attribute: a variable bound to an instance of a class.
+
 # Classes and Objects versus Modules -----------------------------------------
 
 # Objects are most useful when you need a number of individual instances that
-# have similar behavior (methods), but differ in their internal states (attributes).
+# have similar behavior (methods), but differ in their internal attributes.
 # Classes support inheritance, modules don't.
 # If you want only one of something, a module might be best. No matter how many
 # times a Python module is referenced in a program, only one copy is loaded.
