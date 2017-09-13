@@ -111,13 +111,15 @@ print(a_day.isoformat())
 
 print(datetime.today())
 print(datetime.now())
-print(datetime.utcnow()):
+print(datetime.utcnow())
 
-# now() and today() are similar. now() allows us to provide timezone with a tzinfo object (see timezones.py)
+# now() and today() are similar. now() allows us to provide timezone with a
+# tzinfo object (see timezones.py)
 
 now = datetime.now()
 
 print(now.isoformat())
+print(now.year)
 print(now.month)
 print(now.day)
 print(now.hour)

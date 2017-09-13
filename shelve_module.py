@@ -68,7 +68,7 @@ while True:
 
 # previous two lines could also be done like this:
     # if plant_key in plants:
-    #     description  = plants[plant_key]
+    #     description = plants[plant_key]
     #     print(description)
     # else:
     #     print("There's no: " + plant_key)
