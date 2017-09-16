@@ -22,7 +22,7 @@ long_string = ('A long time ago '
 print(long_string)
 
 # You can also use triple quotes for long strings, but I think these are best
-# reserves for docstrings myself:
+# reserved for docstrings myself:
 
 long_string = """This string uses
 triple quotes because we're pretending

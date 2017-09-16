@@ -194,7 +194,8 @@ type(time.localtime(now)) # <class 'time.struct_time'>
 
 t = time.localtime()
 
-print('Year: {0[0]} Month: {0[1]} Day: {0[2]} Hour: {0[3]} Minute: {0[4]} Second {0[5]} Weekday {0[6]} Yearday: {0[7]} DST: {0[8]}'.format(t))
+print(('Year: {0[0]} Month: {0[1]} Day: {0[2]} Hour: {0[3]} Minute: {0[4]}'
+       'Second {0[5]} Weekday {0[6]} Yearday: {0[7]} DST: {0[8]}').format(t))
 
 # mktime() converts the above struct_time objects back to epoch seconds:
 
@@ -373,7 +374,7 @@ print(de_names)
 # not include time elapsed with sleep. Is apparently useful for profiling code.
 
 import time
-from time import process_time as my_timer
+from time import process_time as my_timer  # try all three above
 import random
 
 input('Press enter to start')
@@ -402,6 +403,30 @@ print('Elapsed time: {} seconds'.format(end_time - start_time))
 # Use time() when you want to record actual time.
 # Use perf_counter() when you want to record elapsed time
 # use process_time() when you want to record elapsed CPU time
+
+# time.get_clock_info() ------------------------------------------------------
+
+# argument names that can be used:
+# – 'clock': time.clock()
+# – 'monotonic': time.monotonic()
+# – 'perf_counter': time.perf_counter()
+# – 'process_time': time.process_time()
+# – 'time': time.time()
+
+import time
+
+clock_i = time.get_clock_info('clock')
+monotonic_i = time.get_clock_info('monotonic')
+perfcounter_i = time.get_clock_info('perf_counter')
+processtime_i = time.get_clock_info('process_time')
+time_i = time.get_clock_info('time')
+
+print(type(clock_i)) # <class 'types.SimpleNamespace'>
+print(clock_i)
+print(monotonic_i)
+print(perfcounter_i)
+print(processtime_i)
+print(time_i)
 
 # Alternative Modules --------------------------------------------------------
 

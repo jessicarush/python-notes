@@ -1,4 +1,4 @@
-'''Time zones'''
+'''Timezones'''
 
 # As discussed, it's best to avoid working with timezones. Instead, the best
 # practice would be to convert any times/dates to UTC at the start, do all

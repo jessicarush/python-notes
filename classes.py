@@ -163,7 +163,7 @@ class Person():
 
 snape = Person('Severus Snape', 38)
 
-# call the function like this:
+# call the method (function) like this:
 snape.deceased()
 print(snape.alive)
 

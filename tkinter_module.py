@@ -1,6 +1,7 @@
 '''tkinter'''
 
-# a graphic library, Tkinter is Python's standard GUI (Graphical User Interface) package. It is a thin object-oriented layer on top of Tcl/Tk.
+# a graphic library, Tkinter is Python's standard GUI (Graphical User Interface)
+# package. It is a thin object-oriented layer on top of Tcl/Tk.
 
 # https://docs.python.org/3/library/tk.html
 # http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html

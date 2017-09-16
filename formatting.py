@@ -66,7 +66,7 @@ print('{0:^40}'.format(name)) # centres within 40 spaces
 
 # Fill spaces with characters:
 
-print('{0:-^40}'.format(name)) # centres within 40 spaces
+print('{0:-^40}'.format(name)) # as above and fills empty spots with '-'
 
 # Conclusion:
 
