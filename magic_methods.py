@@ -11,13 +11,10 @@ class Word():
         return self.text.lower() == word2.text.lower()
 
 # testing:
-
 first = Word('ha')
 second = Word('HA')
-third = Word('nope')
 
-print(first.equals(second))
-print(first.equals(third))
+print(first.equals(second))  # True
 
 # __eq__
 # The above works but there's an tidier way using Magic Methods:
@@ -30,10 +27,8 @@ class Word():
 
 first = Word('ha')
 second = Word('HA')
-third = Word('nope')
 
-print(first == second)
-print(first == third)
+print(first == second)  # True
 
 # Magic Methods for comparison -------------------------------------------------
 
@@ -76,26 +71,44 @@ def __repr__(self):
 def __len__(self):
     pass
 
-# testing:
-print(first)    # returns <__main__.Word object at 0x1010d9fd0>
+# Testing __str__ and __repr__ -------------------------------------------------
 
-# Add __str__ and __repr__ to clean up the output:
+print(repr(first))      # <__main__.Word object at 0x101ca8828>
+print(first)            # <__main__.Word object at 0x101ca8828>
+
 class Word():
     def __init__(self, text):
         self.text = text
-    def __eq__(self, word2):
-        return self.text.lower() == word2.text.lower()
     def __str__(self):
         return self.text
     def __repr__(self):
         return 'Word("' + self.text + '")'
 
-first = Word('ha')
-print(first)    # returns ha
+first = Word('Ha')
+
+print(first)            # Ha - because of the magic method __str__
+print(repr(first))      # Word("Ha") - because of the magic method __repr__
+
+# Another __str__ example ------------------------------------------------------
+
+class Player(object):
+
+    def __init__(self, name):
+        self.name = name
+        self.lives = 3
+        self.level = 1
+        self.score = 0
+
+    def __str__(self):
+        return ('Name: {0.name}, Lives: {0.lives}, Level: {0.level}, '
+                'Score: {0.score}'.format(self))
+
+player1 = Player('Morty')
+print(player1)  # Name: Morty, Lives: 3, Level: 1, Score: 0
 
 # __dict__ ---------------------------------------------------------------------
 
 # Another magic method is __dict__. It's used to return the dictionary used to
 # store an object’s attributes
 
-print(first.__dict__)
+print(player1.__dict__)  # {'name': 'Morty', 'lives': 3, 'level': 1, 'score': 0}

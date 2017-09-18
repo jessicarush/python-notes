@@ -50,7 +50,6 @@ astronaut.age = 20
 # new instance variables not present in the class:
 
 baker.friend = 'Todd'
-print(baker.friend)
 
 # Data attributes can be obtained in several ways when it comes to working with
 # replacement fields. The second example is easier to read.
@@ -77,7 +76,7 @@ class Person():
 # new assignment for an instance, you are not reassigning the original
 # variable, you are creating a new local instance variable with the same name:
 
-baker.nationality = 'British' # local instance variable
+baker.nationality = 'British'  # local instance variable
 
 # __dict__ -------------------------------------------------------------------
 
@@ -121,8 +120,8 @@ class MDPerson(Person):
 person = Person('Fudd')
 doctor = MDPerson('Fudd')
 
-print(person.name)
-print(doctor.name)
+print(person.name)  # Fudd
+print(doctor.name)  # Doctor Fudd
 
 # super() --------------------------------------------------------------------
 
@@ -171,7 +170,7 @@ print(snape.alive)
 Person.deceased(snape)
 print(snape.alive)
 
-# property() -----------------------------------------------------------------
+# Getter and Setter methods with property() ------------------------------------
 
 # Some object oriented languages support private object attributes that can't
 # be accessed from the outside. They have to write getter and setter methods to
@@ -192,7 +191,7 @@ print(snape.alive)
 
 # property(fget=None, fset=None, fdel=None, doc=None)
 
-class Person:
+class Person():
     def __init__(self, value):
         self.__name = value
 
@@ -213,13 +212,14 @@ class Person:
 
 
 p = Person('Adam')
-print(p.name)
+print(p.name)  # Adam
+
 p.name = 'John'
 del p.name
 
-# This is another way of writing it using decorators:
+# Getter and Setter methods using decorators -----------------------------------
 
-class Person:
+class Person():
     def __init__(self, value):
         self.__name = value
 
@@ -240,40 +240,75 @@ class Person:
 
 
 p = Person('Tim')
-print(p.name)
+print(p.name)  # Tim
+
 p.name = 'Paul'
 del p.name
 
-# Review @property -----------------------------------------------------------
+# Uses for Getters and Setters -------------------------------------------------
+
+# While you shouldn't necessarily worry about private attributes in Python,
+# getter and setter methods can be useful in situations where you want to set
+# up some sort of validation for the values that the data attributes can be set
+# to. In the following example, lives is not allowed to be a negative number:
+
+class Player():
+    def __init__(self, name):
+        self.name = name
+        self._lives = 3
+        self.level = 1
+        self.score = 0
+
+    def _get_lives(self):
+        return self._lives
+
+    def _set_lives(self, lives):
+        if lives >= 0:
+            self._lives = lives
+        else:
+            print("Lives can't be negative")
+            self._lives = 0
+
+    lives = property(_get_lives, _set_lives)
+
+# Uses for property() ----------------------------------------------------------
 
 class Circle():
     def __init__(self, radius):
         self.radius = radius
+
     @property
     def diameter(self):
         return 2 * self.radius
 
 
 c = Circle(5)
-print(c.diameter)
+print(c.diameter)  # 10
+
 c.radius = 7
-print(c.diameter)
+print(c.diameter)  # 14
+
 # c.diameter = 4  # this will raise an AttributeError
 
-# Create a setter to make the method also accept new values:
+# Create a setter to make the diameter method also accept new values:
 
 class Circle():
     def __init__(self, radius):
         self.radius = radius
+
     @property
     def diameter(self):
         return 2 * self.radius
+
     @diameter.setter
     def diameter(self, diameter):
         self.radius = diameter / 2.0  # best to specify floats when dividing
 
 c = Circle(5)
-c.diameter = 20  # now this will work
+print(c.diameter) # 10
+
+c.diameter = 20  # now this will also work
+print(c.radius)  # 10.0
 
 # Instance methods -----------------------------------------------------------
 
@@ -297,8 +332,10 @@ class A():
     count = 0
     def __init__(self):
         A.count += 1
+
     def exclaim(self):
         print("I'm an A")
+
     @classmethod
     def children(cls):
         print("A has", A.count, "objects made from it.")
@@ -336,8 +373,10 @@ class Quote():
     def __init__(self, person, words):
         self.person = person
         self.words = words
+
     def who(self):
         return self.person
+
     def says(self):
         return self.words + '.'
 
@@ -354,9 +393,9 @@ person2 = Question('Bill', 'What')
 person3 = Exclamation('Bruce', 'OK')
 
 # testing:
-print(person1.who(), ': ', person1.says())
-print(person2.who(), ': ', person2.says())
-print(person3.who(), ': ', person3.says())
+print(person1.who(), ': ', person1.says())  # Bob :  Hello.
+print(person2.who(), ': ', person2.says())  # Bill :  What?
+print(person3.who(), ': ', person3.says())  # Bruce :  OK!
 
 # Here's another class that has no relation to the previous classes
 # (descendants of Quote), but will use the same method names:
@@ -364,6 +403,7 @@ print(person3.who(), ': ', person3.says())
 class BabblingBrook():
     def who(self):
         return 'Brook'
+
     def says(self):
         return 'Babble'
 
@@ -375,10 +415,10 @@ def who_says(obj):
     print(obj.who(), ': ', obj.says())
 
 # testing:
-who_says(person1)
-who_says(person2)
-who_says(person3)
-who_says(brook)
+who_says(person1)  # Bob :  Hello.
+who_says(person2)  # Bill :  What?
+who_says(person3)  # Bruce :  OK!
+who_says(brook)    # Brook :  Babble
 
 # Summary of Terms -----------------------------------------------------------
 
