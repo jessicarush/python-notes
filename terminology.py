@@ -155,3 +155,22 @@ Person.deceased(snape)
 # Delegation is an object oriented technique (also called a design pattern)
 # where certain operations on one object are automatically applied to another,
 # usually contained, object.
+
+# Polymorphism -----------------------------------------------------------------
+# Polymorphism is the idea that even though different types of objects can have
+# very different traits (for example int objects can be divided whereas string
+# objects can be capitalized), they can also have shared behaviors (for example,
+# they are all printable):
+
+int.__str__()
+float.__str__()
+list.__str__()
+tuple.__str__()
+
+# So polymorphism basically means that objects can be more than one thing at the
+# same time. Inheritance is one way to implement polymorphism. In the above
+# example, every type of object automatically inherits the __str__ method from
+# its object base class.
+
+# Another way of implementing polymorphism: one class can behave like another
+# class as long as it contains the necessary methods and data attributes.

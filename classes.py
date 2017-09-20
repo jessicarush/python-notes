@@ -147,6 +147,34 @@ class EmailPerson(Person):
 # But then we would loose our inheritance. If the definition of the parent
 # class changes, using super() ensures the child will inherit the changes.
 
+# Another example:
+
+class Enemy():
+    def __init__(self, name='Enemy', hp=0, lives=1):
+        self.name = name
+        self.hp = hp
+        self.lives = lives
+
+    def __str__(self):
+        return "{0.name} – Lives: {0.lives}, Hit points: {0.hp}".format(self)
+
+class Vampire(Enemy):
+        def __init__(self, name):
+            super().__init__(name=name, hp=12, lives=3)
+
+# In the above example, we are able to change the default values that were set
+# for the base class. Note when creating a vampire object, we will only be able
+# to pass in an argument for name. But it will automatically get 12 hit points
+# and 3 lives.
+
+bat = Enemy('Batty')
+spider = Enemy('Crawly', 10, 1)
+spike = Vampire('Spike')
+
+print(bat)      # Batty – Lives: 1, Hit points: 0
+print(spider)   # Crawly – Lives: 1, Hit points: 10
+print(spike)    # Spike – Lives: 3, Hit points: 12
+
 # Calling methods from a class -----------------------------------------------
 
 # There are a couple of ways to call a method from a class:
@@ -250,7 +278,11 @@ del p.name
 # While you shouldn't necessarily worry about private attributes in Python,
 # getter and setter methods can be useful in situations where you want to set
 # up some sort of validation for the values that the data attributes can be set
-# to. In the following example, lives is not allowed to be a negative number:
+# to. In the following example, lives is not allowed to be a negative number.
+
+# NOTE: In the previous  examples, the data attributes have a slightly different
+# name from the property (__name, name) because we were trying to hide the,
+# attribute, but it should be pointed out that these names have to be different.
 
 class Player():
     def __init__(self, name):
