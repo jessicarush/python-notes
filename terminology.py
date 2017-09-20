@@ -137,6 +137,12 @@ Person.deceased(snape)
 # Composition is a way of aggregating objects together by making some objects
 # attributes of other objects.
 
+# Aggregation ------------------------------------------------------------------
+# The distinction between aggregation and composition can blur slightly. Unlike
+# composition, aggregation uses existing instances of objects to build up
+# another object. The composed object does not actually own the objects that
+# it's composed of. If it's destroyed, those objects continue to exist.
+
 # is-a -------------------------------------------------------------------------
 # A phrase to say something inherits from another.
 
