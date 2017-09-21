@@ -71,7 +71,7 @@ process_cities('cities2.csv')
 # type 'u' to go up (back)
 # type 'p' to print the value of something. i.e. p line
 # type a variable name and it will output its current value
-# type help when in the pdp to see all the commands.
+# type help when in the pdb to see all the commands.
 # type help command to get help on that one.
 
 # NOTE: when viewing lines, 'B' indicates a breakpoint you've inserted and

@@ -29,7 +29,8 @@ style.theme_use('classic')
 style.configure("test.TLabel", foreground="magenta", background="yellow")
 
 # Example ttk window label:
-label = ttk.Label(mainWindow, text='tkinter example', padding=(38,5,38,5), style='test.TLabel')
+label = ttk.Label(mainWindow, text='tkinter example', padding=(38,5,38,5),
+                  style='test.TLabel')
 label.grid(row=0, column=0)
 
 # Result field:
@@ -53,7 +54,8 @@ row = 0
 for keyRow in keys:
     col = 0
     for key in keyRow:
-        tkinter.Button(keyPad, text=key[0]).grid(row=row, column=col, columnspan=key[1], sticky='nsew', ipadx=5, ipady=0)
+        tkinter.Button(keyPad, text=key[0]).grid(row=row, column=col,
+                       columnspan=key[1], sticky='nsew', ipadx=5, ipady=0)
         col += key[1]
     row += 1
 

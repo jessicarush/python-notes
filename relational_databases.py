@@ -1,40 +1,86 @@
 '''Relational Databases'''
 
+# In relational databases, data is stored in table rows and columns, with a row
+# corresponding to a single record and the columns representing the fields that
+# make up a the record such as name, address, phone number, date of birth.
+# Traditional databases typically use Structured Query Language (SQL) to query
+# and update the data. FYI there are plenty of NoSQL databases as well (often
+# used for "Big Data") - see noSQL_datastores.py
+
+# Terminology:
+
+# Database Dictionary
+#    – a comprehensive list of the structure and types of data in the database.
+# Table
+#    – a collection of related data held in a database
+# Field
+#    – the basic unit of data in a table. Fields have names and a type (int,
+#      string, etc). The type restricts what kind of data can be stored in that
+#      field. Some fields can even hold images and audio files. These fields are
+#      often called Blobs (binary large objects). Note that SQLite field types
+#      don't actually restrict what kind of data can go in.
+# Column
+#    – another name for a field. The difference between a spreadsheet column and
+#      a database column, is that the database column refers to a single entry.
+# Row (record)
+#    – a single set of data containing all the columns in the table
+# Primary key
+#    – a column or group of columns whose values must be unique in the table.
+# Flat File database
+#    – stored all data in a single table (not so great)
+# Normalization
+#    – the process of organizing tables and columns to removing redundant, or
+#      irrelevant information and improve data integrity.
+# View
+#    – a way of looking at the data in a format similar to a table. The data
+#      can be a selection of rows and columns from more than one joined table.
+#      In some databases you can actually modify data in the view and it will
+#      update the corresponding tables, but not in SQLite.
+
+# What makes a database relational, is that you can have many tables that are
+# linked together. For example, a business might have a table of vendors thats
+# linked to a table of invoices.
+
+# DB-API -----------------------------------------------------------------------
+
 # DB-API is Python's standard API (application programming interface) for
 # accessing relational databases. It's main functions:
 
-# connect() - make a connection to the database. can include args like
-# username, password, server address etc.
-
-# cursor() - create a cursor object to manage queries
-
-# execute(), executemany() - run one or more SQL command against the database
-
-# fetchone(), fetchmany(), fetchall() - get the result from execute()
+# connect()
+#   – make a connection to the database. can include args like username,
+#     password, server address etc.
+# cursor()
+#   – create a cursor object to manage queries
+# execute(), executemany()
+#   – run one or more SQL commands against the database
+# fetchone(), fetchmany(), fetchall()
+#   – get the result from execute()
 
 # SQLite -----------------------------------------------------------------------
 
-# A good, light, open source relational database. It's implemented as a standard
-# Python library, and stores databases in normal files. It isn't as
+# A good, light, open source relational database. It's implemented as a
+# standard Python library, and stores databases in normal files. It isn't as
 # full-featured as MySQL, but it does support SQL, and manages multiple
 # simultaneous users. Web browsers, smart phones, and other apps use SQLite as
-# an embedded database.
+# an embedded database. It's completely self contained and doesn't need a
+# separate server to run on.
 
-# This example creates a table called inventory in a file called practice.db
-# things is a variable length string and the primary key (a column or group of
-# columns whose data values must be unique in the table).
-# count is an integer count of each thing
-# cost is a dollar amount of each thing
+# https://sqlite.org/mostdeployed.html
+
+# This example creates a table called inventory in a file called practice.db.
+# things - is a variable length string and the primary key
+# count - is an integer count of each thing
+# cost - is a dollar amount of each thing
 # the ALL CAPS sections are the SQL commands
 
 import sqlite3
 
 conn = sqlite3.connect('practice.db') # creates the file if it doesn't exist
 curs = conn.cursor()
-#curs.execute('''CREATE TABLE inventory
-#(things VARCHAR(20) PRIMARY KEY,
-# count INT,
-# cost FLOAT)''')
+curs.execute('''CREATE TABLE inventory
+(things VARCHAR(20) PRIMARY KEY,
+count INT,
+cost FLOAT)''')
 
 # add things to inventory:
 
@@ -53,25 +99,28 @@ curs.execute(ins, ('widgets', 2, 10.0))
 curs.execute('SELECT * FROM inventory')
 rows = curs.fetchall()
 print(rows)
+# [('pencils', 100, 0.5), ('erasers', 85, 0.25), ('widgets', 2, 10.0)]
 
 # retrieve items from the database and order them by their cost:
 
 curs.execute('SELECT * FROM inventory ORDER BY cost')
 rows = curs.fetchall()
 print(rows)
+# [('erasers', 85, 0.25), ('pencils', 100, 0.5), ('widgets', 2, 10.0)]
 
 # by their cost descending order:
 
 curs.execute('SELECT * FROM inventory ORDER BY cost DESC')
 rows = curs.fetchall()
 print(rows)
+# [('widgets', 2, 10.0), ('pencils', 100, 0.5), ('erasers', 85, 0.25)]
 
 # retrieve item with the highest count:
 
 curs.execute('''SELECT * FROM inventory WHERE
 count = (SELECT MAX(count) FROM inventory)''')
 rows = curs.fetchall()
-print(rows)
+print(rows)  # [('pencils', 100, 0.5)]
 
 # when finished, you need to close any connections and cursors:
 
@@ -91,7 +140,7 @@ conn.close()
 # PostgreSQL -------------------------------------------------------------------
 
 # is a full-featured open source relational database, in many ways more
-# advanced than MySQL. Pyhton drivers for PostgreSQL:
+# advanced than MySQL. Python drivers for PostgreSQL:
 
 # psycopg2 - http://initd.org/psycopg/
 # py-postgresql - http://python.projects.pgfoundry.org/
@@ -148,9 +197,9 @@ conn.execute(ins, 'rocks', 454, 0.10)
 # Ask the database for everything:
 
 rows = conn.execute('SELECT * FROM inventory')
-print(rows)
+print(rows) # <sqlalchemy.engine.result.ResultProxy object at 0x1037119e8>
 for row in rows:
-    print(row)
+    print(row)  # ('balls', 20, 0.5)  ('spoons', 62, 1.5)  ('rocks', 454, 0.1)
 
 # This was pretty much the same as DB-API except we have the added benefit of
 # being able to change the connection string to port this code to another type
@@ -174,7 +223,7 @@ inventory = sa.Table('inventory', meta,
     )
 meta.create_all(conn)
 
-# Note: the inventory object is connection between SQL and Python
+# Note: the inventory object is the connection between SQL and Python
 
 conn.execute(inventory.insert(('socks', 2, 10.0)))
 conn.execute(inventory.insert(('paperclips', 1000, 0.05)))
@@ -187,6 +236,7 @@ result = conn.execute(inventory.select())
 
 rows = result.fetchall()
 print(rows)
+# [('socks', 2, 10.0), ('paperclips', 1000, 0.05), ('snow globes', 50, 5.0)]
 
 # Object-Relational Mapper
 
@@ -214,10 +264,12 @@ class Inventory(Base):
     things = sa.Column('things', sa.String, primary_key=True)
     count = sa.Column('count', sa.Integer)
     cost = sa.Column('cost', sa.Float)
+
     def __init__(self, things, count, cost):
         self.things = things
         self.count = count
         self.cost = cost
+
     def __repr__(self):
         return "<Inventory({}, {}, {})>".format(self.things, self.count, self.cost)
 
@@ -247,12 +299,36 @@ session.add_all([second, third])
 
 session.commit()
 
-# You can use the command line to check it:
+# You can use sqlite in the command line to check it:
 # $ sqlite3 inventory2.db
 # .tables
 # select * from inventory;
+# .quit
 
-# Summary ----------------------------------------------------------------------
+# sqlite3 command line commands ----------------------------------------------
+
+# $ sqlite3 contacts.db (creates the database if it doesn't exist)
+# .help
+# .headers on
+# create table contacts (name text, phone integer, email text);
+# insert into contacts (name, email) values('Bob', 'mail@me.com');
+# insert into contacts values('Rick', 3425, 'rick@me.com');
+# (with this method you must provide all three values )
+# select * from contacts;
+# select name, email from contacts;
+# select * from contacts where name='Rick';
+# select email from contacts where name='Morty';
+# .backup contacts_backup.db
+# .restore contacts_backup.db
+# update contacts set email='this will replace ALL email fields'
+# update contacts set email='this just updates the one field' where name='Bob';
+# delete from contacts where name='Bob';
+# .tables
+# .schema
+# .dump
+# .quit
+
+# Summary --------------------------------------------------------------------
 
 # This was a brief overview to help decide which of the following levels would
 # best fit your needs:
