@@ -2,6 +2,19 @@
 
 # Tuples are ordered (like lists) and immutable (unlike lists)
 
+# Create a tuple by providing values in brackets separated by commas. If you
+# need to create a tuple from one value, you must add a comma at the end,
+# otherwise it won't actually be a tuple:
+
+colour_tuple = ('Emerald')
+print(type(colour_tuple))  # <class 'str'>
+
+colour_tuple = ('Emerald',)
+print(type(colour_tuple))  # <class 'tuple'>
+
+# NOTE It's not the enclosing parenthesis that define a tuple, it the fact that
+# we're providing more than one value (the commas).
+
 # It's the intention that lists contain items of the same type,
 # whereas tuples contain related items, not necessarily the same type.
 # Lists contain items that could change.
@@ -9,7 +22,7 @@
 
 # for example:
 
-colour_list = ('green', 'blue', 'red')
+colour_list = ['green', 'blue', 'red']
 colour_tuple = ('Emerald', 'Pantone 17-5641', 'sRGB 0 148 115')
 
 # Tuples are ordered:
