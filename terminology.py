@@ -47,6 +47,8 @@ class Element():
 h = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
 
 hydrogen = Element(**h)
+# is the same as: 
+hydrogen = Element(name='Hydrogen', symbol='H', number=1)
 
 print(hydrogen.symbol)
 
