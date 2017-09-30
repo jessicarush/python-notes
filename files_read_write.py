@@ -297,3 +297,13 @@ with open('testbinary', 'rb') as fin:
 # truncate() -----------------------------------------------------------------
 
 # filename.truncate() - Empties the file
+
+# Read, Write Append chart ---------------------------------------------------
+
+print(' ' * 18, 'R  R+ W  W+ A  A+')
+print('read', ' ' * 13, 'X  X     X     X')
+print('write', ' ' * 12, '   X  X  X  X  X')
+print('create', ' ' * 11, '      X  X  X  X')
+print('truncate', ' ' * 9, '      X  X')
+print('position: start', ' ' * 2, 'X  X  X  X')
+print('position: end', ' ' * 4, '            X  X')

@@ -36,7 +36,8 @@ print('The {0} is {1}'.format(name, goldenratio))
 info = {'name': 'boktoktok', 'address': 'the moon', 'age': 100}
 other = 'the end'
 
-print('{0[name]} who is {0[age]} years old, lives at {0[address]}. {1}.'.format(info, other))
+print('{0[name]} is {0[age]} years old, lives on {0[address]}. {1}.'
+      .format(info, other))
 
 # The number {0} or {1} or whatever, indicates the variable to use according to
 # their order in the .format() arguments
@@ -44,10 +45,10 @@ print('{0[name]} who is {0[age]} years old, lives at {0[address]}. {1}.'.format(
 # As a side note, remember you can also use keyword arguments **name to extract
 # the keys and values from the dictionary and feed into a thing:
 
-statement = '{name} who is {age} years old, lives at {address}'
+statement = '{name} who is {age} years old, lives on {address}'
 print(statement.format(**info))
 
-# to specify the type of data as with %d or %f in old style, use {0:d} like:
+# to specify the type of data as with %s, %d or %f in old style, use {:d} like:
 
 print('The {0:s} is {1:f}'.format(name, goldenratio))
 

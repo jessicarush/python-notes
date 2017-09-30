@@ -206,16 +206,39 @@ help(documenting_naming)
 #
 # ----------------------------------------------------------------------------
 # max()
-#
-#
+# The max() method returns the largest element in an iterable or largest of
+# two or more parameters.
+
+num1 = [23, 456, 20]
+num2 = [6, 66, 899, 790]
+num3 = [24, 4, 12, 56, 285]
+
+print(max(num1))  # 456
+
+# You can also use a 'key' function where each argument is passed, and
+# comparison is performed based on its return value.
+
+print(max(num1, num2, num3, key=len))  # [24, 4, 12, 56, 285]
+
+# This example will add up the numbers in each list and return the list with
+# the max result.
+
+def sum(numlist):
+    sum = 0
+    for num in numlist:
+        sum += num
+    return sum
+
+print(max(num1, num2, num3, key=sum))  # [6, 66, 899, 790]
+
 # ----------------------------------------------------------------------------
 # memoryview()
 #
 #
 # ----------------------------------------------------------------------------
 # min()
-#
-#
+# The min() method returns the smallest element in an iterable or smallest of
+# two or more parameters. Works the same as max() above.
 # ----------------------------------------------------------------------------
 # next()
 # see iterating_with_for.py and generators.py

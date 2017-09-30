@@ -1,4 +1,4 @@
-# Documenting and Naming
+'''Documenting and Naming'''
 
 # docstrings -----------------------------------------------------------------
 
@@ -24,7 +24,8 @@ def example(arg1=0.0, arg2=None):
     '''
     Summary line.
 
-    Extended description of function - The docstring should describe the function, class, or method in a way that is easy to understand.
+    Extended description of function - The docstring should describe the
+    function, class, or method in a way that is easy to understand.
 
     Parameters:
     arg1 (int) - Description of arg1, default 0.0
@@ -107,8 +108,8 @@ class Person():
 
 x = Person(name='Bob', alias='boktoktok')
 print(x.name)
-print(x.alias)   # AttributeError: 'Person' object has no attribute 'alias'
-print(x.__alias)  # AttributeError: 'Person' object has no attribute '__alias'
+#print(x.alias)   # AttributeError: 'Person' object has no attribute 'alias'
+#print(x.__alias)  # AttributeError: 'Person' object has no attribute '__alias'
 print(x._Person__alias)  # This will actually return the attribute
 
 # Throwaway values -----------------------------------------------------------
@@ -130,3 +131,49 @@ print(name, country)
 # accepted standard is to follow the with an underscore:
 
 from_ = 'example'
+
+# Type hints and function annotation -----------------------------------------
+
+# Python 3 introduced a syntax addition called function annotation syntax.
+# It allows adding annotations to function parameters and their return values.
+# It can serve as a way of documenting a function, for example, by using
+# string descriptions like this:
+
+def example(name: "name of such and such",
+            date: "using such and such",
+            other: "other description"):
+    pass
+
+# Or by indicating the type expected and type returned:
+
+import datetime
+
+def to_date(date_string: str) -> datetime:
+    return datetime.strptime(date_string,'%Y-%m-%d')
+
+# The above is considered a type hint. Type hints are a type of function
+# annotation in function and method declarations. See the following PEP shit:
+
+# https://www.python.org/dev/peps/pep-0484/
+# https://www.python.org/dev/peps/pep-3107/
+
+# Expected types can also simply commented like this:
+
+a = []  # type: List[str]
+
+# Code Tags -----------------------------------------------------------------
+
+# https://www.python.org/dev/peps/pep-0350/
+
+# When working on a project, it’s often desirable to create a list of tasks
+# for yourself or your team mates. While usually these are described in an
+# issue tracker of some sort, some tasks are either too small or too
+# code-specific to describe in a formal tracker. In these cases, adding
+# code tags in source code makes sense. Some examples are:
+
+# TODO: Create this blah blah
+# FIXME: Change this to blah blah
+# BUG: Crashes if blah blah
+# HACK: Temporary code to force inflexible functionality, or simply a test
+# change, or workaround a known problem.
+# NOTE: Needs further investigation

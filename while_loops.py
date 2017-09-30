@@ -1,11 +1,19 @@
 '''While loops with break and continue'''
 
-# while is a looping mechanism that's used with if, elif, else
+# while is a looping mechanism that's used with if, elif, else or try. A while
+# loop will loop forever unless you, break, continue, pass or return something.
+# Break is useful when you want to terminate the loop early if some condition
+# is met. Continue is for when you want to skip past an iteration to the next.
 
-# break is useful when you want to terminate the loop early if some condition
-# is met.
 
-# continue is useful for when you want to skip past in iteration to the next.
+x = 10
+while x > 0:
+    print(x)
+    x -= 1
+    if x == 5:
+        break
+
+# Example using if, elif, else, break and continue ----------------------------
 
 import random
 
@@ -29,7 +37,7 @@ while True:
         print('You guessed it!')
         break
 
-# Another example -------------------------------------------------------------
+# Example using if, try, break, continue --------------------------------------
 
 def squared():
     while True:
@@ -39,17 +47,27 @@ def squared():
         try:
             number = int(value)
         except ValueError:
+            print("That's not an integer")
             continue
         number = int(value)
         print(number, 'squared is', number * number)
 
 squared()
 
-# And Another -----------------------------------------------------------------
+# Example using try and return ------------------------------------------------
 
-x = 10
-while x > 0:
-    print(x)
-    x -= 1
-    if x == 5:
-        break
+print('Enter two numbers please.')
+
+def get_inputs(arg):
+    while True:
+        try:
+            x = input('enter {} number: '.format(arg))
+            x = int(x)
+            return x
+        except:
+            print('I need an integer please')
+
+a = get_inputs('first')
+b = get_inputs('second')
+
+print('{} * {} = {}'.format(a, b, a * b))
