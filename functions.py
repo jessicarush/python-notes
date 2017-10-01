@@ -47,7 +47,7 @@ def menu(wine, cheese, dessert='ice cream'):
 print (menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 print (menu(wine='chardonnay', cheese='swiss'))
 
-# Weird Example --------------------------------------------------------------
+# Example of local vs parameter set value ------------------------------------
 
 # In this example the function is expected to run each time with a fresh empty
 # result list, add the arg argument to it, and then print a single-item list.
@@ -58,9 +58,9 @@ def buggy(arg, result=[]):
     result.append(arg)
     print(result)
 
-buggy('a')
-buggy('b')
-buggy('new list', ['hello', 'hello'])
+buggy('a')  # ['a']
+buggy('b')  # ['a', 'b']
+buggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
 
 # This works better to have an empty list each time:
 
@@ -69,11 +69,11 @@ def works(arg):
     result.append(arg)
     print(result)
 
-works('a')
-works('b')
+works('a')  # ['a']
+works('b')  # ['b']
 
 # Or fix the first one by passing in something else to indicate the first call:
-# This whole example seems a bit pointless to me but perhaps it will be useful
+# This whole example seems a bit semantic to me but perhaps it will be useful
 # later on:
 
 def nonbuggy(arg, result=None):
@@ -82,16 +82,44 @@ def nonbuggy(arg, result=None):
     result.append(arg)
     print(result)
 
-nonbuggy('a')
-nonbuggy('b')
-nonbuggy('new list', ['hello', 'hello'])
+nonbuggy('a')  # ['a']
+nonbuggy('b')  # ['b']
+nonbuggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
 
-# Gather Positional Arguments ------------------------------------------------
+# Gather Positional Arguments with * -----------------------------------------
+
+# The * operator used when defining a function means that any extra positional
+# arguments passed to the function end up in the variable prefaced with the *
+# which will be a tuple.
 
 def print_args(*args):
-    print('Positional argument tuple:', args)
+    print(args, type(args))
 
-print_args(1, 2, 3, 'hello', 'tuple')
+print_args(1, 2, 3, 'hello')  # (1, 2, 3, 'hello') <class 'tuple'>
+print_args(1)                 # (1,) <class 'tuple'>
+
+# The * operator can also be used when calling functions and here it means the
+# analogous thing. A variable prefaced by * when calling a function means that
+# the variable contents should be extracted and used as positional arguments.
+
+def add(x, y):
+    return x + y
+
+nums = [13, 7]
+add(*nums)  # returns 20
+
+# This example uses both methods at the same time:
+
+def add(*args):
+    result = 0
+    for num in args:
+        result += num
+    return result
+
+nums = [13, 7, 10, 40, 30]
+add(*nums)  # returns 100
+
+# You can have required and optional parameters. The required ones come first:
 
 def print_more(required1, required2, *args):
     print('first argument is required:', required1)
@@ -99,17 +127,51 @@ def print_more(required1, required2, *args):
     print('the rest:', args)
 
 print_more('red', 'green')
-print_more('red', 'green', 'one', 'two', 'three')
+# first argument is required: red
+# second argument is required: green
+# the rest: ()
 
-# Gather Keyword Arguments (makes a Dictionary) ------------------------------
+print_more('red', 'green', 'one', 'two', 'three
+# first argument is required: red
+# second argument is required: green
+# the rest: ('one', 'two', 'three')
+
+
+# Gather Keyword Arguments with ** -------------------------------------------
+
+# ** does for dictionaries & key/value pairs exactly what * does for iterables
+# and positional parameters demonstrated above. Here's it being used in the
+# function definition:
 
 def print_kwargs(**kwargs):
-    print('Keyword arguments:', kwargs)
-    print(type(kwargs)) # class 'dict'
+    print(kwargs, type(kwargs))
 
-print_kwargs(wine='merlot', cheese='swiss', fruit='grapes')
+print_kwargs(x=1, y=2, z='hi')  # {'x': 1, 'y': 2, 'z': 'hi'} <class 'dict'>
 
-# see also terminology.py for another example
+# And here we're suing it in the function call:
+
+def add(x, y):
+    return x + y
+
+nums = {'x': 13, 'y': 7}
+add(**nums)  # returns 20
+
+# And here we're using it in both places"
+
+def print_kwargs(**kwargs):
+    for key in kwargs:
+        print(key, 'in french is', kwargs[key])
+
+colours = {'red': 'rouge', 'yellow': 'jaune', 'green': 'vert', 'black': 'noir'}
+
+print_kwargs(**colours)
+# red in french is rouge
+# yellow in french is jaune
+# green in french is vert
+# black in french is noir
+
+# see also terminology.py for another example that feeds dictionary values to
+# a class instance.
 
 # Docstrings -----------------------------------------------------------------
 
@@ -165,35 +227,68 @@ def run_with_positional_args(func, *args):
 
 run_with_positional_args(sum_args, 2, 3, 1, 4)
 
-# Inner Functions ------------------------------------------------------------
+# Nested functions ------------------------------------------------------------
 
-def outer(a, b):
-    def inner(c, d):
-        return c + d
-    return inner(a, b)
+# This is pretty straight forward. When we call the outer() function it in
+# turn calls the inner function. The inner function used a variable x that's
+# defined in the outer functions namespace. The inner function looks for x
+# first in its own local namespace, then failing that looks in the surrounding
+# namespace. If it didn't find it there, it would check the global namespace
+# next (see namespaces.py).
 
-outer(4, 7)
+def outer():
+    x = 1
+    def inner():
+        print(x)
+    inner()
 
-def nerd(saying):
-    def inner(quote):
-        print('They said: {}'.format(quote))
-    return inner(saying)
+outer()  # 1
 
-nerd("blerk")
+# Closure --------------------------------------------------------------------
 
-# An inner function can act as a closure. In this example the inner2 function
-# knows the value of saying that was passed in and remembers it. The line
-# return inner2 returns this specialized copy of the inner2 function (but
+# Consider that the namespace created for our functions are created from
+# scratch each time the function is called and then destroyed when the
+# function ends. According to this, the following should not work.
+
+def outer():
+    x = 1
+    def inner():
+        print(x)
+    return inner
+
+a = outer()
+print(outer)  # <function outer at 0x1014a3510>
+print(a)      # <function outer.<locals>.inner at 0x100762e18>
+
+# At first glance, since we are returning inner from the outer function and
+# assigning it to a new variable, that new variable should no longer have
+# access to x because x only exists while the outer function is running.
+
+a()  # 1
+
+# But it does work because of a special feature called closure. An inner
+# function knows the value of x that was passed in and remembers it. The line
+# return inner returns this specialized copy of the inner function (but
 # doesn't call it). That's a closure... a dynamically created function that
 # remembers where it came from.
 
-def nerd2(saying):
-    def inner2():
-        print('They said: {}'.format(saying))
-    return inner2
+def outer(x):
+    def inner():
+        print(x)
+    return inner
 
-a = nerd2('bok') # <function nerd2.<locals>.inner2 at 0x1011879d8>
-b = nerd2('tok') # <function nerd2.<locals>.inner2 at 0x101187a60>
+a = outer(2)
+b = outer(3)
+
+a()  # 2
+b()  # 3
+
+# From this example you can see that closures - the fact that functions
+# remember their enclosing scope - can be used to build custom functions that
+# have, essentially, a hard coded argument. We aren’t passing the numbers
+# to our inner function but are building custom versions of our inner function
+# that "remembers" what number it should print.
+
 
 # lambda() -------------------------------------------------------------------
 

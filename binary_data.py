@@ -1,51 +1,59 @@
 '''Binary data'''
 
-# this will format numbers in binary (base 2):
+# Formatting as binary, hex, octal -------------------------------------------
+
+# {:b) will format numbers as binary (base 2):
 
 for i in range(17):
     print("{0:>2} in binary is {0:>08b}".format(i))
 
-# this will format numbers in hex (base 16):
+# {:x} will format numbers as hex (base 16):
 
 for i in range(17):
     print("{0:>2} in hex is {0:>02x}".format(i))
 
-# and in octal (base 8):
+# {:o} as octal (base 8):
 
 for i in range(17):
     print("{0:>2} in octal is {0:>4o}".format(i))
 
-# typing binary, hex, octal:
+# Inputing binary, hex, octal ------------------------------------------------
 
 w = 32        # normal number (base 10)
 x = 0x20      # hexadecimal (base 16) starts with 0x
 y = 0b100000  # binary number (base 2) starts with 0b
 z = 0o40      # octal number (base 8) starts with 0o
 
-print (w, x, y, z)
+print (w, x, y, z)  # 32 32 32 32
 
-# convert integers to binary, hex, octal:
+# Converting integers to binary, hex, octal ----------------------------------
 
 x = hex(32)   # hexadecimal (base 16)
 y = bin(32)   # binary number (base 2)
 z = oct(32)   # octal number (base 8)
 
-print (x, y, z)
+print (x, y, z)  # 0x20 0b100000 0o40
 
 # bytes() and bytearray() ----------------------------------------------------
 
-# These two are sequences of eight-bit integers, with possible values of
-# 0 to 255:
+# These two objects are sequences of eight-bit integers, with possible values
+# of 0 to 255:
 
-blist = [1, 2, 3, 255]
-the_bytes = bytes(blist)            # returns b'\x01\x02\x03\xff'
-the_byte_array = bytearray(blist)   # returns bytearray(b'\x01\x02\x03\xff')
+a_list = [1, 2, 3, 255]
+string = 'Sample Text'
 
-print(type(the_bytes))              # class 'bytes'
-print(type(the_byte_array))         # class 'bytearray'
+list_bytes = bytes(a_list)  # returns b'\x01\x02\x03\xff'
+string_bytes = bytes(string, 'utf-8')  # b'Sample Text'
 
-the_byte_array[1] = 127             # works because bytearray is mutable
-# the_bytes[1] = 127                # doesn't work because bytes is immutable
+list_array = bytearray(a_list)  # returns bytearray(b'\x01\x02\x03\xff')
+string_array = bytearray(string, 'utf-8')  # bytearray(b'Sample Text')
+print(string_array)
+
+print(type(list_bytes))  # class 'bytes'
+print(type(list_array))  # class 'bytearray'
+
+list_array[1] = 127 # works because bytearray is mutable
+# list_bytes[1] = 127    # doesn't work because bytes is immutable
 
 # The representation of a bytes value begins with a b'' and a quote character,
 # followed by hex sequences such as \x02 or ASCII characters, and ends with a
@@ -62,7 +70,7 @@ the_byte_array[1] = 127             # works because bytearray is mutable
 x = (1024).to_bytes(2, byteorder='big')
 y = (1024).to_bytes(2, byteorder='little')
 
-print("Using to_bytes:", x, y)
+print("Using to_bytes:", x, y)  # Using to_bytes: b'\x04\x00' b'\x00\x04'
 print(type(x)) # class 'bytes'
 
 # from_bytes() - return the integer represented by the given array of bytes.
@@ -70,7 +78,7 @@ print(type(x)) # class 'bytes'
 x = int.from_bytes(b'\x00\x10', byteorder='big')
 y = int.from_bytes(b'\x00\x10', byteorder='little')
 
-print("Using from_bytes:", x, y)
+print("Using from_bytes:", x, y)  # Using from_bytes: 16 4096
 
 # Convert Binary Data with struct --------------------------------------------
 
@@ -105,8 +113,8 @@ else:
 
 # You can examine each 4-byte value directly:
 
-print(data[16:20])
-print(data[20:24])
+print(data[16:20])  # b'\x00\x00\x00\x9a'
+print(data[20:24])  # b'\x00\x00\x00\x8d'
 
 # struct.pack() --------------------------------------------------------------
 
@@ -141,13 +149,13 @@ struct.pack('>L', 141)
 # preceded by a number that indicates the count. 2L is the same as LL:
 
 testing = struct.unpack('>2L', data[16:24])
-print(testing)
+print(testing)  # (154, 141)
 
 # We used the slice data[16:24] to grab the interesting bytes directly.
 # We could also use the x specifier to skip the uninteresting parts:
 
 testing = struct.unpack('>16x2L6x', data)
-print(testing)
+print(testing)  # (154, 141)
 
 # Use big endian integer format (>)
 # Skip 16 bytes (16x)

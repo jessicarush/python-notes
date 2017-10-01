@@ -1,5 +1,7 @@
 '''More from the Standard Library''''
 
+# https://docs.python.org/3/library/index.html
+
 # Counter() ------------------------------------------------------------------
 
 from collections import Counter
@@ -21,7 +23,8 @@ jellybeans2 = ['black', 'red', 'yellow', 'yellow']
 jb_counter1 = Counter(jellybeans1)
 jb_counter2 = Counter(jellybeans2)
 
-jb_counter1 + jb_counter2   # returns {'red': 4, 'green': 2, 'yellow': 2, 'black': 1, 'orange': 1}
+jb_counter1 + jb_counter2   # returns {'red': 4, 'green': 2, 'yellow': 2,
+                            # 'black': 1, 'orange': 1}
 jb_counter1 - jb_counter2   # returns {'red': 2, 'green': 2, 'orange': 1}
 jb_counter2 - jb_counter1   # returns {'yellow': 2, 'black': 1}
 jb_counter1 & jb_counter2   # returns {'red': 1}

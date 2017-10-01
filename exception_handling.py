@@ -216,6 +216,11 @@ sum(testing)
 
 # Create your own exceptions to raise ----------------------------------------
 
+# More often than anything else, raise is used in conjunction with writing
+# your own exceptions in an effort to catch potential problems with your code.
+# Ideally, when your exception ends up being raised, it's a signal for you to
+# modify your code where necessary.
+
 # An exception is a class: a child of the base class Exception.
 
 class UppercaseException(Exception):
@@ -226,5 +231,3 @@ words = ['one', 'two', 'THREE', 'four']
 for word in words:
     if word.isupper():
         raise UppercaseException(word)
-
-# More in depth example ------------------------------------------------------

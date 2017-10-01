@@ -1,4 +1,9 @@
 '''Built-in Functions'''
+
+import builtins
+for item in dir(builtins):
+    print(item)
+
 # ----------------------------------------------------------------------------
 # abs()
 #
