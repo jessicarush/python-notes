@@ -9,6 +9,9 @@
 # install a particular version: pip3 install flask==0.12.0
 # install a minimum version: pip3 install flask>==0.9.0
 
+# Sometimes see this for installing modules but not sure why:
+# python3 -m pip install PyYaml
+
 # Yolk is a tool for obtaining information about installed Python packages and
 # querying packages available on PyPI
 

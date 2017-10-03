@@ -54,11 +54,11 @@ def document_it(func):
 def add_ints(a, b):
     return a + b
 
-# Here's one way to incorporate the document_it() function:
+# Note, we could achieve the same result like this:
 decorated_add_ints = document_it(add_ints)
 print(decorated_add_ints(3,5))
 
-# Or do this:
+# But decorating like this means less code:
 @document_it
 def add_ints(a, b):
     return a + b
@@ -73,9 +73,10 @@ def square_it(func):
         return result * result
     return new_function
 
-# The decorator that's closest to the actual function (above the def) runs first
-# and then the one above that will run. The results will be the same no matter
-# what order but the intermediate steps are different obv.
+# The decorator that's closest to the actual function (above the def) runs
+# first and then the one above that will run. The results will be the same no
+# matter what order but the intermediate steps are different. Depending on what
+# your decorators do, the order may be important.
 
 @document_it
 @square_it
@@ -83,3 +84,26 @@ def add_ints(a, b):
     return a + b
 
 print(add_ints(4, 3))
+
+# Running function: new_function
+# Positional arguments: (4, 3)
+# Keyword arguments: {}
+# Result: 49
+# 49
+
+@square_it
+@document_it
+def add_ints(a, b):
+    return a + b
+
+print(add_ints(4, 3))
+
+# Running function: add_ints
+# Positional arguments: (4, 3)
+# Keyword arguments: {}
+# Result: 7
+# 49
+
+# @property ------------------------------------------------------------------
+
+# see decorators used as getter and setter methods in classes.py

@@ -156,6 +156,7 @@ print(test_string)
 raw_string = (r"The r at the start of a string before the quotation mark"
 r"tells python it's a raw string, so any escape characters like backlash \t"
 r"will be ignored... unless it's at the end of the string - then you need to"
-r"do a double backlash or a space. This can come into play when creating raw" r"strings for directory pathnames like C:\ ")
+r"do a double backlash or a space. This can come into play when creating raw"
+r"strings for directory pathnames like C:\ ")
 
 print(raw_string)

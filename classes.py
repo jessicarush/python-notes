@@ -60,7 +60,7 @@ print('Name {} age {}, name {} age {}'.format(
 print('Name {0.name} age {0.age}, name {1.name} age {1.age}'.format(
     astronaut, baker))
 
-# Class attributes -----------------------------------------------------------
+# Class attributes ------------------------------------------------------------
 
 class Person():
 
@@ -78,7 +78,7 @@ class Person():
 
 baker.nationality = 'British'  # local instance variable
 
-# __dict__ -------------------------------------------------------------------
+# __dict__ --------------------------------------------------------------------
 
 # A dictionary or other mapping object is used to store an object’s (writable)
 # attributes. Use __dict__ to see all the attributes:
@@ -87,7 +87,7 @@ print(baker.__dict__)
 print(astronaut.__dict__)
 print(Person.__dict__)
 
-# Inheritance ----------------------------------------------------------------
+# Inheritance -----------------------------------------------------------------
 
 # Creating a new class from an existing class, with some additions or changes.
 # When you use inheritance, the new class can automatically use all the code
@@ -123,7 +123,7 @@ doctor = MDPerson('Fudd')
 print(person.name)  # Fudd
 print(doctor.name)  # Doctor Fudd
 
-# super() --------------------------------------------------------------------
+# super() ---------------------------------------------------------------------
 
 # If you override a method like __init__ , you can retrieve attributes back
 # from the parent using super():
@@ -175,7 +175,7 @@ print(bat)      # Batty – Lives: 1, Hit points: 0
 print(spider)   # Crawly – Lives: 1, Hit points: 10
 print(spike)    # Spike – Lives: 3, Hit points: 12
 
-# Calling methods from a class -----------------------------------------------
+# Calling methods from a class ------------------------------------------------
 
 # There are a couple of ways to call a method from a class:
 
@@ -198,7 +198,7 @@ print(snape.alive)
 Person.deceased(snape)
 print(snape.alive)
 
-# Getter and Setter methods with property() ------------------------------------
+# Getter and Setter methods with property() -----------------------------------
 
 # Some object oriented languages support private object attributes that can't
 # be accessed from the outside. They have to write getter and setter methods to
@@ -245,7 +245,7 @@ print(p.name)  # Adam
 p.name = 'John'
 del p.name
 
-# Getter and Setter methods using decorators -----------------------------------
+# Getter and Setter methods using decorators ----------------------------------
 
 class Person():
     def __init__(self, value):
@@ -273,14 +273,14 @@ print(p.name)  # Tim
 p.name = 'Paul'
 del p.name
 
-# Uses for Getters and Setters -------------------------------------------------
+# Uses for Getters and Setters ------------------------------------------------
 
 # While you shouldn't necessarily worry about private attributes in Python,
 # getter and setter methods can be useful in situations where you want to set
 # up some sort of validation for the values that the data attributes can be set
 # to. In the following example, lives is not allowed to be a negative number.
 
-# NOTE: In the previous  examples, the data attributes have a slightly different
+# NOTE: In the previous examples, the data attributes have a slightly different
 # name from the property (__name, name) because we were trying to hide the,
 # attribute, but it should be pointed out that these names have to be different.
 
@@ -303,7 +303,7 @@ class Player():
 
     lives = property(_get_lives, _set_lives)
 
-# Uses for property() ----------------------------------------------------------
+# Uses for property() ---------------------------------------------------------
 
 class Circle():
     def __init__(self, radius):
@@ -342,7 +342,7 @@ print(c.diameter) # 10
 c.diameter = 20  # now this will also work
 print(c.radius)  # 10.0
 
-# Instance methods -----------------------------------------------------------
+# Instance methods ------------------------------------------------------------
 
 # Some data(attributes) and functions(methods) are part of the class itself and
 # some are part of the objects that are created from that class. When you see
@@ -351,7 +351,7 @@ print(c.radius)  # 10.0
 # parameter of an instance method is self. Any change made to the class
 # affects all of its objects.
 
-# Class methods --------------------------------------------------------------
+# Class methods ---------------------------------------------------------------
 
 # A class method is a method you can call on the class itself. Use the
 # @classmethod decorator to indicate the following function is a class method.
@@ -380,9 +380,10 @@ test4 = A()
 
 A.children()
 
-# NOTE: you can also write class methods outside of classes. You might do this if you wanted to create a class method that you could call on multiple classes.
+# NOTE: you can also write class methods outside of classes. You might do this
+# if you wanted to create a class method that you could call on many classes.
 
-# Static methods -------------------------------------------------------------
+# Static methods --------------------------------------------------------------
 
 # The third type of method in a class def is a static method. If affects
 # neither the class nor its objects. It's just there for convenience. Begin
@@ -396,7 +397,7 @@ class A():
 A.note()
 
 
-# Review ---------------------------------------------------------------------
+# Review ----------------------------------------------------------------------
 
 # In this example note how the subclasses are using the parents __init__
 # method. Because of this we can use the variable self.words in the subclasses.
@@ -452,7 +453,27 @@ who_says(person2)  # Bill :  What?
 who_says(person3)  # Bruce :  OK!
 who_says(brook)    # Brook :  Babble
 
-# Summary of Terms -----------------------------------------------------------
+# An interesting example ------------------------------------------------------
+
+class Coordinate():
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __repr__(self):
+        return "Coordinates: " + str(self.__dict__)
+
+def add(a, b):
+    return Coordinate(a.x + b.x, a.y + b.y)
+
+def sub(a, b):
+    return Coordinate(a.x - b.x, a.y - b.y)
+
+one = Coordinate(100, 200)
+two = Coordinate(300, 200)
+
+print(add(one, two))  # Coordinates: {'x': 400, 'y': 400}
+
+# Summary of Terms ------------------------------------------------------------
 
 # Class: template for creating objects. All objects created using the same
 # class will have the same characteristics.
@@ -461,7 +482,7 @@ who_says(brook)    # Brook :  Babble
 # Method: a function defined in a class.
 # Attribute: a variable bound to an instance of a class.
 
-# Classes and Objects versus Modules -----------------------------------------
+# Classes and Objects versus Modules ------------------------------------------
 
 # Objects are most useful when you need a number of individual instances that
 # have similar behavior (methods), but differ in their internal attributes.

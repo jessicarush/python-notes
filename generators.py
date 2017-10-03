@@ -6,7 +6,10 @@
 # over a generator, it keeps track of where it was the last time it was called
 # and returns the next value. This is different from a normal function, which
 # has no memory of previous calls and always starts at its first line in the
-# same state.
+# same state. It's important to note that because generators don't store the
+# whole thing in memory but generate on the fly, you can only iterate over them
+# once. Note that yield is used like return. It tells the function to return
+# a generator.
 
 # Here's an example of a generator function that would do what range() does:
 
@@ -46,16 +49,16 @@ def search(keyword, filename):
 
 search_generator = search('Mama', 'bohemian_rhapsody_lyrics.txt')
 
-# At this point, nothing is printed because the body code of the search function
-# doesn't actually run. The generator function will only return a generator
-# object. To make the generator run we need to do something like:
+# At this point, nothing is printed because the body code of the search
+# function doesn't actually run. The generator function will only return a
+# generator object. To make the generator run we need to do something like:
 
 print(next(search_generator))
 print(next(search_generator))
 print(next(search_generator))
 print(next(search_generator))
 
-# Another Generator example ----------------------------------------------------
+# Another Generator example ---------------------------------------------------
 
 def fibonacci(n):
     curr = 1

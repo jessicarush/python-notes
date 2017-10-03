@@ -1,5 +1,36 @@
 '''datetime Examples'''
 
+# Compare usages -----------------------------------------------------------------
+
+import datetime
+import pytz
+
+now = datetime.datetime.now()
+# 2017-10-02 16:03:01.558993 <class 'datetime.datetime'>
+
+utc = datetime.datetime.utcnow()
+# 2017-10-02 23:03:01.559071 <class 'datetime.datetime'>
+
+the_time = pytz.utc.localize(datetime.datetime.utcnow())
+# 2017-10-02 23:03:01.559084+00:00 <class 'datetime.datetime'>
+
+the_local_time = the_time.astimezone()
+# 2017-10-02 16:03:01.559084-07:00 <class 'datetime.datetime'>
+
+the_local_time = pytz.utc.localize(datetime.datetime.utcnow()).astimezone()
+# 2017-10-02 16:03:01.559084-07:00 <class 'datetime.datetime'>
+
+timezone = the_local_time.tzinfo
+# PDT <class 'datetime.timezone'>
+
+timestamp = datetime.datetime.now().strftime('%a %x')
+# Mon 10/02/17 <class 'str'>
+
+backdated = datetime.date(2017, 8, 7).strftime('%a %x')
+# Mon 08/07/17 <class 'str'>
+
+
+
 # timedelta example ------------------------------------------------------------
 
 # What dates do I need to water the plants if the watering schedule is:

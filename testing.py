@@ -40,29 +40,43 @@ def func1(x):
     return x + 1
 
 def test_answer():
-    assert func1(4) == 5
+    assert func1(4) == 5  # To assert is to ensure something is True
 
 # run pytest: $ pytest myfile.py
 
+# Another assert example ------------------------------------------------------
+
 # You can simply use the assert statement for asserting test expectations
 
+number = float(input('Enter a number between 1 and 10 '))
+
+assert 0.0 < number < 10.0, 'Number not between 1 and 10!'
+print("Number with range - test passed")
+
+# Create test functions with asserts ------------------------------------------
+
 def func2(text):
-    from string import capwords
-    return capwords(text)
+    return text.title()
+    # from string import capwords
+    # return capwords(text)
 
 def test_one_word():
-    assert func2('duck') == 'Duck'
+    assert func2('duck') == 'Duck', 'Single word fail!'
 
 def test_mult_words():
-    assert func2('a bunch of ducks') == 'A Bunch Of Ducks'
+    assert func2('flock of ducks') == 'Flock Of Ducks', 'Multiple word fail!'
 
 def test_with_apostrophes():
-    assert func2("I'm a duck") == "I'm A Duck"
+    assert func2("I'm a duck") == "I'm A Duck", 'Apostrophe fail!'
+
+test_one_word()
+test_mult_words()
+test_with_apostrophes()
 
 # NOTE: you can write all your tests in one file a simply import the file that
 # contains you want to test.
 
-# doctest is written in the docstring itself
+# doctest is written in the docstring itself ----------------------------------
 
 # try running the file normally and also verbosely: python3 ch12_3.py -v
 

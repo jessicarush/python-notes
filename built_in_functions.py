@@ -114,8 +114,19 @@ for number, colour in enumerate(colours, 1): # starts the numbering at 1
 # runs the python code (which is passed as an argument) within the program
 # ----------------------------------------------------------------------------
 # exec()
-#
-#
+# Is used to execute a python statement that is stored in a string or file:
+
+# exec(object, globals, locals)
+# – The object is either a string or a code object
+# – globals (optional) - a dictionary
+# – locals (optional)- a mapping object (dictionary is the standard)
+
+program = 'a = 5\nb=10\nprint("Sum =", a + b)'
+exec(program)
+
+program = input('Enter a program:') # for num in range(1, 10): print(num)
+exec(program)
+
 # ----------------------------------------------------------------------------
 # filter()
 #
@@ -332,6 +343,14 @@ print(repr(now))  # datetime.datetime(2017, 9, 5, 18, 23, 30, 607281)
 # sorted()
 # see dictionaries.py, lists.py, sets.py
 # returns a sorted list from the given iterable
+# There is an optional parameter: reverse=True. You can also supply an optional
+# key, which is a function. The sorting will be based on the key functions
+# results. For example:
+
+iterable = ['magic', 'mag', 'magical']
+
+print(sorted(iterable, key=len, reverse=True))  # ['magical', 'magic', 'mag']
+
 # ----------------------------------------------------------------------------
 # staticmethod()
 #

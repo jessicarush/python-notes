@@ -33,6 +33,11 @@
 #      If you set your primary key type to integer (an ID number perhaps), you
 #      don't need to enter the integer when inserting a new record, it will
 #      automatically use the next number.
+# Unique
+#    – A unique constraint is similar to a primary key constraint, except that
+#      a single table may have any number of unique columns. For each unique
+#      constraint on the table, each row must contain a unique combination of
+#      values in the columns.
 # Flat File database
 #    – stored all data in a single table (not so great)
 # Normalization
@@ -155,6 +160,7 @@ conn.close()
 # .restore contacts_backup.db
 # .quit
 # CREATE TABLE contacts (name text, phone integer, email text);
+# CREATE TABLE IF NOT EXISTS ...
 # INSERT INTO contacts (name, email) VALUES('Bob', 'mail@me.com');
 # INSERT INTO contacts VALUES('Rick', 3425, 'rick@me.com');
 #    – with this method you must provide all three values
@@ -184,6 +190,7 @@ conn.close()
 #    – deletes the view (views explained below)
 # DROP TABLE artists;
 #    – deletes a table (be careful!)
+# ALTER TABLE contacts RENAME TO customers;
 
 # JOIN (a column in one table corresponds to a column in another) -------------
 
@@ -433,6 +440,24 @@ for row in db.execute(lookup,(input_name,)):
 
 db.close()
 
+# Detect types ----------------------------------------------------------------
+
+# When writing datetime objects to a database, the object will be saved as a
+# string. You could use the strptime() function to convert back to a structured
+# time object, or you could ask sqlite to do it for you with the following
+# parameter: detect_types=sqlite3.PARSE_DECLTYPES
+
+db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+
+# There are also a couple of ways to convert the UTC string to local time.
+# see sqlite3_example.py for the full example
+
+# Sqlite links ----------------------------------------------------------------
+
+# https://docs.python.org/3.5/library/sqlite3.html
+# https://www.sqlite.org/lang_corefunc.html
+# https://sqlite.org/lang_datefunc.html
+
 # MySQL -----------------------------------------------------------------------
 
 # Unlike SQLite, it's an actual server, so clients can access it from different
@@ -440,7 +465,7 @@ db.close()
 # yet been ported to Python 3. You can use these to access MySQL from Python:
 
 # MySQL Connector - http://bit.ly/mysql-cpdg
-# PYMySQL - https://github.com/petehunt/ PyMySQL/
+# PYMySQL - https://github.com/petehunt/PyMySQL/
 # oursql - http://pythonhosted.org/oursql/
 
 # PostgreSQL ------------------------------------------------------------------
