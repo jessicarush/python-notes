@@ -86,11 +86,12 @@ nonbuggy('a')  # ['a']
 nonbuggy('b')  # ['b']
 nonbuggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
 
-# Gather Positional Arguments with * -----------------------------------------
+# Gather Positional Arguments with *args --------------------------------------
 
 # The * operator used when defining a function means that any extra positional
-# arguments passed to the function end up in the variable prefaced with the *
-# which will be a tuple.
+# arguments passed to the function end up in the variable prefaced with the *.
+
+# In short, args is a tuple and * unpacks the tuple
 
 def print_args(*args):
     print(args, type(args))
@@ -137,7 +138,7 @@ print_more('red', 'green', 'one', 'two', 'three
 # the rest: ('one', 'two', 'three')
 
 
-# Gather Keyword Arguments with ** -------------------------------------------
+# Gather Keyword Arguments with **kwargs --------------------------------------
 
 # ** does for dictionaries & key/value pairs exactly what * does for iterables
 # and positional parameters demonstrated above. Here's it being used in the

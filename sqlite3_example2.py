@@ -1,10 +1,10 @@
 '''sqlite3 Example'''
 
-# This is a modified version of sqlite3_example.py. In continuing to explore
-# ways of storing and retreiving both UTC and local time, this example includes
+# This is a modified version of sqlite3_example1.py. In continuing to explore
+# ways of storing and retrieving both UTC and local time, this example includes
 # a column in the history table that contains a pickled datetime object which
-# is the local time zone (PDT). This pickled object can then unpickled and
-# displayed later. This whole example is probably overkill for most situations
+# is the local time zone (PDT). This pickled object can then be unpickled and
+# displayed later. This whole thing is probably overkill for most situations
 # but may prove useful as an example alone.
 
 import sqlite3
@@ -49,11 +49,16 @@ class Account():
         new_balance = self._balance + amount
         time, timezone = Account._current_time() # <-- unpack the tuple
         pickled_timezone = pickle.dumps(timezone) # <-- pickle the time zone
-        db.execute("UPDATE accounts SET balance = ? WHERE name = ?", (new_balance, self.name))
-        # add the pickled_timezone the update:
-        db.execute("INSERT INTO history VALUES(?, ?, ?, ?)", (time, self.name, amount, pickled_timezone))
-        db.commit()
-        self._balance = new_balance
+        try:
+            db.execute("UPDATE accounts SET balance = ? WHERE name = ?", (new_balance, self.name))
+            # add the pickled_timezone the update:
+            db.execute("INSERT INTO history VALUES(?, ?, ?, ?)", (time, self.name, amount, pickled_timezone))
+        except sqlite3.Error:
+            db.rollback()
+        else:
+            db.commit()
+            self._balance = new_balance
+
 
     def deposit(self, amount: int):
         if amount > 0.0:

@@ -2,6 +2,8 @@
 
 # This example contains several useful techniques for storing and retrieving
 # datetime objects as well as displaying UTC time as local time when needed.
+# There is also an example of performing a rollback, should an exception occur
+# see lines 57-63.
 
 import sqlite3
 import datetime
@@ -51,11 +53,17 @@ class Account():
         # transaction fails for some reason.
         new_balance = self._balance + amount
         time = Account._current_time()
-        db.execute("UPDATE accounts SET balance = ? WHERE name = ?", (new_balance, self.name))
-        db.execute("INSERT INTO history VALUES(?, ?, ?)", (time, self.name, amount))
-        db.commit()
-        # The transaction has completed so now we can update self._balance
-        self._balance = new_balance
+
+        try:
+            db.execute("UPDATE accounts SET balance = ? WHERE name = ?", (new_balance, self.name))
+            db.execute("INSERT INTO history VALUES(?, ?, ?)", (time, self.name, amount))
+        except sqlite3.Error:
+            db.rollback()
+        else:
+            db.commit()
+            # The transaction has completed so now we can update self._balance
+            self._balance = new_balance
+
 
     def deposit(self, amount: int):
         if amount > 0.0:

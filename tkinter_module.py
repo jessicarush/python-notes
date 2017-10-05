@@ -5,8 +5,9 @@
 
 # https://docs.python.org/3/library/tk.html
 # http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html
-# http://www.tkdocs.com/ - looks really good
+# http://www.tkdocs.com/  <-- really good
 # https://wiki.tcl.tk/37973
+# http://effbot.org/tkinterbook/tkinter-widget-styling.htm
 
 import tkinter
 

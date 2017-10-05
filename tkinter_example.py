@@ -23,8 +23,8 @@ mainWindow['padx'] = mainWindowPadding
 # example style some ttk elements:
 style = ttk.Style()
 
-# A bug caused by the 'aqua' ttk style on Mac OSX makes it so that some elements
-# won't drop the light gray background color. Classic should fix it:
+# A bug caused by the 'aqua' ttk style on Mac OSX makes it so that some
+# elements won't drop the light gray background color. Classic should fix it:
 style.theme_use('classic')
 style.configure("test.TLabel", foreground="magenta", background="yellow")
 
