@@ -43,9 +43,14 @@ print(text.format(colour_tuple))
 
 # You can use tuples to swap variable values in one line:
 
-a, c = c, a
-print(a)
-print(b)
+a, b = 2, 3
+
+print('a is {}, b is {}'.format(a, b))  # a is 2, b is 3
+
+a, b = b, a
+
+print('a is {}, b is {}'.format(a, b))  # a is 3, b is 2
+
 
 # The tuple() function lets you convert something to a tuple:
 

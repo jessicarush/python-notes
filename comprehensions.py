@@ -1,6 +1,6 @@
 '''Comprehensions'''
 
-# List Comprehensions ----------------------------------------------------------
+# List Comprehensions ---------------------------------------------------------
 
 # [expression for item in iterable if condition]
 
@@ -27,15 +27,18 @@ number_list = list(range(1,6))
 # [expression for item in iterable]
 
 number_list = [number for number in range(1,6)]
+print(number_list)  # [1, 2, 3, 4, 5]
 
-# The expression starts the list, the item is part of the for loop
+# The expression starts the list, the item is part of the for loop:
 
-number_list = [number+3 for number in range(0,5)]
+number_list = [(number + 3) for number in range(0,5)]
+print(number_list)  # [3, 4, 5, 6, 7]
 
 # List comprehension with conditionals:
 # [expression for item in iterable if condition]
 
-number_list = [number for number in range (1,10) if number % 2 == 1]
+number_list = [number for number in range(1,10) if number % 2 == 1]
+print(number_list)  # [1, 3, 5, 7, 9]
 
 # The above is the same as:
 
@@ -58,6 +61,7 @@ for row in rows:
 
 rows = range(1,4)
 cols = range(1,3)
+
 cells = [(row, col) for row in rows for col in cols]
 for cell in cells:
     print(cell)
@@ -70,23 +74,26 @@ for row, col in cells:
 # Review list comprehensions [expression for item in iterable]:
 
 even_numbers = [i for i in range(0, 10, 2)]
-print(even_numbers)
+print(even_numbers)  # [0, 2, 4, 6, 8]
 
 # ... or [expression for item in iterable if condition]:
 
 even_numbers = [i for i in range(10) if i % 2 == 0]
-print(even_numbers)
+print(even_numbers)  # [0, 2, 4, 6, 8]
 
-# Dictionary Comprehensions ----------------------------------------------------
+# Dictionary Comprehensions ---------------------------------------------------
 
 # {key_expression : value_expression for expression in iterable}:
 
 word = 'letters'
 letter_counts = {letter : word.count(letter) for letter in word}
+print(letter_counts)        # {'l': 1, 'e': 2, 't': 2, 'r': 1, 's': 1}
+print(type(letter_counts))  # <class 'dict'>
 
 # Technically we are counting some letters twice.
 # By converting the word into a set(), we remove any duplicates for the
-# checking part.
+# checking part. We still get the same result from the count, but we're only
+# asking it to count each letter once.
 
 word = 'letters'
 letter_counts = {letter : word.count(letter) for letter in set(word)}
@@ -94,29 +101,33 @@ letter_counts = {letter : word.count(letter) for letter in set(word)}
 # Review dictionary comprehensions
 # {key_expression: value_expression for expression in iterable}:
 
-squares = { number: number*number for number in range(10)}
-print(squares)
+squares = {number: (number * number) for number in range(7)}
+print(squares)  # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36}
 
-# Set comprehensions -----------------------------------------------------------
+# Set comprehensions ----------------------------------------------------------
 
 # {expression for expression in iterable}
 
-a_set = {number for number in range(1,6) if number % 3 == 1}
-
+a_set = {number for number in range(1, 10) if number % 3 == 1}
+print(a_set)  # {1, 4, 7}
 # Review set comprehensions {expression for expression in iterable}:
 
 odds = {number for number in range(10) if number % 2 != 0}
-print(odds)
+print(odds)  # {1, 3, 5, 7, 9}
 
-# Generator comprehensions -----------------------------------------------------
+# Generator comprehensions ----------------------------------------------------
 
 # Tuples don't have comprehensions.
-# Changing the [] or {} of a comprehesion to () is actually
-# a generator comprehesion and returns a generator object.
+# Changing the [] or {} of a comprehension to () is actually
+# a generator comprehension and returns a generator object.
 
 number_thing = (number for number in range(1,6))
+
+print(type(number_thing))   # <class 'generator'>
+for thing in number_thing:  # you can then iterate over it
+    print(thing)
 
 # Review generator comprehensions (expression for expression in iterable):
 
 for thing in (number for number in range(10)):
-    print ('Got', thing)
+    print(thing)
