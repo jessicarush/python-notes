@@ -20,7 +20,7 @@ try:
 finally:
     file.close()
 
-# This is considered a content manager. A context manager is an object that
+# This is considered a context manager. A context manager is an object that
 # defines the runtime context to be established when executing a with statement.
 # The context manager handles the entry into, and the exit from, the desired
 # runtime context for the execution of the block of code. Context managers are
