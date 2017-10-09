@@ -42,6 +42,8 @@ class File():
 
     def __exit__(self, type, value, traceback):
         self.file_obj.close()
+        return True   # if you want exceptions to be ignored
+        return False  # if you want to pass the exception up the line
 
 # Just by defining __enter__ and __exit__ methods we can use it in a with
 # statement:
