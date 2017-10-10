@@ -5,16 +5,53 @@ for item in dir(__builtins__):
 
 # ----------------------------------------------------------------------------
 # abs()
-#
-#
+# returns the absolute value of a given number. If the number is a complex
+# number, abs() returns its magnitude. It takes one parameter which can be an
+# integer, float, or complex number:
+
+integer = -20
+print('Absolute value of -20 is:', abs(integer))  # 20
+
+floating = -30.33
+print('Absolute value of -30.33 is:', abs(floating))  # 30.00
+
+complex_num = (3 - 4j)
+print('Magnitude of 3 - 4j is:', abs(complex_num))  # 5.0
+
 # ----------------------------------------------------------------------------
 # all()
-#
-#
+# returns True when all elements in the given iterable are true. If not, it
+# returns False. It take sone parameter, which is any iterable (list, tuple,
+# dictionary, etc.)
+
+numbers = [1, 3, 4, 5]          # True
+print(all(numbers))
+
+numbers = [1, 3, False, 4, 5]   # False
+print(all(numbers))
+
+numbers = [0, 1, 3, 4, 5]       # False
+print(all(numbers))
+
+numbers = []                    # True
+print(all(numbers))
+
 # ----------------------------------------------------------------------------
 # any()
-#
-#
+# returns True if any element of an iterable is true. If not, it returns False.
+
+numbers = [1, 3, 4, 5]          # True
+print(any(numbers))
+
+numbers = [1, 3, False, 4, 5]   # True
+print(any(numbers))
+
+numbers = [0, 1, 3, 4, 5]       # True
+print(any(numbers))
+
+numbers = []                    # False
+print(any(numbers))
+
 # ----------------------------------------------------------------------------
 # ascii()
 # return a string containing a printable representation of an object but
@@ -25,8 +62,22 @@ print('caf\xe9')
 
 # ----------------------------------------------------------------------------
 # bin()
-#
-#
+# converts and returns the binary equivalent string of a given integer. It
+# takes one parameter, in integer. If not an integer, you can implement the
+# __index__() method to return an integer.
+
+number = 5
+print('The binary equivalent of 5 is:', bin(number))  # 0b101
+
+class Inventory:
+    apple = 1
+    orange = 2
+    grapes = 2
+    def __index__(self):
+        return self.apple + self.orange + self.grapes
+
+print('The binary equivalent of Inventory is:', bin(Inventory()))  # 0b101
+
 # ----------------------------------------------------------------------------
 # bool()
 # see reflection.py
@@ -50,12 +101,20 @@ def test():
 callable(test)  #True
 # ----------------------------------------------------------------------------
 # chr()
-#
-#
+# returns a character (string) from an integer. The integer represents the
+# unicode code point of the character. The valid range of the integer is from
+# 0 through 1,114,111
+
+print(chr(45))     # -
+print(chr(454))    # ǆ
+print(chr(4540))   # ᆼ
+print(chr(45400))  # 녘
+
 # ----------------------------------------------------------------------------
 # classmethod()
-#
-#
+# see classes.py
+# classmethod() is considered un-Pythonic so in newer Python versions, use the
+# @classmethod decorator instead.
 # ----------------------------------------------------------------------------
 # compile()
 # see regular_expressions.py
@@ -197,8 +256,8 @@ help(documenting_naming)
 # (second argument).
 # ----------------------------------------------------------------------------
 # issubclass()
-#
-#
+# see reflection.py
+# checks if the object (first argument) is a subclass of (second argument).
 # ----------------------------------------------------------------------------
 # iter()
 # see iterating_with_for.py

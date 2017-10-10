@@ -4,7 +4,7 @@
 # an object. This is referred to as reflection or introspection. Functions
 # include type(), isinstance(), callable(), dir() and getattr().
 
-# type() ---------------------------------------------------------------------
+# type() ----------------------------------------------------------------------
 
 import datetime
 
@@ -14,7 +14,7 @@ type(now)       # <class 'datetime.datetime'>
 type(234)       # <class 'int'>
 type('hello')   # <class 'str'>
 
-# bool()----------------------------------------------------------------------
+# bool()-----------------------------------------------------------------------
 
 # will tell you whether something is True or False:
 
@@ -24,21 +24,38 @@ y = ['one']
 bool(x)        # False
 bool(y)        # True
 
-# isinstance() ---------------------------------------------------------------
+# isinstance() ----------------------------------------------------------------
 
-# because everything in Python is an object, isinsatnce works everywhere:
+# because everything in Python is an object, isinstance works everywhere:
 
 isinstance(now, datetime.datetime)  # True
 isinstance(234, int)                # True
 isinstance('hello', str)            # True
 
-# repr() ---------------------------------------------------------------------
+# issubclass() ----------------------------------------------------------------
+
+# The issubclass() function checks if the object (first argument) is a subclass
+# of classinfo (second argument).
+
+class Polygon:
+  def __init__(polygon_type):
+    print('Polygon is a ', polygon_type)
+
+class Triangle(Polygon):
+  def __init__(self):
+    Polygon.__init__('triangle')
+
+print(issubclass(Triangle, Polygon))          # True
+print(issubclass(Triangle, list))             # False
+print(issubclass(Triangle, (list, Polygon)))  # True
+
+# repr() ----------------------------------------------------------------------
 
 # returns a printable representation of the given object:
 
 print(repr(now))  # datetime.datetime(2017, 9, 5, 18, 23, 30, 607281)
 
-# callable() -----------------------------------------------------------------
+# callable() ------------------------------------------------------------------
 
 # returns True if the object passed appears callable:
 
@@ -47,7 +64,7 @@ def test():
 
 callable(test)  #True
 
-# dir() ----------------------------------------------------------------------
+# dir() -----------------------------------------------------------------------
 
 # tries to return a list of valid attributes of the object.
 
@@ -67,7 +84,7 @@ for obj in dir(random.Random):
     if obj[0] != '_':
         print(obj)
 
-# getattr() ------------------------------------------------------------------
+# getattr() -------------------------------------------------------------------
 
 # returns the value of an attribute of an object, given the attribute name,
 # but also lets you provide a default value to avoid raising an errors:
@@ -88,7 +105,7 @@ print(person.age)
 # This will return the default value if name doesn't exist
 print(getattr(person, 'name', 'No Name'))
 
-# id() -----------------------------------------------------------------------
+# id() ------------------------------------------------------------------------
 
 # returns the identity (unique integer) of an object
 

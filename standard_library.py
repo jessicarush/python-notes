@@ -133,5 +133,5 @@ for path, directories, files in os.walk(root, topdown=True):
             print(f)
         print('-' * 50)
 
-# Using this you could easily create a database or datatore, pulling out the
-# specific bits of information.
+# Using this you could easily create a database or structures file format,
+# pulling out the specific bits of information.
