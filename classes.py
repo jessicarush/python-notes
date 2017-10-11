@@ -175,6 +175,44 @@ print(bat)      # Batty – Lives: 1, Hit points: 0
 print(spider)   # Crawly – Lives: 1, Hit points: 10
 print(spike)    # Spike – Lives: 3, Hit points: 12
 
+# Multiple Inheritance and super() --------------------------------------------
+
+class Animal:
+  def __init__(self, name):
+    print(name, 'is an animal.');
+
+class Mammal(Animal):
+  def __init__(self, name):
+    print(name, 'is a warm-blooded animal.')
+    super().__init__(name)
+
+class NonWingedMammal(Mammal):
+  def __init__(self, name):
+    print(name, "can't fly.")
+    super().__init__(name)
+
+class NonMarineMammal(Mammal):
+  def __init__(self, name):
+    print(name, "can't swim.")
+    super().__init__(name)
+
+class Dog(NonMarineMammal, NonWingedMammal):
+  def __init__(self, name):
+    print(name, 'has 4 legs.');
+    super().__init__(name)
+
+chihuahua = Dog('Chihuahua')
+bat = NonMarineMammal('Bat')
+
+# Chihuahua has 4 legs.
+# Chihuahua can't swim.
+# Chihuahua can't fly.
+# Chihuahua is a warm-blooded animal.
+# Chihuahua is an animal.
+# Bat can't swim.
+# Bat is a warm-blooded animal.
+# Bat is an animal.
+
 # Calling methods from a class ------------------------------------------------
 
 # There are a couple of ways to call a method from a class:

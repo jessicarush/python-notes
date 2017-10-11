@@ -93,7 +93,7 @@ class Person:
     age = 43
 #   name = 'Ghost'
 
-# These two return - 43
+# These two return the age - 43
 person = Person()
 print(getattr(person, "age"))
 print(person.age)
@@ -104,6 +104,21 @@ print(person.age)
 
 # This will return the default value if name doesn't exist
 print(getattr(person, 'name', 'No Name'))
+
+# hasattr() -------------------------------------------------------------------
+
+# returns true if an object has the given named attribute and false if not.
+
+# hasattr(object, name)
+
+class Person:
+    age = 23
+    name = 'Raja'
+
+person = Person()
+
+print('Person has age?:', hasattr(person, 'age'))        # True
+print('Person has salary?:', hasattr(person, 'salary'))  # False
 
 # id() ------------------------------------------------------------------------
 
