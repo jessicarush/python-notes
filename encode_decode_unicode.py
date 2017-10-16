@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 '''Unicode'''
 
 # Note: Python 3 strings are Unicode strings not byte arrays.

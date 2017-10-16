@@ -385,6 +385,15 @@ result = map(square, numbers)
 print(result)       # <map object at 0x101185f28>
 print(set(result))  # {16, 1, 4, 9}
 
+# That being said, you could also use list comprehensions for this:
+# (expression for item in iterable) - More Pythonic!
+
+numbers = [1, 2, 3, 4]
+squares = (x ** 2 for x in numbers)
+
+print(squares)       # <generator object <genexpr> at 0x101553e08>
+print(set(squares))  # {16, 1, 4, 9}
+
 # ----------------------------------------------------------------------------
 # max()
 # The max() method returns the largest element in an iterable or largest of
@@ -444,7 +453,7 @@ print(mv[0])                      # 72
 print(bytes(mv[0:3]))             # b'Hel'
 
 # create list from memory view
-print(list(mv[0:3                 # [72, 101, 108]
+print(list(mv[0:3]))              # [72, 101, 108]
 
 # update index of mv
 print('Before update:', example)  # bytearray(b'Hello')
@@ -554,7 +563,7 @@ seqString = 'Python'
 print(list(reversed(seqString)))  # ['n', 'o', 'h', 't', 'y', 'P']
 
 seqTuple = ('P', 'y', 't', 'h', 'o', 'n')
-print(list(reversed(seqTuple  # ['n', 'o', 'h', 't', 'y', 'P']
+print(list(reversed(seqTuple)))  # ['n', 'o', 'h', 't', 'y', 'P']
 
 seqRange = range(5, 9)  # [8, 7, 6, 5]
 print(list(reversed(seqRange)))
@@ -596,18 +605,18 @@ print(round(2.675, 2))  # 2.67
 # sets the value of given attribute of an object: setattr(object, name, value)
 # Not really sure why you would use this instead of dot notation:
 
- class Person:
+class Person:
      name = 'Adam'
 
- p = Person()
+p = Person()
 
- print('Before change:', p.name)  # Adam
+print('Before change:', p.name)  # Adam
 
- setattr(p, 'name', 'Raja')
- print('After change:', p.name)  # Raja
+setattr(p, 'name', 'Raja')
+print('After change:', p.name)  # Raja
 
- p.name = 'Rick'
- print('After change:', p.name)  # Rick
+p.name = 'Rick'
+print('After change:', p.name)  # Rick
 
 # ----------------------------------------------------------------------------
 # slice()

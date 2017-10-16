@@ -73,8 +73,8 @@ print(db['jaune'])
 # install the Python driver redis-py: pip3 install redis
 # install the Server: brew install redis
 # launch Redis server: redis-server
-# test that the server is running: redis-cl ping (respose PONG)
-# shutdown server: redis-cl shutdown
+# test that the server is running: redis-cli ping (respose PONG)
+# shutdown server: redis-cli shutdown
 
 import redis
 conn = redis.Redis('localhost', 6379)

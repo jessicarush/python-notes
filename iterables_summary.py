@@ -9,14 +9,19 @@ colours_dict = {'red' : 'Pantone 185C',
                 'black' : 'Pantone 6C'}
 colours_set = {'red', 'orange', 'black'}
 
+print(type(colours_list))   # <class 'list'>
+print(type(colours_tuple))  # <class 'tuple'>
+print(type(colours_dict))   # <class 'dict'>
+print(type(colours_set))    # <class 'set'>
+
 # in each case use [] brackets to access a single element
 # (except sets which don't support indexing):
 
-print(colours_list[2])
-print(colours_tuple[2])
-print(colours_dict['black'])
+print(colours_list[2])        # black
+print(colours_tuple[2])       # black
+print(colours_dict['black'])  # Pantone 6C
 
-# You can combine data structures for example you can make:
+# You can combine data structures, for example, you can make:
 #  - a tuple of lists
 #  - a list of lists
 #  - a dictionary of lists (only the values van be lists)
