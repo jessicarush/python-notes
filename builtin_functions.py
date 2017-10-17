@@ -144,9 +144,9 @@ print(complex('5-9j'))  # (5-9j)
 # name -  a string which must be the name of the attribute to be removed
 
 class Coordinate:
-  x = 10
-  y = -5
-  z = 0
+    x = 10
+    y = -5
+    z = 0
 
 point1 = Coordinate()
 
@@ -168,9 +168,12 @@ print(dir(point1)) # [..., 'x', 'y']
 # show the names in the local module namespace:
 print(dir())
 
- # show all the Built-ins:
+# show all the Built-ins:
 for m in dir(__builtins__):
     print(m)
+
+# show all the methods available for lists:
+print(dir(list))
 
 # show the names in the random module:
 import random
@@ -332,7 +335,7 @@ help(documenting_naming)
 # ----------------------------------------------------------------------------
 # hex()
 # see binary_data.py
-# convert itegers to hexadecimal (base 16)
+# convert integers to hexadecimal (base 16)
 # ----------------------------------------------------------------------------
 # id()
 # see reflection.py
@@ -340,7 +343,7 @@ help(documenting_naming)
 # ----------------------------------------------------------------------------
 # input()
 # see while_loops.py
-# returns a string uf user input
+# returns a string of user input
 # ----------------------------------------------------------------------------
 # int()
 # see data_types.py
@@ -377,7 +380,7 @@ help(documenting_naming)
 # returns a list of the results.
 
 def square(n):
-  return n * n
+    return n * n
 
 numbers = (1, 2, 3, 4)
 result = map(square, numbers)
@@ -479,7 +482,7 @@ print(type(o))  # <class 'object'>
 # ----------------------------------------------------------------------------
 # oct()
 # see binary_data.py
-# convert itegers to octal (base 8)
+# convert integers to octal (base 8)
 # ----------------------------------------------------------------------------
 # open()
 # see files_read_write.py

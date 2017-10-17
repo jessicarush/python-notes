@@ -1,5 +1,12 @@
 '''Tuples'''
 
+# Tuple methods --------------------------------------------------------------
+
+dir(tuple)
+#  [..., 'count', 'index']
+
+# -----------------------------------------------------------------------------
+
 # Tuples are ordered (like lists) and immutable (unlike lists)
 
 # Create a tuple by providing values in brackets separated by commas. If you
@@ -100,9 +107,9 @@ print(bedroom.floor)
 print(bedroom.windows)
 print(bedroom[0])
 
-# Named tuples look and act like an immutable object
-# You can access attributes by using dot notation instead of dict style []
-# You can use it as a dict key
+# Named tuples look and act like an immutable object.
+# You can access attributes by using dot notation instead of dict style['key']
+# You can use it as a dict key.
 
 # Though tuples are immutable, tuples can contain mutable items. For example,
 # You could have a tuple of lists where the lists themselves cannot be changed

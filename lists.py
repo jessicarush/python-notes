@@ -1,5 +1,13 @@
 '''Lists'''
 
+# List methods ----------------------------------------------------------------
+
+dir(list)
+#  [..., 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert',
+#  'pop', 'remove', 'reverse', 'sort']
+
+# -----------------------------------------------------------------------------
+
 # Lists are mutable and ordered. They may contain duplicate items and can be
 # changed in place. There are several ways to make a list:
 

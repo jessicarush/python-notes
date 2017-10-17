@@ -1,11 +1,22 @@
 '''Strings'''
 
-# String Literals --------------------------------------------------------------
+# String methods --------------------------------------------------------------
+
+dir(str)
+#  [..., 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith',
+#  'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha',
+#  'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric',
+#  'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower',
+#  'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 'rjust',
+#  'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith',
+#  'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']'
+
+# String Literals -------------------------------------------------------------
 
 my_string = 'Some content'
 my_string = "Some content"
 
-# String together strings with +, if the lines are long add \:
+# Concatenate strings with +, if the lines are long add \:
 
 long_string = 'A long time ago ' + 'in a galaxy far, far away ' + \
     'blah blah bla...'
@@ -22,7 +33,7 @@ long_string = ('A long time ago '
 print(long_string)
 
 # You can also use triple quotes for long strings, but I think these are best
-# reserved for docstrings myself:
+# reserved for docstrings (see documenting_naming.py):
 
 long_string = """This string uses
 triple quotes because we're pretending
@@ -37,12 +48,12 @@ triple quotes because we're pretending \
 it's very, very long"""
 print(long_string)
 
-# str() - to convert to a string -----------------------------------------------
+# str() - to convert to a string ----------------------------------------------
 
 number = 4.5 * 3.25
 print(str(number))
 
-# Slice with [start : end : step] ----------------------------------------------
+# Slice with [start : end : step] ---------------------------------------------
 
 letters = 'abcdefghijk'
 print(letters[:-1])
@@ -51,7 +62,7 @@ print(letters[2:8])
 print(letters[:8])
 print(letters[2:8:2])
 
-# Break a string up into a list with .split() ----------------------------------
+# Break a string up into a list with .split() ---------------------------------
 
 test_string = 'Yeti Bigfoot Loch Ness Unicorn...'
 test_list = test_string.split()
@@ -64,7 +75,7 @@ test_string = ' '.join(test_list)
 print(test_string)
 print(type(test_string))
 
-# Information you can get from strings -----------------------------------------
+# Information you can get from strings ----------------------------------------
 
 print(len(test_string))
 print(test_string.startswith('Yeti'))
@@ -89,12 +100,14 @@ print(test_string.count(word))
 
 print(test_string.isalnum())
 
-# Remove and Replace -----------------------------------------------------------
+# Remove and Replace ----------------------------------------------------------
 
-# remove characters from the beginning and end with strip():
-
-test_string = test_string.strip('.')
-print(test_string)
+# remove characters from the beginning lstrip(), end rstrip() or both strip():
+name = ' .Raja. '
+name = name.lstrip()    #--> '.Raja. '
+name = name.rstrip()    #--> '.Raja.'
+name = name.strip('.')  #--> 'Raja'
+print(name)
 
 # Replace characters or words. You can also use a number argument
 # to limit the number of replacements like: test_string.replace(' ', '-', 2)

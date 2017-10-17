@@ -1,6 +1,15 @@
 '''Sets'''
 
-# Sets:
+# Set methods -----------------------------------------------------------------
+
+dir(set)
+#  [...,  'add', 'clear', 'copy', 'difference', 'difference_update', 'discard',
+#  'intersection', 'intersection_update', 'isdisjoint', 'issubset', 'issuperset',
+#  'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update',
+#  'union', 'update']
+
+# Sets: -----------------------------------------------------------------------
+
 #  - a set is like a dictionary but without the values
 #  - like a dictionary, sets are unordered
 #  - like a dictionary, each key must be unique
@@ -69,7 +78,7 @@ drinks = {
     'screwdriver' : {'orange juice', 'vodka'},
 }
 
-# check for a value with if, in, and, not, or, & {} ----------------------------
+# check for a value with if, in, and, not, or, & {} ---------------------------
 
 def test1():
     for key, values in drinks.items():
@@ -98,7 +107,8 @@ test3()
 
 def test4():
     for name, ingredients in drinks.items():
-        if 'vodka' in ingredients and not ('vermouth' in ingredients or 'cream' in ingredients):
+        if 'vodka' in ingredients and not (
+        'vermouth' in ingredients or 'cream' in ingredients):
             print('test 4: ', name)
 test4()
 

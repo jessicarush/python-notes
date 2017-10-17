@@ -1,5 +1,13 @@
 '''Dictionaries'''
 
+# Dictionary methods ----------------------------------------------------------
+
+dir(dict)
+#  [..., 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem',
+#  'setdefault', 'update', 'values']
+
+# -----------------------------------------------------------------------------
+
 # create a dict with = {}
 
 info = {
