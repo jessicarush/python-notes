@@ -11,7 +11,8 @@ dir(tuple)
 
 # Create a tuple by providing values in brackets separated by commas. If you
 # need to create a tuple from one value, you must add a comma at the end,
-# otherwise it won't actually be a tuple:
+# otherwise it won't actually be a tuple. TBH, it's actually the commas that
+# make groups a tuple:
 
 colour_tuple = ('Emerald')
 print(type(colour_tuple))  # <class 'str'>
@@ -19,8 +20,12 @@ print(type(colour_tuple))  # <class 'str'>
 colour_tuple = ('Emerald',)
 print(type(colour_tuple))  # <class 'tuple'>
 
-# NOTE It's not the enclosing parenthesis that define a tuple, it the fact that
-# we're providing more than one value (the commas).
+red = 'Red'
+colour_tuple = 'Emerald', red, 'Blue'
+print(type(colour_tuple))  # <class 'tuple'>
+
+# REPEAT: It's not the enclosing parenthesis that define a tuple, it the fact
+# that we're providing one or more values separated by commas.
 
 # It's the intention that lists contain items of the same type,
 # whereas tuples contain related items, not necessarily the same type.

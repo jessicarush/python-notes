@@ -2,91 +2,89 @@
 
 # List Comprehensions ---------------------------------------------------------
 
+# [expression for item in iterable]
 # [expression for item in iterable if condition]
 
-# You could build a list of integers like this:
+# Let's say we wanted to build a list of squares. Traditionally we could
+# create a list, then use an iterator and range() like this:
 
-number_list = []
-number_list.append(1)
-number_list.append(2)
-number_list.append(3)
-number_list.append(4)
-number_list.append(5)
+squares = []
+for number in range(1,11):
+    squares.append(number ** 2)
 
-# or use an iterator and range() like this:
+print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
-number_list = []
-for number in range(1,6):
-    number_list.append(number)
+# or we could do it this way:
 
-# or turn the output of range directly into a list:
+squares = list(range(1,11))
+for number in squares:
+    squares[number-1] = number ** 2
 
-number_list = list(range(1,6))
+print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
-# or use list comprehensions:
+# or we could use list comprehensions:
 # [expression for item in iterable]
 
-number_list = [number for number in range(1,6)]
-print(number_list)  # [1, 2, 3, 4, 5]
+squares = [number ** 2 for number in range(1,11)]
 
-# The expression starts the list, the item is part of the for loop:
+print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
-number_list = [(number + 3) for number in range(0,5)]
-print(number_list)  # [3, 4, 5, 6, 7]
+# First, define the expression for the values you want to store in the list,
+# then write a for loop to generate the numbers you want to feed into the
+# expression:
+
+bottles = [(str(number) + ' bottles') for number in range(12,49,12)]
+
+print(bottles)  # ['12 bottles', '24 bottles', '36 bottles', '48 bottles']
 
 # List comprehension with conditionals:
 # [expression for item in iterable if condition]
 
-number_list = [number for number in range(1,10) if number % 2 == 1]
-print(number_list)  # [1, 3, 5, 7, 9]
+odds = [number for number in range(1,10) if number % 2 == 1]
+
+print(odds)  # [1, 3, 5, 7, 9]
 
 # The above is the same as:
 
-number_list = []
+odds = []
 for number in range(1,10):
     if number % 2 == 1:
-        number_list.append(number)
+        odds.append(number)
+
+# Because this expression is so simple we could obviously just do this:
+
+odds = list(range(1,10,2))
+
+# But the point here is to illustrate the syntax. The idea is to use an
+# actual expression instead of just the number as is.
 
 # Another example with nested loops. Here's the traditional way:
 
 rows = range(1,4)
 cols = range(1,3)
 
+cells = []
 for row in rows:
     for col in cols:
-        print (row, col)
+        cells.append((row, col))
 
-# or use a comprehension: Assign it to a variable 'cells' making it a list of
-# (row, col) tuples:
+print(cells)  # [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]
+
+# or use a comprehension:
 
 rows = range(1,4)
 cols = range(1,3)
 
 cells = [(row, col) for row in rows for col in cols]
-for cell in cells:
-    print(cell)
 
-# You can also use tuple unpacking to pull the row col values from each tuple:
-
-for row, col in cells:
-    print(row, col)
-
-# Review list comprehensions [expression for item in iterable]:
-
-even_numbers = [i for i in range(0, 10, 2)]
-print(even_numbers)  # [0, 2, 4, 6, 8]
-
-# ... or [expression for item in iterable if condition]:
-
-even_numbers = [i for i in range(10) if i % 2 == 0]
-print(even_numbers)  # [0, 2, 4, 6, 8]
+print(cells)  # [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]
 
 # Dictionary Comprehensions ---------------------------------------------------
 
 # {key_expression : value_expression for expression in iterable}:
 
 word = 'letters'
-letter_counts = {letter : word.count(letter) for letter in word}
+letter_counts = {letter: word.count(letter) for letter in word}
 print(letter_counts)        # {'l': 1, 'e': 2, 't': 2, 'r': 1, 's': 1}
 print(type(letter_counts))  # <class 'dict'>
 
@@ -96,7 +94,7 @@ print(type(letter_counts))  # <class 'dict'>
 # asking it to count each letter once.
 
 word = 'letters'
-letter_counts = {letter : word.count(letter) for letter in set(word)}
+letter_counts = {letter: word.count(letter) for letter in set(word)}
 
 # Review dictionary comprehensions
 # {key_expression: value_expression for expression in iterable}:

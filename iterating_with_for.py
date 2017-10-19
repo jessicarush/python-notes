@@ -14,6 +14,10 @@ for item in tuple1:
 for item in set1:
     print(item)
 
+# Iterate over a slice.
+for item in list1[:1]:
+    print(item)
+
 # Iterating over strings returns characters.
 string1 = "ten"
 
@@ -42,7 +46,7 @@ for item in dict1.items():
 for key, value in dict1.items():
     print(key, 'is', value)
 
-# Iterating over multiple sequences with zip() ---------------------------------
+# Iterating over multiple sequences with zip() --------------------------------
 
 days = ['Monday', 'Tuesday', 'Wednesday']
 fruits = ['Apple', 'Banana', 'Pear']
@@ -52,13 +56,13 @@ desserts = ['Ice cream', 'Cookies', 'Cake', 'Candy']
 for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
     print(day, ': eat', fruit, ', drink', drink, ', cheat with', dessert)
 
-# for using range(start, stop, step) -------------------------------------------
+# for using range(start, stop, step) ------------------------------------------
 
 for x in range(5, -1, -1):
     print(x, end='...')
 
-evennumberlist = list(range(0, 20, 2))
-print(evennumberlist)
+evens = list(range(0, 20, 2))
+print(evens)
 
 # using multiple for loops ----------------------------------------------------
 
@@ -67,7 +71,7 @@ for i in range(1, 13):
         print(i, 'times',  j, 'is', i*j)
     print('------------------')
 
-# break and continue -----------------------------------------------------
+# break and continue ----------------------------------------------------------
 
 cheeses = []
 for cheese in cheeses:
@@ -95,7 +99,7 @@ for colour in colours:
 # item that it's iterating over. When there are no more items, the iterator
 # returns an error and the for loop handles the error and terminates
 
-# Create your own iterator with iter() and next() ------------------------------
+# Create your own iterator with iter() and next() -----------------------------
 
 string = '12345'
 my_iterator = iter(string)

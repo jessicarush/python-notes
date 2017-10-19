@@ -10,7 +10,7 @@ dir(dict)
 
 # create a dict with = {}
 
-info = {
+person = {
     'firstname' : 'Mary',
     'lastname' : 'Jane',
     'age' : 70,
@@ -19,8 +19,8 @@ info = {
 
 # Add or change an item
 
-info['age'] = 40
-info['height'] = '5\'5"'
+person['age'] = 40
+person['height'] = '5\'5"'
 
 # convert to a dict with dict() ----------------------------------------------
 
@@ -48,15 +48,15 @@ location = {
     'province' : 'BC',
 }
 
-info.update(location)
+person.update(location)
 
 # delete an item by key with del ---------------------------------------------
 
-del info['age']
+del person['age']
 
 # delete all items with .clear() ---------------------------------------------
 
-info.clear()
+person.clear()
 
 # get an value by [key] and get() --------------------------------------------
 
@@ -67,27 +67,27 @@ print(location['street'])
 # get its value. If not, you'll get None or the optional value:
 
 print(location.get('country')) # returns None
-print(location.get('country', 'country not specified'))
+print(location.get('country', 'country not specified')) # country not specified
 
 # Or use 'in' to test when looking for a key:
 
 while True:
-    dict_key = input('Enter a key (q to quit): ')
-    if dict_key == 'q':
+    key = input('Enter a key (q to quit): ')
+    if key == 'q':
         break
-    elif dict_key in location:
-        print(location[dict_key])
+    elif key in location:
+        print(location[key])
     else:
-        print('There is no ' + dict_key)
+        print('There is no ' + key)
 
 # Again, using get() to avoid an exception:
 
 while True:
-    dict_key = input('Enter a key (q to quit): ')
-    if dict_key == 'q':
+    key = input('Enter a key (q to quit): ')
+    if key == 'q':
         break
-    dict_value = location.get(dict_key, 'There is no ' + dict_key)
-    print(dict_value)
+    value = location.get(key, 'There is no ' + key)
+    print(value)
 
 # .keys() .values() .items() -------------------------------------------------
 
@@ -95,35 +95,55 @@ while True:
 
 print(location.keys())
 
-list_of_keys = list(location.keys())
-print(list_of_keys)
+key_list = list(location.keys())
+print(key_list)
 
 # get all values with .values()
 
 print(location.values())
 
-list_of_values = list(location.values())
-print(list_of_values)
+value_list = list(location.values())
+print(value_list)
 
 # get all key-value pairs with .items()
 
 print(location.items())
 
-list_of_items = list(location.items())
-print(list_of_items)
+items_list = list(location.items())
+print(items_list)
+
+# When iterating over keys, values or both... keep in mind that keys are the
+# default so:
+
+for i in location.keys():
+    print(i)
+
+# is the same as:
+
+for i in location:
+    print(i)
+
+# but the other two methods (values and items) are still required:
+
+for i in location.values():
+    print(i)
+
+for k, v in location.items():
+    print(k, '–', v)
 
 # .sort() and sorted() -------------------------------------------------------
 
 ordered_keys = list(location.keys())
+
 ordered_keys.sort()
 for key in ordered_keys:
-    print(key)
+    print(key, '–', location[key])
 
 # sort keys with sorted()
 # location.keys() behaves like a sequence and can therefor be passed to sorted
 
-for dict_key in sorted(location.keys()):
-    print(dict_key + '-' + location[dict_key])
+for key in sorted(location.keys()):
+    print(key, '–', location[key])
 
 # copy a dict with .copy() ---------------------------------------------------
 
@@ -135,11 +155,11 @@ print(location_copy)
 
 # Convert to a string with join() --------------------------------------------
 
-string_of_keys = ', '.join(location.keys())
-print(string_of_keys)
+key_string = ', '.join(location.keys())
+print(key_string)
 
-string_of_values = ', '.join(location.values())
-print(string_of_values)
+value_string = ', '.join(location.values())
+print(value_string)
 
 # setdefault() ---------------------------------------------------------------
 
@@ -162,16 +182,19 @@ jellybeans = defaultdict(int)
 jellybeans['red']
 
 # The argument to defaultdict() is a function. The function returns the value
-# for the missing key
+# for the missing key.
 
 def missing():
-    return 'what?'
+    print('A value was not entered for a new key')
+    print('It has been given a default value of 0')
+    return 0.0
 
 jellybeans = defaultdict(missing)
 jellybeans['orange']
+print(jellybeans['orange'])
 
 # you can use int(), list(), or dict() functions to return empty values for
-# those types
+# those types:
 
 jellybeans = defaultdict(int)   # returns 0
 jellybeans = defaultdict(list)  # returns an empty list
@@ -181,12 +204,15 @@ jellybeans = defaultdict(dict)  # returns an empty dictionary
 # jellybeans = defaultdict(list):
 
 jellybeans = defaultdict(list)
-jellybeans['newkey'].append('item1')
-jellybeans['newkey'].append('item2')
+jellybeans['archived'].append('gray')
+jellybeans['archived'].append('beige')
+print(jellybeans['archived'])  # ['gray', 'beige']
 
 # you could also use lambda
 
-jellybeans = defaultdict(lambda: 'what?')
+jellybeans = defaultdict(lambda: None)
+jellybeans['red']
+print(jellybeans['red'])  # None
 
 # an example of a counter:
 
@@ -195,10 +221,12 @@ jellybeans = defaultdict(int)
 for key in ['red', 'red', 'orange', 'red']:
     jellybeans[key] += 1
 
+print(jellybeans)  # defaultdict(<class 'int'>, {'red': 3, 'orange': 1})
+
 # OrderedDict() --------------------------------------------------------------
 
-# OrderedDict() rememebers the order of key addition and returns them in that
-# same order (remember, dictionaries are NOT usually ordered like lists
+# OrderedDict() remembers the order of key addition and returns them in that
+# same order (remember, dictionaries are NOT usually ordered like lists)
 
 from collections import OrderedDict
 
@@ -207,8 +235,8 @@ numbers = OrderedDict([
     ('two', 'dos'),
     ('three', 'tres'),
     ('four', 'quatro')
-])
+    ])
 
 numbers['five'] = 'cinqo'
-
 print(numbers)
+# OrderedDict([('one', 'uno'), ('two', 'dos'), ('three', 'tres'), ...])

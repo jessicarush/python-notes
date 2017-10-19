@@ -2,11 +2,16 @@
 
 # Compare data structures:
 
-colours_list = ['red', 'orange', 'black']
-colours_tuple = ('red', 'orange', 'black')
+# List: mutable, ordered, repeats ok
+colours_list = ['red', 'orange', 'black', 'black']
+# Tuple: immutable, ordered, repeats ok
+colours_tuple = ('red', 'orange', 'black', 'black')
+# Dict: keys – immutable, unordered, no repeats
+#       values – mutable, unordered, repeats ok
 colours_dict = {'red' : 'Pantone 185C',
                 'orange' : 'Pantone 021C',
                 'black' : 'Pantone 6C'}
+# Sets: mutable, unordered, no repeats
 colours_set = {'red', 'orange', 'black'}
 
 print(type(colours_list))   # <class 'list'>
@@ -34,8 +39,8 @@ dict_of_lists = {'Colors' : colors,
                  'Moods' : moods,
                  'Senses' : senses,}
 
-# NOTE: Dictionary keys are immutable, therefor you cannot use a list or
-# another dictionary as a key, but you CAN use a tuple because tuples
+# Reminder: Dictionary keys are immutable, therefor you cannot use a list
+# or another dictionary as a key, but you CAN use a tuple because tuples
 # are immutable too. A good example of this is with mapping – the GPS
 # coordinates may be the key:
 
