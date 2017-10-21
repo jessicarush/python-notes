@@ -71,3 +71,67 @@ a = get_inputs('first')
 b = get_inputs('second')
 
 print('{} * {} = {}'.format(a, b, a * b))
+
+# A slightly different approach ----------------------------------------------
+
+# A 'flag' variable is a great way of signaling a while loop when you have
+# many things that could/should end the loop. Using a flag variable, our loop
+# only has to check one condition.
+
+print('Kilograms to Pounds converter')
+prompt = 'Enter kilos (q to quit): '
+KILO_POUNDS = 2.20462
+active = True  # this is a flag variable!
+
+while active:
+    value = input(prompt)
+    if value == 'q':
+        flag = False
+    else:
+        try:
+            new_value = int(value) * KILO_POUNDS
+            print(value, 'kilograms is', new_value, 'pounds')
+        except:
+            print("I need a number or 'q' to quit: ")
+
+# While Loops with Lists & Dicts ----------------------------------------------
+
+# A for loop is effective for iterating through a list but apparently, "You
+# shouldn't modify a list inside a for loop because Python will have trouble
+# keeping track of the items in the list. To modify a list as you work through
+# it, use a while loop." Using a while loop allows you to better collect,
+# store and organize.
+
+unconfirmed_users = ['rick', 'morty', 'raja', 'bob']
+confirmed_users = []
+
+while unconfirmed_users:
+    current_user = unconfirmed_users.pop()
+    print('Magical verification of user: {}'.format(current_user.title()))
+    confirmed_users.append(current_user)
+
+for user in confirmed_users:
+    print('Confirmed user: {}'.format(user.title()))
+
+# Filling a dict with user input ----------------------------------------------
+
+shopping_list = {}
+
+while True:
+    item = input('Item (q to quit): ')
+    if item == 'q':
+        break
+    store = input('Store: ')
+    if store in shopping_list:
+        shopping_list[store].append(item)
+    else:
+        shopping_list[store] = [item]
+
+if shopping_list:
+    print('Shopping list\n')
+
+for store, items, in shopping_list.items():
+    print(store.title())
+    for item in items:
+        print('– ', item)
+    print('-' * 25)

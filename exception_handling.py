@@ -5,12 +5,12 @@
 # An exception is a Python object that represents an error.
 
 # There's two types of errors we can get: syntax errors and exceptions.
-# Exceptions are a results of flaws in a programs logic or conditions we didn't
+# Exceptions are a result of flaws in a programs logic or conditions we didn't
 # predict. An example of an exception could be dividing by 0 or attempting to
 # create a new database but there isn't enough space on the drive specified.
 
-# When a Python script raises an exception, it must either handle the exception
-# immediately otherwise the program terminates and quits (crashes).
+# When a Python script raises an exception, it must handle the exception
+# immediately or the program terminates and quits (crashes).
 
 # https://docs.python.org/3.4/library/exceptions.html
 # https://www.tutorialspoint.com/python/python_exceptions.html

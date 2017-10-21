@@ -35,13 +35,13 @@ singers = [
     ['Alison', 'Mosshart'],
     ['Win', 'Butler'],
     ['Etta', 'James'],
-]
-print(type(singers))
-with open('singers', 'w') as fout:  # context manager
+    ]
+
+with open('singers', 'w') as fout:
     csvout = csv.writer(fout)
     csvout.writerows(singers)
 
-# This creates a file singers. Try readind it back in:
+# This creates a file singers. Try reading it back in:
 
 with open('singers', 'r') as fin:
     csvin = csv.reader(fin)
@@ -68,7 +68,7 @@ singers = [
     {'first': 'David', 'last': 'Bowie'},
     {'first': 'Josh', 'last': 'Homme'},
     {'first': 'Annie', 'last': 'Lennox'},
-]
+    ]
 
 with open('singers', 'w') as fout:
     csvout = csv.DictWriter(fout, ['first', 'last'])
@@ -137,10 +137,10 @@ print(len(root[0])) # number of breakfast items
 
 # Other standard Python XML libraries include:
 # xml.dom - This module loads the entire XML file into memory and lets you
-# access all the pieces equally.
+#           access all the pieces equally.
 # xml.sax - simple API for XML, parses XML on the fly, so it does not have
-# to load everything into memory at once. A good choice if you need to
-# process very large streams of XML.
+#           to load everything into memory at once. A good choice if you need
+#           to process very large streams of XML.
 
 # HTML -----------------------------------------------------------------------
 
@@ -159,8 +159,7 @@ print(len(root[0])) # number of breakfast items
 
 # Here's a pythonic data structure to use:
 
-menu = \
-{
+menu = {
 'breakfast': {
     'hours': '7-11',
     'items': {
@@ -218,7 +217,7 @@ class DTEncoder(json.JSONEncoder):
         # isinstance() checks the type of object:
         if isinstance(obj, datetime.datetime):
             return int(mktime(obj.timetuple()))
-        # else it's something the decoder knows:
+        # else we'll assume it's something the decoder knows:
         return json.JSONEncoder.default(self, obj)
 
 json.dumps(now, cls=DTEncoder)
@@ -297,7 +296,7 @@ print(data['poems'][1]['title'])
 # The standard configparser module handles Windows-style .ini files.
 # Such files have sections of key = value definitions.
 
-# practice.cfg code for examle below:
+# practice.cfg code for example below:
 
 """
 [english]
@@ -352,7 +351,7 @@ with open('music.pickle', 'rb') as unpickle_file:
 
 print(unkle == unkle2) # True
 
-# You can picke as many objects as you want to one file, you just have to
+# You can pickle as many objects as you want to one file, you just have to
 # remember to load them back in the same order:
 
 queens = ('Villians', 'QOTSA', '2017', (

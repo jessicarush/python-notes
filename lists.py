@@ -45,7 +45,7 @@ a_list.append('item')
 a_string = "11-7-24-19-74"
 a_list = a_string.split('-')  # ['11', '7', '24', '19', '74']
 
-# Acessing list valus ---------------------------------------------------------
+# Accessing list values -------------------------------------------------------
 
 # Get an item by [position]
 
@@ -105,9 +105,12 @@ list3 = list1 + list2   # creates one list
 # .remove() -------------------------------------------------------------------
 
 # Remove an item by value with .remove(). Note this will only remove the first
-# occurrence of the value in the list. Use a for loop to delete more than one.
+# occurrence of the value in the list. Use a loop to delete more than one.
 
 list2.remove('four')
+
+while 'four' in list2:
+    list2.remove('four')
 
 # del -------------------------------------------------------------------------
 
@@ -137,6 +140,8 @@ print("List3: ", list3)         # List3: ['one', 'two', 'three', 'four'...]
 popped_item = list3.pop(0)
 print("List3: ", list3)         # List3: ['two', 'three', 'four'...]
 print('popped: ', popped_item)  # popped item:  one
+
+# see while_loops.py for another example using.pop()
 
 # .index() --------------------------------------------------------------------
 

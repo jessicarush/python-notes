@@ -3,12 +3,12 @@
 # A string and an integer are examples of built-in Python classes.
 # A class is logical grouping of data and functions. The "integer" class is
 # like an instruction manual for making integer objects. To make your own
-# object, you'll need to first define a class:
+# objects, you'll need to first define a class:
 
 class Person():
     pass
 
-# You can create an object from a class (instantiating) by calling it as if it
+# You can create an instance of a class (instantiating) by calling it as if it
 # were a function:
 
 henry = Person()
@@ -17,11 +17,14 @@ henry = Person()
 # assigns it the name henry.
 
 class Person():
+
     def __init__(self):
         pass
 
-# The __init__ is a special method that initializes an individual object from
-# its class definition. The self argument specifies that it refers to the
+# The __init__ (initialize) is a special method. Python runs it automatically
+# whenever we create a new instance from the class. Everything defined in the
+# __init__ method will be applied to this new instance when it is created
+# (instantiated). The self argument specifies that it refers to the
 # individual object itself. When you define __init__() in a class definition,
 # its first parameter should always be self. Although self is not a reserved
 # word in Python, it's common usage.
@@ -31,6 +34,7 @@ class Person():
 # others created from the same class.
 
 class Person():
+
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -38,7 +42,11 @@ class Person():
 astronaut = Person('Roberta Bondar', 40)
 baker = Person('Mrs. Lovett', 35)
 
-# NOTE: the name value passed in is saved with the object as an attribute.
+# The name and age variables have the prefix self. Any variable prefixed with
+# self is available to every method in the class and we'll also be able to
+# access these variables through any instance of the class.
+
+# The name and age passed in is saved with the object as an attribute.
 # When a variable is bound to an instance of a class, it's called a data
 # attribute. You can read and write this attribute directly by using dot
 # notation:
@@ -72,11 +80,43 @@ class Person():
 
 # Class attributes will be available to all instances. Basically if you type
 # something like baker.nationality, it will check first in baker for the value,
-# if it doesn't fins it there it will look in the class. Note that if you do a
+# if it doesn't find it there it will look in the class. Note that if you do a
 # new assignment for an instance, you are not reassigning the original
 # variable, you are creating a new local instance variable with the same name:
 
 baker.nationality = 'British'  # local instance variable
+
+# Default values --------------------------------------------------------------
+
+# Looking at the example above, we could also look at nationality = 'Canadian'
+# as a default value being set for an attribute. In these cases, it makes more
+# sense to specify this initial value in the body of the __init__ method. Note
+# that if you specify a default value for an attribute like this, you don't
+# need to include it as a parameter in the __init__ methods parenthesis.
+
+class Person():
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.nationality = 'Canadian'  # attribute
+
+# When you set a default value this way, if you want to change the value for an
+# instance, you would do that the same way as above: instance.attribute = 'xyz'
+# That being said, you can also set default values this way:
+
+class Person():
+
+    def __init__(self, name, age, nationality='Canadian'):
+        self.name = name
+        self.age = age
+        self.nationality = nationality
+
+# The main difference here is that we can change the nationality when the
+# instance is created, if we want to. In the previous example we'd have to
+# write separate assignment line. There's also a good example below showing
+# how default values set in the parameters can be helpful when creating
+# subclasses whose defaults should be different.
 
 # __dict__ --------------------------------------------------------------------
 
@@ -129,25 +169,33 @@ print(doctor.name)  # Doctor Fudd
 # from the parent using super():
 
 class Person():
-    def __init__(self, name):
+    def __init__(self, name, age, email, status):
         self.name = name
-
-class EmailPerson(Person):
-    def __init__(self, name, email):
-        super().__init__(name)
         self.email = email
+        self.age = age
+        self.email = email
+        self.satus = status
+
+class MDPerson(Person):
+    def __init__(self, name, age, email, status):
+        self.name = "Doctor " + name
+        super().__init__(age, email, status)
 
 # The above could be written like this:
 
-class EmailPerson(Person):
-    def __init__(self, name, email):
-        self.name = name
+class MDPerson(Person):
+    def __init__(self, name, age, email, status):
+        self.name = "Doctor " + name
         self.email = email
+        self.age = age
+        self.email = email
+        self.satus = status
 
-# But then we would loose our inheritance. If the definition of the parent
-# class changes, using super() ensures the child will inherit the changes.
+# But then not only are we duplicating a bunch of code, but we are also loosing
+# our inheritance. By using super(), if the definition of the parent class
+# changes, the child will inherit the changes.
 
-# Another example:
+# .super() with default values ------------------------------------------------
 
 class Enemy():
     def __init__(self, name='Enemy', hp=0, lives=1):

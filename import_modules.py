@@ -32,6 +32,10 @@ from random import choice as mix
 
 mix(possibilities)
 
+# Import a class from a module:
+
+from my_classes import Person
+
 # When importing, Python looks in the current directory first (so if you have a
 # file named random.py in your current directory, it will use that over the one
 # in the standard library. The standard library on a mac:
@@ -40,10 +44,10 @@ mix(possibilities)
 
 # __name__ == '__main__' -----------------------------------------------------
 
-# If you intend for your module to be imported, remember that your program should
-# most likely run by calling a function, not just start running as soon as its
-# imported. When you want to test and run your code from within module itself,
-# use this:
+# If you intend for your module to be imported, remember that your program
+# should most likely run by calling a function, not just start running as soon
+# as its imported. When you want to test and run your code from within module,
+# itself use this:
 
 if __name__ == '__main__':
     pass # call the function that starts the script
