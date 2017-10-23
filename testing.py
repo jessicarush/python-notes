@@ -1,10 +1,12 @@
 '''Testing Python Code'''
 
-# Run a Python Code Checker ---------------------------------------------------
+# Code checkers: pylint or pycodestyle ----------------------------------------
 
-# These check for code errors and style issues. Examples are:
+# These check for code errors and style issues:
+# https://pylint.readthedocs.io/en/latest/
+# https://pypi.python.org/pypi/pycodestyle/2.2.0
 # pylint - $ pip3 install pylint
-# pep8 - $ pip3 install pep8
+# pycodestyle - $ pip3 install ppycodestyle
 
 # Test this file: $ pylint myfile.py or $ pep8 ch12_3.py
 
@@ -15,70 +17,205 @@ print(A)
 print(B)
 print(C)
 
-# pylint output lines starting with an E: stand for error
+# pylint message types can be:
+#     - [R]efactor for a “good practice” metric violation
+#     - [C]onvention for coding standard violation
+#     - [W]arning for stylistic problems, or minor programming issues
+#     - [E]rror for important programming issues (i.e. probably bug)
+#     - [F]atal for errors which prevented further processing
 
-# pylint always wants a doctring at the top of the module
+# pylint always wants a docstring at the top of the module
 
 # If variables are defined outside of a function or class, it assumes it's a
 # constant and as such, wants the name to be all caps and underscores (see
-# docmenting_naming.py). The error will read: Invalid constant name "b"
-# (invalid-name).
+# documenting_naming.py). The error will read: Invalid constant name
 
-# pep8 always expects 2 blank lines following an import, function def or class
+# pep8 always expects 2 blank lines following an import, function def or class.
+# pep8 expects all imports to be at the top of the file.
 
-# pep8 expects all imports to be at the top of the file
+# Testing code with assert ----------------------------------------------------
 
-# Run a Python Code Tester ----------------------------------------------------
+# To assert is to ensure something is True
 
-# These check for errors in code logic using your own tests. Examples are:
-# pytest - https://docs.pytest.org/en/latest/contents.html
-# doctest - https://docs.python.org/3.6/library/doctest.html
-
-# content for pytest:
-
-def func1(x):
-    return x + 1
-
-def test_answer():
-    assert func1(4) == 5  # To assert is to ensure something is True
-
-# run pytest: $ pytest myfile.py
-
-# Another assert example ------------------------------------------------------
-
-# You can simply use the assert statement for asserting test expectations
-
-number = float(input('Enter a number between 1 and 10 '))
-
-assert 0.0 < number < 10.0, 'Number not between 1 and 10!'
-print("Number with range - test passed")
-
-# Create test functions with asserts ------------------------------------------
-
-def func2(text):
+def words(text):
     return text.title()
     # from string import capwords
     # return capwords(text)
 
 def test_one_word():
-    assert func2('duck') == 'Duck', 'Single word fail!'
+    assert words('duck') == 'Duck', 'Single word failed!'
 
-def test_mult_words():
-    assert func2('flock of ducks') == 'Flock Of Ducks', 'Multiple word fail!'
+def test_many_words():
+    assert words('flock of ducks') == 'Flock Of Ducks', 'Multiple words failed!'
 
 def test_with_apostrophes():
-    assert func2("I'm a duck") == "I'm A Duck", 'Apostrophe fail!'
+    assert words("I'm a duck") == "I'm A Duck", 'Apostrophe fail!'
 
 test_one_word()
-test_mult_words()
+test_many_words()
 test_with_apostrophes()
 
-# NOTE: you can write all your tests in one file a simply import the file that
-# contains you want to test.
+# Code tester: pytest ---------------------------------------------------------
 
-# doctest is written in the docstring itself ----------------------------------
+# Code testers still use assert but include many more features. The modules
+# pytest and unittest seem to be the most common. The unnitest module is part
+# of the standard library but the pytest module seems to be much more popular
+# and recommended by most people on reddit and slant. The main reason seems to
+# be that pytest introduced the concept that Python tests should be plain
+# functions instead of forcing developers to include their tests inside large
+# test classes (unnitest).
 
-# try running the file normally and also verbosely: python3 ch12_3.py -v
+# pytest - https://docs.pytest.org/en/latest/contents.html
+# Code testers check for errors in code logic using your own tests.
+
+# content for myfile.py:
+
+def func1(x):
+    return x + 1
+
+def test_answer():
+    assert func1(4) == 5
+
+# run pytest: $ pytest myfile.py
+
+# NOTE: you can write all your tests in one file a import the module and
+# functions that you want to test.
+
+# Code tester: unittest -------------------------------------------------------
+
+# The Python standard library also provides a module to automate the testing of
+# a functions output: unittest. A unit test verifies that one specific aspect
+# of a functions behaviour is correct. A test case is a collection of unit
+# tests that together prove that a function behaves as it's supposed to, within
+# the full range of situations you expect it to handle. A good test case
+# considers all the possible kinds of input a function could receive.
+
+# Example function to test:
+
+def format_name(first, last, middle=' '):
+    '''Generate neatly formatted name'''
+    if middle != ' ':
+        middle = ' ' + middle + ' '
+    full_name = first + middle + last
+    return full_name.title()
+
+# Example test file test_functions.py:
+
+import unittest
+# import the function(s) to be tested
+
+class NamesTestCase(unittest.TestCase):
+    '''Tests for my_program.py'''
+
+    def test_first_last(self):
+        '''Do names like Janis Joplin work?'''
+        formatted = format_name('janis', 'joplin')
+        self.assertEqual(formatted, 'Janis Joplin')
+
+    def test_first_middle_last(self):
+        '''Do names like Martin Luther King work?'''
+        formatted = format_name('martin', 'king', 'luther')
+        self.assertEqual(formatted, 'Martin Luther King')
+
+unittest.main()
+
+# You can call your test class anything you want but it must inherit from
+# unittest.TestCase. Methods that start with 'test_' will will be run
+# automatically when we run the test file. The unittest.TestCase class allows
+# you to use a number of special assert methods. These can only be used in a
+# class that inherits from unittest.TestCase (these are just a few of them):
+
+# assertEqual(a, b)         – verify that a == b
+# asertNotEqual(a, b)       – verify that a != b
+# assertTrue(x)             – verify that x is True
+# assertFalse(x)            – verify that x is False
+# assertIn(item, list)      – verify that item is in list
+# assertNotIn(item, list)   – verify that item is not in list
+
+# testing a class is similar to testing a function – much of the work involves
+# testing the methods in the class, but there are a few differences.
+
+# Example class to test:
+
+class AnonymousSurvey():
+    '''Collect anonymous answers to a surevy question'''
+
+    def __init__(self, question):
+        '''Stores question and prepares to store responses'''
+        self.question = question
+        self.responses = []
+
+    def show_question(self):
+        '''Show the survey question'''
+        print(self.question)
+
+    def store_response(self, new_response):
+        '''Store a single response to the survey'''
+        self.responses.append(new_response)
+
+    def show_results(self):
+        '''Show all the responses to the survey'''
+        print('Survey Results:')
+        for response in self.responses:
+            print('– ' + response)
+
+
+# Example code that uses the class:
+
+question = 'What is your favourite language?'
+my_survey = AnonymousSurvey(question)
+my_survey.show_question()
+
+while True:
+    response = input('Language (q to quit): ')
+    if response == 'q':
+        break
+    my_survey.store_response(response)
+
+my_survey.show_results()
+
+# Example test file test_classes.py:
+
+# This test will verify that a single response to the survey question is stored
+# properly. Once the test is written, we can safely extend the class and its
+# modules to include more functionality.
+
+import unittest
+# import the class(es) to be tested
+
+class TestAnonymousSurvey(unittest.TestCase):
+    '''Tests for the class AnonymousSurvey'''
+
+    def setUp(self):
+        '''Create a survey and set of responses for test methods to use'''
+        question = 'What is your favourite language?'
+        self.my_survey = AnonymousSurvey(question)
+        self.responses = ['Python', 'Ruby', 'Javascript']
+
+    def test_single_response(self):
+        '''Test that a single response is stored properly'''
+        self.my_survey.store_response(self.responses[0])
+        self.assertIn(self.responses[0], self.my_survey.responses)
+
+    def test_multi_response(self):
+        '''Test that a multiple responses are stored properly'''
+        for response in self.responses:
+            self.my_survey.store_response(response)
+        for response in self.responses:
+            self.assertIn(response, self.my_survey.responses)
+
+
+unittest.main()
+
+# unittest.TestCase has a setUp() method that allows you to create objects once
+# and use them in each of your test methods. When you include a setUp() method,
+# Python runs it before running each method that starts with 'test_'.
+
+# Code tester: doctest --------------------------------------------------------
+
+# doctest - https://docs.python.org/3.6/library/doctest.html
+# Doctests are written in the docstring. Try running the file normally and
+# also verbosely: python3 testing.py -v
 
 def func3(x):
     """
