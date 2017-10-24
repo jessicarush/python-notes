@@ -129,3 +129,11 @@ for i in range(0, len(my_list)):
 
 for i in my_list:
     print(i)
+
+# Note ------------------------------------------------------------------------
+
+# A for loop is effective for iterating through a list but apparently, "You
+# shouldn't modify a list inside a for loop because Python will have trouble
+# keeping track of the items in the list. To modify a list as you work through
+# it, use a while loop." Using a while loop allows you to better collect,
+# store and organize.
