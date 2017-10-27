@@ -112,7 +112,7 @@ with open('singers', 'r') as fin:
 # inspired multiple Python libraries that differ in approach and
 # capabilities. The simplest way to parse XML in Python is by using:
 
-# ElementTree
+# ElementTree:
 
 # This will parse the menu.xml file and print some tags and attributes:
 

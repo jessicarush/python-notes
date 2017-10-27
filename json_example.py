@@ -2,10 +2,12 @@
 
 # see also structured_file_formats.py
 
-# The JSON module allows you to dump simple python data structures into a file
-# and load it back in next time the programs runs. You can also use JSON to
-# share data  between different python programs or other programming languages.
-# It's a useful, portable, easy-to-learn file format.
+# The JSON (JavaScript Object Notation) module allows you to dump simple python
+# data structures into a file and load it back in next time the programs runs.
+# You can also use JSON to share data between different python programs or
+# other programming languages. It's a useful, portable, easy-to-learn file
+# format. The pythons data types it can store are: strings, numbers, booleans,
+# lists and dictionaries with string keys.
 
 import json
 
