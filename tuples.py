@@ -70,6 +70,10 @@ colours_list = ['orange', 'yellow', 'purple']
 colours_tuple = tuple(colours_list)
 print(type(colours_tuple)) # tuple
 
+colours_str = 'orange, yellow, purple'
+colours_tuple = tuple(colours_str.split(', '))
+print(colours_tuple)  # ('orange, 'yellow', 'purple')
+
 # Benefits of using tuples ----------------------------------------------------
 
 # - Tuples use less space

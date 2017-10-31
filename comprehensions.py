@@ -79,6 +79,8 @@ cells = [(row, col) for row in rows for col in cols]
 
 print(cells)  # [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]
 
+# see also: pygal_intro.py
+
 # Dictionary Comprehensions ---------------------------------------------------
 
 # {key_expression : value_expression for expression in iterable}:
