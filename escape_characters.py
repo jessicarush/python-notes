@@ -1,6 +1,6 @@
 '''Escape Characters'''
 
-# \ allows you to escape characters or run an escape sequence
+# Backslash allows you to escape characters or run an escape sequence
 # for example, escape the single-quote inside the string:
 
 print('I am 6\'2" tall.')

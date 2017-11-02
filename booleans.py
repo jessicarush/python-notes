@@ -1,4 +1,4 @@
-'''True False Logic'''
+'''Booleans: True False Logic'''
 
 # True
 # False

@@ -42,8 +42,9 @@ from my_classes import Person
 
 # Library/Frameworks/Python.framework/Versions/3.5/lib/python3.6
 
-# __name__ == '__main__' -----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# __name__ == '__main__'
+# -----------------------------------------------------------------------------
 # If you intend for your module to be imported, remember that your program
 # should most likely run by calling a function, not just start running as soon
 # as its imported. When you want to test and run your code from within module,

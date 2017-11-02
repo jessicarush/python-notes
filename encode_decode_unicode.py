@@ -24,8 +24,9 @@ unicode_test('A')
 unicode_test('\u00E9')
 unicode_test('∞')
 
-# Encoding ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Encoding
+# -----------------------------------------------------------------------------
 # It's best to stick with UTF-8. Be careful when copying & pasting from other
 # sources (such as web pages) into python strings as they ma be encoded in
 # Latin-1 or Windows 1252. This will cause exceptions later.
@@ -42,13 +43,18 @@ character.encode('unicode-escape')  # Python unicode literal format
 # encode() takes a second arg that avoids encoding exceptions
 # (where the character doesn't exist in that set)
 
-character.encode('ascii', 'ignore')             # throw away anything that won't encode
-character.encode('ascii', 'replace')            # replace anything that won't encode with '?'
-character.encode('ascii', 'backslashreplace')   # produce python unicode character string
-character.encode('ascii', 'xmlcharrefreplace')  # produce character entity for HTML
+# throw away anything that won't encode:
+character.encode('ascii', 'ignore')
+# replace anything that won't encode with '?'
+character.encode('ascii', 'replace')
+# produce python unicode character string:
+character.encode('ascii', 'backslashreplace')
+# produce character entity for HTML:
+character.encode('ascii', 'xmlcharrefreplace')
 
-# Decoding ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Decoding
+# -----------------------------------------------------------------------------
 # We decode byte strings to Unicode strings. Whenever we get text from some
 # external source (files, databases, websites), it's encoded as byte strings.
 # The tricky part is knowing which encoding was actually used, so we can run it

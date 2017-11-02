@@ -52,8 +52,9 @@ import pdb; pdb.set_trace()  # this will launch the debugger
 
 process_cities('cities2.csv')
 
-# Debugger Commands ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Debugger Commands
+# -----------------------------------------------------------------------------
 # type 'c' to continue once it starts
 # type 's' single step through lines
 #          (this will include any modules you might be using like sys)

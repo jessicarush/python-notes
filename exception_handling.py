@@ -1,7 +1,8 @@
 '''Exception Handling'''
 
-# Exceptions -----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Exceptions
+# -----------------------------------------------------------------------------
 # An exception is a Python object that represents an error.
 
 # There's two types of errors we can get: syntax errors and exceptions.
@@ -15,8 +16,9 @@
 # https://docs.python.org/3.4/library/exceptions.html
 # https://www.tutorialspoint.com/python/python_exceptions.html
 
-# Exception Handling ---------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Exception Handling
+# -----------------------------------------------------------------------------
 # If you have some code that may raise an exception, you can defend your
 # program by placing the code in a try: block. After the try: block, include an
 # except: statement, followed by a block of code which handles the problem as
@@ -32,8 +34,9 @@ except:  # using except alone will catch ALL types of exceptions
 
 print("Program continues...")
 
-# Choose which type of exceptions you want to handle -------------------------
-
+# -----------------------------------------------------------------------------
+# Choose which type of exceptions you want to handle
+# -----------------------------------------------------------------------------
 # Generally speaking, you want to be more specific about which kinds of
 # exceptions you're dealing with, so you can handle them in different ways.
 
@@ -58,7 +61,9 @@ while True:
 
 print("Program continues...")
 
-# Group exceptions if you want -----------------------------------------------
+# -----------------------------------------------------------------------------
+# Group exceptions if you want
+# -----------------------------------------------------------------------------
 
 while True:
     try:
@@ -75,8 +80,9 @@ while True:
 
 print("Program continues...")
 
-# Else and finally -----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Else and finally
+# -----------------------------------------------------------------------------
 # these are optional clauses that can be added to a try statement.
 
 # The else clause is executed only if the code in the try block completes and
@@ -104,7 +110,9 @@ while True:
     finally:
         print('The finally clause executes no matter what.')
 
-# Another example with separate try clauses ----------------------------------
+# -----------------------------------------------------------------------------
+# Another example with separate try clauses
+# -----------------------------------------------------------------------------
 
 print('Enter two numbers.')
 
@@ -132,7 +140,9 @@ except ZeroDivisionError:
 else:
     print('Done!')
 
-# Store the Exception in a variable with 'as'---------------------------------
+# -----------------------------------------------------------------------------
+# Store the Exception in a variable with 'as'
+# -----------------------------------------------------------------------------
 
 while True:
     try:
@@ -148,7 +158,9 @@ while True:
                                                # invalid literal for int()
                                                # with base 10: 'g'
 
-# Raise an Exception ---------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Raise an Exception
+# -----------------------------------------------------------------------------
 
 # The above example simply prints out the stored exception but you can also
 # choose to "raise" it when and if you want to. To compare, lets start with
@@ -214,8 +226,9 @@ sum(testing)
 # may be difficult to simulate the problem in order to test it. In this case
 # you could manually raise the error as a way of testing the handling.
 
-# Create your own exceptions to raise ----------------------------------------
-
+# -----------------------------------------------------------------------------
+# Create your own exceptions to raise
+# -----------------------------------------------------------------------------
 # More often than anything else, raise is used in conjunction with writing
 # your own exceptions in an effort to catch potential problems with your code.
 # Ideally, when your exception ends up being raised, it's a signal for you to

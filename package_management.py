@@ -1,7 +1,8 @@
 '''Package Management'''
 
-# Installing packages ----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Installing packages
+# -----------------------------------------------------------------------------
 # pip - you can install most packages this way
 # package managers (ie brew) - work like pip but not restricted to python
 
@@ -26,8 +27,9 @@
 # If you want to see all versions available of something:
 # $ yolk -V flask
 
-# Requirements files -----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Requirements files
+# -----------------------------------------------------------------------------
 # https://pip.pypa.io/en/latest/user_guide/#requirements-files
 
 # Requirements files are files containing a list of items to be installed using
@@ -65,8 +67,9 @@
 
 # That being said, the github page reports quite a few open issues.
 
-# Dependencies -----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Dependencies
+# -----------------------------------------------------------------------------
 # This will list package dependencies:
 # pip3 show flask | grep Requires
 

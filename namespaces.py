@@ -1,7 +1,8 @@
 '''Namespaces'''
 
-# Local and global variables -------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Local and global variables
+# -----------------------------------------------------------------------------
 # You can get the value of a global variable from within a function
 
 animal = 'fruitbat'
@@ -43,8 +44,9 @@ def change_and_print_global():
 
 change_and_print_global()
 
-# nonlocal -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# nonlocal
+# -----------------------------------------------------------------------------
 # Python 3 introduced the nonlocal keyword that allows you to assign to
 # variables in an outer, but non-global, scope.
 
@@ -58,8 +60,9 @@ def testing_nonlocal():
 
 testing_nonlocal()
 
-# locals() and globals() -----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# locals() and globals()
+# -----------------------------------------------------------------------------
 # Python provides two functions to access the contents of your Namespaces
 # locals() and globals():
 
@@ -76,15 +79,18 @@ g = sorted(globals())
 for x in g:
     print(x)
 
-# NOTE: when you reference a variable name, python will start by looking for the variable definition locally, and then move outward until if finds it. The order of scopes is as follows:
+# NOTE: when you reference a variable name, python will start by looking for
+# the variable definition locally, and then move outward until if finds it.
+# The order of scopes is as follows:
 
 # – local
 # – enclosing
 # – global
 # – built-ins
 
-# __name__, __doc__ ----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# __name__, __doc__
+# -----------------------------------------------------------------------------
 # The name of a function is in the system variable: function.__name__
 # The functions document string in in the variable: function.__doc__
 

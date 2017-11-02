@@ -1,23 +1,28 @@
 '''Resources''''
 
-# Python philosophy -----------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Python philosophy
+# -----------------------------------------------------------------------------
 
 import this
 
-# Good explanations -----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Good explanations
+# -----------------------------------------------------------------------------
 # Python Docs- https://docs.python.org/3/
 # Built-ins: https://www.programiz.com/python-programming/methods/built-in
 # http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
 
-# When looking for code -------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# When looking for code
+# -----------------------------------------------------------------------------
 # PyPI - https://pypi.python.org/pypi
 # Github - https://github.com/trending?l=python
 # Active State - http://code.activestate.com/recipes/langs/python/
 
-# help() ----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# help()
+# -----------------------------------------------------------------------------
 # In the python interpreter, use the help function to get information on a
 # module or built-in function, or run the help utility to get information on
 # keywords, symbols, topics, modules and built-in functions. For example:
@@ -53,8 +58,9 @@ help(str.join)
 help(set.difference)
 help(datetime.datetime)
 
-# dir() -----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# dir()
+# -----------------------------------------------------------------------------
 # The built-in dir function is an easy way to grab a list of all the attributes
 # available inside an object (i.e., its methods and simpler data items). It can
 # be called on any object that has attributes, including imported modules and
@@ -89,8 +95,9 @@ dir(set)
 #  'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update',
 #  'union', 'update']
 
-# Docstrings ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Docstrings
+# -----------------------------------------------------------------------------
 # Builtins, modules and more have their own docstrings, which can also provide
 # information. For example:
 
@@ -99,8 +106,9 @@ import random
 print(random.__doc__)
 print(random.choice.__doc__)
 
-# HTML PyDoc ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# HTML PyDoc
+# -----------------------------------------------------------------------------
 # Another way to view help similar to the help() and docstrings is to use
 # the built-in PyDoc HTML by running this command in terminal:
 

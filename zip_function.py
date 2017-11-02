@@ -1,6 +1,8 @@
 '''zip() Built-in Function'''
 
-# Iterating over multiple sequences --------------------------------------------
+# -----------------------------------------------------------------------------
+# Iterating over multiple sequences
+# -----------------------------------------------------------------------------
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 fruits = ['Apple', 'Banana', 'Pear']
@@ -13,7 +15,9 @@ desserts = ['Ice cream', 'Cookies', 'Cake', 'Candy']
 for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
     print(day, ': eat', fruit, ', drink', drink, ', cheat with', dessert)
 
-# create a dictionary from two sequences ---------------------------------------
+# -----------------------------------------------------------------------------
+# create a dictionary from two sequences
+# -----------------------------------------------------------------------------
 
 english = ['Monday', 'Tuesday', 'Wednesday', 'Thursday']
 french = ['Lundi', 'Mardi', 'Mecredi']
@@ -27,7 +31,9 @@ print(f2e['Mardi'])
 # as above, zip will stop creating key/value pairs at the end of the shortest
 # list. In the example above, no key will be created for Thursday.
 
+# -----------------------------------------------------------------------------
 # Another example
+# -----------------------------------------------------------------------------
 
 colours = ['Red', 'Cyan', 'Magenta', 'Orange']
 hexadecimal = ['FA200C', '0CD3FA', 'FF0D91', 'FF690D']

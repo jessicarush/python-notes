@@ -5,6 +5,9 @@
 # Some functions, such as chown() and chmod(), have the same names, but there
 # are a few new ones.
 
+# -----------------------------------------------------------------------------
+# Files
+# -----------------------------------------------------------------------------
 # Create a file with open()
 # open() function is used to open a file or create one if it doesn't exist:
 
@@ -89,7 +92,9 @@ print(os.path.realpath('p_slink'))
 os.remove('p_link')
 os.remove('p_slink')
 
-# Directories -----------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Directories
+# -----------------------------------------------------------------------------
 
 # Create with mkdir()
 
@@ -115,8 +120,9 @@ print(os.listdir('practice'))
 os.chdir('../')         # go up one directory
 print(os.listdir('.'))  # list content of current directory
 
-# List Matching Files with glob() ---------------------------------------------
-
+# -----------------------------------------------------------------------------
+# List Matching Files with glob()
+# -----------------------------------------------------------------------------
 # The glob() function matches file or directory names by using Unix shell
 # rules rather than regular expression syntax. Here are those rules:
 
@@ -136,8 +142,9 @@ print(glob.glob('T*'))
 os.chdir('Introducing Python')
 print(glob.glob('[fg]*py'))
 
-# Programs and Processes ------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Programs and Processes
+# -----------------------------------------------------------------------------
 # The Python os module provides some ways to access some system
 # information similar to what you would see in Activity Monitor.
 

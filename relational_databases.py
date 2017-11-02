@@ -7,8 +7,9 @@
 # and update the data. FYI there are plenty of NoSQL databases as well (often
 # used for "Big Data") - see noSQL_datastores.py
 
+# -----------------------------------------------------------------------------
 # Terminology:
-
+# -----------------------------------------------------------------------------
 # Database Dictionary
 #    – a comprehensive list of the structure and types of data in the database.
 # Table
@@ -57,8 +58,9 @@
 # linked together. For example, a business might have a table of vendors thats
 # linked to a table of invoices.
 
-# DB-API ----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# DB-API
+# -----------------------------------------------------------------------------
 # DB-API is Python's standard API (application programming interface) for
 # accessing relational databases. It's main functions:
 
@@ -72,8 +74,9 @@
 # fetchone(), fetchmany(), fetchall()
 #   – get the result from execute()
 
-# SQLite ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# SQLite
+# -----------------------------------------------------------------------------
 # A good, light, open source relational database. It's implemented as a
 # standard Python library, and stores databases in normal files. It isn't as
 # full-featured as MySQL, but it does support SQL, and manages multiple
@@ -148,8 +151,9 @@ conn.close()
 # the database is undefined. You can use the ORDER BY clause to order it by
 # another column as demonstrated above.
 
-# SQLite Commands -------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# SQLite Commands
+# -----------------------------------------------------------------------------
 # $ sqlite3 contacts.db (creates the database if it doesn't exist)
 # .help
 # .headers on
@@ -192,8 +196,9 @@ conn.close()
 #    – deletes a table (be careful!)
 # ALTER TABLE contacts RENAME TO customers;
 
-# JOIN (a column in one table corresponds to a column in another) -------------
-
+# -----------------------------------------------------------------------------
+# JOIN (a column in one table corresponds to a column in another)
+# -----------------------------------------------------------------------------
 # For the following examples imagine this schema:
 
 '''
@@ -255,8 +260,9 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 # GROUP BY albums.name HAVING COUNT(albums.name) > 1)
 # ORDER BY albums.name, artists.name
 
-# VIEWS: (save a SELECT query) ------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# VIEWS: (save a SELECT query)
+# -----------------------------------------------------------------------------
 # CREATE VIEW artist_list AS
 # SELECT artists.name, albums.name, songs.track, songs.title
 # FROM songs INNER JOIN albums ON songs.album = albums._id
@@ -289,8 +295,9 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 # SELECT title FROM artist_list WHERE album = 'Forbidden';
 #    – Now this works
 
-# SQLite Review ---------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# SQLite Review
+# -----------------------------------------------------------------------------
 import sqlite3
 
 db = sqlite3.connect('contacts.sqlite')
@@ -338,9 +345,9 @@ cursor.close()
 db.commit()
 db.close()
 
-
-# Cursor or no cursor ---------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Cursor or no cursor
+# -----------------------------------------------------------------------------
 # shortcut: you actually don't need a cursor if you just want to run a query
 # The execute method creates a cursor behind the scenes when used with SELECT
 
@@ -374,8 +381,9 @@ print('{} rows updated'.format(update_cursor.rowcount))
 
 update_cursor.connection.commit()
 
-# Placeholders and parameter substitution -------------------------------------
-
+# -----------------------------------------------------------------------------
+# Placeholders and parameter substitution
+# -----------------------------------------------------------------------------
 # As a somewhat obvious side note, you would probably never wan't to hard code
 # values in like above, you would likely use variables. There a couple ways:
 
@@ -399,8 +407,9 @@ update_cursor.execute(update_sql, (update_email, update_name))
 # is somewhat complicated but just know that this is the safest way to do it
 # if you're using user input or parameters passed from external code.
 
-# executescript() -------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# executescript()
+# -----------------------------------------------------------------------------
 # Is used for running more than one SQL statement in a single call. Individual
 # statements are separated by a semi-colon and will run one after the other.
 # If the above code used this line instead:
@@ -420,8 +429,9 @@ for row in db.execute("SELECT * FROM sqlite_master"):
 update_cursor.close()
 db.close()
 
-# Placeholders Review ---------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Placeholders Review
+# -----------------------------------------------------------------------------
 import sqlite3
 
 db = sqlite3.connect('contacts.sqlite')
@@ -453,8 +463,9 @@ for row in db.execute(lookup,(input_name,)):
 
 db.close()
 
-# Detect types ----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Detect types
+# -----------------------------------------------------------------------------
 # When writing datetime objects to a database, the object will be saved as a
 # string. You could use the strptime() function to convert back to a structured
 # time object, or you could ask sqlite to do it for you with the following
@@ -465,14 +476,16 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # There are also a couple of ways to convert the UTC string to local time.
 # see sqlite3_example.py for the full example
 
-# Sqlite links ----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Sqlite links
+# -----------------------------------------------------------------------------
 # https://docs.python.org/3.5/library/sqlite3.html
 # https://www.sqlite.org/lang_corefunc.html
 # https://sqlite.org/lang_datefunc.html
 
-# MySQL -----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# MySQL
+# -----------------------------------------------------------------------------
 # Unlike SQLite, it's an actual server, so clients can access it from different
 # devices across the network. MysqlDB is the most popular driver, but hasn't
 # yet been ported to Python 3. You can use these to access MySQL from Python:
@@ -481,16 +494,18 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # PYMySQL - https://github.com/petehunt/PyMySQL/
 # oursql - http://pythonhosted.org/oursql/
 
-# PostgreSQL ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# PostgreSQL
+# -----------------------------------------------------------------------------
 # is a full-featured open source relational database, in many ways more
 # advanced than MySQL. Python drivers for PostgreSQL:
 
 # psycopg2 - http://initd.org/psycopg/
 # py-postgresql - http://python.projects.pgfoundry.org/
 
-# SQLAlchemy ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# SQLAlchemy
+# -----------------------------------------------------------------------------
 # DB-API takes you only so far. Each database implements a particular dialect
 # reflecting its features and philosophy. Many libraries try to bridge these
 # differences. The most popular cross-database Python library is SQLAlchemy.
@@ -514,7 +529,9 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # starts with a slash (/), it's an absolute filename on your computer
 # Otherwise, it's relative to your current directory.
 
-# The Engine Layer
+# -----------------------------------------------------------------------------
+# SQLAlchemy – The Engine Layer
+# -----------------------------------------------------------------------------
 
 import sqlalchemy as sa
 
@@ -549,8 +566,9 @@ for row in rows:
 # being able to change the connection string to port this code to another type
 # of database.
 
-# SQL Expression Language
-
+# -----------------------------------------------------------------------------
+# SQLAlchemy – SQL Expression Language
+# -----------------------------------------------------------------------------
 # SQLAlchemy's SQL Expression Language introduces functions to create the SQL
 # for various operations. The Expression Language handles more of the SQL
 # dialect differences. Here's how to create and populate the a table using
@@ -582,8 +600,9 @@ rows = result.fetchall()
 print(rows)
 # [('socks', 2, 10.0), ('paperclips', 1000, 0.05), ('snow globes', 50, 5.0)]
 
-# Object-Relational Mapper
-
+# -----------------------------------------------------------------------------
+# SQLAlchemy – Object-Relational Mapper
+# -----------------------------------------------------------------------------
 # At the top layer of SQLAlchemy, the Object-Relational Mapper (ORM) uses the
 # SQL Expression Language but tries to make the actual database mechanisms
 # invisible. You define classes, and the ORM handles how to get their data in
@@ -649,12 +668,13 @@ session.commit()
 # select * from inventory;
 # .quit
 
-# Summary ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Summary
+# -----------------------------------------------------------------------------
 # This was a brief overview to help decide which of the following levels would
 # best fit your needs:
 
-# • Plain DB-API, as in the earlier SQLite section
-# • The SQLAlchemy engine room
-# • The SQLAlchemy Expression Language
-# • The SQLAlchemy ORM
+# – Plain DB-API, as in the earlier SQLite section
+# – The SQLAlchemy engine room
+# – The SQLAlchemy Expression Language
+# – The SQLAlchemy ORM

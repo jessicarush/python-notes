@@ -1,7 +1,8 @@
 '''Functions, parameters and arguments'''
 
-# Write a function with def() -------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Write a function with def()
+# -----------------------------------------------------------------------------
 # Function names can start with letters or _ and contain only letters, numbers
 # and _. Pass means do noting but move on. It's a placeholder.
 # NOTE: it's good practice to put two spaces after each function definition,
@@ -10,11 +11,14 @@
 def myfunction(num1, num2): # num1, num2 are parameters
     pass
 
-# Call the function() --------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Call the function()
+# -----------------------------------------------------------------------------
 myfunction(1, 2) # 1, 2 are arguments
 
-# Reminder: return vs print --------------------------------------------------
+# -----------------------------------------------------------------------------
+# Reminder: return vs print
+# -----------------------------------------------------------------------------
 
 def myfunction1(num1, num2):
     print(num1 * num2) # prints the result but returns None
@@ -28,18 +32,24 @@ def heading(arg):
 
 heading('Positional Arguments')
 
-# Positional Arguments -------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Positional Arguments
+# -----------------------------------------------------------------------------
 
 def menu(wine, cheese, dessert):
     return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
 
 print(menu('chardonnay', 'cake', 'swiss'))
 
-# Keyword Arguments ----------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Keyword Arguments
+# -----------------------------------------------------------------------------
 
 print(menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 
-# Default Parameters ---------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Default Parameters
+# -----------------------------------------------------------------------------
 
 def menu(wine, cheese, dessert='ice cream'):
     return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
@@ -47,8 +57,9 @@ def menu(wine, cheese, dessert='ice cream'):
 print (menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 print (menu(wine='chardonnay', cheese='swiss'))
 
-# Example of local vs parameter set value ------------------------------------
-
+# -----------------------------------------------------------------------------
+# Example of local vs parameter set value
+# -----------------------------------------------------------------------------
 # In this example the function is expected to run each time with a fresh empty
 # result list, add the arg argument to it, and then print a single-item list.
 # However, it's only empty the first time it's called. The second time, result
@@ -86,8 +97,9 @@ nonbuggy('a')  # ['a']
 nonbuggy('b')  # ['b']
 nonbuggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
 
-# Gather Positional Arguments with *args --------------------------------------
-
+# -----------------------------------------------------------------------------
+# Gather Positional Arguments - *args
+# -----------------------------------------------------------------------------
 # The * operator used when defining a function means that any extra positional
 # arguments passed to the function end up in the variable prefaced with the *.
 
@@ -137,9 +149,9 @@ print_more('red', 'green', 'one', 'two', 'three
 # second argument is required: green
 # the rest: ('one', 'two', 'three')
 
-
-# Gather Keyword Arguments with **kwargs --------------------------------------
-
+# -----------------------------------------------------------------------------
+# Gather Keyword Arguments - **kwargs
+# -----------------------------------------------------------------------------
 # ** does for dictionaries & key/value pairs exactly what * does for iterables
 # and positional parameters demonstrated above. Here's it being used in the
 # function definition:
@@ -174,7 +186,9 @@ print_kwargs(**colours)
 # see also terminology.py for another example that feeds dictionary values to
 # a class instance.
 
-# Docstrings -----------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Docstrings
+# -----------------------------------------------------------------------------
 
 def myfunction1(arg):
     '''this is where you can provide a brief description of the function'''
@@ -193,8 +207,9 @@ def myfunction2(arg):
 print(myfunction1.__doc__)
 print(myfunction2.__doc__)
 
-# Functions as Arguments -----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Functions as Arguments
+# -----------------------------------------------------------------------------
 # Functions are objects, just like numbers, strings, tuples, lists,
 # dictionaries, etc. They can be assigned to variables, used as arguments to
 # other functions, or returned from other functions.
@@ -228,8 +243,9 @@ def run_with_positional_args(func, *args):
 
 run_with_positional_args(sum_args, 2, 3, 1, 4)
 
-# Nested functions ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Nested functions
+# -----------------------------------------------------------------------------
 # This is pretty straight forward. When we call the outer() function it in
 # turn calls the inner function. The inner function used a variable x that's
 # defined in the outer functions namespace. The inner function looks for x
@@ -245,8 +261,9 @@ def outer():
 
 outer()  # 1
 
-# Closure --------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Closure
+# -----------------------------------------------------------------------------
 # Consider that the namespace created for our functions are created from
 # scratch each time the function is called and then destroyed when the
 # function ends. According to this, the following should not work.
@@ -290,9 +307,9 @@ b()  # 3
 # to our inner function but are building custom versions of our inner function
 # that "remembers" what number it should print.
 
-
-# lambda() -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# lambda()
+# -----------------------------------------------------------------------------
 # The lambda function is an anonymous function expressed as a single statement
 # Use it instead of a normal tiny function.
 

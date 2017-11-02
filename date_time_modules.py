@@ -19,7 +19,9 @@
 #   Internationalization services. The locale setting affects the
 #   interpretation of many format specifiers in strftime() and strptime().
 
-# calendar module ------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# calendar module
+# -----------------------------------------------------------------------------
 
 import calendar
 
@@ -27,8 +29,9 @@ import calendar
 print(calendar.isleap(2016))
 print(calendar.isleap(2017))
 
-# datetime module ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# datetime module
+# -----------------------------------------------------------------------------
 # Note with datetime objects some are considered naive and some are aware.
 # Aware objects are aware of the timezone offset and naive objects are not.
 
@@ -145,8 +148,9 @@ print(type(noonish_today)) # <class 'datetime.datetime'>
 print(noonish_today.date())
 print(noonish_today.time())
 
-# Time module ----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Time module
+# -----------------------------------------------------------------------------
 # It is confusing that Python has a datetime module with a time object, and a
 # separate time module. Furthermore, the time module has a function called...
 # time().
@@ -214,7 +218,9 @@ print(type(tme)) # <class 'float'>
 
 # Also, if possible, avoid the use of daylight savings time. That being said:
 
-# Timezones and DST ----------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Timezones and DST
+# -----------------------------------------------------------------------------
 
 import time
 
@@ -237,8 +243,9 @@ if time.daylight != 0:
 print('local time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
 print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 
-# Read and Write Dates & Times -----------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Read and Write Dates & Times
+# -----------------------------------------------------------------------------
 # isoformat() for date, time and datetime objects and, ctime() for epochs
 # aren't the only way to write dates and times as strings. We can also convert
 # dates and times to strings using strftime().
@@ -310,8 +317,9 @@ fmt = '%Y-%m-%d'
 a_date = time.strptime('2017-08-16', fmt)
 print(a_date)
 
-# locale module --------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# locale module
+# -----------------------------------------------------------------------------
 # Note: Names are specific to your locale (internationalization settings for
 # your os). To print different month and day names, change your locale by
 # using setlocale(). Its first argument is locale.LC_TIME for dates and
@@ -347,8 +355,9 @@ print(de_names)
 # language codes - https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 # country codes - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 
-# Measuring time -------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Measuring time
+# -----------------------------------------------------------------------------
 # A quick way of timing something is to get the current time, do something, get
 # the new time, and then subtract the original time from the new time.
 
@@ -404,8 +413,9 @@ print('Elapsed time: {} seconds'.format(end_time - start_time))
 # Use perf_counter() when you want to record elapsed time
 # use process_time() when you want to record elapsed CPU time
 
-# time.get_clock_info() ------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# time.get_clock_info()
+# -----------------------------------------------------------------------------
 # argument names that can be used:
 # – 'clock': time.clock()
 # – 'monotonic': time.monotonic()
@@ -428,8 +438,9 @@ print(perfcounter_i)
 print(processtime_i)
 print(time_i)
 
-# Alternative Modules --------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Alternative Modules
+# -----------------------------------------------------------------------------
 # If you find the standard library modules confusing, or lacking a particular
 # conversion that you want, there are many third-party alternatives:
 

@@ -1,6 +1,8 @@
 '''Strings'''
 
-# String methods --------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# String methods
+# -----------------------------------------------------------------------------
 
 dir(str)
 #  [..., 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith',
@@ -11,7 +13,9 @@ dir(str)
 #  'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith',
 #  'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']'
 
-# String Literals -------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# String Literals
+# -----------------------------------------------------------------------------
 
 my_string = 'Some content'
 my_string = "Some content"
@@ -48,12 +52,16 @@ triple quotes because we're pretending \
 it's very, very long"""
 print(long_string)
 
-# str() - to convert to a string ----------------------------------------------
+# -----------------------------------------------------------------------------
+# str() - to convert to a string
+# -----------------------------------------------------------------------------
 
 number = 4.5 * 3.25
 print(str(number))
 
-# Slice with [start : end : step] ---------------------------------------------
+# -----------------------------------------------------------------------------
+# Slice with [start : end : step]
+# -----------------------------------------------------------------------------
 
 letters = 'abcdefghijk'
 print(letters[:-1])
@@ -62,20 +70,26 @@ print(letters[2:8])
 print(letters[:8])
 print(letters[2:8:2])
 
-# Break a string up into a list with .split() ---------------------------------
+# -----------------------------------------------------------------------------
+# Break a string up into a list with .split()
+# -----------------------------------------------------------------------------
 
 test_string = 'Yeti Bigfoot Loch Ness Unicorn...'
 test_list = test_string.split()
 print(test_list)
 print(type(test_list))
 
+# -----------------------------------------------------------------------------
 # Join a list into a string with .join()
+# -----------------------------------------------------------------------------
 
 test_string = ' '.join(test_list)
 print(test_string)
 print(type(test_string))
 
-# Information you can get from strings ----------------------------------------
+# -----------------------------------------------------------------------------
+# Information you can get from strings
+# -----------------------------------------------------------------------------
 
 print(len(test_string))
 print(test_string.startswith('Yeti'))
@@ -100,8 +114,9 @@ print(test_string.count(word))
 
 print(test_string.isalnum())
 
-# Remove and Replace ----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Remove and Replace
+# -----------------------------------------------------------------------------
 # remove characters from the beginning lstrip(), end rstrip() or both strip():
 name = ' .Raja. '
 name = name.lstrip()    #--> '.Raja. '
@@ -121,7 +136,9 @@ print(test_string)
 test_string = test_string.replace('unicorn', 'red bull')
 print(test_string)
 
-# Change Case ------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Change Case
+# -----------------------------------------------------------------------------
 
 test_string = test_string.lower()
 print(test_string)
@@ -153,7 +170,9 @@ print(example.title())
 from string import capwords
 print(capwords(example))
 
-# Alignment --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Alignment
+# -----------------------------------------------------------------------------
 
 test_string = test_string.center(20)
 print(test_string)
@@ -164,7 +183,9 @@ print(test_string)
 test_string = test_string.rjust(20)
 print(test_string)
 
-# Raw string type literals -----------------------------------------------------
+# -----------------------------------------------------------------------------
+# Raw string type literals
+# -----------------------------------------------------------------------------
 
 raw_string = (r"The r at the start of a string before the quotation mark"
 r"tells python it's a raw string, so any escape characters like backlash \t"

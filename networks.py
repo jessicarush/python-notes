@@ -1,7 +1,8 @@
 '''Networks and Distributed Computing'''
 
-# Patterns --------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Patterns
+# -----------------------------------------------------------------------------
 # You can build networking applications from some basic patterns. The most
 # common pattern in request-reply aka client-server. This pattern in
 # synchronous in that the client waits for a server response.
@@ -14,8 +15,9 @@
 # more sources. An example would be a logger that takes messages from multiple
 # sources and writes then to a single file. Another pattern is...
 
-# Publish-Subscribe Model -----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Publish-Subscribe Model
+# -----------------------------------------------------------------------------
 # With this pattern, a publisher sends out data. In a simple pub-sub system,
 # all subscribers would receive all the data, but more commonly, subscribers
 # choose which data to receive (topics). Unlike the push pattern, more that one
@@ -75,8 +77,9 @@ for msg in sub.listen():
 # Publish: persian cat wears a cowboy
 # Publish: tabby cat wears a stovepipe
 
-# Other pub-sub tools ---------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Other pub-sub tools
+# -----------------------------------------------------------------------------
 # RabbitMQ – https://www.rabbitmq.com
 # Pika API – https://pika.readthedocs.io/en/0.10.0/
 # Tutorial – http://bit.ly/pub-sub-tut
@@ -84,8 +87,9 @@ for msg in sub.listen():
 
 # https://pypi.python.org/pypi?%3Aaction=search&term=pubsub&submit=search
 
-# TCP/IP ----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# TCP/IP
+# -----------------------------------------------------------------------------
 # In the middle of the stack layers of protocols that handle our internet
 # connections, data exchanges and so on, is the IP protocol layer which
 # specifies how network locations are addressed and how packets of data flow.
@@ -105,8 +109,9 @@ for msg in sub.listen():
 # Most of the internet with which we interact (web, database servers, etc) is
 # based on the TCP protocol running on top of the IP protocol–TCP/IP for short.
 
-# Sockets ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Sockets
+# -----------------------------------------------------------------------------
 # A socket is one endpoint of a two-way communication link between two programs
 # running on the network. A socket is bound to a port number. An endpoint is a
 # combination of an IP address and a port number.
@@ -196,14 +201,15 @@ data = client.recv(max_size)
 print('Message:', datetime.datetime.now(), 'someone replied', data)
 client.close()
 
+# -----------------------------------------------------------------------------
 # some points to note:
-
+# -----------------------------------------------------------------------------
 # – UDP sends messages but their size is limited and not guaranteed to reach
 #   their destination.
 
 # – TCP sends streams of bytes, not messages. To send an entire message via TCP
 #   you need extra information to reassemble the full message from it's bytes
-#   segments (a fixed message size in bytes, the size of the full message, or 
+#   segments (a fixed message size in bytes, the size of the full message, or
 #   some delimiting character). Because these are bytes, you need to use the
 #   python bytes type (not unicode text strings).
 

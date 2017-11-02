@@ -1,6 +1,8 @@
 '''datetime Examples'''
 
-# Compare usages -----------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Compare usages
+# -----------------------------------------------------------------------------
 
 import datetime
 import pytz
@@ -29,10 +31,9 @@ timestamp = datetime.datetime.now().strftime('%a %x')
 backdated = datetime.date(2017, 8, 7).strftime('%a %x')
 # Mon 08/07/17 <class 'str'>
 
-
-
-# timedelta example ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# timedelta example
+# -----------------------------------------------------------------------------
 # What dates do I need to water the plants if the watering schedule is:
 # – every 4 days in summer - summer is 3 more weeks from today
 # – every 6 days in fall - fall is 14 weeks following summer

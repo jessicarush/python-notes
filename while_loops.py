@@ -13,7 +13,9 @@ while x > 0:
     if x == 5:
         break
 
-# Example using if, elif, else, break and continue ----------------------------
+# -----------------------------------------------------------------------------
+# Example using if, elif, else, break and continue
+# -----------------------------------------------------------------------------
 
 import random
 
@@ -37,7 +39,9 @@ while True:
         print('You guessed it!')
         break
 
-# Example using if, try, break, continue --------------------------------------
+# -----------------------------------------------------------------------------
+# Example using if, try, break, continue
+# -----------------------------------------------------------------------------
 
 def squared():
     while True:
@@ -54,7 +58,9 @@ def squared():
 
 squared()
 
-# Example using try and return ------------------------------------------------
+# -----------------------------------------------------------------------------
+# Example using try and return
+# -----------------------------------------------------------------------------
 
 print('Enter two numbers please.')
 
@@ -72,8 +78,9 @@ b = get_inputs('second')
 
 print('{} * {} = {}'.format(a, b, a * b))
 
-# A slightly different approach ----------------------------------------------
-
+# -----------------------------------------------------------------------------
+# A slightly different approach
+# -----------------------------------------------------------------------------
 # A 'flag' variable is a great way of signaling a while loop when you have
 # many things that could/should end the loop. Using a flag variable, our loop
 # only has to check one condition.
@@ -94,8 +101,9 @@ while active:
         except:
             print("I need a number or 'q' to quit: ")
 
-# While Loops with Lists & Dicts ----------------------------------------------
-
+# -----------------------------------------------------------------------------
+# While Loops with Lists & Dicts
+# -----------------------------------------------------------------------------
 # A for loop is effective for iterating through a list but apparently, "You
 # shouldn't modify a list inside a for loop because Python will have trouble
 # keeping track of the items in the list. To modify a list as you work through
@@ -113,8 +121,9 @@ while unconfirmed_users:
 for user in confirmed_users:
     print('Confirmed user: {}'.format(user.title()))
 
-# Filling a dict with user input ----------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Filling a dict with user input
+# -----------------------------------------------------------------------------
 shopping_list = {}
 
 while True:

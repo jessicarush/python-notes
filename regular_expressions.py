@@ -2,8 +2,9 @@
 
 import re
 
-# match() ----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# match()
+# -----------------------------------------------------------------------------
 # Define a pattern string, and a source string to compare against.
 # match() checks whether the source begins with the pattern. 'You' is the
 # pattern 'Young Frankenstein' is the source
@@ -37,15 +38,17 @@ print(r)  # None
 r = re.match('.*green', source)
 print(r.group())  # blue red green
 
-# search() ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# search()
+# -----------------------------------------------------------------------------
 # search() returns the first match, if any.
 
 r = re.search('green', source)
 print(r.group())  # green
 
-# findall() --------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# findall()
+# -----------------------------------------------------------------------------
 # findall() returns a list of all non-overlapping matches, if any.
 
 r = re.findall('blue', source)
@@ -62,8 +65,9 @@ print(r)  # ['e ', 'ed', 'ee', 'el', 'ei']
 r = re.findall('e.?', source)
 print(r)  # ['e ', 'ed', 'ee', 'el', 'ei', 'e']
 
-# split() and sub() ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# split() and sub()
+# -----------------------------------------------------------------------------
 # split() splits the source using the pattern as the split point and returns
 # a list of the string pieces.
 
@@ -76,8 +80,9 @@ print(r)  # ['blue', 'red', 'green', 'yellow', 'blueish', 'blue']
 r = re.sub('blue', 'black', source)
 print(r)  # black red green yellow blackish black
 
-# Special characters -----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Special characters
+# -----------------------------------------------------------------------------
 # \d a single digit
 # \D a single non-digit
 # \w an alphanumeric character
@@ -87,8 +92,9 @@ print(r)  # black red green yellow blackish black
 # \b a word boundary (the beginning or end of a word)
 # \B a non-word boundary (not the beginning or end of a word)
 
-# testing ----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# testing
+# -----------------------------------------------------------------------------
 sample = """
 Intro:
 Is this the real Life? Is this just fantasy?
@@ -144,22 +150,18 @@ print(r)  # ['boy', 'blows']
 # \w*   - followed by any number of alphanumeric characters
 
 # This says, find all words that start with the letter 'b' or 'B'
-
 r = re.findall(r'\b[bB]\w*', sample)
 print(r)  # ['boy', 'Because', 'blows']
 
 # This says, find all 5 letter words that start with 'b' or 'B'
-
 r = re.findall(r'\b[bB]\w\w\w\w\b', sample)
 print(r)  # ['blows']
 
 # Same as above:
-
 r = re.findall(r'\b[bB]\w{4}\b', sample)
 print(r)  # ['blows']
 
 # Find all words that end in the letter 'r':
-
 r = re.findall(r'\b\w*r\b', sample)
 print(r)  # ['your', 'poor', 'matter', 'For']
 
@@ -169,55 +171,52 @@ print(r)  # ['your', 'poor', 'matter', 'For']
 r = re.findall(r"\b[\w']*t\b", sample)
 print(r)  # ['just', 'Caught', 'just', "doesn't"]
 
-# Pattern Specifiers -----------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Pattern Specifiers
+# -----------------------------------------------------------------------------
+# abc              literal abc
+# (...)            any valid regular expression
+# a|b              a or b - these can be expressions too (...)|(...)
+# .                any character except \n
+# ^                start of source string
+# $                end of source string
+# *                zero or more of the preceding character, ab* -> a, ab, abbb
+# +                one or more of the preceding character, ab+ -> ab, abbb
+# ?                means the preceding character is optional (zero or one)
+# abc?             c is optional, a(bc)? means bc is optional
+# abc*?            zero or more c, as few as possible, will return ab
+# abc+             one or more c, as many as possible
+# abc+?            one or more c, as few as possible
+# a{m}             number of consecutive a, a{3} is aaa
+# a{m,n}           m to n consecutive a, as many as possible
+# a{m,n}?          m to n consecutive a, as few as possible
+# [abc]            a or b or c (same as a|b|c)
+# [^abc]           not (a or b or c)
+# prev(?= next)    prev if followed by next
+# prev(?! next)    prev if not followed by next
+# (?<=prev)next    next if preceded by prev
+# (?<!prev)next    next if not preceded by prev
 
-# abc                 literal abc
-# (...)               any valid regular expression
-# a|b                 a or b - these can be expressions too (...)|(...)
-# .                   any character except \n
-# ^                   start of source string
-# $                   end of source string
-# *                   zero or more of the preceding character, ab* will return a, ab, abbb
-# +                   one or more of the preceding character, ab+ will return ab, abbb
-# ?                   means the preceding character is optional (zero or one)
-# abc?                c is optional, a(bc)? means bc is optional
-# abc*?               zero or more c, as few as possible, will return ab
-# abc+                one or more c, as many as possible
-# abc+?               one or more c, as few as possible
-# a{m}                number of consecutive a, a{3} is aaa
-# a{m,n}              m to n consecutive a, as many as possible
-# a{m,n}?             m to n consecutive a, as few as possible
-# [abc]               a or b or c (same as a|b|c)
-# [^abc]              not (a or b or c)
-# prev(?= next)       prev if followed by next
-# prev(?! next)       prev if not followed by next
-# (?<=prev)next       next if preceded by prev
-# (?<!prev)next       next if not preceded by prev
-
-# More testing -----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# More testing
+# -----------------------------------------------------------------------------
 # find real anywhere:
-
 r = re.findall('real', sample)
 print(r)  # ['real', 'real', 'real', 'real']
 
 # find real where it's at the beginning of a word:
-
 r = re.findall(r'\breal\w*', sample)
 print(r)  # ['real', 'reality', 'really']
 
 # find real where it's at the end of a word:
-
 r = re.findall(r'\w*real\b', sample)
 print(r)  # ['real', 'surreal']
 
 # find real where it's at the beginning AND end of a word:
-
 r = re.findall(r'\breal\b', sample)
 print(r)  # ['real']
 
 # find real where it's at the beginning OR end of a word:
-
 r = re.findall(r'\breal\w*|\w*real\b', sample)
 print(r)  # ['real', 'reality', 'really', 'surreal']
 
@@ -225,52 +224,44 @@ print(r)  # ['real', 'reality', 'really', 'surreal']
 # beginning of the string, and $ anchors it to the end.
 
 # find Intro at the beginning:
-
 r = re.findall('^Intro', sample)
 print(r)  # []
 
 # find \nIntro at the beginning:
-
 r = re.findall('^\nIntro', sample)
 print(r)  # ['\nIntro']
 
 # find surreal at the end:
-
 r = (re.findall('surreal$', sample))
 print(r)  # ['surreal']
 
 # find w or f or d followed by ish:
-
 r = re.findall('[wfd]ish', sample)
 print(r)  # ['dish', 'wish', 'fish']
 
 # find one or more runs of b or c:
-
 r = re.findall('[bc]+\w*', sample)
 print(r)  # ['cape', 'boy', 'cause', 'come', 'blows']
 
 # find me followed by a non-alphanumeric:
-
 r = re.findall('me\W', sample)
 print(r)  # ['me,', 'me,', 'me.']
 
 # find poor followed by boy:
-
 r = re.findall('poor (?=boy)', sample)
 print(r)  # ['poor ']
 
 # find blows preceded by wind:
-
 r = re.findall('(?<=wind) blows', sample)
 print(r)  # [' blows']
 
 # find words that contain 3 vowels in a row:
-
 r = re.findall(r'\b\w*[aeiuo]{3}\w*\b', sample)
 print(r)  # ['beau']
 
-# Match Output -----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Match Output
+# -----------------------------------------------------------------------------
 # When using match() or search(), all matches are returned from the result
 # object r as r.group(). If you enclose a pattern in parentheses, the match
 # will be saved to its own group, and a tuple of them will be available as

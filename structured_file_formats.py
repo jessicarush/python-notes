@@ -12,8 +12,9 @@
 # – Indentation. An example is YAML (.yaml, .yml)
 # – Miscellaneous, such as configuration files for programs.
 
-# CSV ------------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# CSV
+# -----------------------------------------------------------------------------
 # Delimited files are often used as an exchange format for spreadsheets and
 # databases. You could read CSV files manually, a line at a time, splitting
 # each line into fields at comma separators, and adding the results to data
@@ -82,8 +83,9 @@ with open('singers', 'r') as fin:
     csvin = csv.DictReader(fin)
     singers = [row for row in csvin]
 
-# XML ------------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# XML
+# -----------------------------------------------------------------------------
 # practice.xml code for example below:
 
 """
@@ -142,14 +144,16 @@ print(len(root[0])) # number of breakfast items
 #           to load everything into memory at once. A good choice if you need
 #           to process very large streams of XML.
 
-# HTML -----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# HTML
+# -----------------------------------------------------------------------------
 # The problem here is so much of it doesn't follow the HTML rules, which can
 # make it difficult to parse. Also, much of HTML is intended more to format
 # output than interchange data. More to come...
 
-# JSON -----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# JSON
+# -----------------------------------------------------------------------------
 # Has become a very popular data interchange format. The JSON format is a
 # subset of JavaScript, and often legal Python syntax as well. Its close fit
 # to Python makes it a good choice for data interchange among programs.
@@ -235,8 +239,9 @@ json.dumps(now, cls=DTEncoder)
 # the items is a dictionary, you can extract contents through keys(),
 # values(), and items().
 
-# YAML -----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# YAML
+# -----------------------------------------------------------------------------
 # practice.yaml code for example below:
 
 """
@@ -291,8 +296,9 @@ print(data['poems'][1]['title'])
 # Always Use safe_load() instead of load(), especially if you're importing
 # YAML that you don't trust.
 
-# Configuration files --------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Configuration files
+# -----------------------------------------------------------------------------
 # The standard configparser module handles Windows-style .ini files.
 # Such files have sections of key = value definitions.
 
@@ -316,8 +322,9 @@ cfg.read('practice.cfg')
 
 print(cfg['french']['greeting'])
 
-# Serialize with pickle ------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Serialize with pickle
+# -----------------------------------------------------------------------------
 # Serialization is the process that allows objects to be saved to a file so
 # that they can be restored from the file later. Formats such as JSON might
 # require some custom converters to serialize all the data types from a Python
@@ -396,19 +403,22 @@ pickle.dump(unkle, pickle_file, protocol=pickle.DEFAULT_PROTOCOL)
 pickle.loads(b"cos\nsystem\n(S'rm text.txt'\ntR.")      # mac/linux
 pickle.loads(b"cos\nsystem\n(S'del text.txt'\ntR.")     # windows
 
-# Shelve module --------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Shelve module
+# -----------------------------------------------------------------------------
 # see shelve_module.py
 
-# Spreadsheets ---------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Spreadsheets
+# -----------------------------------------------------------------------------
 # Spreadsheets, notably Microsoft Excel, are widespread binary data formats.
 # If you can save your spreadsheet to a CSV file, you can read it by using
 # the standard csv module that was described earlier. If you have a binary
 # xls file, xlrd is a third-party package for reading and writing.
 
-# HDF5 -----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# HDF5
+# -----------------------------------------------------------------------------
 # is a binary data format for multidimensional or hierarchical numeric data.
 # It's used mainly in science, where fast random access to large datasets
 # (gigabytes to terabytes) is a common requirement. It's best suited to WORM

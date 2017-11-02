@@ -1,6 +1,8 @@
 '''Binary data'''
 
-# Formatting as binary, hex, octal -------------------------------------------
+# -----------------------------------------------------------------------------
+# Formatting as binary, hex, octal
+# -----------------------------------------------------------------------------
 
 # {:b) will format numbers as binary (base 2):
 
@@ -17,7 +19,9 @@ for i in range(17):
 for i in range(17):
     print("{0:>2} in octal is {0:>4o}".format(i))
 
-# Inputing binary, hex, octal ------------------------------------------------
+# -----------------------------------------------------------------------------
+# Inputing binary, hex, octal
+# -----------------------------------------------------------------------------
 
 w = 32        # normal number (base 10)
 x = 0x20      # hexadecimal (base 16) starts with 0x
@@ -26,7 +30,9 @@ z = 0o40      # octal number (base 8) starts with 0o
 
 print (w, x, y, z)  # 32 32 32 32
 
-# Converting integers to binary, hex, octal ----------------------------------
+# -----------------------------------------------------------------------------
+# Converting integers to binary, hex, octal
+# -----------------------------------------------------------------------------
 
 x = hex(32)   # hexadecimal (base 16)
 y = bin(32)   # binary number (base 2)
@@ -34,8 +40,9 @@ z = oct(32)   # octal number (base 8)
 
 print (x, y, z)  # 0x20 0b100000 0o40
 
-# bytes() and bytearray() ----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# bytes() and bytearray()
+# -----------------------------------------------------------------------------
 # These two objects are sequences of eight-bit integers, with possible values
 # of 0 to 255:
 
@@ -61,8 +68,9 @@ list_array[1] = 127 # works because bytearray is mutable
 # \x xx for non-printable bytes and their ASCII equivalents for printable ones
 # (plus some common escape characters, such as \n).
 
-# to_bytes() and from_bytes() ------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# to_bytes() and from_bytes()
+# -----------------------------------------------------------------------------
 # These two are methods that can be applied to integer objects
 
 # to_bytes() - return an array of bytes representing an integer.
@@ -80,8 +88,9 @@ y = int.from_bytes(b'\x00\x10', byteorder='little')
 
 print("Using from_bytes:", x, y)  # Using from_bytes: 16 4096
 
-# Convert Binary Data with struct --------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Convert Binary Data with struct
+# -----------------------------------------------------------------------------
 # The standard library contains the struct module. With it you can convert
 # binary data to and from Python data structures.
 
@@ -116,8 +125,9 @@ else:
 print(data[16:20])  # b'\x00\x00\x00\x9a'
 print(data[20:24])  # b'\x00\x00\x00\x8d'
 
-# struct.pack() --------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# struct.pack()
+# -----------------------------------------------------------------------------
 # When you want to go the other way and convert Python data to bytes:
 
 import struct
@@ -162,8 +172,9 @@ print(testing)  # (154, 141)
 # Read 8 bytes-two unsigned long integers (2L)
 # Skip the final 6 bytes (6x)
 
-# big endian and little endian -----------------------------------------------
-
+# -----------------------------------------------------------------------------
+# big endian and little endian
+# -----------------------------------------------------------------------------
 # Big Endian Byte Order: The most significant byte (the "big end") of the data
 # is placed at the byte with the lowest address. The rest of the data is placed
 # in order in the next three bytes in memory.

@@ -1,7 +1,8 @@
 '''Comprehensions'''
 
-# List Comprehensions ---------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# List Comprehensions
+# -----------------------------------------------------------------------------
 # [expression for item in iterable]
 # [expression for item in iterable if condition]
 
@@ -81,8 +82,9 @@ print(cells)  # [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]
 
 # see also: pygal_intro.py
 
-# Dictionary Comprehensions ---------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Dictionary Comprehensions
+# -----------------------------------------------------------------------------
 # {key_expression : value_expression for expression in iterable}:
 
 word = 'letters'
@@ -104,8 +106,9 @@ letter_counts = {letter: word.count(letter) for letter in set(word)}
 squares = {number: (number * number) for number in range(7)}
 print(squares)  # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36}
 
-# Set comprehensions ----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Set comprehensions
+# -----------------------------------------------------------------------------
 # {expression for expression in iterable}
 
 a_set = {number for number in range(1, 10) if number % 3 == 1}
@@ -115,8 +118,9 @@ print(a_set)  # {1, 4, 7}
 odds = {number for number in range(10) if number % 2 != 0}
 print(odds)  # {1, 3, 5, 7, 9}
 
-# Generator comprehensions ----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Generator comprehensions
+# -----------------------------------------------------------------------------
 # Tuples don't have comprehensions.
 # Changing the [] or {} of a comprehension to () is actually
 # a generator comprehension and returns a generator object.

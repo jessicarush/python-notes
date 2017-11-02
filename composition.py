@@ -5,8 +5,9 @@
 # aggregation (x has-a y) makes more sense. There is actually a difference
 # between the composition and aggregation though they often blur together.
 
-# Composition ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Composition
+# -----------------------------------------------------------------------------
 # In this example, the Room class creates a Floor object and a Windows object.
 # The arguments for these two objects are passed in when the Room is created.
 # If the Room is deleted, so are the Floor and Window instances.
@@ -30,13 +31,14 @@ class Room():
 bathroom = Room('tiled', 0)
 bathroom.about()  # This room has tiled floors and 0 windows
 
-# Aggregation ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Aggregation
+# -----------------------------------------------------------------------------
 # Unlike composition, aggregation uses existing instances of objects to build up
 # another object. The composed object does not actually own the objects that
 # it's composed of. If it's destroyed, those objects continue to exist.
 
-# This example creates Floor and a Window objects, then passes them as arguments 
+# This example creates Floor and a Window objects, then passes them as arguments
 # to a Room object. If the Room object is deleted, the other two objects remain.
 
 class Floor():

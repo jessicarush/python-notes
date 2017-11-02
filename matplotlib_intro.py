@@ -5,7 +5,9 @@
 # https://matplotlib.org/examples/index.html
 # https://matplotlib.org/users/pyplot_tutorial.html
 
-# plt.plot() ------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# plt.plot()
+# -----------------------------------------------------------------------------
 
 import matplotlib.pyplot as plt
 
@@ -40,7 +42,9 @@ plt.plot(x_vals, squares, color='#FB4847')
 plt.title('Specify x values', fontsize=14)
 plt.show()
 
-# plt.scatter() ---------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# plt.scatter()
+# -----------------------------------------------------------------------------
 
 # to plot single points use the scatter function:
 plt.scatter(2, 4, s=200)
@@ -50,13 +54,13 @@ x_vals = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 y_vals = [1, 4, 9, 16, 25, 36, 49, 64, 81]
 plt.scatter(x_vals, y_vals, s=80)
 
-# customize:
+# format the plot:
 plt.title('Scatter Function', fontsize=14)
 plt.xlabel('value', fontsize=10)
 plt.ylabel('square of value', fontsize=10)
 plt.tick_params(axis='both', which='major', labelsize=8)
 
-# show:
+# display the plot:
 plt.show()
 
 # use a loop to generate points:
@@ -64,7 +68,7 @@ x_vals = list(range(1, 1001))
 y_vals = [(x ** 2) for x in x_vals]
 plt.scatter(x_vals, y_vals, s=40, c=(0.016, 0.859, 0.643))
 
-# customize:
+# format the plot:
 plt.title('Values from a Loop', fontsize=14)
 plt.xlabel('value', fontsize=10)
 plt.ylabel('square of value', fontsize=10)
@@ -73,11 +77,12 @@ plt.tick_params(axis='both', which='major', labelsize=8)
 # set the range for each axis:
 plt.axis([0, 1200, 0, 900000])
 
-# show:
+# display the plot:
 plt.show()
 
-# Short argument names --------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Short argument names
+# -----------------------------------------------------------------------------
 # Note that many of the keyword arg names can be specified in short form:
 #    color or c
 #    linewidth or lw
@@ -89,8 +94,9 @@ plt.show()
 #    markerfacecolor or mfc
 #    markersize or ms
 
-# RGB color values ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# RGB color values
+# -----------------------------------------------------------------------------
 # matplotlibs RGB color values need to be input as a float between 0 and 1.
 # for example, my favourite neon green (4, 219, 164) would translate to
 # (0.016, 0.859, 0.643), rounded to 3 decimal places.
@@ -103,8 +109,9 @@ mint = rgb_convert(4, 219, 164)
 coral = rgb_convert(255, 110, 103)
 yella = rgb_convert(255, 204, 0)
 
-# Colormaps -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Colormaps
+# -----------------------------------------------------------------------------
 # https://matplotlib.org/examples/color/colormaps_reference.html
 
 # Color mapping is using a gradient of two or more colors to emphasize
@@ -147,8 +154,9 @@ plt.axis([0, 1100, 0, 1000000])
 
 # plt.show()
 
-# Save to a File --------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Save to a File
+# -----------------------------------------------------------------------------
 # If you want to automatically save to a file, replace plt.show() with a call
 # to plt.savefig().
 
@@ -161,8 +169,9 @@ plt.axis([0, 1100, 0, 1000000])
 
 plt.savefig('sample_plot.png', dpi=300, bbox_inches='tight')
 
-# Misc ------------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
 # If you wanted to remove the axis ticks and labels:
 # plt.axes().get_xaxis().set_visible(False)
 # plt.axes().get_yaxis().set_visible(False)
@@ -178,6 +187,7 @@ fig.axes.get_yaxis().set_visible(False)
 # savefig), and background color. The figsize parameter takes a tuple which is
 # in inches. The default dpi is 80. Experimenting with dpi on my Retina MacBook
 # has led me to believe just leave this value at it's default. The only place
-# where changing the dpi is useful, is when saving the figure as a png.
+# where changing the dpi is useful, is when saving the figure as a png using
+# savefig() as demonstarted above.
 
 plt.figure(figsize=(9, 5))

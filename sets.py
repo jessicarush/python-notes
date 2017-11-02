@@ -1,6 +1,8 @@
 '''Sets'''
 
-# Set methods -----------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Set methods
+# -----------------------------------------------------------------------------
 
 dir(set)
 #  [...,  'add', 'clear', 'copy', 'difference', 'difference_update', 'discard',
@@ -8,7 +10,9 @@ dir(set)
 #  'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update',
 #  'union', 'update']
 
-# Sets: -----------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Sets:
+# -----------------------------------------------------------------------------
 
 #  - a set is like a dictionary but without the values
 #  - like a dictionary, sets are unordered
@@ -78,7 +82,9 @@ drinks = {
     'screwdriver' : {'orange juice', 'vodka'},
 }
 
-# check for a value with if, in, and, not, or, & {} ---------------------------
+# -----------------------------------------------------------------------------
+# check for a value with if, in, and, not, or, & {}
+# -----------------------------------------------------------------------------
 
 def test1():
     for key, values in drinks.items():
@@ -128,7 +134,9 @@ def test6():
             print('test 6: ', name)
 test6()
 
-# More set operators -----------------------------------------------------------
+# -----------------------------------------------------------------------------
+# More set operators
+# -----------------------------------------------------------------------------
 
 bruss = drinks['black russian']
 wruss = drinks['white russian']
@@ -195,8 +203,9 @@ print(a.issuperset(b))
 print(bruss >= wruss)
 print(bruss.issuperset(wruss))
 
-# Frozen Sets ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Frozen Sets
+# -----------------------------------------------------------------------------
 #  - frozen sets are immutable
 #  - as a result, can be used as dictionary keys
 #  - can be used as items in other sets

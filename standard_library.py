@@ -2,7 +2,9 @@
 
 # https://docs.python.org/3/library/index.html
 
-# Counter() ------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Counter()
+# -----------------------------------------------------------------------------
 
 from collections import Counter
 
@@ -29,8 +31,9 @@ jb_counter1 - jb_counter2   # returns {'red': 2, 'green': 2, 'orange': 1}
 jb_counter2 - jb_counter1   # returns {'yellow': 2, 'black': 1}
 jb_counter1 & jb_counter2   # returns {'red': 1}
 
-# deque() --------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# deque()
+# -----------------------------------------------------------------------------
 # is a double-ended queue which has features of both a stack and a queue.
 # It's useful for when you want to add/delete items from either end of a
 # sequence.
@@ -56,8 +59,9 @@ def palindrome_better(word):
 
 palindrome_better('radar')    # returns True
 
-# itertools ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# itertools
+# -----------------------------------------------------------------------------
 # itertools are special purpose iterator functions.
 # each returns one item at a time when called within a for... in loop and
 # rememebers its state between calls
@@ -92,9 +96,9 @@ def multiply(a, b):
 for item in itertools.accumulate([1, 2, 3, 4], multiply):
     print(item)
 
-
-# os.walk() -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# os.walk() 
+# -----------------------------------------------------------------------------
 # os.walk recursively visits each directory from the root, and for each one,
 # returns a tuple. The first item in the tuple is a string containing the
 # current directory (path). Next is a list of all the directories in the

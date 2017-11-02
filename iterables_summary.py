@@ -1,16 +1,20 @@
 '''Review of Lists, Tuples, Dictionaries & Sets'''
 
-# Compare data structures:
-
+# -----------------------------------------------------------------------------
+# Compare data structures
+# -----------------------------------------------------------------------------
 # List: mutable, ordered, repeats ok
 colours_list = ['red', 'orange', 'black', 'black']
-# Tuple: immutable, ordered, repeats ok
+
+# Tuple: immutable, ordered, repeats are ok
 colours_tuple = ('red', 'orange', 'black', 'black')
-# Dict: keys – immutable, unordered, no repeats
-#       values – mutable, unordered, repeats ok
+
+# Dict keys: immutable, unordered, no repeats
+# Dict values: mutable, unordered, repeats ok
 colours_dict = {'red' : 'Pantone 185C',
                 'orange' : 'Pantone 021C',
                 'black' : 'Pantone 6C'}
+                
 # Sets: mutable, unordered, no repeats
 colours_set = {'red', 'orange', 'black'}
 

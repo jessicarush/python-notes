@@ -29,7 +29,7 @@ finally:
 # unlocking resources, closing opened files, etc.
 
 # You can implement a context manager as a class. At the very least a context
-# manager has __enter__ and __exit__ methods defined. Here's an example of a 
+# manager has __enter__ and __exit__ methods defined. Here's an example of a
 # file opening context manager:
 
 class File():
@@ -54,7 +54,9 @@ with File('test.txt', 'w') as opened_file:
 # You can construct your own context managers using the contextmanager
 # decorator from contextlib.
 
-# example 1 -------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# example 1
+# -----------------------------------------------------------------------------
 
 from contextlib import contextmanager
 
@@ -67,8 +69,9 @@ def tag(name):
 with tag("h1"):
     print("Heading", end='')  # <h1>Heading</h1>
 
-# example 2 -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# example 2
+# -----------------------------------------------------------------------------
 # This could be used when you have to change the current directory temporarily
 # and then return to where you were:
 
@@ -89,8 +92,9 @@ with working_directory("data/stuff"):
 
 # Then here you are back again in the original working directory
 
-# example 3 -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# example 3
+# -----------------------------------------------------------------------------
 # This example  creates a temporary folder and cleans it up when leaving
 # the context:
 

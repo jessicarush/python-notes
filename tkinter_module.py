@@ -27,8 +27,9 @@ mainWindow.geometry('640x480+100+20')
 # The numbers following the window size are the optional positioning from the
 # top left. You can use negative numbers to go from the bottom right.
 
-# .pack()---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# .pack()
+# -----------------------------------------------------------------------------
 # use fill in canvas.pack() to have the canvas fit to the mainWindow.
 # Acceptable values here are tkinter.X, tkinter.Y or tkinter.Both
 # canvas.pack(side='top', fill=tkinter.BOTH, expand=True)
@@ -59,14 +60,16 @@ button3.pack(side='top')
 
 mainWindow.mainloop()
 
-# .place() -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# .place()
+# -----------------------------------------------------------------------------
 # works by setting the absolute position for at least one window and placing
 # other elements relative to it. Unless you know the single screen size you're
 # programming for, its not super helpful.
 
-# .grid() --------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# .grid()
+# -----------------------------------------------------------------------------
 label = tkinter.Label(mainWindow, text="Something")
 label.grid(row=0, column=0)
 
@@ -106,8 +109,9 @@ button3.grid(sticky='ew')
 # this function always at the end:
 mainWindow.mainloop()
 
-# sticky ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# sticky
+# -----------------------------------------------------------------------------
 # By default, if a cell is larger than the widget contained in it, the widget
 # will be centered within it, both horizontally and vertically, with the
 # master's background showing in the empty space around it. The "sticky" option
@@ -120,8 +124,9 @@ mainWindow.mainloop()
 # will still be centered horizontally. A value of "nw" (north-west) means the
 # widget will be stuck to the top left corner.
 
-# weight ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# weight
+# -----------------------------------------------------------------------------
 # Every column and row has a "weight" grid option associated with it, which
 # tells it how much it should grow if there is extra room to fill. By default,
 # the weight of each column or row is 0, meaning don't expand to fill space.
@@ -131,8 +136,9 @@ mainWindow.mainloop()
 # expand at the same rate; if one has a weight of 1, another of 3, the latter
 # one will expand three pixels for every one pixel added to the first.
 
-# tkinter.ttk ----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# tkinter.ttk
+# -----------------------------------------------------------------------------
 # The tkinter.ttk module provides access to the Tk themed widget set,
 # introduced in Tk 8.5. The basic idea for tkinter.ttk is to separate, to the
 # extent possible, the code implementing a widget’s behavior from the code

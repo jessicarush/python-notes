@@ -1,7 +1,8 @@
 '''Documenting and Naming'''
 
-# docstrings -----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# docstrings
+# -----------------------------------------------------------------------------
 # For obvious reasons, it helps to document your code. Documentation can
 # include comments and docstrings, but it can also incorporate informative
 # naming of variables, functions, modules, and classes. Don't be obsessive, say
@@ -39,8 +40,9 @@ def example(arg1=0.0, arg2=None):
 help(example)  # output all the docstrings (a class could have many)
 print(example.__doc__)  # print just the one docstring
 
-# Example --------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Example
+# -----------------------------------------------------------------------------
 # if you were writing a Fahrenheit to Celsius converter:
 
 def ftoc(f_temp):
@@ -62,8 +64,9 @@ if __name__ == '__main__':
         c_temp = ftoc(f_temp)
         print('%f F => %f C' % (f_temp, c_temp))
 
-# Constants ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Constants
+# -----------------------------------------------------------------------------
 # Python doesn't have constants, but the PEP8 stylesheet recommends using
 # capital letters and underscores (e.g., ALL_CAPS) when naming variables that
 # should be considered constants.
@@ -85,8 +88,9 @@ def ftoc(f_temp):
     c_temp = (f_temp - F_FREEZE_TEMP) * F_C_RATIO + C_FREEZE_TEMP
     return c_temp
 
-# Private functions ----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Private functions
+# -----------------------------------------------------------------------------
 # If you're building a module that will be imported, you can identity functions
 # that aren't intended to be called on their own by naming them with a leading
 # underscore.
@@ -94,8 +98,9 @@ def ftoc(f_temp):
 def _guts():
     pass
 
-# Private attributes (name mangling) -----------------------------------------
-
+# -----------------------------------------------------------------------------
+# Private attributes (name mangling)
+# -----------------------------------------------------------------------------
 # The naming convention for hidden attributes in classes is a leading double
 # underscore. Python "mangles" the names of attributes that start with two
 # underscores to make it more difficult to accidentally mess with it. The
@@ -112,8 +117,9 @@ print(x.name)
 #print(x.__alias)  # AttributeError: 'Person' object has no attribute '__alias'
 print(x._Person__alias)  # This will actually return the attribute
 
-# Throwaway values -----------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Throwaway values
+# -----------------------------------------------------------------------------
 # in the event that you need to give something a name but you have no intention
 # of using it, it's acceptable to use the name '-'. The perfect example of this
 # is with tuple unpacking. In the example below, I don't want the age
@@ -125,15 +131,17 @@ name, _, country = person
 
 print(name, country)
 
-# Variables names using Python keywords --------------------------------------
-
+# -----------------------------------------------------------------------------
+# Variables names using Python keywords
+# -----------------------------------------------------------------------------
 # If you're desperate to name something using one of Pythons keywords, the
 # accepted standard is to follow the with an underscore:
 
 from_ = 'example'
 
-# Type hints and function annotation -----------------------------------------
-
+# -----------------------------------------------------------------------------
+# Type hints and function annotation
+# -----------------------------------------------------------------------------
 # Python 3 introduced a syntax addition called function annotation syntax.
 # It allows adding annotations to function parameters and their return values.
 # It can serve as a way of documenting a function, for example, by using
@@ -161,8 +169,9 @@ def to_date(date_string: str) -> datetime:
 
 a = []  # type: List[str]
 
-# Code Tags -----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Code Tags
+# -----------------------------------------------------------------------------
 # https://www.python.org/dev/peps/pep-0350/
 
 # When working on a project, it’s often desirable to create a list of tasks

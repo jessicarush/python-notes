@@ -1,4 +1,4 @@
-# Concurrency and Networks
+'''Concurrency and Networks'''
 
 # Normally we run programs in one place (on a single machine) and one line at a
 # time (sequential). Concurrency is running more than one thing at at time.
@@ -6,8 +6,9 @@
 
 # Concurrency: https://docs.python.org/3/library/concurrency.html
 
-# CPU bound, I/O bound --------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# CPU bound, I/O bound
+# -----------------------------------------------------------------------------
 # In terms computing wait times, there are two main concepts:
 
 # CPU bound means the program is bottlenecked by the CPU, or central processing
@@ -30,10 +31,10 @@
 # effect results in lower CPU and device utilization than might be possible if
 # the shorter processes were allowed to go first.
 
-# Asynchronous ----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Asynchronous
+# -----------------------------------------------------------------------------
 # Synchronous - the next task begins when the previous task has been completed
-
 # Asynchronous - the ability to not stop and wait on a task which depends on an
 # external system, like reading a file, a database, or loading data from the
 # internet and continue with the next tasks. When the external system is
@@ -64,8 +65,9 @@
 # state means that there will be bottlenecks, failures, more things that can go
 # wrong. There are methods to help you deal with complexities:
 
-# Queues ----------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Queues
+# -----------------------------------------------------------------------------
 # Queues are used by both threads and multiprocesses. They can be thought of
 # like the threads inbox. They contain a sequence of work objects that are
 # waiting to be processed. Queues are generally shared between two or more
@@ -85,8 +87,9 @@
 # multiprocessing module which contains a queue function. There's also a queue
 # module and a threading module.
 
-# Multiprocesses --------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Multiprocesses
+# -----------------------------------------------------------------------------
 # Multiprocesses take advantage of the CPUs ability to utilize multiple CPUs.
 # Threads cannot do this because the OS treats them as one process. That being
 # said, multiprocesses hog more resources in terms of memory.
@@ -139,8 +142,9 @@ dish_queue.join()  # see below (note that dish_queue is its own process)
 # control access to a common resource by multiple processes in a concurrent
 # system such as a multiprogramming operating system.)
 
-# Daemon Processes ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Daemon Processes
+# -----------------------------------------------------------------------------
 # By default the main program will not exit until all of the children have
 # exited. There are times however when starting a background process that runs
 # without blocking the main program from exiting is useful, such as in services
@@ -161,8 +165,9 @@ dish_queue.join()  # see below (note that dish_queue is its own process)
 # https://pymotw.com/3/multiprocessing/basics.html
 # https://docs.python.org/3.6/library/multiprocessing.html
 
-# .join() ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# .join()
+# -----------------------------------------------------------------------------
 # To wait until a process has completed its work and exited, we use the join
 # method. This method can be applied to anything that it a process or a thread.
 
@@ -194,10 +199,11 @@ print("ok, our main loop can run again!")
 # the join, we'd see the dishes not get a chance to dry because the program
 # exits. Interestingly though, if you also remove .daemon = True on the
 # dryer_process, the queue will have time to finish its job because the
-# dryer_process now blocks the main program from ever exiting. 
+# dryer_process now blocks the main program from ever exiting.
 
-# Threading -------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Threading
+# -----------------------------------------------------------------------------
 # A thread runs within a process and has access to everything within that
 # process. For example, __main__ runs in a process and has/is one thread.
 # A thread is usually something that usually runs in a loop forever.
@@ -310,8 +316,9 @@ dish_queue.join()
 # https://pymotw.com/3/threading/index.html
 # https://docs.python.org/3/library/threading.html
 
-# Event-driven frameworks -----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Event-driven frameworks
+# -----------------------------------------------------------------------------
 # An alternative to separate threads and process is event-based programming.
 # An event-based program runs a central event loop, doles out any tasks and
 # repeats the loop.
@@ -327,8 +334,9 @@ dish_queue.join()
 # https://twistedmatrix.com/trac/
 # http://www.tornadoweb.org/en/stable/
 
-# asyncio ---------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# asyncio
+# -----------------------------------------------------------------------------
 # The asyncio module provides tools for building concurrent applications using
 # coroutines (think of coroutines like co-functions, it allows you to control
 # many functions running side by side). While threading implements concurrency
@@ -340,8 +348,9 @@ dish_queue.join()
 # https://pymotw.com/3/asyncio/index.html
 # https://docs.python.org/3/library/asyncio.html
 
-# Queues across Networks ------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Queues across Networks
+# -----------------------------------------------------------------------------
 # This example uses a Redis server. The Redis list acts as the queue. In theory,
 # clients would talk to the server via TCP. One or more provider clients pushes
 # messages onto one end of the list and one or more client workers watch the
@@ -448,8 +457,9 @@ for num in range(DRYERS):
 
 # don't forget to shutdown the server: redis-cli shutdown
 
-# Final Note on Queues --------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Final Note on Queues
+# -----------------------------------------------------------------------------
 # Some techniques relating to queues:
 
 # – Fire and forget

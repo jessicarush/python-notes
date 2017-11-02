@@ -83,8 +83,9 @@ class Account():
     def show_balance(self):
         print('Balance on account {} is {:.2f}'.format(self.name, self._balance / 100))
 
-
-# Testing ---------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Testing
+# -----------------------------------------------------------------------------
 
 if __name__ == '__main__':
     rick = Account('Rick')
@@ -100,8 +101,9 @@ if __name__ == '__main__':
 
     db.close()
 
-
-# Retrieve datetime objects ---------------------------------------------------
+# -----------------------------------------------------------------------------
+# Retrieve datetime objects
+# -----------------------------------------------------------------------------
 
 print('-' * 50)
 
@@ -123,7 +125,9 @@ for row in db.execute('SELECT * FROM history'):
 
 db.close()
 
-# Display stored UTC times as a users local time ------------------------------
+# -----------------------------------------------------------------------------
+# Display stored UTC times as a users local time
+# -----------------------------------------------------------------------------
 
 print('-' * 50)
 
@@ -136,7 +140,9 @@ for row in db.execute('SELECT * FROM history'):
 
 db.close()
 
-# An alternate method to display as local time --------------------------------
+# -----------------------------------------------------------------------------
+# An alternate method to display as local time
+# -----------------------------------------------------------------------------
 
 print('-' * 50)
 
@@ -153,7 +159,9 @@ for row in db.execute("SELECT strftime('%Y-%m-%d %H:%M:%f', history.time, 'local
 
 db.close()
 
-# Create a view using the above -----------------------------------------------
+# -----------------------------------------------------------------------------
+# Create a view using the above
+# -----------------------------------------------------------------------------
 
 print('-' * 50)
 

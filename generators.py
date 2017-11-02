@@ -36,8 +36,9 @@ print(type(ranger))  # <class 'generator'>
 for x in ranger:
     print(x)
 
-# Reduced size ----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Reduced size
+# -----------------------------------------------------------------------------
 # To illustrate the size difference between generators and a full list
 # equivalent (keep in mind these sizes are using up memory):
 
@@ -53,9 +54,9 @@ big_list = list(my_range(1, 10000))
 print('big_list is {} bytes'.format(sys.getsizeof(big_list)))
 # big_list is 83112 bytes
 
-
-# Another Generator example ---------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Another Generator example
+# -----------------------------------------------------------------------------
 # This example shows a function that opens and searches a file for text.
 # The search words and the filename are entered as arguments. Each time
 # We call the generator, it remembers where it left of and continues.
@@ -78,7 +79,9 @@ print(next(search_generator))  # Mama, life had just begun
 print(next(search_generator))  # Mama, ooh, didn't mean to make you cry
 print(next(search_generator))  # Mama, ooh, I don't want to die
 
-# Another Generator example ---------------------------------------------------
+# -----------------------------------------------------------------------------
+# Another Generator example
+# -----------------------------------------------------------------------------
 
 def fibonacci(n):
     curr = 1
@@ -95,7 +98,9 @@ test_fibonacci = fibonacci(10)
 for i in test_fibonacci:
     print(i)
 
-# Multiple Yields -------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Multiple Yields
+# -----------------------------------------------------------------------------
 
 def odds_generator():
     '''generate infinite odd numbers'''

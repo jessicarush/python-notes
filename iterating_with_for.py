@@ -1,6 +1,9 @@
 '''Iterating with for'''
 
-# Iterating over lists, tuples and sets returns items.
+# -----------------------------------------------------------------------------
+# Iterating over lists, tuples and sets returns individual items
+# -----------------------------------------------------------------------------
+
 list1 = ['one' , 'two', 'three']
 tuple1 = ('four', 'five', 'six')
 set1 = {'seven', 'eight', 'nine'}
@@ -18,13 +21,19 @@ for item in set1:
 for item in list1[:1]:
     print(item)
 
-# Iterating over strings returns characters.
+# -----------------------------------------------------------------------------
+# Iterating over strings returns characters
+# -----------------------------------------------------------------------------
+
 string1 = "ten"
 
 for char in string1:
     print(char)
 
-# Iterating over dictionaries returns keys.
+# -----------------------------------------------------------------------------
+# Iterating over dictionaries returns keys
+# -----------------------------------------------------------------------------
+
 dict1 = {'eleven' : '11', 'twelve': '12', 'thirteen': '13'}
 
 for item in dict1: # will choose keys
@@ -46,7 +55,9 @@ for item in dict1.items():
 for key, value in dict1.items():
     print(key, 'is', value)
 
-# Iterating over multiple sequences with zip() --------------------------------
+# -----------------------------------------------------------------------------
+# Iterating over multiple sequences with zip()
+# -----------------------------------------------------------------------------
 
 days = ['Monday', 'Tuesday', 'Wednesday']
 fruits = ['Apple', 'Banana', 'Pear']
@@ -56,7 +67,9 @@ desserts = ['Ice cream', 'Cookies', 'Cake', 'Candy']
 for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
     print(day, ': eat', fruit, ', drink', drink, ', cheat with', dessert)
 
-# for using range(start, stop, step) ------------------------------------------
+# -----------------------------------------------------------------------------
+# for using range(start, stop, step)
+# -----------------------------------------------------------------------------
 
 for x in range(5, -1, -1):
     print(x, end='...')
@@ -64,14 +77,18 @@ for x in range(5, -1, -1):
 evens = list(range(0, 20, 2))
 print(evens)
 
-# using multiple for loops ----------------------------------------------------
+# -----------------------------------------------------------------------------
+# using multiple for loops
+# -----------------------------------------------------------------------------
 
 for i in range(1, 13):
     for j in range(1, 13):
         print(i, 'times',  j, 'is', i*j)
     print('------------------')
 
-# break and continue ----------------------------------------------------------
+# -----------------------------------------------------------------------------
+# break and continue
+# -----------------------------------------------------------------------------
 
 cheeses = []
 for cheese in cheeses:
@@ -99,7 +116,9 @@ for colour in colours:
 # item that it's iterating over. When there are no more items, the iterator
 # returns an error and the for loop handles the error and terminates
 
-# Create your own iterator with iter() and next() -----------------------------
+# -----------------------------------------------------------------------------
+# Create your own iterator with iter() and next()
+# -----------------------------------------------------------------------------
 
 string = '12345'
 my_iterator = iter(string)
@@ -130,8 +149,9 @@ for i in range(0, len(my_list)):
 for i in my_list:
     print(i)
 
-# Note ------------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Important Note
+# -----------------------------------------------------------------------------
 # A for loop is effective for iterating through a list but apparently, "You
 # shouldn't modify a list inside a for loop because Python will have trouble
 # keeping track of the items in the list. To modify a list as you work through

@@ -1,14 +1,15 @@
 '''Tuples'''
 
-# Tuple methods --------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Tuple methods
+# -----------------------------------------------------------------------------
 
 dir(tuple)
 #  [..., 'count', 'index']
 
 # -----------------------------------------------------------------------------
-
 # Tuples are ordered (like lists) and immutable (unlike lists)
-
+# -----------------------------------------------------------------------------
 # Create a tuple by providing values in brackets separated by commas. If you
 # need to create a tuple from one value, you must add a comma at the end,
 # otherwise it won't actually be a tuple. TBH, it's actually the commas that
@@ -74,8 +75,9 @@ colours_str = 'orange, yellow, purple'
 colours_tuple = tuple(colours_str.split(', '))
 print(colours_tuple)  # ('orange, 'yellow', 'purple')
 
-# Benefits of using tuples ----------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Benefits of using tuples
+# -----------------------------------------------------------------------------
 # - Tuples use less space
 # - You can't mess with tuple items by mistake
 # - You can use tuples as dictionary keys (you can't use a list because lists
@@ -83,8 +85,9 @@ print(colours_tuple)  # ('orange, 'yellow', 'purple')
 # - Named tuples can be a simple alternative to objects
 # - Function arguments are passed as tuples
 
-# Named Tuples ----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Named Tuples
+# -----------------------------------------------------------------------------
 # A named tuple is a subclass of tuples with which you can access values by
 # name (with .name) as well as position (with [offset])
 

@@ -1,13 +1,16 @@
 '''Dictionaries'''
 
-# Dictionary methods ----------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Dictionary methods
+# -----------------------------------------------------------------------------
 
 dir(dict)
 #  [..., 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem',
 #  'setdefault', 'update', 'values']
 
 # -----------------------------------------------------------------------------
-
+# Creating a dictionary
+# -----------------------------------------------------------------------------
 # create a dict with = {}
 
 person = {
@@ -36,8 +39,9 @@ dict_from_tol = dict(tuple_of_lists)
 dict_from_los = dict(list_of_two_char_strings)
 dict_from_tos = dict(tuple_of_two_char_strings)
 
-# Combine dicts with .update() -----------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Combine dicts with .update()
+# -----------------------------------------------------------------------------
 # this would be like extend() for lists
 
 location = {
@@ -50,16 +54,19 @@ location = {
 
 person.update(location)
 
-# delete an item by key with del ---------------------------------------------
-
+# -----------------------------------------------------------------------------
+# delete an item by key with del
+# -----------------------------------------------------------------------------
 del person['age']
 
-# delete all items with .clear() ---------------------------------------------
-
+# -----------------------------------------------------------------------------
+# delete all items with .clear()
+# -----------------------------------------------------------------------------
 person.clear()
 
-# get an value by [key] and get() --------------------------------------------
-
+# -----------------------------------------------------------------------------
+# get an value by [key] and get()
+# -----------------------------------------------------------------------------
 print(location['street'])
 
 # if the key is not present, you'll get an exception. To avoid this use the
@@ -89,7 +96,9 @@ while True:
     value = location.get(key, 'There is no ' + key)
     print(value)
 
-# .keys() .values() .items() -------------------------------------------------
+# -----------------------------------------------------------------------------
+# .keys() .values() .items()
+# -----------------------------------------------------------------------------
 
 # get all keys using .keys()
 
@@ -131,7 +140,9 @@ for i in location.values():
 for k, v in location.items():
     print(k, '–', v)
 
-# .sort() and sorted() -------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Sort by dict keys
+# -----------------------------------------------------------------------------
 
 ordered_keys = list(location.keys())
 
@@ -139,13 +150,22 @@ ordered_keys.sort()
 for key in ordered_keys:
     print(key, '–', location[key])
 
-# sort keys with sorted()
-# location.keys() behaves like a sequence and can therefor be passed to sorted
+# location.keys() behaves like a sequence and can therefor be passed to sorted:
 
 for key in sorted(location.keys()):
     print(key, '–', location[key])
 
-# copy a dict with .copy() ---------------------------------------------------
+# -----------------------------------------------------------------------------
+# Sort by values
+# -----------------------------------------------------------------------------
+# this trick returns a list of tuples from a dict, sorted by value:
+
+ordered_vals = sorted(location.items(), key=lambda x: x[1])
+print(ordered_vals)
+
+# -----------------------------------------------------------------------------
+# copy a dict with .copy()
+# -----------------------------------------------------------------------------
 
 location_copy = location.copy()
 location['city'] = 'montreal'
@@ -153,7 +173,9 @@ location['city'] = 'montreal'
 print(location)
 print(location_copy)
 
-# Convert to a string with join() --------------------------------------------
+# -----------------------------------------------------------------------------
+# Convert to a string with join()
+# -----------------------------------------------------------------------------
 
 key_string = ', '.join(location.keys())
 print(key_string)
@@ -161,8 +183,9 @@ print(key_string)
 value_string = ', '.join(location.values())
 print(value_string)
 
-# setdefault() ---------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# setdefault()
+# -----------------------------------------------------------------------------
 # setdefault() method is like get() for dictionaries. It looks for the key and
 # if missing, creates it, but it does not change the value if the key is
 # already there. If you don't provide a value as with 'Canada' below, the
@@ -170,8 +193,9 @@ print(value_string)
 
 country = location.setdefault('country', 'Canada')
 
-# defaultdict() --------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# defaultdict()
+# -----------------------------------------------------------------------------
 # defaultdict() specifies a default value for any new key up front when the
 # dictionary is created. In this example, any missing value will be an integer
 # with a value 0
@@ -223,8 +247,9 @@ for key in ['red', 'red', 'orange', 'red']:
 
 print(jellybeans)  # defaultdict(<class 'int'>, {'red': 3, 'orange': 1})
 
-# OrderedDict() --------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# OrderedDict()
+# -----------------------------------------------------------------------------
 # OrderedDict() remembers the order of key addition and returns them in that
 # same order (remember, dictionaries are NOT usually ordered like lists)
 

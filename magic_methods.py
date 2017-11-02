@@ -30,7 +30,9 @@ second = Word('HA')
 
 print(first == second)  # True
 
-# Magic Methods for comparison -------------------------------------------------
+# -----------------------------------------------------------------------------
+# Magic Methods for comparison
+# -----------------------------------------------------------------------------
 
 def __eq__(self, other):        # self == other
     pass
@@ -45,7 +47,9 @@ def __le__(self, other):        # self <= other
 def __ge__(self, other):        # self >= other
     pass
 
-# Magic Methods for math -------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Magic Methods for math
+# -----------------------------------------------------------------------------
 
 def __add__(self, other):       # self + other
     pass
@@ -62,7 +66,9 @@ def __mod__(self, other):       # self % other
 def __pow__(self, other):       # self ** other
     pass
 
-# Other common Magic Methods ---------------------------------------------------
+# -----------------------------------------------------------------------------
+# Other common Magic Methods
+# -----------------------------------------------------------------------------
 
 def __str__(self):
     pass
@@ -71,7 +77,9 @@ def __repr__(self):
 def __len__(self):
     pass
 
-# Testing __str__ and __repr__ -------------------------------------------------
+# -----------------------------------------------------------------------------
+# Testing __str__ and __repr__
+# -----------------------------------------------------------------------------
 
 print(repr(first))      # <__main__.Word object at 0x101ca8828>
 print(first)            # <__main__.Word object at 0x101ca8828>
@@ -89,7 +97,9 @@ first = Word('Ha')
 print(first)            # Ha - because of the magic method __str__
 print(repr(first))      # Word("Ha") - because of the magic method __repr__
 
-# Another __str__ example ------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Another __str__ example
+# -----------------------------------------------------------------------------
 
 class Player(object):
 
@@ -106,7 +116,9 @@ class Player(object):
 player1 = Player('Morty')
 print(player1)  # Name: Morty, Lives: 3, Level: 1, Score: 0
 
-# __dict__ ---------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# __dict__
+# -----------------------------------------------------------------------------
 
 # Another magic method is __dict__. It's used to return the dictionary used to
 # store an object’s attributes

@@ -3,6 +3,9 @@
 # Interpolate data values into strings (put values into strings using various
 # formats). There are two ways of formatting strings: old style and new style.
 
+# -----------------------------------------------------------------------------
+# Old Style formatting - deprecated for Python 3
+# -----------------------------------------------------------------------------
 # Old style with % (string % data) % followed by a letter indicates the type
 # of data.
 
@@ -25,9 +28,9 @@ name = 'golden ratio'
 
 print('The %s is %f' % (name, goldenratio))
 
-# NOTE: Old style formatting has been marked as deprecated for Python 3
-
-# NEW style formatting with {} and format()
+# -----------------------------------------------------------------------------
+# New Style formatting - with {} and format()
+# -----------------------------------------------------------------------------
 
 print('The {0} is {1}'.format(name, goldenratio))
 

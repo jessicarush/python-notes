@@ -1,5 +1,8 @@
 '''Pythons Standard Web Libraries'''
 
+# -----------------------------------------------------------------------------
+# http and urllib modules
+# -----------------------------------------------------------------------------
 # Python 3 has bundled all its web client and server modules into 2 packages:
 
 # http manages all the client-server HTTP details:
@@ -54,8 +57,9 @@ print(conn.getheader('Content-Type'))
 for key, value in conn.getheaders():
     print(key, 'is', value)
 
-# Requests Library ------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Requests Library
+# -----------------------------------------------------------------------------
 # install: $ pip3 install requests
 # documentation: http://docs.python-requests.org/en/master/
 
@@ -67,8 +71,9 @@ resp = requests.get(url)
 print(resp)
 print(resp.text)
 
-# Web Servers -----------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Web Servers
+# -----------------------------------------------------------------------------
 # Python is an excellent language for writing web servers and server-side
 # programs. This has led to a huge variety of Python-based web frameworks.
 # A web framework provides features with which you can build websites, so it
@@ -108,8 +113,9 @@ print(resp.text)
 # handle dynamic content. Stop it by killing its process (ctrl+c). For a busy
 # website you would use a traditional web server such as Apache or nginx.
 
-# Web Server Gateway Interface ------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Web Server Gateway Interface
+# -----------------------------------------------------------------------------
 # In the early days of the Web, the Common Gateway Interface (CGI) was
 # designed for clients to make web servers run external programs and return
 # the results. The setup didn't scale well. To avoid startup delays, they
@@ -123,8 +129,9 @@ print(resp.text)
 # servers. All of the Python web frameworks and web servers in the following
 # examples use WSGI.
 
-# Frameworks ------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Frameworks
+# -----------------------------------------------------------------------------
 # Web servers handle the HTTP and WSGI details, but you use web frameworks to
 # actually write the Python code that powers the site
 
@@ -138,8 +145,9 @@ print(resp.text)
 # Authentication and authorization - Handle usernames, passwords, permissions
 # Sessions - Maintain transient data storage during a user's visit to the site
 
-# Bottle (microframework, doesn't include direct support for databases) --------
-
+# -----------------------------------------------------------------------------
+# Bottle (microframework, doesn't include direct support for databases)
+# -----------------------------------------------------------------------------
 # Bottle consists of a single Python file, so it's very easy to try out, and
 # to deploy later. To install it: $ pip3 install bottle
 
@@ -182,8 +190,9 @@ run(host='localhost', port=9999)
 
 # See Bottle documentation at http://http://bottlepy.org/docs/dev/
 
-# Flask (microframework, doesn't include direct support for databases) ---------
-
+# -----------------------------------------------------------------------------
+# Flask (microframework, doesn't include direct support for databases)
+# -----------------------------------------------------------------------------
 # Flask supports many useful web development extensions such as facebook
 # authentication and database integration. The Flask package includes the
 # werkzeug WSGI library and jinja2 template library.
@@ -287,8 +296,9 @@ app.run(port=9999, debug=True)
 # The **kwargs acts like thing=thing, other=other. It saves some typing if
 # there are a lot of input arguments. Use the same url pattern as above.
 
-# Other Frameworks -------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Other Frameworks
+# -----------------------------------------------------------------------------
 # If you want to build a website backed by a relational database, you can use
 # bottle and flask with relational database modules, or use SQLAlchemy. But if
 # you're building larger database-backed websites, and the database design

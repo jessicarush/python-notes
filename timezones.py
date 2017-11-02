@@ -5,7 +5,9 @@
 # your processing in UTC and then convert back to timezones only if you have
 # to at the end for the user.
 
-# pytz module ----------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# pytz module
+# -----------------------------------------------------------------------------
 
 import pytz
 import datetime
@@ -41,7 +43,9 @@ for x in sorted(pytz.country_names):
     else:
         print("\tNo timezone defined")
 
-# example:
+# -----------------------------------------------------------------------------
+# Example:
+# -----------------------------------------------------------------------------
 
 country = "Europe/Moscow"
 tz_to_display = pytz.timezone(country)
@@ -54,7 +58,9 @@ print("UTC is {}".format(datetime.datetime.utcnow()))
 print("The time in {} is {} {}".format(
 country, world_time.strftime('%A %x %X'), world_time.tzname()))
 
-# convert a naive datatime to an aware datetime ------------------------------
+# -----------------------------------------------------------------------------
+# convert a naive datatime to an aware datetime
+# -----------------------------------------------------------------------------
 
 import datetime
 import pytz
@@ -86,8 +92,9 @@ aware_local_time = pytz.utc.localize(utc_time).astimezone()
 print("Aware local time: {} - time zone: {}".format(
       aware_local_time, aware_local_time.tzinfo))
 
-# date in a time zone from epoch ---------------------------------------------
-
+# -----------------------------------------------------------------------------
+# date in a time zone from epoch
+# -----------------------------------------------------------------------------
 # Using time stamps (seconds since the epoch) to convert to actual date.
 # For this example we'll be supplying the time zone since an epoch number could
 # be from anywhere. This particular timestamp is the hour before DST in the UK
