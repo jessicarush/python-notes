@@ -106,3 +106,79 @@ hist2.y_title = 'frequency of result'
 
 hist2.add('D6 + D10', frequencies)
 hist2.render_to_file('die_visual_3.svg')
+
+# -----------------------------------------------------------------------------
+# Misc notes: configuration
+# -----------------------------------------------------------------------------
+# There is a config class in the Pygal module (but the documentation is weak
+# in terms of what is in this class). In short, config values are settable
+# on the chart object:
+
+chart = pygal.Bar()
+chart.show_legend = False
+chart.human_readable = True
+chart.fill = True
+
+# or, config values can be given as keyword args at init:
+
+chart = pygal.XY(show_legend=False, human_readable=True, fill=True)
+
+# or , config values can be given when you render() at the end:
+
+chart.render(show_legend=False, human_readable=True, fill=True)
+
+# There are examples of many of the config options here:
+# http://pygal.org/en/stable/documentation/configuration/chart.html
+# http://pygal.org/en/stable/documentation/configuration/serie.html
+# http://pygal.org/en/stable/documentation/configuration/value.html
+
+# Configuration options should not be confused with styling:
+
+# -----------------------------------------------------------------------------
+# Misc notes: styling
+# -----------------------------------------------------------------------------
+# http://pygal.org/en/stable/documentation/styles.html
+# It looks like in order to customize styles (ie fonts, colors) there are a
+# couple of options:
+
+# 1. choose a different theme from pygals list (14 in total):
+
+from pygal.style import NeonStyle
+
+pie_chart = pygal.Pie(style=NeonStyle)
+
+# 2. choose one of five parametric themes (a parametric theme uses one default
+# color and generates the others from that one). These include: lighten, darken,
+# saturate, desaturate, and rotate. Apply thusly:
+
+from pygal.style import DarkenStyle
+
+my_style = DarkenStyle('#04dba4')
+pie_chart = pygal.Pie(style=my_style)
+
+# 3. or you can create your own style class:
+
+from pygal.style import Style
+
+custom_style = Style(
+  background='transparent',
+  plot_background='transparent',
+  foreground='#53E89B',
+  legend_font_size=9,
+  colors=('#E853A0', '#E8537A', '#E95355', '#E87653', '#E89B53'))
+
+pie_chart = pygal.Pie(style=custom_style)
+
+# a list of available style properties can be found here:
+# # http://pygal.org/en/stable/documentation/custom_styles.html
+
+# The biggest complaint I have so far, is there doesn't seem to be an easy
+# way to adjust the position of elements. There are a few things I can do like:
+# – config the legend to be at the bottom
+# – add margins around the whole chart
+# – specify a size for the chart
+
+# But if I want to say left align the title or add space above the legend only,
+# or add space between the legend and the chart without changing the size of
+# the chart... it appears to be limited. Perhaps this functionality will
+# improve over time.
