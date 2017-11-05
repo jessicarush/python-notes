@@ -120,6 +120,22 @@ print(os.listdir('practice'))
 os.chdir('../')         # go up one directory
 print(os.listdir('.'))  # list content of current directory
 
+# copy a directory and all of it's contents recursively
+# - this WILL NOT overwrite directories that already exist:
+
+import shutil
+src = 'my_files/'
+dst ='/Users/username/Documents/Backups/'
+shutil.copytree(src, dst)
+
+# copy a directory and all of it's contents recursively
+# - this WILL overwrite directories that already exist:
+
+import distutils.dir_util
+src = 'my_files/'
+dst ='/Users/username/Documents/Backups/'
+distutils.dir_util.copy_tree(src, dst)
+
 # -----------------------------------------------------------------------------
 # List Matching Files with glob()
 # -----------------------------------------------------------------------------

@@ -119,11 +119,16 @@ chart.show_legend = False
 chart.human_readable = True
 chart.fill = True
 
-# or, config values can be given as keyword args at init:
+# or, you can create a config object and set to the object:
+my_config = pygal.Config()
+my_config.show_legend = False
+chart = pygal.Bar(my_config)
+
+# or, config values can be passed as keyword args at init:
 
 chart = pygal.XY(show_legend=False, human_readable=True, fill=True)
 
-# or , config values can be given when you render() at the end:
+# or, config values can be passed when you render() at the end:
 
 chart.render(show_legend=False, human_readable=True, fill=True)
 
@@ -160,14 +165,20 @@ pie_chart = pygal.Pie(style=my_style)
 
 from pygal.style import Style
 
-custom_style = Style(
+my_style = Style(
   background='transparent',
   plot_background='transparent',
   foreground='#53E89B',
   legend_font_size=9,
   colors=('#E853A0', '#E8537A', '#E95355', '#E87653', '#E89B53'))
 
-pie_chart = pygal.Pie(style=custom_style)
+pie_chart = pygal.Pie(style=my_style)
+
+# 4. once you have a style (whether it's imported or one you created yourself),
+# you can add properties this way too:
+
+my_style.title_font_size = 16
+my_style.label_font_size = 10
 
 # a list of available style properties can be found here:
 # # http://pygal.org/en/stable/documentation/custom_styles.html
