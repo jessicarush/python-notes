@@ -103,7 +103,7 @@ with open('testfile1.txt', 'w') as f_object:
     while True:
         if offset > size:
             break
-        f_object.write(text2[offset:offset + chunk])
+        f_object.write(text2[offset : offset + chunk])
         offset += chunk
 
 # Test 'x' with our own exception handler:
@@ -155,7 +155,7 @@ with open('testfile1.txt', 'r') as fob:
     chunk = 100
     while True:
         fragment = fob.read(chunk)
-        # As you read, write, Python keeps track of where you are in the file.
+        # As you read, Python keeps track of where the pointer is in the file.
         if not fragment:
             break
         poem += fragment
@@ -285,7 +285,7 @@ with open('testbinary', 'wb') as fob:
     while True:
         if offset > size:
             break
-        fob.write(bdata[offset:offset+chunk])
+        fob.write(bdata[offset : offset + chunk])
         offset += chunk
 
 # read() a Binary file:
@@ -321,6 +321,8 @@ with open('testbinary', 'rb') as fob:
 # These functions are most useful for binary files. Though you can use them
 # with text files, you would have a hard time calculating offsets as the
 # most popular encoding (UTF-8) uses varying numbers of bytes per character.
+# That being said, a simple fob.seek(0) can be useful for moving your pointer
+# back to the beginning of the file.
 
 # -----------------------------------------------------------------------------
 # truncate()
@@ -330,18 +332,12 @@ with open('testbinary', 'rb') as fob:
 # -----------------------------------------------------------------------------
 # Read, Write Append chart
 # -----------------------------------------------------------------------------
-print(' ' * 18, 'R  R+ W  W+ A  A+')
-print('read', ' ' * 13, 'X  X     X     X')
-print('write', ' ' * 12, '   X  X  X  X  X')
-print('create', ' ' * 11, '      X  X  X  X')
-print('truncate', ' ' * 9, '      X  X')
-print('position: start', ' ' * 2, 'X  X  X  X')
-print('position: end', ' ' * 4, '            X  X')
-
-#                    R  R+ W  W+ A  A+
-# read               X  X     X     X
-# write                 X  X  X  X  X
-# create                   X  X  X  X
-# truncate                 X  X
-# position: start    X  X  X  X
-# position: end                  X  X
+#                    | R | R+| W | W+| A | A+|
+# ––––––––––––––––––––––––––––––––––––––––––––
+# read               | X | X |   | X |   | X |
+# write              |   | X | X | X | X | X |
+# create             |   |   | X | X | X | X |
+# truncate           |   |   | X | X |   |   |
+# position: start    | X | X | X | X |   |   |
+# position: end      |   |   |   |   | X | X |
+# ––––––––––––––––––––––––––––––––––––––––––––
