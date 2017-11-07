@@ -13,7 +13,10 @@ desserts = ['Ice cream', 'Cookies', 'Cake', 'Candy']
 # of the shortest list.
 
 for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
-    print(day, ': eat', fruit, ', drink', drink, ', cheat with', dessert)
+    print(day.upper())
+    print('–', fruit)
+    print('–', drink)
+    print('–', dessert)
 
 # -----------------------------------------------------------------------------
 # create a dictionary from two sequences
