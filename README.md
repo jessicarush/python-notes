@@ -1,13 +1,14 @@
 # python-examples
 Notes for learning Python 3
 
-In my endeavor to learn python, I'll be collecting some notes and example code here for reference and review purposes.
-To date, my training is self-guided through the use of text books and online resources including:
+In my endeavor to learn python, I'll be collecting my notes and example code here for reference and review purposes.  
+To date, my training is self-guided through the use of text books and online resources. Some examples and comments  
+may come from the following:
 
-'Complete Python Masterclass' – Tim Buchalka, Jean-Paul Roberts  
-'Introducing Python' - Bill Lubanovic  
 'Python Crash Course' – Eric Matthes  
-'The Python 3 Standard Library by Example' – Doug Hellmann  
+'Introducing Python' - Bill Lubanovic  
+'Complete Python Masterclass' – Tim Buchalka, Jean-Paul Roberts  
+'The Python 3 Standard Library by Example' – Doug Hellmann   
 'Effectice Python' – Brett Slatkin  
 'Think Python' - Allen B. Downey  
 'Learn Python the Hard Way" - Zed A. Shaw  
