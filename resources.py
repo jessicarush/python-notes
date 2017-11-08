@@ -116,4 +116,15 @@ print(random.choice.__doc__)
 
 # The interesting thing about this is, it will include any python modules
 # (.py files) it finds from the current directory you were in when you
-# launched it. It's actualy pretty great!
+# launched it. It's actually pretty great!
+
+# -----------------------------------------------------------------------------
+# View the source code
+# -----------------------------------------------------------------------------
+# If you want to take a look at the actual file to read the comments and
+# docstring there, you can use the __file__ magic method to show you the
+# path to where this module lives:
+
+import os
+print(os.__file__)
+# /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/os.py

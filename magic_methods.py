@@ -67,18 +67,7 @@ def __pow__(self, other):       # self ** other
     pass
 
 # -----------------------------------------------------------------------------
-# Other common Magic Methods
-# -----------------------------------------------------------------------------
-
-def __str__(self):
-    pass
-def __repr__(self):
-    pass
-def __len__(self):
-    pass
-
-# -----------------------------------------------------------------------------
-# Testing __str__ and __repr__
+# __str__ and __repr__
 # -----------------------------------------------------------------------------
 
 print(repr(first))      # <__main__.Word object at 0x101ca8828>
@@ -119,8 +108,28 @@ print(player1)  # Name: Morty, Lives: 3, Level: 1, Score: 0
 # -----------------------------------------------------------------------------
 # __dict__
 # -----------------------------------------------------------------------------
-
 # Another magic method is __dict__. It's used to return the dictionary used to
 # store an object’s attributes
 
-print(player1.__dict__)  # {'name': 'Morty', 'lives': 3, 'level': 1, 'score': 0}
+print(player1.__dict__)
+# {'name': 'Morty', 'lives': 3, 'level': 1, 'score': 0}
+
+# -----------------------------------------------------------------------------
+# __file__
+# -----------------------------------------------------------------------------
+# If you want to take a look at the actual file to read the comments and
+# docstring there, you can use the __file__ magic method to show you the
+# path to where this module lives:
+
+import os
+print(os.__file__)
+# /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/os.py
+
+# -----------------------------------------------------------------------------
+# __doc__
+# -----------------------------------------------------------------------------
+# prints the docstring of a module, function or class:
+
+import random
+print(random.__doc__)
+print(random.choice.__doc__)
