@@ -1,4 +1,4 @@
-'''More from the Standard Library''''
+'''More from the Standard Library'''
 
 # https://docs.python.org/3/library/index.html
 
@@ -77,8 +77,8 @@ for item in itertools.chain([1,2], ['a', 'b']):
 # cycle()
 # is an infinite iterator, cycling through its arguments
 
-for item in itertools.cycle([1, 2]):
-    print(item)
+# for item in itertools.cycle([1, 2]):
+#     print(item)
 
 # accumulate()
 # calculates accumulated values. By default it calculates the sum:
@@ -97,7 +97,7 @@ for item in itertools.accumulate([1, 2, 3, 4], multiply):
     print(item)
 
 # -----------------------------------------------------------------------------
-# os.walk() 
+# os.walk()
 # -----------------------------------------------------------------------------
 # os.walk recursively visits each directory from the root, and for each one,
 # returns a tuple. The first item in the tuple is a string containing the
@@ -139,3 +139,44 @@ for path, directories, files in os.walk(root, topdown=True):
 
 # Using this you could easily create a database or structures file format,
 # pulling out the specific bits of information.
+
+# -----------------------------------------------------------------------------
+# difflib.()
+# -----------------------------------------------------------------------------
+# the difflib module contains tools for comparing and working with differences
+# between sequences. It's especially useful for comparing text. This example
+# uses the SequenceMatcher class and its .ratio() method:
+
+from difflib import SequenceMatcher
+
+test = SequenceMatcher(None, 'rain', 'rainn')
+print(type(test))    # <class 'difflib.SequenceMatcher'>
+print(test.ratio())  # 0.8888888888888888
+
+test = SequenceMatcher(None, 'rain', 'Rainn')
+print(test.ratio())  # 0.6666666666666666
+
+test = SequenceMatcher(None, ' rain', 'r a i n n ')
+print(test.ratio())  # 5333333333333333
+
+# The ratio method returns the similarity between two strings on a scale of 0–1.
+# Note, it is case sensitive. Extra characters such as spaces and '\n' also
+# count. The None argument is where you can specify which characters should be
+# ignored (junk).
+
+from difflib import get_close_matches
+
+# get_close_matches(word, possibilities, n=3, cutoff=0.6)
+#    - Use SequenceMatcher to return list of the best "good enough" matches.
+#    - word is the sequence your trying to match (typically a string).
+#    - possibilities is a list of sequences to match word against
+#      (typically a list of strings).
+#    - Optional arg n (default 3) is the maximum number of close matches to
+#      return. n must be > 0.
+#    - Optional arg ration cutoff (default 0.6) is a float in [0, 1].
+#      Possibilities that don't score at least that similar to word are ignored
+
+possibilities = ['train', 'car', 'grain', 'arithmetic', 'rain', 'ball']
+print(get_close_matches('rainn', possibilities))  # ['rain', 'train', 'grain']
+print(get_close_matches('rainn', possibilities, n=1))  # ['rain']
+exit()
