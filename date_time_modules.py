@@ -287,8 +287,8 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 # aren't the only way to write dates and times as strings. We can also convert
 # dates and times to strings using strftime().
 
-# This is provided as a method in the datetime, date, and time objects, and
-# as a function in the time module. strftime() uses format strings to specify
+# This is provided as a METHOD in the datetime, date, and time objects, and
+# as a FUNCTION in the time module. strftime() uses format strings to specify
 # the output:
 
 # %Y  year                          2017
@@ -343,6 +343,11 @@ from datetime import time
 a_time = time(12, 3, 0)
 print(a_time.strftime(fmt))
 # It's Monday, January 01, 1900, local time: 12:03:00PM
+
+# Another way to write it:
+import datetime
+
+time_str = datetime.datetime.now().strftime('%m-%d-%Y-%H-%M-%S')
 
 # To go the other way and convert a string to a date or time, use strptime()
 # the nonformat parts of the string (without %) need to match EXACTLY.

@@ -222,9 +222,17 @@ colours = ['red', 'cyan', 'yellow', 'green']
 
 for colour in enumerate(colours):
     print(colour)
+# (0, 'red')
+# (1, 'cyan')
+# (2, 'yellow')
+# (3, 'green')
 
 for number, colour in enumerate(colours, 1): # starts the numbering at 1
     print(number, colour)
+# 1 red
+# 2 cyan
+# 3 yellow
+# 4 green
 
 # There's a nice example of how enumerate is used with a csv file – to get the
 # indexes listed with all the headers so we know which indexes of data we're
