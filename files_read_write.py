@@ -215,6 +215,22 @@ with open("testfile1.txt", 'r') as fob:
 # X is for Xerxes, devoured by mice.
 
 # -----------------------------------------------------------------------------
+# Example: read(), write() and iteration
+# -----------------------------------------------------------------------------
+# this example opens each file in a list and writes it's content to one new
+# file and names it with todays date and time.
+
+import datetime
+
+filename = datetime.datetime.now().strftime('%m-%d-%Y-%H-%M-%S')
+files = ['file1.txt', 'file2.txt', 'file3.txt']
+
+with open(filename + '.txt', 'w') as fob1:
+    for f in files:
+        with open(f) as fob2:
+            fob1.write(fob2.read())
+
+# -----------------------------------------------------------------------------
 # readlines() *plural
 # -----------------------------------------------------------------------------
 # readlines() - the previous examples read and built up a single string.
