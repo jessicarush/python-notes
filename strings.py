@@ -76,8 +76,23 @@ print(letters[2:8:2])
 
 test_string = 'Yeti Bigfoot Loch Ness Unicorn...'
 test_list = test_string.split()
-print(test_list)
-print(type(test_list))
+print(test_list)        # ['Yeti', 'Bigfoot', 'Loch', 'Ness', 'Unicorn...']
+print(type(test_list))  # <class 'list'>
+
+# -----------------------------------------------------------------------------
+# Break a large string up into a list of lines with .splitlines()
+# -----------------------------------------------------------------------------
+
+long_string = '''
+A long time ago, in a galaxy far, far away...
+It is a period of civil war. Rebel
+spaceships, striking from a hidden
+base, have won their first victory
+against the evil Galactic Empire. '''
+
+splitline_list = long_string.splitlines()
+print(splitline_list[3])     # spaceships, striking from a hidden
+print(type(splitline_list))  # <class 'list'>
 
 # -----------------------------------------------------------------------------
 # Join a list into a string with .join()
