@@ -52,5 +52,10 @@ print(a)
 # -----------------------------------------------------------------------------
 
 c = divmod(a, b) # will return the quotient and the remainder as a tuple
-print(c)
-print(type(c))
+print(c)         # (0.0, 1.0)
+print(type(c))   # <class 'tuple'>
+
+# NOTE: when working with modulus or divmod, keep in mind that when dividing
+# a larger number into a smaller number, the quotient will be always be zero
+# and the remainder will be the first number. This may seem obvious but still
+# worth noting. 
