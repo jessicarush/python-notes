@@ -1,6 +1,6 @@
 '''A brief look at NumPy (Numercical Python).'''
 
-import numpy
+# http://www.numpy.org/
 
 # NumPy is a library for the Python programming language, adding support for
 # large, multi-dimensional arrays and matrices, along with a large collection
@@ -11,6 +11,8 @@ import numpy
 
 # numpy is a base library for many other libraries such as pandas, matplotlib,
 # and OpenCV (image processing library).
+
+import numpy
 
 # -----------------------------------------------------------------------------
 # One Dimensional Arrays

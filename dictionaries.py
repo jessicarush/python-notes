@@ -156,7 +156,7 @@ for key in sorted(location.keys()):
     print(key, '–', location[key])
 
 # -----------------------------------------------------------------------------
-# Sort by values
+# Sort by dict values
 # -----------------------------------------------------------------------------
 # this trick returns a list of tuples from a dict, sorted by value:
 

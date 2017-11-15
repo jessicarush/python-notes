@@ -28,9 +28,10 @@ def myfunction2(num1, num2):
 
 # example:
 def heading(arg):
-    print('{0:-^80}'.format(str(arg).title()))
+    return('{0:-^80}'.format(str(arg).title()))
 
-heading('Positional Arguments')
+h = heading('Positional Arguments')
+print(h)
 
 # -----------------------------------------------------------------------------
 # Positional Arguments
@@ -61,7 +62,7 @@ print (menu(wine='chardonnay', cheese='swiss'))
 # Example of local vs parameter set value
 # -----------------------------------------------------------------------------
 # In this example the function is expected to run each time with a fresh empty
-# result list, add the arg argument to it, and then print a single-item list.
+# result list, add the argument to it, and then print the single-item list.
 # However, it's only empty the first time it's called. The second time, result
 # still has one item from the previous call.
 
@@ -144,7 +145,7 @@ print_more('red', 'green')
 # second argument is required: green
 # the rest: ()
 
-print_more('red', 'green', 'one', 'two', 'three
+print_more('red', 'green', 'one', 'two', 'three')
 # first argument is required: red
 # second argument is required: green
 # the rest: ('one', 'two', 'three')
@@ -161,7 +162,7 @@ def print_kwargs(**kwargs):
 
 print_kwargs(x=1, y=2, z='hi')  # {'x': 1, 'y': 2, 'z': 'hi'} <class 'dict'>
 
-# And here we're suing it in the function call:
+# And here we're using it in the function call:
 
 def add(x, y):
     return x + y
@@ -173,34 +174,34 @@ add(**nums)  # returns 20
 
 def print_kwargs(**kwargs):
     for key in kwargs:
-        print(key, 'in french is', kwargs[key])
+        print(key, 'en francais est', kwargs[key])
 
 colours = {'red': 'rouge', 'yellow': 'jaune', 'green': 'vert', 'black': 'noir'}
 
 print_kwargs(**colours)
-# red in french is rouge
-# yellow in french is jaune
-# green in french is vert
-# black in french is noir
+# red en francais est rouge
+# yellow en francais est jaune
+# green en francais est vert
+# black en francais est noir
 
-# see also terminology.py for another example that feeds dictionary values to
-# a class instance.
+# see also terminology.py for another example that feeds dictionary values
+# to a class instance.
 
 # -----------------------------------------------------------------------------
 # Docstrings
 # -----------------------------------------------------------------------------
 
 def myfunction1(arg):
-    '''this is where you can provide a brief description of the function'''
+    '''This is where you can provide a brief description of the function'''
     print(arg)
 
 def myfunction2(arg):
     '''
-    This lets
-    you
-    do
-    a *longer*
-    description
+    The first line should be a short concise description.
+
+    Followed by a space, and then the extended description.
+    See documenting_naming.py or any of the python standard library modules
+    for more information and examples.
     '''
     print(arg)
 
@@ -327,3 +328,8 @@ edit_story(sounds, headline)
 # Using lambda, the headline function can be replaced this way:
 
 edit_story(sounds, lambda word: word.capitalize() + '!')
+
+# Note that the lambda definition does not include a "return" statement – 
+# it always contains an expression which is returned. Also note that you can
+# put a lambda definition anywhere a function is expected, and you don't have
+# to assign it to a variable at all.

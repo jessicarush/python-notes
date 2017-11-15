@@ -1,5 +1,7 @@
 '''Pandas - Python Data Analysis Library'''
 
+# http://pandas.pydata.org/
+
 # The pandas library allows you to take in data from a variety of sources
 # (ie JSON, CSV, excel, from data mining activities such as web scraping),
 # then analyze the data in python and then output the results (ie tables,
