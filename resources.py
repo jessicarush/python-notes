@@ -51,10 +51,10 @@ help(ValueError)
 import random
 help(random)
 
-# you can also ask fro specific help on a builtin class method such as:
+# you can also ask for specific help on a method or class such as:
 
 help(list.extend)
-help(str.join)
+help(str.translate)
 help(set.difference)
 help(datetime.datetime)
 
