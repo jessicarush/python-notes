@@ -14,18 +14,20 @@ dir(dict)
 # create a dict with = {}
 
 person = {
-    'firstname' : 'Mary',
-    'lastname' : 'Jane',
+    'first' : 'Mary',
+    'last' : 'Jane',
     'age' : 70,
-    'weight' : 130,
-}
+    'height' : 165,
+    }
 
 # Add or change an item
 
 person['age'] = 40
-person['height'] = '5\'5"'
+person['weight'] = 140
 
-# convert to a dict with dict() ----------------------------------------------
+# -----------------------------------------------------------------------------
+# Convert to a dict with .dict()
+# -----------------------------------------------------------------------------
 
 list_of_lists = [['a', 'A'], ['b', 'B'], ['c', 'C']]
 list_of_tuples = [('d', 'D'), ('e', 'E'), ('f', 'F')]
@@ -50,22 +52,51 @@ location = {
     'street' : 'Main',
     'city' : 'Vancouver',
     'province' : 'BC',
-}
+    }
 
 person.update(location)
 
 # -----------------------------------------------------------------------------
-# delete an item by key with del
+# Delete an item by key with del
 # -----------------------------------------------------------------------------
 del person['age']
 
 # -----------------------------------------------------------------------------
-# delete all items with .clear()
+# Delete all items with .clear()
 # -----------------------------------------------------------------------------
 person.clear()
 
 # -----------------------------------------------------------------------------
-# get an value by [key] and get()
+# Remove an item and use it with .pop() or .popitem()
+# -----------------------------------------------------------------------------
+# The .pop() and .popitem() methods are like .pop() for list. They remove the
+# item from the dict but make it available for you to use. The differences
+# between the two are:
+#   1. pop() returns just the value, popitem() returns both key and value.
+#   2. pop() lets you choose the key, whearas .popitem() takes no arguments;
+#      it removes an arbitrary item from the dict.
+
+person = {'first' : 'Mary', 'last' : 'Jane', 'age' : 70, 'height' : 165,}
+
+popped = person.popitem()
+print(person)                # {'first': 'Mary', 'last': 'Jane', 'age': 70}
+print(popped, type(popped))  # ('height', 165) <class 'tuple'>
+
+popped = person.pop('age')
+print(person)                # {'first': 'Mary', 'last': 'Jane'}
+print(popped, type(popped))  # 70 <class 'int'>
+
+# Note with .pop():
+# If key is found - the item is removed/popped from the dictionary
+# If key is not found - the value specified as the second argument is returned
+# If key is not found and a second argument is not specified - a KeyError
+# exception is raised.
+
+popped = person.pop('satus', 'nope')
+print(popped, type(popped))  # nope <class 'str'>
+
+# -----------------------------------------------------------------------------
+# get a value by [key] and .get()
 # -----------------------------------------------------------------------------
 print(location['street'])
 
@@ -87,7 +118,7 @@ while True:
     else:
         print('There is no ' + key)
 
-# Again, using get() to avoid an exception:
+# Again, using .get() to avoid an exception:
 
 while True:
     key = input('Enter a key (q to quit): ')
@@ -99,46 +130,52 @@ while True:
 # -----------------------------------------------------------------------------
 # .keys() .values() .items()
 # -----------------------------------------------------------------------------
-
-# get all keys using .keys()
-
-print(location.keys())
-
-key_list = list(location.keys())
-print(key_list)
-
-# get all values with .values()
-
-print(location.values())
-
-value_list = list(location.values())
-print(value_list)
-
-# get all key-value pairs with .items()
-
-print(location.items())
-
-items_list = list(location.items())
-print(items_list)
-
-# When iterating over keys, values or both... keep in mind that keys are the
-# default so:
+# When iterating over keys, values or both,
+# keep in mind that keys are the default:
 
 for i in location.keys():
     print(i)
+# apt
+# number
+# street
+# city
+# province
 
 # is the same as:
-
 for i in location:
     print(i)
+# apt
+# number
+# street
+# city
+# province
 
 # but the other two methods (values and items) are still required:
-
 for i in location.values():
     print(i)
+# 2
+# 1234
+# Main
+# Vancouver
+# BC
 
 for k, v in location.items():
     print(k, '–', v)
+# apt – 2
+# number – 1234
+# street – Main
+# city – Vancouver
+# province – BC
+
+# -----------------------------------------------------------------------------
+# Convert to a string with join()
+# -----------------------------------------------------------------------------
+
+key_string = ', '.join(location.keys())
+print(key_string)
+
+value_string = ', '.join(location.values())
+print(value_string)
 
 # -----------------------------------------------------------------------------
 # Sort by dict keys
@@ -164,7 +201,7 @@ ordered_vals = sorted(location.items(), key=lambda x: x[1])
 print(ordered_vals)
 
 # -----------------------------------------------------------------------------
-# copy a dict with .copy()
+# Copy a dict with .copy()
 # -----------------------------------------------------------------------------
 
 location_copy = location.copy()
@@ -174,14 +211,35 @@ print(location)
 print(location_copy)
 
 # -----------------------------------------------------------------------------
-# Convert to a string with join()
+# Create a new dict from a sequence with .fromkeys()
 # -----------------------------------------------------------------------------
+# The fromkeys() method creates a new dictionary with keys from a sequence and
+# also takes an optional single value parameter (if no value is specified,
+# the values will all be set to None).
 
-key_string = ', '.join(location.keys())
-print(key_string)
+person = {'first' : 'Mary', 'last' : 'Jane', 'age' : 70, 'height' : 165,}
+things = ['thing1', 'thing2', 'thing3', 'thing4']
 
-value_string = ', '.join(location.values())
-print(value_string)
+new_dict = dict.fromkeys(things, 0.0)
+
+for k, v, in things.items():
+    print(k, '-', v)
+# thing1 - 0.0
+# thing2 - 0.0
+# thing3 - 0.0
+# thing4 - 0.0
+
+new_dict = dict.fromkeys(person)
+
+for k, v, in things.items():
+    print(k, '-', v)
+# first - None
+# last - None
+# age - None
+# height - None
+
+# NOTE: If you don't want the new dictionary values to all be the same thing,
+# but instead another sequence, use the .zip() function: see zip_function.py
 
 # -----------------------------------------------------------------------------
 # setdefault()
@@ -210,7 +268,7 @@ jellybeans['red']
 
 def missing():
     print('A value was not entered for a new key')
-    print('It has been given a default value of 0')
+    print('It has been given a default value of 0.0')
     return 0.0
 
 jellybeans = defaultdict(missing)
