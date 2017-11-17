@@ -1,8 +1,12 @@
 '''Data visualization using a web API'''
 
 # A program that downloads current information about the most-starred
-# Python projects in GitHub:
+# Python projects in GitHub. Some helpful links:
+
 # https://api.github.com
+# https://developer.github.com/v3/search/
+# https://help.github.com/articles/searching-repositories/
+# https://help.github.com/articles/understanding-the-search-syntax/
 # http://docs.python-requests.org
 
 import requests
@@ -16,13 +20,14 @@ from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
 # make an API call and store the requests:
 url = 'https://api.github.com/search/repositories?q=language:python&sort=stars'
 r = requests.get(url)
+
 # It's always go to check the status - use these to make some asserts.
 print('Status code:', r.status_code)
-# -> Status code: 200  (a status code of 200 indicates a successful response)
 print('Headers:', r.headers['content-type'])
-# -> Headers: application/json; charset=utf-8
 print('Encoding:', r.encoding)
-# -> Encoding: utf-8
+# Status code: 200  (a status code of 200 indicates a successful response)
+# Headers: application/json; charset=utf-8
+# Encoding: utf-8
 
 # Store API response in a variable. The API returns info in JSON format so we
 # use the json() method to convert to a python dict.
@@ -31,18 +36,21 @@ print(type(response_dict))  # -> <class 'dict'>
 
 # process results:
 print(response_dict.keys())
-# -> dict_keys(['total_count', 'incomplete_results', 'items'])
 print('Total repositories:', response_dict['total_count'])
-# -> Total repositories: 2077471
+print('Incomplete results:', response_dict['incomplete_results'])
+print('Repositories returned:', len(response_dict['items']))
+# dict_keys(['total_count', 'incomplete_results', 'items'])
+# Incomplete results: False
+# Total repositories: 2077471
+# Repositories returned: 30
+
 repo_dicts = response_dict['items']
-print('Repositories returned:', len(repo_dicts))
-# -> Repositories returned: 30
 
 # examine the first repo:
-repo_dict = repo_dicts[0]
-print('\nKeys:', len(repo_dict))
-for key in sorted(repo_dict.keys()):
-    print(key)
+# repo_dict1 = repo_dicts[0]
+# print('\nKeys:', len(repo_dict1))
+# for key in sorted(repo_dict1.keys()):
+#     print(key, '–', repo_dict1[key])
 
 # -----------------------------------------------------------------------------
 # Summarizing the top repos
@@ -67,13 +75,45 @@ for repo_dict in repo_dicts:
 # GitHub's limits: https://api.github.com/rate_limit
 
 # -----------------------------------------------------------------------------
-# Visualizing the repos with pygal
+# Prep the data for plotting:
 # -----------------------------------------------------------------------------
+#
+# names, stars = [], []
+# for repo_dict in repo_dicts:
+#     names.append(repo_dict['name'])
+#     stars.append(repo_dict['stargazers_count'])
 
-names, stars = [], []
+# NOTE: You can add custom tooltips by passing a list of dictionaries instead
+# of a list of values to chart.add() like so:
+# plot_dict = [
+#     {'value': 1314, 'label': 'Description of ...'},
+#     {'value': 5670, 'label': 'Description of ...'},
+#     {'value': 3224, 'label': 'Description of ...'},]
+
+names, plot_dicts = [], []
 for repo_dict in repo_dicts:
     names.append(repo_dict['name'])
-    stars.append(repo_dict['stargazers_count'])
+    # get the description if one is available:
+    description = repo_dict['description']
+    if not description:
+        description = 'No description provided'
+    if len(description) > 118:
+        description = description[:118] + '...'
+
+# NOTE: pygal uses the value given for 'xlink' to turn each bar into an active
+# link to the given url. You can also add links to the legend. See the docs:
+# http://pygal.org/en/stable/documentation/configuration/value.html#legend
+
+    plot_dict = {
+        'value': repo_dict['stargazers_count'],
+        'label': description,
+        'xlink' : repo_dict['html_url']
+        }
+    plot_dicts.append(plot_dict)
+
+# -----------------------------------------------------------------------------
+# Visualizing the repos with pygal
+# -----------------------------------------------------------------------------
 
 my_style = LS('#25bec4', base_style=LCS)
 my_style.title_font_family = 'Helvetica'
@@ -103,35 +143,6 @@ my_config.x_label_rotation = 45
 
 chart = pygal.Bar(my_config, style=my_style)
 chart.title = "Most-Starred Python Projects on GitHub"
-
-# NOTE: You can add custom tooltips by passing a list of dictionaries instead
-# of a list of values to add() like so:
-# plot_dict = [
-#     {'value': 1314, 'label': 'Description of ...'},
-#     {'value': 5670, 'label': 'Description of ...'},
-#     {'value': 3224, 'label': 'Description of ...'},
-# ]
-
-names, plot_dicts = [], []
-for repo_dict in repo_dicts:
-    names.append(repo_dict['name'])
-    # get the description if one is available:
-    description = repo_dict['description']
-    if not description:
-        description = 'No description provided'
-    if len(description) > 118:
-        description = description[:118] + '...'
-
-# NOTE: pygal uses the value given for 'xlink' to turn each bar into an active
-# link to the given url. You can also add links to the legend. See the docs:
-# http://pygal.org/en/stable/documentation/configuration/value.html#legend
-
-    plot_dict = {
-        'value': repo_dict['stargazers_count'],
-        'label': description,
-        'xlink' : repo_dict['html_url']
-        }
-    plot_dicts.append(plot_dict)
 
 # chart.add('', stars)
 chart.add('', plot_dicts)

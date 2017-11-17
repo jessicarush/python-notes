@@ -57,7 +57,7 @@ with open('hacker_news_api.json') as fob:
     submission_dicts = json.load(fob)
 
 # -----------------------------------------------------------------------------
-# Sort and visualize the information:
+# Sort the information:
 # -----------------------------------------------------------------------------
 
 submission_dicts = sorted(submission_dicts, key=itemgetter('comments'),
@@ -174,8 +174,8 @@ config.show_minor_y_labels = True
 # config.print_values = True
 # config.dynamic_print_values = True
 # config.tooltip_border_radius = 3
-# my_config.show_y_guides = True
-# my_config.show_x_guides = True
+# config.show_y_guides = True
+# config.show_x_guides = True
 
 # -----------------------------------------------------------------------------
 # Create and populate the plot:

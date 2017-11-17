@@ -1,4 +1,4 @@
-'''More from the Standard Library'''
+'''Misc from the Standard Library'''
 
 # https://docs.python.org/3/library/index.html
 
@@ -10,12 +10,12 @@ from collections import Counter
 
 jellybeans = ['red', 'red', 'orange', 'red', 'green', 'green']
 jb_counter = Counter(jellybeans)
-print(jb_counter)
+print(jb_counter)  # Counter({'red': 3, 'green': 2, 'orange': 1})
 
 # most_common() returns all elements in descending order
-# (or just the top count if provided)
+# (or just the top count if optional value passed in)
 
-jb_counter.most_common(1)
+print(jb_counter.most_common(1))  # [('red', 3)]
 
 # combine, find difference and find intersection of counters using +, -, &
 
@@ -24,6 +24,8 @@ jellybeans2 = ['black', 'red', 'yellow', 'yellow']
 
 jb_counter1 = Counter(jellybeans1)
 jb_counter2 = Counter(jellybeans2)
+
+print(type(jb_counter1))    # <class 'collections.Counter'>
 
 jb_counter1 + jb_counter2   # returns {'red': 4, 'green': 2, 'yellow': 2,
                             # 'black': 1, 'orange': 1}
@@ -38,8 +40,9 @@ jb_counter1 & jb_counter2   # returns {'red': 1}
 # It's useful for when you want to add/delete items from either end of a
 # sequence.
 
+from collections import deque
+
 def palindrome(word):
-    from collections import deque
     dq = deque(word)
     while len(dq) > 1:
         if dq.popleft() != dq.pop():
@@ -52,7 +55,7 @@ palindrome('maam')      # returns True
 palindrome('what')      # returns False
 
 # The example above is just an example. If you wanted to actually check for
-# paildromes you could also do:
+# palindromes you could also do:
 
 def palindrome_better(word):
     return word == word[::-1]
@@ -64,37 +67,34 @@ palindrome_better('radar')    # returns True
 # -----------------------------------------------------------------------------
 # itertools are special purpose iterator functions.
 # each returns one item at a time when called within a for... in loop and
-# rememebers its state between calls
+# remembers its state between calls
 
 import itertools
 
-# chain()
-# runs through its arguments as if they were a single iterable
+# chain() – runs through its arguments as if they were a single iterable
 
-for item in itertools.chain([1,2], ['a', 'b']):
-    print(item)
+for item in itertools.chain([1, 2], ['a', 'b']):
+    print(item) # 1, 2, a, b
 
-# cycle()
-# is an infinite iterator, cycling through its arguments
+# cycle() – is an infinite iterator, cycling through its arguments forever:
 
 # for item in itertools.cycle([1, 2]):
 #     print(item)
 
-# accumulate()
-# calculates accumulated values. By default it calculates the sum:
+# accumulate() – calculates accumulated values. By default, the sum:
 
 for item in itertools.accumulate([1, 2, 3, 4]):
-    print(item)
+    print(item)  # 1, 3, 6, 10
 
 # you can provide a function as a second argument to accumulate().
-# this will be used instead of addition. The function should take two arguments
-# and return a single result.
+# this will be used instead of addition. The function should take two
+# arguments and return a single result.
 
 def multiply(a, b):
     return a * b
 
 for item in itertools.accumulate([1, 2, 3, 4], multiply):
-    print(item)
+    print(item)  # 1, 2, 6, 24
 
 # -----------------------------------------------------------------------------
 # os.walk()
@@ -110,12 +110,11 @@ for item in itertools.accumulate([1, 2, 3, 4], multiply):
 import os
 
 # Put the directory path here:
-root = 'music'
+root = 'data/music'
 
 for path, directories, files in os.walk(root, topdown=True):
     print(path)
     print(directories)
-    input()
     for f in files:
         print('\t', f)
 
@@ -137,7 +136,7 @@ for path, directories, files in os.walk(root, topdown=True):
             print(f)
         print('-' * 50)
 
-# Using this you could easily create a database or structures file format,
+# Using this you could easily create a database or structured file format,
 # pulling out the specific bits of information.
 
 # -----------------------------------------------------------------------------
@@ -179,4 +178,3 @@ from difflib import get_close_matches
 possibilities = ['train', 'car', 'grain', 'arithmetic', 'rain', 'ball']
 print(get_close_matches('rainn', possibilities))  # ['rain', 'train', 'grain']
 print(get_close_matches('rainn', possibilities, n=1))  # ['rain']
-exit()
