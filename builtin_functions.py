@@ -49,11 +49,19 @@ print(any(numbers))
 numbers = [1, 3, False, 4, 5]   # True
 print(any(numbers))
 
-numbers = [0, 1, 3, 4, 5]       # True
-print(any(numbers))
-
 numbers = []                    # False
 print(any(numbers))
+
+# This can be used to see check if anything from one iterable is in another.
+# FYI, this example also uses a generator comprehension:
+
+animals = ['fox', 'snake', 'owl', 'cat']
+codewords = ['red box', 'cracked buttons', 'white owl', 'giant cactus']
+for words in codewords:
+    if any(animal in words for animal in animals): # generator comprehension!
+        print('There is an animal in the words')
+
+# There is an animal in the words
 
 # ----------------------------------------------------------------------------
 # ascii()
