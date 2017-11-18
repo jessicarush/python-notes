@@ -125,13 +125,39 @@ print(odds)  # {1, 3, 5, 7, 9}
 # Changing the [] or {} of a comprehension to () is actually
 # a generator comprehension and returns a generator object.
 
-number_thing = (number for number in range(1,6))
+num_gen = (number * number for number in range(1,6))
 
-print(type(number_thing))   # <class 'generator'>
-for thing in number_thing:  # you can then iterate over it
-    print(thing)
+print(type(num_gen))   # <class 'generator'>
+for num in num_gen:    # you can then iterate over it
+    print(num)
 
-# Review generator comprehensions (expression for expression in iterable):
+# Lets write another example, that checks if whether any item in one list
+# is present in another. Starting simple:
 
-for thing in (number for number in range(10)):
-    print(thing)
+animals = ['fox', 'snake', 'white owl', 'cat']
+codewords = ['red box', 'cracked buttons', 'white owl', 'giant cactus']
+
+# (expression for expression in iterable)
+if any(animal in codewords for animal in animals):
+    print('1. There is an animal in the words')
+
+# examine the long version:
+for animal in animals:
+    if animal in codewords:
+        print('2. There is an animal in the words')
+
+# Let's try again but allow for the animal to be anywhere in the phrase:
+
+animals = ['fox', 'snake', 'owl', 'cat']
+codewords = ['red box', 'cracked buttons', 'white owl', 'giant cactus']
+
+# (expression for expression in iterable)
+for words in codewords:
+    if any(animal in words for animal in animals):
+        print('3. There is an animal in the words')
+
+# The long way:
+for words in codewords:
+    for animal in animals:
+        if animal in words:
+            print('4. There is an animal in the words')
