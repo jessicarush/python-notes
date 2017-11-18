@@ -30,8 +30,8 @@ print(data)
 
 print(conn.status)
 
-# A 200 means everything is good. There dozens of HTTP status codes grouped into
-# five rages by their first digit:
+# A 200 means everything is good. There dozens of HTTP status codes grouped
+# into five rages by their first digit:
 
 # 1.. (information)
 #   server received the request but has some extra information for the client
@@ -133,23 +133,25 @@ print(resp.text)
 # Frameworks
 # -----------------------------------------------------------------------------
 # Web servers handle the HTTP and WSGI details, but you use web frameworks to
-# actually write the Python code that powers the site
+# actually write the Python code that powers the site.
 
 # If you want to write a website in Python, there are many Python web
-# frameworks (Django "Full-stack framework", Flask "microframework"). A web
-# framework handles, at a minimum, client requests and server responses. It
-# might provide some or all of these features:
+# frameworks (ie Django – Full-stack framework, Flask – microframework).
+# A web framework handles, at a minimum, client requests and server responses.
+# It might provide some or all of these features:
 
-# Routes - Interpret URLs and find the server files or Python server code
-# Templates - Merge server-side data into pages of HTML
-# Authentication and authorization - Handle usernames, passwords, permissions
-# Sessions - Maintain transient data storage during a user's visit to the site
+# – Routes: interpret URLs and find the server files or Python server code
+# – Templates: merge server-side data into pages of HTML
+# – Authentication and authorization: handle usernames, passwords, permissions
+# – Sessions: maintain transient data storage during a user's visit to the site
 
 # -----------------------------------------------------------------------------
 # Bottle (microframework, doesn't include direct support for databases)
 # -----------------------------------------------------------------------------
 # Bottle consists of a single Python file, so it's very easy to try out, and
 # to deploy later. To install it: $ pip3 install bottle
+
+# http://http://bottlepy.org/docs/dev/
 
 # Save as bottle1.py:
 
@@ -171,7 +173,7 @@ run(host='localhost', port=9999)
 # don't need to use this for bottle programs, but it's useful for initial
 # development and testing.
 
-# try making bottle return the contents of an HTML page. Save the following
+# Try making bottle return the contents of an HTML page. Save the following
 # script as bottle2.py and run: $ python3 bottle2.py
 
 from bottle import route, run, static_file
@@ -180,15 +182,13 @@ from bottle import route, run, static_file
 def main():
     return static_file('index.html', root='bottletest/')
 
-# This will serve any file in your directory, including but not limited to css:
-
+# This will serve any/all additional files in your directory,
+# including but not limited to css:
 @route('/<filename:path>')
 def send_static(filename):
     return static_file(filename, root='bottletest/')
 
 run(host='localhost', port=9999)
-
-# See Bottle documentation at http://http://bottlepy.org/docs/dev/
 
 # -----------------------------------------------------------------------------
 # Flask (microframework, doesn't include direct support for databases)
@@ -202,11 +202,10 @@ run(host='localhost', port=9999)
 # should be like this: /static/css/desktop.css instead of css/desktop.css
 # If you don't want to use the static directory, change the folder to '.'
 # (current directory) and the URL prefix to '' (empty) to allow the URL / to
-# map to a loose index.html.
+# map to a loose index.html. To confirm, in the following example, index.html
+# should be located in a folder called 'static'
 
-# In the run() function, the setting debug=True creates a debugging page if
-# you get an HTTP error and reloads the page in the browser if you change any
-# of the Python code. Flask1.py:
+# flask1.py:
 
 from flask import Flask
 
@@ -218,16 +217,15 @@ def home():
 
 app.run(port=9999, debug=True)
 
-# A benefit to setting debug to True when calling run: If an exception occurs
-# in the server code, Flask returns a specially formatted page with useful
-# details about what went wrong, and where. Even better, you can type some
-# commands to see the values of variables in the server program. Do not set
-# debug=True in production web servers. It exposes too much information about
-# your server to potential intruders.
+# In the run() function, the setting debug=True does a couple of things.
+# It reloads the page in the browser if you change any of the Python code.
+# If an HTTP error or an exception occurs in the server code, Flask returns
+# a specially formatted page with useful details about what went wrong, and
+# where. Even better, you can type some commands to see the values of variables
+# in the server program. DO NOT set debug=True in production web servers.
+# It exposes too much information about your server to potential intruders.
 
-# jinja2 and flask
-
-# Flask2.py:
+# flask2.py:
 
 from flask import Flask, render_template
 
@@ -235,17 +233,39 @@ app = Flask(__name__)
 
 @app.route('/echo/<thing>')
 def echo(thing):
-    return render_template('flask2.html', thing=thing)
+    return render_template('flask_test.html', thing=thing)
 
 app.run(port=9999, debug=True)
 
+# This example uses jinja2 templates. In order for it to work, you need to
+# create a directory called 'templates' and put flask_test.html in there.
 # The thing=thing argument means to pass a variable named thing to the
 # template, with the value of the string entered as an arg in the URL:
 # http://localhost:9999/echo/lovely
 
-# Somewhere in the HTML content type {{ thing }} to receive the value
+# Somewhere in flask_test.html type {{ thing }} to receive the value.
 
-# To pass a second argument you can do this, Flask3.py:
+# templates/flask_test.html:
+'''
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Flask Example</title>
+</head>
+
+<body>
+<h1>Hello {{ thing }} </h1>
+
+</body>
+</html>
+'''
+
+# flask3.py:
+
+# This example allows you to pass a second argument. You will need to add
+# {{ other }} somewhere in flask_test.html to receive the additional value.
 
 from flask import Flask, render_template
 
@@ -253,13 +273,15 @@ app = Flask(__name__)
 
 @app.route('/echo/<thing>/<other>')
 def echo(thing, other):
-    return render_template('flask3.html', thing=thing, other=other)
+    return render_template('flask_test.html', thing=thing, other=other)
 
 app.run(port=9999, debug=True)
 
-# The URL would be http://localhost:9999/echo/lovely/blah
+# The URL would be http://localhost:9999/echo/lovely/something
 
-# or you can provide arguments as GET parameters, Flask4.py:
+# flask4.py:
+
+# You can also provide arguments as 'GET' parameters:
 
 from flask import Flask, render_template, request
 
@@ -269,16 +291,18 @@ app = Flask(__name__)
 def echo():
     thing = request.args.get('thing')
     other = request.args.get('other')
-    return render_template('flask3.html', thing=thing, other=other)
+    return render_template('flask_test.html', thing=thing, other=other)
 
 app.run(port=9999, debug=True)
 
 # When a GET command is used for a URL, any arguments are passed like:
 # &key1=val1&key2=val2&...
-# http://localhost:9999/echo?thing=lovely&another=blah
+# So our URL would be: http://localhost:9999/echo?thing=lovely&other=blah
 
-# You can also use the dictionary operator ** to pass multiple arguments to a
-# template from a single dictionary, Flask5.py:
+# flask5.py:
+
+# You can also use the dictionary operator ** to pass multiple arguments
+# to a template from a single dictionary/
 
 from flask import Flask, render_template, request
 
@@ -289,7 +313,7 @@ def echo():
     kwargs = {}
     kwargs['thing'] = request.args.get('thing')
     kwargs['other'] = request.args.get('other')
-    return render_template('flask3.html', **kwargs)
+    return render_template('flask_test.html', **kwargs)
 
 app.run(port=9999, debug=True)
 
