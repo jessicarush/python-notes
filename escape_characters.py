@@ -21,4 +21,10 @@ print('I am 6\'2" tall.')
 # \uxxxx = unicode character with 16-bit hex value xxxx
 # \Uxxxxxxxx = unicode character with 32-bit hex value xxxxxxxx
 # \ooo = character with octal value ooo
-# \xhh... = character wuth hex value hh..
+# \xhh... = character with hex value hh..
+
+# Example:
+
+print('Escape characters:\n\t-\u272D')
+# Escape characters:
+#         -✭
