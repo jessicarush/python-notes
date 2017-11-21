@@ -8,34 +8,65 @@
 # dbm Family
 # -----------------------------------------------------------------------------
 # key-value stores often embedded in apps such as web browsers to maintain
-# settings. A dbm database is like a Python dictionary. Example:
+# settings. A dbm database is like a Python dictionary. FYI dbm is used as the
+# back-end of the shelve module. Example:
 
 import dbm
 
 db = dbm.open('definitions', 'c')
 
 # The second argument to the following open() method is 'r' to read, 'w' to
-# write, and 'c' for both, creating the file if it doesn't exist. To create
-# key-value pairs, just assign a value to a key just as you would a dictionary:
+# write, and 'c' for both, creating the file if it doesn't exist. There's also
+# an 'n' option which will always create a new file, overwriting the old.
+# To create key-value pairs, just assign a value to a key just as you would
+# a dictionary. The keys of the database must be strings. The values must be
+# strings or None.
 
 db['jaune'] = 'yellow'
 db['rouge'] = 'red'
 db['vert'] = 'green'
 
 # testing:
-print(len(db))
-print(db['vert'])
+print(len(db))     # 3
+print(type(db))    # <class '_dbm.dbm'>
+test = db['vert']
+print(type(test))  # <class 'bytes'>
+print(test)        # b'green'
 
 # close the database:
 db.close()
 
-# reopen and read:
-db = dbm.open('definitions', 'r')
-print(db['jaune'])
-
 # Keys and values are stored as bytes. You cannot iterate over the database
-# object db, but you can get the number of keys by using len(). Note that get()
-# and setdefault() work as they do for dictionaries.
+# object db, but you can get the number of keys by using len() and iterate
+# through the keys using .keys(). Note that get() and setdefault() work as they
+# do for dictionaries.
+
+# reopen and read into a new dict:
+test_dict = {}
+
+with dbm.open('definitions', 'r') as db:
+    print(db.keys())  # [b'rouge', b'jaune', b'vert']
+    for k in db.keys():
+        test_dict[k] = db[k]
+
+print(test_dict)
+# {b'rouge': b'red', b'jaune': b'yellow', b'vert': b'green'}
+
+# The keys and values will still be in bytes but you can easily decode back
+# into regular strings:
+
+test_dict_decoded = {}
+for k, v in test_dict.items():
+    test_dict_decoded[k.decode("utf-8")] = test_dict[k].decode("utf-8")
+
+print(test_dict_decoded)
+{'rouge': 'red', 'jaune': 'yellow', 'vert': 'green'}
+
+# the whichdd() method reports the type of database that was created. This will
+# vary depending on which modules are intalled on your system... either dbm.gnu,
+# dbm.ndbm or dbm.dumb.
+
+print(dbm.whichdb('definitions'))  # dbm.ndbm
 
 # -----------------------------------------------------------------------------
 # Memcached
@@ -59,8 +90,11 @@ print(db['jaune'])
 # -----------------------------------------------------------------------------
 # Redis
 # -----------------------------------------------------------------------------
-# Redis is a data structure server. Like memcached, all of the data in a Redis
-# server should fit in memory (though there is now an option to save to disk).
+# Redis is an open source (BSD licensed), in-memory data structure store,
+# used as a database, cache and message broker. It supports data structures
+# such as strings, hashes, lists, sets, sorted sets. In short, it's a data
+# structure server. Like memcached, all of the data in a Redis server should
+# fit in memory (though there is now an option to save to disk).
 
 # Unlike memcached, Redis can do the following:
 #  – Save data to disk for reliability and restarts
@@ -90,43 +124,43 @@ conn.set('quantity', '2')
 conn.set('cost', '175.00')
 
 # List all keys
-conn.keys('*')
+print(conn.keys('*'))  # [b'cost', b'quantity', b'item']
 
 # get values by key:
-conn.get('item')
+print(conn.get('item'))  # b'octopus'
 
 # setnx() method sets a value only if the key does not exist:
 conn.setnx('item', 'seahorse')
 
 # getset() method returns the old value and sets it to a new one:
-conn.getset('item', 'seahorse')
-conn.get('item')
+print(conn.getset('item', 'seahorse'))  # b'octopus'
+print(conn.get('item'))                 # b'seahorse'
 
 # getrange() to get a substring , 0=start, -1=end
-conn.getrange('item', -5, -1 )
+print(conn.getrange('item', -5, -1 ))  # b'horse'
 
 # setrange() to replace a substring, using 0 based offset
 conn.setrange('item', 3, 'monkey')
-conn.get('item')
+print(conn.get('item'))  # b'seamonkey'
 
 # mset() to set multiple keys at once:
 conn.mset({'colour': 'purple', 'size:': 'large'})
 
 # mget() to get more than one value at once:
-conn.mget(['colour', 'cost'])
+print(conn.mget(['colour', 'cost']))  # [b'purple', b'175.00']
 
 # delete() to delete a key:
 conn.delete('size')
 
 # incr(), incrbyfloat(), decr() to increment or decrement:
-conn.incr('quantity')
-conn.incr('quantity', 12)
-conn.decr('quantity', 5)
-conn.incrbyfloat('cost')
-conn.incrbyfloat('cost', 2.50)
+print(conn.incr('quantity'))           # 3
+print(conn.incr('quantity', 12))       # 15
+print(conn.decr('quantity', 5))        # 10
+print(conn.incrbyfloat('cost'))        # 176.0
+print(conn.incrbyfloat('cost', 2.50))  # 178.5
 
 # There is no decrement for incrbyfloat(), just use a negative value:
-conn.incrbyfloat('cost', -2.50)
+print(conn.incrbyfloat('cost', -2.50))  # 176.0
 
 # -----------------------------------------------------------------------------
 # Redis Lists
@@ -244,7 +278,7 @@ conn.zadd('logins', 'jon', now+(5*60))
 # add another 2 hours later:
 conn.zadd('logins', 'bran', now+(2*60*60))
 
-# add anothr the next day:
+# add another the next day:
 conn.zadd('logins', 'aria', now+(24*60*60))
 
 # get the order off a value:
@@ -257,7 +291,15 @@ conn.zscore('logins', 'bran')
 conn.zrange('logins', 0, -1)
 
 # view all values in order, with the scores:
-print(conn.zrange('logins', 0, -1, withscores=True))
+test_zset = conn.zrange('logins', 0, -1, withscores=True)
+
+print(type(test_zset))  # <class 'list'>
+for i in test_zset:
+    print(i)
+# (b'sansa', 1511224444.845123)
+# (b'jon', 1511224744.845123)
+# (b'bran', 1511231644.845123)
+# (b'aria', 1511310844.845123)
 
 # -----------------------------------------------------------------------------
 # Redis Bits
@@ -286,6 +328,9 @@ conn.setbit(days[2], jon, 1)
 # get the daily visitor count for each day:
 for day in days:
     print(conn.bitcount(day))
+# 2
+# 2
+# 1
 
 # check if a particular user visited on a particular day:
 conn.getbit(days[1], aria)
@@ -319,6 +364,15 @@ conn.get(key)   # returns None
 
 # The expireat() command expires a key at a given epoch time. Key expiration
 # is useful to keep caches fresh and to limit login sessions.
+
+# -----------------------------------------------------------------------------
+# Redis in use:
+# -----------------------------------------------------------------------------
+# The most popular uses for Redis seem to be session caches, full-page caches,
+# queues, leaderboards, and pub/sub (see networks.py). Some other examples:
+
+# A URL shortening service using Redis:
+# http://sunilarora.org/url-shortener-service-using-redis/
 
 # -----------------------------------------------------------------------------
 # Other NoSQL databases
