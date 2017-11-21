@@ -34,43 +34,36 @@ backdated = datetime.date(2017, 8, 7).strftime('%a %x')
 # -----------------------------------------------------------------------------
 # timedelta example
 # -----------------------------------------------------------------------------
-# What dates do I need to water the plants if the watering schedule is:
-# – every 4 days in summer - summer is 3 more weeks from today
-# – every 6 days in fall - fall is 14 weeks following summer
-# – every 8 days in winter - winter is 14 weeks following fall
+# The following function will output a plant watering schedule using the
+# datetime timedelta method.
 
 from datetime import date
 from datetime import timedelta
 
-now = date.today()
+def watering_schedule(x):
+    '''Calculate a plant watering schedule for the next 'x' waterings'''
+    # categorize each month into seasons:
+    winter_months = [1, 2, 3, 12]
+    summer_months = [6, 7, 8, 9]
+    # watering frequency every n days:
+    winter_freq = 6
+    spring_fall_freq = 5
+    summer_freq = 4
+    # check the month and generate schedule:
+    now = date.today()
+    schedule = []
+    while len(schedule) < x:
+        if now.month in summer_months:
+            now += timedelta(days=summer_freq)
+            schedule.append(now)
+        elif now.month in winter_months:
+            now += timedelta(days=winter_freq)
+            schedule.append(now)
+        else:
+            now += timedelta(days=spring_fall_freq)
+            schedule.append(now)
+    print('Watering Schedule:')
+    for i in schedule:
+        print(i)
 
-freq_summer = 4
-freq_fall = 6
-freq_winter = 8
-
-count_summer = ((7*3) // freq_summer)
-count_fall = ((7*14) // freq_fall)
-count_winter = ((7*14) // freq_winter)
-
-freq_summer = timedelta(days = freq_summer)
-freq_fall = timedelta(days = freq_fall)
-freq_winter = timedelta(days = freq_winter)
-
-print('summer water schedule:')
-
-for num in range(1, count_summer+1):
-    print(now + (num * freq_summer))
-
-print('fall water schedule:')
-
-end_of_summer = now + (count_summer * freq_summer)
-
-for num in range(1, count_fall+1):
-    print(end_of_summer + (num * freq_fall))
-
-print('winter water schedule:')
-
-end_of_fall = end_of_summer + (count_fall * freq_fall)
-
-for num in range(1, count_winter+1):
-    print(end_of_fall+ (num * freq_winter))
+watering_schedule(25)
