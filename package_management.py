@@ -9,8 +9,9 @@
 # install the most recent version: pip3 install flask
 # install a particular version: pip3 install flask==0.12.0
 # install a minimum version: pip3 install flask>==0.9.0
+# upgrade al already installed package: pip3 install --upgrade flask
 
-# Sometimes see this for installing modules but not sure why:
+# Sometimes I've seen this recommended for installing modules but no idea why:
 # python3 -m pip install PyYaml
 
 # Yolk is a tool for obtaining information about installed Python packages and
@@ -26,6 +27,12 @@
 
 # If you want to see all versions available of something:
 # $ yolk -V flask
+
+# NOTE: Initially with the above two commands (which attempt to contact PyPi),
+# I was getting the following error:
+# <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed...>
+# The solution was to run (double-click) the 'Install Certificates.command'
+# found in: Applications/Python 3.6/
 
 # -----------------------------------------------------------------------------
 # Requirements files
@@ -54,7 +61,7 @@
 # NOTE: pip freeze saves all packages in the environment including those that
 # you don't use in your current project. (if you don't have virtualenv)
 
-# NOTE: pip freeze only saves the packages that are installed with pip install
+# NOTE: pip freeze only saves the packages that were installed with pip install
 # in your environment.
 
 # pipreqs
@@ -78,8 +85,8 @@
 
 # $ pipdeptree
 
-# Requirements files are used to force pip to properly resolve dependencies. As
-# it is now, pip doesn't have true dependency resolution, but instead simply
+# Requirements files are used to force pip to properly resolve dependencies.
+# As it is now, pip doesn't have true dependency resolution, but instead simply
 # uses the first specification it finds for a project. E.g. if pkg1 requires
 # pkg3>=1.0 and pkg2 requires pkg3>=1.0,<=2.0, and if pkg1 is resolved first,
 # pip will only use pkg3>=1.0, and could easily end up installing a version of

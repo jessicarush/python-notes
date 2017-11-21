@@ -4,7 +4,7 @@
 # Patterns
 # -----------------------------------------------------------------------------
 # You can build networking applications from some basic patterns. The most
-# common pattern in request-reply aka client-server. This pattern in
+# common pattern in request-reply aka client-server. This pattern is
 # synchronous in that the client waits for a server response.
 
 # Another common pattern is push or fanout. This is where you send data to any
@@ -20,7 +20,7 @@
 # -----------------------------------------------------------------------------
 # With this pattern, a publisher sends out data. In a simple pub-sub system,
 # all subscribers would receive all the data, but more commonly, subscribers
-# choose which data to receive (topics). Unlike the push pattern, more that one
+# choose which data to receive (topics). Unlike the push pattern, more than one
 # subscriber might receive a given piece of data. If there's no subscriber,
 # the data is ignored. Publish-Subscribe is not a queue but a broadcast.
 # Here's an example using Redis:
@@ -90,13 +90,13 @@ for msg in sub.listen():
 # -----------------------------------------------------------------------------
 # TCP/IP
 # -----------------------------------------------------------------------------
-# In the middle of the stack layers of protocols that handle our internet
+# In the middle of the stacked layers of protocols that handle our internet
 # connections, data exchanges and so on, is the IP protocol layer which
 # specifies how network locations are addressed and how packets of data flow.
 # Your local machine always has the IP address 127.0.0.1 and the name localhost.
-# If it's connect to the internet, it will also have a public IP address. In the
-# layer above the IP protocol, two protocols describe how to move bytes between
-# locations:
+# If it's connect to the internet, it will also have a public IP address.
+# In the layer above the IP protocol, two protocols describe how to move bytes
+# between locations:
 
 # UDP – (user datagram protocol) used for short exchanges. A tiny message sent
 # in a single burst with no acknowledgment that the data was received. It's
@@ -185,6 +185,7 @@ print('Message:', datetime.datetime.now(), client, 'said', data)
 client.sendall(b'Are you talking to me?')
 client.close()
 server.close()
+
 
 # tcp_client.py:
 import datetime
