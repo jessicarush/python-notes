@@ -197,6 +197,22 @@ run(host='localhost', port=9999)
 # authentication and database integration. The Flask package includes the
 # werkzeug WSGI library and jinja2 template library.
 
+# flask1.py:
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')  # url where you will view the page: http://127.0.0.1:5000/
+def home():
+    return 'Home - Content goes here'
+
+@app.route('/about/')  # http://127.0.0.1:5000/about
+def about():
+    return 'About - content goes here'
+
+app.run(debug=True)
+
 # Flask's default directory home for static files is static, and URLs for
 # files there also begin with /static. For example, a linked stylesheet
 # should be like this: /static/css/desktop.css instead of css/desktop.css
@@ -205,7 +221,7 @@ run(host='localhost', port=9999)
 # map to a loose index.html. To confirm, in the following example, index.html
 # should be located in a folder called 'static'
 
-# flask1.py:
+# flask2.py:
 
 from flask import Flask
 
@@ -213,7 +229,7 @@ app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 @app.route('/')
 def home():
-    return app.send_static_file('index.html')
+    return app.send_static_file('index.html')  # must be in the static folder
 
 app.run(port=9999, debug=True)
 
@@ -225,7 +241,7 @@ app.run(port=9999, debug=True)
 # in the server program. DO NOT set debug=True in production web servers.
 # It exposes too much information about your server to potential intruders.
 
-# flask2.py:
+# flask3.py:
 
 from flask import Flask, render_template
 
@@ -233,7 +249,7 @@ app = Flask(__name__)
 
 @app.route('/echo/<thing>')
 def echo(thing):
-    return render_template('flask_test.html', thing=thing)
+    return render_template('flask_test.html', thing=thing) # must be in the templates folder
 
 app.run(port=9999, debug=True)
 
@@ -262,7 +278,7 @@ app.run(port=9999, debug=True)
 </html>
 '''
 
-# flask3.py:
+# flask4.py:
 
 # This example allows you to pass a second argument. You will need to add
 # {{ other }} somewhere in flask_test.html to receive the additional value.
@@ -279,7 +295,7 @@ app.run(port=9999, debug=True)
 
 # The URL would be http://localhost:9999/echo/lovely/something
 
-# flask4.py:
+# flask5.py:
 
 # You can also provide arguments as 'GET' parameters:
 
@@ -299,7 +315,7 @@ app.run(port=9999, debug=True)
 # &key1=val1&key2=val2&...
 # So our URL would be: http://localhost:9999/echo?thing=lovely&other=blah
 
-# flask5.py:
+# flask6.py:
 
 # You can also use the dictionary operator ** to pass multiple arguments
 # to a template from a single dictionary/
