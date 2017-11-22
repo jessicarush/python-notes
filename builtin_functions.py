@@ -22,8 +22,8 @@ print('Magnitude of 3 - 4j is:', abs(complex_num))  # 5.0
 # ----------------------------------------------------------------------------
 # all()
 # -----------------------------------------------------------------------------
-# returns True when all elements in the given iterable are true. If not, it
-# returns False. It take sone parameter, which is any iterable (list, tuple,
+# returns True when ALL elements in the given iterable are true. If not, it
+# returns False. It takes one parameter, which is an iterable (list, tuple,
 # dictionary, etc.)
 
 numbers = [1, 3, 4, 5]          # True
@@ -41,13 +41,16 @@ print(all(numbers))
 # ----------------------------------------------------------------------------
 # any()
 # -----------------------------------------------------------------------------
-# returns True if any element of an iterable is true. If not, it returns False.
+# returns True if ANY element of an iterable is true. If not, it returns False.
 
 numbers = [1, 3, 4, 5]          # True
 print(any(numbers))
 
 numbers = [1, 3, False, 4, 5]   # True
 print(any(numbers))
+
+numbers = [0, 1, 3, 4, 5]       # True
+print(all(numbers))
 
 numbers = []                    # False
 print(any(numbers))
@@ -69,8 +72,8 @@ for words in codewords:
 # return a string containing a printable representation of an object but
 # escape the non-ASCII characters. Useful for finding out the unicode:
 
-print(ascii('café'))
-print('caf\xe9')
+print(ascii('café'))  # 'caf\xe9'
+print('caf\xe9')      # café
 
 # ----------------------------------------------------------------------------
 # bin()
@@ -150,7 +153,7 @@ print(chr(45400))  # 녘
 # complex()
 # -----------------------------------------------------------------------------
 # returns a complex number when real and imaginary parameters are provided, or
-# it converts a string to a complex number. In general, it the two parameters:
+# it converts a string to a complex number. In general, the two parameters:
 # real - real part. If real is omitted, it defaults to 0.
 # imag - imaginary part. If imag is omitted, it default to 0.
 # If the first parameter passed to this method is a string, it will be
@@ -295,7 +298,7 @@ letters = ['a', 'b', 'd', 'e', 'i', 'j', 'k', 's', 'o']
 
 def vowels(iterable):
     vowels = ['a', 'e', 'i', 'o', 'u']
-    if(iterable in vowels):
+    if iterable in vowels:
         return True
     else:
         return False
@@ -382,6 +385,7 @@ print(hash(vowels))  # -695778075465126279
 # ----------------------------------------------------------------------------
 # help()
 # -----------------------------------------------------------------------------
+# see resources.py
 # calls the built-in Python help system. If you have documented your code
 # properly (docstrings), these can be seen with help() too. You can get help
 # on individual functions as well:
@@ -471,7 +475,7 @@ result = map(square, numbers)
 print(result)       # <map object at 0x101185f28>
 print(set(result))  # {16, 1, 4, 9}
 
-# That being said, you could also use list comprehensions for this:
+# That being said, you could also use generator comprehensions for this:
 # (expression for item in iterable) - More Pythonic!
 
 numbers = [1, 2, 3, 4]
@@ -519,7 +523,7 @@ print(max(num1, num2, num3, key=sum))  # [6, 66, 899, 790]
 # object by creating a memory view object.
 
 # Whenever we perform some action on an object (call a function of an object,
-# slice an array), Python needs to create a copy of the object. If we have a
+# slice an list), Python needs to create a copy of the object. If we have a
 # large data object to work with (eg. binary data of an image), we would
 # create copies of huge chunks of data, which serves almost no use.
 

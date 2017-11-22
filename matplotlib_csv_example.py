@@ -11,7 +11,7 @@ from datetime import datetime
 from matplotlib import pyplot as plt
 
 
-filename = 'death_valley_2014.csv'
+filename = 'data/death_valley_2014.csv'
 placename = 'Death Valley, CA'
 
 # -----------------------------------------------------------------------------

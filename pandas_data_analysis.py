@@ -73,32 +73,32 @@ read_methods = ['read_clipboard', 'read_csv', 'read_excel', 'read_feather',
 'read_sql_table', 'read_stata', 'read_table']
 
 # Example:
-df1 = pandas.read_csv('supermarkets.csv')
+df1 = pandas.read_csv('data/supermarkets.csv')
 
 # Note that with CSV files, pandas and python will assume the first row is
 # a header row. If it isn't, set the header arg to None:
 
-df1 = pandas.read_csv('supermarkets.csv', header=None)
+df1 = pandas.read_csv('data/supermarkets.csv', header=None)
 
 # In terms row indexes, python adds it's own index column (0–?). If the dataset
 # happens to already include an index type column, you can tell python to use
 # this as the index by passing the column header name to the set_index() method.
 # Note this is easier to see using Jupyter (see below).
 
-df1 = pandas.read_csv('supermarkets.csv')
+df1 = pandas.read_csv('data/supermarkets.csv')
 df1.set_index('ID')
 
 # Note that the set_index method is like the sorted() method in that it doesn't
 # change the original DataFrame. If you want to do this permanently, you would
 # have to do a reassignment:
 
-df1 = pandas.read_csv('supermarkets.csv')
+df1 = pandas.read_csv('data/supermarkets.csv')
 df1 = df1.set_index('ID')
 
 # Alternatively, the set_index method takes a inplace parameter which is set to
 # False by default. If we set it to True, it will do the same as above:
 
-df1 = pandas.read_csv('supermarkets.csv')
+df1 = pandas.read_csv('data/supermarkets.csv')
 df1.set_index('ID', inplace=True)
 
 # Incidentally, you can retrieve the column names and index names via their
@@ -119,20 +119,20 @@ print(df1.shape)
 # (6, 7)
 
 # These methods also work for json files:
-df2 = pandas.read_json('supermarkets.json')
+df2 = pandas.read_json('data/supermarkets.json')
 
 # For Excel files, it's best to pass an additional arg:
-df3 = pandas.read_excel('supermarkets.xlsx', sheet_name=0)
+df3 = pandas.read_excel('data/supermarkets.xlsx', sheet_name=0)
 
 # Since Excel files can have more than one sheet, the sheet_name arg lets
 # python know the index of the sheet. Obviously if the file had 3 sheets and we
 # wanted to access the 3rd we'd say sheet_name=2
 
 # If you have a plain text file that uses commas, use the csv read method:
-df4 = pandas.read_csv('supermarkets-commas.txt')
+df4 = pandas.read_csv('data/supermarkets-commas.txt')
 
 # If you have a plain text file that uses some other separator, add the arg:
-df5 = pandas.read_csv('supermarkets-semicolons.txt', sep=';')
+df5 = pandas.read_csv('data/supermarkets-semicolons.txt', sep=';')
 
 # If your data file lives on the web, just insert the URL:
 df6 = pandas.read_csv('http://pythonhow.com/supermarkets.csv')
@@ -416,7 +416,7 @@ print(df1.B.max())
 #   import pandas
 
 # – In a second cell:
-#   df = pandas.read_csv('supermarkets.csv')
+#   df = pandas.read_csv('data/supermarkets.csv')
 #   df
 
 # When you execute the second cell, you should see the data displayed in a

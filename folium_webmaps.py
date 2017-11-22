@@ -92,7 +92,7 @@ fgp = folium.FeatureGroup(name='Population')
 # Add Markers by iterating through data from a file
 # -----------------------------------------------------------------------------
 
-data = pandas.read_csv('volcanoes.csv')
+data = pandas.read_csv('data/volcanoes.csv')
 
 latitudes = list(data['LAT'])
 longitudes = list(data['LON'])
@@ -145,7 +145,7 @@ for lat, lon, e, n in zip(latitudes, longitudes, elevation, name):
 # Add a polygon layer:
 # -----------------------------------------------------------------------------
 
-json_file = open('world.json', 'r', encoding='utf-8-sig').read()
+json_file = open('data/world.json', 'r', encoding='utf-8-sig').read()
 json_style = lambda x: {
     'fillColor': 'green' if x['properties']['POP2005'] < 10000000
     else 'blue' if 10000000 <= x['properties']['POP2005'] < 20000000
