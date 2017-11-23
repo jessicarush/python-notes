@@ -9,7 +9,7 @@ may come from the following:
 'Introducing Python' - Bill Lubanovic    
 'The Python 3 Standard Library by Example' – Doug Hellmann   
 'Effective Python' – Brett Slatkin  
-'Complete Python Masterclass' – Tim Buchalka, Jean-Paul Roberts
+'Complete Python Masterclass' – Tim Buchalka, Jean-Paul Roberts  
 'The Python Mega Course: Build 10 Real World Applications'
 'Think Python' - Allen B. Downey  
 'Learn Python the Hard Way" - Zed A. Shaw  
