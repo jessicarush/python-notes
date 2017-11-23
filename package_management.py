@@ -14,6 +14,9 @@
 # Sometimes I've seen this recommended for installing modules but no idea why:
 # python3 -m pip install PyYaml
 
+# One guy said the '-m' is an argument that allows python to locate modules
+# for execution as scripts.
+
 # Yolk is a tool for obtaining information about installed Python packages and
 # querying packages available on PyPI
 
