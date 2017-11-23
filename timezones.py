@@ -17,31 +17,31 @@ import datetime
 
 # see all timezone:
 
-for x in pytz.all_timezones:
-    print(x)
-
-# see all country codes:
-
-for x in sorted(pytz.country_names):
-    print(x, ':', pytz.country_names[x])
-
-# see all counrty names:
-
-for x in sorted(pytz.country_names):
-    print("{}: {}: {}".format(
-          x, pytz.country_names[x], pytz.country_timezones.get(x)))
-
-# see names, zones and their times:
-
-for x in sorted(pytz.country_names):
-    print("{}: {}".format(x, pytz.country_names[x]))
-    if x in pytz.country_timezones:
-        for zone in sorted(pytz.country_timezones[x]):
-            tz_to_display = pytz.timezone(zone)
-            local_time = datetime.datetime.now(tz=tz_to_display)
-            print("\t{}: {}:".format(zone, local_time))
-    else:
-        print("\tNo timezone defined")
+# for x in pytz.all_timezones:
+#     print(x)
+#
+# # see all country codes:
+#
+# for x in sorted(pytz.country_names):
+#     print(x, ':', pytz.country_names[x])
+#
+# # see all country names:
+#
+# for x in sorted(pytz.country_names):
+#     print("{}: {}: {}".format(
+#           x, pytz.country_names[x], pytz.country_timezones.get(x)))
+#
+# # see names, zones and their times:
+#
+# for x in sorted(pytz.country_names):
+#     print("{}: {}".format(x, pytz.country_names[x]))
+#     if x in pytz.country_timezones:
+#         for zone in sorted(pytz.country_timezones[x]):
+#             tz_to_display = pytz.timezone(zone)
+#             local_time = datetime.datetime.now(tz=tz_to_display)
+#             print("\t{}: {}:".format(zone, local_time))
+#     else:
+#         print("\tNo timezone defined")
 
 # -----------------------------------------------------------------------------
 # Example:
@@ -52,11 +52,15 @@ tz_to_display = pytz.timezone(country)
 world_time = datetime.datetime.now(tz=tz_to_display)
 
 print("The time in {} is {}".format(country, world_time))
+
 print("UTC is {}".format(datetime.datetime.utcnow()))
 
-# fancier:
 print("The time in {} is {} {}".format(
-country, world_time.strftime('%A %x %X'), world_time.tzname()))
+  country, world_time.strftime('%A %x %X'), world_time.tzname()))
+
+# The time in Europe/Moscow is 2017-11-24 01:40:00.944335+03:00
+# UTC is 2017-11-23 22:40:00.944457
+# The time in Europe/Moscow is Friday 11/24/17 01:40:00 MSK
 
 # -----------------------------------------------------------------------------
 # convert a naive datatime to an aware datetime
@@ -71,6 +75,9 @@ utc_time = datetime.datetime.utcnow()
 print("Naive local time: {}".format(local_time))
 print("Naive UTC: {}".format(utc_time))
 
+# Naive local time: 2017-11-23 14:41:55.967259
+# Naive UTC: 2017-11-23 22:41:55.967261
+
 # when these next two print you can tell they are aware because they now
 # include an offset at the end. Both will show the same time zone and same
 # offset (+00:00, UTC) because the naive datetimes we supplied to it don't
@@ -80,22 +87,26 @@ aware_local_time = pytz.utc.localize(local_time)
 aware_utc_time = pytz.utc.localize(utc_time)
 
 print("Aware local time: {} - time zone: {}".format(
-      aware_local_time, aware_local_time.tzinfo))
+  aware_local_time, aware_local_time.tzinfo))
 
 print("Aware UTC: {} - time zone: {}".format(
-      aware_utc_time, aware_utc_time.tzinfo))
+  aware_utc_time, aware_utc_time.tzinfo))
 
 # Try this instead to show the correct local offset and time zone:
 
 aware_local_time = pytz.utc.localize(utc_time).astimezone()
 
 print("Aware local time: {} - time zone: {}".format(
-      aware_local_time, aware_local_time.tzinfo))
+  aware_local_time, aware_local_time.tzinfo))
+
+# Aware local time: 2017-11-23 14:41:55.967259+00:00 - time zone: UTC
+# Aware UTC: 2017-11-23 22:41:55.967261+00:00 - time zone: UTC
+# Aware local time: 2017-11-23 14:41:55.967261-08:00 - time zone: PST
 
 # -----------------------------------------------------------------------------
 # date in a time zone from epoch
 # -----------------------------------------------------------------------------
-# Using time stamps (seconds since the epoch) to convert to actual date.
+# Use time stamps (seconds since the epoch) to convert to actual date.
 # For this example we'll be supplying the time zone since an epoch number could
 # be from anywhere. This particular timestamp is the hour before DST in the UK
 # on October 25, 2015. You will see the difference before and after the DST in
@@ -110,3 +121,6 @@ dt2 = pytz.utc.localize(datetime.datetime.utcfromtimestamp(t)).astimezone(gb)
 
 print('{} seconds since epoch is {}'.format(s, dt1))
 print('{} seconds since epoch is {}'.format(t, dt2))
+
+# 1445733000 seconds since epoch is 2015-10-25 01:30:00+01:00
+# 1445736600 seconds since epoch is 2015-10-25 01:30:00+00:00

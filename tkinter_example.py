@@ -46,7 +46,7 @@ keyPad.grid(row=2, column=0, sticky='nsew')
 
 # padx and pady are intended to add external padding - the value can be a
 # number or a tuple (5, 15) for separate left, right - top, bottom values.
-# ipadx and ipady are intended to add internal padding - the value v=can only
+# ipadx and ipady are intended to add internal padding - the value can only
 # be a number, not a tuple. These don't appear to work consistently. In the
 # example below both ipady and pady give the same result:
 
@@ -65,7 +65,21 @@ for keyRow in keys:
 # calling its .update() method:
 
 mainWindow.update()
-mainWindow.minsize(keyPad.winfo_width() + mainWindowPadding * 2, result.winfo_height() + keyPad.winfo_height() + label.winfo_height() + mainWindowPadding)
-mainWindow.maxsize(keyPad.winfo_width() + mainWindowPadding * 2, result.winfo_height() + keyPad.winfo_height() + label.winfo_height() + mainWindowPadding)
+
+mainWindow.minsize(
+    (keyPad.winfo_width() + mainWindowPadding * 2),
+    (result.winfo_height()
+    + keyPad.winfo_height()
+    + label.winfo_height()
+    + mainWindowPadding)
+    )
+
+mainWindow.maxsize(
+    (keyPad.winfo_width() + mainWindowPadding * 2),
+    (result.winfo_height()
+    + keyPad.winfo_height()
+    + label.winfo_height()
+    + mainWindowPadding)
+    )
 
 mainWindow.mainloop()

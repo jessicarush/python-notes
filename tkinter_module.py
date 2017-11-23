@@ -14,11 +14,11 @@ import tkinter
 print(tkinter.TkVersion)
 print(tkinter.TclVersion)
 
-# Note that everything in Tk is a window, and objects are places in a hierarchy.
+# Note that everything in Tk is a window, and objects are placed in a hierarchy.
 # In terms of how to display the applications widgets (the things you want to
 # appear within the window), you would use one of three different 'geometry
-# managers'. The most useful is the grid manager. The pack manager is the
-# simplest as is place.
+# managers'. The most useful is the grid manager. The pack manager and place
+# are the simplest.
 
 mainWindow = tkinter.Tk()
 mainWindow.title('Top Hats & Bees')
