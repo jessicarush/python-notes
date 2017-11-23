@@ -61,7 +61,7 @@
 # $ deactivate
 
 # -----------------------------------------------------------------------------
-# Keep track of dequirements
+# Keep track of requirements
 # -----------------------------------------------------------------------------
 # see package_management.py
 
@@ -69,4 +69,4 @@
 # do one of the following:
 
 # $ pip3 freeze > requirements.txt
-# $ est_env/bin/pip3 freeze > requirements.txt
+# $ test_env/bin/pip3 freeze > requirements.txt
