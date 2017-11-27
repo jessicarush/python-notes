@@ -32,7 +32,7 @@ with shelve.open('plants_shelf') as plants:
 print(type(plants)) #class 'shelve.DbfilenameShelf
 
 # Items can be continually added to the database. If a key exists, it will be
-# overwritten, print and delete the same way as dicts:
+# overwritten. Print and delete the same way as with dicts:
 
 with shelve.open('plants_shelf') as plants:
     plants['aloe'] = "healing gel inside"
@@ -127,9 +127,9 @@ with shelve.open('pizzas', writeback=True) as pizzas:
 # -----------------------------------------------------------------------------
 # To reiterate, keys & values can only be added to shelves via individual
 # assignments, not as dictionary literals. If you had a bunch of dictionaries
-# in a variable like it would normally look like this:
+# in a variable it would normally look like this:
 
-books = {'plants' : {'succulents' : ['Blue star', 'Chinesis', 'Black Prince'],
+topics = {'plants' : {'succulents' : ['Blue star', 'Chinesis', 'Black Prince'],
                      'orchids' : ['Phaleanopsis', 'Cattleya', 'Paphiopedilum'],
                      'tropicals' : ['Spider', 'Mandevilla', 'Red Ginger']},
 
@@ -146,28 +146,28 @@ books = {'plants' : {'succulents' : ['Blue star', 'Chinesis', 'Black Prince'],
 
 import shelve
 
-books = shelve.open('books')
+topics = shelve.open('topics')
 
-books['plants'] = {'succulents' : ['Blue star', 'Chinesis', 'Black Prince'],
-                   'orchids' : ['Phaleanopsis', 'Cattleya', 'Paphiopedilum'],
-                   'tropicals' : ['Spider', 'Mandevilla', 'Red Ginger']}
+topics['plants'] = {'succulents' : ['Blue star', 'Chinesis', 'Black Prince'],
+                    'orchids' : ['Phaleanopsis', 'Cattleya', 'Paphiopedilum'],
+                    'tropicals' : ['Spider', 'Mandevilla', 'Red Ginger']}
 
-books['pizzas'] = {'margarita' : ['tomato', 'basil', 'mozzarella'],
-                   'pesto' : ['pesto', 'artichoke', 'olives'],
-                   'prosciutto' : ['prosciutto', 'arugula', 'parmesan'],
-                   'italian' : ['chorizo', 'red onion', 'pancetta']}
+topics['pizzas'] = {'margarita' : ['tomato', 'basil', 'mozzarella'],
+                    'pesto' : ['pesto', 'artichoke', 'olives'],
+                    'prosciutto' : ['prosciutto', 'arugula', 'parmesan'],
+                    'italian' : ['chorizo', 'red onion', 'pancetta']}
 
-books['house'] = {'kitchen' : ['appliances', 'cookware', 'cabinets'],
-                  'bedroom' : ['bed', 'closet', 'shelves'],
-                  'bathroom' : ['toilet', 'shower', 'sink']}
+topics['house'] = {'kitchen' : ['appliances', 'cookware', 'cabinets'],
+                   'bedroom' : ['bed', 'closet', 'shelves'],
+                   'bathroom' : ['toilet', 'shower', 'sink']}
 
-print(books['house']['bedroom'])
-books.close()
+print(topics['house']['bedroom'])
+topics.close()
 
 # This could be useful as you could have all your big data objects in one
 # file... in this file, each one is written to a shelve (essentially
 # initializing the shelves). Then, from your main program file you could just
-# open it as above (books = shelve.open('books'), have access to the data...
+# open it as above (topics = shelve.open('topics'), have access to the data...
 # and close it at the end.
 
 # -----------------------------------------------------------------------------
