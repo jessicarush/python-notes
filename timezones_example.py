@@ -1,7 +1,8 @@
 '''Timezones Example'''
 
-# A program that allows a user to choose one time zones from a list. The program
-# will then display the time in that timezone, as well as local time & UTC time.
+# A program that allows a user to choose one time zones from a list.
+# The program will then display the time in that timezone,
+# as well as local time & UTC time.
 
 import datetime
 import pytz
@@ -57,7 +58,7 @@ while True:
         # fancier:
         world = '{} time is:'.format(selection.title())
         local = 'Local time is:'
-        utc = 'UTC is:'
+        utc = 'UTC time is:'
         print("{:24} {} {}".format(
               world, world_time.strftime('%A %x %X'), world_time.tzname()))
         print("{:24} {}".format(
