@@ -34,15 +34,27 @@ def factorial_r(n):
 # in a program. A recursive function terminates, if with every recursive call
 # the solution of the problem is downsized and moves towards a base case.
 # A base case is, where the problem can be solved without further recursion.
-# A recursion can lead to an infinite loop, if the base case is not met. In the
-# example above, the base case it met by if n <= 1, return 1
+# A recursion can lead to an infinite loop, if the base case is not met. In
+# the example above, the base case it met by if n <= 1, return 1
 
 # testing:
-for i in range(20):
+for i in range(6):
     print(i, factorial_i(i))
+# 0 1
+# 1 1
+# 2 2
+# 3 6
+# 4 24
+# 5 120
 
-for i in range(20):
+for i in range(6):
     print(i, factorial_r(i))
+# 0 1
+# 1 1
+# 2 2
+# 3 6
+# 4 24
+# 5 120
 
 # -----------------------------------------------------------------------------
 # Fibonacci
@@ -64,24 +76,23 @@ def fib_i(n):
 
 def fib_g(n):
     '''Calculates fibonacci with a generator'''
-    curr = 1
-    prev = 0
+    a, b = 0, 1
     counter = 0
     while counter < n:
-        yield curr
-        prev, curr = curr, prev + curr
+        yield b
+        a, b = b, a + b
         counter += 1
 
 # testing:
-for i in range(20):
-    print(fib_r(i))
+for i in range(10):
+    print(fib_r(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
-for i in range(20):
-    print(fib_i(i))
+for i in range(10):
+    print(fib_i(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
-fib_generator = fib_g(20)
+fib_generator = fib_g(10)
 for i in fib_generator:
-    print(i)
+    print(i)        # 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
 
 # -----------------------------------------------------------------------------
 # Directory Listings
@@ -127,3 +138,10 @@ def list_directory(s):
 
 
 list_directory('.')
+
+# -----------------------------------------------------------------------------
+# Tips:
+# -----------------------------------------------------------------------------
+# When coding/testing a recursive function, it's often helpful to insert print
+# statements to see what's going on. When you do this, add a tab before the
+# print so you can visually see your levels of recursion.
