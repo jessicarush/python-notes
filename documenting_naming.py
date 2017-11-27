@@ -6,34 +6,80 @@
 # For obvious reasons, it helps to document your code. Documentation can
 # include comments and docstrings, but it can also incorporate informative
 # naming of variables, functions, modules, and classes. Don't be obsessive, say
-# why you assigned the value. Point out why you called the variable whatever.
+# why you assigned a value. Point out why you called a variable whatever.
 
 def example():
-    '''A brief, clear description'''
+    '''A brief, clear description.
+
+    Extended description - the docstring should describe the function,
+    class, or method in a way that is easy to understand.
+    '''
     pass
 
-# In larger or more complex projects however, it is often a good idea to give
+# In larger or more complex projects however, it's often a good idea to give
 # more information like, what it does, any exceptions it may raise, what it
 # returns, or relevant details about the parameters, arguments, methods,
-# variables or attributes . In multiline functions it's best to start with a
-# single summary line, a space and then the rest of the information. For more
-# detailed documentation of code a popular style is one often called Numpy
-# style. While it can take up more lines, it allows the developer to include a
-# more information about a method, function, class.
+# variables or attributes. In multiline functions it's best to start with a
+# single summary line, a space and then the extended description, followed by
+# specific information on args, return etc. There are a number of popular
+# documenting styles including reST (reStructuredText ), Numpy style, and
+# Google has there own style too.
 
 def example(arg1=0.0, arg2=None):
     '''
-    Summary line.
+    reST style docstring.
 
-    Extended description of function - The docstring should describe the
-    function, class, or method in a way that is easy to understand.
+    :param arg1: int, description of arg1, default 0.0
+    :param arg2: str, escription of arg2, default None
+    :returns: int - Description of return value
+    :raises keyError: raises an exception
+    '''
+    pass
 
-    Parameters:
-    arg1 (int) - Description of arg1, default 0.0
-    arg2 (str) - Description of arg2, default None
+def example(arg1=0.0, arg2=None):
+    '''
+    Google style docstring.
+
+    You can find examples of python docstrings by following the links
+    here: https://google.github.io/styleguide/.
+
+    Note:
+        Do this not that recommendation.
+
+    Args:
+        arg1 (int): description of arg1, default 0.0
+        arg2 (str): description of arg2, default None
 
     Returns:
-    int - Description of return value
+        int: description of return value.
+
+    Raises:
+        KeyError: Raises an exception.
+    '''
+    pass
+
+def example(arg1, arg2=0.0):
+    '''
+    Numpy style docstring (numpydoc).
+
+    Parameters
+    ----------
+    arg1 : string
+        the 1st param, name `arg1`
+    second : float, optional
+        the 2nd param, by default 0.0
+
+    Returns
+    -------
+    string
+        a value in a string
+
+    Raises
+    ------
+    KeyError
+        when a key error
+    OtherError
+        when an other error
     '''
     pass
 
@@ -91,7 +137,7 @@ def ftoc(f_temp):
 # -----------------------------------------------------------------------------
 # Private functions
 # -----------------------------------------------------------------------------
-# If you're building a module that will be imported, you can identity functions
+# If you're building a module that will be imported, you can identify functions
 # that aren't intended to be called on their own by naming them with a leading
 # underscore.
 
@@ -121,7 +167,7 @@ print(x._Person__alias)  # This will actually return the attribute
 # Throwaway values
 # -----------------------------------------------------------------------------
 # in the event that you need to give something a name but you have no intention
-# of using it, it's acceptable to use the name '-'. The perfect example of this
+# of using it, it's acceptable to use the name '_'. The perfect example of this
 # is with tuple unpacking. In the example below, I don't want the age
 # information, but I need to give it a name in order to unpack the rest:
 
@@ -165,7 +211,7 @@ def to_date(date_string: str) -> datetime:
 # https://www.python.org/dev/peps/pep-0484/
 # https://www.python.org/dev/peps/pep-3107/
 
-# Expected types can also simply commented like this:
+# Expected types can also simply be commented like this:
 
 a = []  # type: List[str]
 
