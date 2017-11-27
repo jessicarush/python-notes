@@ -38,7 +38,7 @@ is_none(thing)
 # -----------------------------------------------------------------------------
 # Keyword arguments: **kwargs
 # -----------------------------------------------------------------------------
-# The keyword argument **h extracts the keys and values from the dictionary
+# The keyword argument **h extracts the keys and values from a dictionary
 # and supplies them as arguments to the class Element()
 
 class Element():
@@ -191,11 +191,11 @@ Person.deceased(snape)
 # Encapsulation
 # -----------------------------------------------------------------------------
 # Encapsulation is the idea that data inside an object should only be accessed
-# through a public interface – that is, the object’s methods. Generally speaking
-# encapsulation is the mechanism for restricting the access to some of an
-# object's components. This means that the internal representation of an object
-# can't be seen from outside of the objects definition. Access to this data
-# is typically only achieved through methods.
+# through a public interface – that is, the object’s methods. Generally
+# speaking encapsulation is the mechanism for restricting the access to some
+# of an object's components. This means that the internal representation of an
+# object can't be seen from outside of the objects definition. Access to this
+# data is typically only achieved through methods.
 
 # -----------------------------------------------------------------------------
 # Delegation
