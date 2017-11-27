@@ -1,7 +1,16 @@
-'''tkinter example'''
+'''tkinter example - (not a functioning calculator)'''
 
-import tkinter
+import tkinter as tk
 from tkinter import ttk
+
+
+def click(key):
+    '''dummy function for testing purposes only'''
+    if (key == 'C') or (key == 'CE'):
+        entry.delete(0, tk.END)
+    else:
+        entry.insert(tk.END, key)
+
 
 # Button text is stored as a list of row lists. The list items here are tuples,
 # where the second value is being used as the colspan in the code below:
@@ -15,7 +24,7 @@ keys = [[('C', 2), ('CE', 2)],
 mainWindowPadding = 8
 
 # Main window setup:
-mainWindow = tkinter.Tk()
+mainWindow = tk.Tk()
 mainWindow.title("Calculator")
 mainWindow.geometry('50x50-25-25')
 mainWindow['padx'] = mainWindowPadding
@@ -36,12 +45,12 @@ label.grid(row=0, column=0)
 # Result field:
 # A "width" configuration option may be specified to provide the number of
 # characters wide the entry should be.
-result = tkinter.Entry(mainWindow)
-result.grid(row=1, column=0, sticky='nsew')
-result.config(width=10)
+entry = tk.Entry(mainWindow)
+entry.grid(row=1, column=0, sticky='nsew')
+entry.config(width=10)
 
 # Key pad:
-keyPad = tkinter.Frame(mainWindow)
+keyPad = tk.Frame(mainWindow)
 keyPad.grid(row=2, column=0, sticky='nsew')
 
 # padx and pady are intended to add external padding - the value can be a
@@ -54,8 +63,9 @@ row = 0
 for keyRow in keys:
     col = 0
     for key in keyRow:
-        tkinter.Button(keyPad, text=key[0]).grid(row=row, column=col,
-                       columnspan=key[1], sticky='nsew', ipadx=5, ipady=0)
+        cmd = lambda x=key[0]: click(x)
+        tk.Button(keyPad, text=key[0], command=cmd).grid(
+            row=row, column=col, columnspan=key[1], sticky='nsew', ipadx=5)
         col += key[1]
     row += 1
 
@@ -68,7 +78,7 @@ mainWindow.update()
 
 mainWindow.minsize(
     (keyPad.winfo_width() + mainWindowPadding * 2),
-    (result.winfo_height()
+    (entry.winfo_height()
     + keyPad.winfo_height()
     + label.winfo_height()
     + mainWindowPadding)
@@ -76,7 +86,7 @@ mainWindow.minsize(
 
 mainWindow.maxsize(
     (keyPad.winfo_width() + mainWindowPadding * 2),
-    (result.winfo_height()
+    (entry.winfo_height()
     + keyPad.winfo_height()
     + label.winfo_height()
     + mainWindowPadding)
