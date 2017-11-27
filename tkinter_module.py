@@ -9,10 +9,7 @@
 # https://wiki.tcl.tk/37973
 # http://effbot.org/tkinterbook/tkinter-widget-styling.htm
 
-import tkinter
-
-print(tkinter.TkVersion)
-print(tkinter.TclVersion)
+import tkinter as tk
 
 # Note that everything in Tk is a window, and objects are placed in a hierarchy.
 # In terms of how to display the applications widgets (the things you want to
@@ -20,45 +17,71 @@ print(tkinter.TclVersion)
 # managers'. The most useful is the grid manager. The pack manager and place
 # are the simplest.
 
-mainWindow = tkinter.Tk()
-mainWindow.title('Top Hats & Bees')
-mainWindow.geometry('640x480+100+20')
-
-# The numbers following the window size are the optional positioning from the
-# top left. You can use negative numbers to go from the bottom right.
+print(tk.TkVersion)
+print(tk.TclVersion)
 
 # -----------------------------------------------------------------------------
 # .pack()
 # -----------------------------------------------------------------------------
-# use fill in canvas.pack() to have the canvas fit to the mainWindow.
-# Acceptable values here are tkinter.X, tkinter.Y or tkinter.Both
-# canvas.pack(side='top', fill=tkinter.BOTH, expand=True)
+# Start by creating the main window:
 
-# when widgets share the same side, they're placed in the order they're
+mainWindow = tk.Tk()
+mainWindow.title('Window Title')
+mainWindow.geometry('280x240+50+50')
+mainWindow['pady'] = 15
+mainWindow['padx'] = 15
+
+# The numbers following the window size are the optional positioning from the
+# top left. Negative numbers where rumored to go from the bottom right, but
+# this doesn't appear to work.
+
+leftFrame = tk.Frame(mainWindow)
+leftFrame.pack(side='left', anchor='n', fill=tk.Y, expand=False)
+# leftFrame.config(bg='red')
+
+rightFrame = tk.Frame(mainWindow)
+rightFrame.pack(side='left', anchor='n', fill=tk.BOTH, expand=True)
+# rightFrame.config(bg='green')
+
+label1 = tk.Label(leftFrame, text='kilograms (kg)')
+label2 = tk.Label(leftFrame, text='grams (gm)')
+label3 = tk.Label(leftFrame, text='pounds (lb)')
+label4 = tk.Label(leftFrame, text='ounces (oz)')
+
+label1.pack(side='top', anchor='w', pady=(7, 0))
+label2.pack(side='top', anchor='e', pady=(3, 0))
+label3.pack(side='top', anchor='e', pady=(3, 0))
+label4.pack(side='top', anchor='e', pady=(3, 0))
+
+e1=tk.Entry(rightFrame, width=14)
+e1.pack(side='top', anchor='w')
+
+t1=tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
+t1.pack(side='top', anchor='w')
+
+t2=tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
+t2.pack(side='top', anchor='w')
+
+t3=tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
+t3.pack(side='top', anchor='w')
+
+b1 = tk.Button(rightFrame, text='convert')
+b1.pack(side='bottom', anchor='e')
+
+mainWindow.mainloop()
+
+# Use the fill argument to have an element (ie Frame) fit to the mainWindow.
+# Acceptable values here are tk.X, tk.Y or tk.Both.
+
+# The expand option tells the manager to assign additional space to the widget
+# box. If the parent widget is made larger than necessary to hold all packed
+# widgets, any exceeding space will be distributed among all widgets that have
+# the expand option set to a non-zero value.
+
+# When widgets share the same side, they're placed in the order they're
 # "packed". You can use anchor to move things n, s, e, w but this will only
 # work for the axis opposite to their side. (i.e. if you've aligned to the left
 # you can only anchor n, s).
-
-label = tkinter.Label(mainWindow, text="Something")
-label.pack(side='top')
-
-leftFrame = tkinter.Frame(mainWindow)
-leftFrame.pack(side='left', anchor='n', fill=tkinter.Y, expand=False)
-
-canvas = tkinter.Canvas(leftFrame, relief='raised', borderwidth=1)
-canvas.pack(side='left', anchor='n')
-
-rightFrame = tkinter.Frame(mainWindow)
-rightFrame.pack(side='right', anchor='n', fill=tkinter.Y, expand=True)
-
-button1 = tkinter.Button(rightFrame, text="button1")
-button2 = tkinter.Button(rightFrame, text="button2")
-button3 = tkinter.Button(rightFrame, text="button3")
-button1.pack(side='top')
-button2.pack(side='top')
-button3.pack(side='top')
-
-mainWindow.mainloop()
 
 # -----------------------------------------------------------------------------
 # .place()
@@ -70,44 +93,51 @@ mainWindow.mainloop()
 # -----------------------------------------------------------------------------
 # .grid()
 # -----------------------------------------------------------------------------
-label = tkinter.Label(mainWindow, text="Something")
-label.grid(row=0, column=0)
 
-leftFrame = tkinter.Frame(mainWindow)
-leftFrame.grid(row=1, column=1)
+def kg_to_other():
+    grams = round((float(e1_value.get()) * 1000), 2)
+    pounds = round((float(e1_value.get()) * 2.20462), 2)
+    ounces = round((float(e1_value.get()) * 35.274), 2)
+    t1.insert(tk.END, grams)
+    t2.insert(tk.END, pounds)
+    t3.insert(tk.END, ounces)
 
-# possible relief types: flat, groove, raised, ridge, solid, or sunken
+window = tk.Tk()
+window.title('Unit Converter')
+window.geometry('480x125-100-100')
+window['padx'] = 15
+window['pady'] = 15
+font1 = ('Helvetica', 18, 'bold')
+font2 = ('Helvetica', 11)
 
-canvas = tkinter.Canvas(leftFrame, relief='raised', borderwidth=1)
-canvas.grid(row=1, column=0)
+l1 = tk.Label(window, text='kilograms (kg)', font=font2)
+l2 = tk.Label(window, text='grams (gm)', font=font2)
+l3 = tk.Label(window, text='pounds (lb)', font=font2)
+l4 = tk.Label(window, text='ounces (oz)', font=font2)
+l1.grid(row=0, column=0, sticky='w')
+l2.grid(row=0, column=1, sticky='w')
+l3.grid(row=0, column=2, sticky='w')
+l4.grid(row=0, column=3, sticky='w')
 
-rightFrame = tkinter.Frame(mainWindow)
-rightFrame.grid(row=1, column=2, sticky='n')
+e1_value = tk.StringVar()
+e1=tk.Entry(window, width=12, textvariable=e1_value, font=font1, fg='azure4')
+e1.grid(row=1, column=0, padx=(0, 20))
 
-button1 = tkinter.Button(rightFrame, text="button1")
-button2 = tkinter.Button(rightFrame, text="button2")
-button3 = tkinter.Button(rightFrame, text="button3")
-button1.grid(row=0, column=0)
-button2.grid(row=1, column=0)
-button3.grid(row=2, column=0)
+t1=tk.Text(window, height=1, width=13)
+t1.grid(row=1, column=1, sticky='n')
 
-# configure columns:
-mainWindow.columnconfigure(0, weight=1)
-mainWindow.columnconfigure(1, weight=1)
-mainWindow.columnconfigure(2, weight=1)
+t2=tk.Text(window, height=1, width=13)
+t2.grid(row=1, column=2, sticky='n')
 
-# configure frames:
-leftFrame.config(relief='sunken', borderwidth=1)
-rightFrame.config(relief='sunken', borderwidth=1)
-leftFrame.grid(sticky='ns')
-rightFrame.grid(sticky='new')
-rightFrame.columnconfigure(0, weight=1)
+t3=tk.Text(window, height=1, width=13)
+t3.grid(row=1, column=3, sticky='n')
 
-# configure buttons:
-button3.grid(sticky='ew')
+b1 = tk.Button(window, text='convert', command=kg_to_other)
+b1.grid(row=3, column=0, sticky='w')
 
-# this function always at the end:
-mainWindow.mainloop()
+window.mainloop()
+
+# FYI relief types: flat, groove, raised, ridge, solid, or sunken
 
 # -----------------------------------------------------------------------------
 # sticky
@@ -135,6 +165,11 @@ mainWindow.mainloop()
 # "rowconfigure" methods of grid. If two columns have the same weight, they'll
 # expand at the same rate; if one has a weight of 1, another of 3, the latter
 # one will expand three pixels for every one pixel added to the first.
+
+# configure columns:
+# window.columnconfigure(0, weight=1)
+# window.columnconfigure(1, weight=1)
+# Window.columnconfigure(2, weight=3)
 
 # -----------------------------------------------------------------------------
 # tkinter.ttk
