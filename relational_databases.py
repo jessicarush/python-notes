@@ -107,7 +107,7 @@ curs.execute('INSERT INTO inventory VALUES("pencils", 100, 0.5)')
 
 # a safer way to insert data , using a placeholder:
 
-ins = 'INSERT INTO inventory (things, count, cost) VALUES(?, ?, ?)'
+ins = 'INSERT INTO inventory(things, count, cost) VALUES(?, ?, ?)'
 curs.execute(ins, ('erasers', 85, 0.25))
 curs.execute(ins, ('widgets', 2, 10.0))
 
@@ -502,6 +502,8 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 # psycopg2 - http://initd.org/psycopg/
 # py-postgresql - http://python.projects.pgfoundry.org/
+
+# see postgresSQL_example.py
 
 # -----------------------------------------------------------------------------
 # SQLAlchemy

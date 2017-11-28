@@ -5,7 +5,7 @@
 # a column in the history table that contains a pickled datetime object which
 # is the local time zone (PDT). This pickled object can then be unpickled and
 # displayed later. This whole thing is probably overkill for most situations
-# but may prove useful as an example alone.
+# but may prove useful as an example sometime.
 
 import sqlite3
 import datetime

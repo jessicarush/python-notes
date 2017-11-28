@@ -81,7 +81,7 @@ class Account():
             return 0.0
 
     def show_balance(self):
-        print('Balance on account {} is {:.2f}'.format(self.name, self._balance / 100))
+        print('Balance on account {} is {:.2f}'.format(self.name, self._balance/100))
 
 # -----------------------------------------------------------------------------
 # Testing
@@ -153,8 +153,11 @@ print('-' * 50)
 
 db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
-for row in db.execute("SELECT strftime('%Y-%m-%d %H:%M:%f', history.time, 'localtime') AS localtime, history.account, history.amount FROM history ORDER BY history.time"):
-
+for row in db.execute('''
+  SELECT strftime('%Y-%m-%d %H:%M:%f', history.time, 'localtime')
+  AS localtime, history.account, history.amount
+  FROM history ORDER BY history.time
+  '''):
     print(row) # prints local time now
 
 db.close()
@@ -167,10 +170,12 @@ print('-' * 50)
 
 db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
-db.execute('''CREATE VIEW IF NOT EXISTS localhistory
-              AS SELECT strftime('%Y-%m-%d %H:%M:%f', history.time, 'localtime')
-              AS localtime, history.account, history.amount
-              FROM history ORDER BY history.time''')
+db.execute('''
+  CREATE VIEW IF NOT EXISTS localhistory
+  AS SELECT strftime('%Y-%m-%d %H:%M:%f', history.time, 'localtime')
+  AS localtime, history.account, history.amount
+  FROM history ORDER BY history.time
+  ''')
 
 for row in db.execute("SELECT * FROM localhistory"):
     print(row)
