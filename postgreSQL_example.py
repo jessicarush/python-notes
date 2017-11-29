@@ -44,23 +44,27 @@
 
 import psycopg2
 
-db = "dbname='test1' user='postgres' password='cinnamon-sticks' host='localhost' port='5432'"
+db = ("dbname='test1'"
+      "user='postgres'"
+      "password='cinnamon-sticks'"
+      "host='localhost'"
+      "port='5432'")
 
 def create():
     conn = psycopg2.connect(db)
     curs = conn.cursor()
-    curs.execute('''CREATE TABLE IF NOT EXISTS inventory(
-                    item TEXT, quantity INT, cost FLOAT)
-                 ''')
-    curs.close()
+    curs.execute('''CREATE TABLE IF NOT EXISTS inventory
+      (item TEXT, quantity INT, cost FLOAT)''')
     conn.commit()
+    curs.close()
     conn.close()
 
 
 def insert(item, quantity, cost):
     conn = psycopg2.connect(db)
     curs = conn.cursor()
-    curs.execute("INSERT INTO inventory(item, quantity, cost) VALUES(%s, %s, %s)", (item, quantity, cost))
+    curs.execute("INSERT INTO inventory VALUES (%s, %s, %s)",
+      (item, quantity, cost))
     curs.connection.commit()
     curs.close()
     conn.close()
@@ -88,18 +92,84 @@ def delete(item):
 def update(quantity, cost, item):
     conn = psycopg2.connect(db)
     curs = conn.cursor()
-    curs.execute('UPDATE inventory SET quantity=%s, cost=%s WHERE item=%s', (quantity, cost, item))
+    curs.execute('UPDATE inventory SET quantity=%s, cost=%s WHERE item=%s',
+      (quantity, cost, item))
     curs.connection.commit()
     curs.close()
     conn.close()
 
 
 create()
+insert('Dolphin', 5, 1000)
+# insert('Rocks', 5, 2)
+# insert('Dice', 100, 0.5)
+# delete('Dice')
+update(5000, 0.5, 'Giraffe')
+print(display())
 
-# insert()
+
+# -----------------------------------------------------------------------------
+# To compare: sqlite3
+# -----------------------------------------------------------------------------
+# The following is the same code but written for sqlite3:
+
+import sqlite3
+
+db = 'test.db'
+
+def create():
+    conn = sqlite3.connect(db)
+    curs = conn.cursor()
+    curs.execute('''CREATE TABLE IF NOT EXISTS inventory
+      (item TEXT, quantity INT, cost FLOAT)''')
+    conn.commit()
+    curs.close()
+    conn.close()
+
+
+def insert(item, quantity, cost):
+    conn = sqlite3.connect(db)
+    curs = conn.cursor()
+    curs.execute('INSERT INTO inventory VALUES (?, ?, ? )',
+      (item, quantity, cost))
+    curs.connection.commit()
+    curs.close()
+    conn.close()
+
+
+def display():
+    conn = sqlite3.connect(db)
+    curs = conn.cursor()
+    curs.execute('SELECT * FROM inventory')
+    rows = curs.fetchall()
+    curs.close()
+    conn.close()
+    return rows
+
+
+def delete(item):
+    conn = sqlite3.connect(db)
+    curs = conn.cursor()
+    curs.execute('DELETE FROM inventory WHERE item=?', (item,))
+    curs.connection.commit()
+    curs.close()
+    conn.close()
+
+
+def update(quantity, cost, item):
+    conn = sqlite3.connect(db)
+    curs = conn.cursor()
+    curs.execute('UPDATE inventory SET quantity=?, cost=? WHERE item=?',
+      (quantity, cost, item))
+    curs.connection.commit()
+    curs.close()
+    conn.close()
+
+
+create()
 # insert('Coffee', 25, 10.5)
 # insert('Rocks', 5, 2)
 # insert('Dice', 100, 0.5)
-# delete('Coffee')
-update(50, 0.5, 'Rocks')
+# delete('Rocks')
+update(100, 0.5, 'Dice')
 print(display())
