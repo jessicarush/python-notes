@@ -10,32 +10,46 @@ import re
 # pattern 'Young Frankenstein' is the source
 
 r = re.match('You', 'Young Frankenstein')
-print(r)  # <_sre.SRE_Match object; span=(0, 3), match='You'>
+
+print(r)          # <_sre.SRE_Match object; span=(0, 3), match='You'>
+print(r.group())  # You
 
 # For more complex matches, you can compile your pattern first to speed up the
 # match. Then, you can perform your match against the compiled pattern:
 
 pattern = re.compile('You')
 r = pattern.match('Young Frankenstein')
-print(r)  # <_sre.SRE_Match object; span=(0, 3), match='You'>
+
+print(r)          # <_sre.SRE_Match object; span=(0, 3), match='You'>
+print(r.group())  # You
 
 # Obviously the source can be defined in a variable:
 
+pattern = re.compile('blue')
 source = 'blue red green yellow blueish blue'
-r = re.match('blue', source)
+r = re.match(pattern, source)
+
+print(r)          # <_sre.SRE_Match object; span=(0, 4), match='blue'>
 print(r.group())  # blue
 
-# In the following, m returns nothing because match only checks out if the
+# In the following, r returns nothing because match only checks out if the
 # beginning of the source matches:
 
 r = re.match('green', source)
-print(r)  # None
 
+print(r)           # None
+# print(r.group()) # AttributeError: 'NoneType' object has no attribute 'group'
+
+# -----------------------------------------------------------------------------
+# Wildcards . *
+# -----------------------------------------------------------------------------
 # . means any character
 # * means any number of the preceding character
 # .* says there can be any amount of any characters before
 
 r = re.match('.*green', source)
+
+print(r)  # <_sre.SRE_Match object; span=(0, 14), match='blue red green'>
 print(r.group())  # blue red green
 
 # -----------------------------------------------------------------------------
@@ -44,6 +58,8 @@ print(r.group())  # blue red green
 # search() returns the first match, if any.
 
 r = re.search('green', source)
+
+print(r)          # <_sre.SRE_Match object; span=(9, 14), match='green'>
 print(r.group())  # green
 
 # -----------------------------------------------------------------------------

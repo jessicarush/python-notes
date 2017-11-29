@@ -96,10 +96,8 @@ import sqlite3
 
 conn = sqlite3.connect('practice.db') # creates the file if it doesn't exist
 curs = conn.cursor()
-curs.execute('''CREATE TABLE IF NOT EXISTS inventory(
-                things VARCHAR(20) PRIMARY KEY,
-                count INT,
-                cost FLOAT)''')
+curs.execute('''CREATE TABLE IF NOT EXISTS inventory
+  (things VARCHAR(20) PRIMARY KEY, count INT, cost FLOAT)''')
 
 # add things to inventory:
 
@@ -202,10 +200,10 @@ conn.close()
 # For the following examples imagine this schema:
 
 '''
-CREATE TABLE songs (
-_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL, album INTEGER);
-CREATE TABLE albums (
-_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
+CREATE TABLE songs
+  (_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL, album INTEGER);
+CREATE TABLE albums
+  (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
 CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 '''
 
@@ -303,10 +301,10 @@ import sqlite3
 db = sqlite3.connect('contacts.sqlite')
 
 
-db.execute('''CREATE TABLE IF NOT EXISTS contacts(
-           name TEXT, phone INTEGER, email TEXT)''')
+db.execute('''CREATE TABLE IF NOT EXISTS contacts
+  (name TEXT, phone INTEGER, email TEXT)''')
 db.execute('INSERT INTO contacts(name, phone, email) VALUES(
-           "Rick", 4362, "rick@email.com")')
+  "Rick", 4362, "rick@email.com")')
 db.execute('INSERT INTO contacts VALUES("Morty", 7395, "morty@email.com")')
 
 cursor = db.cursor()

@@ -1,24 +1,26 @@
 '''Decorators'''
 
-# functions that take one function as an input and return another function.
+# A decorator is a function that takes one function as an input and returns
+# another function. Here is a simplified example:
 
-# Here is a simplified example:
-
-def my_decorator(some_function):
-    def wrapper():
-        print('Something happens before some_function() is called.')
-        some_function()
-        print('Something happens after some_function() is called.')
+def my_decorator(some_func):
+    def wrapper(*args):
+        print('This happens before {}() is called.'.format(some_func.__name__))
+        some_func(*args)
+        print('This happens after {}() is called.'.format(some_func.__name__))
     return wrapper
 
 @my_decorator
-def my_function():
-    print("The function runs")
+def squares(n):
+    print(n ** 2)
 
-my_function()
+squares(6)
+# This happens before squares() is called.
+# 36
+# This happens after squares() is called.
 
-# Another example... this decorator will print start when the function is
-# called and 'end' when it finishes:
+# A similar example, written a little differently. This decorator will print
+# start when the function is called and 'end' when it finishes:
 
 def test(func):
     def new_func(*args, **kwargs):
@@ -33,6 +35,9 @@ def greeting():
     print('hello')
 
 greeting()
+# start
+# hello
+# end
 
 # The function document_it() below defines a decorator that will:
 #  - print the functions name and values of its arguments
@@ -50,20 +55,28 @@ def document_it(func):
         return result
     return new_function
 
-# Here's our simple test function:
+# Here's our simple test function, first we'll do it without a decorator:
 def add_ints(a, b):
     return a + b
 
-# Note, we could achieve the same result like this:
 decorated_add_ints = document_it(add_ints)
 print(decorated_add_ints(3,5))
+# Running function: add_ints
+# Positional arguments: (3, 5)
+# Keyword arguments: {}
+# Result: 8
+# 8
 
-# But decorating like this means less code:
+# Now with a decorator -- less code:
 @document_it
 def add_ints(a, b):
     return a + b
 
 add_ints(4, 5)
+# Running function: add_ints
+# Positional arguments: (4, 5)
+# Keyword arguments: {}
+# Result: 9
 
 # You can have more that one decorator applied to a function.
 
@@ -84,7 +97,6 @@ def add_ints(a, b):
     return a + b
 
 print(add_ints(4, 3))
-
 # Running function: new_function
 # Positional arguments: (4, 3)
 # Keyword arguments: {}
@@ -97,7 +109,6 @@ def add_ints(a, b):
     return a + b
 
 print(add_ints(4, 3))
-
 # Running function: add_ints
 # Positional arguments: (4, 3)
 # Keyword arguments: {}
@@ -132,3 +143,4 @@ def my_function():
         num_list.append(num)
 
 print(my_function())
+# Time it took to run the function: 0.0011439323425292969

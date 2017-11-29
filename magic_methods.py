@@ -1,8 +1,9 @@
 '''Special (Magic) Methods'''
 
-# Names of these methods begin with __. An example is __init__ which initializes
-# a newly created object from its class and any arguments that were passed in.
-# Example: create a method that compares two words but is case insensitive.
+# Names of these methods begin and end with __. An example is __init__ which
+# initializes a newly created object from its class and any arguments that were
+# passed in. Example: create a method that compares two words but is case
+# insensitive.
 
 class Word():
     def __init__(self, text):
@@ -109,7 +110,7 @@ print(player1)  # Name: Morty, Lives: 3, Level: 1, Score: 0
 # __dict__
 # -----------------------------------------------------------------------------
 # Another magic method is __dict__. It's used to return the dictionary used to
-# store an object’s attributes
+# store an object’s attributes.
 
 print(player1.__dict__)
 # {'name': 'Morty', 'lives': 3, 'level': 1, 'score': 0}

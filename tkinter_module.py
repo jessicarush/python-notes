@@ -120,7 +120,7 @@ l3.grid(row=0, column=2, sticky='w')
 l4.grid(row=0, column=3, sticky='w')
 
 e1_value = tk.StringVar()
-e1=tk.Entry(window, width=12, textvariable=e1_value, font=font1, fg='azure4')
+e1 = tk.Entry(window, width=12, textvariable=e1_value, font=font1, fg='azure4')
 e1.grid(row=1, column=0, padx=(0, 20))
 
 t1=tk.Text(window, height=1, width=13)
