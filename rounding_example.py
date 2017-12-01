@@ -23,13 +23,13 @@ class Account1():
         print('Account created for {}'.format(self.name))
         self.show_balance()
 
-    def deposit(self, amount: float) -> float:
+    def deposit(self, amount: float):
         if amount > 0.0:
             self._balance += amount
             print('{} deposited'.format(amount))
         return self._balance
 
-    def withdraw(self, amount: float) -> float:
+    def withdraw(self, amount: float):
         if 0 < amount <= self._balance:
             self._balance -= amount
             print('{} withdrawn'.format(amount))
@@ -50,6 +50,14 @@ if __name__ == '__main__':
     rick.withdraw(80.00)
     rick.show_balance()
 
+# Account created for Rick
+# Balance on account Rick is 0.0
+# 100.1 deposited
+# 499.1 deposited
+# 55.1 deposited
+# 80.0 withdrawn
+# Balance on account Rick is 574.3000000000001
+
 # -----------------------------------------------------------------------------
 # Example 2: decimal module
 # -----------------------------------------------------------------------------
@@ -61,20 +69,20 @@ class Account2():
     # class constant, accessible without creating an instance
     _qb = Decimal('0.00')
 
-    def __init__(self, name, opening_balance=0.0):
+    def __init__(self, name: str, opening_balance: float=0.0):
         self.name = name
         self._balance = Decimal(opening_balance).quantize(Account2._qb)
         print("Account created for {}. ".format(self.name))
         self.show_balance()
 
-    def deposit(self, amount):
+    def deposit(self, amount: float):
         decimal_amount = Decimal(amount).quantize(Account2._qb)
         if decimal_amount > Account2._qb:
             self._balance = self._balance + decimal_amount
             print("{} deposited".format(decimal_amount))
         return self._balance
 
-    def withdraw(self, amount):
+    def withdraw(self, amount: float):
         decimal_amount = Decimal(amount).quantize(Account2._qb)
         if Account2._qb < decimal_amount <= self._balance:
             self._balance = self._balance - decimal_amount
@@ -89,12 +97,20 @@ class Account2():
 
 #testing:
 if __name__ == '__main__':
-    rick = Account2('Rick')
+    rick = Account2('Morty')
     rick.deposit(100.10)
     rick.deposit(499.10)
     rick.deposit(55.10)
     rick.withdraw(80.00)
     rick.show_balance()
+
+# Account created for Morty.
+# Balance on account Morty is 0.00
+# 100.10 deposited
+# 499.10 deposited
+# 55.10 deposited
+# 80.00 withdrawn
+# Balance on account Morty is 574.30
 
 # -----------------------------------------------------------------------------
 # Example 3: use integers
@@ -108,13 +124,13 @@ class Account3():
         print('Account created for {}'.format(self.name))
         self.show_balance()
 
-    def deposit(self, amount: int) -> float:
+    def deposit(self, amount: int):
         if amount > 0.0:
             self._balance += amount
             print('{:.2f} deposited'.format(amount / 100))
         return self._balance / 100
 
-    def withdraw(self, amount: int) -> float:
+    def withdraw(self, amount: int):
         if 0 < amount <= self._balance:
             self._balance -= amount
             print('{:.2f} withdrawn'.format(amount / 100))
@@ -129,9 +145,17 @@ class Account3():
 
 # testing:
 if __name__ == '__main__':
-    rick = Account3('Rick')
+    rick = Account3('Bob')
     rick.deposit(10010)
     rick.deposit(49910)
     rick.deposit(5510)
     rick.withdraw(8000)
     rick.show_balance()
+
+# Account created for Bob
+# Balance on account Bob is 0.00
+# 100.10 deposited
+# 499.10 deposited
+# 55.10 deposited
+# 80.00 withdrawn
+# Balance on account Bob is 574.30
