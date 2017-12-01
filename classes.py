@@ -137,36 +137,73 @@ print(Person.__dict__)
 # Creating a new class from an existing class, with some additions or changes.
 # When you use inheritance, the new class can automatically use all the code
 # from the old class without copying any of it. You only define what you need
-# to add or change in the new class and this overrides the behavior of the old
-# class. The original class is the parent, superclass or base class.
+# to add or change in the new class and this overrides the behavior of the
+# original class. The original class is the parent, superclass or base class.
 # The new one is the child, subclass or derived class.
 
-class Car():
-    pass
+# In the examples below, the Child classes inherit from the Parent in some way.
+# The Child will do their thing, but also the parents thing, unless there is an
+# override of a parents function in the child's:
 
-class Honda(Car):
-    pass
+class Parent():
+    def __init__(self):
+        print('Parent')
+    def method(self):
+        print('Parent method')
 
-a_car = Car()
-a_honda = Honda()
+class Child1():
+    def __init__(self):
+        Parent.__init__(self)
+        print('Child 1')
 
-# The object called a_honda is an instance of the class Honda, but it also
-# inherits whatever Car can do. Unless there is an override of a parents
-# function in the child's:
+class Child2(Parent):
+    def __init__(self):
+        print('Child 2')
 
-class Person():
-    def __init__(self, name):
-        self.name = name
+class Child3(Parent):
+    def __init__(self):
+        Parent.__init__(self)
+        print('Child 3')
 
-class MDPerson(Person):
-    def __init__(self, name):
-        self.name = "Doctor " + name
+class Child4(Parent):
+    def __init__(self):
+        super().__init__()
+        print('Child 4')
 
-person = Person('Fudd')
-doctor = MDPerson('Fudd')
+class Child5(Parent):
+    def __init__(self):
+        super().__init__()
+        print('Child 5')
+    def method(self):
+        print('Child method')
 
-print(person.name)  # Fudd
-print(doctor.name)  # Doctor Fudd
+child1 = Child1()
+child1.method() # AttributeError: 'Child1' object has no attribute 'method'
+# Parent
+# Child 1
+
+child2 = Child2()
+child2.method()
+# Child 2
+# Parent method
+
+child3 = Child3()
+child3.method()
+# Parent
+# Child 3
+# Parent method
+
+child4 = Child4()
+child4.method()
+# Parent
+# Child 4
+# Parent method
+
+child5 = Child5()
+child5.method()
+# Parent
+# Child 5
+# Child method
 
 # -----------------------------------------------------------------------------
 # super()
@@ -182,14 +219,14 @@ class Person():
         self.email = email
         self.satus = status
 
-class MDPerson(Person):
+class Doctor(Person):
     def __init__(self, name, age, email, status):
         self.name = "Doctor " + name
         super().__init__(age, email, status)
 
 # The above could be written like this:
 
-class MDPerson(Person):
+class Doctor(Person):
     def __init__(self, name, age, email, status):
         self.name = "Doctor " + name
         self.email = email
