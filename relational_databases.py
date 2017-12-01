@@ -16,17 +16,17 @@
 #    – a collection of related data held in a database
 # Field
 #    – the basic unit of data in a table. Fields have names and a type (int,
-#      string, etc). The type restricts what kind of data can be stored in that
-#      field. Some fields can even hold images and audio files. These fields
-#      are often called Blobs (binary large objects). Note that SQLite field
-#      types don't actually restrict what kind of data can go in.
+#      string, etc). The type indicates what kind of data should be stored in
+#      that field. Some fields can even hold images and audio files. These
+#      fields are often called Blobs (binary large objects). Note that SQLite
+#      field types don't actually restrict what kind of data can go in.
 # Column
 #    – another name for a field. The difference between a spreadsheet column &
 #      a database column, is that the database column refers to a single entry.
 # Row (record)
 #    – a single set of data containing all the columns in the table
 # Key
-#    – a key in a table is an indexed, so searches (and joins) are much faster.
+#    – a key in a table is indexed, so searches (and joins) are much faster.
 # Primary key
 #    – a column whose values must be unique in the table. If you try to insert
 #      a primary key that's already being used in the table, you will get an
@@ -103,13 +103,12 @@ curs.execute('''CREATE TABLE IF NOT EXISTS inventory
 
 curs.execute('INSERT INTO inventory VALUES("pencils", 100, 0.5)')
 
-# a safer way to insert data , using a placeholder:
+# a safer way to insert data, using placeholders... This is a common method
+# for protecting against SQL injection:
 
 ins = 'INSERT INTO inventory(things, count, cost) VALUES(?, ?, ?)'
 curs.execute(ins, ('erasers', 85, 0.25))
 curs.execute(ins, ('widgets', 2, 10.0))
-
-# the above is a common method to protect against SQL injection!
 
 # retrieve items (as a list) from the database:
 
@@ -135,12 +134,14 @@ print(rows)
 # retrieve item with the highest count:
 
 curs.execute('''SELECT * FROM inventory WHERE
-count = (SELECT MAX(count) FROM inventory)''')
+  count = (SELECT MAX(count) FROM inventory)''')
 rows = curs.fetchall()
 print(rows)  # [('pencils', 100, 0.5)]
 
-# when finished, you need to close any connections and cursors:
+# when finished, you need to commit any changes and close any connections
+# and cursors:
 
+conn.commit()
 curs.close()
 conn.close()
 
@@ -153,14 +154,14 @@ conn.close()
 # SQLite Commands
 # -----------------------------------------------------------------------------
 # $ sqlite3 contacts.db (creates the database if it doesn't exist)
-# .help
-# .headers on
-# .tables
-# .schema
-# .dump
-# .backup contacts_backup.db
-# .restore contacts_backup.db
-# .quit
+# $ .help
+# $ .headers on
+# $ .tables
+# $ .schema
+# $ .dump (dump the entire database or table into a text file)
+# $ .backup contacts_backup.db
+# $ .restore contacts_backup.db
+# $ .quit
 # CREATE TABLE contacts (name text, phone integer, email text);
 # CREATE TABLE IF NOT EXISTS ...
 # INSERT INTO contacts (name, email) VALUES('Bob', 'mail@me.com');
@@ -170,7 +171,7 @@ conn.close()
 # SELECT name, email FROM contacts;
 # SELECT * FROM contacts WHERE name='Rick';
 # SELECT * FROM contacts WHERE name LIKE 'Ri%';
-#    – WHERE wildcards. Can be written like '%abc', 'abc%', or '%abc%'
+#    – WHERE wildcards can be written like '%abc', 'abc%', or '%abc%'
 # SELECT * FROM contacts ORDER BY name;
 # SELECT * FROM contacts ORDER BY name COLLATE NOCASE;
 #    – ignores case when sorting
@@ -179,7 +180,8 @@ conn.close()
 # SELECT * FROM albums ORDER BY artist, name;
 #    – order first by one column, then by another
 # SELECT email FROM contacts WHERE name='Morty';
-# SELECT count(*) FROM contacts;  (returns the number of records )
+# SELECT count(*) FROM contacts;
+#    – returns the number of records
 # SELECT count(title) FROM artist_list WHERE artist = 'Aerosmith';
 # SELECT DISTINCT title FROM artist_list WHERE artist='Pixies' ORDER BY title;
 #    – DISTINCT omits any duplicates from the resulting output
@@ -187,7 +189,8 @@ conn.close()
 # UPDATE contacts SET email='Danger! this will replace ALL email fields'
 # UPDATE contacts SET email='updates the one record' WHERE name='Bob';
 # DELETE FROM contacts WHERE name='Bob';
-# DELETE FROM inventory WHERE quantity < 5  (Note, all operators work here)
+# DELETE FROM inventory WHERE quantity < 5
+#    – note, all operators work here
 # DROP VIEW artist_list;
 #    – deletes the view (views explained below)
 # DROP TABLE artists;
@@ -434,28 +437,28 @@ import sqlite3
 
 db = sqlite3.connect('contacts.sqlite')
 
-input_name = input('enter a name: ')
+name = input('enter a name: ')
 
 # Method 1
 
-for row in db.execute("SELECT * FROM contacts WHERE name = '{}'".format(input_name)):
+for row in db.execute("SELECT * FROM contacts WHERE name = '{}'".format(name)):
     print(row)
 
 # Method 2
 
-for row in db.execute('SELECT * FROM contacts WHERE name = ?', (input_name,)):
+for row in db.execute('SELECT * FROM contacts WHERE name = ?', (name,)):
     print(row)
 
 # Method 3
 
 lookup = 'SELECT * FROM contacts WHERE name = ?'
 
-for row in db.execute(lookup,(input_name,)):
+for row in db.execute(lookup,(name,)):
     print(row)
 
 # The big lesson in the last to situations where we're using parameter
-# substitution is the comma after input_name. In both cases it's that comma at
-# the end that tells python you want a tuple when providing only one item.
+# substitution is the comma after input_name. In both cases it's that comma
+# at the end that tells python you want a tuple when providing only one item.
 # And as it turns out, a tuple is REQUIRED when you're doing this kind of
 # parameter substitution.
 
@@ -472,7 +475,7 @@ db.close()
 db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 # There are also a couple of ways to convert the UTC string to local time.
-# see sqlite3_example.py for the full example
+# see sqlite3_example1.py & sqlite3_example2.py
 
 # -----------------------------------------------------------------------------
 # Sqlite links
@@ -495,7 +498,7 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # -----------------------------------------------------------------------------
 # PostgreSQL
 # -----------------------------------------------------------------------------
-# is a full-featured open source relational database, in many ways more
+# Is a full-featured open source relational database, in many ways more
 # advanced than MySQL. Python drivers for PostgreSQL:
 
 # psycopg2 - http://initd.org/psycopg/
@@ -510,7 +513,7 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # reflecting its features and philosophy. Many libraries try to bridge these
 # differences. The most popular cross-database Python library is SQLAlchemy.
 
-# you don't need to import the driver; the initial connection string you
+# You don't need to import the driver; the initial connection string you
 # provide to SQLAlchemy will determine it:
 
 # dialect + driver :// user : password @ host : port / dbname
@@ -542,9 +545,9 @@ conn = sa.create_engine('sqlite://')
 # Create a database called inventory with three columns:
 
 conn.execute('''CREATE TABLE inventory
-(things VARCHAR(20) PRIMARY KEY,
- count INT,
- cost FLOAT)''')
+  (things VARCHAR(20) PRIMARY KEY,
+   count INT,
+   cost FLOAT)''')
 
 # Running conn.execute() returns a SQLAlchemy object called a ResultProxy
 
@@ -564,7 +567,7 @@ for row in rows:
 
 # This was pretty much the same as DB-API except we have the added benefit of
 # being able to change the connection string to port this code to another type
-# of database.
+# of database. The next level up would be...
 
 # -----------------------------------------------------------------------------
 # SQLAlchemy – SQL Expression Language
@@ -579,10 +582,10 @@ conn = sa.create_engine('sqlite://')
 
 meta = sa.MetaData()
 inventory = sa.Table('inventory', meta,
-    sa.Column('things', sa.String, primary_key=True),
-    sa.Column('count', sa.Integer),
-    sa.Column('cost', sa.Float)
-    )
+            sa.Column('things', sa.String, primary_key=True),
+            sa.Column('count', sa.Integer),
+            sa.Column('cost', sa.Float)
+            )
 meta.create_all(conn)
 
 # Note: the inventory object is the connection between SQL and Python
@@ -599,6 +602,8 @@ result = conn.execute(inventory.select())
 rows = result.fetchall()
 print(rows)
 # [('socks', 2, 10.0), ('paperclips', 1000, 0.05), ('snow globes', 50, 5.0)]
+
+# The highest level is...
 
 # -----------------------------------------------------------------------------
 # SQLAlchemy – Object-Relational Mapper
