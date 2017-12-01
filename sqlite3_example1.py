@@ -55,8 +55,10 @@ class Account():
         time = Account._current_time()
 
         try:
-            db.execute("UPDATE accounts SET balance = ? WHERE name = ?", (new_balance, self.name))
-            db.execute("INSERT INTO history VALUES(?, ?, ?)", (time, self.name, amount))
+            db.execute("UPDATE accounts SET balance = ? WHERE name = ?",
+              (new_balance, self.name))
+            db.execute("INSERT INTO history VALUES(?, ?, ?)",
+              (time, self.name, amount))
         except sqlite3.Error:
             db.rollback()
         else:
@@ -68,14 +70,14 @@ class Account():
     def deposit(self, amount: int):
         if amount > 0.0:
             self._save_update(amount)
-            print('{:.2f} deposited'.format(amount / 100))
-        return self._balance / 100
+            print('{:.2f} deposited'.format(amount/100))
+        return self._balance/100
 
     def withdraw(self, amount: int):
         if 0 < amount <= self._balance:
             self._save_update(-amount)
-            print('{:.2f} withdrawn'.format(amount / 100))
-            return amount / 100
+            print('{:.2f} withdrawn'.format(amount/100))
+            return amount/100
         else:
             print('Amount must be greater than 0 and not exceed balance')
             return 0.0
@@ -93,11 +95,8 @@ if __name__ == '__main__':
     pingpong = Account('Ping Pong', 10000)
     boktoktok = Account('Boktoktok', 2000)
 
-    # rick.deposit(10010)
-    # rick.deposit(49910)
-    # rick.deposit(5510)
-    # rick.withdraw(8000)
-    # morty.withdraw(1000)
+    rick.deposit(10010)
+    morty.withdraw(1000)
 
     db.close()
 
@@ -113,15 +112,16 @@ print('-' * 50)
 # back to a structured time object. I this example, we can ask sqlite to do it
 # for us with the parameter: detect_types=sqlite3.PARSE_DECLTYPES
 
-# Note this method not handle timezone aware dates, but you can convert the utc
-# afterward as shown here:
+# Note this method doesn't handle timezone aware dates, but you can convert
+# the utc afterward as shown here:
 
 db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 for row in db.execute('SELECT * FROM history'):
     utc_time = row[0]
-    print('U – {} \t {}'.format(utc_time, type(utc_time)))
-    # U – 2017-10-02 19:13:49.831034 	 <class 'datetime.datetime'>
+    print('UTC – {} \t {}'.format(utc_time, type(utc_time)))
+    # UTC – 2017-11-30 20:03:05.131018   <class 'datetime.datetime'>
+    # UTC – 2017-11-30 20:03:05.132068   <class 'datetime.datetime'>
 
 db.close()
 
@@ -135,8 +135,9 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 for row in db.execute('SELECT * FROM history'):
     local_time = pytz.utc.localize(row[0]).astimezone()
-    print('L – {} \t {}'.format(local_time, type(local_time)))
-    # L – 2017-10-02 12:13:49.831034-07:00 	 <class 'datetime.datetime'>
+    print('Local – {} \t {}'.format(local_time, type(local_time)))
+    # Local – 2017-11-30 12:03:05.131018-08:00   <class 'datetime.datetime'>
+    # Local – 2017-11-30 12:03:05.132068-08:00   <class 'datetime.datetime'>
 
 db.close()
 
@@ -156,9 +157,10 @@ db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 for row in db.execute('''
   SELECT strftime('%Y-%m-%d %H:%M:%f', history.time, 'localtime')
   AS localtime, history.account, history.amount
-  FROM history ORDER BY history.time
-  '''):
+  FROM history ORDER BY history.time'''):
     print(row) # prints local time now
+    # ('2017-11-30 12:03:05.131', 'Rick', 10010)
+    # ('2017-11-30 12:03:05.132', 'Morty', -1000)
 
 db.close()
 
@@ -179,3 +181,5 @@ db.execute('''
 
 for row in db.execute("SELECT * FROM localhistory"):
     print(row)
+    # ('2017-11-30 12:07:34.624', 'Rick', 10010)
+    # ('2017-11-30 12:07:34.625', 'Morty', -1000)
