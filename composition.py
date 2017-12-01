@@ -3,7 +3,7 @@
 # Inheritance is a good technique (child is-a parent) but it can be tempting
 # to build elaborate inheritance hierarchies. Sometimes composition or
 # aggregation (x has-a y) makes more sense. There is actually a difference
-# between the composition and aggregation though they often blur together.
+# between composition and aggregation though they often blur together.
 
 # -----------------------------------------------------------------------------
 # Composition
@@ -34,12 +34,13 @@ bathroom.about()  # This room has tiled floors and 0 windows
 # -----------------------------------------------------------------------------
 # Aggregation
 # -----------------------------------------------------------------------------
-# Unlike composition, aggregation uses existing instances of objects to build up
-# another object. The composed object does not actually own the objects that
+# Unlike composition, aggregation uses existing instances of objects to build
+# up another object. The composed object does not actually own the objects that
 # it's composed of. If it's destroyed, those objects continue to exist.
 
-# This example creates Floor and a Window objects, then passes them as arguments
-# to a Room object. If the Room object is deleted, the other two objects remain.
+# This example creates Floor and a Window objects, then passes them as
+# arguments to a Room object. If the Room object is deleted, the other two
+# objects remain.
 
 class Floor():
     def __init__(self, material):
