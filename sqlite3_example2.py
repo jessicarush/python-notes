@@ -50,9 +50,11 @@ class Account():
         time, timezone = Account._current_time() # <-- unpack the tuple
         pickled_timezone = pickle.dumps(timezone) # <-- pickle the time zone
         try:
-            db.execute("UPDATE accounts SET balance = ? WHERE name = ?", (new_balance, self.name))
+            db.execute("UPDATE accounts SET balance = ? WHERE name = ?",
+              (new_balance, self.name))
             # add the pickled_timezone the update:
-            db.execute("INSERT INTO history VALUES(?, ?, ?, ?)", (time, self.name, amount, pickled_timezone))
+            db.execute("INSERT INTO history VALUES(?, ?, ?, ?)",
+              (time, self.name, amount, pickled_timezone))
         except sqlite3.Error:
             db.rollback()
         else:
@@ -63,20 +65,20 @@ class Account():
     def deposit(self, amount: int):
         if amount > 0.0:
             self._save_update(amount)
-            print('{:.2f} deposited'.format(amount / 100))
+            print('{:.2f} deposited'.format(amount/100))
         return self._balance / 100
 
     def withdraw(self, amount: int):
         if 0 < amount <= self._balance:
             self._save_update(-amount)
-            print('{:.2f} withdrawn'.format(amount / 100))
+            print('{:.2f} withdrawn'.format(amount/100))
             return amount / 100
         else:
             print('Amount must be greater than 0 and not exceed balance')
             return 0.0
 
     def show_balance(self):
-        print('Balance on account {} is {:.2f}'.format(self.name, self._balance / 100))
+        print('Balance on account {} is {:.2f}'.format(self.name, self._balance/100))
 
 # -----------------------------------------------------------------------------
 # Testing
@@ -89,9 +91,6 @@ if __name__ == '__main__':
     boktoktok = Account('Boktoktok', 2000)
 
     # rick.deposit(10010)
-    # rick.deposit(49910)
-    # rick.deposit(5510)
-    # rick.withdraw(8000)
     # morty.withdraw(1000)
 
     db.close()
