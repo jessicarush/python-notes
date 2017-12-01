@@ -36,33 +36,34 @@ print(type(colour_tuple))  # <class 'tuple'>
 # for example:
 
 colour_list = ['green', 'blue', 'red']
-colour_tuple = ('Emerald', 'Pantone 17-5641', 'sRGB 0 148 115')
+colour_tuple = ('Emerald', 'Pantone 17-5641', 'rgb(0, 148, 115)')
 
 # Tuples are ordered:
 
-print(colour_tuple[1])
+print(colour_tuple[1])  # Pantone 17-5641
 
 # Tuples let you assign multiple variables at once:
 
 a, b, c = colour_tuple
-print(a)
-print(b)
-print(c)
+print(a)  # Emerald
+print(b)  # Pantone 17-5641
+print(c)  # rgb(0, 148, 115)
 
-# This is sometimes called 'tuple unpacking'
+# This is called 'tuple unpacking'
 
 text = "spot colour: {0[1]}, name: {0[0]}, screen value: {0[2]}"
 print(text.format(colour_tuple))
+# spot colour: Pantone 17-5641, name: Emerald, screen value: rgb(0, 148, 115)
 
-# You can use tuples to swap variable values in one line:
+# You can use tuples to assign or swap variable values in one line:
 
-a, b = 2, 3
+a, b = 'A', 'B'
 
-print('a is {}, b is {}'.format(a, b))  # a is 2, b is 3
+print('a is {}, b is {}'.format(a, b))  # a is A, b is B
 
 a, b = b, a
 
-print('a is {}, b is {}'.format(a, b))  # a is 3, b is 2
+print('a is {}, b is {}'.format(a, b))  # a is B, b is A
 
 
 # The tuple() function lets you convert something to a tuple:
@@ -74,16 +75,6 @@ print(type(colours_tuple)) # tuple
 colours_str = 'orange, yellow, purple'
 colours_tuple = tuple(colours_str.split(', '))
 print(colours_tuple)  # ('orange, 'yellow', 'purple')
-
-# -----------------------------------------------------------------------------
-# Benefits of using tuples
-# -----------------------------------------------------------------------------
-# - Tuples use less space
-# - You can't mess with tuple items by mistake
-# - You can use tuples as dictionary keys (you can't use a list because lists
-#   are mutable and dictionary keys are not allowed to be mutable)
-# - Named tuples can be a simple alternative to objects
-# - Function arguments are passed as tuples
 
 # -----------------------------------------------------------------------------
 # Named Tuples
@@ -98,10 +89,10 @@ kitchen = Room('hardwood', '4')
 
 # Testing:
 
-print(kitchen)
-print(kitchen.floor)
-print(kitchen.windows)
-print(kitchen[0])
+print(kitchen)          # Room(floor='hardwood', windows='4')
+print(kitchen.floor)    # hardwood
+print(kitchen.windows)  # prints nothing, no exception
+print(kitchen[0])       # hardwood
 
 # You can also make a named tuple from a dictionary
 
@@ -114,10 +105,10 @@ bedroom = Room(**parts)
 
 # Testing:
 
-print(bedroom)
-print(bedroom.floor)
-print(bedroom.windows)
-print(bedroom[0])
+print(bedroom)          # Room(floor='linoleum', windows='2')
+print(bedroom.floor)    # linoleum
+print(bedroom.windows)  # 2
+print(bedroom[0])       # linoleum
 
 # Named tuples look and act like an immutable object.
 # You can access attributes by using dot notation instead of dict style['key']
@@ -126,3 +117,13 @@ print(bedroom[0])
 # Though tuples are immutable, tuples can contain mutable items. For example,
 # You could have a tuple of lists where the lists themselves cannot be changed
 # in the tuple but the list contents can change.
+
+# -----------------------------------------------------------------------------
+# Benefits of using tuples
+# -----------------------------------------------------------------------------
+# - Tuples use less space
+# - You can't mess with tuple items by mistake
+# - You can use tuples as dictionary keys (you can't use a list because lists
+#   are mutable and dictionary keys are not allowed to be mutable)
+# - Named tuples can be a simple alternative to objects
+# - Function arguments are passed as tuples
