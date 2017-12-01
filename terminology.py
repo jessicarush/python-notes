@@ -1,4 +1,4 @@
-'''Misc Terms''''
+'''Misc Terms'''
 
 # -----------------------------------------------------------------------------
 # Literal
@@ -106,7 +106,7 @@ print(hydrogen.symbol)
 # What you get when you create something from a class.
 
 # -----------------------------------------------------------------------------
-# Attribute
+# Attribute (also called an instance variable)
 # -----------------------------------------------------------------------------
 # A value associated with an object which is referenced by name using dot
 # notation. As in a class:
@@ -120,6 +120,22 @@ snape = Person('Severus Snape')
 
 # reference the name attribute:
 snape.name
+
+# -----------------------------------------------------------------------------
+# Class variable (as opposed to instance variable: attribute)
+# -----------------------------------------------------------------------------
+# A value defined within the class, not within a classes method:
+
+class Person():
+    homo = 'Sapien'
+    def __init__(self, name):
+        self.name = name
+        self.alive = True
+
+snape = Person('Severus Snape')
+
+# reference the class variable homo:
+snape.homo
 
 # -----------------------------------------------------------------------------
 # Property
