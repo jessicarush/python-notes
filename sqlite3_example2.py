@@ -52,7 +52,7 @@ class Account():
         try:
             db.execute("UPDATE accounts SET balance = ? WHERE name = ?",
               (new_balance, self.name))
-            # add the pickled_timezone the update:
+            # add the pickled_timezone to the update:
             db.execute("INSERT INTO history VALUES(?, ?, ?, ?)",
               (time, self.name, amount, pickled_timezone))
         except sqlite3.Error:
@@ -66,13 +66,13 @@ class Account():
         if amount > 0.0:
             self._save_update(amount)
             print('{:.2f} deposited'.format(amount/100))
-        return self._balance / 100
+        return self._balance/100
 
     def withdraw(self, amount: int):
         if 0 < amount <= self._balance:
             self._save_update(-amount)
             print('{:.2f} withdrawn'.format(amount/100))
-            return amount / 100
+            return amount/100
         else:
             print('Amount must be greater than 0 and not exceed balance')
             return 0.0
@@ -90,8 +90,8 @@ if __name__ == '__main__':
     pingpong = Account('Ping Pong', 10000)
     boktoktok = Account('Boktoktok', 2000)
 
-    # rick.deposit(10010)
-    # morty.withdraw(1000)
+    rick.deposit(10010)
+    morty.withdraw(1000)
 
     db.close()
 
@@ -109,3 +109,6 @@ for row in db.execute("SELECT * FROM history"):
     timezone = pickle.loads(pickled_timezone)
     local_time = pytz.utc.localize(utc_time).astimezone(timezone)
     print("{}\t{}\t{}".format(utc_time, local_time, local_time.tzinfo))
+
+# 2017-12-01 18:45:25.093112      2017-12-01 10:45:25.093112-08:00        PST
+# 2017-12-01 18:45:25.095254      2017-12-01 10:45:25.095254-08:00        PST

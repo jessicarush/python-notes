@@ -1,7 +1,7 @@
 '''Concurrency and Networks'''
 
-# Normally we run programs in one place (on a single machine) and one line at a
-# time (sequential). Concurrency is running more than one thing at at time.
+# Normally we run programs in one place (on a single machine) and one line at
+# a time (sequential). Concurrency is running more than one thing at at time.
 # Distributed computing or Networking is running in more than one place.
 
 # Concurrency: https://docs.python.org/3/library/concurrency.html
@@ -9,7 +9,7 @@
 # -----------------------------------------------------------------------------
 # CPU bound, I/O bound
 # -----------------------------------------------------------------------------
-# In terms computing wait times, there are two main concepts:
+# In terms of computing wait times, there are two main concepts:
 
 # CPU bound means the program is bottlenecked by the CPU, or central processing
 # unit, while I/O bound means the program is bottlenecked by input/output such
@@ -69,9 +69,9 @@
 # Queues
 # -----------------------------------------------------------------------------
 # Queues are used by both threads and multiprocesses. They can be thought of
-# like the threads inbox. They contain a sequence of work objects that are
+# like the thread's inbox. They contain a sequence of work objects that are
 # waiting to be processed. Queues are generally shared between two or more
-# threads/processes.
+# threads or processes.
 
 # Queues for "distributed task management" are often called work, job or task
 # queues. These can be handled in a synchronous or asynchronous way. For
@@ -189,7 +189,7 @@ new_process.start()
 
 time.sleep(2)
 
-# process.join()
+# new_process.join()
 
 print("ok, our main loop can run again!")
 
@@ -206,7 +206,7 @@ print("ok, our main loop can run again!")
 # -----------------------------------------------------------------------------
 # A thread runs within a process and has access to everything within that
 # process. For example, __main__ runs in a process and has/is one thread.
-# A thread is usually something that usually runs in a loop forever.
+# A thread is usually something that runs in a loop forever.
 
 # The concept of blocking is when your main program is stuck waiting for
 # I/O bound things. As noted above in multiprocessing, Join is used to make
@@ -288,7 +288,7 @@ dish_queue.join()
 
 # In short, threads can be useful and safe when global data is not involved.
 # They can be particularly useful for saving time while waiting for some I/O
-# operation to complete. In these cases they don;t have to fight over data,
+# operation to complete. In these cases they don't have to fight over data,
 # because each has completely separate variables. But threads do sometimes have
 # good reason to change global data (to divide up the work). The usual way to
 # share data safely is to apply a software 'lock' before modifying a variable
@@ -298,7 +298,7 @@ dish_queue.join()
 # even if is something like time.sleep(0.1). This kind of blocking element
 # basically lets the program move on and run the next task(s). The sleep time
 # essentially lets you put priority on certain threads. A sleep of 0.1 says
-# this thread is super important, check back often as opposed to tone that's
+# this thread is super important, check back often as opposed to one that's
 # set to sleep for 5 seconds.
 
 # A queue.get() is another example of blocking code and is actually a far
@@ -306,7 +306,7 @@ dish_queue.join()
 # where it is and tell the main program to go ahead and move on to to other
 # tasks. It sits and waits at the .get() line until something shows up in the
 # queue. When it does, the main program will return priority to the getting
-# thread. In summary, thing of .get() as .get_or_wait(). If there's nothing
+# thread. In summary, think of .get() as .get_or_wait(). If there's nothing
 # left in the queue, the getting thread will force the program to move
 # past it onto something else and check back later.
 

@@ -74,7 +74,7 @@ search_generator = search('Mama', 'bohemian_rhapsody_lyrics.txt')
 # function doesn't actually run. The generator function will only return a
 # generator object. To make the generator run we need to do something like:
 
-print(next(search_generator))  # Mama, just killed a man
+print(next(search_generator))  # generator started, Mama, just killed a man
 print(next(search_generator))  # Mama, life had just begun
 print(next(search_generator))  # Mama, ooh, didn't mean to make you cry
 print(next(search_generator))  # Mama, ooh, I don't want to die

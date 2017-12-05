@@ -25,6 +25,13 @@ print(df1)
 # 0   2   4   6
 # 1  10  20  30
 
+df1 = df1.append([[50, 70, 80]])
+print(df1)
+#     0   1   2
+# 0   2   4   6
+# 1  10  20  30
+# 0  50  70  80
+
 # The numbers 0, 1 beside each row are the indexes for the rows. The numbers
 # 0, 1, 2 at the top are the names of the columns. You can create your own
 # column names by passing a list of values to the columns arg:
@@ -211,7 +218,7 @@ print(df1.drop('Country', 1))
 # to delete a row, pass 0 after the index name:
 print(df1.drop(3, 0))
 #             Address           City       State Country         Name Employees
-# I
+# ID
 # 1      3666 21st St  San Francisco    CA 94114     USA      Madeira         8
 # 2    735 Dolores St  San Francisco    CA 94119     USA  Bready Shop        15
 # 4      3995 23rd St  San Francisco    CA 94114     USA   Ben's Shop        10
@@ -223,34 +230,53 @@ print(df1.drop(3, 0))
 # -----------------------------------------------------------------------------
 # Adding/changing data
 # -----------------------------------------------------------------------------
+# To add a row:
+df1= df1.append({'Address': '124 Main St', 'City': 'Vancouver', 'State': 'BC',
+  'Country': 'Canada', 'Name' :'Kins', 'Employees': 10}, ignore_index=True)
+print(df1.loc[:,'Name':])
+#           Name  Employees
+# 0      Madeira          8
+# 1  Bready Shop         15
+# 2  Super River         25
+# 3   Ben's Shop         10
+# 4      Sanchez         12
+# 5   Richvalley         20
+# 6         Kins         10
+
 # To add a column:
-websites = ['madeira.com', 'bready.com', None, None, None, None]
+websites = ['madeira.com', 'bready.com', None, None, None, None, None]
 df1['website'] = websites
 
 print(df1.loc[:,'Name':'website'])
-#            Name  Employees      website
-# ID
-# 1       Madeira          8  madeira.com
-# 2   Bready Shop         15   bready.com
-# 3   Super River         25         None
-# 4    Ben's Shop         10         None
-# 5       Sanchez         12         None
-# 6    Richvalley         20         None
+#           Name  Employees      website
+# 0      Madeira          8  madeira.com
+# 1  Bready Shop         15   bready.com
+# 2  Super River         25         None
+# 3   Ben's Shop         10         None
+# 4      Sanchez         12         None
+# 5   Richvalley         20         None
+# 6         Kins         10         None
 
 # You can reassign a column in the same way:
-df1['Country'] = ['US'] * 6
+df1['Country'] = ['US'] * 7
 
 print(df1.loc[:,'Country':'Name'])
-#    Country         Name
-# ID
-# 1       US      Madeira
-# 2       US  Bready Shop
-# 3       US  Super River
-# 4       US   Ben's Shop
-# 5       US      Sanchez
-# 6       US   Richvalley
+#   Country         Name
+# 0      US      Madeira
+# 1      US  Bready Shop
+# 2      US  Super River
+# 3      US   Ben's Shop
+# 4      US      Sanchez
+# 5      US   Richvalley
+# 6      US         Kins
 
-# to add a new row, you need to transpose your DataFrame with the T() method.
+# Another way to add a new row by just providing a list instead of a dict,
+# is to transpose your DataFrame with the T() method. This keeps the ID
+# numbers in tact too. Let's reset the dataframe first:
+
+df1 = pandas.read_csv('data/supermarkets.csv')
+df1.set_index('ID', inplace=True)
+
 df1_t = df1.T
 
 print(df1_t)
@@ -261,11 +287,10 @@ print(df1_t)
 # Country               US              US                US
 # Name             Madeira     Bready Shop       Super River
 # Employees              8              15                25
-# website      madeira.com      bready.com              None
 
 # than add the new row as if it were a column:
 
-row = ['124 Main St', 'Vancouver', 'BC', 'Canada', 'Kins', 10, None]
+row = ['124 Main St', 'Vancouver', 'BC', 'Canada', 'Kins', 10]
 df1_t[7] = row
 
 # then transpose it back:

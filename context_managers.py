@@ -1,24 +1,43 @@
 '''Context managers: with expression as variable'''
 
-# The with statement allows "the execution of initialization and finalization
-# code around a block of code. In simpler terms, its helpful for when you have
-# two related operations you'd like to execute as a pair, with a block of code
-# in between. The topic can get pretty heavy when you start looking at
-# context managers and whats going on behind the scenes, but looking at the
-# most common usage, opening and closing files, it's pretty straightforward:
+# Context managers allow the execution of initialization and finalization
+# code around another block of code. In simpler terms, its helpful for when you
+# have two related operations you'd like to execute as a pair, with a block of
+# code in between.
 
-with open('filename.txt', 'r') as fileobject:
-    pass
-
-# The general translation is that there is a try and finally block running
-# behind the scenes. It says, try: __enter__() the BLOCK and when its completed
-# finally: __exit__(). Here's what it might look like behind the scenes:
-
-fileobject = open('filename.txt', 'r')
+print('set things up') # initialization code
 try:
-    pass
+    print('do something') # another block of code
 finally:
-    file.close()
+    print('tear things down') # finalization code
+
+# Here, “set things up” could be opening a file, or acquiring some external
+# resource, and “tear things down” would then be closing the file, or releasing
+# or removing the resource. The try-finally construct guarantees that the
+# “tear things down” part is always executed, even if the code that does the
+# work doesn’t finish. Perhaps the most common (and important) use of context
+# managers is to properly manage resources. The act of opening a file consumes
+# a resource (called a file descriptor), and this resource is limited by your
+# OS – there are a maximum number of files a process can have open at one time.
+# Using a context manager ensures these resources are released.
+
+with open('filename.txt', 'w') as fileobject:
+    print('do something')
+
+# So the general translation is that there is a try and finally block running
+# behind the scenes. The example below demonstrates this method in amother way.
+# It says try: __enter__() the block and when completed, finally: __exit__().
+
+class controlled_execution:
+    def __enter__(self):
+        thing = 'set things up'
+        print(thing)
+        return thing
+    def __exit__(self, type, value, traceback):
+        print('tear things down')
+
+with controlled_execution() as thing:
+    print('do something')
 
 # This is considered a context manager. A context manager is an object that
 # defines the runtime context to be established when executing a with statement.
@@ -28,9 +47,9 @@ finally:
 # include saving and restoring various kinds of global state, locking and
 # unlocking resources, closing opened files, etc.
 
-# You can implement a context manager as a class. At the very least a context
-# manager has __enter__ and __exit__ methods defined. Here's an example of a
-# file opening context manager:
+# As above, you can implement a context manager as a class. At the very least a
+# context manager has __enter__ and __exit__ methods defined. Here's an example
+# of a file opening context manager:
 
 class File():
 
@@ -51,7 +70,7 @@ class File():
 with File('test.txt', 'w') as opened_file:
     opened_file.write('Hola!')
 
-# You can construct your own context managers using the contextmanager
+# You can also construct your own context managers using the contextmanager
 # decorator from contextlib.
 
 # -----------------------------------------------------------------------------
@@ -88,7 +107,7 @@ def working_directory(path):
         os.chdir(current_dir)
 
 with working_directory("data/stuff"):
-    # do something within data/stuff
+    pass # do something within data/stuff
 
 # Then here you are back again in the original working directory
 
@@ -110,4 +129,4 @@ def temporary_dir(*args, **kwargs):
         shutil.rmtree(name)
 
 with temporary_dir() as dirname:
-    # do whatever
+    pass # do whatever
