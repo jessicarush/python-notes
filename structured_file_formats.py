@@ -38,15 +38,15 @@ singers = [
     ['Etta', 'James'],
     ]
 
-with open('singers', 'w') as fout:
-    csvout = csv.writer(fout)
-    csvout.writerows(singers)
+with open('singers.csv', 'w') as fout:
+    csv_out = csv.writer(fout)
+    csv_out.writerows(singers)
 
-# This creates a file singers. Try reading it back in:
+# This creates a file 'singers.csv'. Try reading it back in:
 
-with open('singers', 'r') as fin:
-    csvin = csv.reader(fin)
-    singers  = [row for row in csvin]  # list comprehension
+with open('singers.csv', 'r') as fin:
+    csv_in = csv.reader(fin)
+    singers = [row for row in csv_in]  # list comprehension
 
 # Using reader() and writer() with their default options, columns are
 # separated by commas and rows by line feeds.
@@ -55,9 +55,9 @@ with open('singers', 'r') as fin:
 
 # The data can be a list of dictionaries instead of a list of lists
 
-with open('singers', 'r') as fin:
-    csvin = csv.DictReader(fin, fieldnames=['first', 'last'])
-    singers = [row for row in csvin]
+with open('singers.csv', 'r') as fin:
+    csv_in = csv.DictReader(fin, fieldnames=['first', 'last'])
+    singers = [row for row in csv_in]
 
 # DictWriter() will use a list of dictionaries to write the CSV file.
 
@@ -71,17 +71,17 @@ singers = [
     {'first': 'Annie', 'last': 'Lennox'},
     ]
 
-with open('singers', 'w') as fout:
-    csvout = csv.DictWriter(fout, ['first', 'last'])
-    csvout.writeheader()
-    csvout.writerows(singers)
+with open('singers.csv', 'w') as fout:
+    csv_out = csv.DictWriter(fout, ['first', 'last'])
+    csv_out.writeheader()
+    csv_out.writerows(singers)
 
 # This time when reading back in with DictReader(), we'll omit the fieldnames
 # argument. It will then use the values it finds on the first line instead.
 
-with open('singers', 'r') as fin:
-    csvin = csv.DictReader(fin)
-    singers = [row for row in csvin]
+with open('singers.csv', 'r') as fin:
+    csv_in = csv.DictReader(fin)
+    singers = [row for row in csv_in]
 
 # -----------------------------------------------------------------------------
 # XML
@@ -120,7 +120,7 @@ with open('singers', 'r') as fin:
 
 import xml.etree.ElementTree as et
 
-tree = et.ElementTree(file='practice.xml')
+tree = et.ElementTree(file='data/practice.xml')
 root = tree.getroot()
 
 print(root.tag)
@@ -284,7 +284,7 @@ poems:
 
 import yaml
 
-with open('practice.yaml', 'r') as fin:
+with open('data/practice.yaml', 'r') as fin:
     text = fin.read()
 data = yaml.safe_load(text)
 
@@ -318,7 +318,7 @@ bin = %(home)s/bin
 import configparser
 
 cfg = configparser.ConfigParser()
-cfg.read('practice.cfg')
+cfg.read('data/practice.cfg')
 
 print(cfg['french']['greeting'])
 
