@@ -1,4 +1,4 @@
-'''Pygal - Analyzing Die Rolls'''
+'''Pygal - Data Visualization Library'''
 
 # Pygal is a python visualization package which produces scalable vector
 # graphics. If you plan to use your visualizations online, this is ideal.
