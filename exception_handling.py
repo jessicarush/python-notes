@@ -161,7 +161,6 @@ while True:
 # -----------------------------------------------------------------------------
 # Raise an Exception
 # -----------------------------------------------------------------------------
-
 # The above example simply prints out the stored exception but you can also
 # choose to "raise" it when and if you want to. To compare, lets start with
 # handling the exception:
@@ -196,7 +195,7 @@ def sum(numbers):
             total += num
             print(total)
         except TypeError as error:
-            print('non integer skipped over')
+            print('non integer ignored')
             problem = error
     if problem:
         raise problem
@@ -209,7 +208,7 @@ sum(testing)
 # 2
 # 8
 # 11
-# non integer skipped over
+# non integer ignored
 # 19
 # 30
 # Traceback (most recent call last):
@@ -244,3 +243,9 @@ words = ['one', 'two', 'THREE', 'four']
 for word in words:
     if word.isupper():
         raise UppercaseException(word)
+
+# Traceback (most recent call last):
+#   File "exception_handling.py", line 245, in <module>
+#     raise UppercaseException(word)
+#
+# __main__.UppercaseException: THREE
