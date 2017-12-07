@@ -1,17 +1,29 @@
-'''While loops with break and continue'''
+'''While loops, break and continue'''
 
 # while is a looping mechanism that's used with if, elif, else or try. A while
 # loop will loop forever unless you, break, continue, pass or return something.
 # Break is useful when you want to terminate the loop early if some condition
 # is met. Continue is for when you want to skip past an iteration to the next.
 
-
-x = 10
+x = 5
 while x > 0:
-    print(x)
     x -= 1
-    if x == 5:
+    if x == 2:
         break
+    print(x)
+# 4
+# 3
+
+x = 5
+while x > 0:
+    x -= 1
+    if x == 2:
+        continue
+    print(x)
+# 4
+# 3
+# 1
+# 0
 
 # -----------------------------------------------------------------------------
 # Example using if, elif, else, break and continue
@@ -93,7 +105,7 @@ active = True  # this is a flag variable!
 while active:
     value = input(prompt)
     if value == 'q':
-        flag = False
+        active = False
     else:
         try:
             new_value = int(value) * KILO_POUNDS
