@@ -2,7 +2,7 @@
 
 # At the heart of every if statement is an expression that can be evaluated as
 # True or False and this is called a conditional test (also called a boolean
-# expression). If the conditional Test evaluates as True, python will execute
+# expression). If the conditional test evaluates as True, python will execute
 # the code following the if statement, otherwise it will be ignored.
 
 cars = ['ford', 'bmw', 'honda', 'subaru']

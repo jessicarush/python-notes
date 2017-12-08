@@ -102,7 +102,7 @@ class Person():
     def __init__(self, name, age):
         self.name = name
         self.age = age
-        self.nationality = 'Canadian'  # attribute
+        self.nationality = 'Canadian'
 
 # When you set a default value this way, if you want to change the value for an
 # instance, you would do that the same way as above: instance.attribute = 'xyz'
@@ -131,6 +131,12 @@ print(baker.__dict__)
 print(astronaut.__dict__)
 print(Person.__dict__)
 
+# {'name': 'Mrs. Lovett', 'age': 35, 'friend': 'Todd', 'nationality': 'British'}
+# {'name': 'Roberta Bondar', 'age': 20}
+# {'__module__': '__main__', '__init__': <function Person.__init__ at 0x101bb6d90>,
+#  '__dict__': <attribute '__dict__' of 'Person' objects>, '__weakref__':
+#  <attribute '__weakref__' of 'Person' objects>, '__doc__': None}
+
 # -----------------------------------------------------------------------------
 # Inheritance
 # -----------------------------------------------------------------------------
@@ -151,34 +157,34 @@ class Parent():
     def method(self):
         print('Parent method')
 
-class Child1():
-    def __init__(self):
+class Child1():                # Child1 will use the Parents __init__,
+    def __init__(self):        # but will have no access to the parents method
         Parent.__init__(self)
         print('Child 1')
 
-class Child2(Parent):
-    def __init__(self):
+class Child2(Parent):          # Child2 will use its own __init__,
+    def __init__(self):        # and will have access to the parents method
         print('Child 2')
 
-class Child3(Parent):
-    def __init__(self):
-        Parent.__init__(self)
+class Child3(Parent):          # Child3 will use the Parents __init__,
+    def __init__(self):        # as well as it's own,
+        Parent.__init__(self)  # and will have access to the parents method
         print('Child 3')
 
-class Child4(Parent):
-    def __init__(self):
-        super().__init__()
+class Child4(Parent):          # Child4 will use the Parents __init__,
+    def __init__(self):        # as well as it's own,
+        super().__init__()     # and will have access to the parents method
         print('Child 4')
 
-class Child5(Parent):
-    def __init__(self):
-        super().__init__()
-        print('Child 5')
-    def method(self):
+class Child5(Parent):          # Child5 will use the Parents __init__,
+    def __init__(self):        # as well as it's own,
+        super().__init__()     # and will use its own method
+        print('Child 5')       # Note: using super allows you to specify which
+    def method(self):          # parts of the parent __init__ to inherit
         print('Child method')
 
 child1 = Child1()
-child1.method() # AttributeError: 'Child1' object has no attribute 'method'
+# child1.method() # AttributeError: 'Child1' object has no attribute 'method'
 # Parent
 # Child 1
 
@@ -288,7 +294,7 @@ class NonWingedMammal(Mammal):
 
 class NonMarineMammal(Mammal):
   def __init__(self, name):
-    print(name, "can't swim.")
+    print(name, "can't breathe underwater.")
     super().__init__(name)
 
 class Dog(NonMarineMammal, NonWingedMammal):
@@ -300,11 +306,11 @@ chihuahua = Dog('Chihuahua')
 bat = NonMarineMammal('Bat')
 
 # Chihuahua has 4 legs.
-# Chihuahua can't swim.
+# Chihuahua can't breathe underwater.
 # Chihuahua can't fly.
 # Chihuahua is a warm-blooded animal.
 # Chihuahua is an animal.
-# Bat can't swim.
+# Bat can't breathe underwater.
 # Bat is a warm-blooded animal.
 # Bat is an animal.
 
@@ -346,7 +352,7 @@ print(snape.alive)
 # (a function in a class) behave like an attribute. This allows us to create a
 # read-only attribute of __name.
 
-# The property method take four optional parameters:
+# The property method takes four optional parameters:
 # – fget - function for getting the attribute value
 # – fset - function for setting the attribute value
 # – fdel - function for deleting the attribute value
