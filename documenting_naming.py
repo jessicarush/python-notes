@@ -30,7 +30,7 @@ def example(arg1=0.0, arg2=None):
     reST style docstring.
 
     :param arg1: int, description of arg1, default 0.0
-    :param arg2: str, escription of arg2, default None
+    :param arg2: str, description of arg2, default None
     :returns: int - Description of return value
     :raises keyError: raises an exception
     '''

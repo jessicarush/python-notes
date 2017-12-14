@@ -79,6 +79,6 @@
 
 # $ heroku info
 
-# NOTE: one thing I discovered is hiroku doesn't like regular 'http://' links
+# NOTE: one thing I discovered is heroku doesn't like regular 'http://' links
 # to external sources like googlefonts. Instead, change those to 'https://'
 # and everything should work fine.

@@ -40,7 +40,9 @@
 # $ test_env/bin/pip3 install flask
 
 # Alternatively, you can activate your virtual environment first, then pip3
-# install as you would normally... see below
+# install as you would normally...
+
+# $ source test_env/bin/activate
 
 # -----------------------------------------------------------------------------
 # Run your program in the virtual environment

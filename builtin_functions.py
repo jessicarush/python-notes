@@ -14,7 +14,7 @@ integer = -20
 print('Absolute value of -20 is:', abs(integer))  # 20
 
 floating = -30.33
-print('Absolute value of -30.33 is:', abs(floating))  # 30.00
+print('Absolute value of -30.33 is:', abs(floating))  # 30.33
 
 complex_num = (3 - 4j)
 print('Magnitude of 3 - 4j is:', abs(complex_num))  # 5.0
