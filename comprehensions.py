@@ -80,6 +80,32 @@ cells = [(row, col) for row in rows for col in cols]
 
 print(cells)  # [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]
 
+# -----------------------------------------------------------------------------
+# List Comprehensions: practical example from data plotting
+# -----------------------------------------------------------------------------
+import pandas
+
+# An example from a pandas, bokeh data plot. What we're trying to do is create
+# a new DataFrame column containing a color which will be used for the data
+# plot; green if the price went up and red if the price went down.
+
+df = pandas.read_csv('data/NEO_historical.csv')
+difference = df.close - df.open
+df['color'] = ['green' if x > 0 else 'red' for x in difference]
+
+# Note the 'expression' can be a function, and the iterable can be a zip() of
+# containing more than one iterable. This essentially does the same as above:
+
+def color_by_value(open_price, close_price):
+    if close_price >= open_price:
+        color = 'green'
+    else:
+        color = 'red'
+    return color
+
+df['color'] = [color_by_value(open_price, close_price) \
+               for open_price, close_price in zip(df.open, df.close)]
+
 # see also: pygal_intro.py
 
 # -----------------------------------------------------------------------------
