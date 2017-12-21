@@ -1,7 +1,7 @@
 # python-examples
 
 In my endeavor to learn Python, I'll be collecting my notes and example code here for reference and review purposes.  
-To date, my training is self-guided through the use of text books and online resources. Some examples and comments 
+To date, my training is self-guided through the use of text books and online resources. Some examples and comments
 may come from the following:
 
 –  'Python Crash Course' - Eric Matthes  
@@ -10,6 +10,7 @@ may come from the following:
 –  'Effective Python' - Brett Slatkin  
 –  'Complete Python Masterclass' - Tim Buchalka, Jean-Paul Roberts  
 –  'The Python Mega Course: Build 10 Real World Applications'  
+–  'REST APIs with Flask and Python'
 –  'Think Python' - Allen B. Downey  
 –  'Learn Python the Hard Way" - Zed A. Shaw  
 –  Python documentation - https://docs.python.org/3/index.html  
