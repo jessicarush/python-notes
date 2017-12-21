@@ -79,6 +79,55 @@
 
 # $ heroku info
 
+# The above command is helpful in terms of telling you whether you're
+# connected to your app at the moment.
+
 # NOTE: one thing I discovered is heroku doesn't like regular 'http://' links
 # to external sources like googlefonts. Instead, change those to 'https://'
 # and everything should work fine.
+
+# -----------------------------------------------------------------------------
+# Creating a PostgreSQL database on heroku
+# -----------------------------------------------------------------------------
+# Databases are included as add-ons in heroku. You can create a database
+# through the website or (a better way) through the command line. This allows
+# you to connect the database to your heroku app.
+
+# $ heroku addons:create heroku-postgresql:hobby-dev --app malaspina
+
+# There are a number of databse options available through heroku, the hobby-dev
+# one is free but you are limited to 10,000 rows (records) in your database.
+
+# $ heroku config --app malaspina
+
+# This will print out your database url like:
+# DATABASE_URL: postgres://lfhrlgygusjxap:ec6f16796cc41ea29a18251f3dc3ade9e2...
+
+# Copy the URL and paste it into your .py file where you were connecting to
+# your PostgreSQL databse. This address would have been something like:
+# url = 'postgresql://postgres:cinnamon-sticks@localhost/survey_app'
+
+# Add the following to the end of the heroku databse url string:
+# ?sslmode=require
+
+# Keep in mind, this will create an empty database. It will not have any tables
+# yet. See the docstring of the Data class in survey_app.
+
+# Note if you want to query the database locally, you'll need to make sure
+# the "local psql command path" is updated. To do this type the following:
+
+# $ export PATH=$PATH:/Library/PostgreSQL/10/bin
+
+# Where the path is pointing to your installation of PostgreSQL.
+
+# Once that's in place you can type something like this (where malaspina is
+# the name of your app):
+
+# $ heroku pg:psql --app malaspina
+
+# The prompt will look something like this: malaspina::DATABASE=>
+# And now you can start querying the database:
+
+# SELECT * FROM data;
+
+# When you're ready to quit this PostrgeSQL utility, type \q
