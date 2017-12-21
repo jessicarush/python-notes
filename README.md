@@ -10,7 +10,7 @@ may come from the following:
 –  'Effective Python' - Brett Slatkin  
 –  'Complete Python Masterclass' - Tim Buchalka, Jean-Paul Roberts  
 –  'The Python Mega Course: Build 10 Real World Applications'  
-–  'REST APIs with Flask and Python'
+–  'REST APIs with Flask and Python' 
 –  'Think Python' - Allen B. Downey  
 –  'Learn Python the Hard Way" - Zed A. Shaw  
 –  Python documentation - https://docs.python.org/3/index.html  
