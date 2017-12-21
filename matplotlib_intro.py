@@ -188,6 +188,6 @@ fig.axes.get_yaxis().set_visible(False)
 # in inches. The default dpi is 80. Experimenting with dpi on my Retina MacBook
 # has led me to believe just leave this value at it's default. The only place
 # where changing the dpi is useful, is when saving the figure as a png using
-# savefig() as demonstarted above.
+# savefig() as demonstrated above.
 
 plt.figure(figsize=(9, 5))

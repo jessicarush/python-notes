@@ -93,7 +93,7 @@ df = pandas.read_csv('data/NEO_historical.csv')
 difference = df.close - df.open
 df['color'] = ['green' if x > 0 else 'red' for x in difference]
 
-# Note the 'expression' can be a function, and the iterable can be a zip() of
+# Note the 'expression' can be a function, and the iterable can be a zip()
 # containing more than one iterable. This essentially does the same as above:
 
 def color_by_value(open_price, close_price):

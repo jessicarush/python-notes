@@ -68,7 +68,7 @@ plt.figure(figsize=(9, 5))
 # make your own colour map:
 cmap = LinearSegmentedColormap.from_list('mycmap', [a, b, c, d, e])
 
-# create a list for the range needed fro the colour map:
+# create a list for the range needed for the colour map:
 point_numbers = list(range(rw1.num_points))
 
 # the main plot:

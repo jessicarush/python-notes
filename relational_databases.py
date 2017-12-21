@@ -306,8 +306,8 @@ db = sqlite3.connect('contacts.sqlite')
 
 db.execute('''CREATE TABLE IF NOT EXISTS contacts
   (name TEXT, phone INTEGER, email TEXT)''')
-db.execute('INSERT INTO contacts(name, phone, email) VALUES(
-  "Rick", 4362, "rick@email.com")')
+db.execute('''INSERT INTO contacts(name, phone, email) 
+  VALUES("Rick", 4362, "rick@email.com")''')
 db.execute('INSERT INTO contacts VALUES("Morty", 7395, "morty@email.com")')
 
 cursor = db.cursor()

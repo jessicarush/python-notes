@@ -81,8 +81,8 @@ for msg in sub.listen():
 # Other pub-sub tools
 # -----------------------------------------------------------------------------
 # RabbitMQ – https://www.rabbitmq.com
-# Pika API – https://pika.readthedocs.io/en/0.10.0/
 # Tutorial – http://bit.ly/pub-sub-tut
+# Pika API – https://pika.readthedocs.io/en/0.10.0/
 # pubsubhubbub – https://github.com/pubsubhubbub/
 
 # https://pypi.python.org/pypi?%3Aaction=search&term=pubsub&submit=search

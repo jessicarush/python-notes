@@ -109,7 +109,7 @@ import unittest
 # import the function(s) to be tested
 
 class NamesTestCase(unittest.TestCase):
-    '''Tests for my_program.py'''
+    '''Tests for format_name()'''
 
     def test_first_last(self):
         '''Do names like Janis Joplin work?'''
@@ -142,7 +142,7 @@ unittest.main()
 # Example class to test:
 
 class AnonymousSurvey():
-    '''Collect anonymous answers to a surevy question'''
+    '''Collect anonymous answers to a survey question'''
 
     def __init__(self, question):
         '''Stores question and prepares to store responses'''

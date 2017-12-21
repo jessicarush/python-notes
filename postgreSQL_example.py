@@ -46,7 +46,7 @@ import psycopg2
 
 db = ("dbname='test1'"
       "user='postgres'"
-      "password='cinnamon-sticks'"
+      "password='your-password'"
       "host='localhost'"
       "port='5432'")
 
