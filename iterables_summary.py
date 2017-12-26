@@ -3,19 +3,19 @@
 # -----------------------------------------------------------------------------
 # Compare data structures
 # -----------------------------------------------------------------------------
-# List: mutable, ordered, repeats ok
+# List: mutable, ordered, values don't need to be unique
 colours_list = ['red', 'orange', 'black', 'black']
 
-# Tuple: immutable, ordered, repeats are ok
+# Tuple: immutable, ordered, values don't need to be unique
 colours_tuple = ('red', 'orange', 'black', 'black')
 
-# Dict keys: immutable, unordered, no repeats
-# Dict values: mutable, unordered, repeats ok
+# Dict keys: immutable, unordered, values must be unique
+# Dict values: mutable, unordered, values don't need to be unique
 colours_dict = {'red' : 'Pantone 185C',
                 'orange' : 'Pantone 021C',
                 'black' : 'Pantone 6C'}
-                
-# Sets: mutable, unordered, no repeats
+
+# Sets: mutable, unordered, values must be unique
 colours_set = {'red', 'orange', 'black'}
 
 print(type(colours_list))   # <class 'list'>
@@ -52,3 +52,8 @@ places = {(44, -93, 344) : 'home',
           (27, -80, 200) : 'work',}
 
 # NOTE: Frozen sets can also be used as dict keys
+
+# Note that these aren't the only iterables in Python. Other iterables include:
+#    - strings
+#    - generators
+#    - pandas series objects

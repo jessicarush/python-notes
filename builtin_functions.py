@@ -803,11 +803,11 @@ print(sorted(mydict.items(), key=lambda x: x[1]))
 
 numbers = [2.5, 3, 4, -5]
 
-numbersSum = sum(numbers)      # 4.5
-print(numbersSum)
+total = sum(numbers)      # 4.5
+print(total)
 
-numbersSum = sum(numbers, 10)  # 14.5
-print(numbersSum)
+total = sum(numbers, 10)  # 14.5
+print(total)
 
 # If you need to add floating point numbers with exact precision then use
 # math.fsum(iterable) instead.
