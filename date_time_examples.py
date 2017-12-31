@@ -8,28 +8,34 @@ import datetime
 import pytz
 
 now = datetime.datetime.now()
-# 2017-10-02 16:03:01.558993 <class 'datetime.datetime'>
+# 2017-10-02 16:03:01.558993  <class 'datetime.datetime'>
 
 utc = datetime.datetime.utcnow()
-# 2017-10-02 23:03:01.559071 <class 'datetime.datetime'>
+# 2017-10-02 23:03:01.559071  <class 'datetime.datetime'>
 
 the_time = pytz.utc.localize(datetime.datetime.utcnow())
-# 2017-10-02 23:03:01.559084+00:00 <class 'datetime.datetime'>
+# 2017-10-02 23:03:01.559084+00:00  <class 'datetime.datetime'>
 
 the_local_time = the_time.astimezone()
-# 2017-10-02 16:03:01.559084-07:00 <class 'datetime.datetime'>
+# 2017-10-02 16:03:01.559084-07:00  <class 'datetime.datetime'>
 
 the_local_time = pytz.utc.localize(datetime.datetime.utcnow()).astimezone()
-# 2017-10-02 16:03:01.559084-07:00 <class 'datetime.datetime'>
+# 2017-10-02 16:03:01.559084-07:00  <class 'datetime.datetime'>
 
 timezone = the_local_time.tzinfo
 # PDT <class 'datetime.timezone'>
 
+formatted = datetime.datetime.now().strftime('%m-%d-%Y, %H:%M %p')
+# 12-31-2017, 10:47 AM  <class 'str'>
+
 timestamp = datetime.datetime.now().strftime('%a %x')
-# Mon 10/02/17 <class 'str'>
+# Mon 10/02/17  <class 'str'>
 
 backdated = datetime.date(2017, 8, 7).strftime('%a %x')
-# Mon 08/07/17 <class 'str'>
+# Mon 08/07/17  <class 'str'>
+
+print('{}/{}/{}'.format(now.month, now.day, now.year))
+# 12/31/2017  <class 'str'>
 
 # -----------------------------------------------------------------------------
 # timedelta example

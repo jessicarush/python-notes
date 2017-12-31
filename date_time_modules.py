@@ -38,25 +38,27 @@ print(calendar.isleap(2017))  # False
 # The datetime module defines four main objects, each with many methods:
 # – datetime.date() for years, months, days
 # – datetime.time() for hours, minutes, seconds, and fractions
-# – datetime,datetime() for dates and times together
+# – datetime.datetime() for dates and times together
 # – datetime.timedelta() for date and/or time intervals
 
 # -----------------------------------------------------------------------------
 # datetime.date()
 # -----------------------------------------------------------------------------
-# make a date() object by specifying a year, month, and day.
-# Those values are then available as attributes:
 
 from datetime import date
 
-halloween = date(2017, 10, 31)
-print(halloween.day)    # 31
-print(halloween.month)  # 10
-print(halloween.year)   # 2017
+# make a date() object by specifying a year, month, and day.
+# Those values are then available as attributes:
+
+future = date(2024, 11, 9)
+
+print(future.day)    # 9
+print(future.month)  # 11
+print(future.year)   # 2024
 
 # print a date with isoformat() method:
 
-print(halloween.isoformat())  # 2017-10-31
+print(future.isoformat())  # 2024-11-09
 
 # The iso refers to ISO 8601, an international standard for representing dates
 # and times. It goes from most general (year) to most specific (day). It also
@@ -65,30 +67,33 @@ print(halloween.isoformat())  # 2017-10-31
 # weekday() method tells you the day of the week.
 # Monday is 0, Sunday is 6
 
-print(halloween.weekday())  # 1 (Tuesday)
+print(future.weekday())  # 5 (Saturday)
 
-# today() method to generate today's date:
+# Use the today() method to generate today's date:
 
-from datetime import date
 now = date.today()
+
 print(now)  # 2017-11-07
 
 # -----------------------------------------------------------------------------
 # datetime.timedelta()
 # -----------------------------------------------------------------------------
-# A timedelta() object can be used to add a time interval to a date:
 
 from datetime import timedelta
 
-one_day = timedelta(days=1)
-tomorrow = now + one_day
-print(tomorrow)          # 2017-11-08
-print(now + 18*one_day)  # 2017-11-25
+# A timedelta() object can be used to add a time interval to a date:
+
+one_week = timedelta(days=7)
+next_week = now + one_week
+
+print(next_week)             # 2017-11-14
+print(now + 52 * one_week)   # 2018-11-06
 
 # subtracting two dates will give you a timedelta object:
 
-time_diff = halloween - now
-print(time_diff)        # -7 days, 0:00:00
+time_diff = future - now
+
+print(time_diff)        # 2505 days, 0:00:00
 print(type(time_diff))  # <class 'datetime.timedelta'>
 
 # Note: The range of date is from date.min (year=1, month=1, day=1) to
@@ -100,9 +105,10 @@ print(type(time_diff))  # <class 'datetime.timedelta'>
 # -----------------------------------------------------------------------------
 # datetime.time()
 # -----------------------------------------------------------------------------
-# The datetime module's time() object is used to represent a time of day:
 
 from datetime import time
+
+# The datetime module's time() object is used to represent a time of day:
 
 noon = time(12, 0, 1)
 
@@ -118,10 +124,11 @@ print(noon.microsecond)  # 0
 # -----------------------------------------------------------------------------
 # datetime.datetime()
 # -----------------------------------------------------------------------------
-# The datetime() object includes both the date and time of day. The following
-# would be for August 16, 2017, at 2:09 P.M., plus 5 seconds, 6 microseconds:
 
 from datetime import datetime
+
+# The datetime() object includes both the date and time of day. The following
+# would be for August 16, 2017, at 2:09 P.M., plus 5 seconds, 6 microseconds:
 
 a_day = datetime(2017, 8, 16, 14, 9, 5, 6)
 
@@ -149,6 +156,9 @@ print(now.minute)       # 18
 print(now.second)       # 22
 print(now.microsecond)  # 570422
 
+print('{}/{}/{}'.format(now.month, now.day, now.year))
+# 12/31/2017
+
 # You can merge a date object and a time object into a datetime object by
 # using combine():
 
@@ -170,6 +180,9 @@ print(noonish_today.time()) # 12:03:00
 # -----------------------------------------------------------------------------
 # Time module
 # -----------------------------------------------------------------------------
+
+import time
+
 # It is confusing that Python has a datetime module with a time object, and a
 # separate time module. Furthermore, the time module has a function called...
 # time().
@@ -182,8 +195,6 @@ print(noonish_today.time()) # 12:03:00
 
 # The time module's time() function returns the current time as an epoch
 # value (number of seconds since 1970-01-01):
-
-import time
 
 now = time.time()
 print(now)                # 1510100475.260867
@@ -323,21 +334,22 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 
 import time
 
+# For this method a Tuple or struct_time argument is required at 't':
+
 fmt = "It's %A, %B %d, %Y, local time: %I:%M:%S%p"
-
 t = time.localtime()
-
-# Emphasis: for this method Tuple or struct_time argument required at 't':
 print(time.strftime(fmt, t))
 # It's Tuesday, November 07, 2017, local time: 04:28:23PM
 
 # If we try with a date object, the time defaults to midnight:
+
 a_day = date(2017, 8, 16)
 print(a_day.strftime(fmt))
 # It's Wednesday, August 16, 2017, local time: 12:00:00AM
 
-# If we try with a time object, we get a default date of 1900-01-01
-# have to import again otherwise it will try to use time from import time
+# If we try with a time object, we get a default date of 1900-01-01.
+# Import time again otherwise it will try to use time from import time:
+
 from datetime import time
 
 a_time = time(12, 3, 0)
@@ -347,7 +359,8 @@ print(a_time.strftime(fmt))
 # Another way to write it:
 import datetime
 
-time_str = datetime.datetime.now().strftime('%m-%d-%Y-%H-%M-%S')
+time_str = datetime.datetime.now().strftime('%m-%d-%Y, %H:%M %p')
+print(time_str)  # 12-31-2017, 10:47 AM
 
 # To go the other way and convert a string to a date or time, use strptime()
 # the nonformat parts of the string (without %) need to match EXACTLY.
@@ -357,6 +370,7 @@ import time
 
 fmt = '%Y-%m-%d'
 a_date = time.strptime('2017-08-16', fmt)
+
 print(a_date)
 # time.struct_time(tm_year=2017, tm_mon=8, tm_mday=16, tm_hour=0, tm_min=0,
 # tm_sec=0, tm_wday=2, tm_yday=228, tm_isdst=-1)
@@ -464,7 +478,9 @@ print(de_names)  # ['de_at', 'de_be', 'de_ch', 'de_de', 'de_lu']
 # not include time elapsed with sleep. Is apparently useful for profiling code.
 
 import time
-from time import process_time as my_timer  # try all three above
+# from time import time as my_timer          # try all three
+# from time import perf_counter as my_timer  # try all three
+from time import process_time as my_timer  # try all three
 import random
 
 input('Press enter to start')
@@ -476,7 +492,9 @@ input('Press enter to stop')
 end_time = my_timer()
 
 print('Elapsed time: {} seconds'.format(end_time - start_time))
-# Elapsed time: 0.00011199999999999405 seconds
+# Elapsed time: 0.3398411273956299 seconds    (time)
+# Elapsed time: 0.4680702360055875 seconds    (perf_counter)
+# Elapsed time: 9.800000000000086e-05 seconds (process_time)
 
 # Extra formatting review:
 # (these only work with time module above, not perf_counter or process_time):

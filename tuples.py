@@ -42,29 +42,27 @@ colour_tuple = ('Emerald', 'Pantone 17-5641', 'rgb(0, 148, 115)')
 
 print(colour_tuple[1])  # Pantone 17-5641
 
+text = "spot colour: {0[1]} \nname: {0[0]} \nscreen value: {0[2]}"
+print(text.format(colour_tuple))
+# spot colour: Pantone 17-5641
+# name: Emerald
+# screen value: rgb(0, 148, 115)
+
 # Tuples let you assign multiple variables at once:
+# This is called 'tuple unpacking'
 
 a, b, c = colour_tuple
 print(a)  # Emerald
 print(b)  # Pantone 17-5641
 print(c)  # rgb(0, 148, 115)
 
-# This is called 'tuple unpacking'
-
-text = "spot colour: {0[1]}, name: {0[0]}, screen value: {0[2]}"
-print(text.format(colour_tuple))
-# spot colour: Pantone 17-5641, name: Emerald, screen value: rgb(0, 148, 115)
-
 # You can use tuples to assign or swap variable values in one line:
 
 a, b = 'A', 'B'
-
 print('a is {}, b is {}'.format(a, b))  # a is A, b is B
 
 a, b = b, a
-
 print('a is {}, b is {}'.format(a, b))  # a is B, b is A
-
 
 # The tuple() function lets you convert something to a tuple:
 
@@ -84,35 +82,39 @@ print(colours_tuple)  # ('orange, 'yellow', 'purple')
 
 from collections import namedtuple
 
-Room = namedtuple('Room', 'floor windows')
-kitchen = Room('hardwood', '4')
+Room = namedtuple('Room', 'name floor windows sqft')
+kitchen = Room('kitchen', 'tile', 4, 150)
 
 # Testing:
 
-print(kitchen)          # Room(floor='hardwood', windows='4')
-print(kitchen.floor)    # hardwood
-print(kitchen.windows)  # prints nothing, no exception
-print(kitchen[0])       # hardwood
+print(kitchen)          # Room(name='kitchen, floor='tile', windows=4, sqft=150)
+print(kitchen.floor)    # tile
+print(kitchen.windows)  # 4
+print(kitchen[3])       # 150
 
 # You can also make a named tuple from a dictionary
 
-parts = {'floor': 'linoleum', 'windows': '2'}
+parts = {'name': 'bedroom', 'floor': 'wood', 'windows': 2, 'sqft': 250}
 
 bedroom = Room(**parts)
 
 # BTW **parts is a keyword argument. It extracts the keys and values from the
-# parts dict and supplies them as arguments to Room()
+# parts dict and supplies them as arguments to Room(). Note that the dictionary
+# keys must match the named tuple keys and there must be the same amount of
+# items in both.
 
 # Testing:
 
-print(bedroom)          # Room(floor='linoleum', windows='2')
-print(bedroom.floor)    # linoleum
+print(bedroom)          # Room(name='bedroom', floor='wood', windows=2, sqft=250)
+print(bedroom.floor)    # wood
 print(bedroom.windows)  # 2
-print(bedroom[0])       # linoleum
+print(bedroom[3])       # 250
 
-# Named tuples look and act like an immutable object.
-# You can access attributes by using dot notation instead of dict style['key']
-# You can use it as a dict key.
+# Named tuples look and act like an immutable object. You can access attributes
+# by using dot notation instead of the dict style['key']. Because tuples are
+# immutable, you can use then as a dict key.
+
+apartment = {bedroom : 'stuff...', kitchen: 'things...'}
 
 # Though tuples are immutable, tuples can contain mutable items. For example,
 # You could have a tuple of lists where the lists themselves cannot be changed
