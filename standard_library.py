@@ -27,11 +27,14 @@ jb_counter2 = Counter(jellybeans2)
 
 print(type(jb_counter1))    # <class 'collections.Counter'>
 
-jb_counter1 + jb_counter2   # returns {'red': 4, 'green': 2, 'yellow': 2,
-                            # 'black': 1, 'orange': 1}
-jb_counter1 - jb_counter2   # returns {'red': 2, 'green': 2, 'orange': 1}
-jb_counter2 - jb_counter1   # returns {'yellow': 2, 'black': 1}
-jb_counter1 & jb_counter2   # returns {'red': 1}
+jb_counter1 + jb_counter2
+# returns {'red': 4, 'green': 2, 'yellow': 2, 'black': 1, 'orange': 1}
+jb_counter1 - jb_counter2
+# returns {'red': 2, 'green': 2, 'orange': 1}
+jb_counter2 - jb_counter1
+# returns {'yellow': 2, 'black': 1}
+jb_counter1 & jb_counter2
+# returns {'red': 1}
 
 # -----------------------------------------------------------------------------
 # deque()
@@ -140,7 +143,7 @@ for path, directories, files in os.walk(root, topdown=True):
 # pulling out the specific bits of information.
 
 # -----------------------------------------------------------------------------
-# difflib.()
+# difflib
 # -----------------------------------------------------------------------------
 # the difflib module contains tools for comparing and working with differences
 # between sequences. It's especially useful for comparing text. This example
