@@ -22,10 +22,41 @@ geolocator = GoogleV3(scheme='http')
 address1 = '3995 23rd St, San Francisco, CA 94114, USA'
 address2 = '3730 Cambie St, Vancouver, BC V5Z2X5, Canada'
 
-location = geolocator.geocode(address2)
+location = geolocator.geocode(address1)
 
-print(type(location))    # <class 'geopy.location.Location'>
-print(location)          # 3995 23rd St, San Francisco, CA 94114, USA
-print(location.address)  # 3995 23rd St, San Francisco, CA 94114, USA
+print(type(location))
+# <class 'geopy.location.Location'>
+print(dir(location))
+# [... 'address', 'altitude', 'latitude', 'longitude', 'point', 'raw']
+print(location)
+# 3995 23rd St, San Francisco, CA 94114, USA
+print(location.address)
+# 3995 23rd St, San Francisco, CA 94114, USA
 print((location.latitude, location.longitude))
 # (37.7529353, -122.4317224)
+print(location.point)
+# 37 45m 10.5671s N, 122 25m 54.2006s W
+print(location.raw)
+# {'address_components': [
+#     {'long_name': '3995', 'short_name': '3995', 'types': ['street_number']},
+#     {'long_name': '23rd Street', 'short_name': '23rd St', 'types': ['route']},
+#     {'long_name': 'Noe Valley', 'short_name': 'Noe Valley', 'types':
+#       ['neighborhood', 'political']},
+#     {'long_name': 'San Francisco', 'short_name': 'SF', 'types':
+#       ['locality', 'political']},
+#     {'long_name': 'San Francisco County', 'short_name': 'San Francisco County',
+#       'types': ['administrative_area_level_2', 'political']},
+#     {'long_name': 'California', 'short_name': 'CA', 'types':
+#       ['administrative_area_level_1', 'political']}, 
+#     {'long_name': 'United States', 'short_name': 'US', 'types':
+#       ['country', 'political']},
+#     {'long_name': '94114', 'short_name': '94114', 'types': ['postal_code']},
+#     {'long_name': '3302', 'short_name': '3302', 'types': ['postal_code_suffix']}],
+#  'formatted_address': '3995 23rd St, San Francisco, CA 94114, USA',
+#  'geometry': {
+#      'location': {'lat': 37.7529353, 'lng': -122.4317224},
+#      'location_type': 'ROOFTOP',
+#      'viewport': {
+#          'northeast': {'lat': 37.75428428029149, 'lng': -122.4303734197085},
+#          'southwest': {'lat': 37.75158631970849, 'lng': -122.4330713802915}}},
+#  'place_id': 'ChIJp4irxxN-j4ARlJs-6IsSQGk', 'types': ['street_address']}

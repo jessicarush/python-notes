@@ -2,12 +2,12 @@
 
 # http://www.numpy.org/
 
-# NumPy is a library for the Python programming language, adding support for
-# large, multi-dimensional arrays and matrices, along with a large collection
-# of high-level mathematical functions to operate on these arrays.
+# NumPy is a library for Python that adds support for "large, multi-dimensional
+# arrays and matrices, along with a large collection of high-level mathematical
+# functions to operate on these arrays.""
 
 # numpy arrays look similar to python lists but they are much more efficient,
-# especially when it come to iterating over them running other functions.
+# especially when it come to iterating over them, running other functions.
 
 # numpy is a base library for many other libraries such as pandas, matplotlib,
 # and OpenCV (image processing library).

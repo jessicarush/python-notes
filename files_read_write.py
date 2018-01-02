@@ -93,7 +93,9 @@ The end
 with open('testfile1.txt', 'w') as f_object:
     f_object.write(text1)
 
-# If you have a very large source string, you can write it in chunks:
+# If you have a very large source string, you can write it in chunks
+# (because a very large source could be quite taxing on memory, or
+# impossible if the data was source was say a 25GB):
 
 size = len(text2)
 offset = 0
@@ -276,6 +278,7 @@ with open ('music.txt', 'r') as music_file:
     music_contents = music_file.readline()
 
 unkle = eval(music_contents)
+
 print(type(unkle))                   # <class 'tuple'>
 album, artist, year, tracks = unkle  # tuple unpacking
 print(album)                         # The Road, Pt. 1

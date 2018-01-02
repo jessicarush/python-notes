@@ -20,6 +20,7 @@ import pandas
 # Create a DataFrame, which is a special kind of object that will hold data.
 # Think of a DataFrame as a table. You pass a list of lists to a DataFrame,
 # where each list is like a row.
+
 df1 = pandas.DataFrame([[2, 4, 6], [10, 20, 30]])
 
 print(type(df1))  # <class 'pandas.core.frame.DataFrame'>
@@ -48,7 +49,7 @@ print(df1)
 # 1  10  20  30
 
 # You can also create your own index names. However, you will usually leave
-# index at its default numbering (typically a dat set will have a fixed number
+# index at its default numbering (typically a data set will have a fixed number
 # of columns but many, many, many rows).
 
 cols = ['A','B','C']
