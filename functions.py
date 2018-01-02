@@ -99,7 +99,7 @@ nonbuggy('b')  # ['b']
 nonbuggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
 
 # -----------------------------------------------------------------------------
-# Gather Positional Arguments - *args
+# Gathering Positional Arguments - *args
 # -----------------------------------------------------------------------------
 # The * operator used when defining a function means that any extra positional
 # arguments passed to the function end up in the variable prefaced with the *.
@@ -151,7 +151,7 @@ print_more('red', 'green', 'one', 'two', 'three')
 # the rest: ('one', 'two', 'three')
 
 # -----------------------------------------------------------------------------
-# Gather Keyword Arguments - **kwargs
+# Gathering Keyword Arguments - **kwargs
 # -----------------------------------------------------------------------------
 # ** does for dictionaries & key/value pairs exactly what * does for iterables
 # and positional parameters demonstrated above. Here's it being used in the
@@ -221,28 +221,28 @@ def answer():
 def run_something(func):
     func()
 
-run_something(answer)
+run_something(answer)  # 100
 
-# The parameter names arg1 and arg2 don't need to match those in the following
-# function, just using those names as examples:
+# If the function you're passing as an arg requires its own args, just pass
+# them following the function name:
 
-def add_args(arg1, arg2):
-    print(arg1 + arg2)
+def add_numbers(a, b):
+    print(a + b)
 
 def run_something_with_args(func, arg1, arg2):
     func(arg1, arg2)
 
-run_something_with_args(add_args, 5, 10)
+run_something_with_args(add_numbers, 5, 10)  # 15
 
 # An example with a variable number of arguments:
 
-def sum_args(*args):
+def sum_numbers(*args):
     print(sum(args))
 
 def run_with_positional_args(func, *args):
     return func(*args)
 
-run_with_positional_args(sum_args, 2, 3, 1, 4)
+run_with_positional_args(sum_numbers, 2, 3, 1, 4)  # 10
 
 # -----------------------------------------------------------------------------
 # Nested functions
@@ -329,7 +329,7 @@ edit_story(sounds, headline)
 
 edit_story(sounds, lambda word: word.capitalize() + '!')
 
-# Note that the lambda definition does not include a "return" statement – 
+# Note that the lambda definition does not include a "return" statement –
 # it always contains an expression which is returned. Also note that you can
 # put a lambda definition anywhere a function is expected, and you don't have
 # to assign it to a variable at all.
