@@ -285,31 +285,55 @@ exec(program)
 example = [0, 1, '0', 'a', True, False]
 
 filtered_example = filter(None, example)
-
 print(filtered_example)    # <filter object at 0x101a84978>
 
-for item in filtered_example:
-    print(item, end=' ')   # 1 0 a True
+filtered_example = list(filter(None, example))
+print(filtered_example)    # [1, '0', 'a', True]
 
-# if function is None it's equivalent to:
-# (element for element in iterable if element)
+# In the above example the function is None. In the following, we'll create
+# our own function that will return either True or False:
 
 letters = ['a', 'b', 'd', 'e', 'i', 'j', 'k', 's', 'o']
 
-def vowels(iterable):
+def vowels(item):
     vowels = ['a', 'e', 'i', 'o', 'u']
-    if iterable in vowels:
+    if item in vowels:
         return True
     else:
         return False
 
-filtered_letters = filter(vowels, letters)
+filtered_letters = list(filter(vowels, letters))
+print(filtered_letters)  # ['a', 'e', 'i', 'o']
 
-for vowel in filtered_letters:
-    print(vowel, end=' ')   # a e i o
+# Using a lambda function:
+
+data = ['one', 'two', 'n/a', 'three']
+
+filtered_data = list(filter(lambda x: x != 'n/a', data))
+print(filtered_data)  # ['one', 'two', 'three']
+
+# Generally speaking, filters can be written as list comprehensions instead.
+
+# if the function arg is None it's equivalent to:
+# (element for element in iterable if element)
 
 # if a function is defined it's equivalent to:
 # (element for element in iterable if function(element))
+
+# Here's the above three examples written as list comprehensions:
+
+listcomp_example = [x for x in example if x != False]
+print(listcomp_example)  # [1, '0', 'a', True]
+
+listcomp_letters = [x for x in letters if vowels(x)]
+print(listcomp_letters)  # ['a', 'e', 'i', 'o']
+
+listcomp_data = [x for x in data if x != 'n/a']
+print(listcomp_data)  # ['one', 'two', 'three']
+
+# The concept of list comprehensions is more popular in Python but doesn't
+# exist in many other languages. Those languages will use something more like
+# the filter method.
 
 # ----------------------------------------------------------------------------
 # float()
