@@ -38,3 +38,11 @@ for number, outlook in enumerate(weekly.forecast(), 1):
 
 # The enumerate function above takes apart a list and feeds each item to the
 # for loop, adding a number to each item starting from 1.
+
+# -----------------------------------------------------------------------------
+# Note: importing specific function/classes
+# -----------------------------------------------------------------------------
+# If you wanted to import a function or class from a file that's within
+# a directory like this you'd say:
+
+from sources.daily import myfunction
