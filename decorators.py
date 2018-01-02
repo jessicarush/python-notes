@@ -3,42 +3,58 @@
 # A decorator is a function that takes one function as an input and returns
 # another function. Here is a simplified example:
 
-def my_decorator(some_func):
-    def wrapper(*args):
-        print('This happens before {}() is called.'.format(some_func.__name__))
-        some_func(*args)
-        print('This happens after {}() is called.'.format(some_func.__name__))
+def my_decorator(func):
+    def wrapper(arg):
+        print('Before {}() is called.'.format(func.__name__))
+        func(arg)
+        print('After {}() is called.'.format(func.__name__))
     return wrapper
 
 @my_decorator
 def squares(n):
+    '''returns the square of a number'''
     print(n ** 2)
 
 squares(6)
-# This happens before squares() is called.
+# Before squares() is called.
 # 36
-# This happens after squares() is called.
+# After squares() is called.
 
-# A similar example, written a little differently. This decorator will print
-# start when the function is called and 'end' when it finishes:
+# -----------------------------------------------------------------------------
+# @functools.wraps():
+# -----------------------------------------------------------------------------
+# When you use a decorator, you're replacing one function (squares) with
+# another (wrapper). While inside the decorator we can get see the original
+# function being used but outside check this out:
 
-def test(func):
-    def new_func(*args, **kwargs):
-        print('start')
-        result = func(*args, **kwargs)
-        print('end')
-        return result
-    return new_func
+print(squares.__name__)  # wrapper
+print(squares.__doc__)   # None
 
-@test
-def greeting():
-    print('hello')
+# That's why we have functools.wraps. This takes a function used in a decorator
+# and adds the functionality of copying over the functions name, docstring,
+# arguments list, etc. See the difference:
 
-greeting()
-# start
-# hello
-# end
+from functools import wraps
 
+def my_decorator(func):
+    @wraps(func)  # Add this, everything else is the same
+    def wrapper(arg):
+        print('Before {}() is called.'.format(func.__name__))
+        func(arg)
+        print('After {}() is called.'.format(func.__name__))
+    return wrapper
+
+@my_decorator
+def squares(n):
+    '''returns the square of a number'''
+    print(n ** 2)
+
+print(squares.__name__)  # squares
+print(squares.__doc__)   # returns the square of a number
+
+# -----------------------------------------------------------------------------
+# Returning results
+# -----------------------------------------------------------------------------
 # The function document_it() below defines a decorator that will:
 #  - print the functions name and values of its arguments
 #  - run the function with the arguments
@@ -46,28 +62,28 @@ greeting()
 #  - return the modified function for use
 
 def document_it(func):
-    def new_function(*args, **kwargs):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
         print('Running function:', func.__name__)
         print('Positional arguments:', args)
         print('Keyword arguments:', kwargs)
         result = func(*args, **kwargs)
         print('Result:', result)
         return result
-    return new_function
+    return wrapper
 
 # Here's our simple test function, first we'll do it without a decorator:
 def add_ints(a, b):
     return a + b
 
 decorated_add_ints = document_it(add_ints)
-print(decorated_add_ints(3,5))
+decorated_add_ints(3,5)
 # Running function: add_ints
 # Positional arguments: (3, 5)
 # Keyword arguments: {}
 # Result: 8
-# 8
 
-# Now with a decorator -- less code:
+# Now with a decorator... a little less code:
 @document_it
 def add_ints(a, b):
     return a + b
@@ -78,13 +94,16 @@ add_ints(4, 5)
 # Keyword arguments: {}
 # Result: 9
 
-# You can have more that one decorator applied to a function.
+# -----------------------------------------------------------------------------
+# Multiple decorators
+# -----------------------------------------------------------------------------
 
 def square_it(func):
-    def new_function(*args, **kwargs):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
         return result * result
-    return new_function
+    return wrapper
 
 # The decorator that's closest to the actual function (above the def) runs
 # first and then the one above that will run. The results will be the same no
@@ -121,7 +140,7 @@ print(add_ints(4, 3))
 # see decorators used as getter and setter methods in classes.py
 
 # -----------------------------------------------------------------------------
-# Decorators example:
+# one last example:
 # -----------------------------------------------------------------------------
 
 import time
@@ -129,12 +148,13 @@ import time
 def timing(func):
     '''Outputs the time a function takes to execute.'''
 
-    def new_func():
+    @wraps(func)
+    def wrapper():
         t1 = time.time()
         func()
         t2 = time.time()
         return "Time it took to run the function: " + str((t2 - t1))
-    return new_func
+    return wrapper
 
 @timing
 def my_function():
