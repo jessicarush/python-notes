@@ -528,6 +528,67 @@ test4 = A()
 
 A.children()
 
+# Here's another example that compares a regular method to a classmethod
+# in terms of inheritance.
+
+# Example A (no class method):
+class Parent():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def friend(self, friend_name, age):
+        return Parent(friend_name, age)
+
+class Child(Parent):
+    def __init__(self, name, age, other):
+        super().__init__(name, age)
+        self.other = other
+
+child = Child('Loki', 1048, 'something else')
+friend = child.friend('Thor', 1049)
+
+print(child.name)   # Loki
+print(child.age)    # 1048
+print(child.other)  # something else
+print(friend.name)  # Thor
+print(friend.age)   # 1049
+print(child)        # <__main__.Child object at 0x10150e668>
+print(friend)       # <__main__.Parent object at 0x10150e6a0>
+
+
+# Example B (class method):
+class Parent():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def friend(cls, friend_name, *args):
+        return cls(friend_name, *args)
+
+class Child(Parent):
+    def __init__(self, name, age, other):
+        super().__init__(name, age)
+        self.other = other
+
+child = Child('Loki', 1048, 'something else')
+friend = child.friend('Thor', 1049, 'another thing')
+
+print(child.name)    # Loki
+print(child.age)     # 1048
+print(child.other)   # something else
+print(friend.name)   # Thor
+print(friend.age)    # 1049
+print(friend.other)  # another thing
+print(child)         # <__main__.Child object at 0x10150e748>
+print(friend)        # <__main__.Child object at 0x10150e780>
+
+# The first example is pretty much what we expect. In the next example,
+# the class method and the use of cls instead of self basically maps the
+# method to whatever class is calling it, therefor friend is now an instance
+# of the Child class, even though its been defined in the Parent class.
+
 # NOTE: you can also write class methods outside of classes. You might do this
 # if you wanted to create a class method that you could call on many classes.
 
