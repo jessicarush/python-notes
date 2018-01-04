@@ -140,6 +140,35 @@ print(add_ints(4, 3))
 # see decorators used as getter and setter methods in classes.py
 
 # -----------------------------------------------------------------------------
+# decorators with arguments
+# -----------------------------------------------------------------------------
+# Consider this example. Imagine a number of functions that allow access to
+# different things, but you only want to allow access if some criteria is met.
+# Instead of repeating code in each function, you can set this up in a
+# decorator. The only problem is, for some reason you can't add parameter to
+# the decorator that has (func) passed in. So in order to do this, we have to
+# create another wrapping decorator :(
+
+def bouncer(flag):
+    def my_decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if flag:
+                func(*args, **kwargs)
+            else:
+                print('Not running the function')
+        return wrapper
+    return my_decorator
+
+flag = False
+
+@bouncer(flag)
+def my_function():
+    print('The function runs...')
+
+my_function()
+
+# -----------------------------------------------------------------------------
 # one last example:
 # -----------------------------------------------------------------------------
 
@@ -147,7 +176,6 @@ import time
 
 def timing(func):
     '''Outputs the time a function takes to execute.'''
-
     @wraps(func)
     def wrapper():
         t1 = time.time()
