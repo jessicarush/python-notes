@@ -172,10 +172,10 @@ for k, v in location.items():
 # -----------------------------------------------------------------------------
 
 key_string = ', '.join(location.keys())
-print(key_string)
+print(key_string)  # apt, number, street, city, province
 
 value_string = ', '.join(location.values())
-print(value_string)
+print(value_string)  # 2, 1234, Main, Vancouver, BC
 
 # -----------------------------------------------------------------------------
 # Sort by dict keys
@@ -222,7 +222,7 @@ things = ['thing1', 'thing2', 'thing3', 'thing4']
 
 new_dict = dict.fromkeys(things, 0.0)
 
-for k, v, in things.items():
+for k, v, in new_dict.items():
     print(k, '-', v)
 # thing1 - 0.0
 # thing2 - 0.0
@@ -231,7 +231,7 @@ for k, v, in things.items():
 
 new_dict = dict.fromkeys(person)
 
-for k, v, in things.items():
+for k, v, in new_dict.items():
     print(k, '-', v)
 # first - None
 # last - None

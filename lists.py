@@ -120,6 +120,16 @@ list2.remove('four')
 while 'four' in list2:
     list2.remove('four')
 
+# If you had a list of dictionaries, you could iterate. This works but it
+# breaks the rule of "never modify a list in a for loop". I'm not clear as to
+# whether this particular example is bad or not:
+
+items =  [{"name": "shoes", "price": 20.99}, {"name": "eggs", "price": 1.99}]
+
+for item in items:
+    if item['name'] == 'eggs':
+        items.remove(item)
+
 # -----------------------------------------------------------------------------
 # del
 # -----------------------------------------------------------------------------

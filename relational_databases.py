@@ -196,6 +196,7 @@ conn.close()
 # DROP TABLE artists;
 #    – deletes a table (be careful!)
 # ALTER TABLE contacts RENAME TO customers;
+# ALTER TABLE contacts ADD COLUMN newcol TEXT;
 
 # -----------------------------------------------------------------------------
 # JOIN (a column in one table corresponds to a column in another)
@@ -212,9 +213,10 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 
 # SELECT songs.title, albums.name
 # FROM songs JOIN albums ON songs.album = albums._id;
-#    – displays the title column from the songs table and the name column from
-#      the albums table by linking the songs album column to the album _id
-#      column. JOIN is actually an INNER JOIN. The following is the same:
+
+#    displays the title column from the songs table and the name column from
+#    the albums table by linking the songs album column to the album _id
+#    column. JOIN is actually an INNER JOIN. The following is the same:
 
 # SELECT songs.title, albums.name
 # FROM songs INNER JOIN albums ON songs.album = albums._id;
@@ -306,7 +308,7 @@ db = sqlite3.connect('contacts.sqlite')
 
 db.execute('''CREATE TABLE IF NOT EXISTS contacts
   (name TEXT, phone INTEGER, email TEXT)''')
-db.execute('''INSERT INTO contacts(name, phone, email) 
+db.execute('''INSERT INTO contacts(name, phone, email)
   VALUES("Rick", 4362, "rick@email.com")''')
 db.execute('INSERT INTO contacts VALUES("Morty", 7395, "morty@email.com")')
 

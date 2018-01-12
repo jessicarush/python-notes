@@ -247,7 +247,7 @@ run_with_positional_args(sum_numbers, 2, 3, 1, 4)  # 10
 # -----------------------------------------------------------------------------
 # Nested functions
 # -----------------------------------------------------------------------------
-# This is pretty straight forward. When we call the outer() function it in
+# This is pretty straight forward. When we call the outer() function, it in
 # turn calls the inner function. The inner function used a variable x that's
 # defined in the outer functions namespace. The inner function looks for x
 # first in its own local namespace, then failing that looks in the surrounding
