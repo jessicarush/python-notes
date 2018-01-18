@@ -4,6 +4,7 @@
 # Developers use Heroku to deploy, manage, and scale modern apps.
 
 # https://www.heroku.com/
+# https://www.airpair.com/heroku/posts/heroku-tips-and-hacks
 
 # You can create a new python 'app' via Heroku's website or via the command
 # line. First, make sure you've created an account and downloaded the
