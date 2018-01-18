@@ -14,11 +14,14 @@ import pickle # <-- added
 
 db = sqlite3.connect('accounts.sqlite')
 db.execute('''CREATE TABLE IF NOT EXISTS accounts
-              (name TEXT PRIMARY KEY NOT NULL, balance INTEGER NOT NULL)''')
+              (name TEXT PRIMARY KEY NOT NULL,
+              balance INTEGER NOT NULL)''')
 # added timezone column to the history table:
 db.execute('''CREATE TABLE IF NOT EXISTS history
-              (time TIMESTAMP NOT NULL, account TEXT NOT NULL,
-              amount INTEGER NOT NULL, timezone INTEGER NOT NULL,
+              (time TIMESTAMP NOT NULL,
+              account TEXT NOT NULL,
+              amount INTEGER NOT NULL,
+              timezone INTEGER NOT NULL,
               PRIMARY KEY (time, account))''')
 
 class Account():
@@ -32,7 +35,8 @@ class Account():
         return utc_time, timezone # <-- returns a tuple
 
     def __init__(self, name: str, opening_balance: int=0):
-        cursor = db.execute("SELECT name, balance FROM accounts WHERE name = ?", (name,))
+        select_query = "SELECT name, balance FROM accounts WHERE name = ?"
+        cursor = db.execute(select_query, (name,))
         row = cursor.fetchone()
         if row:
             self.name, self._balance = row
@@ -40,7 +44,8 @@ class Account():
         else:
             self.name = name
             self._balance = opening_balance
-            cursor.execute("INSERT INTO accounts VALUES(?, ?)", (name, opening_balance))
+            insert_query = "INSERT INTO accounts VALUES(?, ?)"
+            cursor.execute(insert_query, (name, opening_balance))
             cursor.connection.commit()
             print('Account created for {}'.format(self.name))
         self.show_balance()
@@ -78,7 +83,7 @@ class Account():
             return 0.0
 
     def show_balance(self):
-        print('Balance on account {} is {:.2f}'.format(self.name, self._balance/100))
+        print('Balance for {} is {:.2f}'.format(self.name, self._balance/100))
 
 # -----------------------------------------------------------------------------
 # Testing
