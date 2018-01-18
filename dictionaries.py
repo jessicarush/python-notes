@@ -47,14 +47,23 @@ dict_from_tos = dict(tuple_of_two_char_strings)
 # this would be like extend() for lists
 
 location = {
-    'apt' : '2',
-    'number' : '1234',
+    'apt' : 2,
+    'number' : 1234,
     'street' : 'Main',
     'city' : 'Vancouver',
-    'province' : 'BC',
+    'prov' : 'BC',
     }
 
 person.update(location)
+
+# If there are duplicate keys, the first dict will get updated with the
+# values from the second dict:
+
+new_address = { 'number': 1011, 'street': 'Beach'}
+
+location.update(new_address)
+print(location)
+# {'apt': 2, 'number': 1011, 'street': 'Beach', 'city': 'Vancouver', 'prov': 'BC'}
 
 # -----------------------------------------------------------------------------
 # Delete an item by key with del
@@ -139,7 +148,7 @@ for i in location.keys():
 # number
 # street
 # city
-# province
+# prov
 
 # is the same as:
 for i in location:
@@ -148,7 +157,7 @@ for i in location:
 # number
 # street
 # city
-# province
+# prov
 
 # but the other two methods (values and items) are still required:
 for i in location.values():
@@ -165,7 +174,7 @@ for k, v in location.items():
 # number – 1234
 # street – Main
 # city – Vancouver
-# province – BC
+# prov – BC
 
 # -----------------------------------------------------------------------------
 # Convert to a string with join()
