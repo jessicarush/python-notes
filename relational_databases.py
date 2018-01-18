@@ -31,9 +31,10 @@
 #    – a column whose values must be unique in the table. If you try to insert
 #      a primary key that's already being used in the table, you will get an
 #      error: UNIQUE constraint failed: table.column. Another interesting bit:
-#      If you set your primary key type to integer (an ID number perhaps), you
+#      If you set your primary key type to integer (an ID number), you
 #      don't need to enter the integer when inserting a new record, it will
-#      automatically use the next number.
+#      automatically use the next number. That being said... it has to be
+#      INTEGER and not INT. See https://www.sqlite.org/datatype3.html 
 # Unique
 #    – A unique constraint is similar to a primary key constraint, except that
 #      a single table may have any number of unique columns. For each unique
@@ -96,8 +97,11 @@ import sqlite3
 
 conn = sqlite3.connect('practice.db') # creates the file if it doesn't exist
 curs = conn.cursor()
+
 curs.execute('''CREATE TABLE IF NOT EXISTS inventory
-  (things VARCHAR(20) PRIMARY KEY, count INT, cost FLOAT)''')
+                (things VARCHAR(20) PRIMARY KEY,
+                count INTEGER,
+                cost FLOAT)''')
 
 # add things to inventory:
 
@@ -149,6 +153,17 @@ conn.close()
 # by their primary key. That being said, the *actual* order of the records in
 # the database is undefined. You can use the ORDER BY clause to order it by
 # another column as demonstrated above.
+
+# -----------------------------------------------------------------------------
+# SQLite Datatypes
+# -----------------------------------------------------------------------------
+# https://www.sqlite.org/datatype3.html
+
+# Note there are 5 main data types in sqlite3:
+# NULL, INTEGER, REAL, TEXT, BLOB
+
+# The link above also lists the other acceptable names for these data types.
+# For example FLOAT is actual REAL.
 
 # -----------------------------------------------------------------------------
 # SQLite Commands
@@ -299,34 +314,33 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 #    – Now this works
 
 # -----------------------------------------------------------------------------
-# SQLite Review
+# SQLite Review 1
 # -----------------------------------------------------------------------------
 import sqlite3
 
-db = sqlite3.connect('contacts.sqlite')
 
+conn = sqlite3.connect('contacts.sqlite')
+curs = conn.cursor()
 
-db.execute('''CREATE TABLE IF NOT EXISTS contacts
-  (name TEXT, phone INTEGER, email TEXT)''')
-db.execute('''INSERT INTO contacts(name, phone, email)
-  VALUES("Rick", 4362, "rick@email.com")''')
-db.execute('INSERT INTO contacts VALUES("Morty", 7395, "morty@email.com")')
-
-cursor = db.cursor()
+conn.execute('''CREATE TABLE IF NOT EXISTS contacts
+                (name TEXT, phone INTEGER, email TEXT)''')
+conn.execute('''INSERT INTO contacts(name, phone, email)
+                VALUES("Rick", 4362, "rick@email.com")''')
+conn.execute('INSERT INTO contacts VALUES("Morty", 7395, "morty@email.com")')
 
 # database cursors are generators and they are iterable!
-cursor.execute('SELECT * FROM contacts')
+curs.execute('SELECT * FROM contacts')
 for row in cursor:
     print(row)
 
 # unpack the tuples if you want:
-cursor.execute('SELECT * FROM contacts')
+curs.execute('SELECT * FROM contacts')
 for name, phone, email in cursor:
     print(name, '–', phone, '–', email)
     print('-' * 20)
 
 # You can dump into a variable to use (not so good with a big db)
-cursor.execute('SELECT * FROM contacts')
+curs.execute('SELECT * FROM contacts')
 stuff = cursor.fetchall()
 
 print(stuff)
@@ -335,18 +349,50 @@ for name, phone, email in stuff:
     print('-' * 20)
 
 # You can also fetch one at a time:
-cursor.execute('SELECT * FROM contacts')
-one = cursor.fetchone()
-two = cursor.fetchone()
-three = cursor.fetchone()
+curs.execute('SELECT * FROM contacts')
+one = curs.fetchone()
+two = curs.fetchone()
+three = curs.fetchone()
 
 print(one)
 print(two)
 print(three)
 
-cursor.close()
-db.commit()
-db.close()
+curs.close()
+conn.commit()
+conn.close()
+
+# -----------------------------------------------------------------------------
+# SQLite Review 2
+# -----------------------------------------------------------------------------
+import sqlite3
+
+# Note: INTEGER PRIMARY KEYS do not need to be given a value. See (NULL, ?, ?).
+# Note: Feed multiple tuples into a query with executemany()
+
+conn = sqlite3.connect('data.db')
+curs = conn.cursor()
+
+table = '''CREATE TABLE IF NOT EXISTS users
+           (id INTEGER PRIMARY KEY,
+           username TEXT,
+           password TEXT)'''
+curs.execute(table)
+
+user = ('bob', 'password')
+insert_query = 'INSERT INTO users VALUES(NULL, ?, ?)'
+curs.execute(insert_query, user)
+
+users =[('rick', 'password'), ('morty', 'password')]
+curs.executemany(insert_query, users)
+
+select_query = 'SELECT * FROM users'
+for row in curs.execute(select_query):
+    print(row)
+
+conn.commit()
+curs.close()
+conn.close()
 
 # -----------------------------------------------------------------------------
 # Cursor or no cursor
@@ -356,13 +402,13 @@ db.close()
 
 import sqlite3
 
-db = sqlite3.connect('contacts.sqlite')
+conn = sqlite3.connect('contacts.sqlite')
 
-for row in db.execute('SELECT * FROM contacts'):
+for row in conn.execute('SELECT * FROM contacts'):
     print(row)
 
 # tuple unpacking again
-for name, phone, email in db.execute('SELECT * FROM contacts'):
+for name, phone, email in conn.execute('SELECT * FROM contacts'):
     print(name)
     print(phone)
     print(email)
@@ -372,7 +418,7 @@ for name, phone, email in db.execute('SELECT * FROM contacts'):
 # we can see how many rows were affected by the previous SQL statement.
 
 update_sql = 'UPDATE contacts SET email = "blerk" WHERE name = "Rick"'
-update_cursor = db.cursor()
+update_cursor = conn.cursor()
 update_cursor.execute(update_sql)
 
 print('{} rows updated'.format(update_cursor.rowcount))
@@ -403,7 +449,7 @@ update_email = input('Enter your email ')
 
 update_sql = "UPDATE contacts SET email = ? WHERE name = ?"
 
-update_cursor = db.cursor()
+update_cursor = conn.cursor()
 update_cursor.execute(update_sql, (update_email, update_name))
 
 # This allows the python sqlite library to "sanitize the input". This process
@@ -424,38 +470,37 @@ update_cursor.execute(update_sql, (update_email, update_name))
 # The table would be deleted. You might think that not knowing the table name
 # would prevent this from happening but it's actually easy to get that info:
 
-for row in db.execute("SELECT * FROM sqlite_master"):
+for row in conn.execute("SELECT * FROM sqlite_master"):
     print(row)
 # ('table', 'contacts', 'contacts', 2, 'CREATE TABLE contacts
 # (name TEXT, phone INTEGER, email TEXT)')
 
 update_cursor.close()
-db.close()
+conn.close()
 
 # -----------------------------------------------------------------------------
 # Placeholders Review
 # -----------------------------------------------------------------------------
 import sqlite3
 
-db = sqlite3.connect('contacts.sqlite')
 
+conn = sqlite3.connect('contacts.sqlite')
 name = input('enter a name: ')
 
 # Method 1
 
-for row in db.execute("SELECT * FROM contacts WHERE name = '{}'".format(name)):
+for row in conn.execute("SELECT * FROM contacts WHERE name='{}'".format(name)):
     print(row)
 
 # Method 2
 
-for row in db.execute('SELECT * FROM contacts WHERE name = ?', (name,)):
+for row in conn.execute('SELECT * FROM contacts WHERE name=?', (name,)):
     print(row)
 
 # Method 3
 
-lookup = 'SELECT * FROM contacts WHERE name = ?'
-
-for row in db.execute(lookup,(name,)):
+lookup = 'SELECT * FROM contacts WHERE name=?'
+for row in conn.execute(lookup,(name,)):
     print(row)
 
 # The big lesson in the last to situations where we're using parameter
@@ -464,7 +509,7 @@ for row in db.execute(lookup,(name,)):
 # And as it turns out, a tuple is REQUIRED when you're doing this kind of
 # parameter substitution.
 
-db.close()
+conn.close()
 
 # -----------------------------------------------------------------------------
 # Detect types
@@ -474,7 +519,7 @@ db.close()
 # time object, or you could ask sqlite to do it for you with the following
 # parameter: detect_types=sqlite3.PARSE_DECLTYPES
 
-db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+conn = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 # There are also a couple of ways to convert the UTC string to local time.
 # see sqlite3_example1.py & sqlite3_example2.py
