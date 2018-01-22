@@ -2,19 +2,19 @@
 
 ## subtitle
 
-Regular text needs no Markup.
+Regular text needs no Markup/down.
 
 ## code
 ```
 pip3 install mylibrary
 ```
-Here is some: `inline code`.
+Here is some `inline code`.
 
 
 ## blockquotes
 
 > This is a blockquote
-> You can precede each line with > if you're using hard returns.
+> You can precede each line with > if you're using hard returns.  
 > Or if you're soft wrapping you can just add > to the first line.
 
 ## lists
@@ -34,14 +34,14 @@ Ordered lists can be marked with any number.
 
 ## emphasis, strong, strikethrough
 
-Surround text with single \* or \_ for <em>
+Surround text with single \* or \_ for
 *emphasized text*
 
-Surround text with double \*\* or \_\_ for <strong>
+Surround text with double \*\* or \_\_ for
 **strong text**
 
 Surround text with double \~\~ for strikethrough
-**strong text**
+~~strikethrough text~~
 
 ## links
 
