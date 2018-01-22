@@ -101,8 +101,8 @@ _   underscore
 !   exclamation mark
 ```
 
-## Sample headings for github documentation
-## Project Name (main heading)
+## Example heading format for documentation:
+## Project Name
 ## Description
 ## Table of contents
 ## Installation
