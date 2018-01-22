@@ -34,7 +34,7 @@
 #      If you set your primary key type to integer (an ID number), you
 #      don't need to enter the integer when inserting a new record, it will
 #      automatically use the next number. That being said... it has to be
-#      INTEGER and not INT. See https://www.sqlite.org/datatype3.html 
+#      INTEGER and not INT. See https://www.sqlite.org/datatype3.html
 # Unique
 #    – A unique constraint is similar to a primary key constraint, except that
 #      a single table may have any number of unique columns. For each unique
@@ -195,6 +195,8 @@ conn.close()
 # SELECT * FROM albums ORDER BY artist, name;
 #    – order first by one column, then by another
 # SELECT email FROM contacts WHERE name='Morty';
+# SELECT * FROM inventory WHERE color='black' LIMIT 1
+#    - returns the first row only
 # SELECT count(*) FROM contacts;
 #    – returns the number of records
 # SELECT count(title) FROM artist_list WHERE artist = 'Aerosmith';
@@ -592,9 +594,9 @@ conn = sa.create_engine('sqlite://')
 # Create a database called inventory with three columns:
 
 conn.execute('''CREATE TABLE inventory
-  (things VARCHAR(20) PRIMARY KEY,
-   count INT,
-   cost FLOAT)''')
+                (things VARCHAR(20) PRIMARY KEY,
+                count INTEGER,
+                cost FLOAT)''')
 
 # Running conn.execute() returns a SQLAlchemy object called a ResultProxy
 
@@ -660,8 +662,8 @@ print(rows)
 # invisible. You define classes, and the ORM handles how to get their data in
 # and out of the database.
 
-# This time we'll define an inventory class and hook it into the ORM. The
-# initial import is the same, but we add something extra after it:
+# This time we'll define an inventory class and hook it into the ORM.
+# The initial import is the same, but we add something extra after it:
 
 import sqlalchemy as sa
 from sqlalchemy.ext.declarative import declarative_base
