@@ -10,15 +10,12 @@ pip3 install mylibrary
 ```
 Here is some: `inline code`.
 
-You can also identify a code block by indenting by 4 spaces, or a tab:
-    pip3 intsall my library
-
 
 ## blockquotes
 
 > This is a blockquote
 > You can precede each line with > if you're using hard returns.
-> Or if you're sift wrapping you can just add > to the first line.
+> Or if you're soft wrapping you can just add > to the first line.
 
 ## lists
 
@@ -35,14 +32,16 @@ Ordered lists can be marked with any number.
 1. list
 
 
-# emphasis or strong
+## emphasis, strong, strikethrough
 
-Surround text with single * or _ for <em>
+Surround text with single \* or \_ for <em>
 *emphasized text*
 
-Surround text with double ** or __ for <strong>
+Surround text with double \*\* or \_\_ for <strong>
 **strong text**
 
+Surround text with double \~\~ for strikethrough
+**strong text**
 
 ## links
 
@@ -72,7 +71,7 @@ You can also place images using the reference method as with links above.
 
 ## horizontal rules
 
-Insert a horizontal rule by typing 3 * or _ on their own line:
+Insert a horizontal rule by typing 3 * or - or _ on their own line:
 
 ***
 ___
@@ -81,18 +80,25 @@ ___
 
 Markdown provides backslash escapes for the following characters:
 
-\\   backslash
-\`   backtick
-\*   asterisk
-\_   underscore
-\{\}  curly braces
-\[\]  square brackets
-\(\)  parentheses
-\#   hash mark
-\+   plus sign
-\-   minus sign (hyphen)
-\.   dot
-\!   exclamation mark
+```
+\   backslash
+`   backtick
+*   asterisk
+_   underscore
+{}  curly braces
+[]  square brackets
+()  parentheses
+#   hash mark
++   plus sign
+-   minus sign (hyphen)
+.   dot
+!   exclamation mark
+```
+
+## line breaks
+
+Two spaces at the end of a line ensure a new line.  
+Here's my new line.
 
 
 # Sample format for github documentation
