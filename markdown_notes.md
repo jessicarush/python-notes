@@ -17,6 +17,11 @@ Here is some `inline code`.
 > You can precede each line with > if you're using hard returns.  
 > Or if you're soft wrapping you can just add > to the first line.
 
+## line breaks
+
+Two spaces at the end of a line ensure a new line.  
+Here's my new line.
+
 ## lists
 
 Unordered lists can be marked with -, +, or *
@@ -40,7 +45,7 @@ Surround text with single \* or \_ for
 Surround text with double \*\* or \_\_ for
 **strong text**
 
-Surround text with double \~\~ for strikethrough
+Surround text with double \~\~ for
 ~~strikethrough text~~
 
 ## links
@@ -75,6 +80,7 @@ Insert a horizontal rule by typing 3 * or - or _ on their own line:
 
 ***
 ___
+---
 
 ## backslash escapes
 
@@ -95,14 +101,11 @@ _   underscore
 !   exclamation mark
 ```
 
-## line breaks
-
-Two spaces at the end of a line ensure a new line.  
-Here's my new line.
-
-
-# Sample format for github documentation
-# Library Name
-## Installation
+## Sample headings for github documentation
+## Project Name (main heading)
 ## Description
-## Implementation
+## Table of contents
+## Installation
+## Usage
+## Credits
+## License
