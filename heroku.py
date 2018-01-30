@@ -6,6 +6,20 @@
 # https://www.heroku.com/
 # https://www.airpair.com/heroku/posts/heroku-tips-and-hacks
 
+# Heroku uses 'dynos'. These are similar to servers, but are more like a
+# virtual machine. When you run a program (app) here, you don't have control of
+# an entire computer, just a virtual system. This means there a limitations
+# in terms of what we can do. For example, heroku does not do caching or things
+# that require a lot of memory. For some reason sqlite3 is one of the things it
+# doesn't do. With the free accounts, dynos will go to sleep after a certain
+# amount of idle hours. At that time, sqlite3 db files get wiped. A better
+# alternative is PostgreSQL.
+
+# Note you can also have more than one dyno associated with a single app to
+# extend the apps capabilities... essentially multiple dynos mean you can run
+# scripts side by side and have them interact with shared resources like a
+# database. Note that multiple dynos is part of the pay services.
+
 # You can create a new python 'app' via Heroku's website or via the command
 # line. First, make sure you've created an account and downloaded the
 # Heroku Command Line Interface (CLI). You can install this with brew:
@@ -56,7 +70,7 @@
 #    This tells heroku what python version you would like heroku to run your
 #    your app with. If you don't specify, it'll be Python 2.7 (ew!). Check the
 #    link above to see which runtime versions are available and enter one:
-#    python-3.6.3
+#    python-3.6.4
 
 # Now let's get our Git set up:
 # $ git init
@@ -87,6 +101,10 @@
 # to external sources like googlefonts. Instead, change those to 'https://'
 # and everything should work fine.
 
+# You can view log files like so:
+# heroku logs --app okeover
+
+
 # -----------------------------------------------------------------------------
 # Creating a PostgreSQL database on heroku
 # -----------------------------------------------------------------------------
@@ -104,8 +122,11 @@
 # This will print out your database url like:
 # DATABASE_URL: postgres://lfhrlgygusjxap:ec6f16796cc41ea29a18251f3dc3ade9e2...
 
+# You can also get you url from the settings tab of your app dashboard,
+# under the button 'Reveal Cofig Vars'
+
 # Copy the URL and paste it into your .py file where you were connecting to
-# your PostgreSQL databse. This address would have been something like:
+# your PostgreSQL database. This address would have been something like:
 # url = 'postgresql://postgres:cinnamon-sticks@localhost/survey_app'
 
 # Add the following to the end of the heroku databse url string:
@@ -113,6 +134,21 @@
 
 # Keep in mind, this will create an empty database. It will not have any tables
 # yet. See the docstring of the Data class in survey_app.
+
+# You can also link to your heroku PostgreSQL database using heroku's
+# environment variables. In the same spot where we saw 'Reveal Cofig Vars'
+# you'll see the PostgreSQL link has a variable name DATABASE_URL
+# we can set our database to that environment variable. Like so:
+
+# import os
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+
+# Not this will only work while the app is running on heroku as the
+# environment varibale doesn't exist on our own system. If you want, you
+# can specify two values. It will try the first, if that fails, it will
+# try the second:
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 
 # Note if you want to query the database locally, you'll need to make sure
 # the "local psql command path" is updated. To do this type the following:
@@ -132,3 +168,67 @@
 # SELECT * FROM data;
 
 # When you're ready to quit this PostrgeSQL utility, type \q
+
+# Final note: If you created your database on heroku only, don't forget to
+# add psycopg2 to your requirements.txt. SQLAlchemy requires it to communicate
+# with PostgreSQL.
+
+# -----------------------------------------------------------------------------
+# Deploying to heroku via github
+# -----------------------------------------------------------------------------
+# From the Deploy tab of your heroku app dashboard, choose GitHub as the
+# deployment method. Then click the button below to connect to github. You get
+# redirected to an authorization window. Allow and enter your password.
+# Then you'll see your github username on listed on herko, beside it type the
+# name of the repo you want to use, click search, then connect.
+
+# From there you have the option of enabling automatic deploys or manual
+# deploys.
+
+# You will still need to add the 3 files described above:
+# - requirements.txt
+# - Procfile
+# - runtime.txt
+
+# Regarding automatic deploys... a good practice for this is to set up auto
+# deploy for branch master. Then, when you're making changes create a new
+# branch first:
+
+# $ git branch new_features
+
+# switch to the new branch:
+# $ git checkout new_features
+
+# Make your changes as you normally would. Git add and commit as normal.
+
+# To push your new branch to github, you would need to:
+# git push --set--upstream origin new_features
+
+# Once you're confident your app is working, merge to your master branch:
+# $ git checkout master
+# $ git merge new_features
+# $ git push
+
+# That final push to the master will auto deploy to heroku.
+
+# -----------------------------------------------------------------------------
+# uWSGI
+# -----------------------------------------------------------------------------
+# Another process for running your app (instead of gunicorn) is uwsgi.
+# uWSGI makes heroku a little more flexible. Note, you don't need to install
+# uwsgi on your own system, just manually add uwsgi to your requirements.txt.
+
+# Create a file in the same directory as the app called uwsgi.ini
+
+# In this file add the following (without '''):
+'''
+[uwsgi]
+http-socket = :$(PORT)
+master = true
+die-on-term = true
+module = app:app
+memory-report = true
+'''
+# Next, edit your Procfile to be the following:
+
+# web: uwsgi uwsgi.ini
