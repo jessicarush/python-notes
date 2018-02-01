@@ -60,11 +60,16 @@ print(any(numbers))
 
 animals = ['fox', 'snake', 'owl', 'cat']
 codewords = ['red box', 'cracked buttons', 'white owl', 'giant cactus']
+
 for words in codewords:
-    if any(animal in words for animal in animals): # generator comprehension!
+    if any(animal in words for animal in animals):
         print('There is an animal in the words')
 
-# There is an animal in the words
+# The long way without any():
+for words in codewords:
+    for animal in animals:
+        if animal in words:
+            print('4. There is an animal in the words')
 
 # ----------------------------------------------------------------------------
 # ascii()
