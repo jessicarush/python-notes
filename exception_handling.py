@@ -83,7 +83,7 @@ print("Program continues...")
 # -----------------------------------------------------------------------------
 # Else and finally
 # -----------------------------------------------------------------------------
-# these are optional clauses that can be added to a try statement.
+# These are optional clauses that can be added to a try statement.
 
 # The else clause is executed only if the code in the try block completes and
 # doesn't raise an exception. It should come after any except clauses.
@@ -249,3 +249,24 @@ for word in words:
 #     raise UppercaseException(word)
 #
 # __main__.UppercaseException: THREE
+
+# -----------------------------------------------------------------------------
+# Summary
+# -----------------------------------------------------------------------------
+# Use try/finally when you want exceptions to propagate up but you also want
+# to run cleanup code when exceptions occur. For example:
+
+fob = open('data/example.txt')
+try:
+    data = fob.read()
+finally:
+    fob.close()
+
+# In this example if an exception happens while reading, the finally block is
+# guaranteed to run. Note open line is not inside the try block because if
+# there's a problem opening, then we don't need to close().
+
+# Use try/except/else blocks to make it clear which exceptions swill be handled
+# by your code and which exceptions will propagate up. The else block can be
+# used to perform additional actions after a successful try block but before
+# the common cleanup in a finally block.
