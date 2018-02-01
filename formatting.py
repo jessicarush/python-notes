@@ -23,17 +23,17 @@ print('%d%%' % test)  # 42% - a literal %
 # appearances of %s in the string needs to match the number of data items
 # after %. If more than one data variable, group like (a, b)
 
-goldenratio = 1.61803398875
+value = 1.61803398875
 name = 'golden ratio'
 
-print('The %s is %f' % (name, goldenratio))
+print('The %s is %f' % (name, value))
 # The golden ratio is 1.618034
 
 # -----------------------------------------------------------------------------
 # New Style formatting - with {} and format()
 # -----------------------------------------------------------------------------
 
-print('The {0} is {1}'.format(name, goldenratio))
+print('The {0} is {1}'.format(name, value))
 # The golden ratio is 1.61803398875
 
 # You can reference dict values like this:
@@ -57,19 +57,19 @@ print(statement.format(**info))
 
 # to specify the type of data as with %s, %d or %f in old style, use {:d} like:
 
-print('The {0:s} is {1:f}'.format(name, goldenratio))
+print('The {0:s} is {1:f}'.format(name, value))
 # The golden ratio is 1.618034
 
 # adding .number limits the number of characters:
 
-print('The {0:.2s} is {1:.2f}'.format(name, goldenratio))
+print('The {0:.2s} is {1:.2f}'.format(name, value))
 # The go is 1.62
-print('The {0:.10s} is {1:.10f}'.format(name, goldenratio))
+print('The {0:.10s} is {1:.10f}'.format(name, value))
 # The golden rat is 1.6180339887
 
 # adding a number without the dot says use at least this many spaces:
 
-print('The {0:20} is {1:20}'.format(name, goldenratio))
+print('The {0:20} is {1:20}'.format(name, value))
 # The golden ratio         is        1.61803398875
 
 # Alignment can be specified with <>^ (left, right, centered):
@@ -109,3 +109,13 @@ def heading(arg):
 heading('the end')
 
 # -----------------------------------The End-----------------------------------
+
+# -----------------------------------------------------------------------------
+# f-strings (formatted string literals) >= Python 3.6
+# -----------------------------------------------------------------------------
+# As of version 3.6 you can do this. Note the f' prefix follows the same
+# pattern as r' for raw strings and b' for byte strings.
+
+f_string = f'The {name} is {value}'
+print(f_string)
+# The golden ratio is 1.61803398875
