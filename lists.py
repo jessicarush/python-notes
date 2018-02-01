@@ -49,7 +49,7 @@ a_string = "11-7-24-19-74"
 a_list = a_string.split('-')  # ['11', '7', '24', '19', '74']
 
 # -----------------------------------------------------------------------------
-# Accessing list values
+# Accessing list values by index
 # -----------------------------------------------------------------------------
 # Get an item by [position]
 
@@ -66,12 +66,25 @@ print(dates[0][1])  # Feb
 
 dates[0] = a_list
 
-# Get a slice or range [start : end : step]
+# -----------------------------------------------------------------------------
+# Slice a list [start : end : step]
+# -----------------------------------------------------------------------------
 
-print(weekdays[::2])   # ['Sunday', 'Tuesday', 'Thursday', 'Saturday']
-print(weekdays[::-2])  # ['Saturday', 'Thursday', 'Tuesday', 'Sunday']
-print(weekdays[::-1])  # ['Saturday', 'Friday', 'Thursday', 'Wednesday',
-                       #  'Tuesday', 'Monday', 'Sunday']
+# You can access a slice of a list. Note this does not change the list.
+
+print(weekdays[1::2])    # ['Monday', 'Wednesday', 'Friday']
+print(weekdays[-1::-6])  # ['Saturday', 'Sunday']
+
+# When assigning to a sliced list, the result is a new list:
+
+weekend = weekdays[-1::-6]
+print(weekend)  # ['Saturday', 'Sunday']
+
+# When you reassign a slice, the number of items don't need to match:
+
+test = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+test[1:7] = ['x', 'y']
+print(test)  # ['a', 'x', 'y', 'h', 'i']
 
 # -----------------------------------------------------------------------------
 # .append()
