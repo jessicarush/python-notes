@@ -3,7 +3,7 @@
 # The following identifiers are used as reserved words, or keywords of the
 # language, and cannot be used as ordinary identifiers. If you absolutely
 # feel for clarity that you must use one of these names for your own variable,
-# an accepted format to follow thename with an undescore. For example: from_
+# an accepted format to follow the name with an underscore. For example: from_
 
 import keyword
 
