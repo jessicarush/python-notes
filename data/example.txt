@@ -1,0 +1,5 @@
+This is
+filler text
+for a demo of list and generator comprehensions
+see comprehensions.py
+-----
