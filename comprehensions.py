@@ -158,45 +158,52 @@ odds = {number for number in range(10) if number % 2 != 0}
 print(odds)  # {1, 3, 5, 7, 9}
 
 # -----------------------------------------------------------------------------
-# Generator comprehensions
+# Generator comprehensions (see also generators.py)
 # -----------------------------------------------------------------------------
-# Tuples don't have comprehensions.
-# Changing the [] or {} of a comprehension to () is actually
-# a generator comprehension and returns a generator object.
+# Tuples don't have comprehensions. Changing the [] or {} to () is actually
+# creating a generator comprehension and returns a generator object.
 
-num_gen = (number * number for number in range(1,6))
+# Generator comprehensions are helpful for when large amounts of data would
+# otherwise consume too much memory and possible crash your program. This
+# example imagines we wan to read a file and get the length of each line.
+# If we use a list comprehensions, each value would have to be held in memory.
+# This works fine for small files:
 
-print(type(num_gen))   # <class 'generator'>
-for num in num_gen:    # you can then iterate over it
-    print(num)
+value = [len(line) for line in open('data/example.txt')]
 
-# Lets write another example, that checks if whether any item in one list
-# is present in another. Starting simple:
+print(value)
+# [8, 12, 48, 22, 7]
 
-animals = ['fox', 'snake', 'white owl', 'cat']
-codewords = ['red box', 'cracked buttons', 'white owl', 'giant cactus']
+# Generator expressions don't materialize the whole output sequence when
+# they're run. They evaluate to an iterator that yields one item at a time.
 
-# (expression for expression in iterable)
-if any(animal in codewords for animal in animals):
-    print('1. There is an animal in the words')
+gen = (len(line) for line in open('data/example.txt'))
 
-# examine the long version:
-for animal in animals:
-    if animal in codewords:
-        print('2. There is an animal in the words')
+print(type(gen))  # <class 'generator'>
+print(next(gen))  # 8
 
-# Let's try again but allow for the animal to be anywhere in the phrase:
+for x in gen:
+    print(x)
+# 12
+# 48
+# 22
+# 6
 
-animals = ['fox', 'snake', 'owl', 'cat']
-codewords = ['red box', 'cracked buttons', 'white owl', 'giant cactus']
+# Once a generator has been exhausted, it's done. If we trying getting the
+# next value we'll raise a StopIteration exception.
 
-# (expression for expression in iterable)
-for words in codewords:
-    if any(animal in words for animal in animals):
-        print('3. There is an animal in the words')
+# Another interesting thing about generator expressions, is that they can
+# be composed together. See here:
 
-# The long way:
-for words in codewords:
-    for animal in animals:
-        if animal in words:
-            print('4. There is an animal in the words')
+gen = (len(line) for line in open('data/example.txt'))
+
+squares = ((x, x**2) for x in gen)
+
+print(next(squares))  # (8, 64)
+print(next(squares))  # (12, 144)
+print(next(squares))  # (48, 2304)
+
+# Chaining generators like this executes very quickly in Python. Bottom line
+# is list comprehensions can cause problems for very large inputs of data by
+# hogging too much memory. Generator expression avoid this by producing outputs
+# one at a time as an iterator.
