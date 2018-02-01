@@ -23,17 +23,17 @@ my_string = "Some content"
 # Concatenate strings with '+'. If the lines are long you can add '\':
 
 long_string1 = 'A long time ago, ' + 'in a galaxy far, far away... ' + \
-              'blah blah bla...'
+               'blah blah bla...'
 
 # That being said, many feel the use of \ should be minimized. When possible,
 # use parenthesis instead. When strings fall on new lines, you don't need '+':
 
 long_string2 = ('A long time ago, ' + 'in a galaxy far, far away... '
-              'blah blah bla...')
+                'blah blah bla...')
 
 long_string3 = ('A long time ago, '
-               'in a galaxy far, far away... '
-               'blah blah bla...')
+                'in a galaxy far, far away... '
+                'blah blah bla...')
 
 print(long_string1)
 print(long_string2)
@@ -97,6 +97,15 @@ against the evil Galactic Empire. '''
 splitline_list = long_string.splitlines()
 print(splitline_list[3])     # spaceships, striking from a hidden
 print(type(splitline_list))  # <class 'list'>
+
+# -----------------------------------------------------------------------------
+# Break a string up into a tuple with .partition()
+# -----------------------------------------------------------------------------
+
+filename = 'image.png'
+test = filename.partition('.')
+
+print(test)  # ('image', '.', 'png')
 
 # -----------------------------------------------------------------------------
 # Join a list into a string with .join()
