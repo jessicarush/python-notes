@@ -3,8 +3,11 @@
 # -----------------------------------------------------------------------------
 # Unicode
 # -----------------------------------------------------------------------------
-# Note: Python 3 strings are Unicode strings not byte arrays.
-# Therefor you can use unicode IDs or names in a string:
+# Note: in Python 3 strings (str) are Unicode strings and bytes are raw 8-bit
+# values. In Python 2, strings are raw 8-bit values and instances of unicode
+# contain Unicode characters.
+
+# Therefor in Python 3 you can use unicode IDs or names in a string:
 
 print('Caf\u00E9') # use \u for four hex numbers
 print('Ghost: \U0001F47B') # use \U for eight hex numbers
@@ -86,6 +89,29 @@ place3 = place_bytes.decode('latin-1')
 print(place3)  # cafÃ©
 
 # The bottom line: whenever possible use UTF-8
+
+# -----------------------------------------------------------------------------
+# Example: helper functions
+# -----------------------------------------------------------------------------
+# You'll often need two helpeer functions that ensure the type of input values
+# matches your codes expectations.
+
+def to_str(bytes_or_str):
+    '''Takes a str or bytes and always returns a str.'''
+    if isinstance(bytes_or_str, bytes):
+        value = bytes_or_str.decode('utf-8')
+    else:
+        value = bytes_or_str
+    return value
+
+
+def to_bytes(bytes_or_str):
+    '''Takes a str or bytes and always returns a bytes.'''
+    if isinstance(bytes_or_str, str):
+        value = bytes_or_str.encode('utf-8')
+    else:
+        value = bytes_or_str
+    return value
 
 # -----------------------------------------------------------------------------
 # Formatting as binary, hex, octal
