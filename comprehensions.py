@@ -80,6 +80,19 @@ cells = [(row, col) for row in rows for col in cols]
 
 print(cells)  # [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]
 
+# Another example of two expressions in a list comprehension.
+# Lets say we wanted to flatten a list of lists into one list:
+
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flat = [x for row in matrix for x in row]
+
+print(flat)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# NOTE: In general, for readability, avoid using more than two expressions
+# in a list comprehension whether that be two loops or a loop and a condition.
+# If you need to write more, consider normal if and for statements and possibly
+# helper functions (see helper_functions.py)
+
 # -----------------------------------------------------------------------------
 # List Comprehensions: practical example from data plotting
 # -----------------------------------------------------------------------------
