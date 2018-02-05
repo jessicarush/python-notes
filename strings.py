@@ -217,10 +217,30 @@ print(test_list)
 # Raw string type literals
 # -----------------------------------------------------------------------------
 
-raw_string = (r"The r at the start of a string before the quotation mark"
-r"tells python it's a raw string, so any escape characters like backlash \t"
-r"will be ignored... unless it's at the end of the string - then you need to"
-r"do a double backlash or a space. This can come into play when creating raw"
-r"strings for directory pathnames like C:\ ")
+raw_str = (r"The 'r' at the start of a string before the quotation mark "
+           r"tells python it's a raw string, so any escape characters like "
+           r"backlash \t will be ignored... unless it's at the end of the "
+           r"string - then you need to do a double backlash or a space. "
+           r"This can come into play when creating raw strings for "
+           r"directory pathnames like C:\ ")
 
-print(raw_string)
+print(raw_str)
+# The 'r' at the start of a string before the quotation mark tells python it's
+# a raw string, so any escape characters like backlash \t will be ignored...
+# unless it's at the end of the string - then you need to do a double backlash
+# or a space. This can come into play when creating raw strings for directory
+# pathnames like C:\
+
+# -----------------------------------------------------------------------------
+# Note: chaining methods
+# -----------------------------------------------------------------------------
+# One thing that I'm clear on now but for some reason was never really pointed
+# out my early training is the fact that you can 'chain' methods together.
+# This is really helpful for shortening code, just make sure it's not at the
+# cost of readability. In my early days I remember seeing these long, complex
+# chains and it was so hard to understand what was going on.
+
+name = ' Raja.JPEG   '
+name = name.strip().lower().replace('jpeg', 'png')
+print(name)
+# raja.png
