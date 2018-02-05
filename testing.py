@@ -35,6 +35,19 @@ print(C)
 # pep8 expects all imports to be at the top of the file.
 
 # -----------------------------------------------------------------------------
+# NOTE Atom linter-pylint package
+# -----------------------------------------------------------------------------
+# After a while, the C0103 pylint warning for invalid constant names gets
+# really irritating. If you want to turn it off permanently in Atom do this:
+
+# Create an rc file:
+# $ pylint --generate-rcfile > ~/.pylintrc
+
+# In this file, find the variable 'disable=...'. It will be located in the
+# [MESSAGES] category. At the end of the disable assignment, add another comma
+# and the code C0103.
+
+# -----------------------------------------------------------------------------
 # Testing code with assert
 # -----------------------------------------------------------------------------
 # To assert is to ensure something is True
