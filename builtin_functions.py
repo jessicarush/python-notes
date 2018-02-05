@@ -304,8 +304,7 @@ def vowels(item):
     vowels = ['a', 'e', 'i', 'o', 'u']
     if item in vowels:
         return True
-    else:
-        return False
+    return False
 
 filtered_letters = list(filter(vowels, letters))
 print(filtered_letters)  # ['a', 'e', 'i', 'o']
@@ -534,10 +533,10 @@ print(max(num1, num2, num3, key=len))  # [24, 4, 12, 56, 285]
 # the max result.
 
 def sum(numlist):
-    sum = 0
+    total = 0
     for num in numlist:
-        sum += num
-    return sum
+        total += num
+    return total
 
 print(max(num1, num2, num3, key=sum))  # [6, 66, 899, 790]
 
@@ -682,12 +681,13 @@ for i in range(0, 6):
 
 numbers = range(0, 100)
 print(type(numbers)) # class 'range'
-print(numbers[0:50:2] == range(0,50,2)) # True
+print(numbers[0:50:2] == range(0, 50, 2)) # True
 
 # ----------------------------------------------------------------------------
 # repr()
 # -----------------------------------------------------------------------------
 # returns a printable representation of the given object:
+import datetime
 
 now = datetime.datetime.utcnow()
 print(repr(now))  # datetime.datetime(2017, 9, 5, 18, 23, 30, 607281)
@@ -747,7 +747,7 @@ print(round(2.675, 2))  # 2.67
 # Not really sure why you would use this instead of dot notation:
 
 class Person:
-     name = 'Adam'
+    name = 'Adam'
 
 p = Person()
 

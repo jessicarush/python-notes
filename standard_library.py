@@ -10,12 +10,15 @@ from collections import Counter
 
 jellybeans = ['red', 'red', 'orange', 'red', 'green', 'green']
 jb_counter = Counter(jellybeans)
-print(jb_counter)  # Counter({'red': 3, 'green': 2, 'orange': 1})
+
+print(jb_counter)
+# Counter({'red': 3, 'green': 2, 'orange': 1})
 
 # most_common() returns all elements in descending order
 # (or just the top count if optional value passed in)
 
-print(jb_counter.most_common(1))  # [('red', 3)]
+print(jb_counter.most_common(1))
+# [('red', 3)]
 
 # combine, find difference and find intersection of counters using +, -, &
 
@@ -25,16 +28,16 @@ jellybeans2 = ['black', 'red', 'yellow', 'yellow']
 jb_counter1 = Counter(jellybeans1)
 jb_counter2 = Counter(jellybeans2)
 
-print(type(jb_counter1))    # <class 'collections.Counter'>
-
-jb_counter1 + jb_counter2
-# returns {'red': 4, 'green': 2, 'yellow': 2, 'black': 1, 'orange': 1}
-jb_counter1 - jb_counter2
-# returns {'red': 2, 'green': 2, 'orange': 1}
-jb_counter2 - jb_counter1
-# returns {'yellow': 2, 'black': 1}
-jb_counter1 & jb_counter2
-# returns {'red': 1}
+print(type(jb_counter1))
+# <class 'collections.Counter'>
+print(jb_counter1 + jb_counter2)
+# Counter({'red': 4, 'green': 2, 'yellow': 2, 'orange': 1, 'black': 1})
+print(jb_counter1 - jb_counter2)
+# Counter({'red': 2, 'green': 2, 'orange': 1})
+print(jb_counter2 - jb_counter1)
+# Counter({'yellow': 2, 'black': 1})
+print(jb_counter1 & jb_counter2)
+# Counter({'red': 1})
 
 # -----------------------------------------------------------------------------
 # deque()
@@ -69,8 +72,8 @@ palindrome_better('radar')    # returns True
 # itertools
 # -----------------------------------------------------------------------------
 # itertools are special purpose iterator functions.
-# each returns one item at a time when called within a for... in loop and
-# remembers its state between calls
+# Each returns one item at a time when called within a for loop and
+# remembers its state between calls.
 
 import itertools
 

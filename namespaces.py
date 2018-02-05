@@ -63,15 +63,15 @@ def testing_nonlocal():
     def inside():
         nonlocal x  # if this statement is removed, the printed output
         x = 'lime'  # would be 'lime', then 'lemon' because we actually
-        print(x)    # would have 3 unigue 'x' varables.
+        print(x)    # would have 3 unique 'x' variables.
     inside()
     print(x)
 
+print(x)
+# orange
 testing_nonlocal()
 # lime
 # lime
-print(x)
-# orange
 
 # NOTE: when you reference a variable name, python will start by looking for
 # the variable definition locally, and then move outward until if finds it.

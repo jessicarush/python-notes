@@ -141,7 +141,7 @@ x = 0x20      # hexadecimal (base 16) starts with 0x
 y = 0b100000  # binary number (base 2) starts with 0b
 z = 0o40      # octal number (base 8) starts with 0o
 
-print (w, x, y, z)  # 32 32 32 32
+print(w, x, y, z)  # 32 32 32 32
 
 # -----------------------------------------------------------------------------
 # Converting integers to binary, hex, octal
@@ -151,7 +151,7 @@ x = hex(32)   # hexadecimal (base 16)
 y = bin(32)   # binary number (base 2)
 z = oct(32)   # octal number (base 8)
 
-print (x, y, z)  # 0x20 0b100000 0o40
+print(x, y, z)  # 0x20 0b100000 0o40
 
 # -----------------------------------------------------------------------------
 # bytes() and bytearray()
@@ -242,8 +242,6 @@ print(data[20:24])  # b'\x00\x00\x00\x8d'
 # struct.pack()
 # -----------------------------------------------------------------------------
 # When you want to go the other way and convert Python data to bytes:
-
-import struct
 
 struct.pack('>L', 154)
 struct.pack('>L', 141)

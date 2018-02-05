@@ -33,7 +33,7 @@ months.append('Feb')
 # Convert a tuple, dict, set or ... into a list using the list() function
 
 a_dict = {'a' : 'A', 'b': 'B', 'c': 'C'}
-a_tuple  = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul')
+a_tuple = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul')
 a_list = list(a_tuple)  # ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul']
 a_list = list(a_dict)   # ['a', 'b', 'c']
 
@@ -137,7 +137,7 @@ while 'four' in list2:
 # breaks the rule of "never modify a list in a for loop". I'm not clear as to
 # whether this particular example is bad or not:
 
-items =  [{"name": "shoes", "price": 20.99}, {"name": "eggs", "price": 1.99}]
+items = [{"name": "shoes", "price": 20.99}, {"name": "eggs", "price": 1.99}]
 
 for item in items:
     if item['name'] == 'eggs':
@@ -206,7 +206,7 @@ print(list3.count('four'))  # 3
 # Convert a list to a string with .join()
 
 bands = ['Melvins', 'Ghost', 'Pucifer']
-joined_string= ' * '.join(bands)
+joined_string = ' * '.join(bands)
 print(joined_string)  # Melvins * Ghost * Pucifer
 
 # FYI you could also create a string from a list like the following, but this
@@ -247,7 +247,7 @@ bands.sort()
 print(bands)                 # ['Ghost', 'Melvins', 'Pucifer']
 
 numbers = [1, 2.5, 6, 3.2]
-numbers.sort(reverse = True)
+numbers.sort(reverse=True)
 print(numbers)  # [6, 3.2, 2.5, 1]
 
 # -----------------------------------------------------------------------------
