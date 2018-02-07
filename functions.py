@@ -1,5 +1,8 @@
 '''Functions, parameters and arguments'''
 
+from datetime import datetime
+from time import sleep
+
 # -----------------------------------------------------------------------------
 # Write a function with def()
 # -----------------------------------------------------------------------------
@@ -41,30 +44,41 @@ def menu(wine, cheese, dessert):
     return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
 
 print(menu('chardonnay', 'cake', 'swiss'))
+# {'wine': 'chardonnay', 'cheese': 'cake', 'dessert': 'swiss'}
 
 # -----------------------------------------------------------------------------
 # Keyword Arguments
 # -----------------------------------------------------------------------------
 
 print(menu(wine='chardonnay', dessert='cake', cheese='swiss'))
+# {'wine': 'chardonnay', 'cheese': 'swiss', 'dessert': 'cake'}
 
 # -----------------------------------------------------------------------------
-# Default Parameters
+# Keyword-only arguments
 # -----------------------------------------------------------------------------
+# In the examples above, we see that it's optional as to whether we use
+# keywords when calling the function. If you feel that for the sake of
+# clarity, keywords should be mandatory, you can specify this by using '*'.
+# The '*' in the argument list indicates the end of positional arguments and
+# the beginning of keyword-only arguments. This way there will be no confusion.
 
-def menu(wine, cheese, dessert='ice cream'):
-    return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
+def menu(wine, cheese, *, courses=3, guests=1):
+    return {'wine': wine, 'cheese': cheese}
 
-print (menu(wine='chardonnay', dessert='cake', cheese='swiss'))
-print (menu(wine='chardonnay', cheese='swiss'))
+# menu('merlot', 'brie', 2, 4)
+# TypeError: menu() takes 2 positional arguments but 4 were given
+
+menu('merlot', 'brie', guests=2, courses=4)
 
 # -----------------------------------------------------------------------------
-# Example of local vs parameter set value
+# Use None to specify dynamic default values
 # -----------------------------------------------------------------------------
 # In this example the function is expected to run each time with a fresh empty
 # result list, add the argument to it, and then print the single-item list.
 # However, it's only empty the first time it's called. The second time, result
-# still has one item from the previous call.
+# still has one item from the previous call. The reason for this is that
+# default argument values are evaluated only once per module load (which
+# usually happens when a program starts up).
 
 def buggy(arg, result=[]):
     result.append(arg)
@@ -72,9 +86,10 @@ def buggy(arg, result=[]):
 
 buggy('a')  # ['a']
 buggy('b')  # ['a', 'b']
-buggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
+buggy('c', ['hello', 'hello'])  # ['hello', 'hello', 'c']
 
-# This works better to have an empty list each time:
+# This works better to have an empty list each time, however we no longer
+# have the option of passing in a list:
 
 def works(arg):
     result=[]
@@ -84,9 +99,7 @@ def works(arg):
 works('a')  # ['a']
 works('b')  # ['b']
 
-# Or fix the first one by passing in something else to indicate the first call:
-# This whole example seems a bit semantic to me but perhaps it will be useful
-# later on:
+# Correct the first one by passing in None to indicate the first call:
 
 def nonbuggy(arg, result=None):
     if result is None:
@@ -97,6 +110,32 @@ def nonbuggy(arg, result=None):
 nonbuggy('a')  # ['a']
 nonbuggy('b')  # ['b']
 nonbuggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
+
+# A more practical example of this situation would be where we want to set
+# a default value using a timestamp. In this case, we want to use a function
+# that gets the current time. If we put the function as the default value,
+# the function will only evaluate once, therefor the time will never update:
+
+def log(message, timestamp=datetime.now()):
+    print(f'{timestamp}: {message}')
+
+log('hello')
+sleep(1)
+log('hello again')
+# 2018-02-06 15:46:31.847122: hello
+# 2018-02-06 15:46:31.847122: hello again
+
+# Instead use None as the default, also a more compact expression:
+
+def log(message, timestamp=None):
+    timestamp = datetime.now() if timestamp is None else timestamp
+    print(f'{timestamp}: {message}')
+
+log('hello')
+sleep(1)
+log('hello again')
+# 2018-02-06 15:46:32.852450: hello
+# 2018-02-06 15:46:33.857498: hello again
 
 # -----------------------------------------------------------------------------
 # Gathering Positional Arguments - *args
