@@ -55,10 +55,20 @@ statement = '{name} who is {age} years old, lives on {address}'
 print(statement.format(**info))
 # boktoktok who is 100 years old, lives on the moon
 
-# to specify the type of data as with %s, %d or %f in old style, use {:d} like:
+# to specify the type of data as with %s, %d or %f in old style, use
+# the format {:d} like so:
 
 print('The {0:s} is {1:f}'.format(name, value))
 # The golden ratio is 1.618034
+
+# format types include:
+# e - exponents
+# b - binary (base 2)
+# o - octal (base 8)
+# d - decimal (base 10)
+# x - hexadecimal (base 16)
+# f - floats
+# s - strings
 
 # adding .number limits the number of characters:
 
@@ -74,7 +84,7 @@ print('The {0:20} is {1:20}'.format(name, value))
 
 # Alignment can be specified with <>^ (left, right, centered):
 
-print('{0:^40}'.format(name)) # centres within 40 spaces
+print('{0:^40}'.format(name)) # centers within 40 spaces
 #               golden ratio
 
 # Fill empty spaces with characters:
@@ -111,7 +121,7 @@ heading('the end')
 # -----------------------------------The End-----------------------------------
 
 # -----------------------------------------------------------------------------
-# f-strings (formatted string literals) >= Python 3.6
+# f-strings (formatted string literals) - Python 3.6
 # -----------------------------------------------------------------------------
 # As of version 3.6 you can do this. Note the f' prefix follows the same
 # pattern as r' for raw strings and b' for byte strings.
