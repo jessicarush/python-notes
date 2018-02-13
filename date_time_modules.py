@@ -96,6 +96,11 @@ time_diff = future - now
 print(time_diff)        # 2505 days, 0:00:00
 print(type(time_diff))  # <class 'datetime.timedelta'>
 
+# You can use any combination of the following intervals with timedelta:
+# days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0
+
+minute_and_a_half = timedelta(minutes=1, seconds=30)
+
 # Note: The range of date is from date.min (year=1, month=1, day=1) to
 # date.max (year=9999, month=12, day=31). As a result, you can't use it for
 # historic or astronomical calculations.
