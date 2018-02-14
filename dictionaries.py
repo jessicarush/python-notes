@@ -47,8 +47,8 @@ dict_from_tos = dict(tuple_of_two_char_strings)
 # this would be like extend() for lists
 
 location = {
-    'apt' : 2,
-    'number' : 1234,
+    'apt' : '2',
+    'number' : '1234',
     'street' : 'Main',
     'city' : 'Vancouver',
     'prov' : 'BC',
@@ -59,7 +59,7 @@ person.update(location)
 # If there are duplicate keys, the first dict will get updated with the
 # values from the second dict:
 
-new_address = { 'number': 1011, 'street': 'Beach'}
+new_address = { 'number': '1011', 'street': 'Beach'}
 
 location.update(new_address)
 print(location)
@@ -101,7 +101,7 @@ print(popped, type(popped))  # 70 <class 'int'>
 # If key is not found and a second argument is not specified - a KeyError
 # exception is raised.
 
-popped = person.pop('satus', 'nope')
+popped = person.pop('status', 'nope')
 print(popped, type(popped))  # nope <class 'str'>
 
 # -----------------------------------------------------------------------------
@@ -291,6 +291,12 @@ jellybeans = defaultdict(int)   # returns 0
 jellybeans = defaultdict(list)  # returns an empty list
 jellybeans = defaultdict(dict)  # returns an empty dictionary
 
+# you could also use lambda
+
+jellybeans = defaultdict(lambda: None)
+jellybeans['red']
+print(jellybeans['red'])  # None
+
 # if you wanted to add items to the the key's value list as with
 # jellybeans = defaultdict(list):
 
@@ -299,20 +305,25 @@ jellybeans['archived'].append('gray')
 jellybeans['archived'].append('beige')
 print(jellybeans['archived'])  # ['gray', 'beige']
 
-# you could also use lambda
+# You can also provide a second arg which could be an existing dictionary:
 
-jellybeans = defaultdict(lambda: None)
-jellybeans['red']
-print(jellybeans['red'])  # None
+d = {'red': 10, 'green': 32, 'blue': 5}
 
-# an example of a counter:
+def log_missing():
+    print('key added')
+    return 0
 
-jellybeans = defaultdict(int)
+dd = defaultdict(log_missing, d)
 
-for key in ['red', 'red', 'orange', 'red']:
-    jellybeans[key] += 1
+add_to_dd = [('yellow', 4), ('red', 5), ('green', 8), ('black', 50)]
 
-print(jellybeans)  # defaultdict(<class 'int'>, {'red': 3, 'orange': 1})
+for key, value in add_to_dd:
+    dd[key] += value
+
+print(dict(dd))
+# key added
+# key added
+# {'red': 15, 'green': 40, 'blue': 5, 'yellow': 4, 'black': 50}
 
 # -----------------------------------------------------------------------------
 # OrderedDict()
