@@ -24,6 +24,11 @@ def forecast():
 # This file can be empty. Python needs it to treat the directory containing
 # it as a package.
 
+# Note that this __init__.py file runs as soon as you import anything from the
+# package. It can be used to set some shared variables or execute some
+# "initialization" code. That being said, programmers do not expect actual
+# logic to happen in this file so keep it at that.
+
 # -----------------------------------------------------------------------------
 # Main program: weather.py
 # -----------------------------------------------------------------------------
@@ -40,8 +45,9 @@ for number, outlook in enumerate(weekly.forecast(), 1):
 # for loop, adding a number to each item starting from 1.
 
 # -----------------------------------------------------------------------------
-# Note: importing specific function/classes
+# Importing specific function/classes
 # -----------------------------------------------------------------------------
+
 # If you wanted to import a function or class from a file that's within
 # a directory like this you'd say:
 
