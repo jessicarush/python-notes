@@ -11,7 +11,7 @@ dir(set)
 #  'union', 'update']
 
 # -----------------------------------------------------------------------------
-# Sets:
+# Create and modify sets
 # -----------------------------------------------------------------------------
 
 #  - a set is like a dictionary but without the values
@@ -47,7 +47,7 @@ print(from_range)   # {1, 2, 3, 4}
 colours.add('cyan')
 
 # remove from a set with .remove():
-# .remove WILL raise an error if it does not find the item
+# .remove will raise an error if it does not find the item
 
 colours.remove('cyan')
 
@@ -74,13 +74,12 @@ new_colours = colours.copy()
 
 # sets can be used in place of values in dictionaries:
 
-drinks = {
-    'martini' : {'vodka', 'vermouth'},
-    'black russian' : {'vodka', 'kahlua'},
-    'white russian' : {'cream', 'kahlua', 'vodka'},
-    'manhattan' : {'rye', 'vermouth', 'bitters'},
-    'screwdriver' : {'orange juice', 'vodka'},
-}
+drinks = {'martini' : {'vodka', 'vermouth'},
+          'black russian' : {'vodka', 'kahlua'},
+          'white russian' : {'cream', 'kahlua', 'vodka'},
+          'manhattan' : {'rye', 'vermouth', 'bitters'},
+          'screwdriver' : {'orange juice', 'vodka'},
+          }
 
 # -----------------------------------------------------------------------------
 # check for a value with if, in, and, not, or, & {}

@@ -528,7 +528,7 @@ test4 = A()
 
 A.children()
 
-# Here's another example that compares a regular method to a classmethod
+# Here's another example that compares a regular method to a class method
 # in terms of inheritance.
 
 # Example A (no class method):

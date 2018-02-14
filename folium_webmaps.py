@@ -45,7 +45,7 @@ print(dir(folium))
 #   'beige', 'darkblue', 'darkgreen', 'cadetblue', 'darkpurple', 'white',
 #   'pink', 'lightblue', 'lightgreen', 'gray', 'black', 'lightgray']
 
-# – icons can be foud here: http://fontawesome.io/icons/
+# – icons can be found here: http://fontawesome.io/icons/
 # – adding fa-inverse to the name of the icon allows it to be not black
 
 loc = [[49.25, -123.115],
