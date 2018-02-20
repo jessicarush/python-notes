@@ -4,7 +4,7 @@
 # installer: https://www.postgresql.org/
 
 # Launch the installer and it will take you into the 'setup wizard'.
-# Choose your intallation diretory, data directory, (by default these are
+# Choose your installation directory, data directory, (by default these are
 # /Library/PostgreSQL/10/data). Then you'll need to create a superuser
 # password. The superuser is 'postgres' by default but you select the password.
 # It's a good idea to record all this in a credentials file including the
@@ -27,7 +27,7 @@
 # Next, you'll need to use the pgAdmin tool to create a database. Once the
 # dashboard tool opens, right click on the PostgreSQL server in the left
 # panel and choose 'Connect Server'. Type your password. Once connected,
-# pop open the Databases group and you'll see one default databse called
+# pop open the Databases group and you'll see one default database called
 # 'postgres'. To create a new one, right click on the 'Databases' group and
 # choose 'Create' > database.
 
@@ -43,6 +43,7 @@
 # placeholder values. It prefers %s instead!
 
 import psycopg2
+
 
 db = ("dbname='test1'"
       "user='postgres'"
