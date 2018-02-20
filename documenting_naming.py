@@ -135,22 +135,24 @@ def ftoc(f_temp):
     return c_temp
 
 # -----------------------------------------------------------------------------
-# Private functions
+# Private attributes or methods
 # -----------------------------------------------------------------------------
 # If you're building a module that will be imported, you can identify functions
 # that aren't intended to be called on their own by naming them with a leading
-# underscore.
+# underscore. Python programmers will interpret this as "this is an internal
+# variable, think carefully before accessing it directly".
 
 def _guts():
     pass
 
 # -----------------------------------------------------------------------------
-# Private attributes (name mangling)
+# Protected attributes or methods (name mangling)
 # -----------------------------------------------------------------------------
-# The naming convention for hidden attributes in classes is a leading double
-# underscore. Python "mangles" the names of attributes that start with two
-# underscores to make it more difficult to accidentally mess with it. The
-# mangling is this: _Classname__attibutename
+# This method is for when you want to strongly suggest that outside objects
+# don't access an attribute, property or method in a classe. The naming
+# convention is a leading double underscore. Python "mangles" the names of
+# attributes that start with two underscores to make it more difficult to
+# accidentally mess with it. The mangling is this: _Classname__attibutename
 
 class Person():
     def __init__(self, name, alias):
@@ -158,10 +160,23 @@ class Person():
         self.__alias = alias   # private attribute
 
 x = Person(name='Bob', alias='boktoktok')
+
 print(x.name)
-#print(x.alias)   # AttributeError: 'Person' object has no attribute 'alias'
-#print(x.__alias)  # AttributeError: 'Person' object has no attribute '__alias'
-print(x._Person__alias)  # This will actually return the attribute
+# Bob
+
+# print(x.alias)
+# AttributeError: 'Person' object has no attribute 'alias'
+
+# p int(x.__alias)
+# AttributeError: 'Person' object has no attribute '__alias'
+
+print(x._Person__alias)
+# boktoktok
+
+# However, most Python programmers will not touch a single underscore variable
+# without a compelling reason, let alone the double. Therefore, this method is
+# overkill. Stick with single leading underscores. If you're going to use
+# either method, make a note of it in the docstring.
 
 # -----------------------------------------------------------------------------
 # Throwaway values
