@@ -17,7 +17,6 @@ henry = Person()
 # assigns it the name henry.
 
 class Person():
-
     def __init__(self):
         pass
 
@@ -34,7 +33,6 @@ class Person():
 # others created from the same class.
 
 class Person():
-
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -68,7 +66,7 @@ print('Name {} age {}, name {} age {}'.format(
 print('Name {0.name} age {0.age}, name {1.name} age {1.age}'.format(
     astronaut, baker))
 
-# -----------------------------------------------------------------------------
+
 # Class attributes
 # -----------------------------------------------------------------------------
 
@@ -88,7 +86,7 @@ class Person():
 
 baker.nationality = 'British'  # local instance variable
 
-# -----------------------------------------------------------------------------
+
 # Default values
 # -----------------------------------------------------------------------------
 # Looking at the example above, we could also look at nationality = 'Canadian'
@@ -121,7 +119,7 @@ class Person():
 # how default values set in the parameters can be helpful when creating
 # subclasses whose defaults should be different.
 
-# -----------------------------------------------------------------------------
+
 # __dict__
 # -----------------------------------------------------------------------------
 # A dictionary or other mapping object is used to store an object’s (writable)
@@ -137,7 +135,7 @@ print(Person.__dict__)
 #  '__dict__': <attribute '__dict__' of 'Person' objects>, '__weakref__':
 #  <attribute '__weakref__' of 'Person' objects>, '__doc__': None}
 
-# -----------------------------------------------------------------------------
+
 # Inheritance
 # -----------------------------------------------------------------------------
 # Creating a new class from an existing class, with some additions or changes.
@@ -184,7 +182,6 @@ class Child5(Parent):          # Child5 will use the Parents __init__,
         print('Child method')
 
 child1 = Child1()
-# child1.method() # AttributeError: 'Child1' object has no attribute 'method'
 # Parent
 # Child 1
 
@@ -211,7 +208,7 @@ child5.method()
 # Child 5
 # Child method
 
-# -----------------------------------------------------------------------------
+
 # super()
 # -----------------------------------------------------------------------------
 # If you override a method like __init__ , you can retrieve attributes back
@@ -244,7 +241,7 @@ class Doctor(Person):
 # our inheritance. By using super(), if the definition of the parent class
 # changes, the child will inherit the changes.
 
-# -----------------------------------------------------------------------------
+
 # .super() with default values
 # -----------------------------------------------------------------------------
 
@@ -274,7 +271,7 @@ print(bat)      # Batty – Lives: 1, Hit points: 0
 print(spider)   # Crawly – Lives: 1, Hit points: 10
 print(spike)    # Spike – Lives: 3, Hit points: 12
 
-# -----------------------------------------------------------------------------
+
 # Multiple Inheritance and super()
 # -----------------------------------------------------------------------------
 
@@ -314,7 +311,23 @@ bat = NonMarineMammal('Bat')
 # Bat is a warm-blooded animal.
 # Bat is an animal.
 
+
+# MRO (Method resolution order)
 # -----------------------------------------------------------------------------
+# Python has a class method that can be applied to any class object that will
+# reveal the order in which the inheritance executes. For example:
+
+from pprint import pprint
+
+pprint(Dog.mro())
+# [<class '__main__.Dog'>,
+#  <class '__main__.NonMarineMammal'>,
+#  <class '__main__.NonWingedMammal'>,
+#  <class '__main__.Mammal'>,
+#  <class '__main__.Animal'>,
+#  <class 'object'>]
+
+
 # Calling methods from a class
 # -----------------------------------------------------------------------------
 # There are a couple of ways to call a method from a class:
@@ -338,7 +351,7 @@ print(snape.alive)
 Person.deceased(snape)
 print(snape.alive)
 
-# -----------------------------------------------------------------------------
+
 # Getter and Setter methods with property()
 # -----------------------------------------------------------------------------
 # Some object oriented languages support private object attributes that can't
@@ -386,8 +399,8 @@ print(p.name)  # Adam
 p.name = 'John'
 del p.name
 
-# -----------------------------------------------------------------------------
-# Getter and Setter methods using decorators
+
+# Getter and Setter methods using @decorators
 # -----------------------------------------------------------------------------
 
 class Person():
@@ -416,7 +429,7 @@ print(p.name)  # Tim
 p.name = 'Paul'
 del p.name
 
-# -----------------------------------------------------------------------------
+
 # Uses for Getters and Setters
 # -----------------------------------------------------------------------------
 # While you shouldn't necessarily worry about private attributes in Python,
@@ -447,7 +460,7 @@ class Player():
 
     lives = property(_get_lives, _set_lives)
 
-# -----------------------------------------------------------------------------
+
 # Uses for property()
 # -----------------------------------------------------------------------------
 
@@ -488,7 +501,7 @@ print(c.diameter) # 10
 c.diameter = 20  # now this will also work
 print(c.radius)  # 10.0
 
-# -----------------------------------------------------------------------------
+
 # Instance methods
 # -----------------------------------------------------------------------------
 # Some data(attributes) and functions(methods) are part of the class itself and
@@ -498,7 +511,7 @@ print(c.radius)  # 10.0
 # parameter of an instance method is self. Any change made to the class
 # affects all of its objects.
 
-# -----------------------------------------------------------------------------
+
 # Class methods
 # -----------------------------------------------------------------------------
 # A class method is a method you can call on the class itself. Use the
@@ -592,7 +605,7 @@ print(friend)        # <__main__.Child object at 0x10150e780>
 # NOTE: you can also write class methods outside of classes. You might do this
 # if you wanted to create a class method that you could call on many classes.
 
-# -----------------------------------------------------------------------------
+
 # Static methods
 # -----------------------------------------------------------------------------
 # The third type of method in a class def is a static method. If affects
@@ -606,7 +619,7 @@ class A():
 
 A.note()
 
-# -----------------------------------------------------------------------------
+
 # Review
 # -----------------------------------------------------------------------------
 # In this example note how the subclasses are using the parents __init__
@@ -663,7 +676,7 @@ who_says(person2)  # Bill :  What?
 who_says(person3)  # Bruce :  OK!
 who_says(brook)    # Brook :  Babble
 
-# -----------------------------------------------------------------------------
+
 # An interesting example
 # -----------------------------------------------------------------------------
 
@@ -685,7 +698,7 @@ two = Coordinate(300, 200)
 
 print(add(one, two))  # Coordinates: {'x': 400, 'y': 400}
 
-# -----------------------------------------------------------------------------
+
 # Summary of Terms
 # -----------------------------------------------------------------------------
 # Class: template for creating objects. All objects created using the same
@@ -695,19 +708,19 @@ print(add(one, two))  # Coordinates: {'x': 400, 'y': 400}
 # Method: a function defined in a class.
 # Attribute: a variable bound to an instance of a class.
 
-# -----------------------------------------------------------------------------
+
 # Classes and Objects versus Modules
 # -----------------------------------------------------------------------------
 # Objects are most useful when you need a number of individual instances that
 # have similar behavior (methods), but differ in their internal attributes.
-# Classes support inheritance, modules don't.
-# If you want only one of something, a module might be best. No matter how many
-# times a Python module is referenced in a program, only one copy is loaded.
-# If you have a number of variables that contain multiple values and can be
-# passed as arguments to multiple functions, it might be better to define them
-# as classes. For example, you might use a dictionary with keys size and color
-# to represent an image. You could create a different dictionary for each image
-# in your program, and pass them as arguments to functions such as scale() or
+# Classes support inheritance, modules don't. If you want only one of
+# something, a module might be best. No matter how many times a Python module
+# is referenced in a program, only one copy is loaded. If you have a number of
+# variables that contain multiple values and can be passed as arguments to
+# multiple functions, it might be better to define them as classes.
+# For example, you might use a dictionary with keys size and color to represent
+# an image. You could create a different dictionary for each image in your 
+# program, and pass them as arguments to functions such as scale() or
 # transform(). This can get messy as you add more keys and functions.
 # It's simpler to define an Image class with attributes size or color and
 # methods scale() and transform(). Then, all the data and methods for a color
