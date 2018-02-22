@@ -1,11 +1,19 @@
 '''Timezones'''
 
-# As discussed, it's best to avoid working with timezones. Instead, the best
+# A reminder: it's best to avoid working with timezones. Instead, the best
 # practice would be to convert any times/dates to UTC at the start, do all
 # your processing in UTC and then convert back to timezones only if you have
 # to at the end for the user.
 
-# -----------------------------------------------------------------------------
+# As it turns out, the web browser knows the user's timezone, and exposes it
+# through the standard date and time JavaScript APIs. A good way of utilizing
+# this is to let the conversion from UTC to a local timezone happen in the
+# web client using JavaScript. There is a small open-source JavaScript library
+# called moment.js that handles this very well. Though not demonstrated in this
+# file, note that there is a Flask extension called Flask-Moment that makes it
+# easy to incorporate moment.js into your Flask app.
+
+
 # pytz module
 # -----------------------------------------------------------------------------
 
@@ -43,27 +51,26 @@ import datetime
 #     else:
 #         print("\tNo timezone defined")
 
-# -----------------------------------------------------------------------------
-# Example:
+
+# pytz example:
 # -----------------------------------------------------------------------------
 
 country = "Europe/Moscow"
 tz_to_display = pytz.timezone(country)
 world_time = datetime.datetime.now(tz=tz_to_display)
 
-print("The time in {} is {}".format(country, world_time))
-
 print("UTC is {}".format(datetime.datetime.utcnow()))
+# The time in Europe/Moscow is 2017-11-24 01:40:00.944335+03:00
+
+print("The time in {} is {}".format(country, world_time))
+# The time in Europe/Moscow is 2017-11-24 01:40:00.944335+03:00
 
 print("The time in {} is {} {}".format(
   country, world_time.strftime('%A %x %X'), world_time.tzname()))
-
-# The time in Europe/Moscow is 2017-11-24 01:40:00.944335+03:00
-# UTC is 2017-11-23 22:40:00.944457
 # The time in Europe/Moscow is Friday 11/24/17 01:40:00 MSK
 
-# -----------------------------------------------------------------------------
-# convert a naive datatime to an aware datetime
+
+# convert a naive datetime to an aware datetime
 # -----------------------------------------------------------------------------
 
 import datetime
@@ -103,8 +110,8 @@ print("Aware local time: {} - time zone: {}".format(
 # Aware UTC: 2017-11-23 22:41:55.967261+00:00 - time zone: UTC
 # Aware local time: 2017-11-23 14:41:55.967261-08:00 - time zone: PST
 
-# -----------------------------------------------------------------------------
-# date in a time zone from epoch
+
+# date in a timezone from epoch
 # -----------------------------------------------------------------------------
 # Use time stamps (seconds since the epoch) to convert to actual date.
 # For this example we'll be supplying the time zone since an epoch number could
