@@ -19,7 +19,7 @@
 #   Internationalization services. The locale setting affects the
 #   interpretation of many format specifiers in strftime() and strptime().
 
-# -----------------------------------------------------------------------------
+
 # calendar module
 # -----------------------------------------------------------------------------
 
@@ -29,8 +29,8 @@ import calendar
 print(calendar.isleap(2016))  # True
 print(calendar.isleap(2017))  # False
 
-# -----------------------------------------------------------------------------
-# datetime module
+
+# datetime module overview
 # -----------------------------------------------------------------------------
 # Note with datetime objects some are considered naive and some are aware.
 # Aware objects are aware of the timezone offset and naive objects are not.
@@ -41,7 +41,7 @@ print(calendar.isleap(2017))  # False
 # – datetime.datetime() for dates and times together
 # – datetime.timedelta() for date and/or time intervals
 
-# -----------------------------------------------------------------------------
+
 # datetime.date()
 # -----------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ now = date.today()
 
 print(now)  # 2017-11-07
 
-# -----------------------------------------------------------------------------
+
 # datetime.timedelta()
 # -----------------------------------------------------------------------------
 
@@ -107,7 +107,7 @@ minute_and_a_half = timedelta(minutes=1, seconds=30)
 
 # See also: timedelta_example.py
 
-# -----------------------------------------------------------------------------
+
 # datetime.time()
 # -----------------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ print(noon.microsecond)  # 0
 # (microseconds). If you don't provide all the arguments, time assumes all the
 # rest are zero.
 
-# -----------------------------------------------------------------------------
+
 # datetime.datetime()
 # -----------------------------------------------------------------------------
 
@@ -182,7 +182,7 @@ print(type(noonish_today)) # <class 'datetime.datetime'>
 print(noonish_today.date()) # 2017-11-07
 print(noonish_today.time()) # 12:03:00
 
-# -----------------------------------------------------------------------------
+
 # Time module
 # -----------------------------------------------------------------------------
 
@@ -265,8 +265,8 @@ print(type(tme))  # <class 'float'>
 
 # Also, if possible, avoid the use of daylight savings time. That being said:
 
-# -----------------------------------------------------------------------------
-# Timezones and DST
+
+# Timezones and DST (see also timezones.py)
 # -----------------------------------------------------------------------------
 
 import time
@@ -296,7 +296,7 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 # local time is 2017-11-07 16:28:23
 # UTC time is 2017-11-08 00:28:23
 
-# -----------------------------------------------------------------------------
+
 # Read and Write Dates & Times
 # -----------------------------------------------------------------------------
 # isoformat() for date, time and datetime objects and, ctime() for epochs
@@ -380,7 +380,7 @@ print(a_date)
 # time.struct_time(tm_year=2017, tm_mon=8, tm_mday=16, tm_hour=0, tm_min=0,
 # tm_sec=0, tm_wday=2, tm_yday=228, tm_isdst=-1)
 
-# -----------------------------------------------------------------------------
+
 # locale module
 # -----------------------------------------------------------------------------
 # Note: Names are specific to your locale (internationalization settings for
@@ -455,7 +455,7 @@ print(de_names)  # ['de_at', 'de_be', 'de_ch', 'de_de', 'de_lu']
 # language codes - https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 # country codes - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 
-# -----------------------------------------------------------------------------
+
 # Measuring time
 # -----------------------------------------------------------------------------
 # A quick way of timing something is to get the current time, do something, get
@@ -518,7 +518,7 @@ print('Elapsed time: {} seconds'.format(end_time - start_time))
 # Use perf_counter() when you want to record elapsed time
 # use process_time() when you want to record elapsed CPU time
 
-# -----------------------------------------------------------------------------
+
 # time.get_clock_info()
 # -----------------------------------------------------------------------------
 # argument names that can be used:
@@ -554,7 +554,7 @@ print(time_i)
 # namespace(adjustable=True, implementation='gettimeofday()',
 #   monotonic=False, resolution=1e-06)
 
-# -----------------------------------------------------------------------------
+
 # Alternative Modules
 # -----------------------------------------------------------------------------
 # If you find the standard library modules confusing, or lacking a particular
