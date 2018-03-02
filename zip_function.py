@@ -1,6 +1,6 @@
 '''zip() Built-in Function'''
 
-# -----------------------------------------------------------------------------
+
 # Iterating over multiple sequences
 # -----------------------------------------------------------------------------
 # the zip() function wraps two or more iterators in a lazy generator.
@@ -43,7 +43,7 @@ for day, fruit, drink, dessert in zip_longest(days, fruits, drinks, desserts):
 # FRIDAY
 # – None, None, None
 
-# -----------------------------------------------------------------------------
+
 # create a dictionary from two sequences
 # -----------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ print(f2e['Mardi'])    # Tuesday
 # as above, zip will stop creating key/value pairs at the end of the shortest
 # list. In the example above, no key will be created for Thursday.
 
-# -----------------------------------------------------------------------------
+
 # Another example
 # -----------------------------------------------------------------------------
 

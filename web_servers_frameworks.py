@@ -1,6 +1,6 @@
-'''Pythons Standard Web Libraries'''
+'''Web Libraries and Frameworks'''
 
-# -----------------------------------------------------------------------------
+
 # http and urllib modules
 # -----------------------------------------------------------------------------
 # Python 3 has bundled all its web client and server modules into 2 packages:
@@ -15,49 +15,61 @@
 # - response handles the server response
 # - parse cracks the parts of a URL
 
-import urllib.request as ur
+from urllib import request
+
 url = 'http://cyan.red'
-conn = ur.urlopen(url)
+conn = request.urlopen(url)
 print(conn)
+# <http.client.HTTPResponse object at 0x103313470>
 
 # conn is an HTTPResponse object with a number of methods. It's read() method
 # will give us data from the web page:
 
 data = conn.read()
 print(data)
+# prints the html as a big, continuous blob
 
 # An important part of an HTTP response is the status code:
 
 print(conn.status)
+# 200
 
 # A 200 means everything is good. There dozens of HTTP status codes grouped
 # into five rages by their first digit:
 
 # 1.. (information)
-#   server received the request but has some extra information for the client
+#     server received the request but has some extra information for the client
 # 2.. (success)
-#   it worked, every success code other than 200 conveys extra details
+#     it worked, every success code other than 200 conveys extra details
 # 3.. (redirection)
-#   the resource moved, so the response returns the new URL to the client
+#     the resource moved, so the response returns the new URL to the client
 # 4.. (client error)
-#   some problem from the client side such as the 404(not found)
+#     some problem from the client side such as the 404(not found)
 # 5.. (server error)
-#   500 is the generic, you might see 502(bad gateway) if there's a disconnect
-#   between web server and backend application server.
+#     500 is the generic, you might see 502(bad gateway) if there's a
+#     disconnect between web server and backend application server.
 
 # Web servers can send data back in any format. The data format is specified by
 # the HTTP response header value with the name Content-Type:
 
 print(conn.getheader('Content-Type'))
+# text/html
 
-# above returns a MIME type text/plain and text/html are two examples
+# The above returns a MIME type: text/plain and text/html are two examples.
 
-# other HTML header information can be retrieved too:
+# Other HTML header information can be retrieved too:
 
 for key, value in conn.getheaders():
-    print(key, 'is', value)
+    print(key, ':\t', value)
+# Date :              Fri, 02 Mar 2018 19:52:00 GMT
+# Server :            Apache
+# Last-Modified :     Mon, 27 Mar 2017 18:59:53 GMT
+# Accept-Ranges :     bytes
+# Content-Length :    6175
+# Connection :        close
+# Content-Type :      text/html
 
-# -----------------------------------------------------------------------------
+
 # Requests Library
 # -----------------------------------------------------------------------------
 # install: $ pip3 install requests
@@ -66,12 +78,16 @@ for key, value in conn.getheaders():
 # a simple HTTP library (module) for Python web client tasks
 
 import requests
+
 url = 'http://cyan.red'
 resp = requests.get(url)
 print(resp)
-print(resp.text)
+# <Response [200]>
 
-# -----------------------------------------------------------------------------
+print(resp.text)
+# prints the html formatted nicely
+
+
 # Web Servers
 # -----------------------------------------------------------------------------
 # Python is an excellent language for writing web servers and server-side
@@ -113,8 +129,8 @@ print(resp.text)
 # handle dynamic content. Stop it by killing its process (ctrl+c). For a busy
 # website you would use a traditional web server such as Apache or nginx.
 
-# -----------------------------------------------------------------------------
-# Web Server Gateway Interface
+
+# Web Server Gateway Interface - WSGI
 # -----------------------------------------------------------------------------
 # In the early days of the Web, the Common Gateway Interface (CGI) was
 # designed for clients to make web servers run external programs and return
@@ -129,7 +145,7 @@ print(resp.text)
 # servers. All of the Python web frameworks and web servers in the following
 # examples use WSGI.
 
-# -----------------------------------------------------------------------------
+
 # Frameworks
 # -----------------------------------------------------------------------------
 # Web servers handle the HTTP and WSGI details, but you use web frameworks to
@@ -145,12 +161,13 @@ print(resp.text)
 # – Authentication and authorization: handle usernames, passwords, permissions
 # – Sessions: maintain transient data storage during a user's visit to the site
 
-# -----------------------------------------------------------------------------
+
 # Bottle (microframework, doesn't include direct support for databases)
 # -----------------------------------------------------------------------------
 # Bottle consists of a single Python file, so it's very easy to try out, and
-# to deploy later. To install it: $ pip3 install bottle
+# to deploy later.
 
+# $ pip3 install bottle
 # http://http://bottlepy.org/docs/dev/
 
 # Save as bottle1.py:
@@ -184,13 +201,14 @@ def main():
 
 # This will serve any/all additional files in your directory,
 # including but not limited to css:
+
 @route('/<filename:path>')
 def send_static(filename):
     return static_file(filename, root='bottletest/')
 
 run(host='localhost', port=9999)
 
-# -----------------------------------------------------------------------------
+
 # Flask (microframework, doesn't include direct support for databases)
 # -----------------------------------------------------------------------------
 # Flask supports many useful web development extensions such as facebook
@@ -203,11 +221,11 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')  # url where you will view the page: http://127.0.0.1:5000/
+@app.route('/')  # http://127.0.0.1:5000/
 def home():
     return 'Home - Content goes here'
 
-@app.route('/about/')  # http://127.0.0.1:5000/about
+@app.route('/about')  # http://127.0.0.1:5000/about
 def about():
     return 'About - content goes here'
 
@@ -303,7 +321,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/echo/')
+@app.route('/echo')
 def echo():
     thing = request.args.get('thing')
     other = request.args.get('other')
@@ -336,7 +354,7 @@ app.run(port=9999, debug=True)
 # The **kwargs acts like thing=thing, other=other. It saves some typing if
 # there are a lot of input arguments. Use the same url pattern as above.
 
-# -----------------------------------------------------------------------------
+
 # Other Frameworks
 # -----------------------------------------------------------------------------
 # If you want to build a website backed by a relational database, you can use
@@ -345,7 +363,7 @@ app.run(port=9999, debug=True)
 # doesn't change very often, it might be worth working with one of the larger
 # Python web frameworks like:
 
-# Django - he most popular, especially for large sites. It includes ORM code
+# Django - the most popular, especially for large sites. It includes ORM code
 # to create automatic web pages for the typical database CRUD functions
 # (create, replace, update, delete). You don't have to use django's ORM if you
 # prefer another, such as SQLAlchemy, or direct SQL queries.
