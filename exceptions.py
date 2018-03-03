@@ -391,6 +391,7 @@ class Inventory:
 item = 'widget'
 inv = Inventory()
 inv.lock(item)
+
 try:
     num_left = inv.purchase(item)
 except InvalidItemType:

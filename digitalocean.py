@@ -28,7 +28,7 @@
 # enter the username (root), that long, nasty password (twice), then your new
 # password (twice).
 
-# The first commend you'll want to run is:
+# The first command you'll want to run is:
 
 # apt-get update
 

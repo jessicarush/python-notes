@@ -1,6 +1,6 @@
 '''Sets'''
 
-# -----------------------------------------------------------------------------
+
 # Set methods
 # -----------------------------------------------------------------------------
 
@@ -10,10 +10,9 @@ dir(set)
 #  'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update',
 #  'union', 'update']
 
-# -----------------------------------------------------------------------------
+
 # Create and modify sets
 # -----------------------------------------------------------------------------
-
 #  - a set is like a dictionary but without the values
 #  - like a dictionary, sets are unordered
 #  - like a dictionary, each key must be unique
@@ -81,7 +80,7 @@ drinks = {'martini' : {'vodka', 'vermouth'},
           'screwdriver' : {'orange juice', 'vodka'},
           }
 
-# -----------------------------------------------------------------------------
+
 # check for a value with if, in, and, not, or, & {}
 # -----------------------------------------------------------------------------
 
@@ -148,7 +147,7 @@ test6()
 # test 6:  black russian
 # test 6:  screwdriver
 
-# -----------------------------------------------------------------------------
+
 # More set operators
 # -----------------------------------------------------------------------------
 
@@ -216,7 +215,7 @@ print(a.issuperset(b))                    # False
 print(bruss >= wruss)                     # False
 print(bruss.issuperset(wruss))            # False
 
-# -----------------------------------------------------------------------------
+
 # Frozen Sets
 # -----------------------------------------------------------------------------
 #  - frozen sets are immutable
