@@ -67,33 +67,52 @@ print('Name {0.name} age {0.age}, name {1.name} age {1.age}'.format(
     astronaut, baker))
 
 
-# Class attributes
+# Class attributes (class variables)
 # -----------------------------------------------------------------------------
 
-class Person():
+class Contact():
 
-    nationality = 'Canadian'  # class attribute
+    all_contacts = []  # class variable
 
-    def __init__(self, name, age):
+    def __init__(self, name, email):
         self.name = name
-        self.age = age
+        self.email = email
+        Contact.all_contacts.append(self)
 
-# Class attributes will be available to all instances. Basically if you type
-# something like baker.nationality, it will check first in baker for the value,
-# if it doesn't find it there it will look in the class. Note that if you do a
-# new assignment for an instance, you are not reassigning the original
-# variable, you are creating a new local instance variable with the same name:
 
-baker.nationality = 'British'  # local instance variable
+# The all_contacts list above is shared by all instances of the class. This
+# means that there is only one all_contacts contacts list which we can access
+# by Contact.all_contacts or self.all_contacts on any object instantiated from
+# Contact. If you use the second method, it will check first in the object for
+# the value then, if it doesn't find it there it will look in the class... and
+# thus refer to the same single list. Note that if you do an assignment via the
+# Class, the the variable is changed, but if you do it via an instance, you are
+# not reassigning the original variable, you are creating a new local instance
+# variable with the same name:
 
+a = Contact('rick', 'rick@email.com')
+b = Contact('morty', 'morty@email.com')
+c = Contact('summer', 'summer@email.com')
+
+print(Contact.all_contacts == c.all_contacts)  # True
+
+Contact.all_contacts = set(Contact.all_contacts)
+
+c.all_contacts = tuple(Contact.all_contacts)   # new local instance variable
+
+print(Contact.all_contacts == c.all_contacts)  # False
+
+Contact.all_contacts = list(Contact.all_contacts)
 
 # Default values
 # -----------------------------------------------------------------------------
-# Looking at the example above, we could also look at nationality = 'Canadian'
-# as a default value being set for an attribute. In these cases, it makes more
-# sense to specify this initial value in the body of the __init__ method. Note
-# that if you specify a default value for an attribute like this, you don't
-# need to include it as a parameter in the __init__ methods parenthesis.
+# Looking at the example above, we could imagine using class variables like a
+# default value. If the value isn;t found in the object, it will look in the
+# class. In these cases, it makes more sense to specify this initial value in
+# the body of the __init__ method. If the intention is for instances to have
+# their own value, we should see this instantiated with self. Note that if you
+# specify a default value for an attribute like this, you don't need to include
+# it as a mandatory parameter in the __init__ methods parenthesis.
 
 class Person():
 
@@ -134,6 +153,30 @@ print(Person.__dict__)
 # {'__module__': '__main__', '__init__': <function Person.__init__ at 0x101bb6d90>,
 #  '__dict__': <attribute '__dict__' of 'Person' objects>, '__weakref__':
 #  <attribute '__weakref__' of 'Person' objects>, '__doc__': None}
+
+
+# Calling methods from a class
+# -----------------------------------------------------------------------------
+# There are a couple of ways to call a method from a class:
+
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.alive = True
+
+    def deceased(self):
+        self.alive = False
+
+snape = Person('Severus Snape', 38)
+
+# call the method (function) like this:
+snape.deceased()
+print(snape.alive)
+
+# or like this:
+Person.deceased(snape)
+print(snape.alive)
 
 
 # Inheritance
@@ -272,8 +315,14 @@ print(spider)   # Crawly – Lives: 1, Hit points: 10
 print(spike)    # Spike – Lives: 3, Hit points: 12
 
 
-# Multiple Inheritance and super()
+# Multiple Inheritance
 # -----------------------------------------------------------------------------
+# In principle, it's very simple: a subclass that inherits from more than one
+# parent class is able to access functionality from both of them. In practice,
+# this is less useful than it sounds and many expert programmers recommend
+# against using it. This example is not very practical but demonstrates the
+# idea. The simplest and most useful form of multiple inheritance is called a
+# mixin and is described below.
 
 class Animal:
   def __init__(self, name):
@@ -327,37 +376,181 @@ pprint(Dog.mro())
 #  <class '__main__.Animal'>,
 #  <class 'object'>]
 
+# Note that this order can be modified, but that's some pretty expert stuff.
+# http://www.python.org/download/releases/2.3/mro/.
 
-# Calling methods from a class
+
+# Diamond inheritance
 # -----------------------------------------------------------------------------
-# There are a couple of ways to call a method from a class:
+# One thing that .super() does is resolve a problem with diamond inheritance.
+# Diamond inheritance happens when you have a subclass that inherits from two
+# superclasses, and those two superclasses inherit from the same base class.
+# If you draw this out, it creates a diamond shape. Technically, all classes
+# inherit from the Object base class so it's a thing. What ends of happening
+# here is the base class' __init__ method ends up being called twice. That's
+# relatively harmless with the Object class, but in some situations, it could
+# be bad... imagine trying to connect to a database twice for every request.
 
-class Person():
-    def __init__(self, name, age):
+
+class Base():
+    def __init__(self):
+        print("Base initializing")
+
+class Left(Base):
+    def __init__(self):
+        Base.__init__(self)
+        print("Left initializing")
+
+class Right(Base):
+    def __init__(self):
+        Base.__init__(self)
+        print("Right initializing")
+
+class Subclass(Left, Right):
+    def __init__(self):
+        Left.__init__(self)
+        Right.__init__(self)
+        print("Subclass initializing")
+
+s = Subclass()
+# Base initializing
+# Left initializing
+# Base initializing
+# Right initializing
+# Subclass initializing
+
+
+class Base():
+    def __init__(self):
+        print("Base initializing")
+
+class Left(Base):
+    def __init__(self):
+        super().__init__()
+        print("Left initializing")
+
+class Right(Base):
+    def __init__(self):
+        super().__init__()
+        print("Right initializing")
+
+class Subclass(Left, Right):
+    def __init__(self):
+        super().__init__()
+        print("Subclass initializing")
+
+s = Subclass()
+# Base initializing
+# Right initializing
+# Left initializing
+# Subclass initializing
+
+# Use **kwargs to handle multiple parameters:
+
+class Base():
+    def __init__(self):
+        print("Base initializing")
+
+class Left(Base):
+    def __init__(self, name='', email='', **kwargs):
+        super().__init__(**kwargs)
         self.name = name
-        self.age = age
-        self.alive = True
+        self.email = email
+        print("Left initializing")
 
-    def deceased(self):
-        self.alive = False
+class Right(Base):
+    def __init__(self, address='', street='', **kwargs):
+        super().__init__(**kwargs)
+        self.address = address
+        self.street = street
+        print("Right initializing")
 
-snape = Person('Severus Snape', 38)
+class Subclass(Left, Right):
+    def __init__(self, phone='', **kwargs):
+        super().__init__(**kwargs)
+        self.phone = phone
+        print("Subclass initializing")
 
-# call the method (function) like this:
-snape.deceased()
-print(snape.alive)
 
-# or like this:
-Person.deceased(snape)
-print(snape.alive)
+s = Subclass(name='bob', phone=6041234567, street=1234)
+# Base initializing
+# Right initializing
+# Left initializing
+# Subclass initializing
+
+# Basic multiple inheritance can be handy but, in many cases, we may want to
+# choose a more transparent way of combining two disparate classes, usually
+# using composition or another design pattern.
+
+
+# Mixins
+# -----------------------------------------------------------------------------
+# A mixin is generally a superclass that is not meant to exist on its own, but
+# is meant to be inherited by some other class to provide extra functionality.
+# Fr example, lets say we wanted to add emailing functionality to a class.
+# Since sending email is a common task that we might want to use on many other
+# classes, a mixin is a good solution.
+
+class Emailer():
+    def send_email(self, message):
+        print("Sending mail to " + self.email)
+        # email logic goes here
+
+class Subscriber(Contact, Emailer):
+    pass
+
+s = Subscriber('bob', 'bob@email.com')
+
+s.send_email('Hello, this is a test.')
+# Sending mail to bob@email.com
+
+
+# Extending built-ins with inheritance
+# -----------------------------------------------------------------------------
+# Referring back to the Contact class from above. Imagine that we wanted to
+# include a search function. We could add this to the Contact class, but it
+# feels like this belongs to the list itself. We can do this with inheritance:
+
+class ContactList(list):
+
+    def search(self, name):
+        '''Return all contacts that contain the search value in the name.'''
+        matching_contacts = []
+        for contact in self:
+            if name in contact.name:
+                matching_contacts.append(contact)
+        return matching_contacts
+
+
+class Contact():
+
+    all_contacts = ContactList()
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        Contact.all_contacts.append(self)
+
+
+a = Contact('rick', 'rick@email.com')
+b = Contact('morty', 'morty@email.com')
+c = Contact('summer', 'summer@email.com')
+
+search = Contact.all_contacts.search('sum')
+
+print(search)
+# [<__main__.Contact object at 0x101ce1860>]
+
+print(search[0].name)
+# summer
 
 
 # Getter and Setter methods with property()
 # -----------------------------------------------------------------------------
 # Some object oriented languages support private object attributes that can't
-# be accessed from the outside. They have to write getter and setter methods to
-# read and write the values on these private attributes. Python doesn't need
-# these because all attributes and methods are public. A good way to hide
+# be accessed from the outside. They have to write getter and setter methods
+# to read and write the values on these private attributes. Python doesn't
+# need these because all attributes and methods are public. A good way to hide
 # attributes is to use property(). The naming convention for hidden attributes
 # is __whatever (see documenting_naming.py).
 
@@ -620,64 +813,7 @@ class A():
 A.note()
 
 
-# Review
-# -----------------------------------------------------------------------------
-# In this example note how the subclasses are using the parents __init__
-# method. Because of this we can use the variable self.words in the subclasses.
-
-class Quote():
-    def __init__(self, person, words):
-        self.person = person
-        self.words = words
-
-    def who(self):
-        return self.person
-
-    def says(self):
-        return self.words + '.'
-
-class Question(Quote):
-    def says(self):
-        return self.words + '?'
-
-class Exclamation(Quote):
-    def says(self):
-        return self.words + '!'
-
-person1 = Quote('Bob', 'Hello')
-person2 = Question('Bill', 'What')
-person3 = Exclamation('Bruce', 'OK')
-
-# testing:
-print(person1.who(), ': ', person1.says())  # Bob :  Hello.
-print(person2.who(), ': ', person2.says())  # Bill :  What?
-print(person3.who(), ': ', person3.says())  # Bruce :  OK!
-
-# Here's another class that has no relation to the previous classes
-# (descendants of Quote), but will use the same method names:
-
-class BabblingBrook():
-    def who(self):
-        return 'Brook'
-
-    def says(self):
-        return 'Babble'
-
-brook = BabblingBrook()
-
-# Now a function that runs the who() and says() methods of any object:
-
-def who_says(obj):
-    print(obj.who(), ': ', obj.says())
-
-# testing:
-who_says(person1)  # Bob :  Hello.
-who_says(person2)  # Bill :  What?
-who_says(person3)  # Bruce :  OK!
-who_says(brook)    # Brook :  Babble
-
-
-# An interesting example
+# Review: an interesting example
 # -----------------------------------------------------------------------------
 
 class Coordinate():
@@ -719,7 +855,7 @@ print(add(one, two))  # Coordinates: {'x': 400, 'y': 400}
 # variables that contain multiple values and can be passed as arguments to
 # multiple functions, it might be better to define them as classes.
 # For example, you might use a dictionary with keys size and color to represent
-# an image. You could create a different dictionary for each image in your 
+# an image. You could create a different dictionary for each image in your
 # program, and pass them as arguments to functions such as scale() or
 # transform(). This can get messy as you add more keys and functions.
 # It's simpler to define an Image class with attributes size or color and
