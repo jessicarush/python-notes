@@ -239,4 +239,5 @@ tuple.__str__()
 # its object base class.
 
 # Another way of implementing polymorphism: one class can behave like another
-# class as long as it contains the necessary methods and data attributes.
+# class as long as it contains the necessary methods and data attributes. This
+# Is often called duck typing.
