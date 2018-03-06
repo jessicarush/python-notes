@@ -420,6 +420,14 @@ finally:
 
 # Summary
 # -----------------------------------------------------------------------------
+# Exceptions are a powerful way to communicate unusual circumstances or error
+# conditions without requiring a calling function to explicitly check return
+# values. Sometimes, letting the exception propagate to the console is the
+# best way to communicate to the user, especially if the user is also the
+# script's coder. Sometimes, you can recover from the error and allow the
+# program to continue. Sometimes, you can only reformat the error into
+# something the user can understand and display it to them.
+
 # Use try/finally when you want exceptions to propagate up but you also want
 # to run cleanup code when exceptions occur. For example closing a file,
 # rolling back a database or whatever.
@@ -447,3 +455,11 @@ finally:
 # describe what went on. The client programmer should easily see how to fix the
 # error (if it reflects a bug in their code) or handle the exception (if it's
 # a situation they need to be made aware of).
+
+# Some common places to look are file I/O (is it possible your code will try
+# to read a file that doesn't exist?), mathematical expressions (is it possible
+# that a value you are dividing by is zero?), list indices (is the list empty?),
+# and dictionaries (does the key exist?). Ask yourself if you should ignore the
+# problem, handle it by checking values first, or handle it with an exception.
+# Pay special attention to areas where you might have used finally and else to
+# ensure the correct code is executed under all conditions.
