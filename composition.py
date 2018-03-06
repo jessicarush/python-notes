@@ -5,7 +5,7 @@
 # aggregation (x has-a y) makes more sense. There is actually a difference
 # between composition and aggregation though they often blur together.
 
-# -----------------------------------------------------------------------------
+
 # Composition
 # -----------------------------------------------------------------------------
 # In this example, the Room class creates a Floor object and a Windows object.
@@ -31,7 +31,7 @@ class Room():
 bathroom = Room('tiled', 0)
 bathroom.about()  # This room has tiled floors and 0 windows
 
-# -----------------------------------------------------------------------------
+
 # Aggregation
 # -----------------------------------------------------------------------------
 # Unlike composition, aggregation uses existing instances of objects to build
@@ -63,3 +63,62 @@ windows = Windows('4')
 kitchen = Room(floor, windows)
 
 kitchen.about()  # This room has hardwood floors and 4 windows
+
+
+# Composition vs Inheritance
+# -----------------------------------------------------------------------------
+# There's always more than one solution. Consider the following where we want
+# to include address information for a class. The first example uses
+# composition, the second uses inheritance. Both are viable solutions but
+# composition (has a) feels like it makes more sense.
+
+# Composition (Customer has a Address):
+
+class Address():
+    def __init__(self, street, city, province, code):
+        self.street = street
+        self.city = city
+        self.province = province
+        self.code = code
+
+class Customer():
+    def __init__(self, name, email, **kwargs):
+        self.name = name
+        self.email = email
+        self.address = Address(**kwargs)
+
+a = {'street': '1234 Main St.',
+     'city': 'Vancouver',
+     'province': 'BC',
+     'code': 'V5V1X1'}
+
+c = Customer('bob', 'bob@email.com', **a)
+
+print(c.address.city)
+# Vancouver
+
+
+# Inheritance (Customer is a AddressHolder):
+
+class AddressHolder():
+    def __init__(self, street, city, province, code):
+        self.street = street
+        self.city = city
+        self.province = province
+        self.code = code
+
+class Customer(AddressHolder):
+    def __init__(self, name, email, **kwargs):
+        self.name = name
+        self.email = email
+        super().__init__(**kwargs)
+
+a = {'street': '1234 Main St.',
+     'city': 'Victoria',
+     'province': 'BC',
+     'code': 'V5V1X1'}
+
+c = Customer('chuck', 'chuck@email.com', **a)
+
+print(c.city)
+# Victoria
