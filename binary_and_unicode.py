@@ -1,6 +1,6 @@
 '''Binary data and Unicode Strings'''
 
-# -----------------------------------------------------------------------------
+
 # Unicode
 # -----------------------------------------------------------------------------
 # Note: in Python 3 strings (str) are Unicode strings and bytes are raw 8-bit
@@ -32,45 +32,63 @@ unicode_test('A')      # A – LATIN CAPITAL LETTER A – A
 unicode_test('\u00E9') # é – LATIN SMALL LETTER E WITH ACUTE – é
 unicode_test('∞')      # ∞ – INFINITY – ∞
 
-# -----------------------------------------------------------------------------
+
 # Encoding
 # -----------------------------------------------------------------------------
 # Using a string's encode() method, you can convert unicoded strings into any
-# encodings supported by Python. By default, Python uses utf-8 encoding.
-# It's best to stick with UTF-8.
+# encodings supported by Python. By default, Python uses utf-8 encoding and
+# it's best to stick with UTF-8.
 
 # Be careful when copying & pasting from other sources (such as web pages)
 # into python strings as they may be encoded in Latin-1 or Windows 1252.
 # This will cause exceptions later.
 
-# The functions first arg is the encoding name such as:
+# The encode() functions first arg is the encoding name such as:
 
-character = '\u00E9'
-#character.encode('ascii')              # seven-bit ASCII
-character.encode('utf-8')               # eight bit variable length
-print(type(character.encode('utf-8')))  # <class 'bytes'>
-character.encode('latin-1')             # also known as ISO 8859-1
-character.encode('unicode-escape')      # Python unicode literal format
+string = 'hello'
+string.encode('ascii')               # seven-bit ASCII
+string.encode('latin-1')             # also known as ISO 8859-1
+string.encode('unicode-escape')      # Python unicode literal format
+string.encode('utf-8')               # eight bit variable length
 
-# encode() takes a second arg that avoids encoding exceptions – where the
+print(type(string.encode('utf-8')))  # <class 'bytes'>
+
+# encode() takes a second arg that avoids encoding exceptions where the
 # character doesn't exist in that set.
 
-# throw away anything that won't encode:
-character.encode('ascii', 'ignore')
-# replace anything that won't encode with '?'
-character.encode('ascii', 'replace')
-# produce python unicode character string:
-character.encode('ascii', 'backslashreplace')
-# produce character entity for HTML:
-character.encode('ascii', 'xmlcharrefreplace')
+string = 'hello \u00E9'
 
-# -----------------------------------------------------------------------------
+# throw away anything that won't encode:
+print(string.encode('ascii', 'ignore'))
+# b'hello '
+
+# replace anything that won't encode with '?'
+print(string.encode('ascii', 'replace'))
+# b'hello ?'
+
+# replace anything that won't encode with its name
+print(string.encode('ascii', 'namereplace'))
+# b'hello \N{LATIN SMALL LETTER E WITH ACUTE}'
+
+# produce character entity for HTML:
+print(string.encode('ascii', 'xmlcharrefreplace'))
+# b'hello &#233;'
+
+# produce python unicode character string:
+test = string.encode('ascii', 'backslashreplace')
+print(test)
+# b'hello \\xe9'
+
+print('hello \xe9')
+# hello é
+
+
 # Decoding
 # -----------------------------------------------------------------------------
 # We decode byte strings to Unicode strings. Whenever we get text from some
 # external source (files, databases, websites), it's encoded as byte strings.
-# The tricky part is knowing which encoding was actually used, so we can run it
-# backward and get Unicode strings.
+# The tricky part is knowing which encoding was actually used, so we can run
+# it backward and get Unicode strings.
 
 place = 'caf\u00e9'                   # a unicode string
 print(type(place))                    # <class 'str'>
@@ -90,10 +108,10 @@ print(place3)  # cafÃ©
 
 # The bottom line: whenever possible use UTF-8
 
-# -----------------------------------------------------------------------------
+
 # Example: helper functions
 # -----------------------------------------------------------------------------
-# You'll often need two helpeer functions that ensure the type of input values
+# You'll often need two helper functions that ensure the type of input values
 # matches your codes expectations.
 
 def to_str(bytes_or_str):
@@ -113,10 +131,9 @@ def to_bytes(bytes_or_str):
         value = bytes_or_str
     return value
 
-# -----------------------------------------------------------------------------
+
 # Formatting as binary, hex, octal
 # -----------------------------------------------------------------------------
-
 # {:b) will format numbers as binary (base 2):
 
 for i in range(17):
@@ -132,7 +149,7 @@ for i in range(17):
 for i in range(17):
     print("{0:>2} in octal is {0:>4o}".format(i))
 
-# -----------------------------------------------------------------------------
+
 # Inputing binary, hex, octal
 # -----------------------------------------------------------------------------
 
@@ -143,7 +160,7 @@ z = 0o40      # octal number (base 8) starts with 0o
 
 print(w, x, y, z)  # 32 32 32 32
 
-# -----------------------------------------------------------------------------
+
 # Converting integers to binary, hex, octal
 # -----------------------------------------------------------------------------
 
@@ -153,7 +170,7 @@ z = oct(32)   # octal number (base 8)
 
 print(x, y, z)  # 0x20 0b100000 0o40
 
-# -----------------------------------------------------------------------------
+
 # bytes() and bytearray()
 # -----------------------------------------------------------------------------
 # These two objects are sequences of eight-bit integers, with possible values
@@ -162,18 +179,17 @@ print(x, y, z)  # 0x20 0b100000 0o40
 a_list = [1, 2, 3, 255]
 string = 'Sample Text'
 
-list_bytes = bytes(a_list)  # returns b'\x01\x02\x03\xff'
-string_bytes = bytes(string, 'utf-8')  # b'Sample Text'
+list_bytes = bytes(a_list)                 # b'\x01\x02\x03\xff'
+string_bytes = bytes(string, 'utf-8')      # b'Sample Text'
 
-list_array = bytearray(a_list)  # returns bytearray(b'\x01\x02\x03\xff')
+list_array = bytearray(a_list)             # bytearray(b'\x01\x02\x03\xff')
 string_array = bytearray(string, 'utf-8')  # bytearray(b'Sample Text')
-print(string_array)
 
-print(type(list_bytes))  # class 'bytes'
-print(type(list_array))  # class 'bytearray'
+print(type(list_bytes))                    # class 'bytes'
+print(type(list_array))                    # class 'bytearray'
 
-list_array[1] = 127 # works because bytearray is mutable
-# list_bytes[1] = 127    # doesn't work because bytes is immutable
+list_array[1] = 127     # works because bytearray is mutable
+# list_bytes[1] = 127   # doesn't work because bytes is immutable
 
 # The representation of a bytes value begins with a b'' and a quote character,
 # followed by hex sequences such as \x02 or ASCII characters, and ends with a
@@ -181,27 +197,44 @@ list_array[1] = 127 # works because bytearray is mutable
 # \x xx for non-printable bytes and their ASCII equivalents for printable ones
 # (plus some common escape characters, such as \n).
 
-# -----------------------------------------------------------------------------
+
 # to_bytes() and from_bytes()
 # -----------------------------------------------------------------------------
-# These two are methods that can be applied to integer objects
+# These two are methods that can be applied to integer objects.
 
-# to_bytes() - return an array of bytes representing an integer.
+# to_bytes() - return an array of bytes representing an integer. The first
+# arg is the length
 
 x = (1024).to_bytes(2, byteorder='big')
 y = (1024).to_bytes(2, byteorder='little')
 
-print("Using to_bytes:", x, y)  # Using to_bytes: b'\x04\x00' b'\x00\x04'
-print(type(x)) # class 'bytes'
+print("to_bytes:", x, y)
+# to_bytes: b'\x04\x00' b'\x00\x04'
+
+x = (1024).to_bytes(6, byteorder='big')
+y = (1024).to_bytes(6, byteorder='little')
+
+print("to_bytes:", x, y)
+# to_bytes: b'\x00\x00\x00\x00\x04\x00' b'\x00\x04\x00\x00\x00\x00'
+
+print(type(x))
+# class 'bytes'
 
 # from_bytes() - return the integer represented by the given array of bytes.
 
-x = int.from_bytes(b'\x00\x10', byteorder='big')
-y = int.from_bytes(b'\x00\x10', byteorder='little')
+x = int.from_bytes(b'\x04\x00', byteorder='big')
+y = int.from_bytes(b'\x00\x04', byteorder='little')
 
-print("Using from_bytes:", x, y)  # Using from_bytes: 16 4096
+print("from_bytes:", x, y)
+# from_bytes: 1024 1024
 
-# -----------------------------------------------------------------------------
+x = int.from_bytes(b'\x04\x00', byteorder='little')
+y = int.from_bytes(b'\x00\x04', byteorder='big')
+
+print("from_bytes:", x, y)
+# from_bytes: 4 4
+
+
 # Convert Binary Data with struct
 # -----------------------------------------------------------------------------
 # The standard library contains the struct module. With it you can convert
@@ -238,7 +271,7 @@ else:
 print(data[16:20])  # b'\x00\x00\x00\x9a'
 print(data[20:24])  # b'\x00\x00\x00\x8d'
 
-# -----------------------------------------------------------------------------
+
 # struct.pack()
 # -----------------------------------------------------------------------------
 # When you want to go the other way and convert Python data to bytes:
@@ -283,7 +316,7 @@ print(testing)  # (154, 141)
 # Read 8 bytes-two unsigned long integers (2L)
 # Skip the final 6 bytes (6x)
 
-# -----------------------------------------------------------------------------
+
 # big endian and little endian
 # -----------------------------------------------------------------------------
 # Big Endian Byte Order: The most significant byte (the "big end") of the data
@@ -292,7 +325,7 @@ print(testing)  # (154, 141)
 
 # Little Endian Byte Order: The least significant byte (the "little end") of
 # the data is placed at the byte with the lowest address. The rest of the data
-# is placed in order in the next three bytes in memory
+# is placed in order in the next three bytes in memory.
 
 # https://en.wikipedia.org/wiki/Endianness
 
