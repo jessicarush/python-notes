@@ -125,3 +125,66 @@ print(1 in odds_container)
 
 print(24 in odds_container)
 # False
+
+
+# Creating an abstract base class
+# -----------------------------------------------------------------------------
+# It's not necessary to have an abstract base class to enable duck typing.
+# However, imagine we were creating a media player with third-party plugins.
+# It is advisable to create an abstract base class in this case to document
+# what API the third- party plugins should provide. The abc module provides
+# the tools you need to do this. A warning, this requires some of Python's
+# most arcane concepts...
+
+import abc
+
+class MediaLoader(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def play(self):
+        pass
+
+    @abc.abstractproperty
+    def ext(self):
+        pass
+
+    @classmethod
+    def __subclasshook__(cls, C):
+        if cls is MediaLoader:
+            attrs = set(dir(C))
+            if set(cls.__abstractmethods__) <= attrs:
+                return True
+        return NotImplemented
+
+# The first weird thing is metaclass keyword argument passed into the class
+# where you would normally see the list of parent classes. This is a rarely
+# used construct from the mystic art of metaclass programming. All you need
+# to know is that by assigning the ABCMeta metaclass, you are giving your
+# class superpowers. The two abstract decorators are stating that any subclass
+# of this class must implement that method or supply that property in order
+# to be considered a proper member of the class. See what happens if you
+# implement subclasses that do or don't supply those properties:
+
+class Flac(MediaLoader):
+    ext = 'flac'
+    def play(self):
+        print(f"playing flac: {self.filename}")
+
+f = Flac()
+# TypeError: Can't instantiate abstract class Flac with abstract methods ext
+# If a subclass fails to implement the abstract attributes, it is not possible
+# to instantiate that class.
+
+# Going back to the abc, the __subclasshook__. This special method is called
+# by the Python interpreter to answer the question, Is the class C a subclass
+# of this class?method is basically saying that any class that supplies
+# concrete implementations of all the abstract attributes of this ABC should
+# be considered a subclass of MediaLoader, even if it doesn't actually inherit
+# from the MediaLoader class...
+
+class Mpeg():
+    ext = 'mpeg'
+    def play(self):
+        print(f"playing mpeg: {self.filename}")
+
+print(issubclass(Mpeg, MediaLoader))
+# True
