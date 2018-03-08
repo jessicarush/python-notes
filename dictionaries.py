@@ -1,6 +1,6 @@
 '''Dictionaries'''
 
-# -----------------------------------------------------------------------------
+
 # Dictionary methods
 # -----------------------------------------------------------------------------
 
@@ -8,7 +8,7 @@ dir(dict)
 #  [..., 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem',
 #  'setdefault', 'update', 'values']
 
-# -----------------------------------------------------------------------------
+
 # Creating a dictionary
 # -----------------------------------------------------------------------------
 # create a dict with = {}
@@ -25,7 +25,7 @@ person = {
 person['age'] = 40
 person['weight'] = 140
 
-# -----------------------------------------------------------------------------
+
 # Convert to a dict with .dict()
 # -----------------------------------------------------------------------------
 
@@ -41,7 +41,14 @@ dict_from_tol = dict(tuple_of_lists)
 dict_from_los = dict(list_of_two_char_strings)
 dict_from_tos = dict(tuple_of_two_char_strings)
 
-# -----------------------------------------------------------------------------
+# You can also use standard keyword arguments with dict():
+
+dict_from_args = dict(name='rick', email='rick@email.com', subscribe=True)
+
+print(dict_from_args)
+# {'name': 'rick', 'email': 'rick@email.com', 'subscribe': True}
+
+
 # Combine dicts with .update()
 # -----------------------------------------------------------------------------
 # this would be like extend() for lists
@@ -65,17 +72,17 @@ location.update(new_address)
 print(location)
 # {'apt': 2, 'number': 1011, 'street': 'Beach', 'city': 'Vancouver', 'prov': 'BC'}
 
-# -----------------------------------------------------------------------------
+
 # Delete an item by key with del
 # -----------------------------------------------------------------------------
 del person['age']
 
-# -----------------------------------------------------------------------------
+
 # Delete all items with .clear()
 # -----------------------------------------------------------------------------
 person.clear()
 
-# -----------------------------------------------------------------------------
+
 # Remove an item and use it with .pop() or .popitem()
 # -----------------------------------------------------------------------------
 # The .pop() and .popitem() methods are like .pop() for list. They remove the
@@ -104,7 +111,7 @@ print(popped, type(popped))  # 70 <class 'int'>
 popped = person.pop('status', 'nope')
 print(popped, type(popped))  # nope <class 'str'>
 
-# -----------------------------------------------------------------------------
+
 # get a value by [key] and .get()
 # -----------------------------------------------------------------------------
 print(location['street'])
@@ -136,7 +143,7 @@ while True:
     value = location.get(key, 'There is no ' + key)
     print(value)
 
-# -----------------------------------------------------------------------------
+
 # .keys() .values() .items()
 # -----------------------------------------------------------------------------
 # When iterating over keys, values or both,
@@ -176,7 +183,7 @@ for k, v in location.items():
 # city – Vancouver
 # prov – BC
 
-# -----------------------------------------------------------------------------
+
 # Convert to a string with join()
 # -----------------------------------------------------------------------------
 
@@ -186,7 +193,7 @@ print(key_string)  # apt, number, street, city, province
 value_string = ', '.join(location.values())
 print(value_string)  # 2, 1234, Main, Vancouver, BC
 
-# -----------------------------------------------------------------------------
+
 # Sort by dict keys
 # -----------------------------------------------------------------------------
 
@@ -201,7 +208,7 @@ for key in ordered_keys:
 for key in sorted(location.keys()):
     print(key, '–', location[key])
 
-# -----------------------------------------------------------------------------
+
 # Sort by dict values
 # -----------------------------------------------------------------------------
 # this trick returns a list of tuples from a dict, sorted by value:
@@ -209,7 +216,7 @@ for key in sorted(location.keys()):
 ordered_vals = sorted(location.items(), key=lambda x: x[1])
 print(ordered_vals)
 
-# -----------------------------------------------------------------------------
+
 # Copy a dict with .copy()
 # -----------------------------------------------------------------------------
 
@@ -219,7 +226,7 @@ location['city'] = 'montreal'
 print(location)
 print(location_copy)
 
-# -----------------------------------------------------------------------------
+
 # Create a new dict from a sequence with .fromkeys()
 # -----------------------------------------------------------------------------
 # The fromkeys() method creates a new dictionary with keys from a sequence and
@@ -250,7 +257,7 @@ for k, v, in new_dict.items():
 # NOTE: If you don't want the new dictionary values to all be the same thing,
 # but instead another sequence, use the .zip() function: see zip_function.py
 
-# -----------------------------------------------------------------------------
+
 # setdefault()
 # -----------------------------------------------------------------------------
 # setdefault() method is like get() for dictionaries. It looks for the key and
@@ -260,7 +267,7 @@ for k, v, in new_dict.items():
 
 country = location.setdefault('country', 'Canada')
 
-# -----------------------------------------------------------------------------
+
 # defaultdict()
 # -----------------------------------------------------------------------------
 # defaultdict() specifies a default value for any new key up front when the
@@ -325,7 +332,7 @@ print(dict(dd))
 # key added
 # {'red': 15, 'green': 40, 'blue': 5, 'yellow': 4, 'black': 50}
 
-# -----------------------------------------------------------------------------
+
 # OrderedDict()
 # -----------------------------------------------------------------------------
 # OrderedDict() remembers the order of key addition and returns them in that
