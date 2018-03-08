@@ -6,6 +6,7 @@ In my path to learning Python, I'll be collecting my notes and example code here
 ## credits
 Some examples and comments may come from the following:
 
+* 'Python: Master the Art of Design Patterns' - *Phillips, Girighar, Kasampalis*  
 * 'Python Crash Course' - *Eric Matthes*  
 * 'Introducing Python' - *Bill Lubanovic*  
 * 'The Python 3 Standard Library by Example' - *Doug Hellmann*  
