@@ -7,7 +7,7 @@
 # and update the data. FYI there are plenty of NoSQL databases as well (often
 # used for "Big Data") - see noSQL_datastores.py
 
-# -----------------------------------------------------------------------------
+
 # Terminology:
 # -----------------------------------------------------------------------------
 # Database Dictionary
@@ -59,7 +59,7 @@
 # linked together. For example, a business might have a table of vendors thats
 # linked to a table of invoices.
 
-# -----------------------------------------------------------------------------
+
 # DB-API
 # -----------------------------------------------------------------------------
 # DB-API is Python's standard API (application programming interface) for
@@ -75,7 +75,7 @@
 # fetchone(), fetchmany(), fetchall()
 #   – get the result from execute()
 
-# -----------------------------------------------------------------------------
+
 # SQLite
 # -----------------------------------------------------------------------------
 # A good, light, open source relational database. It's implemented as a
@@ -154,7 +154,7 @@ conn.close()
 # the database is undefined. You can use the ORDER BY clause to order it by
 # another column as demonstrated above.
 
-# -----------------------------------------------------------------------------
+
 # SQLite Datatypes
 # -----------------------------------------------------------------------------
 # https://www.sqlite.org/datatype3.html
@@ -165,7 +165,7 @@ conn.close()
 # The link above also lists the other acceptable names for these data types.
 # For example FLOAT is actual REAL.
 
-# -----------------------------------------------------------------------------
+
 # SQLite Commands
 # -----------------------------------------------------------------------------
 # $ sqlite3 contacts.db (creates the database if it doesn't exist)
@@ -215,7 +215,7 @@ conn.close()
 # ALTER TABLE contacts RENAME TO customers;
 # ALTER TABLE contacts ADD COLUMN newcol TEXT;
 
-# -----------------------------------------------------------------------------
+
 # JOIN (a column in one table corresponds to a column in another)
 # -----------------------------------------------------------------------------
 # For the following examples imagine this schema:
@@ -280,7 +280,7 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 # GROUP BY albums.name HAVING COUNT(albums.name) > 1)
 # ORDER BY albums.name, artists.name
 
-# -----------------------------------------------------------------------------
+
 # VIEWS: (save a SELECT query)
 # -----------------------------------------------------------------------------
 # CREATE VIEW artist_list AS
@@ -315,7 +315,7 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 # SELECT title FROM artist_list WHERE album = 'Forbidden';
 #    – Now this works
 
-# -----------------------------------------------------------------------------
+
 # SQLite Review 1
 # -----------------------------------------------------------------------------
 import sqlite3
@@ -364,7 +364,7 @@ curs.close()
 conn.commit()
 conn.close()
 
-# -----------------------------------------------------------------------------
+
 # SQLite Review 2
 # -----------------------------------------------------------------------------
 import sqlite3
@@ -396,7 +396,7 @@ conn.commit()
 curs.close()
 conn.close()
 
-# -----------------------------------------------------------------------------
+
 # Cursor or no cursor
 # -----------------------------------------------------------------------------
 # shortcut: you actually don't need a cursor if you just want to run a query
@@ -432,7 +432,7 @@ print('{} rows updated'.format(update_cursor.rowcount))
 
 update_cursor.connection.commit()
 
-# -----------------------------------------------------------------------------
+
 # Placeholders and parameter substitution
 # -----------------------------------------------------------------------------
 # As a somewhat obvious side note, you would probably never wan't to hard code
@@ -458,7 +458,7 @@ update_cursor.execute(update_sql, (update_email, update_name))
 # is somewhat complicated but just know that this is the safest way to do it
 # if you're using user input or parameters passed from external code.
 
-# -----------------------------------------------------------------------------
+
 # executescript()
 # -----------------------------------------------------------------------------
 # Is used for running more than one SQL statement in a single call. Individual
@@ -480,7 +480,7 @@ for row in conn.execute("SELECT * FROM sqlite_master"):
 update_cursor.close()
 conn.close()
 
-# -----------------------------------------------------------------------------
+
 # Placeholders Review
 # -----------------------------------------------------------------------------
 import sqlite3
@@ -513,7 +513,7 @@ for row in conn.execute(lookup,(name,)):
 
 conn.close()
 
-# -----------------------------------------------------------------------------
+
 # Detect types
 # -----------------------------------------------------------------------------
 # When writing datetime objects to a database, the object will be saved as a
@@ -526,14 +526,14 @@ conn = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # There are also a couple of ways to convert the UTC string to local time.
 # see sqlite3_example1.py & sqlite3_example2.py
 
-# -----------------------------------------------------------------------------
+
 # Sqlite links
 # -----------------------------------------------------------------------------
 # https://docs.python.org/3.5/library/sqlite3.html
 # https://www.sqlite.org/lang_corefunc.html
 # https://sqlite.org/lang_datefunc.html
 
-# -----------------------------------------------------------------------------
+
 # MySQL
 # -----------------------------------------------------------------------------
 # Unlike SQLite, it's an actual server, so clients can access it from different
@@ -544,7 +544,7 @@ conn = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # PYMySQL - https://github.com/petehunt/PyMySQL/
 # oursql - http://pythonhosted.org/oursql/
 
-# -----------------------------------------------------------------------------
+
 # PostgreSQL
 # -----------------------------------------------------------------------------
 # Is a full-featured open source relational database, in many ways more
@@ -555,7 +555,7 @@ conn = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 # see postgresSQL_example.py
 
-# -----------------------------------------------------------------------------
+
 # SQLAlchemy
 # -----------------------------------------------------------------------------
 # DB-API takes you only so far. Each database implements a particular dialect
@@ -581,7 +581,7 @@ conn = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # starts with a slash (/), it's an absolute filename on your computer
 # Otherwise, it's relative to your current directory.
 
-# -----------------------------------------------------------------------------
+
 # SQLAlchemy – The Engine Layer
 # -----------------------------------------------------------------------------
 
@@ -618,7 +618,7 @@ for row in rows:
 # being able to change the connection string to port this code to another type
 # of database. The next level up would be...
 
-# -----------------------------------------------------------------------------
+
 # SQLAlchemy – SQL Expression Language
 # -----------------------------------------------------------------------------
 # SQLAlchemy's SQL Expression Language introduces functions to create the SQL
@@ -654,7 +654,7 @@ print(rows)
 
 # The highest level is...
 
-# -----------------------------------------------------------------------------
+
 # SQLAlchemy – Object-Relational Mapper
 # -----------------------------------------------------------------------------
 # At the top layer of SQLAlchemy, the Object-Relational Mapper (ORM) uses the
@@ -722,7 +722,7 @@ session.commit()
 # select * from inventory;
 # .quit
 
-# -----------------------------------------------------------------------------
+
 # Summary
 # -----------------------------------------------------------------------------
 # This was a brief overview to help decide which of the following levels would

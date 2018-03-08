@@ -1,9 +1,10 @@
 '''Formatting'''
 
+
 # Interpolate data values into strings (put values into strings using various
 # formats). There are two ways of formatting strings: old style and new style.
 
-# -----------------------------------------------------------------------------
+
 # Old Style formatting - deprecated for Python 3
 # -----------------------------------------------------------------------------
 # Old style with % (string % data) % followed by a letter indicates the type
@@ -29,8 +30,8 @@ name = 'golden ratio'
 print('The %s is %f' % (name, value))
 # The golden ratio is 1.618034
 
-# -----------------------------------------------------------------------------
-# New Style formatting - with {} and format()
+
+# New Style formatting - with .format()
 # -----------------------------------------------------------------------------
 
 print('The {0} is {1}'.format(name, value))
@@ -45,8 +46,8 @@ print('{0[name]} is {0[age]} years old, lives on {0[address]}. {1}.'
       .format(info, other))
 # boktoktok is 100 years old, lives on the moon. the end.
 
-# The number {0} or {1} or whatever, indicates the variable to use according to
-# their order in the .format() arguments.
+# The number {0} or {1} or whatever, indicates the variable to use according
+# to their order in the .format() arguments.
 
 # As a side note, you can also use keyword arguments **name to extract
 # the keys and values from the dictionary and feed into a thing:
@@ -117,15 +118,15 @@ def heading(arg):
     print('{0:-^{1}}'.format(str(arg).title(), width))
 
 heading('the end')
-
 # -----------------------------------The End-----------------------------------
 
-# -----------------------------------------------------------------------------
+
 # f-strings (formatted string literals) - Python 3.6
 # -----------------------------------------------------------------------------
 # As of version 3.6 you can do this. Note the f' prefix follows the same
 # pattern as r' for raw strings and b' for byte strings.
 
 f_string = f'The {name} is {value}'
+
 print(f_string)
 # The golden ratio is 1.61803398875

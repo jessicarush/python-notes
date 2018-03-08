@@ -1,6 +1,6 @@
 '''Strings'''
 
-# -----------------------------------------------------------------------------
+
 # String methods
 # -----------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ dir(str)
 #  'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith',
 #  'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']'
 
-# -----------------------------------------------------------------------------
+
 # String Literals
 # -----------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ print(long_string)
 # in a galaxy far, far away...
 # It is a period of civil war.
 
-# -----------------------------------------------------------------------------
+
 # Convert to a string with .str()
 # -----------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ text = 'The number is '
 number = 4.5 * 3.25
 print(text + str(number))  # The number is 14.625
 
-# -----------------------------------------------------------------------------
+
 # Slice with [start : end : step]
 # -----------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ print(letters[:6:2])   # ace
 print(letters[1:8:3])  # beh
 print(letters[::-1])   # kjihgfedcba
 
-# -----------------------------------------------------------------------------
+
 # Break a string up into a list with .split()
 # -----------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ test_list = test_string.split()
 print(test_list)        # ['Yeti', 'Bigfoot', 'Loch', 'Ness', 'Unicorn...']
 print(type(test_list))  # <class 'list'>
 
-# -----------------------------------------------------------------------------
+
 # Break a large string up into a list of lines with .splitlines()
 # -----------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ splitline_list = long_string.splitlines()
 print(splitline_list[3])     # spaceships, striking from a hidden
 print(type(splitline_list))  # <class 'list'>
 
-# -----------------------------------------------------------------------------
+
 # Break a string up into a tuple with .partition()
 # -----------------------------------------------------------------------------
 
@@ -107,15 +107,15 @@ test = filename.partition('.')
 
 print(test)  # ('image', '.', 'png')
 
-# -----------------------------------------------------------------------------
-# Join a list into a string with .join()
+
+# Join a list or tuple into a string with .join()
 # -----------------------------------------------------------------------------
 
 test_string = ' '.join(test_list)
 print(test_string)        # Yeti Bigfoot Loch Ness Unicorn...
 print(type(test_string))  # <class 'str'>
 
-# -----------------------------------------------------------------------------
+
 # .len(), .startswith(), .endswith(), .find(), .rfind(), .count(), .isalnum()
 # -----------------------------------------------------------------------------
 
@@ -142,7 +142,7 @@ print(test_string.count(word))  # 1
 
 print(test_string.isalnum())  # False
 
-# -----------------------------------------------------------------------------
+
 # Remove and replace: .lstrip(), .rstrip(), .strip(), .replace()
 # -----------------------------------------------------------------------------
 # remove characters from the beginning with .lstrip(), the end with .rstrip()
@@ -165,7 +165,7 @@ print(test_string)  # Yeti, Bigfoot, Loch, Ness, Unicorn...
 test_string = test_string.replace('Unicorn', 'Dragon')
 print(test_string)  # Yeti, Bigfoot, Loch, Ness, Dragon...
 
-# -----------------------------------------------------------------------------
+
 # Change Case
 # -----------------------------------------------------------------------------
 
@@ -200,7 +200,7 @@ example = "I'm super fun."
 print(example.title())    # I'M Super Fun.
 print(capwords(example))  # I'm Super Fun.
 
-# -----------------------------------------------------------------------------
+
 # Alignment
 # -----------------------------------------------------------------------------
 
@@ -213,7 +213,7 @@ test_list = [test1, test2, test3]
 print(test_list)
 # ["   I'm super fun.   ", "I'm super fun.      ", "      I'm super fun."]
 
-# -----------------------------------------------------------------------------
+
 # Raw string type literals
 # -----------------------------------------------------------------------------
 
@@ -231,7 +231,7 @@ print(raw_str)
 # or a space. This can come into play when creating raw strings for directory
 # pathnames like C:\
 
-# -----------------------------------------------------------------------------
+
 # Note: chaining methods
 # -----------------------------------------------------------------------------
 # One thing that I'm clear on now but for some reason was never really pointed

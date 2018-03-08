@@ -1,6 +1,6 @@
 '''Misc Terms'''
 
-# -----------------------------------------------------------------------------
+
 # Literal
 # -----------------------------------------------------------------------------
 # a literal lets you assign values of an object in a single assignment,
@@ -17,7 +17,7 @@ plants = {'spider': 'long, slender leaves',
           'succulent': 'like a cactus',
           'fern': 'perfers the forest'}
 
-# -----------------------------------------------------------------------------
+
 # None
 # -----------------------------------------------------------------------------
 # None is not the same as False. Though it may look false when evaluated as a
@@ -35,7 +35,7 @@ def is_none(thing):
 
 is_none(thing)
 
-# -----------------------------------------------------------------------------
+
 # Keyword arguments: **kwargs
 # -----------------------------------------------------------------------------
 # The keyword argument **h extracts the keys and values from a dictionary
@@ -55,20 +55,20 @@ hydrogen = Element(name='Hydrogen', symbol='H', number=1)
 
 print(hydrogen.symbol)
 
-# -----------------------------------------------------------------------------
+
 # Function
 # -----------------------------------------------------------------------------
 # A Function is a bit of reusable code that can de called after being defined.
 # Functions can be defined by you in your code or they can be defined in
 # libraries that are imported.
 
-# -----------------------------------------------------------------------------
+
 # Module
 # -----------------------------------------------------------------------------
 # Another word for library. Modules are simply python files that can be
 # imported and used.
 
-# -----------------------------------------------------------------------------
+
 # Package
 # -----------------------------------------------------------------------------
 # A python module which can contain submodules. Essentially this is just a way
@@ -77,35 +77,35 @@ print(hydrogen.symbol)
 # in that folder called: __init__.py. This file tells python to use the folder
 # name for importing.
 
-# -----------------------------------------------------------------------------
+
 # Parameter
 # -----------------------------------------------------------------------------
 # A parameter is a named entity in a functions definition. Parameters can be
 # replaced with arguments when the function is called.
 
-# -----------------------------------------------------------------------------
+
 # Argument
 # -----------------------------------------------------------------------------
 # A value passed to a function when calling the function. Arguments are
 # assigned to the named local variables (parameters) in the functions body.
 
-# -----------------------------------------------------------------------------
+
 # Class
 # -----------------------------------------------------------------------------
 # A blueprint or template for creating an object.
 
-# -----------------------------------------------------------------------------
+
 # Object
 # -----------------------------------------------------------------------------
 # Everything in Python is an object. The official definition is: any data with
 # state (attributes or value) and defined behavior (methods).
 
-# -----------------------------------------------------------------------------
+
 # Instance
 # -----------------------------------------------------------------------------
 # What you get when you create something from a class.
 
-# -----------------------------------------------------------------------------
+
 # Attribute (also called an instance variable)
 # -----------------------------------------------------------------------------
 # A value associated with an object which is referenced by name using dot
@@ -121,7 +121,7 @@ snape = Person('Severus Snape')
 # reference the name attribute:
 snape.name
 
-# -----------------------------------------------------------------------------
+
 # Class variable (as opposed to instance variable: attribute)
 # -----------------------------------------------------------------------------
 # A value defined within the class, not within a classes method:
@@ -137,13 +137,13 @@ snape = Person('Severus Snape')
 # reference the class variable homo:
 snape.homo
 
-# -----------------------------------------------------------------------------
+
 # Property
 # -----------------------------------------------------------------------------
 # property is actually a method that returns a property attribute. It makes a
 # method (a function in a class) behave like an attribute.
 
-# -----------------------------------------------------------------------------
+
 # self
 # -----------------------------------------------------------------------------
 # Inside a class definition, self is a variable name used to signify something
@@ -151,7 +151,7 @@ snape.homo
 # instance of a class is created, "self" indicates that it will have its own
 # variables that aren't shared with other instances.
 
-# -----------------------------------------------------------------------------
+
 # Method
 # -----------------------------------------------------------------------------
 # A function that is defined inside of a class. It can be called 'on' an
@@ -172,20 +172,20 @@ snape.deceased()
 # or like this:
 Person.deceased(snape)
 
-# -----------------------------------------------------------------------------
+
 # Inheritance
 # -----------------------------------------------------------------------------
 # The idea that when one class is created from another, it will inherit that
 # classes traits, unless specifically overwritten in its own definition.
 
-# -----------------------------------------------------------------------------
+
 # Composition
 # -----------------------------------------------------------------------------
 # A class can be composed of other classes as parts. A lengthier description:
 # Composition is a way of aggregating objects together by making some objects
 # attributes of other objects.
 
-# -----------------------------------------------------------------------------
+
 # Aggregation
 # -----------------------------------------------------------------------------
 # The distinction between aggregation and composition can blur slightly. Unlike
@@ -193,17 +193,17 @@ Person.deceased(snape)
 # another object. The composed object does not actually own the objects that
 # it's composed of. If it's destroyed, those objects continue to exist.
 
-# -----------------------------------------------------------------------------
-# is-a
+
+# "is a"
 # -----------------------------------------------------------------------------
 # A phrase to say something inherits from another.
 
-# -----------------------------------------------------------------------------
-# has-a
+
+# "has a"
 # -----------------------------------------------------------------------------
 # A phrase to say something is composed of others.
 
-# -----------------------------------------------------------------------------
+
 # Encapsulation
 # -----------------------------------------------------------------------------
 # Encapsulation is the idea that data inside an object should only be accessed
@@ -213,14 +213,14 @@ Person.deceased(snape)
 # object can't be seen from outside of the objects definition. Access to this
 # data is typically only achieved through methods.
 
-# -----------------------------------------------------------------------------
+
 # Delegation
 # -----------------------------------------------------------------------------
 # Delegation is an object oriented technique (also called a design pattern)
 # where certain operations on one object are automatically applied to another,
 # usually contained, object.
 
-# -----------------------------------------------------------------------------
+
 # Polymorphism
 # -----------------------------------------------------------------------------
 # Polymorphism is the idea that even though different types of objects can have
