@@ -707,10 +707,10 @@ print(c.radius)  # 10.0
 
 # Class methods
 # -----------------------------------------------------------------------------
-# A class method is a method you can call on the class itself. Use the
-# @classmethod decorator to indicate the following function is a class method.
-# The first parameter to the method is the class itself: cls ('cls' is used
-# because the word class is already taken).
+# A class method is essentially a method can be called on a class instead of
+# an instantiated object. Use the @classmethod decorator to indicate the
+# following function is a class method. The first parameter to the method is
+# the class itself: cls (because the word 'class' is already taken).
 
 # This class method will count how many objects have been made from it:
 
@@ -801,9 +801,11 @@ print(friend)        # <__main__.Child object at 0x10150e780>
 
 # Static methods
 # -----------------------------------------------------------------------------
-# The third type of method in a class def is a static method. If affects
-# neither the class nor its objects. It's just there for convenience. Begin
-# with the @static method decorator, no initial self or class parameter:
+# The third type of method in a class def is a static method. Static methods
+# are associated only with a class (something like class variables), rather
+# than a specific object instance. Hence, they have no self argument. They know
+# nothing about the class or instance they were called on and behave like plain
+# functions except that you can call them from an instance or the class.
 
 class A():
     @staticmethod
@@ -863,3 +865,6 @@ print(add(one, two))  # Coordinates: {'x': 400, 'y': 400}
 # image are defined in one place. Use the simplest solution to the problem.
 # A dict, list, or tuple is simpler, smaller, and faster than a module, which
 # is usually simpler than a class.
+
+
+# see also: polymorphism.py
