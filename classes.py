@@ -552,35 +552,35 @@ print(search[0].name)
 # to read and write the values on these private attributes. Python doesn't
 # need these because all attributes and methods are public. A good way to hide
 # attributes is to use property(). The naming convention for hidden attributes
-# is __whatever (see documenting_naming.py).
+# is _whatever (see documenting_naming.py).
 
 # The property() method returns a property attribute. It makes a method
-# (a function in a class) behave like an attribute. This allows us to create a
-# read-only attribute of __name.
+# (a function in a class) behave like an attribute. This allows us to create
+# a read-only attribute of _name.
 
 # The property method takes four optional parameters:
-# – fget - function for getting the attribute value
-# – fset - function for setting the attribute value
-# – fdel - function for deleting the attribute value
-# – doc - string that contains the docstring for the attribute
+# – fget : function for getting the attribute value
+# – fset : function for setting the attribute value
+# – fdel : function for deleting the attribute value
+# – doc : string that contains the docstring for the attribute
 
 # property(fget=None, fset=None, fdel=None, doc=None)
 
 class Person():
     def __init__(self, value):
-        self.__name = value
+        self._name = value
 
     def getName(self):
         print('Getting name')
-        return self.__name
+        return self._name
 
     def setName(self, value):
         print('Setting name to ' + value)
-        self.__name = value
+        self._name = value
 
     def delName(self):
         print('Deleting name')
-        del self.__name
+        del self._name
 
     # Set property to use getName, setName and delName methods
     name = property(getName, setName, delName, 'Name property')
@@ -592,28 +592,34 @@ print(p.name)  # Adam
 p.name = 'John'
 del p.name
 
+# NOTE: The deletion function is often left empty because object attributes
+# are rarely deleted. If a coder does try to delete a property that doesn't
+# have a delete function specified, it will raise an exception. Therefore,
+# if there is a legitimate reason to delete our property, we should supply
+# that function.
+
 
 # Getter and Setter methods using @decorators
 # -----------------------------------------------------------------------------
 
 class Person():
     def __init__(self, value):
-        self.__name = value
+        self._name = value
 
     @property
     def name(self):
         print('Getting name')
-        return self.__name
+        return self._name
 
     @name.setter
     def name(self, value):
         print('Setting name to ' + value)
-        self.__name = value
+        self._name = value
 
     @name.deleter
     def name(self):
         print('Deleting name')
-        del self.__name
+        del self._name
 
 
 p = Person('Tim')
@@ -649,6 +655,7 @@ class Player():
             self._lives = lives
         else:
             print("Lives can't be negative")
+            # could also raise an exception here.
             self._lives = 0
 
     lives = property(_get_lives, _set_lives)
@@ -693,6 +700,47 @@ print(c.diameter) # 10
 
 c.diameter = 20  # now this will also work
 print(c.radius)  # 10.0
+
+
+# Another common need for this custom property/getter/setter stuff is simply
+# caching a value that is difficult to calculate or expensive to lookup
+# (for example, requiring a network request or database query). The goal is to
+# store the value locally to avoid repeated calls to the expensive calculation.
+# We do this with a this custom getter @property. The first time the value
+# is retrieved, we perform the lookup or calculation. The next time the value
+# is requested, we return the stored data. Here's an example:
+
+from time import time, sleep
+from urllib.request import urlopen
+
+
+class Website():
+    def __init__(self, url):
+        self.url = url
+        self._content = None
+
+    @property
+    def content(self):
+        if not self._content:
+            print('Getting webpage...')
+            sleep(2)  # pretend it's a big website
+            self._content = urlopen(self.url).read()
+        return self._content
+
+
+w = Website("https://www.python.org/")
+
+start = time()
+c1 = w.content
+print('{:.5f}'.format(time() - start))
+
+start = time()
+c2 = w.content
+print('{:.5f}'.format(time() - start))
+
+# Getting webpage...
+# 2.14882
+# 0.00001
 
 
 # Instance methods
@@ -839,12 +887,32 @@ print(add(one, two))  # Coordinates: {'x': 400, 'y': 400}
 
 # Summary of Terms
 # -----------------------------------------------------------------------------
-# Class: template for creating objects. All objects created using the same
-# class will have the same characteristics.
-# Object: an instance of a class.
-# Instantiate: create an instance of a class.
-# Method: a function defined in a class.
-# Attribute: a variable bound to an instance of a class.
+# Class:
+#     template for creating objects. All objects created using
+#     the same class will have the same characteristics.
+# Object:
+#    an instance of a class.
+# Instantiate:
+#    create an instance of a class.
+# Method:
+#    a function defined in a class.
+# Attribute:
+#    a variable bound to an instance of a class, however...
+
+# Technically, in Python, data, properties, and methods are all attributes on
+# a class. The fact that a method is callable does not distinguish it from
+# other types of attributes. Methods are just callable attributes, and
+# properties are just customizable attributes. Methods should typically
+# represent actions; things that can be done to, or performed by, the object.
+# When you call a method, even with only one argument, it should do something.
+# Method names are generally verbs.
+
+# If we determine that an attribute is not an action, we need to decide between
+# standard data attributes and properties. In general, always use a standard
+# attribute until you need to control access to that property in some way.
+# In either case, your attribute is usually a noun. The only difference between
+# an attribute and a property is that we can invoke custom actions
+# automatically when a property is retrieved, set, or deleted.
 
 
 # Classes and Objects versus Modules
