@@ -1,6 +1,6 @@
 '''Networks and Distributed Computing'''
 
-# -----------------------------------------------------------------------------
+
 # Patterns
 # -----------------------------------------------------------------------------
 # You can build networking applications from some basic patterns. The most
@@ -15,13 +15,13 @@
 # more sources. An example would be a logger that takes messages from multiple
 # sources and writes then to a single file. Another pattern is...
 
-# -----------------------------------------------------------------------------
+
 # Publish-Subscribe Model
 # -----------------------------------------------------------------------------
 # With this pattern, a publisher sends out data. In a simple pub-sub system,
 # all subscribers would receive all the data, but more commonly, subscribers
-# choose which data to receive (topics). Unlike the push pattern, more than one
-# subscriber might receive a given piece of data. If there's no subscriber,
+# choose which data to receive (topics). Unlike the push pattern, more than
+# one subscriber might receive a given piece of data. If there's no subscriber,
 # the data is ignored. Publish-Subscribe is not a queue but a broadcast.
 # Here's an example using Redis:
 
@@ -77,7 +77,7 @@ for msg in sub.listen():
 # Publish: persian cat wears a cowboy
 # Publish: tabby cat wears a stovepipe
 
-# -----------------------------------------------------------------------------
+
 # Other pub-sub tools
 # -----------------------------------------------------------------------------
 # RabbitMQ – https://www.rabbitmq.com
@@ -87,7 +87,7 @@ for msg in sub.listen():
 
 # https://pypi.python.org/pypi?%3Aaction=search&term=pubsub&submit=search
 
-# -----------------------------------------------------------------------------
+
 # TCP/IP
 # -----------------------------------------------------------------------------
 # In the middle of the stacked layers of protocols that handle our internet
@@ -109,7 +109,7 @@ for msg in sub.listen():
 # Most of the internet with which we interact (web, database servers, etc) is
 # based on the TCP protocol running on top of the IP protocol–TCP/IP for short.
 
-# -----------------------------------------------------------------------------
+
 # Sockets
 # -----------------------------------------------------------------------------
 # A socket is one endpoint of a two-way communication link between two programs
@@ -130,17 +130,22 @@ server_address = ('localhost', 4544)
 max_size  = 4096
 print('Starting the server at', datetime.datetime.now())
 print('waiting for client to call')
+
 # This line creates a socket (AF_INET means we'll create an IP socket,
 # SOCK_DGRAM means we'll send and receive datagrams - UDP):
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
 # This listens for any data arriving at the IP, port. The programs sits and
 # waits here until theres some action:
 server.bind(server_address)
+
 # Any data that comes in will be received here:
 data, client = server.recvfrom(max_size)
 print('Message:', datetime.datetime.now(), client, 'said', data)
+
 # The server sends a reply:
 server.sendto(b'Are you talking to me?', client)
+
 # and closes the connection:
 server.close()
 
@@ -156,6 +161,7 @@ client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 client.sendto(b'Hello', server_address)
 data, server = client.recvfrom(max_size)
 print('Message:', datetime.datetime.now(), server, 'said', data)
+
 client.close()
 
 # Note that the client doesn't need a bind, because it's not doing the
@@ -173,12 +179,15 @@ address = ('localhost', 4544)
 max_size  = 1000  # bytes
 print('Starting the server at', datetime.datetime.now())
 print('waiting for client to call')
+
 # SOCK_DGRAM is replaced with SOCK_STREAM to use the streaming TCP protocol:
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(address)
+
 # This queues up to 5 client connections before refusing new ones:
 server.listen(5)
-# Tgi gets the first available message as it arrives:
+
+# TCP gets the first available message as it arrives:
 client, addr = server.accept()
 data = client.recv(max_size)
 print('Message:', datetime.datetime.now(), client, 'said', data)
@@ -195,6 +204,7 @@ address = ('localhost', 4544)
 max_size = 1000
 print('Starting the client at', datetime.datetime.now())
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 # The connect() call sets up a stream
 client.connect(address)
 client.sendall(b'Hi there')
@@ -202,7 +212,7 @@ data = client.recv(max_size)
 print('Message:', datetime.datetime.now(), 'someone replied', data)
 client.close()
 
-# -----------------------------------------------------------------------------
+
 # some points to note:
 # -----------------------------------------------------------------------------
 # – UDP sends messages but their size is limited and not guaranteed to reach

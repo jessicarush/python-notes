@@ -1,6 +1,6 @@
 '''Iterating with for'''
 
-# -----------------------------------------------------------------------------
+
 # Iterating over lists, tuples and sets returns individual items:
 # -----------------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ for item in list1[2:]:
     print(item)
 # three
 
-# -----------------------------------------------------------------------------
+
 # Iterating over strings returns characters
 # -----------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ for char in string1:
 # e
 # n
 
-# -----------------------------------------------------------------------------
+
 # Iterating over dictionaries returns keys
 # -----------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ for key, value in dict1.items():
 # twelve – 12
 # thirteen – 13
 
-# -----------------------------------------------------------------------------
+
 # Iterating over multiple sequences with zip()
 # -----------------------------------------------------------------------------
 
@@ -98,14 +98,14 @@ for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
     print('–', drink)
     print('–', dessert)
 
-# -----------------------------------------------------------------------------
+
 # Using range(start, stop, step)
 # -----------------------------------------------------------------------------
 
 for x in range(5, -1, -1):
     print(x, end='...')  # 5...4...3...2...1...0..
 
-# -----------------------------------------------------------------------------
+
 # using multiple for loops
 # -----------------------------------------------------------------------------
 
@@ -114,7 +114,7 @@ for i in range(1, 13):
         print(i, 'x',  j, '=', i * j)
     print('------------------')
 
-# -----------------------------------------------------------------------------
+
 # break and continue
 # -----------------------------------------------------------------------------
 # break is useful when you want to terminate a loop early if some condition
@@ -139,7 +139,7 @@ for cheese in cheeses:
 # We have cheddar
 # We have gorgonzola
 
-# -----------------------------------------------------------------------------
+
 # Create your own iterator with iter() and next()
 # -----------------------------------------------------------------------------
 # A for loop actually creates an iterator object that will return each
@@ -162,7 +162,7 @@ for char in string:
 for char in iter(string):
     print(char, end='...')  # 1...2...3...
 
-# -----------------------------------------------------------------------------
+
 # Important Note:
 # -----------------------------------------------------------------------------
 # A for loop is effective for iterating through a list but apparently, "You

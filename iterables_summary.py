@@ -1,6 +1,6 @@
 '''Review of Lists, Tuples, Dictionaries & Sets'''
 
-# -----------------------------------------------------------------------------
+
 # Compare data structures
 # -----------------------------------------------------------------------------
 # List: mutable, ordered, values don't need to be unique

@@ -42,7 +42,7 @@ from my_classes import Person
 
 # Library/Frameworks/Python.framework/Versions/3.5/lib/python3.6
 
-# -----------------------------------------------------------------------------
+
 # __name__ == '__main__'
 # -----------------------------------------------------------------------------
 # If you intend for your module to be imported, remember that your program

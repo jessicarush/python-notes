@@ -160,14 +160,14 @@ def bouncer(flag):
         return wrapper
     return my_decorator
 
-flag = False
+flag = True
 
 @bouncer(flag)
 def my_function():
     print('The function runs...')
 
 my_function()
-
+exit()
 # -----------------------------------------------------------------------------
 # one last example:
 # -----------------------------------------------------------------------------
