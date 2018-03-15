@@ -36,7 +36,7 @@
 # on the server that can be updated.
 
 
-# -----------------------------------------------------------------------------
+
 # Creating a new user
 # -----------------------------------------------------------------------------
 # It's a good idea to create a new user on your server so your not always
@@ -93,7 +93,7 @@
 # https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
 
 
-# -----------------------------------------------------------------------------
+
 # Installing postgresql
 # -----------------------------------------------------------------------------
 # apt-get install postgresql postgresql-contrib
@@ -128,7 +128,7 @@
 # To logout of the postgres user and return to root type: exit
 
 
-# -----------------------------------------------------------------------------
+
 # Creating and linking a new user to postgresql
 # -----------------------------------------------------------------------------
 # First ssh to the server as the user, then sudo switch to the postgres user:
@@ -189,7 +189,7 @@
 # https://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html
 
 
-# -----------------------------------------------------------------------------
+
 # Installing nginx and enabling a Firewall
 # -----------------------------------------------------------------------------
 # NGINX is a free, open-source, HTTP server and reverse proxy, as well as an
@@ -235,7 +235,7 @@
 # $ systemctl restart nginx
 
 
-# -----------------------------------------------------------------------------
+
 # Configure nginx
 # -----------------------------------------------------------------------------
 # At some point you'll need to configure nginx to work with (access) our app:
@@ -323,7 +323,7 @@ root /usr/share/nginx/html;
 # restart does just that.
 
 
-# -----------------------------------------------------------------------------
+
 # Create directories, git clone your app, install python
 # -----------------------------------------------------------------------------
 # Create the directory where the application files will be placed, give
@@ -358,7 +358,7 @@ root /usr/share/nginx/html;
 # $ pip install -r requirements.txt
 
 
-# -----------------------------------------------------------------------------
+
 # Set up ubuntu 'service', uwsgi.ini
 # -----------------------------------------------------------------------------
 # $ cd /var/www/html/items-rest
@@ -379,7 +379,7 @@ root /usr/share/nginx/html;
 Description=my uWSGI items rest
 
 [Service]
-Environment=DATABASE_URL=postgres://jessica:cinnamon-sticks@localhost:5432/jessica
+Environment=DATABASE_URL=postgres://jessica:mypassword@localhost:5432/jessica
 ExecStart=/var/www/html/items-rest/venv/bin/uwsgi --master --emperor /var/www/html/items-rest/uwsgi.ini --die-on-term --uid jessica --gid jessica --logto /var/www/html/items-rest/log/emperor.log
 Restart=always
 KillSignal=SIGQUIT
@@ -391,8 +391,8 @@ WantedBy=multi-user.target
 '''
 # esc, :wq
 
-# Note in the environment variable above, the last 'jessica' is the name of the
-# database.
+# Note in the environment variable above, the last 'jessica' is the name
+# of the database.
 
 # Now we have to edit the following file:
 
@@ -445,7 +445,6 @@ logto = /var/www/html/items-rest/log/%n.log
 # then check back at the log.
 
 
-# -----------------------------------------------------------------------------
 # updating your api
 # -----------------------------------------------------------------------------
 # If you've made changes to your app, you'll need to commit to git,
@@ -463,10 +462,9 @@ logto = /var/www/html/items-rest/log/%n.log
 # $ sudo systemctl start uwsgi_items_rest
 
 
-# -----------------------------------------------------------------------------
+
 # Attaching a domain name to your digitalocean server:
 # -----------------------------------------------------------------------------
-
 # Once you've bought a domain, you can use a service like cloudflare to
 # set up the DNS to connect to your servers ip. Cloudflare is a "content
 # delivery network". Essentially it can be used to sit in front of our server.
@@ -493,7 +491,7 @@ logto = /var/www/html/items-rest/log/%n.log
 # https://school-of-code.gitbooks.io/rest-apis-with-flask-and-python/content/domains-and-https/modifying-our-dns-records.html
 
 
-# -----------------------------------------------------------------------------
+
 # Setting up an SSL certificate (https://)
 # -----------------------------------------------------------------------------
 # This is a three step process. First you need to get a certificate and a key.
@@ -508,7 +506,7 @@ logto = /var/www/html/items-rest/log/%n.log
 #    a 'private key'. There may be an option for format, just use PEM (default).
 
 # 2. Copying the certifiacte/key to your server:
-#    $ ssh jessica@159.203.42.120
+#    $ ssh jessica@123.456.78.910
 #    $ sudo mkdir /var/www/ssl
 #    $ sudo touch var/www/ssl/mydomain.com.pem
 #    $ sudo touch var/www/ssl/mydomain.com.key
@@ -551,12 +549,11 @@ set_real_ip_from 127.0.0.1;
 # https://www.digitalocean.com/community/tutorials/how-to-install-an-ssl-certificate-from-a-commercial-certificate-authority
 
 
-# -----------------------------------------------------------------------------
+
 # Troubleshooting
 # -----------------------------------------------------------------------------
-
-# If you get locked out of ssh, try using the console. See here to set up
-# a password for the console:
+# If you get locked out of ssh, try using the console.
+# See here to set up a password for the console:
 # https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-console-to-access-your-droplet
 
 # If you rebuild your droplet and you get a weird warning when you try to ssh

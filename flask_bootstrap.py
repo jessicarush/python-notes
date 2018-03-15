@@ -58,9 +58,9 @@
 {% endblock %}
 '''
 
-# -----------------------------------------------------------------------------
-# Form handling
 
+# Form handling
+# -----------------------------------------------------------------------------
 # An area where Flask-Bootstrap does a fantastic job is in rendering of forms.
 # Instead of having to style the form fields one by one, Flask-Bootstrap comes
 # with a macro that accepts a Flask-WTF form object as an argument and renders
@@ -134,9 +134,9 @@
 # In the example above the two div classes appear to be simply applying some
 # width control.
 
-# -----------------------------------------------------------------------------
-# Pagination handling
 
+# Pagination handling
+# -----------------------------------------------------------------------------
 # Pagination is apparently another area where Bootstrap provides direct
 # support.
 
