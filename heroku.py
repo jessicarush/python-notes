@@ -105,7 +105,7 @@
 # heroku logs --app okeover
 
 
-# -----------------------------------------------------------------------------
+
 # Creating a PostgreSQL database on heroku
 # -----------------------------------------------------------------------------
 # Databases are included as add-ons in heroku. You can create a database
@@ -120,7 +120,7 @@
 # $ heroku config --app malaspina
 
 # This will print out your database url like:
-# DATABASE_URL: postgres://lfhrlgygusjxap:ec6f16796cc41ea29a18251f3dc3ade9e2...
+# DATABASE_URL: postgres://lfhrlgygusjxap:ec6f16796cc41...
 
 # You can also get you url from the settings tab of your app dashboard,
 # under the button 'Reveal Cofig Vars'
@@ -173,7 +173,7 @@
 # add psycopg2 to your requirements.txt. SQLAlchemy requires it to communicate
 # with PostgreSQL.
 
-# -----------------------------------------------------------------------------
+
 # Deploying to heroku via github
 # -----------------------------------------------------------------------------
 # From the Deploy tab of your heroku app dashboard, choose GitHub as the
@@ -211,7 +211,7 @@
 
 # That final push to the master will auto deploy to heroku.
 
-# -----------------------------------------------------------------------------
+
 # uWSGI
 # -----------------------------------------------------------------------------
 # Another process for running your app (instead of gunicorn) is uwsgi.
