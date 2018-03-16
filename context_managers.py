@@ -73,7 +73,7 @@ with File('test.txt', 'w') as opened_file:
 # You can also construct your own context managers using the contextmanager
 # decorator from contextlib.
 
-# -----------------------------------------------------------------------------
+
 # example 1
 # -----------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ def tag(name):
 with tag("h1"):
     print("Heading", end='')  # <h1>Heading</h1>
 
-# -----------------------------------------------------------------------------
+
 # example 2
 # -----------------------------------------------------------------------------
 # This could be used when you have to change the current directory temporarily
@@ -111,7 +111,7 @@ with working_directory("data/stuff"):
 
 # Then here you are back again in the original working directory
 
-# -----------------------------------------------------------------------------
+
 # example 3
 # -----------------------------------------------------------------------------
 # This example  creates a temporary folder and cleans it up when leaving
