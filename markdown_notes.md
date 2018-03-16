@@ -10,6 +10,11 @@ pip3 install mylibrary
 ```
 Here is some `inline code`.
 
+You cal also specify syntax highlighting:
+
+```python
+print('Syntax highlighting')
+```
 
 ## blockquotes
 
