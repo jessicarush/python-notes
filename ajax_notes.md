@@ -1,0 +1,13 @@
+# Ajax
+
+In the traditional server-side model there is a client (a web browser commanded by a user) making HTTP requests to an application server. In this model the server does all the work, while the client just displays the web pages and accepts user input.
+
+There is a different model in which the client takes a more active role. In this model, the client issues a request to the server and the server responds with a web page, but unlike the previous case, not all the page data is HTML, there is also sections of the page with code, typically written in Javascript. Once the client receives the page it displays the HTML portions, and executes the code. From then on you have an active client that can do work on its own without little or no contact with the server.
+
+In a strict client-side application the entire application is downloaded to the client with the initial page request, and then the application runs entirely on the client, only contacting the server to retrieve or store data and making dynamic changes to the appearance of that first and only web page. This type of applications are called Single Page Applications or SPAs.
+
+Most applications are a hybrid between the two models and combine techniques of both. As an example of client-side action, the client browser can send asynchronous requests to the server, to which the server will respond without causing a page refresh. The client will then insert something into the current page dynamically. This technique is known as Ajax, which is short for Asynchronous JavaScript and XML (even though these days XML is often replaced with JSON).
+
+In the microblog we are going to implement live, automated translations of user posts as an Ajax service. This requires a few steps. First, we need a way to identify the source language of the text to translate. We also need to know the preferred language for each user, because we want to show a "translate" link only for posts written in other languages. When a translation link is offered and the user clicks on it, we need to send the Ajax request to the server, and the server will contact a third-party translation API. Once the server sends back a response with the translated text, the client-side javascript code will dynamically insert this text into the page.
+
+When working with JavaScript in the browser, the page currently being displayed is internally represented in as the Document Object Model or just the DOM. This is a hierarchical structure that references all the elements that exist in the page. The JavaScript code running in this context can make changes to the DOM to trigger changes in the page.
