@@ -1,6 +1,6 @@
 '''Reading and Writing Files'''
 
-# -----------------------------------------------------------------------------
+
 # Persistence
 # -----------------------------------------------------------------------------
 # In the context of storing data in a computer system, this means that the data
@@ -12,7 +12,7 @@
 # file. This is just a sequence of bytes stored under a filename. You read from
 # a file into memory and write from memory to a file.
 
-# -----------------------------------------------------------------------------
+
 # File Handling Basics
 # -----------------------------------------------------------------------------
 # Before reading or writing a file, you need to open it:
@@ -36,7 +36,7 @@ fileobject = open('filename.txt', 'w')
 
 fileobject.close()
 
-# -----------------------------------------------------------------------------
+
 # Close files automatically
 # -----------------------------------------------------------------------------
 # using: with expression as variable
@@ -52,7 +52,7 @@ with open('filename.txt', 'r') as fileobject:
 # the file is closed automatically. This is the preferred way of
 # opening/closing files.
 
-# -----------------------------------------------------------------------------
+
 # write()
 # -----------------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ try:
 except FileExistsError:
     print('testfile1 file already exists!')
 
-# -----------------------------------------------------------------------------
+
 # print() to a file
 # -----------------------------------------------------------------------------
 # You can also print to a text file. Note: when typing out file=fileoject, its
@@ -138,7 +138,7 @@ with open('testfile2.txt', 'w') as f_object:
 with open('testfile2.txt', 'w') as f_object:
     print(text1, file=f_object, sep='', end='')
 
-# -----------------------------------------------------------------------------
+
 # read()
 # -----------------------------------------------------------------------------
 # read() reads all contents of the file and returns a single string
@@ -166,7 +166,7 @@ with open('testfile1.txt', 'r') as fob:
 # return an empty string (''), which is treated as False in 'if not fragment'.
 # This breaks out of the while True loop.
 
-# -----------------------------------------------------------------------------
+
 # readline()
 # -----------------------------------------------------------------------------
 # this example does the same as above but feeds one line at a time instead of
@@ -190,7 +190,7 @@ with open("testfile1.txt", 'r') as fob:
         print(line, end='')
         line = fob.readline() # moves to the next line
 
-# -----------------------------------------------------------------------------
+
 # Read a file by iterating
 # -----------------------------------------------------------------------------
 # The easiest way to read a text file is by using an iterator. This returns
@@ -216,7 +216,7 @@ with open("testfile1.txt", 'r') as fob:
 # R is for Rhoda, consumed by a fire.
 # X is for Xerxes, devoured by mice.
 
-# -----------------------------------------------------------------------------
+
 # Example: read(), write() and iteration
 # -----------------------------------------------------------------------------
 # this example opens each file in a list and writes it's content to one new
@@ -232,7 +232,7 @@ with open(filename + '.txt', 'w') as fob1:
         with open(f) as fob2:
             fob1.write(fob2.read())
 
-# -----------------------------------------------------------------------------
+
 # readlines() *plural
 # -----------------------------------------------------------------------------
 # readlines() - the previous examples read and built up a single string.
@@ -256,7 +256,7 @@ with open("testfile1.txt", 'r') as fob:
 # NOTE: If you tried using fob.read() or fob.readline() in the above, all the
 # letters would be printed in reverse, not just the lines.
 
-# -----------------------------------------------------------------------------
+
 # eval()
 # -----------------------------------------------------------------------------
 # Problems can arise when trying to read data structure from files. Example:
@@ -284,7 +284,7 @@ album, artist, year, tracks = unkle  # tuple unpacking
 print(album)                         # The Road, Pt. 1
 print(tracks[3])                     # (4, 'Cowboys or Indians')
 
-# -----------------------------------------------------------------------------
+
 # Binary Files
 # -----------------------------------------------------------------------------
 # Write a Binary file:
@@ -312,7 +312,7 @@ with open('testbinary', 'wb') as fob:
 with open('testbinary', 'rb') as fob:
     bdata = fob.read()
 
-# -----------------------------------------------------------------------------
+
 # seek(), tell()
 # -----------------------------------------------------------------------------
 # Reminder: As you read and write, Python keeps track of where you are in
@@ -343,12 +343,12 @@ with open('testbinary', 'rb') as fob:
 # That being said, a simple fob.seek(0) can be useful for moving your pointer
 # back to the beginning of the file.
 
-# -----------------------------------------------------------------------------
+
 # truncate()
 # -----------------------------------------------------------------------------
 # filename.truncate() - Empties the file
 
-# -----------------------------------------------------------------------------
+
 # Read, Write Append chart
 # -----------------------------------------------------------------------------
 #                  | R | R+| W | W+| A | A+|

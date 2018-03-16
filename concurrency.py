@@ -6,7 +6,7 @@
 
 # Concurrency: https://docs.python.org/3/library/concurrency.html
 
-# -----------------------------------------------------------------------------
+
 # CPU bound, I/O bound
 # -----------------------------------------------------------------------------
 # In terms of computing wait times, there are two main concepts:
@@ -31,7 +31,7 @@
 # effect results in lower CPU and device utilization than might be possible if
 # the shorter processes were allowed to go first.
 
-# -----------------------------------------------------------------------------
+
 # Asynchronous
 # -----------------------------------------------------------------------------
 # Synchronous - the next task begins when the previous task has been completed
@@ -65,7 +65,7 @@
 # state means that there will be bottlenecks, failures, more things that can go
 # wrong. There are methods to help you deal with complexities:
 
-# -----------------------------------------------------------------------------
+
 # Queues
 # -----------------------------------------------------------------------------
 # Queues are used by both threads and multiprocesses. They can be thought of
@@ -87,7 +87,7 @@
 # multiprocessing module which contains a queue function. There's also a queue
 # module and a threading module.
 
-# -----------------------------------------------------------------------------
+
 # Multiprocesses
 # -----------------------------------------------------------------------------
 # Multiprocesses take advantage of the CPUs ability to utilize multiple CPUs.
@@ -142,7 +142,7 @@ dish_queue.join()  # see below (note that dish_queue is its own process)
 # control access to a common resource by multiple processes in a concurrent
 # system such as a multiprogramming operating system.)
 
-# -----------------------------------------------------------------------------
+
 # Daemon Processes
 # -----------------------------------------------------------------------------
 # By default the main program will not exit until all of the children have
@@ -165,7 +165,7 @@ dish_queue.join()  # see below (note that dish_queue is its own process)
 # https://pymotw.com/3/multiprocessing/basics.html
 # https://docs.python.org/3.6/library/multiprocessing.html
 
-# -----------------------------------------------------------------------------
+
 # .join()
 # -----------------------------------------------------------------------------
 # To wait until a process has completed its work and exited, we use the join
@@ -201,7 +201,7 @@ print("ok, our main loop can run again!")
 # dryer_process, the queue will have time to finish its job because the
 # dryer_process now blocks the main program from ever exiting.
 
-# -----------------------------------------------------------------------------
+
 # Threading
 # -----------------------------------------------------------------------------
 # A thread runs within a process and has access to everything within that
@@ -316,7 +316,7 @@ dish_queue.join()
 # https://pymotw.com/3/threading/index.html
 # https://docs.python.org/3/library/threading.html
 
-# -----------------------------------------------------------------------------
+
 # Event-driven frameworks
 # -----------------------------------------------------------------------------
 # An alternative to separate threads and process is event-based programming.
@@ -332,9 +332,9 @@ dish_queue.join()
 
 # http://circuitsframework.com/
 # https://twistedmatrix.com/trac/
-# http://www.tornadoweb.org/en/stable/
+# http://www.tornadoweb.org/en/stable/  # * mentioned by Twelve-Factor App
 
-# -----------------------------------------------------------------------------
+
 # asyncio
 # -----------------------------------------------------------------------------
 # The asyncio module provides tools for building concurrent applications using
@@ -348,7 +348,7 @@ dish_queue.join()
 # https://pymotw.com/3/asyncio/index.html
 # https://docs.python.org/3/library/asyncio.html
 
-# -----------------------------------------------------------------------------
+
 # Queues across Networks
 # -----------------------------------------------------------------------------
 # This example uses a Redis server. The Redis list acts as the queue. In theory,
@@ -457,7 +457,7 @@ for num in range(DRYERS):
 
 # don't forget to shutdown the server: redis-cli shutdown
 
-# -----------------------------------------------------------------------------
+
 # Final Note on Queues
 # -----------------------------------------------------------------------------
 # Some techniques relating to queues:
@@ -473,8 +473,8 @@ for num in range(DRYERS):
 
 # In real systems, you need to be careful that each process or thread is
 # keeping up with demand. You might add new tasks to a 'pending' list and let a
-# worker process pop the latest message to a 'working' list. When the message is
-# done, it's removed from the working list and added to the 'completed' list.
+# worker process pop the latest message to a 'working' list. When the message
+# is done, it's removed from the working list and added to the completed list.
 # This lets you know what tasks have failed or are taking too long. You can do
 # this kind of thing with Redis yourself or use a system that someone else has
 # already written and tested (some of which use Redis):
