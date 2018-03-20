@@ -25,7 +25,7 @@ with open('filename.txt', 'w') as fileobject:
     print('do something')
 
 # So the general translation is that there is a try and finally block running
-# behind the scenes. The example below demonstrates this method in amother way.
+# behind the scenes. The example below demonstrates this method in another way.
 # It says try: __enter__() the block and when completed, finally: __exit__().
 
 class controlled_execution:
