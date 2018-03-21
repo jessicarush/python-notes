@@ -144,6 +144,20 @@ while True:
     print(value)
 
 
+# setdefault()
+# -----------------------------------------------------------------------------
+# setdefault() method is like get() but if the key is missing, it creates it.
+# If does not change the value if the key is already there. If you don't
+# provide a value as with 'Canada' below, the value will be set to None
+
+location.setdefault('country', 'Canada')
+print(location['country'])
+# Canada
+location.setdefault('country', 'USA')
+print(location['country'])
+# Canada
+
+
 # .keys() .values() .items()
 # -----------------------------------------------------------------------------
 # When iterating over keys, values or both,
@@ -258,21 +272,11 @@ for k, v, in new_dict.items():
 # but instead another sequence, use the .zip() function: see zip_function.py
 
 
-# setdefault()
-# -----------------------------------------------------------------------------
-# setdefault() method is like get() for dictionaries. It looks for the key and
-# if missing, creates it, but it does not change the value if the key is
-# already there. If you don't provide a value as with 'Canada' below, the
-# value will be set to None
-
-country = location.setdefault('country', 'Canada')
-
-
 # defaultdict()
 # -----------------------------------------------------------------------------
-# defaultdict() specifies a default value for any new key up front when the
-# dictionary is created. In this example, any missing value will be an integer
-# with a value 0
+# defaultdict() is smilar to setdefault() but it specifies a default value for
+# any new key up front when the dictionary is created. In this example, any
+# missing value will be an integer with a value 0
 
 from collections import defaultdict
 
@@ -304,7 +308,7 @@ jellybeans = defaultdict(lambda: None)
 jellybeans['red']
 print(jellybeans['red'])  # None
 
-# if you wanted to add items to the the key's value list as with
+# FYI if you wanted to add items to the the key's value list as with
 # jellybeans = defaultdict(list):
 
 jellybeans = defaultdict(list)
@@ -322,9 +326,9 @@ def log_missing():
 
 dd = defaultdict(log_missing, d)
 
-add_to_dd = [('yellow', 4), ('red', 5), ('green', 8), ('black', 50)]
+more = [('yellow', 4), ('red', 5), ('green', 8), ('black', 50)]
 
-for key, value in add_to_dd:
+for key, value in more:
     dd[key] += value
 
 print(dict(dd))
