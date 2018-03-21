@@ -11,7 +11,7 @@ dir(set)
 #  'union', 'update']
 
 
-# Create and modify sets
+# Create a set with set() or {}
 # -----------------------------------------------------------------------------
 #  - a set is like a dictionary but without the values
 #  - like a dictionary, sets are unordered
@@ -41,10 +41,16 @@ print(from_tuple)   # {'four', 'five', 'six'}
 print(from_dict)    # {'apple', 'banana', 'pear'}
 print(from_range)   # {1, 2, 3, 4}
 
+
+# add()
+# -----------------------------------------------------------------------------
 # add to a set with .add():
 
 colours.add('cyan')
 
+
+# remove(), discard()
+# -----------------------------------------------------------------------------
 # remove from a set with .remove():
 # .remove will raise an error if it does not find the item
 
@@ -63,11 +69,16 @@ try:
 except KeyError:
     print("the item is not there to remove")
 
-# sort a set with sorted():
 
-print(sorted(colours))  # ['green', 'orange', 'red', 'yellow']
+# sort a set with sorted()
+# -----------------------------------------------------------------------------
+
+print(sorted(colours))
+# ['green', 'orange', 'red', 'yellow']
+
 
 # create a copy of a set with .copy():
+# -----------------------------------------------------------------------------
 
 new_colours = colours.copy()
 
@@ -81,7 +92,7 @@ drinks = {'martini' : {'vodka', 'vermouth'},
           }
 
 
-# check for a value with if, in, and, not, or, & {}
+# check for values with in, and, not, or, & {}
 # -----------------------------------------------------------------------------
 
 def test1():
@@ -148,8 +159,11 @@ test6()
 # test 6:  screwdriver
 
 
-# More set operators
+# Set operators
 # -----------------------------------------------------------------------------
+# These include union(), intersection(), difference(), symmetric_difference(),
+# intersection_update(), difference_update(), symmetric_difference_update(),
+# issubset(), issuperset()
 
 bruss = drinks['black russian']
 wruss = drinks['white russian']
@@ -193,7 +207,7 @@ print(bruss.symmetric_difference(wruss))  # {cream}
 # you can update the set to the result using update() or _update():
 
 a.intersection_update(b)
-a.update(b) # union
+a.update(b)  # union
 a.difference_update(b)
 a.symmetric_difference_update(b)
 
@@ -214,6 +228,25 @@ print(a.issuperset(b))                    # False
 
 print(bruss >= wruss)                     # False
 print(bruss.issuperset(wruss))            # False
+
+
+# So the methods on sets clearly suggest that sets are meant to operate on
+# other sets, and that they are not just containers. If we have data coming in
+# from two different sources and need to quickly combine them in some way, to
+# determine where the data overlaps or is different, we can use set operations
+# to efficiently compare them. Or if we have data incoming that may contain
+# duplicates of data that has already been processed, we can use sets to
+# compare the two and process only the new data.
+
+# Finally, it is valuable to know that sets are much more efficient than lists
+# when checking for membership using the in keyword. If you use the syntax
+# value in container on a set or a list, it will return True if one of the
+# elements in container is equal to value and False otherwise. However, in a
+# list, it will look at every object in the container until it finds the value,
+# whereas in a set, it simply hashes the value and checks for membership. This
+# means that a set will find the value in the same amount of time no matter how
+# big the container is, but a list will take longer and longer to search for a
+# value as the list contains more and more values.
 
 
 # Frozen Sets
