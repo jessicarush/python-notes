@@ -50,6 +50,9 @@ Surround text with single \* or \_ for
 Surround text with double \*\* or \_\_ for
 **strong text**
 
+Surround text with triple \*\*\* for
+***strong emphasized text***
+
 Surround text with double \~\~ for
 ~~strikethrough text~~
 

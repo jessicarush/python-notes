@@ -104,6 +104,7 @@ print(Contact.all_contacts == c.all_contacts)  # False
 
 Contact.all_contacts = list(Contact.all_contacts)
 
+
 # Default values
 # -----------------------------------------------------------------------------
 # Looking at the example above, we could imagine using class variables like a

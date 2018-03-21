@@ -1,6 +1,6 @@
 '''A study of inheritance'''
 
-# see first: classes.py
+# see first: classes.py, composition.py
 
 # This is a demonstration of multiple inheritance through a simple real estate
 # application that allows an agent to manage properties for purchase or rent.

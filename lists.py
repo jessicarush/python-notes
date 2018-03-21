@@ -1,6 +1,6 @@
 '''Lists'''
 
-# -----------------------------------------------------------------------------
+
 # List methods
 # -----------------------------------------------------------------------------
 
@@ -8,7 +8,7 @@ dir(list)
 #  [..., 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert',
 #  'pop', 'remove', 'reverse', 'sort']
 
-# -----------------------------------------------------------------------------
+
 # Lists are mutable and ordered
 # -----------------------------------------------------------------------------
 # They may contain duplicate items and can be changed in place.
@@ -48,7 +48,7 @@ a_list.append('item')
 a_string = "11-7-24-19-74"
 a_list = a_string.split('-')  # ['11', '7', '24', '19', '74']
 
-# -----------------------------------------------------------------------------
+
 # Accessing list values by index
 # -----------------------------------------------------------------------------
 # Get an item by [position]
@@ -66,10 +66,9 @@ print(dates[0][1])  # Feb
 
 dates[0] = a_list
 
-# -----------------------------------------------------------------------------
+
 # Slice a list [start : end : step]
 # -----------------------------------------------------------------------------
-
 # You can access a slice of a list. Note this does not change the list.
 
 print(weekdays[1::2])    # ['Monday', 'Wednesday', 'Friday']
@@ -86,21 +85,21 @@ test = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 test[1:7] = ['x', 'y']
 print(test)  # ['a', 'x', 'y', 'h', 'i']
 
-# -----------------------------------------------------------------------------
+
 # .append()
 # -----------------------------------------------------------------------------
 # Add a list item with .append()
 
 months.append('apr')
 
-# -----------------------------------------------------------------------------
+
 # .insert()
 # -----------------------------------------------------------------------------
 # Add/insert a list item by position with .insert()
 
 months.insert(2, 'mar')
 
-# -----------------------------------------------------------------------------
+
 # .extend()
 # -----------------------------------------------------------------------------
 # Combine lists with .extend() - this would be like .update() for dicts
@@ -122,7 +121,7 @@ list3 = [list1 + list2] # creates a list of one list
 
 list3 = list1 + list2   # creates one list
 
-# -----------------------------------------------------------------------------
+
 # .remove()
 # -----------------------------------------------------------------------------
 # Remove an item by value with .remove(). Note this will only remove the first
@@ -143,7 +142,7 @@ for item in items:
     if item['name'] == 'eggs':
         items.remove(item)
 
-# -----------------------------------------------------------------------------
+
 # del
 # -----------------------------------------------------------------------------
 # Delete an item by position with del
@@ -155,7 +154,7 @@ del list1[3]
 del list1[:]
 print(list1)  # []
 
-# -----------------------------------------------------------------------------
+
 # .clear()
 # -----------------------------------------------------------------------------
 # In Python 3.3 and higher you can also use clear() to delete all items:
@@ -177,22 +176,22 @@ print('popped: ', popped_item)  # popped item:  one
 
 # see while_loops.py for another example using.pop()
 
-# -----------------------------------------------------------------------------
+
 # .index()
 # -----------------------------------------------------------------------------
 # Find the the index position of a value with .index()
+# Note that if the value isn't in the list, an exception will be raised.
 
 print(list3.index('two'))  # 0
 
-# Test for a value in a list
 
-print('four' in list3)  # True
+# Check if a a value is in a list
+# -----------------------------------------------------------------------------
 
-# Test for a value NOT in a list
-
+print('four' in list3)      # True
 print('four' not in list3)  # False
 
-# -----------------------------------------------------------------------------
+
 # .count()
 # -----------------------------------------------------------------------------
 # Count the occurrences of a value with .count()
@@ -200,7 +199,7 @@ print('four' not in list3)  # False
 print(list3.count('one'))   # 1
 print(list3.count('four'))  # 3
 
-# -----------------------------------------------------------------------------
+
 # .join()
 # -----------------------------------------------------------------------------
 # Convert a list to a string with .join()
@@ -218,7 +217,7 @@ for item in bands:
     new_string += item
 print(new_string)  # MelvinsGhostPucifer
 
-# -----------------------------------------------------------------------------
+
 # .split()
 # -----------------------------------------------------------------------------
 # Convert a string to a list with .split()
@@ -226,7 +225,7 @@ print(new_string)  # MelvinsGhostPucifer
 split_list = joined_string.split(' * ')
 print(split_list)  # ['Melvins', 'Ghost', 'Pucifer']
 
-# -----------------------------------------------------------------------------
+
 # sorted()
 # -----------------------------------------------------------------------------
 # Temporarily reorder items with sorted() - this does not change the
@@ -238,7 +237,7 @@ print(bands)                 # ['Melvins', 'Ghost', 'Pucifer']
 sorted_bands = sorted(bands)
 print(sorted_bands)          # ['Ghost', 'Melvins', 'Pucifer']
 
-# -----------------------------------------------------------------------------
+
 # .sort()
 # -----------------------------------------------------------------------------
 # Permanently reorder items with .sort() - this sorts the list in place
@@ -250,7 +249,7 @@ numbers = [1, 2.5, 6, 3.2]
 numbers.sort(reverse=True)
 print(numbers)  # [6, 3.2, 2.5, 1]
 
-# -----------------------------------------------------------------------------
+
 # .reverse()
 # -----------------------------------------------------------------------------
 # Permanently reverse the order of any list with the .reverse method:
@@ -258,14 +257,14 @@ print(numbers)  # [6, 3.2, 2.5, 1]
 numbers.reverse()
 print(numbers)  # [1, 2.5, 3.2, 6]
 
-# -----------------------------------------------------------------------------
-# .len()
+
+# len()
 # -----------------------------------------------------------------------------
 # Get length by len()
 
 print(len(bands))  # 3
 
-# -----------------------------------------------------------------------------
+
 # .copy()
 # -----------------------------------------------------------------------------
 # Create a copy with copy(), list() or slice[:]
@@ -285,7 +284,7 @@ print(a, '\n', b, '\n', c, '\n', d, '\n', e)
 # [1, 2, 3]
 # [1, 2, 3]
 
-# -----------------------------------------------------------------------------
+
 # min(), max(), sum()
 # -----------------------------------------------------------------------------
 # A few functions are specific to lists of numbers:
@@ -294,7 +293,7 @@ print(min(numbers))  # 1
 print(max(numbers))  # 6
 print(sum(numbers))  # 12.7
 
-# -----------------------------------------------------------------------------
+
 # List comprehensions
 # -----------------------------------------------------------------------------
 # see comprehensions.py

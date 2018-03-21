@@ -17,7 +17,9 @@ This is the process of converting such requirements into an implementation speci
 
 There is a great [designing tool here](http://ondras.zarovi.cz/sql/demo).
 
-Identifying objects is a very important task, but it isn't always as easy as counting the nouns in a short paragraph. Remember, class objects are things that have both data and behavior. If we are working only with data, we are often better off storing it in a list, set, dictionary, or some other Python data structure . On the other hand, if we are working only with behavior, but no stored data, a simple function is more suitable.
+Identifying objects is a very important task, but it isn't always as easy as counting the nouns in a short paragraph.
+
+> Remember, class objects are things that have both data and behavior. If we are working only with data, we are often better off storing it in a list, set, dictionary, or some other Python data structure . On the other hand, if we are working only with behavior, but no stored data, a simple function is more suitable.
 
 ## Object-oriented programming (OOP)
 
@@ -32,6 +34,9 @@ A general-purpose, developmental, modeling language in the field of software eng
 ## Manager Objects
 
 Higher-level objects that manage other objects. These are the objects that tie everything together. Analogously, the attributes on a management class tend to refer to other objects that do the "visible" work; the behaviors on such a class delegate to those other classes at the right time, and pass messages between them.
+
+
+
 
 
 # Database Relationships
