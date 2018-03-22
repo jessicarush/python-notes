@@ -33,6 +33,11 @@ git add -A
 git commit -m 'Initial commit'  
 ```
 
+## Environmental variables
+```
+pip install python-dotenv
+```
+
 ## Database
 ```
 pip install psycopg2  

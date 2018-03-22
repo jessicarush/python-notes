@@ -42,6 +42,9 @@
 # NOTE: for some reason PostgreSQL doesn't like the syntax of using ? as
 # placeholder values. It prefers %s instead!
 
+# NOTE: do not use the name 'user' for a table name as is is a reserved word
+# in postgresql. 'users' seems to work fine.
+
 import psycopg2
 
 
