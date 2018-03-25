@@ -1,6 +1,6 @@
 '''Web Services Automation'''
 
-# -----------------------------------------------------------------------------
+
 # The webbrowser Module
 # -----------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ webbrowser.open_new(url)
 
 webbrowser.open_new_tab(url)
 
-# -----------------------------------------------------------------------------
+
 # Web APIs and Representational State Transfer (REST)
 # -----------------------------------------------------------------------------
 # Instead of publishing web pages, you can provide data through a web
@@ -51,7 +51,7 @@ webbrowser.open_new_tab(url)
 # JSON is especially well suited to web client-server data interchange.
 # It's especially popular in web-based APIs, such as OpenStack.
 
-# -----------------------------------------------------------------------------
+
 # Crawl and Scrape
 # -----------------------------------------------------------------------------
 # Sometimes, you might want a little bit of information available only in HTML
@@ -65,7 +65,7 @@ webbrowser.open_new_tab(url)
 # Scrapy is a framework, not a module. It does more, but it's more complex to
 # set up. Learn more at: https://scrapy.org
 
-# -----------------------------------------------------------------------------
+
 # Scrape with BeautifulSoup - basic parsing example
 # -----------------------------------------------------------------------------
 # If you already have the HTML data from a website and just want to extract
@@ -110,7 +110,7 @@ for item in a:
 # Paris
 # Tokyo
 
-# -----------------------------------------------------------------------------
+
 # Scrape with BeautifulSoup - links example
 # -----------------------------------------------------------------------------
 # The following example uses it to get all the links from a web page. A

@@ -13,7 +13,7 @@ import requests
 import pygal
 from pygal.style import DefaultStyle as DS, LightenStyle as LS
 
-# -----------------------------------------------------------------------------
+
 # Make an API call and store the response:
 # -----------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ print('Status code:', r.status_code)
 print('Headers:', r.headers['content-type'])
 print('Encoding:', r.encoding)
 
-# -----------------------------------------------------------------------------
+
 # Process information about each submission:
 # -----------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ for submission_id in submission_ids[:100]:
         }
     submission_dicts.append(submission_dict)
 
-# -----------------------------------------------------------------------------
+
 # Store the dict as a JSON to reuse while testing:
 # -----------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ with open('hacker_news_api.json', 'w') as fob:
 with open('hacker_news_api.json') as fob:
     submission_dicts = json.load(fob)
 
-# -----------------------------------------------------------------------------
+
 # Sort the information:
 # -----------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ for submission_dict in submission_dicts:
     plot_dicts.append(plot_dict)
 
 
-# -----------------------------------------------------------------------------
+
 # Style info:
 # -----------------------------------------------------------------------------
 
@@ -120,7 +120,7 @@ style.opacity_hover = '.9'
 # style.colors = ('#E853A0', '#E8537A', '#E95355', '#E87653', '#E89B53')
 # style.value_colors = ()
 
-# -----------------------------------------------------------------------------
+
 # Config info:
 # -----------------------------------------------------------------------------
 
@@ -177,7 +177,7 @@ config.show_minor_y_labels = True
 # config.show_y_guides = True
 # config.show_x_guides = True
 
-# -----------------------------------------------------------------------------
+
 # Create and populate the plot:
 # -----------------------------------------------------------------------------
 

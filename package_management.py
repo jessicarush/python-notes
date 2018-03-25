@@ -1,6 +1,5 @@
 '''Package Management'''
 
-# -----------------------------------------------------------------------------
 # Installing packages
 # -----------------------------------------------------------------------------
 # pip - you can install most packages this way
@@ -37,7 +36,7 @@
 # The solution was to run (double-click) the 'Install Certificates.command'
 # found in: Applications/Python 3.6/
 
-# -----------------------------------------------------------------------------
+
 # Requirements files
 # -----------------------------------------------------------------------------
 # https://pip.pypa.io/en/latest/user_guide/#requirements-files
@@ -77,7 +76,7 @@
 
 # That being said, the github page reports quite a few open issues.
 
-# -----------------------------------------------------------------------------
+
 # Dependencies
 # -----------------------------------------------------------------------------
 # This will list package dependencies:

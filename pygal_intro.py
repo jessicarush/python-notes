@@ -8,7 +8,7 @@
 # http://pygal.org/en/stable/
 # http://pygal.org/en/stable/documentation/types/index.html
 
-# -----------------------------------------------------------------------------
+
 # Ideally the following class would be saved as a module: die.py
 # -----------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ class Die():
         return randint(1, self.sides)
 
 
-# -----------------------------------------------------------------------------
+
 # Ideally the following would be in it's own file and we'd import the class
 # -----------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ histogram.y_title = 'frequency of result'
 histogram.add('D6', frequencies)
 histogram.render_to_file('die_visual_1.svg')
 
-# -----------------------------------------------------------------------------
+
 # Two dice
 # -----------------------------------------------------------------------------
 
@@ -86,7 +86,7 @@ hist2.y_title = 'frequency of result'
 hist2.add('D6 + D6', frequencies)
 hist2.render_to_file('die_visual_2.svg')
 
-# -----------------------------------------------------------------------------
+
 # Two different dice
 # -----------------------------------------------------------------------------
 
@@ -107,7 +107,7 @@ hist2.y_title = 'frequency of result'
 hist2.add('D6 + D10', frequencies)
 hist2.render_to_file('die_visual_3.svg')
 
-# -----------------------------------------------------------------------------
+
 # Misc notes: configuration
 # -----------------------------------------------------------------------------
 # There is a config class in the Pygal module (but the documentation is weak
@@ -139,7 +139,7 @@ chart.render(show_legend=False, human_readable=True, fill=True)
 
 # Configuration options should not be confused with styling:
 
-# -----------------------------------------------------------------------------
+
 # Misc notes: styling
 # -----------------------------------------------------------------------------
 # http://pygal.org/en/stable/documentation/styles.html

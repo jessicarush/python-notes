@@ -1,26 +1,26 @@
 '''Resources''''
 
-# -----------------------------------------------------------------------------
+
 # Python philosophy
 # -----------------------------------------------------------------------------
 
 import this
 
-# -----------------------------------------------------------------------------
+
 # Good explanations
 # -----------------------------------------------------------------------------
 # Python Docs- https://docs.python.org/3/
 # Built-ins: https://www.programiz.com/python-programming/methods/built-in
 # http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
 
-# -----------------------------------------------------------------------------
+
 # When looking for code
 # -----------------------------------------------------------------------------
 # PyPI - https://pypi.python.org/pypi
 # Github - https://github.com/trending?l=python
 # Active State - http://code.activestate.com/recipes/langs/python/
 
-# -----------------------------------------------------------------------------
+
 # help()
 # -----------------------------------------------------------------------------
 # In the python interpreter, use the help function to get information on a
@@ -58,7 +58,7 @@ help(str.translate)
 help(set.difference)
 help(datetime.datetime)
 
-# -----------------------------------------------------------------------------
+
 # dir()
 # -----------------------------------------------------------------------------
 # The built-in dir function is an easy way to grab a list of all the attributes
@@ -95,7 +95,7 @@ dir(set)
 #  'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update',
 #  'union', 'update']
 
-# -----------------------------------------------------------------------------
+
 # Docstrings
 # -----------------------------------------------------------------------------
 # Builtins, modules and more have their own docstrings, which can also provide
@@ -106,7 +106,7 @@ import random
 print(random.__doc__)
 print(random.choice.__doc__)
 
-# -----------------------------------------------------------------------------
+
 # HTML PyDoc
 # -----------------------------------------------------------------------------
 # Another way to view help similar to the help() and docstrings is to use
@@ -118,7 +118,7 @@ print(random.choice.__doc__)
 # (.py files) it finds from the current directory you were in when you
 # launched it. It's actually pretty great!
 
-# -----------------------------------------------------------------------------
+
 # View the source code
 # -----------------------------------------------------------------------------
 # If you want to take a look at the actual file to read the comments and

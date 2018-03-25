@@ -9,7 +9,7 @@
 import folium
 import pandas
 
-# -----------------------------------------------------------------------------
+
 # Folium classes & methods
 # -----------------------------------------------------------------------------
 print(dir(folium))
@@ -21,7 +21,7 @@ print(dir(folium))
 # 'TileLayer','TopoJson', 'Vega', 'VegaLite', 'WmsTileLayer', 'absolute_import',
 # 'division', 'features', 'folium', 'map', 'print_function', 'utilities' ...]
 
-# -----------------------------------------------------------------------------
+
 # Basics
 # -----------------------------------------------------------------------------
 # print(help(folium.Map()))
@@ -88,7 +88,7 @@ fgp = folium.FeatureGroup(name='Population')
 # folium.Marker(location=loc[1], popup='Info', icon=icon1).add_to(fgv)
 # folium.Marker(location=loc[2], popup='Info', icon=icon2).add_to(fgv)
 
-# -----------------------------------------------------------------------------
+
 # Add Markers by iterating through data from a file
 # -----------------------------------------------------------------------------
 
@@ -141,7 +141,7 @@ for lat, lon, e, n in zip(latitudes, longitudes, elevation, name):
         fill_opacity=0.4,
         ).add_to(fgv)
 
-# -----------------------------------------------------------------------------
+
 # Add a polygon layer:
 # -----------------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ json_style = lambda x: {
 
 fgp.add_child(folium.GeoJson(data=json_file, style_function=json_style))
 
-# -----------------------------------------------------------------------------
+
 # Add final elements to the map and save:
 # -----------------------------------------------------------------------------
 # add the feature groups to the map:

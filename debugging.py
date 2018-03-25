@@ -1,6 +1,5 @@
 '''Debugging'''
 
-# -----------------------------------------------------------------------------
 # General Tips
 # -----------------------------------------------------------------------------
 # Though not very advanced, dropping print() statements and print(type())
@@ -14,7 +13,7 @@ print(vars())
 
 # $ python3 -i myfile.py
 
-# -----------------------------------------------------------------------------
+
 # Standard Library: pdb module
 # -----------------------------------------------------------------------------
 # Bug test: read a file of countries and their capital cities, separated by a
@@ -75,7 +74,7 @@ import pdb; pdb.set_trace()  # this will launch the debugger
 
 process_cities('data/cities.csv')
 
-# -----------------------------------------------------------------------------
+
 # pdb Commands
 # -----------------------------------------------------------------------------
 # Documented commands (type help <topic>):

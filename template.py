@@ -3,7 +3,7 @@
 '''Docstring Summary Line, followed by a space.
 
 Followed by the extended description of the module. This may include
-special notes on structire and usage as well as include brief information
+special notes on structure and usage as well as include brief information
 on the modules Classes, Functions and variables.
 '''
 
@@ -12,7 +12,7 @@ from random import choice
 
 
 __author__ =     "Jessica Rush"
-__copyright__ =  "Copyright 2017, Cyan Red"
+__copyright__ =  "Copyright 2017, cyan red"
 __credits__ =    ["Scott Volk", "Someone Else"]
 __license__ =    "GPL"
 __version__ =    "1.0.1"
@@ -24,7 +24,8 @@ __status__ =     "Production"
 # Explanation: The above is a recommended example source code file header.
 # The main things to note here:
 
-# 1. The first line of each file should be #!/usr/bin/env python3 (or the path #    to wherever your installation is... see which python3 for your path).
+# 1. The first line of each file should be #!/usr/bin/env python3 (or the path
+#    to wherever your installation is... see which python3 for your path).
 #    This makes it possible to run the file as a script invoking the
 #    interpreter implicitly, (basically, just type $ templates.py in the
 #    command line instead of $ python3 templates.py).
@@ -34,10 +35,10 @@ __status__ =     "Production"
 #    own, separated from the rest by a newline.
 
 # 3. Third should be all the import statements. Standard library first, then
-#    third-party libraraies, then your own modules.
+#    third-party libraries, then your own modules.
 
 # 4. OPTIONAL: Authorship information. Note that many feel this information
 #    should be kept out of the source file and kept in its own file(s) such
-#    as AUTHORS and LISCENSE. Status should typically be one of "Prototype",
+#    as AUTHORS and LICENSE. Status should typically be one of "Prototype",
 #    "Development", or "Production". More information can be found here:
 #    http://epydoc.sourceforge.net/manual-fields.html#module-metadata-variables

@@ -12,7 +12,7 @@
 # – Indentation. An example is YAML (.yaml, .yml)
 # – Miscellaneous, such as configuration files for programs.
 
-# -----------------------------------------------------------------------------
+
 # CSV
 # -----------------------------------------------------------------------------
 # Delimited files are often used as an exchange format for spreadsheets and
@@ -83,7 +83,7 @@ with open('singers.csv', 'r') as fin:
     csv_in = csv.DictReader(fin)
     singers = [row for row in csv_in]
 
-# -----------------------------------------------------------------------------
+
 # XML
 # -----------------------------------------------------------------------------
 # practice.xml code for example below:
@@ -144,14 +144,14 @@ print(len(root[0])) # number of breakfast items
 #           to load everything into memory at once. A good choice if you need
 #           to process very large streams of XML.
 
-# -----------------------------------------------------------------------------
+
 # HTML
 # -----------------------------------------------------------------------------
 # The problem here is so much of it doesn't follow the HTML rules, which can
 # make it difficult to parse. Also, much of HTML is intended more to format
 # output than interchange data. More to come...
 
-# -----------------------------------------------------------------------------
+
 # JSON
 # -----------------------------------------------------------------------------
 # Has become a very popular data interchange format. The JSON format is a
@@ -239,7 +239,7 @@ json.dumps(now, cls=DTEncoder)
 # the items is a dictionary, you can extract contents through keys(),
 # values(), and items().
 
-# -----------------------------------------------------------------------------
+
 # YAML
 # -----------------------------------------------------------------------------
 # practice.yaml code for example below:
@@ -296,7 +296,7 @@ print(data['poems'][1]['title'])
 # Always Use safe_load() instead of load(), especially if you're importing
 # YAML that you don't trust.
 
-# -----------------------------------------------------------------------------
+
 # Configuration files
 # -----------------------------------------------------------------------------
 # The standard configparser module handles Windows-style .ini files.
@@ -322,7 +322,7 @@ cfg.read('data/practice.cfg')
 
 print(cfg['french']['greeting'])
 
-# -----------------------------------------------------------------------------
+
 # Serialize with pickle
 # -----------------------------------------------------------------------------
 # Serialization is the process that allows objects to be saved to a file so
@@ -403,12 +403,12 @@ pickle.dump(unkle, pickle_file, protocol=pickle.DEFAULT_PROTOCOL)
 pickle.loads(b"cos\nsystem\n(S'rm text.txt'\ntR.")      # mac/linux
 pickle.loads(b"cos\nsystem\n(S'del text.txt'\ntR.")     # windows
 
-# -----------------------------------------------------------------------------
+
 # Shelve module
 # -----------------------------------------------------------------------------
 # see shelve_module.py
 
-# -----------------------------------------------------------------------------
+
 # Spreadsheets
 # -----------------------------------------------------------------------------
 # Spreadsheets, notably Microsoft Excel, are widespread binary data formats.
@@ -416,7 +416,7 @@ pickle.loads(b"cos\nsystem\n(S'del text.txt'\ntR.")     # windows
 # the standard csv module that was described earlier. If you have a binary
 # xls file, xlrd is a third-party package for reading and writing.
 
-# -----------------------------------------------------------------------------
+
 # HDF5
 # -----------------------------------------------------------------------------
 # is a binary data format for multidimensional or hierarchical numeric data.

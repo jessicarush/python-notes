@@ -5,7 +5,7 @@
 # of water moves across the surface in a random walk. It is pushed around by
 # water molecules and molecular motion in a water drop happens to be random.
 
-# -----------------------------------------------------------------------------
+
 # Ideally the following class would be saved as a module: random_walk.py
 # -----------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ class RandomWalk():
             self.x_values.append(next_x)
             self.y_values.append(next_y)
 
-# -----------------------------------------------------------------------------
+
 # Ideally the following would be in it's own file and we'd import the class
 # -----------------------------------------------------------------------------
 

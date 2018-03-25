@@ -20,7 +20,7 @@ import tkinter as tk
 print(tk.TkVersion)
 print(tk.TclVersion)
 
-# -----------------------------------------------------------------------------
+
 # .pack()
 # -----------------------------------------------------------------------------
 # Start by creating the main window:
@@ -83,14 +83,14 @@ mainWindow.mainloop()
 # work for the axis opposite to their side. (i.e. if you've aligned to the left
 # you can only anchor n, s).
 
-# -----------------------------------------------------------------------------
+
 # .place()
 # -----------------------------------------------------------------------------
 # works by setting the absolute position for at least one window and placing
 # other elements relative to it. Unless you know the single screen size you're
 # programming for, its not super helpful.
 
-# -----------------------------------------------------------------------------
+
 # .grid()
 # -----------------------------------------------------------------------------
 
@@ -139,7 +139,7 @@ window.mainloop()
 
 # FYI relief types: flat, groove, raised, ridge, solid, or sunken
 
-# -----------------------------------------------------------------------------
+
 # sticky
 # -----------------------------------------------------------------------------
 # By default, if a cell is larger than the widget contained in it, the widget
@@ -154,7 +154,7 @@ window.mainloop()
 # will still be centered horizontally. A value of "nw" (north-west) means the
 # widget will be stuck to the top left corner.
 
-# -----------------------------------------------------------------------------
+
 # weight
 # -----------------------------------------------------------------------------
 # Every column and row has a "weight" grid option associated with it, which
@@ -171,7 +171,7 @@ window.mainloop()
 # window.columnconfigure(1, weight=1)
 # Window.columnconfigure(2, weight=3)
 
-# -----------------------------------------------------------------------------
+
 # tkinter.ttk
 # -----------------------------------------------------------------------------
 # The tkinter.ttk module provides access to the Tk themed widget set,

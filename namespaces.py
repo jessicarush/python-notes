@@ -1,6 +1,6 @@
 '''Namespaces'''
 
-# -----------------------------------------------------------------------------
+
 # Local and global variables
 # -----------------------------------------------------------------------------
 # You can get the value of a global variable from within a function
@@ -52,7 +52,7 @@ change_and_print_global()
 # inside change_and_print_global: fruitbat
 # after the change: wombat
 
-# -----------------------------------------------------------------------------
+
 # nonlocal
 # -----------------------------------------------------------------------------
 # Python 3 introduced the nonlocal keyword that allows you to assign to
@@ -82,7 +82,7 @@ testing_nonlocal()
 # – global
 # – built-ins
 
-# -----------------------------------------------------------------------------
+
 # locals() and globals()
 # -----------------------------------------------------------------------------
 # Python provides two functions to access the contents of your Namespaces
@@ -120,7 +120,7 @@ for x in g:
 # testing_nonlocal
 # x
 
-# -----------------------------------------------------------------------------
+
 # __name__, __doc__
 # -----------------------------------------------------------------------------
 # The name of a function is in the system variable: function.__name__

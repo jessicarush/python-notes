@@ -20,7 +20,7 @@ squares(6)
 # 36
 # After squares() is called.
 
-# -----------------------------------------------------------------------------
+
 # @functools.wraps():
 # -----------------------------------------------------------------------------
 # When you use a decorator, you're replacing one function (squares) with
@@ -52,7 +52,7 @@ def squares(n):
 print(squares.__name__)  # squares
 print(squares.__doc__)   # returns the square of a number
 
-# -----------------------------------------------------------------------------
+
 # Returning results
 # -----------------------------------------------------------------------------
 # The function document_it() below defines a decorator that will:
@@ -94,7 +94,7 @@ add_ints(4, 5)
 # Keyword arguments: {}
 # Result: 9
 
-# -----------------------------------------------------------------------------
+
 # Multiple decorators
 # -----------------------------------------------------------------------------
 
@@ -134,12 +134,12 @@ print(add_ints(4, 3))
 # Result: 7
 # 49
 
-# -----------------------------------------------------------------------------
+
 # @property
 # -----------------------------------------------------------------------------
 # see decorators used as getter and setter methods in classes.py
 
-# -----------------------------------------------------------------------------
+
 # decorators with arguments
 # -----------------------------------------------------------------------------
 # Consider this example. Imagine a number of functions that allow access to
@@ -167,8 +167,8 @@ def my_function():
     print('The function runs...')
 
 my_function()
-exit()
-# -----------------------------------------------------------------------------
+
+
 # one last example:
 # -----------------------------------------------------------------------------
 

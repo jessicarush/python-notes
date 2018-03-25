@@ -3,7 +3,7 @@
 for item in dir(__builtins__):
     print(item)
 
-# ----------------------------------------------------------------------------
+
 # abs()
 # -----------------------------------------------------------------------------
 # returns the absolute value of a given number. If the number is a complex
@@ -19,7 +19,7 @@ print('Absolute value of -30.33 is:', abs(floating))  # 30.33
 complex_num = (3 - 4j)
 print('Magnitude of 3 - 4j is:', abs(complex_num))  # 5.0
 
-# ----------------------------------------------------------------------------
+
 # all()
 # -----------------------------------------------------------------------------
 # returns True when ALL elements in the given iterable are true. If not, it
@@ -38,7 +38,7 @@ print(all(numbers))
 numbers = []                    # True
 print(all(numbers))
 
-# ----------------------------------------------------------------------------
+
 # any()
 # -----------------------------------------------------------------------------
 # returns True if ANY element of an iterable is true. If not, it returns False.
@@ -71,7 +71,7 @@ for words in codewords:
         if animal in words:
             print('4. There is an animal in the words')
 
-# ----------------------------------------------------------------------------
+
 # ascii()
 # -----------------------------------------------------------------------------
 # return a string containing a printable representation of an object but
@@ -80,7 +80,7 @@ for words in codewords:
 print(ascii('café'))  # 'caf\xe9'
 print('caf\xe9')      # café
 
-# ----------------------------------------------------------------------------
+
 # bin()
 # -----------------------------------------------------------------------------
 # converts and returns the binary equivalent string of a given integer. It
@@ -99,13 +99,13 @@ class Inventory:
 
 print('The binary equivalent of Inventory is:', bin(Inventory()))  # 0b101
 
-# ----------------------------------------------------------------------------
+
 # bool()
 # -----------------------------------------------------------------------------
 # see reflection.py
 # converts a value to Boolean (True or False)
 
-# ----------------------------------------------------------------------------
+#
 # bytearray()
 # -----------------------------------------------------------------------------
 # see binary_data.py
@@ -117,7 +117,7 @@ print('The binary equivalent of Inventory is:', bin(Inventory()))  # 0b101
 # see binary_data.py
 # returns a bytes object (immmutable)
 
-# ----------------------------------------------------------------------------
+
 # callable()
 # -----------------------------------------------------------------------------
 # see reflection.py
@@ -128,7 +128,7 @@ def test():
 
 callable(test)  #True
 
-# ----------------------------------------------------------------------------
+
 # chr()
 # -----------------------------------------------------------------------------
 # returns a character (string) from an integer. The integer represents the
@@ -140,7 +140,7 @@ print(chr(454))    # ǆ
 print(chr(4540))   # ᆼ
 print(chr(45400))  # 녘
 
-# ----------------------------------------------------------------------------
+
 # classmethod()
 # -----------------------------------------------------------------------------
 # see classes.py
@@ -148,13 +148,13 @@ print(chr(45400))  # 녘
 # method is considered un-Pythonic so in newer Python versions, use the
 # @classmethod decorator instead.
 
-# ----------------------------------------------------------------------------
+
 # compile()
 # -----------------------------------------------------------------------------
 # see regular_expressions.py
 # returns a Python code object from the source string
 
-# ----------------------------------------------------------------------------
+
 # complex()
 # -----------------------------------------------------------------------------
 # returns a complex number when real and imaginary parameters are provided, or
@@ -170,7 +170,7 @@ print(complex(1))       # (1+0j)
 print(complex(2, -3))   # (2-3j)
 print(complex('5-9j'))  # (5-9j)
 
-# ----------------------------------------------------------------------------
+
 # delattr()
 # -----------------------------------------------------------------------------
 # deletes an attribute from the object (if the object allows it).
@@ -191,13 +191,13 @@ delattr(Coordinate, 'z')
 
 print(dir(point1)) # [..., 'x', 'y']
 
-# ----------------------------------------------------------------------------
+
 # dict()
 # -----------------------------------------------------------------------------
 # see dictionaries.py
 # creates a dictionary object
 
-# ----------------------------------------------------------------------------
+
 # dir()
 # -----------------------------------------------------------------------------
 # see also resources.py
@@ -222,13 +222,13 @@ for obj in dir(random.Random):
     if obj[0] != '_':
         print(obj)
 
-# ----------------------------------------------------------------------------
+
 # divmod()
 # -----------------------------------------------------------------------------
 # see operators.py
 # takes two numbers and returns a tuple of their quotient and remainder
 
-# ----------------------------------------------------------------------------
+
 # enumerate()
 # -----------------------------------------------------------------------------
 # adds counter to an iterable and returns it. In this example it takes apart a
@@ -254,13 +254,13 @@ for number, colour in enumerate(colours, 1): # starts the numbering at 1
 # indexes listed with all the headers so we know which indexes of data we're
 # looking for: matplotlib_csv_example.py
 
-# ----------------------------------------------------------------------------
+
 # eval()
 # -----------------------------------------------------------------------------
 # see files_read_write.py
 # runs the python code (which is passed as an argument) within the program
 
-# ----------------------------------------------------------------------------
+
 # exec()
 # -----------------------------------------------------------------------------
 # Is used to execute a python statement that is stored in a string or file:
@@ -276,7 +276,7 @@ exec(program)
 program = input('Enter a program:') # for num in range(1, 10): print(num)
 exec(program)
 
-# ----------------------------------------------------------------------------
+
 # filter()
 # -----------------------------------------------------------------------------
 # In simple words, the filter() method filters a given iterable with the help
@@ -339,39 +339,39 @@ print(listcomp_data)  # ['one', 'two', 'three']
 # exist in many other languages. Those languages will use something more like
 # the filter method.
 
-# ----------------------------------------------------------------------------
+
 # float()
 # -----------------------------------------------------------------------------
 # see data_types.py
 # returns a floating point number from a number or a string
 
-# ----------------------------------------------------------------------------
+
 # format()
 # -----------------------------------------------------------------------------
 # see formatting.py
 # returns a formatted representation of the given value
 
-# ----------------------------------------------------------------------------
+
 # frozenset()
 # -----------------------------------------------------------------------------
 # see sets.py
 # creates an immutable set
 
-# ----------------------------------------------------------------------------
+
 # getattr()
 # -----------------------------------------------------------------------------
 # see reflection.py
 # returns the value of an attribute of an object, given the attribute name,
 # but also lets you provide a default value to avoid raising an errors.
 
-# ----------------------------------------------------------------------------
+
 # globals()
 # -----------------------------------------------------------------------------
 # see namespaces.py
 # returns a dictionary of the current global symbol table (variable names,
 # methods, classes, etc)
 
-# ----------------------------------------------------------------------------
+
 # hasattr()
 # -----------------------------------------------------------------------------
 # returns true if an object has the given named attribute and false if not.
@@ -387,7 +387,7 @@ person = Person()
 print('Person has age?:', hasattr(person, 'age'))        # True
 print('Person has salary?:', hasattr(person, 'salary'))  # False
 
-# ----------------------------------------------------------------------------
+
 # hash()
 # -----------------------------------------------------------------------------
 # The hash(object) method returns the hash value of an object if it has one.
@@ -410,7 +410,7 @@ print('Hash for Python is:', hash('Python'))  # 2230730083538390373
 vowels = ('a', 'e', 'i', 'o', 'u')
 print(hash(vowels))  # -695778075465126279
 
-# ----------------------------------------------------------------------------
+
 # help()
 # -----------------------------------------------------------------------------
 # see resources.py
@@ -426,69 +426,69 @@ help(random.choice)
 import documenting_naming
 help(documenting_naming)
 
-# ----------------------------------------------------------------------------
+
 # hex()
 # -----------------------------------------------------------------------------
 # see binary_data.py
 # convert integers to hexadecimal (base 16)
 
-# ----------------------------------------------------------------------------
+
 # id()
 # -----------------------------------------------------------------------------
 # see reflection.py
 # returns the identity (unique integer) of an object
 
-# ----------------------------------------------------------------------------
+
 # input()
 # -----------------------------------------------------------------------------
 # see while_loops.py
 # returns a string of user input
 
-# ----------------------------------------------------------------------------
+
 # int()
 # -----------------------------------------------------------------------------
 # see data_types.py
 # returns and integer object from a number or string
 
-# ----------------------------------------------------------------------------
+
 # isinstance()
 # -----------------------------------------------------------------------------
 # see reflection.py
 # checks if the object (first argument) is an instance or subclass of the
 # (second argument).
 
-# ----------------------------------------------------------------------------
+
 # issubclass()
 # -----------------------------------------------------------------------------
 # see reflection.py
 # checks if the object (first argument) is a subclass of (second argument).
 
-# ----------------------------------------------------------------------------
+
 # iter()
 # -----------------------------------------------------------------------------
 # see iterating_with_for.py
 # returns an iterator for the given object
 
-# ----------------------------------------------------------------------------
+
 # len()
 # -----------------------------------------------------------------------------
 # see noSQL_datastores.py
 # returns the number of items (length) of an object
 
-# ----------------------------------------------------------------------------
+
 # list()
 # -----------------------------------------------------------------------------
 # see lists.py
 # creates a list object
 
-# ----------------------------------------------------------------------------
+
 # locals()
 # -----------------------------------------------------------------------------
 # see namespaces.py
 # returns a dictionary of the current local symbol table (variable names,
 # methods, classes, etc)
 
-# ----------------------------------------------------------------------------
+
 # map()
 # -----------------------------------------------------------------------------
 # The map() function applies a given function to each item of an iterable and
@@ -512,7 +512,7 @@ squares = (x ** 2 for x in numbers)
 print(squares)       # <generator object <genexpr> at 0x101553e08>
 print(set(squares))  # {16, 1, 4, 9}
 
-# ----------------------------------------------------------------------------
+
 # max()
 # -----------------------------------------------------------------------------
 # The max() method returns the largest element in an iterable or largest of
@@ -540,7 +540,7 @@ def sum(numlist):
 
 print(max(num1, num2, num3, key=sum))  # [6, 66, 899, 790]
 
-# ----------------------------------------------------------------------------
+
 # memoryview()
 # -----------------------------------------------------------------------------
 # A buffer protocol provides a way to access the internal data of an object.
@@ -580,19 +580,19 @@ print('Before update:', example)  # bytearray(b'Hello')
 mv[0] = 90
 print('After update:', example)   # bytearray(b'Zello')
 
-# ----------------------------------------------------------------------------
+
 # min()
 # -----------------------------------------------------------------------------
 # The min() method returns the smallest element in an iterable or smallest of
 # two or more parameters. Works the same as max() above.
 
-# ----------------------------------------------------------------------------
+
 # next()
 # -----------------------------------------------------------------------------
 # see iterating_with_for.py and generators.py
 # returns the next item from the iterator
 
-# ----------------------------------------------------------------------------
+
 # object()
 # -----------------------------------------------------------------------------
 # This returns a featureless object which is a base for all classes.
@@ -601,19 +601,19 @@ print('After update:', example)   # bytearray(b'Zello')
 o = object()
 print(type(o))  # <class 'object'>
 
-# ----------------------------------------------------------------------------
+
 # oct()
 # -----------------------------------------------------------------------------
 # see binary_data.py
 # convert integers to octal (base 8)
 
-# ----------------------------------------------------------------------------
+
 # open()
 # -----------------------------------------------------------------------------
 # see files_read_write.py
 # opens a file and returns a corresponding file object
 
-# ----------------------------------------------------------------------------
+
 # ord()
 # -----------------------------------------------------------------------------
 # method returns an integer representing Unicode code point for the given
@@ -625,7 +625,7 @@ print(ord('ǆ'))    # 454
 print(ord('ᆼ'))    # 4540
 print(ord('녘'))    # 45400
 
-# ----------------------------------------------------------------------------
+
 # pow()
 # -----------------------------------------------------------------------------
 # The pow() method returns x to the power of y. If the third argument (z) is
@@ -643,7 +643,7 @@ z = 5
 
 print(pow(x, y, z))  # 4
 
-# ----------------------------------------------------------------------------
+
 # print()
 # -----------------------------------------------------------------------------
 # Remember there are additional args you can provide to print.
@@ -660,7 +660,7 @@ for i in range(0, 6):
 for i in range(0, 6):
     print(i, file=fileobject)
 
-# ----------------------------------------------------------------------------
+
 # property()
 # -----------------------------------------------------------------------------
 # see classes.py
@@ -673,7 +673,7 @@ for i in range(0, 6):
 # – fdel (Optional) - function for deleting the attribute value
 # – doc (Optional) - string that contains the docstring for the attribute
 
-# ----------------------------------------------------------------------------
+
 # range()
 # -----------------------------------------------------------------------------
 # returns an immutable sequence object of integers - when using range() alone,
@@ -683,7 +683,7 @@ numbers = range(0, 100)
 print(type(numbers)) # class 'range'
 print(numbers[0:50:2] == range(0, 50, 2)) # True
 
-# ----------------------------------------------------------------------------
+
 # repr()
 # -----------------------------------------------------------------------------
 # returns a printable representation of the given object:
@@ -692,7 +692,7 @@ import datetime
 now = datetime.datetime.utcnow()
 print(repr(now))  # datetime.datetime(2017, 9, 5, 18, 23, 30, 607281)
 
-# ----------------------------------------------------------------------------
+
 # reversed()
 # -----------------------------------------------------------------------------
 # The reversed() method returns the reversed iterator of the given sequence.
@@ -717,7 +717,7 @@ class Vowels:
 v = Vowels()
 print(list(reversed(v)))  # ['u', 'o', 'i', 'e', 'a']
 
-# ----------------------------------------------------------------------------
+
 # round()
 # -----------------------------------------------------------------------------
 # returns the floating point number rounded off to the given ndigits digits
@@ -734,13 +734,13 @@ print(round(2.665, 2))  # 2.67
 # cannot be represented exactly as float
 print(round(2.675, 2))  # 2.67
 
-# ----------------------------------------------------------------------------
+
 # set()
 # -----------------------------------------------------------------------------
 # see sets.py
 # create a set object
 
-# ----------------------------------------------------------------------------
+
 # setattr()
 # -----------------------------------------------------------------------------
 # sets the value of given attribute of an object: setattr(object, name, value)
@@ -759,7 +759,7 @@ print('After change:', p.name)  # Raja
 p.name = 'Rick'
 print('After change:', p.name)  # Rick
 
-# ----------------------------------------------------------------------------
+
 # slice()
 # -----------------------------------------------------------------------------
 # The slice() constructor creates a slice object representing the set of
@@ -792,7 +792,7 @@ print(a_tuple[s_object])        # ('n', 'o', 'h')
 
 print(a_string[1:5:2])          # yh
 
-# ----------------------------------------------------------------------------
+
 # sorted()
 # -----------------------------------------------------------------------------
 # see dictionaries.py, lists.py, sets.py
@@ -809,19 +809,19 @@ print(sorted(mylist, key=len, reverse=True))
 print(sorted(mydict.items(), key=lambda x: x[1]))
 # [('b', 1), ('c', 3), ('a', 5)]
 
-# ----------------------------------------------------------------------------
+
 # staticmethod()
 # -----------------------------------------------------------------------------
 # see classes.py
 # Returns a static method for function – use the @staticmethod decorator
 
-# ----------------------------------------------------------------------------
+
 # str()
 # -----------------------------------------------------------------------------
 # see strings.py
 # returns a string object
 
-# ----------------------------------------------------------------------------
+
 # sum()
 # -----------------------------------------------------------------------------
 # The sum() function adds the items of an iterable and returns the sum. Start
@@ -844,25 +844,25 @@ print(total)
 # If you need to concatenate items of the given iterable (items must be string)
 # then use join() method: ''.join(sequence)
 
-# ----------------------------------------------------------------------------
+
 # super()
 # -----------------------------------------------------------------------------
 # see classes.py
 # In case of inheritance, it allows us to refer base class by super()
 
-# ----------------------------------------------------------------------------
+
 # tuple()
 # -----------------------------------------------------------------------------
 # see tuples.py
 # returns a tuple object
 
-# ----------------------------------------------------------------------------
+
 # type()
 # -----------------------------------------------------------------------------
 # see reflection.py
 # if a single object is passed, returns type of the given object
 
-# ----------------------------------------------------------------------------
+
 # vars()
 # -----------------------------------------------------------------------------
 # returns the __dict__ attribute of the given object if the object has a
@@ -877,14 +877,14 @@ baker = Person('Mrs. Lovett', 35)
 
 print(vars(baker))  # {'name': 'Mrs. Lovett', 'age': 35}
 
-# ----------------------------------------------------------------------------
+
 # zip()
 # -----------------------------------------------------------------------------
 # see zip_function.py
 # take iterables (can be zero or more), makes iterator that aggregates
 # elements based on the iterables passed, and returns an iterator of tuples
 
-# ----------------------------------------------------------------------------
+
 #__import__()
 # -----------------------------------------------------------------------------
 # see import.py

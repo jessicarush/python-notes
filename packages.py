@@ -1,6 +1,6 @@
 '''Packages: organize modules into file hierarchies'''
 
-# -----------------------------------------------------------------------------
+
 # Module 1: sources/daily.py
 # -----------------------------------------------------------------------------
 
@@ -8,7 +8,7 @@ def forecast():
     '''Daily forecast'''
     return 'Like yesterday'
 
-# -----------------------------------------------------------------------------
+
 # Module 2: sources/weekly.py
 # -----------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ def forecast():
     '''Weekly forecast'''
     return['snow', 'clear', 'sleet', 'rain', 'freezing rain', 'fog', 'hail']
 
-# -----------------------------------------------------------------------------
+
 # __init__.py
 # -----------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@ def forecast():
 # "initialization" code. That being said, programmers do not expect actual
 # logic to happen in this file so keep it at that.
 
-# -----------------------------------------------------------------------------
+
 # Main program: weather.py
 # -----------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ for number, outlook in enumerate(weekly.forecast(), 1):
 # The enumerate function above takes apart a list and feeds each item to the
 # for loop, adding a number to each item starting from 1.
 
-# -----------------------------------------------------------------------------
+
 # Importing specific function/classes
 # -----------------------------------------------------------------------------
 

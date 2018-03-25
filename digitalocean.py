@@ -36,7 +36,6 @@
 # on the server that can be updated.
 
 
-
 # Creating a new user
 # -----------------------------------------------------------------------------
 # It's a good idea to create a new user on your server so your not always
@@ -93,7 +92,6 @@
 # https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
 
 
-
 # Installing postgresql
 # -----------------------------------------------------------------------------
 # apt-get install postgresql postgresql-contrib
@@ -126,7 +124,6 @@
 # To exit from the database, type: \q
 
 # To logout of the postgres user and return to root type: exit
-
 
 
 # Creating and linking a new user to postgresql
@@ -189,7 +186,6 @@
 # https://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html
 
 
-
 # Installing nginx and enabling a Firewall
 # -----------------------------------------------------------------------------
 # NGINX is a free, open-source, HTTP server and reverse proxy, as well as an
@@ -233,7 +229,6 @@
 # $ systemctl start nginx
 # $ systemctl stop nginx
 # $ systemctl restart nginx
-
 
 
 # Configure nginx
@@ -323,7 +318,6 @@ root /usr/share/nginx/html;
 # restart does just that.
 
 
-
 # Create directories, git clone your app, install python
 # -----------------------------------------------------------------------------
 # Create the directory where the application files will be placed, give
@@ -356,7 +350,6 @@ root /usr/share/nginx/html;
 # $ pip install --upgrade pip
 # $ pip install wheel
 # $ pip install -r requirements.txt
-
 
 
 # Set up ubuntu 'service', uwsgi.ini
@@ -462,7 +455,6 @@ logto = /var/www/html/items-rest/log/%n.log
 # $ sudo systemctl start uwsgi_items_rest
 
 
-
 # Attaching a domain name to your digitalocean server:
 # -----------------------------------------------------------------------------
 # Once you've bought a domain, you can use a service like cloudflare to
@@ -489,7 +481,6 @@ logto = /var/www/html/items-rest/log/%n.log
 # (A, AAAA, CNAME, MX, TXT).
 
 # https://school-of-code.gitbooks.io/rest-apis-with-flask-and-python/content/domains-and-https/modifying-our-dns-records.html
-
 
 
 # Setting up an SSL certificate (https://)
@@ -547,7 +538,6 @@ set_real_ip_from 127.0.0.1;
 # cloudflare or wherever.
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-an-ssl-certificate-from-a-commercial-certificate-authority
-
 
 
 # Troubleshooting

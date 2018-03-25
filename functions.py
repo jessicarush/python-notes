@@ -3,7 +3,7 @@
 from datetime import datetime
 from time import sleep
 
-# -----------------------------------------------------------------------------
+
 # Write a function with def()
 # -----------------------------------------------------------------------------
 # Function names can start with letters or _ and contain only letters, numbers
@@ -14,12 +14,12 @@ from time import sleep
 def myfunction(num1, num2): # num1, num2 are parameters
     pass
 
-# -----------------------------------------------------------------------------
+
 # Call the function()
 # -----------------------------------------------------------------------------
 myfunction(1, 2) # 1, 2 are arguments
 
-# -----------------------------------------------------------------------------
+
 # Reminder: return vs print
 # -----------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ def heading(arg):
 h = heading('Positional Arguments')
 print(h)
 
-# -----------------------------------------------------------------------------
+
 # Positional Arguments
 # -----------------------------------------------------------------------------
 
@@ -46,14 +46,14 @@ def menu(wine, cheese, dessert):
 print(menu('chardonnay', 'cake', 'swiss'))
 # {'wine': 'chardonnay', 'cheese': 'cake', 'dessert': 'swiss'}
 
-# -----------------------------------------------------------------------------
+
 # Keyword Arguments
 # -----------------------------------------------------------------------------
 
 print(menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 # {'wine': 'chardonnay', 'cheese': 'swiss', 'dessert': 'cake'}
 
-# -----------------------------------------------------------------------------
+
 # Keyword-only arguments
 # -----------------------------------------------------------------------------
 # In the examples above, we see that it's optional as to whether we use
@@ -70,7 +70,7 @@ def menu(wine, cheese, *, courses=3, guests=1):
 
 menu('merlot', 'brie', guests=2, courses=4)
 
-# -----------------------------------------------------------------------------
+
 # Use None to specify dynamic default values
 # -----------------------------------------------------------------------------
 # In this example the function is expected to run each time with a fresh empty
@@ -137,7 +137,7 @@ log('hello again')
 # 2018-02-06 15:46:32.852450: hello
 # 2018-02-06 15:46:33.857498: hello again
 
-# -----------------------------------------------------------------------------
+
 # Gathering Positional Arguments - *args
 # -----------------------------------------------------------------------------
 # The * operator used when defining a function means that any extra positional
@@ -189,7 +189,7 @@ print_more('red', 'green', 'one', 'two', 'three')
 # second argument is required: green
 # the rest: ('one', 'two', 'three')
 
-# -----------------------------------------------------------------------------
+
 # Gathering Keyword Arguments - **kwargs
 # -----------------------------------------------------------------------------
 # ** does for dictionaries & key/value pairs exactly what * does for iterables
@@ -226,7 +226,7 @@ print_kwargs(**colours)
 # see also terminology.py for another example that feeds dictionary values
 # to a class instance.
 
-# -----------------------------------------------------------------------------
+
 # Docstrings
 # -----------------------------------------------------------------------------
 
@@ -247,7 +247,7 @@ def myfunction2(arg):
 print(myfunction1.__doc__)
 print(myfunction2.__doc__)
 
-# -----------------------------------------------------------------------------
+
 # Functions as Arguments
 # -----------------------------------------------------------------------------
 # Functions are objects, just like numbers, strings, tuples, lists,
@@ -283,7 +283,7 @@ def run_with_positional_args(func, *args):
 
 run_with_positional_args(sum_numbers, 2, 3, 1, 4)  # 10
 
-# -----------------------------------------------------------------------------
+
 # Nested functions
 # -----------------------------------------------------------------------------
 # This is pretty straight forward. When we call the outer() function, it in
@@ -301,7 +301,7 @@ def outer():
 
 outer()  # 1
 
-# -----------------------------------------------------------------------------
+
 # Closure
 # -----------------------------------------------------------------------------
 # Consider that the namespace created for our functions are created from
@@ -347,7 +347,7 @@ b()  # 3
 # to our inner function but are building custom versions of our inner function
 # that "remembers" what number it should print.
 
-# -----------------------------------------------------------------------------
+
 # lambda()
 # -----------------------------------------------------------------------------
 # The lambda function is an anonymous function expressed as a single statement

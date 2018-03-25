@@ -1,6 +1,6 @@
 '''Testing Python Code'''
 
-# -----------------------------------------------------------------------------
+
 # Code checkers: pylint or pycodestyle
 # -----------------------------------------------------------------------------
 # These check for code errors and style issues:
@@ -34,8 +34,8 @@ print(C)
 # pep8 always expects 2 blank lines following an import, function def or class.
 # pep8 expects all imports to be at the top of the file.
 
-# -----------------------------------------------------------------------------
-# NOTE Atom linter-pylint package
+
+# NOTE: Atom linter-pylint package
 # -----------------------------------------------------------------------------
 # After a while, the C0103 pylint warning for invalid constant names gets
 # really irritating. If you want to turn it off permanently in Atom do this:
@@ -47,7 +47,7 @@ print(C)
 # [MESSAGES] category. At the end of the disable assignment, add another comma
 # and the code C0103.
 
-# -----------------------------------------------------------------------------
+
 # Testing code with assert
 # -----------------------------------------------------------------------------
 # To assert is to ensure something is True
@@ -70,7 +70,7 @@ test_one_word()
 test_many_words()
 test_with_apostrophes()
 
-# -----------------------------------------------------------------------------
+
 # Code tester: pytest
 # -----------------------------------------------------------------------------
 # Code testers still use assert but include many more features. The modules
@@ -97,7 +97,7 @@ def test_answer():
 # NOTE: you can write all your tests in one file a import the module and
 # functions that you want to test.
 
-# -----------------------------------------------------------------------------
+
 # Code tester: unittest
 # -----------------------------------------------------------------------------
 # The Python standard library also provides a module to automate the testing of
@@ -228,7 +228,7 @@ unittest.main()
 # and use them in each of your test methods. When you include a setUp() method,
 # Python runs it before running each method that starts with 'test_'.
 
-# -----------------------------------------------------------------------------
+
 # Code tester: doctest
 # -----------------------------------------------------------------------------
 # doctest - https://docs.python.org/3.6/library/doctest.html

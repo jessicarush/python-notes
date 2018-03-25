@@ -28,6 +28,7 @@ touch .gitignore
 .DS_Store  
 \__pycache__  
 venv  
+.env
 ```
 git add -A  
 git commit -m 'Initial commit'  
@@ -60,9 +61,17 @@ pip install Flask-Login
 pip install Flask-Mail
 pip install PyJWT
 ```
+
 ## Timezones
 ```
 pip install Flask-Moment
+```
+
+## Full-Text Search
+```
+brew install elasticsearch
+pip install elasticsearch
+
 ```
 
 ## Internationalization & Localization (I18n L10n)

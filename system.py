@@ -5,7 +5,7 @@
 # Some functions, such as chown() and chmod(), have the same names, but there
 # are a few new ones.
 
-# -----------------------------------------------------------------------------
+
 # Files
 # -----------------------------------------------------------------------------
 # Create a file with open()
@@ -91,7 +91,7 @@ uid = 501
 gid = 20
 os.chown('practice.txt', uid, gid)
 
-# -----------------------------------------------------------------------------
+
 # Directories
 # -----------------------------------------------------------------------------
 
@@ -135,7 +135,7 @@ src = 'my_files/'
 dst ='/Users/username/Documents/Backups/'
 distutils.dir_util.copy_tree(src, dst)
 
-# -----------------------------------------------------------------------------
+
 # List Matching Files with glob()
 # -----------------------------------------------------------------------------
 # The glob() function matches file or directory names by using Unix shell
@@ -157,7 +157,7 @@ print(glob.glob('T*'))
 os.chdir('Introducing Python')
 print(glob.glob('[fg]*py'))
 
-# -----------------------------------------------------------------------------
+
 # Programs and Processes
 # -----------------------------------------------------------------------------
 # The Python os module provides some ways to access some system

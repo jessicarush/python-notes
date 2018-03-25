@@ -14,7 +14,7 @@
 # use with a dictionary, can be used with shelf objects. Use the same caution
 # with shelves as you would with pickle: no untrusted sources.
 
-# -----------------------------------------------------------------------------
+
 # shelve.open()
 # -----------------------------------------------------------------------------
 # Note: keys & values can only be added to shelves via individual assignments:
@@ -56,7 +56,7 @@ with shelve.open('plants_shelf') as plants:
     for k in ordered_keys:
         print(k)
 
-# -----------------------------------------------------------------------------
+
 # Check for keys
 # -----------------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ while True:
 
 plants.close()
 
-# -----------------------------------------------------------------------------
+
 # Example of more complex values
 # -----------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ with shelve.open('pizzas') as pizzas:
     pizzas['prosciutto'] = prosciutto
     pizzas['Italian'] = italian
 
-# -----------------------------------------------------------------------------
+
 # Append to a shelved list
 # -----------------------------------------------------------------------------
 # Ideally we would say -  pizzas['Pesto'].append('garlic') but it doesn't work
@@ -122,7 +122,7 @@ with shelve.open('pizzas', writeback=True) as pizzas:
 # heavier memory usage. Regarding sync, it writes everything to the file, but
 # also clears the memory cache.
 
-# -----------------------------------------------------------------------------
+
 # Reminder
 # -----------------------------------------------------------------------------
 # To reiterate, keys & values can only be added to shelves via individual
@@ -170,7 +170,7 @@ topics.close()
 # open it as above (topics = shelve.open('topics'), have access to the data...
 # and close it at the end.
 
-# -----------------------------------------------------------------------------
+
 # When NOT to use shelve
 # -----------------------------------------------------------------------------
 # Keep in mind that since values are being pickled as they're stored and
@@ -181,7 +181,7 @@ topics.close()
 # it, shelve may not be a good choice as it may not work properly on the new
 # system.
 
-# -----------------------------------------------------------------------------
+
 # Summary
 # -----------------------------------------------------------------------------
 # Shelve is just a persistent dictionary. With a regular dictionary, you'd

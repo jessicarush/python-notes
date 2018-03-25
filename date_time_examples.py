@@ -1,6 +1,5 @@
 '''datetime Examples'''
 
-# -----------------------------------------------------------------------------
 # Compare usages
 # -----------------------------------------------------------------------------
 
@@ -37,7 +36,7 @@ backdated = datetime.date(2017, 8, 7).strftime('%a %x')
 print('{}/{}/{}'.format(now.month, now.day, now.year))
 # 12/31/2017  <class 'str'>
 
-# -----------------------------------------------------------------------------
+
 # timedelta example
 # -----------------------------------------------------------------------------
 # The following function will output a plant watering schedule using the

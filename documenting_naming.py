@@ -1,6 +1,5 @@
 '''Documenting and Naming'''
 
-# -----------------------------------------------------------------------------
 # docstrings
 # -----------------------------------------------------------------------------
 # For obvious reasons, it helps to document your code. Documentation can
@@ -86,7 +85,7 @@ def example(arg1, arg2=0.0):
 help(example)  # output all the docstrings (a class could have many)
 print(example.__doc__)  # print just the one docstring
 
-# -----------------------------------------------------------------------------
+
 # Example
 # -----------------------------------------------------------------------------
 # if you were writing a Fahrenheit to Celsius converter:
@@ -110,7 +109,7 @@ if __name__ == '__main__':
         c_temp = ftoc(f_temp)
         print('%f F => %f C' % (f_temp, c_temp))
 
-# -----------------------------------------------------------------------------
+
 # Constants
 # -----------------------------------------------------------------------------
 # Python doesn't have constants, but the PEP8 stylesheet recommends using
@@ -134,7 +133,7 @@ def ftoc(f_temp):
     c_temp = (f_temp - F_FREEZE_TEMP) * F_C_RATIO + C_FREEZE_TEMP
     return c_temp
 
-# -----------------------------------------------------------------------------
+
 # Private attributes or methods
 # -----------------------------------------------------------------------------
 # If you're building a module that will be imported, you can identify functions
@@ -145,7 +144,7 @@ def ftoc(f_temp):
 def _guts():
     pass
 
-# -----------------------------------------------------------------------------
+
 # Protected attributes or methods (name mangling)
 # -----------------------------------------------------------------------------
 # This method is for when you want to strongly suggest that outside objects
@@ -178,7 +177,7 @@ print(x._Person__alias)
 # overkill. Stick with single leading underscores. If you're going to use
 # either method, make a note of it in the docstring.
 
-# -----------------------------------------------------------------------------
+
 # Throwaway values
 # -----------------------------------------------------------------------------
 # in the event that you need to give something a name but you have no intention
@@ -192,7 +191,7 @@ name, _, country = person
 
 print(name, country)
 
-# -----------------------------------------------------------------------------
+
 # Variables names using Python keywords
 # -----------------------------------------------------------------------------
 # If you're desperate to name something using one of Pythons keywords, the
@@ -200,7 +199,7 @@ print(name, country)
 
 from_ = 'example'
 
-# -----------------------------------------------------------------------------
+
 # Type hints and function annotation
 # -----------------------------------------------------------------------------
 # Python 3 introduced a syntax addition called function annotation syntax.
@@ -230,7 +229,7 @@ def to_date(date_string: str) -> datetime:
 
 a = []  # type: List[str]
 
-# -----------------------------------------------------------------------------
+
 # Code Tags
 # -----------------------------------------------------------------------------
 # https://www.python.org/dev/peps/pep-0350/

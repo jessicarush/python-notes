@@ -5,7 +5,7 @@
 # https://matplotlib.org/examples/index.html
 # https://matplotlib.org/users/pyplot_tutorial.html
 
-# -----------------------------------------------------------------------------
+
 # plt.plot()
 # -----------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ plt.plot(x_vals, squares, color='#FB4847')
 plt.title('Specify x values', fontsize=14)
 plt.show()
 
-# -----------------------------------------------------------------------------
+
 # plt.scatter()
 # -----------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ plt.axis([0, 1200, 0, 900000])
 # display the plot:
 plt.show()
 
-# -----------------------------------------------------------------------------
+
 # Short argument names
 # -----------------------------------------------------------------------------
 # Note that many of the keyword arg names can be specified in short form:
@@ -94,7 +94,7 @@ plt.show()
 #    markerfacecolor or mfc
 #    markersize or ms
 
-# -----------------------------------------------------------------------------
+
 # RGB color values
 # -----------------------------------------------------------------------------
 # matplotlibs RGB color values need to be input as a float between 0 and 1.
@@ -109,7 +109,7 @@ mint = rgb_convert(4, 219, 164)
 coral = rgb_convert(255, 110, 103)
 yella = rgb_convert(255, 204, 0)
 
-# -----------------------------------------------------------------------------
+
 # Colormaps
 # -----------------------------------------------------------------------------
 # https://matplotlib.org/examples/color/colormaps_reference.html
@@ -154,7 +154,7 @@ plt.axis([0, 1100, 0, 1000000])
 
 # plt.show()
 
-# -----------------------------------------------------------------------------
+
 # Save to a File
 # -----------------------------------------------------------------------------
 # If you want to automatically save to a file, replace plt.show() with a call
@@ -169,7 +169,7 @@ plt.axis([0, 1100, 0, 1000000])
 
 plt.savefig('sample_plot.png', dpi=300, bbox_inches='tight')
 
-# -----------------------------------------------------------------------------
+
 # Misc
 # -----------------------------------------------------------------------------
 # If you wanted to remove the axis ticks and labels:

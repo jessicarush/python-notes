@@ -105,7 +105,6 @@
 # heroku logs --app okeover
 
 
-
 # Creating a PostgreSQL database on heroku
 # -----------------------------------------------------------------------------
 # Databases are included as add-ons in heroku. You can create a database

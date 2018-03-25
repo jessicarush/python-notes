@@ -23,7 +23,7 @@
 
 # https://docs.python.org/3/tutorial/venv.html
 
-# -----------------------------------------------------------------------------
+
 # Create a virtual environment
 # -----------------------------------------------------------------------------
 # To create a virtual environment, navigate to your project directory in the
@@ -32,7 +32,7 @@
 
 # $ python3 -m venv test_env
 
-# -----------------------------------------------------------------------------
+
 # Install packages in the virtual environment
 # -----------------------------------------------------------------------------
 # from your same project directory where test_env lives:
@@ -44,7 +44,7 @@
 
 # $ source test_env/bin/activate
 
-# -----------------------------------------------------------------------------
+
 # Run your program in the virtual environment
 # -----------------------------------------------------------------------------
 # You can do one of two things. First, the long way:
@@ -62,7 +62,7 @@
 
 # $ deactivate
 
-# -----------------------------------------------------------------------------
+
 # Keep track of requirements
 # -----------------------------------------------------------------------------
 # see package_management.py

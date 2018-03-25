@@ -14,7 +14,7 @@ from matplotlib import pyplot as plt
 filename = 'data/death_valley_2014.csv'
 placename = 'Death Valley, CA'
 
-# -----------------------------------------------------------------------------
+
 # Exploring the data:
 # -----------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ with open(filename) as fob:
     for index, column_header in enumerate(header_row):
         print(index, column_header)
 
-# -----------------------------------------------------------------------------
+
 # Extracting and reading data:
 # -----------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ with open(filename) as fob:
             highs.append(high)
             lows.append(low)
 
-# -----------------------------------------------------------------------------
+
 # Plotting the data:
 # -----------------------------------------------------------------------------
 

@@ -31,7 +31,7 @@ second = Word('HA')
 
 print(first == second)  # True
 
-# -----------------------------------------------------------------------------
+
 # Magic Methods for comparison
 # -----------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ def __le__(self, other):        # self <= other
 def __ge__(self, other):        # self >= other
     pass
 
-# -----------------------------------------------------------------------------
+
 # Magic Methods for math
 # -----------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ def __mod__(self, other):       # self % other
 def __pow__(self, other):       # self ** other
     pass
 
-# -----------------------------------------------------------------------------
+
 # __str__ and __repr__
 # -----------------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ first = Word('Ha')
 print(first)            # Ha - because of the magic method __str__
 print(repr(first))      # Word("Ha") - because of the magic method __repr__
 
-# -----------------------------------------------------------------------------
+
 # Another __str__ example
 # -----------------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ class Player(object):
 player1 = Player('Morty')
 print(player1)  # Name: Morty, Lives: 3, Level: 1, Score: 0
 
-# -----------------------------------------------------------------------------
+
 # __dict__
 # -----------------------------------------------------------------------------
 # Another magic method is __dict__. It's used to return the dictionary used to
@@ -115,7 +115,7 @@ print(player1)  # Name: Morty, Lives: 3, Level: 1, Score: 0
 print(player1.__dict__)
 # {'name': 'Morty', 'lives': 3, 'level': 1, 'score': 0}
 
-# -----------------------------------------------------------------------------
+
 # __file__
 # -----------------------------------------------------------------------------
 # If you want to take a look at the actual file to read the comments and
@@ -126,7 +126,7 @@ import os
 print(os.__file__)
 # /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/os.py
 
-# -----------------------------------------------------------------------------
+
 # __doc__
 # -----------------------------------------------------------------------------
 # prints the docstring of a module, function or class:

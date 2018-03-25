@@ -10,7 +10,6 @@ from pygal.maps.world import World
 from pygal.style import Style
 
 
-# -----------------------------------------------------------------------------
 # Explore/Analyze the data
 # -----------------------------------------------------------------------------
 
@@ -28,7 +27,7 @@ for pop_dict in pop_data:
         population = int(float(pop_dict['Value']))
         print(country_name, '–', population)
 
-# -----------------------------------------------------------------------------
+
 # Extract the data
 # -----------------------------------------------------------------------------
 # To use pygals mapping tools, countries need to be provided as country codes.
@@ -66,7 +65,7 @@ for pop_dict in pop_data:
 
 # For the moment, we'll just plot the stuff that matched.
 
-# -----------------------------------------------------------------------------
+
 # Plot the data
 # -----------------------------------------------------------------------------
 # group the countries into 3 population levels to have the colouring be more

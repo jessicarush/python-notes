@@ -14,7 +14,7 @@
 
 import pandas
 
-# -----------------------------------------------------------------------------
+
 # Creating a DataFrame
 # -----------------------------------------------------------------------------
 # Create a DataFrame, which is a special kind of object that will hold data.
@@ -23,7 +23,8 @@ import pandas
 
 df1 = pandas.DataFrame([[2, 4, 6], [10, 20, 30]])
 
-print(type(df1))  # <class 'pandas.core.frame.DataFrame'>
+print(type(df1))
+# <class 'pandas.core.frame.DataFrame'>
 print(df1)
 #     0   1   2
 # 0   2   4   6
@@ -72,7 +73,7 @@ print(df2)
 # 0   abc   Rick  Sanchez
 # 1   xyz  Morty  Sanchez
 
-# -----------------------------------------------------------------------------
+
 # Reading data from files
 # -----------------------------------------------------------------------------
 # As mentioned, pandas can read a wide range of data files using methods
@@ -148,12 +149,14 @@ df5 = pandas.read_csv('data/supermarkets-semicolons.txt', sep=';')
 # If your data file lives on the web, just insert the URL:
 df6 = pandas.read_csv('http://pythonhow.com/supermarkets.csv')
 
-# -----------------------------------------------------------------------------
+
 # Accessing DataFrame rows, columns: slicing
 # -----------------------------------------------------------------------------
-
 # First of all, you can access individual columns by using dot notation:
-print(type(df1.Name))  # <class 'pandas.core.series.Series'>
+
+print(type(df1.Name))
+# <class 'pandas.core.series.Series'>
+
 print(df1.Name)
 # 0        Madeira
 # 1    Bready Shop
@@ -170,21 +173,25 @@ print(df1.Name)
 # df.loc[startrow:endrow, startcolumn:endcolumn]
 # df.iloc[startrow:endrow, startcolumn:endcolumn]
 
-print(df1.loc[2:3, 'Address':'State'])  # gives you a range of cells
+# This gives you a range of cells:
+print(df1.loc[2:3, 'Address':'State'])
 #            Address           City             State
 # ID
 # 2   735 Dolores St  San Francisco          CA 94119
 # 3      332 Hill St  San Francisco  California 94114
 
-print(df1.loc[2:2,:])  # gives you a whole row
+# This gives you a whole row:
+print(df1.loc[2:2,:])
 #            Address           City     State Country         Name  Employees
 # ID
 # 2   735 Dolores St  San Francisco  CA 94119     USA  Bready Shop         15
 
-print(df1.loc[3, 'Name'])  # gives you a single cell
+# This gives you a single cell:
+print(df1.loc[3, 'Name'])
 # Super River
 
-print(df1.loc[:,'Name'])  # gives you a whole column like above
+# This gives you a whole column like above:
+print(df1.loc[:,'Name'])
 # ID
 # 1        Madeira
 # 2    Bready Shop
@@ -205,7 +212,7 @@ print(df1.iloc[1:3, 4:6])
 # 2   Bready Shop         15
 # 3   Super River         25
 
-# -----------------------------------------------------------------------------
+
 # Deleting data
 # -----------------------------------------------------------------------------
 # to delete a column, pass 1 after the column name:
@@ -231,12 +238,13 @@ print(df1.drop(3, 0))
 
 # Note once again, the drop method does not change the DataFrame in place.
 
-# -----------------------------------------------------------------------------
+
 # Adding/changing data
 # -----------------------------------------------------------------------------
 # To add a row:
 df1= df1.append({'Address': '124 Main St', 'City': 'Vancouver', 'State': 'BC',
   'Country': 'Canada', 'Name' :'Kins', 'Employees': 10}, ignore_index=True)
+
 print(df1.loc[:,'Name':])
 #           Name  Employees
 # 0      Madeira          8
@@ -293,7 +301,6 @@ print(df1_t)
 # Employees              8              15                25
 
 # than add the new row as if it were a column:
-
 row = ['124 Main St', 'Vancouver', 'BC', 'Canada', 'Kins', 10]
 df1_t[7] = row
 
@@ -319,7 +326,7 @@ print(df1.loc[:,'Country':'Name'])
 df1.at[3, 'State'] = 'CA 94114'
 df1.iat[4, 2] = 'CA 94114'
 
-# -----------------------------------------------------------------------------
+
 # Create a new column using data from other columns
 # -----------------------------------------------------------------------------
 
@@ -336,7 +343,7 @@ print(df1['Full_Address'])
 # 6    551 Alvarado St, San Francisco, CA 94114, US
 # 7              124 Main St, Vancouver, BC, Canada
 
-# -----------------------------------------------------------------------------
+
 # Use pandas apply() method to run a function on data values
 # -----------------------------------------------------------------------------
 # This example uses the geopy module to produce latitude and longitudes.
@@ -366,7 +373,7 @@ df1 = df1.drop('website', 1)
 # 6   551 Alvarado St, San Francisco, CA 94114, US  37.753666 -122.434440
 # 7             124 Main St, Vancouver, BC, Canada  49.159131 -122.934892
 
-# -----------------------------------------------------------------------------
+
 # Other DataFrame Methods
 # -----------------------------------------------------------------------------
 c = ['A','B','C']

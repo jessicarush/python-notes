@@ -13,7 +13,7 @@ import requests
 import pygal
 from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
 
-# -----------------------------------------------------------------------------
+
 # Processing an API response
 # -----------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ repo_dicts = response_dict['items']
 # for key in sorted(repo_dict1.keys()):
 #     print(key, '–', repo_dict1[key])
 
-# -----------------------------------------------------------------------------
+
 # Summarizing the top repos
 # -----------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ for repo_dict in repo_dicts:
     print('Updated:', repo_dict['updated_at'])
     print('Description:', repo_dict['description'])
 
-# -----------------------------------------------------------------------------
+
 # Monitoring API rate limits
 # -----------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ for repo_dict in repo_dicts:
 # you can make in a certain amount of time. To see if you're approaching
 # GitHub's limits: https://api.github.com/rate_limit
 
-# -----------------------------------------------------------------------------
+
 # Prep the data for plotting:
 # -----------------------------------------------------------------------------
 #
@@ -111,7 +111,7 @@ for repo_dict in repo_dicts:
         }
     plot_dicts.append(plot_dict)
 
-# -----------------------------------------------------------------------------
+
 # Visualizing the repos with pygal
 # -----------------------------------------------------------------------------
 

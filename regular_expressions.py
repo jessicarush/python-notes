@@ -2,7 +2,7 @@
 
 import re
 
-# -----------------------------------------------------------------------------
+
 # match()
 # -----------------------------------------------------------------------------
 # Define a pattern string, and a source string to compare against.
@@ -40,7 +40,7 @@ r = re.match('green', source)
 print(r)           # None
 # print(r.group()) # AttributeError: 'NoneType' object has no attribute 'group'
 
-# -----------------------------------------------------------------------------
+
 # Wildcards . *
 # -----------------------------------------------------------------------------
 # . means any character
@@ -52,7 +52,7 @@ r = re.match('.*green', source)
 print(r)  # <_sre.SRE_Match object; span=(0, 14), match='blue red green'>
 print(r.group())  # blue red green
 
-# -----------------------------------------------------------------------------
+
 # search()
 # -----------------------------------------------------------------------------
 # search() returns the first match, if any.
@@ -62,7 +62,7 @@ r = re.search('green', source)
 print(r)          # <_sre.SRE_Match object; span=(9, 14), match='green'>
 print(r.group())  # green
 
-# -----------------------------------------------------------------------------
+
 # findall()
 # -----------------------------------------------------------------------------
 # findall() returns a list of all non-overlapping matches, if any.
@@ -81,7 +81,7 @@ print(r)  # ['e ', 'ed', 'ee', 'el', 'ei']
 r = re.findall('e.?', source)
 print(r)  # ['e ', 'ed', 'ee', 'el', 'ei', 'e']
 
-# -----------------------------------------------------------------------------
+
 # split() and sub()
 # -----------------------------------------------------------------------------
 # split() splits the source using the pattern as the split point and returns
@@ -96,7 +96,7 @@ print(r)  # ['blue', 'red', 'green', 'yellow', 'blueish', 'blue']
 r = re.sub('blue', 'black', source)
 print(r)  # black red green yellow blackish black
 
-# -----------------------------------------------------------------------------
+
 # Special characters
 # -----------------------------------------------------------------------------
 # \d a single digit
@@ -108,7 +108,7 @@ print(r)  # black red green yellow blackish black
 # \b a word boundary (the beginning or end of a word)
 # \B a non-word boundary (not the beginning or end of a word)
 
-# -----------------------------------------------------------------------------
+
 # testing
 # -----------------------------------------------------------------------------
 sample = """
@@ -187,7 +187,7 @@ print(r)  # ['your', 'poor', 'matter', 'For']
 r = re.findall(r"\b[\w']*t\b", sample)
 print(r)  # ['just', 'Caught', 'just', "doesn't"]
 
-# -----------------------------------------------------------------------------
+
 # Pattern Specifiers
 # -----------------------------------------------------------------------------
 # abc              literal abc
@@ -213,7 +213,7 @@ print(r)  # ['just', 'Caught', 'just', "doesn't"]
 # (?<=prev)next    next if preceded by prev
 # (?<!prev)next    next if not preceded by prev
 
-# -----------------------------------------------------------------------------
+
 # More testing
 # -----------------------------------------------------------------------------
 # find real anywhere:
@@ -275,7 +275,7 @@ print(r)  # [' blows']
 r = re.findall(r'\b\w*[aeiuo]{3}\w*\b', sample)
 print(r)  # ['beau']
 
-# -----------------------------------------------------------------------------
+
 # Match Output
 # -----------------------------------------------------------------------------
 # When using match() or search(), all matches are returned from the result
