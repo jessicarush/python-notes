@@ -532,13 +532,13 @@ print(max(num1, num2, num3, key=len))  # [24, 4, 12, 56, 285]
 # This example will add up the numbers in each list and return the list with
 # the max result.
 
-def sum(numlist):
+def add(numlist):
     total = 0
     for num in numlist:
         total += num
     return total
 
-print(max(num1, num2, num3, key=sum))  # [6, 66, 899, 790]
+print(max(num1, num2, num3, key=add))  # [6, 66, 899, 790]
 
 
 # memoryview()
@@ -875,7 +875,11 @@ class Person():
 
 baker = Person('Mrs. Lovett', 35)
 
-print(vars(baker))  # {'name': 'Mrs. Lovett', 'age': 35}
+print(vars(baker))
+# {'name': 'Mrs. Lovett', 'age': 35}
+
+print(vars())
+# will print ALL the variables in the entire doc
 
 
 # zip()
