@@ -2,22 +2,47 @@
 
 # Installing packages
 # -----------------------------------------------------------------------------
-# pip - you can install most packages this way
+# pip - you can install most python packages this way
 # package managers (ie brew) - work like pip but not restricted to python
 
-# install the most recent version: pip3 install flask
-# install a particular version: pip3 install flask==0.12.0
-# install a minimum version: pip3 install flask>==0.9.0
-# upgrade al already installed package: pip3 install --upgrade flask
+# to upgrade pip:
+# pip install --upgrade pip
 
-# Sometimes I've seen this recommended for installing modules but no idea why:
+# install the most recent version: pip install flask
+# install a particular version: pip install flask==0.12.0
+# install a minimum version: pip install flask>==0.9.0
+# upgrade al already installed package: pip install --upgrade flask
+
+# NOTE: depending on how your python3 is installed/configured, you may need
+# to say 'pip3' instead of 'pip'. TBH, I'm not entirely certain what the
+# implications of installing with pip versus pip3. I thought that I had to
+# use pip3 for packages I intended to run with python3 but after setting up a
+# new workstation I notice that both pip and pip3 were pointing to my python3.
+# To be safe, I have upgraded pip AND pip3 on both machines. Here's what I see:
+
+# Macbook:
+# pip --version
+# pip 9.0.3 from /usr/local/lib/python2.7/site-packages (python 2.7)
+# pip3 --version
+# pip 9.0.3 from /usr/local/lib/python3.6/site-packages (python 3.6)
+
+# iMac:
+# pip --version
+# pip 9.0.3 from /usr/local/lib/python3.6/site-packages (python 3.6)
+# pip3 --version
+# pip 9.0.3 from /usr/local/lib/python3.6/site-packages (python 3.6)
+
+# So, I'm going to continue to use pip3 on my laptop but looks like pip will
+# be fine for the iMac. Moving on...
+
+# Sometimes I've seen this recommended for installing modules:
 # python3 -m pip install PyYaml
 
 # One guy said the '-m' is an argument that allows python to locate modules
-# for execution as scripts.
+# for execution as scripts. I Get the sense that it's more of a Windows thing.
 
 # Yolk is a tool for obtaining information about installed Python packages and
-# querying packages available on PyPI
+# querying packages available on PyPI.
 
 # $ pip3 install yolk3k (just yolk for Python 2)
 
