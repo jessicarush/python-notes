@@ -71,8 +71,18 @@ pip install Flask-Moment
 ```
 brew install elasticsearch
 pip install elasticsearch
+```
+
+Elasticsearch must be running in order to use it.
+First cd to the directory where it lives, then run it.
+In my case it's:
 
 ```
+sudo cd /usr/local/bin/
+elasticsearch
+```
+Check that it's running here: http://localhost:9200/
+To quit elasticsearch, ctrl-c in the terminal window where you launched it.
 
 ## Internationalization & Localization (I18n L10n)
 ```
