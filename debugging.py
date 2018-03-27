@@ -2,10 +2,11 @@
 
 # General Tips
 # -----------------------------------------------------------------------------
-# Though not very advanced, dropping print() statements and print(type())
-# can tell you a lot about what's going on. Beyond that:
+# Though not very advanced, dropping print() statements and other reflection
+# related functions can tell you a lot about what's going on. Beyond that:
 
 # print the values of your local arguments with:
+
 print(vars())
 
 # If you run your program with an -i flag, it will drop you into the
