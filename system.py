@@ -24,7 +24,7 @@ os.path.exists('./practice.txt')
 os.path.exists('.')
 
 # Check Type with isfile(), isdir(), isabs()
-# These functions check whether a name refers to a file, directory, or link
+# These functions check whether a name refers to a file, directory, or path
 
 name = 'practice.txt'
 
@@ -37,6 +37,7 @@ os.path.isabs('/templates/home.html')
 # The shutil.move() function copies a file and then removes the original.
 
 import shutil
+
 shutil.copy('practice.txt', 'practice_copy.txt')
 
 # Change Name with rename()
@@ -48,7 +49,7 @@ os.rename('practice_copy.txt', 'practice2.txt')
 
 os.link('practice.txt', 'p_link')
 
-# Make a symbolic link (aka alias, shortcut) to practice.txt from the new file:
+# Make a symbolic link (alias, shortcut) to practice.txt from the new file:
 
 os.symlink('practice.txt', 'p_slink')
 
@@ -94,7 +95,6 @@ os.chown('practice.txt', uid, gid)
 
 # Directories
 # -----------------------------------------------------------------------------
-
 # Create with mkdir()
 
 os.mkdir('practice')
@@ -146,16 +146,16 @@ distutils.dir_util.copy_tree(src, dst)
 # [abc] matches character a, b, or c
 # [!abc] matches any character except a, b, or c
 
-# Get all files or directories that begin with 'T':
+# Get all files or directories that begin with 'T' upper or lower case:
 
 import glob
 
-print(glob.glob('T*'))
+print(glob.glob('[Tt]*'))
 
-# begins with 'f' or 'g' and ends in py:
+# begins with 'n' or 'N' and ends in py:
 
-os.chdir('Introducing Python')
-print(glob.glob('[fg]*py'))
+os.chdir('data')
+print(glob.glob('[nN]*csv'))
 
 
 # Programs and Processes
@@ -188,48 +188,55 @@ print(os.getgid())  # 20
 # the getoutput() function.
 
 import subprocess
-ret = subprocess.getoutput('python3 date_time_examples.py')
-print(ret)
+
+r = subprocess.getoutput('python3 date_time_examples.py')
+print(r)
 
 # You won't get anything back until the process ends. If you need to call
 # something that might take a long time, look into concurrency.py.
 
 # Here, we'll get the output of the Unix date program:
 
-ret = subprocess.getoutput('date')
-print(ret)  # Tue 21 Nov 2017 11:09:31 PST
+r = subprocess.getoutput('date')
+print(r)
+# Tue 21 Nov 2017 11:09:31 PST
 
 # Because the argument to getoutput() is a string representing a complete
 # shell command, you can include arguments, pipes, < and > so on:
 
-ret = subprocess.getoutput('date -u')
-print(ret)  # Tue 21 Nov 2017 19:10:40 UTC
+r = subprocess.getoutput('date -u')
+print(r)
+# Tue 21 Nov 2017 19:10:40 UTC
 
 # Piping to this wc command does a count of lines, words, and characters.
 # I have no idea why it formats like it does:
 
-ret = subprocess.getoutput('date -u | wc')
-print(ret)  #        1       6      29
+r = subprocess.getoutput('date -u | wc')
+print(r)
+#        1       6      29
 
 # A variant method called check_output() takes a list of the command and
 # arguments. By default it only returns standard output as type bytes rather
 # than a string and does not use the shell:
 
-ret = subprocess.check_output(['date', '-u'])
-print(ret)  # b'Tue 21 Nov 2017 19:15:25 UTC\n'
+r = subprocess.check_output(['date', '-u'])
+print(r)
+# b'Tue 21 Nov 2017 19:15:25 UTC\n'
 
 # To show the exit status of the other program, getstatusoutput() returns a
 # tuple with the status code and output:
 
-ret = subprocess.getstatusoutput('date')
-print(ret)  # (0, 'Tue 21 Nov 2017 11:16:11 PST')
+r = subprocess.getstatusoutput('date')
+print(r)
+# (0, 'Tue 21 Nov 2017 11:16:11 PST')
 
 # (In Unix-like systems, 0 is usually the exit status for success.)
 
 # If you only want the status and no output use call():
 
-ret = subprocess.call('date')
-print(ret)  # 0
+r = subprocess.call('date')
+print(r)
+# 0
 
 # Create a Process with Multiprocessing:
 
@@ -248,15 +255,15 @@ def name(arg):
 if __name__ == "__main__":
     name("the main program")
     for n in range(4):
-        # note args=(must be a tuple,)
-        p = mp.Process(target=do_this, args=("function {}".format(n),))
+        # NOTE: args=(must be a tuple,)
+        p = mp.Process(target=do_this, args=("function {}".format(n+1),))
         p.start()
 
 # Process 6236 is: the main program
-# Process 6246 is: function 0
-# Process 6247 is: function 1
-# Process 6248 is: function 2
-# Process 6249 is: function 3
+# Process 6246 is: function 1
+# Process 6247 is: function 2
+# Process 6248 is: function 3
+# Process 6249 is: function 4
 
 # The Process() function spawned a new process and ran the do_this() function
 # in it. Because we did this in a loop, we generated four new processes that
@@ -267,7 +274,7 @@ if __name__ == "__main__":
 # images... It includes ways to queue tasks, enable intercommunication among
 # processes, and wait for all the processes to finish.
 
-# Kill a Process with Terminate()
+# Kill a Process with terminate()
 
 # If you created one or more processes and want to terminate one for some
 # reason (perhaps it's stuck in a loop), use terminate().
