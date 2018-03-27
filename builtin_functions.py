@@ -111,7 +111,7 @@ print('The binary equivalent of Inventory is:', bin(Inventory()))  # 0b101
 # see binary_data.py
 # returns an array of bytes (mutable)
 
-# ----------------------------------------------------------------------------
+
 # bytes()
 # -----------------------------------------------------------------------------
 # see binary_data.py
@@ -316,13 +316,13 @@ data = ['one', 'two', 'n/a', 'three']
 filtered_data = list(filter(lambda x: x != 'n/a', data))
 print(filtered_data)  # ['one', 'two', 'three']
 
-# Generally speaking, filters can be written as list comprehensions instead.
+# Often, filters can be written as list comprehensions instead.
 
 # if the function arg is None it's equivalent to:
-# (element for element in iterable if element)
+# [element for element in iterable if element]
 
 # if a function is defined it's equivalent to:
-# (element for element in iterable if function(element))
+# [element for element in iterable if function(element)]
 
 # Here's the above three examples written as list comprehensions:
 
@@ -744,20 +744,33 @@ print(round(2.675, 2))  # 2.67
 # setattr()
 # -----------------------------------------------------------------------------
 # sets the value of given attribute of an object: setattr(object, name, value)
-# Not really sure why you would use this instead of dot notation:
+# If the attribute isn't found, it is created. You can use it on an instance
+# or the class itself. Though the majority of the time you can just use
+# dot notation, there are times when dot notation does't work, for example
+# when the name of the attribute you want to set is a variable (see below):
 
 class Person:
     name = 'Adam'
 
 p = Person()
 
-print('Before change:', p.name)  # Adam
+p.name = 'Rick'
+print(p.name)  # Rick
 
 setattr(p, 'name', 'Raja')
-print('After change:', p.name)  # Raja
+print(p.name)  # Raja
 
-p.name = 'Rick'
-print('After change:', p.name)  # Rick
+attributes = {'name': 'Paul', 'age': 50, 'email': 'paul@email.com'}
+
+# doesn't work and I don't know why:
+for key, value in attributes.items():
+    p.key = value
+
+# but this works:
+for key, value in attributes.items():
+    setattr(p, key, value)
+
+print(p.name, p.age, p.email)  # Paul 50 paul@email.com
 
 
 # slice()
@@ -806,6 +819,7 @@ mydict = {'a': 5, 'b': 1, 'c': 3}
 
 print(sorted(mylist, key=len, reverse=True))
 # ['magical', 'magic', 'mag', 'm']
+
 print(sorted(mydict.items(), key=lambda x: x[1]))
 # [('b', 1), ('c', 3), ('a', 5)]
 
