@@ -171,3 +171,38 @@ example2()
 
 # local animal: dog 4316822976
 # global animal: cat 4316589728
+
+# vars()
+# -----------------------------------------------------------------------------
+# This one is maybe not so much an example of reflection but its useful and I
+# keep forgetting about it so I'm going to include it here.
+
+from pprint import pprint
+
+pprint(vars())
+# {'Person': <class '__main__.Person'>,
+#  'Polygon': <class '__main__.Polygon'>,
+#  'Triangle': <class '__main__.Triangle'>,
+#  '__annotations__': {},
+#  '__builtins__': <module 'builtins' (built-in)>,
+#  '__cached__': None,
+#  '__doc__': 'Reflection & Introspection',
+#  '__file__': 'reflection.py',
+#  '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x110266320>,
+#  '__name__': '__main__',
+#  '__package__': None,
+#  '__spec__': None,
+#  'animal': 'cat',
+#  'datetime': <module 'datetime' from '/usr/local/Cellar/python/3.6.4_4/
+#     Frameworks/Python.framework/Versions/3.6/lib/python3.6/datetime.py'>,
+#  'example1': <function example1 at 0x110475e18>,
+#  'example2': <function example2 at 0x1104757b8>,
+#  'm': 'year',
+#  'now': datetime.datetime(2018, 3, 27, 18, 34, 16, 366372),
+#  'p': <__main__.Person object at 0x110462080>,
+#  'pprint': <function pprint at 0x1104756a8>,
+#  't': <__main__.Triangle object at 0x110266358>,
+#  'test': <function test at 0x1101ebf28>,
+#  'x': [],
+#  'y': ['one'],
+#  'z': None}
