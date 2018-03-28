@@ -87,6 +87,8 @@
 # multiprocessing module which contains a queue function. There's also a queue
 # module and a threading module.
 
+# see also: queues.py
+
 
 # Multiprocesses
 # -----------------------------------------------------------------------------
