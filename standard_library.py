@@ -41,35 +41,6 @@ print(jb_counter1 & jb_counter2)
 # Counter({'red': 1})
 
 
-# deque()
-# -----------------------------------------------------------------------------
-# is a double-ended queue which has features of both a stack and a queue.
-# It's useful for when you want to add/delete items from either end of a
-# sequence.
-
-from collections import deque
-
-def palindrome(word):
-    dq = deque(word)
-    while len(dq) > 1:
-        if dq.popleft() != dq.pop():
-            return False
-    return True
-
-palindrome('racecar')   # returns True
-palindrome('radar')     # returns True
-palindrome('maam')      # returns True
-palindrome('what')      # returns False
-
-# The example above is just an example. If you wanted to actually check for
-# palindromes you could also do:
-
-def palindrome_better(word):
-    return word == word[::-1]
-
-palindrome_better('radar')  # returns True
-
-
 # itertools
 # -----------------------------------------------------------------------------
 # itertools are special purpose iterator functions.
