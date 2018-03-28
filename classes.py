@@ -936,4 +936,7 @@ print(add(one, two))  # Coordinates: {'x': 400, 'y': 400}
 # is usually simpler than a class.
 
 
-# see also: polymorphism.py
+# see also:
+# - polymorphism.py
+# - inheritance.py
+# - composition.py
