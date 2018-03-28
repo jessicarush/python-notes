@@ -2,34 +2,46 @@
 
 # Names of these methods begin and end with __. An example is __init__ which
 # initializes a newly created object from its class and any arguments that were
-# passed in. Example: create a method that compares two words but is case
-# insensitive.
+# passed in. Many basic tasks in python can be done with non-object-oriented
+# looking syntax (a + b, for example). What's really happening here is a
+# kind of "syntactic sugar" that maps to an object-oriented pattern underneath.
+# For example, the __contains__ method allows us to use the 'in' keyword (see
+# polymorphism.py), __add__ allows us to use the '+' operator and so on.
+
+# Example: override the __add__ method will in turn affect the '+' operator.
+
+class TestInt(int):
+    def __add__(self, num):
+        return 100
+
+a = TestInt(5)
+b = TestInt(3)
+
+print(a + b)  # 100
+
+# Example: create a method that compares two words but is case insensitive.
+
+class Word(str):
+    def __eq__(self, word):
+        return self.lower() == word.lower()
+
+a = Word('haha')
+b = Word('HAHA')
+
+print(a == b)  # True
+
+# In those two examples we inherited from int and str, but we don't have to:
 
 class Word():
     def __init__(self, text):
         self.text = text
-    def equals(self, word2):
-        return self.text.lower() == word2.text.lower()
+    def __eq__(self, word):
+        return self.text.lower() == word.text.lower()
 
-# testing:
-first = Word('ha')
-second = Word('HA')
+a = Word('ha')
+b = Word('HA')
 
-print(first.equals(second))  # True
-
-# __eq__
-# The above works but there's an tidier way using Magic Methods:
-
-class Word():
-    def __init__(self, text):
-        self.text = text
-    def __eq__(self, word2):
-        return self.text.lower() == word2.text.lower()
-
-first = Word('ha')
-second = Word('HA')
-
-print(first == second)  # True
+print(a == b) # True
 
 
 # Magic Methods for comparison
@@ -68,11 +80,40 @@ def __pow__(self, other):       # self ** other
     pass
 
 
+# Others...
+# -----------------------------------------------------------------------------
+
+# x.__init__()        # initialize an instance
+# x.__repr__()        # the official representation as a string
+# x.__str__()         # the informal value as a string
+# x.__bytes__()       # the informal value as a byte array
+# x.__format__()      # the value as a formatted string
+# seq.__iter__()      # iterate through a sequence
+# seq.__next__()      # get the next value from an iterator
+# seq.__reversed__()  # create an iterator in reverse order
+# x.__len__()         # number of items
+# x.__copy__()        # create a custom object copy
+
+# The list goes on: http://www.diveintopython3.net/special-method-names.html
+
+# You can list all the magic methods related to classes by using dir():
+
+print(dir(list))
+# ['__add__', '__class__', '__contains__', '__delattr__', '__delitem__',
+# '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__',
+# '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__',
+# '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__',
+# '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__',
+# '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__',
+# '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend',
+# 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+
+
 # __str__ and __repr__
 # -----------------------------------------------------------------------------
 
-print(repr(first))      # <__main__.Word object at 0x101ca8828>
-print(first)            # <__main__.Word object at 0x101ca8828>
+print(repr(a))      # <__main__.Word object at 0x101ca8828>
+print(a)            # <__main__.Word object at 0x101ca8828>
 
 class Word():
     def __init__(self, text):
@@ -82,10 +123,10 @@ class Word():
     def __repr__(self):
         return 'Word("' + self.text + '")'
 
-first = Word('Ha')
+a = Word('Ha')
 
-print(first)            # Ha - because of the magic method __str__
-print(repr(first))      # Word("Ha") - because of the magic method __repr__
+print(a)            # Ha - because of the magic method __str__
+print(repr(a))      # Word("Ha") - because of the magic method __repr__
 
 
 # Another __str__ example
