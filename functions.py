@@ -78,7 +78,8 @@ menu('merlot', 'brie', guests=2, courses=4)
 # However, it's only empty the first time it's called. The second time, result
 # still has one item from the previous call. The reason for this is that
 # default argument values are evaluated only once per module load (which
-# usually happens when a program starts up).
+# usually happens when a program starts up). To be precise, the default values
+# are generate at the point the function is defined, not when it's called.
 
 def buggy(arg, result=[]):
     result.append(arg)
@@ -104,6 +105,13 @@ works('b')  # ['b']
 def nonbuggy(arg, result=None):
     if result is None:
         result=[]
+    result.append(arg)
+    print(result)
+
+# or more common method of writing it:
+
+def nonbuggy(arg, result=None):
+    result = result if result else []
     result.append(arg)
     print(result)
 
