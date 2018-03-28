@@ -24,23 +24,19 @@ import datetime
 # https://www.iana.org/time-zones
 
 # see all timezones:
-
 for x in pytz.all_timezones:
     print(x)
 
 # see all country codes:
-
 for x in sorted(pytz.country_names):
     print(x, ':', pytz.country_names[x])
 
 # see all country names:
-
 for x in sorted(pytz.country_names):
     print("{}: {}: {}".format(
           x, pytz.country_names[x], pytz.country_timezones.get(x)))
 
 # see names, zones and their times:
-
 for x in sorted(pytz.country_names):
     print("{}: {}".format(x, pytz.country_names[x]))
     if x in pytz.country_timezones:
