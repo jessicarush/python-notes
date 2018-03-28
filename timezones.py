@@ -59,14 +59,14 @@ tz = pytz.timezone(country)
 world_time = datetime.datetime.now(tz=tz)
 
 print("UTC is {}".format(datetime.datetime.utcnow()))
-# The time in Europe/Moscow is 2017-11-24 01:40:00.944335+03:00
+# UTC is 2018-03-28 19:39:09.028962
 
 print("The time in {} is {}".format(country, world_time))
-# The time in Europe/Moscow is 2017-11-24 01:40:00.944335+03:00
+# The time in Europe/Moscow is 2018-03-28 22:39:09.028943+03:00
 
-print("The time in {} is {} {}".format(
+print("In {} it's {} - {}".format(
   country, world_time.strftime('%A %x %X'), world_time.tzname()))
-# The time in Europe/Moscow is Friday 11/24/17 01:40:00 MSK
+# In Europe/Moscow it's Wednesday 03/28/18 22:39:09 - MSK
 
 
 # convert a naive datetime to an aware datetime
@@ -81,10 +81,10 @@ utc_time = datetime.datetime.utcnow()
 print("Naive local time: {}".format(local_time))
 print("Naive UTC: {}".format(utc_time))
 
-# Naive local time: 2017-11-23 14:41:55.967259
-# Naive UTC: 2017-11-23 22:41:55.967261
+# Naive local time: 2018-03-28 12:39:09.029068
+# Naive UTC: 2018-03-28 19:39:09.0290701
 
-# when these next two print you can tell they are aware because they now
+# When these next two print you can tell they are aware because they now
 # include an offset at the end. Both will show the same time zone and same
 # offset (+00:00, UTC) because the naive datetimes we supplied to it don't
 # carry that information.
@@ -105,15 +105,15 @@ aware_local_time = pytz.utc.localize(utc_time).astimezone()
 print("Aware local time: {} - time zone: {}".format(
   aware_local_time, aware_local_time.tzinfo))
 
-# Aware local time: 2017-11-23 14:41:55.967259+00:00 - time zone: UTC
-# Aware UTC: 2017-11-23 22:41:55.967261+00:00 - time zone: UTC
-# Aware local time: 2017-11-23 14:41:55.967261-08:00 - time zone: PST
+# Aware local time: 2018-03-28 12:39:09.029068+00:00 - time zone: UTC
+# Aware UTC: 2018-03-28 19:39:09.029070+00:00 - time zone: UTC
+# Aware local time: 2018-03-28 12:39:09.029070-07:00 - time zone: PDT
 
 
 # date in a timezone from epoch
 # -----------------------------------------------------------------------------
 # Use time stamps (seconds since the epoch) to convert to actual date.
-# For this example we'll be supplying the time zone since an epoch number could
+# For this example we'll be supplying the timezone since an epoch number could
 # be from anywhere. This particular timestamp is the hour before DST in the UK
 # on October 25, 2015. You will see the difference before and after the DST in
 # the offset.
