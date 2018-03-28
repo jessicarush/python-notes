@@ -17,8 +17,8 @@
 # pytz module
 # -----------------------------------------------------------------------------
 
-import pytz
 import datetime
+import pytz
 
 # FYI pytz pulls timezone information from this database:
 # https://www.iana.org/time-zones
@@ -48,12 +48,15 @@ for x in sorted(pytz.country_names):
         print("\tNo timezone defined")
 
 
-# pytz example:
+# pytz example
 # -----------------------------------------------------------------------------
 
+import datetime
+import pytz
+
 country = "Europe/Moscow"
-tz_to_display = pytz.timezone(country)
-world_time = datetime.datetime.now(tz=tz_to_display)
+tz = pytz.timezone(country)
+world_time = datetime.datetime.now(tz=tz)
 
 print("UTC is {}".format(datetime.datetime.utcnow()))
 # The time in Europe/Moscow is 2017-11-24 01:40:00.944335+03:00
@@ -116,7 +119,7 @@ print("Aware local time: {} - time zone: {}".format(
 # the offset.
 
 s = 1445733000
-t = s +(60 * 60)
+t = s + (60 * 60)
 
 gb = pytz.timezone("GB")
 dt1 = pytz.utc.localize(datetime.datetime.utcfromtimestamp(s)).astimezone(gb)
