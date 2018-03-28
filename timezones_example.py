@@ -11,36 +11,36 @@ import pytz
 # References
 # -----------------------------------------------------------------------------
 # print all timezones:
-# for x in pytz.all_timezones:
-#     print(x)
+for x in pytz.all_timezones:
+    print(x)
 
 # print all country names, timezones and their times:
-# for x in sorted(pytz.country_names):
-#     print("{}: {}".format(x, pytz.country_names[x]))
-#     if x in pytz.country_timezones:
-#         for zone in sorted(pytz.country_timezones[x]):
-#             tz_to_display = pytz.timezone(zone)
-#             local_time = datetime.datetime.now(tz=tz_to_display)
-#             print("\t{}: {}:".format(zone, local_time))
-#     else:
-#         print("\tNo timezone defined")
+for x in sorted(pytz.country_names):
+    print("{}: {}".format(x, pytz.country_names[x]))
+    if x in pytz.country_timezones:
+        for zone in sorted(pytz.country_timezones[x]):
+            tz_to_display = pytz.timezone(zone)
+            local_time = datetime.datetime.now(tz=tz_to_display)
+            print("\t{}: {}:".format(zone, local_time))
+    else:
+        print("\tNo timezone defined")
 
 
 # Program
 # -----------------------------------------------------------------------------
 
 timezones = {'vancouver' : 'America/Vancouver',
-             'toronto' : 'America/Toronto',
-             'belgium' : 'Europe/Brussels',
+             'luxembourg' : 'Europe/Luxembourg',
+             'hong kong' : 'Hongkong',
              'switzerland' : 'Europe/Zurich',
              'shanghai' : 'Asia/Shanghai',
              'cuba' : 'America/Havana',
              'berlin' : 'Europe/Berlin',
              'turks & caicos' : 'America/Grand_Turk',
-             'copenhagen' : 'Europe/Copenhagen'}
+             'singapore' : 'Singapore'}
 
 for zone in sorted(timezones):
-    print (zone.title())
+    print(zone.title())
 
 while True:
     selection = input('Choose a country (q to quit): ').lower()
@@ -51,11 +51,12 @@ while True:
         tz_to_display = pytz.timezone(country)
         world_time = datetime.datetime.now(tz=tz_to_display)
 
+        # unformatted output:
         # print("{} time is: {}".format(selection.title(), world_time))
         # print("Local time is: {}".format(datetime.datetime.now()))
         # print("UTC is: {}".format(datetime.datetime.utcnow()))
 
-        # fancier:
+        # fancier output:
         world = '{} time is:'.format(selection.title())
         local = 'Local time is:'
         utc = 'UTC time is:'
