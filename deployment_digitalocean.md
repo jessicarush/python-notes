@@ -81,8 +81,7 @@
 # PasswordAuthentication no
 # PubkeyAuthentication yes
 # ChallengeResponseAuthentication no
-
-# PermitRootLogin no **optional**
+# PermitRootLogin no
 
 # If you had to make changes here, be sure to CTRL-X, Y, ENTER, then:
 
