@@ -420,7 +420,7 @@ git pull
 sudo systemctl start uwsgi_<app-name>
 ```
 
-## Attaching a domain name to your digitalocean server:
+## Attaching a domain name to your digitalocean droplet
 
 Once you've bought a domain, you can change the nameservers on it to point to Digital Ocean:
 - ns1.digitalocean.com
