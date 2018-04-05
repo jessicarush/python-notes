@@ -2,7 +2,7 @@
 
 See first: [deployment.md](https://github.com/jessicarush/python-examples/blob/master/deployment.md)
 
-These notes were made by patching together instructions from a FLASK RESTful-API course and various Digital Ocean tutorials. Since then, I've also made notes following the instructions from Miguel Grinberg's [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux) which are located on the deployment.md doc above. I believe those instructions to be much clearer and simpler but I'm keeping these ones here for completeness. In addition, this doc describes creating a postgreSQL database, the other describes creating a MySQL database.
+These notes were made by patching together instructions from a FLASK RESTful-API course and various Digital Ocean tutorials. Since then, I've also made notes following the instructions from Miguel Grinberg's [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux) which are located in the link above. I believe those instructions to be much clearer and simpler but I'm keeping these ones here for completeness. In addition, this doc describes creating a postgreSQL database, the other describes creating a MySQL database.
 
 ## Create a new Droplet
 On Digital Ocean, servers are called *droplets*. To create a new server, find the 'create new droplet' option.
@@ -22,15 +22,15 @@ On Digital Ocean, servers are called *droplets*. To create a new server, find th
 - **monitoring:** adds a droplet with metrics and monitoring features.
 
 ### Add your SSH keys
-Highly recommended. If you haven't already added your SSH Keys to your account, do it first. Its much harder to add your keys to your droplet afterwards. It can be done, but its a pain in the ass.
+Highly recommended. If you haven't already added your SSH Keys to your account, do it first. It's much harder to add your keys to your droplet afterwards. It can be done, but its a pain in the ass.
 
 ### Finalize and create
-Choose how many droplets pick a hostname. If you added an ssh key you should now be able to connect to the server via your own terminal:
+Choose how many droplets, pick a hostname. If you added an SSH key you should now be able to connect to the server via your own terminal:
 ```
 ssh root@<the.droplets.ip.address>
 ```
 
-If you didn't add and SSH keys, you'll get emailed a big, long, nasty password. From the droplets dashboard, choose to 'Access Console' and you'll need to enter the username (root), that long, nasty password (twice), then your new password (twice).
+If you didn't add SSH keys, you'll get emailed a big, long, nasty password. From the droplets dashboard, choose to 'Access Console' and you'll need to enter the username (root), that long, nasty password (twice), then your new password (twice).
 
 Once connected, the first command you'll want to run is:
 ```
@@ -49,13 +49,13 @@ usermod -aG sudo jessica
 su - jessica
 ```
 
-This creates a new user and a new 'group', adds sudo privileges to the new user, then switches the the new user. Next you'll want to set up ssh for your new user. Start by manually coping your public key on your local machine:
+This creates a new user and a new 'group', adds sudo privileges to the new user, then switches the the new user. Next you'll want to set up SSH for your new user. Start by manually coping your public key on your local machine:
 
 ```
 cat ~/.ssh/id_rsa.pub
 ```
 
-Then, back on the server in the users home directory, create a .ssh directory with the correct permissions, open a new file:
+Then, back on the server in the users home directory, create an .ssh directory with the correct permissions and open a new file:
 
 ```
 mkdir ~/.ssh
@@ -201,7 +201,7 @@ sudo ufw enable
 sudo ufw status
 ```
 
-If you check 'sudo ufw status' again, you should see both ngnix and ssh are allowed access. Note ssh is indicated as '22' (the port number that ssh uses). You could also allow ssh by saying 'sudo ufw allow 22'. Therefor, if you've configured your ssh daemon to use another port, just type that port number instead. FYI you can also allow ranges of ports and IP addresses.
+If you check 'sudo ufw status' again, you should see both ngnix and SSH are allowed access. Note SSH is indicated as '22' (the port number that SSH uses). You could also allow SSH by saying 'sudo ufw allow 22'. Therefor, if you've configured your SSH daemon to use another port, just type that port number instead. FYI you can also allow ranges of ports and IP addresses.
 
 See this [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04) for more information.
 
@@ -365,14 +365,14 @@ logto = /var/www/html/<app-name>/log/%n.log
 ```
 When done, `esc`, and `:wq`
 
-Note in the above %n is a uwsgi magic variable for the filename.
-See: <http://uwsgi-docs.readthedocs.io/en/latest/Configuration.html>
+Note in the above `%n` is a uwsgi magic variable for the filename.
+See here for more information on [configuring uwsgi.](http://uwsgi-docs.readthedocs.io/en/latest/Configuration.html)
 
-## Set up an ubuntu *service*
+## Set up an ubuntu service
 ```
 cd /var/www/html/<app-name>
 ```
-So at this point in the above directory we should see our app, Procfile, requirements.txt, runtime.txt, uwsgi.ini, venv, and log directory.
+So at this point in the above directory we should see our app, Procfile, requirements.txt, runtime.txt, uwsgi.ini, venv, and log directory. I haven't mentioned the Procfile or runtime.txt file here because I *believe* those are only needed for a heroku deployment but I might be wrong. For their contents see: [flask_notes.md](https://github.com/jessicarush/python-examples/blob/master/flask_notes.md#heroku)
 
 Next we'll create an ubuntu "service". A service is a daemon that you can tell ubuntu to run when the server starts or restart if you need to apply an updated config file, etc. The service then runs something else (like uwsgi). A service also lets you do things like set environment variables.
 ```
