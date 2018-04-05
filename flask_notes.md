@@ -1,4 +1,6 @@
-# New Flask project steps (command line)
+# New Flask project
+
+Command line steps and reminders of packages to install for setting up a new Flask project. Obviously, there are other options, these are just the ones I like to use.
 
 ## Directory
 ```
@@ -16,22 +18,12 @@ mkdir app/static/img
 ```
 python3 -m venv venv  
 source venv/bin/activate  
-pip install flask  
+
 ```  
 
-## Git
+## Flask
 ```
-git init  
-touch .gitignore
-```
-.gitignore contents:  
-.DS_Store  
-\__pycache__  
-venv  
-.env
-```
-git add -A  
-git commit -m 'Initial commit'  
+pip install flask
 ```
 
 ## Environmental variables
@@ -67,6 +59,11 @@ pip install PyJWT
 pip install Flask-Moment
 ```
 
+## Gathering Data
+```
+pip install requests
+```
+
 ## Full-Text Search
 ```
 brew install elasticsearch
@@ -100,11 +97,26 @@ pip install requests
 pip install Flask-RESTful  
 ```
 
+## Git
+```
+git init  
+touch .gitignore
+```
+.gitignore contents:  
+.DS_Store  
+\__pycache__  
+venv  
+.env
+```
+git add -A  
+git commit -m 'Initial commit'  
+```
+
 ## Heroku
 ```
 touch Procfile  
 ```
-Procfile contents (gunicorn or uwsgi):  
+Procfile contents should be one of the following (gunicorn or uwsgi):  
 web: gunicorn app:app  
 web: uwsgi uwsgi.ini
 
@@ -126,7 +138,8 @@ if planning on using uwsgi:
 pip install uwsgi  
 touch uwsgi.ini  
 ```
-uwsgi.ini contents:  
-see heroku.py or digitalocean.py
+for contents see [deployment_heroku.py](https://github.com/jessicarush/python-examples/blob/master/deployment_heroku.md)
 
 ## Digitalocean  
+
+see [deployment_digitalocean.py](https://github.com/jessicarush/python-examples/blob/master/deployment_digitalocean.md)
