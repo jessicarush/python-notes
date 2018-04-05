@@ -479,7 +479,8 @@ set_real_ip_from 127.0.0.1;
 {more}
 ```
 
-Don't forget to reload ngnix whenever you make changes to teh config.
+
+Don't forget to reload ngnix whenever you make changes to the config.
 ```
 sudo systemctl reload nginx
 sudo systemctl restart nginx
@@ -493,7 +494,9 @@ Another tutorial for [Installing SSL certificaltes here.](https://www.digitaloce
 If you get locked out of SSH, try using the console.
 See here to [set up a password for the console.](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-console-to-access-your-droplet)
 
-If you rebuild your droplet and you get a weird warning when you try to SSH again (WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!), delete the old info in your known hosts file by typing:
+If you rebuild your droplet and you get a weird warning when you try to SSH again:
+(WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!)
+Delete the old info in your known hosts file by typing:
 ```
 ssh-keygen -R <your.ip.address.here>
 ```
