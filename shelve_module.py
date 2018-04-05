@@ -92,7 +92,7 @@ italian = ['chorizo', 'red onion', 'pancetta']
 with shelve.open('pizzas') as pizzas:
     pizzas['Margarita'] = margarita
     pizzas['Pesto'] = pesto
-    pizzas['prosciutto'] = prosciutto
+    pizzas['Prosciutto'] = prosciutto
     pizzas['Italian'] = italian
 
 
