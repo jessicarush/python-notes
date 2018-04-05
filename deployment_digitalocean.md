@@ -427,11 +427,9 @@ Once you've bought a domain, you can change the nameservers on it to point to Di
 - ns2.digitalocean.com
 - ns3.digitalocean.com
 
-You can also use a service like cloudflare to set up the DNS to connect to your servers ip. Cloudflare is a "content delivery network". Although, if you go to their website, they seem really precious about the fact that they aren't just a content delivery network. Whateva. Essentially it can be used to sit in front of your server. You can do various things like store the site on their server to increase speed (I think they do this through caching so beware). They've got security features and things that prevent "denial of service attacks". You can set up SSL certificates through them as well.
+You can also use a service like cloudflare to set up the DNS to connect to your servers ip. Cloudflare is a "content delivery network". Although, if you go to their website, they seem really precious about the fact that they aren't just a content delivery network. Essentially it can be used to sit in front of your server. You can do various things like store the site on their server to increase speed (I think they do this through caching so beware). They've got security features and things that prevent "denial of service attacks". You can set up SSL certificates through them as well.
 
-The main thing is you need to change the nameservers from wherever you bought the domain to wherever your actually site lives.
-
-If you're using Digital Ocean's nameservers, you can go to your dashboard and choose Networking >
+The main thing is you need to change the nameservers from wherever you bought the domain to wherever your actually site lives. If you're using Digital Ocean's nameservers, you can go to your dashboard and choose Networking >
 Domains. Then [follow the steps here.](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean)
 
 Basically what you end up doing is editing your domains DNS records (A, AAAA, CNAME, MX, TXT).
