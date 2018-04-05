@@ -1,8 +1,8 @@
 # Deployment to Digital Ocean
 
-See also: [deployment.md](https://github.com/jessicarush/python-examples/blob/master/deployment.md)
+See first: [deployment.md](https://github.com/jessicarush/python-examples/blob/master/deployment.md)
 
-These notes were made by patching together instructions from a FLASK RESTful-API course and various Digital Ocean tutorials. Since then, I've also made notes following the instructions from Miguel Grinberg's [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux). I believe those instructions to be clearer but I'm keeping these ones here for completeness. This doc describes creating a postgreSQL database, the other describes creating a MySQL database.
+These notes were made by patching together instructions from a FLASK RESTful-API course and various Digital Ocean tutorials. Since then, I've also made notes following the instructions from Miguel Grinberg's [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux) which are located on the deployment.md doc above. I believe those instructions to be much clearer and simpler but I'm keeping these ones here for completeness. In addition, this doc describes creating a postgreSQL database, the other describes creating a MySQL database.
 
 ## Create a new Droplet
 On Digital Ocean, servers are called *droplets*. To create a new server, find the 'create new droplet' option.
