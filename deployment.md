@@ -149,8 +149,8 @@ This service requires a large amount of RAM, so it's only viable if you have a s
 
 You'll need to create a new repo in Github and then push your local repo to it. Once its there you can clone it onto your remote server. First, make sure you're in your home directory:
 ```
-cd ~/
-git clone https://github.com/username/reponame.git
+$ cd ~/
+$ git clone https://github.com/username/reponame.git
 ```
 
 ## Create a Virtual Environment and Install Dependencies
@@ -203,7 +203,7 @@ Provided the FLASK_APP is now set, you should be able to run the translations co
 
 To manage the database server use the mysql command, which should be already installed on your server:
 ```
-mysql -u root -p
+$ mysql -u root -p
 ```
 
 Enter the password you created during the installation of base dependencies above. These commands create a new database called microblog, and a user with the same name that has full access to it:
