@@ -44,7 +44,7 @@ You can install Gunicorn in your local virtual env, or just manually add it to y
 $ pip install gunicorn
 ```
 
-### uWSGI
+## Install uWSGI
 
 Another process for running your app (instead of gunicorn) is uwsgi. uWSGI makes Heroku a little more flexible. Like gunicorn you don't need to install uwsgi on your own system, just manually add uwsgi it to your requirements.txt below.
 
@@ -220,7 +220,7 @@ You can add the `flask db upgrade` function to your procfile like so:
 ```
 web: flask db upgrade; gunicorn microblog:app
 ```
-Because the first command is based on the flask command, I need to add the FLASK_APP environment variable:
+Because the first command is based on the flask command, you'll need to add the FLASK_APP environment variable:
 ```
 $ heroku config:set FLASK_APP=microblog.py
 ```
@@ -234,7 +234,7 @@ $ export PATH=$PATH:/Library/PostgreSQL/10/bin
 
 Once that's in place you can type something like this:
 ```
-$ heroku pg:psql --app kussi
+$ heroku pg:psql --app kusshi
 ```
 
 The prompt will look something like this: `kusshi::DATABASE=>`, and now you can start querying the database:
