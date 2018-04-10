@@ -64,4 +64,4 @@ $ venv/bin/pip3 freeze > requirements.txt
 (venv) $ pip freeze > requirements.txt
 ```
 
-see also: package_management.py
+see also: [package_management.py](https://github.com/jessicarush/python-examples/blob/master/package_management.py)
