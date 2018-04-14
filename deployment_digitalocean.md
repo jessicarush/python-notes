@@ -94,6 +94,12 @@ $ ssh jessica@<the.droplets.ip.address>
 
 These instructions came from [Digital Ocean.](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)
 
+## Installing sqlite3
+The sqlite3 module is part of the standard Python library, so on a standard Ubuntu installation or any system with Python installed, no further installation is strictly necessary. To install the Sqlite command line interface on Ubuntu, use these commands:
+```
+sudo apt-get update
+sudo apt-get install sqlite3 libsqlite3-dev
+```
 
 ## Installing postgreSQL
 ```
