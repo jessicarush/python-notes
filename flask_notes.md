@@ -151,3 +151,23 @@ for contents see [deployment_heroku.py](https://github.com/jessicarush/python-ex
 ## Digitalocean  
 
 see [deployment_digitalocean.py](https://github.com/jessicarush/python-examples/blob/master/deployment_digitalocean.md)
+
+# Regarding Contexts
+
+If you try to perform database operations outside an application context (ie outside a view function), you will see the following error:
+
+> No application found. Either work inside a view function or push an application context.
+
+In a nutshell, do something like this:
+```python
+def my_function():
+    with app.app_context():
+        user = db.User(...)
+        db.session.add(user)
+        db.session.commit()
+```
+
+For more explanation see:
+[Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)  
+<http://flask.pocoo.org/docs/0.12/appcontext/#creating-an-application-context>  
+<http://flask-sqlalchemy.pocoo.org/2.3/contexts/>
