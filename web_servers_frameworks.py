@@ -213,7 +213,12 @@ run(host='localhost', port=9999)
 # -----------------------------------------------------------------------------
 # Flask supports many useful web development extensions such as facebook
 # authentication and database integration. The Flask package includes the
-# werkzeug WSGI library and jinja2 template library.
+# werkzeug WSGI library and jinja2 template library. Flask was built to be
+# extendened. There are tonnes of third party flask extensions that allow you
+# use flask and choose whatever additional tools you want.
+
+# Functions direct users to a page or 'endpoint' are often called 'view
+# functions' or routes, and are decorated with @app.route.
 
 # flask1.py:
 
@@ -240,6 +245,7 @@ app.run(debug=True)
 # should be located in a folder called 'static'
 
 # flask2.py:
+# -----------------------------------------------------------------------------
 
 from flask import Flask
 
@@ -259,15 +265,21 @@ app.run(port=9999, debug=True)
 # in the server program. DO NOT set debug=True in production web servers.
 # It exposes too much information about your server to potential intruders.
 
+
 # flask3.py:
+# -----------------------------------------------------------------------------
+# You have several ways to pass values to an endpoint: either as part of the
+# path, in URL parameters (for GET requests), or the request body
+# (for POST requests).
 
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/echo/<thing>')
-def echo(thing):
-    return render_template('flask_test.html', thing=thing) # must be in the templates folder
+@app.route('/home/<thing>')
+def home(thing):
+    # flask_test.html must be located in the templates directory
+    return render_template('flask_test.html', thing=thing)
 
 app.run(port=9999, debug=True)
 
@@ -275,7 +287,7 @@ app.run(port=9999, debug=True)
 # create a directory called 'templates' and put flask_test.html in there.
 # The thing=thing argument means to pass a variable named thing to the
 # template, with the value of the string entered as an arg in the URL:
-# http://localhost:9999/echo/lovely
+# http://localhost:9999/home/lovely
 
 # Somewhere in flask_test.html type {{ thing }} to receive the value.
 
@@ -296,7 +308,9 @@ app.run(port=9999, debug=True)
 </html>
 '''
 
+
 # flask4.py:
+# -----------------------------------------------------------------------------
 
 # This example allows you to pass a second argument. You will need to add
 # {{ other }} somewhere in flask_test.html to receive the additional value.
@@ -305,15 +319,17 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/echo/<thing>/<other>')
-def echo(thing, other):
+@app.route('/home/<thing>/<other>')
+def home(thing, other):
     return render_template('flask_test.html', thing=thing, other=other)
 
 app.run(port=9999, debug=True)
 
-# The URL would be http://localhost:9999/echo/lovely/something
+# The URL would be http://localhost:9999/home/lovely/something
+
 
 # flask5.py:
+# -----------------------------------------------------------------------------
 
 # You can also provide arguments as 'GET' parameters:
 
@@ -321,8 +337,8 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/echo')
-def echo():
+@app.route('/home')
+def home():
     thing = request.args.get('thing')
     other = request.args.get('other')
     return render_template('flask_test.html', thing=thing, other=other)
@@ -331,9 +347,11 @@ app.run(port=9999, debug=True)
 
 # When a GET command is used for a URL, any arguments are passed like:
 # &key1=val1&key2=val2&...
-# So our URL would be: http://localhost:9999/echo?thing=lovely&other=blah
+# So our URL would be: http://localhost:9999/home?thing=lovely&other=blah
+
 
 # flask6.py:
+# -----------------------------------------------------------------------------
 
 # You can also use the dictionary operator ** to pass multiple arguments
 # to a template from a single dictionary/
