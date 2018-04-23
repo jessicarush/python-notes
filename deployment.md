@@ -118,10 +118,13 @@ Otherwise, consider the following:
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install python3 python3-venv python3-dev
-$ sudo apt-get -y install mysql-server postfix supervisor nginx git
+$ sudo apt-get -y install postfix supervisor nginx git
+$ sudo apt-get -y install mysql-server
+$ sudo apt-get -y install sqlite3 libsqlite3-dev
 ```
 
 - **mysql-server** - MySQL for the database (for postgreSQL, see deployment_digitalocean.md).
+- **sqlite3** - dev tools for sqlite3 if you're using that instead.
 - **postfix**  - mail transfer agent, for sending out email.
 - **supervisor**  - a tool to monitor the Flask server process. It automatically restarts it if it ever crashes, or if the server is rebooted.
 - **ngnix** - the server that accepts all requests that come from the outside world, and forwards them to the application.
@@ -139,9 +142,54 @@ changes, edit */etc/postfix/main.cf* (and others) as needed. After modifying *ma
 
 ### Elasticsearch
 
-This service requires a large amount of RAM, so it's only viable if you have a server with more than 2GB of RAM. Note that the Elasticsearch package available in the Ubuntu 16.04 package repository is too old and will not work, you need version 6.x or newer. If you have a big enough server try this tutorial:
+This service requires a large amount of RAM, so it's only viable if you have a server with more than 2GB of RAM. Note that the Elasticsearch package available in the Ubuntu 16.04 package repository is too old and will not work, you need version 6.x or newer.
+
+First, install Java:
+
+```
+$ sudo apt-get update
+$ sudo apt-get install default-jdk
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
+```
+
+Then, install Elasticsearch (see their download page for the [most current debian package](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#install-deb)).
+
+```
+$ sudo apt-get update
+$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.deb
+$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.deb.sha512
+$ shasum -a 512 -c elasticsearch-6.2.4.deb.sha512
+$ sudo dpkg -i elasticsearch-6.2.4.deb
+$ sudo systemctl enable elasticsearch.service
+$ sudo ufw allow from <ip.address> to any port 9200
+```
+
+Now edit the config:
+```
+$ sudo nano /etc/elasticsearch/elasticsearch.yml
+```
+uncomment the following two lines and provide your own names:
+```
+cluster.name: micrblog-cluster
+node.name: "My First Node"
+network.host: 0.0.0.0
+```
+
+This is the bare minimum. For more information, see this tutorial:
 
 [Install and Configure Elasticsearch on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04)
+
+Lastly:
+```
+$ sudo systemctl start elasticsearch
+```
+Check it:
+```
+$ service elasticsearch status
+$ curl localhost:9200
+```
 
 ## Use Git to Install the Application from GitHub
 
@@ -158,6 +206,7 @@ This is done in the same way as you would on your local machine:
 $ cd <reponame>
 $ python3 -m venv venv
 $ source venv/bin/activate
+(venv) $ pip install --upgrade pip
 (venv) $ pip install -r requirements.txt
 (venv) $ pip install gunicorn pymysql
 ```
@@ -396,3 +445,15 @@ $ sudo supervisorctl start microblog
 ```
 
 Miguel has more suggestions to improve the SSL security in his [tutorial](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https) regarding adding more instructions to the nginx file.
+
+## Misc
+
+Should you need to copy a file from your local machine to your server via SSH, not that the path for an Ubuntu user begins with `/home/`, for example:
+```
+scp /Users/jessicarush/Documents/Coding/Projects/review/data.db review@165.227.39.154:/home/review/backup
+```
+
+Check your digitalocean droplet size:
+```
+$ df / -h
+```
