@@ -24,8 +24,8 @@ squares(6)
 # @functools.wraps():
 # -----------------------------------------------------------------------------
 # When you use a decorator, you're replacing one function (squares) with
-# another (wrapper). While inside the decorator we can get see the original
-# function being used but outside check this out:
+# another (wrapper). While inside the decorator we can see the original
+# function being used but now when when outside, look what happens:
 
 print(squares.__name__)  # wrapper
 print(squares.__doc__)   # None
@@ -73,26 +73,26 @@ def document_it(func):
     return wrapper
 
 # Here's our simple test function, first we'll do it without a decorator:
-def add_ints(a, b):
-    return a + b
+def add_mulyiply(a, b, multiplyer=1):
+    return (a + b) * multiplyer
 
-decorated_add_ints = document_it(add_ints)
-decorated_add_ints(3,5)
-# Running function: add_ints
+decorated_add_ints = document_it(add_mulyiply)
+decorated_add_ints(3, 5, multiplyer=100)
+# Running function: add_mulyiply
 # Positional arguments: (3, 5)
-# Keyword arguments: {}
-# Result: 8
+# Keyword arguments: {'multiplyer': 100}
+# Result: 800
 
 # Now with a decorator... a little less code:
 @document_it
-def add_ints(a, b):
-    return a + b
+def add_mulyiply(a, b, multiplyer=1):
+    return (a + b) * multiplyer
 
-add_ints(4, 5)
-# Running function: add_ints
+add_mulyiply(4, 5, multiplyer=100)
+# Running function: add_mulyiply
 # Positional arguments: (4, 5)
-# Keyword arguments: {}
-# Result: 9
+# Keyword arguments: {'multiplyer': 100}
+# Result: 900
 
 
 # Multiple decorators
@@ -116,7 +116,7 @@ def add_ints(a, b):
     return a + b
 
 print(add_ints(4, 3))
-# Running function: new_function
+# Running function: add_ints
 # Positional arguments: (4, 3)
 # Keyword arguments: {}
 # Result: 49
@@ -145,7 +145,7 @@ print(add_ints(4, 3))
 # Consider this example. Imagine a number of functions that allow access to
 # different things, but you only want to allow access if some criteria is met.
 # Instead of repeating code in each function, you can set this up in a
-# decorator. The only problem is, for some reason you can't add parameter to
+# decorator. The only problem is, for some reason you can't add parameters to
 # the decorator that has (func) passed in. So in order to do this, we have to
 # create another wrapping decorator :(
 
@@ -167,6 +167,16 @@ def my_function():
     print('The function runs...')
 
 my_function()
+# The function runs...
+
+flag = False
+
+@bouncer(flag)
+def my_function():
+    print('The function runs...')
+
+my_function()
+# Not running the function
 
 
 # one last example:
