@@ -1,4 +1,4 @@
-'''tkinter example - (not a functioning calculator)'''
+'''tkinter example - (NOT a functioning calculator)'''
 
 import tkinter as tk
 from tkinter import ttk
@@ -76,20 +76,12 @@ for keyRow in keys:
 
 mainWindow.update()
 
-mainWindow.minsize(
-    (keyPad.winfo_width() + mainWindowPadding * 2),
-    (entry.winfo_height()
-    + keyPad.winfo_height()
-    + label.winfo_height()
-    + mainWindowPadding)
-    )
+mainWindow.minsize((keyPad.winfo_width() + mainWindowPadding * 2),
+    (entry.winfo_height() + keyPad.winfo_height() + label.winfo_height()
+    + mainWindowPadding))
 
-mainWindow.maxsize(
-    (keyPad.winfo_width() + mainWindowPadding * 2),
-    (entry.winfo_height()
-    + keyPad.winfo_height()
-    + label.winfo_height()
-    + mainWindowPadding)
-    )
+mainWindow.maxsize((keyPad.winfo_width() + mainWindowPadding * 2),
+    (entry.winfo_height() + keyPad.winfo_height() + label.winfo_height()
+    + mainWindowPadding))
 
 mainWindow.mainloop()
