@@ -457,3 +457,8 @@ Check your digitalocean droplet size:
 ```
 $ df / -h
 ```
+
+Shutdown your droplet (for say resizing):
+```
+$ sudo shutdown -h now
+```
