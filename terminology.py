@@ -1,4 +1,4 @@
-'''Misc Terms'''
+'''Miscellaneous Terms'''
 
 
 # Literal
@@ -15,7 +15,7 @@ x = 100
 # assign a dictionary literal to plants
 plants = {'spider': 'long, slender leaves',
           'succulent': 'like a cactus',
-          'fern': 'perfers the forest'}
+          'fern': 'prefers the forest'}
 
 
 # None
@@ -23,17 +23,21 @@ plants = {'spider': 'long, slender leaves',
 # None is not the same as False. Though it may look false when evaluated as a
 # boolean, None is technically none as seen here:
 
-thing = None
-
 def is_none(thing):
     if thing is None:
-        print("it's none")
+        print("it's None")
     elif thing:
         print("it's True")
     else:
-        print("it must be False")
+        print("it's False")
 
+thing = None
 is_none(thing)
+# it's None
+
+thing = 0
+is_none(thing)
+# it's False
 
 
 # Keyword arguments: **kwargs
@@ -49,11 +53,12 @@ class Element():
 
 h = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
 
-hydrogen = Element(**h)
-# is the same as:
+# these two produce the same result:
 hydrogen = Element(name='Hydrogen', symbol='H', number=1)
+hydrogen = Element(**h)
 
 print(hydrogen.symbol)
+# H
 
 
 # Function
@@ -74,8 +79,12 @@ print(hydrogen.symbol)
 # A python module which can contain submodules. Essentially this is just a way
 # of organizing many modules (files) into file hierarchies (folders).
 # When you create a directory for your modules, you also create an empty file
-# in that folder called: __init__.py. This file tells python to use the folder
-# name for importing.
+# in that folder called: __init__.py. This file tells python to use the that
+# directory name for importing modules within. For example:
+'''
+from myfolder import myfile
+from myfolder.myfile import myfunction, myClass
+'''
 
 
 # Parameter
@@ -92,7 +101,8 @@ print(hydrogen.symbol)
 
 # Class
 # -----------------------------------------------------------------------------
-# A blueprint or template for creating an object.
+# A blueprint or template for creating an object. Classes are generally used
+# when you need objects to have both data (attributes) and behaviour (methods).
 
 
 # Object
@@ -103,13 +113,13 @@ print(hydrogen.symbol)
 
 # Instance
 # -----------------------------------------------------------------------------
-# What you get when you create something from a class.
+# What you get when you create an object from a class.
 
 
 # Attribute (also called an instance variable)
 # -----------------------------------------------------------------------------
 # A value associated with an object which is referenced by name using dot
-# notation. As in a class:
+# notation. For example:
 
 class Person():
     def __init__(self, name):
@@ -140,8 +150,9 @@ snape.homo
 
 # Property
 # -----------------------------------------------------------------------------
-# property is actually a method that returns a property attribute. It makes a
-# method (a function in a class) behave like an attribute.
+# Property is actually a method that returns a property attribute. It makes a
+# method (a function in a class) behave like an attribute. It can be used like
+# this: property() or as a decorator as: @property
 
 
 # self
@@ -169,6 +180,7 @@ snape = Person('Severus Snape')
 
 # call the method (function) like this:
 snape.deceased()
+
 # or like this:
 Person.deceased(snape)
 
@@ -191,7 +203,8 @@ Person.deceased(snape)
 # The distinction between aggregation and composition can blur slightly. Unlike
 # composition, aggregation uses existing instances of objects to build up
 # another object. The composed object does not actually own the objects that
-# it's composed of. If it's destroyed, those objects continue to exist.
+# it's composed of. If it's destroyed, those objects continue to exist because
+# they were instantiated outside of the class.
 
 
 # "is a"
@@ -228,10 +241,10 @@ Person.deceased(snape)
 # objects can be capitalized), they can also have shared behaviors (for example,
 # they are all printable):
 
-int.__str__()
-float.__str__()
-list.__str__()
-tuple.__str__()
+int.__str__(0)
+float.__str__(0.0)
+list.__str__(0)
+tuple.__str__(0)
 
 # So polymorphism basically means that objects can be more than one thing at
 # the same time. Inheritance is one way to implement polymorphism. In the above

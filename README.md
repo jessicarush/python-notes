@@ -12,6 +12,7 @@ Some examples and comments may come from the following:
 * 'The Python 3 Standard Library by Example' - *Doug Hellmann*  
 * 'Effective Python' - *Brett Slatkin*  
 * 'The Flask Mega-Tutorial' - *Miguel Grinberg*
+* 'Flask Web Development' - *Miguel Grinberg*
 * 'Complete Python Masterclass' - *Udemy course*  
 * 'The Python Mega Course: Build 10 Real World Applications' - *Udemy course*  
 * 'REST APIs with Flask and Python' - *Udemy course*
