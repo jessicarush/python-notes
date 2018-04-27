@@ -205,7 +205,7 @@ $ mysql -u root -p
 ```
 
 Enter the password you created during the installation of base dependencies above. These commands create a new database called microblog, and a user with the same name that has full access to it:
-```
+```sql
 mysql> create database microblog character set utf8 collate utf8_bin;
 mysql> create user 'microblog'@'localhost' identified by '<db-password>';
 mysql> grant all privileges on microblog.* to 'microblog'@'localhost';
@@ -216,6 +216,14 @@ mysql> quit;
 If all is well you should now be able to run the migration that creates the tables:
 ```
 (venv) $ flask db upgrade
+```
+
+If ever you want to manage your database manually:
+```sql
+$ mysql -u microblog -p
+$ USE microblog;
+$ SHOW TABLES;
+$ DESCRIBE tablename;
 ```
 
 ## Set up Gunicorn and Supervisor
