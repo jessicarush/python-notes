@@ -1,4 +1,4 @@
-'''Functions, parameters and arguments'''
+'''Functions'''
 
 from datetime import datetime
 from time import sleep
@@ -136,7 +136,7 @@ log('hello again')
 # Instead use None as the default, also a more compact expression:
 
 def log(message, timestamp=None):
-    timestamp = datetime.now() if timestamp is None else timestamp
+    timestamp = timestamp if timestamp else datetime.now()
     print(f'{timestamp}: {message}')
 
 log('hello')
