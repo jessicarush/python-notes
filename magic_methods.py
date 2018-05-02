@@ -112,8 +112,8 @@ print(dir(list))
 # __str__ and __repr__
 # -----------------------------------------------------------------------------
 
-print(repr(a))      # <__main__.Word object at 0x101ca8828>
 print(a)            # <__main__.Word object at 0x101ca8828>
+print(repr(a))      # <__main__.Word object at 0x101ca8828>
 
 class Word():
     def __init__(self, text):
@@ -125,8 +125,8 @@ class Word():
 
 a = Word('Ha')
 
-print(a)            # Ha - because of the magic method __str__
-print(repr(a))      # Word("Ha") - because of the magic method __repr__
+print(a)            # Ha
+print(repr(a))      # Word("Ha")
 
 
 # Another __str__ example
@@ -175,3 +175,29 @@ print(os.__file__)
 import random
 print(random.__doc__)
 print(random.choice.__doc__)
+
+# __len__, __reversed__, __class__, __name__
+# -----------------------------------------------------------------------------
+
+normal_sequence = [1, 2, 3, 4, 5]
+
+class CustomSequence():
+    def __len__(self):
+        return 5
+
+    def __getitem__(self, index):
+        return 'x{}'.format(index)
+
+class CustomReversed():
+    def __reversed__(self):
+        return 'Reversed!'
+
+
+for seq in normal_sequence, CustomSequence(), CustomReversed():
+    print('\n{}: '.format(seq.__class__.__name__), end='')
+    for i in reversed(seq):
+        print(i, end=", ")
+print('')
+# list: 5, 4, 3, 2, 1,
+# CustomSequence: x4, x3, x2, x1, x0,
+# CustomReversed: R, e, v, e, r, s, e, d, !,
