@@ -5,6 +5,22 @@
 from pprint import pprint
 
 
+# random, string
+# -----------------------------------------------------------------------------
+
+import random
+import string
+
+def random_string(n):
+    '''Produces a string of 'n' random ascii letters and digits'''
+    s = [random.choice(string.ascii_letters + string.digits) for i in range(n)]
+    return ''.join(s)
+
+test = random_string(20)
+print(test)
+# 40Sfk7NFmRjecSSezU9M
+
+
 # Counter()
 # -----------------------------------------------------------------------------
 
