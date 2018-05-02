@@ -243,12 +243,22 @@ for colour in enumerate(colours):
 # (2, 'yellow')
 # (3, 'green')
 
-for number, colour in enumerate(colours, 1): # starts the numbering at 1
-    print(number, colour)
-# 1 red
-# 2 cyan
-# 3 yellow
-# 4 green
+# This example uses enumerate to output it's own code with line numbers.
+# The second argument passed to enumerate starts the numbering at 1 instead
+# of 0. The output below assumes the following snippet is in a file by itself.
+
+import sys
+filename = sys.argv[0]
+
+with open(filename) as file:
+   for index, line in enumerate(file, 1):
+       print("{}: {}".format(index, line), end='')
+# 1:  import sys
+# 2:  filename = sys.argv[0]
+# 3:
+# 4:  with open(filename) as file:
+# 5:     for index, line in enumerate(file, 1):
+# 6:         print("{}:  {}".format(index, line), end='')
 
 # There's a nice example of how enumerate is used with a csv file – to get the
 # indexes listed with all the headers so we know which indexes of data we're
@@ -695,7 +705,7 @@ print(repr(now))  # datetime.datetime(2017, 9, 5, 18, 23, 30, 607281)
 
 # reversed()
 # -----------------------------------------------------------------------------
-# The reversed() method returns the reversed iterator of the given sequence.
+# The reversed() method returns the reversed copy of the given sequence.
 
 seqString = 'Python'
 print(list(reversed(seqString)))  # ['n', 'o', 'h', 't', 'y', 'P']
@@ -703,11 +713,11 @@ print(list(reversed(seqString)))  # ['n', 'o', 'h', 't', 'y', 'P']
 seqTuple = ('P', 'y', 't', 'h', 'o', 'n')
 print(list(reversed(seqTuple)))  # ['n', 'o', 'h', 't', 'y', 'P']
 
-seqRange = range(5, 9)  # [8, 7, 6, 5]
-print(list(reversed(seqRange)))
+seqRange = range(5, 9)
+print(list(reversed(seqRange)))  # [8, 7, 6, 5]
 
-seqList = [1, 2, 4, 3, 5]  # [5, 3, 4, 2, 1]
-print(list(reversed(seqList)))
+seqList = [1, 2, 4, 3, 5]
+print(list(reversed(seqList)))  # [5, 3, 4, 2, 1]
 
 class Vowels:
     vowels = ['a', 'e', 'i', 'o', 'u']
