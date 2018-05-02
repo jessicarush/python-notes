@@ -1,5 +1,7 @@
 # Markdown Notes
 
+Examples of some of the most common usages. Yes, there are many demos and cheatsheets already out there, but the best way to learn is to do it yourself.
+
 ## Table of contents
 - [links](#links)
 - [headings](#headings)
@@ -10,9 +12,12 @@
 - [emphasis, strong, strikethrough](#emphasis,-strong,-strikethrough)
 - [images](#images)
 - [horizontal rules](#horizontal-rules)
+- [tables](#tables)
 - [backslash escapes](#backslash-escapes)
 
 ## links
+
+As demonstarted above, you can link to any heading within your document using like this: (#lower-case-heading-replaces-spaces-with-dashes).
 
 This in an [example link](https://daringfireball.net/projects/markdown/syntax).
 
@@ -29,9 +34,6 @@ Here's [Google][1], [Yahoo][2], [MSN][3]
 You can also create automatic links out of a url:
 <https://github.com/>
 
-You can link to any heading within your document using like this: (#lower-case-heading-replaces-spaces-with-dashes)
-
-
 
 # Heading 1
 ## Heading 2
@@ -42,15 +44,17 @@ You can link to any heading within your document using like this: (#lower-case-h
 
 
 ## code
+
+Here is a block of code:
 ```
 pip3 install mylibrary
 ```
 Here is some `inline code`.
 
-You cal also specify syntax highlighting:
+You can also specify syntax highlighting:
 
 ```python
-print('Syntax highlighting')
+print('Python syntax highlighting')
 ```
 
 
@@ -71,15 +75,15 @@ Here's my new line.
 
 Unordered lists can be marked with -, +, or *
 
-* list
-* list
-* list
+* point
+* point
+* point
 
 Ordered lists can be marked with any number.
 
-1. list
-1. list
-1. list
+1. item
+1. item
+1. item
 
 Task lists:
 - [x] This is a complete item
@@ -118,6 +122,16 @@ Insert a horizontal rule by typing 3 * or - or _ on their own line:
 ***
 ___
 ---
+
+
+## tables
+
+Use hyphens `-` to indicate header rows and pipes `|` to indicate columns:
+
+id | name | email
+-- | ---- | -----
+1 | rick | rick@email.com
+2 | morty | morty@email.com
 
 
 ## backslash escapes
