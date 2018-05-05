@@ -2,12 +2,21 @@
 
 # https://docs.python.org/3/library/index.html
 
-from pprint import pprint
 
+# Timer()
+# -----------------------------------------------------------------------------
+from threading import Timer
+
+def do_something():
+    print('doing something...')
+
+t = Timer(10.0, do_something)
+t.start()
+# will print 'doing something...' after 10 seconds. The rest of the code will
+# have time to run first.
 
 # random, string
 # -----------------------------------------------------------------------------
-
 import random
 import string
 
@@ -23,7 +32,6 @@ print(test)
 
 # Counter()
 # -----------------------------------------------------------------------------
-
 from collections import Counter
 
 jellybeans = ['red', 'red', 'orange', 'red', 'green', 'green']
@@ -191,6 +199,7 @@ print(get_close_matches('rainn', possibilities, n=1))
 # other than their first value. For example:
 
 from operator import itemgetter
+from pprint import pprint
 
 l = [('bob', 50), ('mary', 45), ('rick', 72), ('jane', 28)]
 
