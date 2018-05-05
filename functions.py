@@ -292,6 +292,42 @@ def run_with_positional_args(func, *args):
 run_with_positional_args(sum_numbers, 2, 3, 1, 4)  # 10
 
 
+# Functions as attributes (& monkey patching)
+# -----------------------------------------------------------------------------
+# Since functions are objects, they can get set as callable attributes on other
+# objects. In addition, you can add or change a function on an instantiated
+# object. Consider this:
+
+class A():
+    def method(self):
+        print("I'm from class A")
+
+def function():
+    print("I'm not from class A")
+
+a = A()
+a.method()
+a.method = function
+a.method()
+# I'm from class A
+# I'm not from class A
+
+# This method of adding or replacing functions is often referred to as
+# monkey-patching. Doing this kind of thing can cause situations that are
+# difficult to debug. That being said, it does have its uses though. Often, it's
+# used in automated testing. For example, if testing a client-server application,
+# we may not want to actually connect to the server while testing it; this may
+# result in accidental transfers of funds or test e-mails being sent to real
+# people. Instead, we can set up our test code to replace some of the key
+# methods on the object.
+
+# Monkey-patching can also be used to fix bugs or add features in third-party
+# code that we are interacting with, and does not behave quite the way we need
+# it to. It should, however, be applied sparingly; it's almost always a
+# "messy hack". Sometimes, though, it is the only way to adapt an existing
+# library to suit our needs.
+
+
 # Nested functions
 # -----------------------------------------------------------------------------
 # This is pretty straight forward. When we call the outer() function, it in
