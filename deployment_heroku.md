@@ -284,3 +284,22 @@ $ heroku config:get SEARCHBOX_URL
 <your-elasticsearch-url>
 $ heroku config:set ELASTICSEARCH_URL=<your-elasticsearch-url>
 ```
+
+## Redis server and RQ workers
+
+To run a Redis server you'll need to add a Redis service to your account. Redis has a free tier, which can be added with the following command:
+```
+$ heroku addons:create heroku-redis:hobby-dev
+```
+
+The access URL for your new redis service is going to be added to your Heroku environment as a REDIS_URL variable.
+
+The free plan in Heroku allows one web dyno and one worker dyno, so you can host a single rq worker along with your application without incurring into any expenses. For this you will need to declare the worker in a separate line in your procfile:
+```
+web: flask db upgrade; flask translate compile; gunicorn microblog:app
+worker: rq worker microblog-tasks
+```
+After you deploy with these changes, you can start the worker with the following command:
+```
+$ heroku ps:scale worker=1
+```

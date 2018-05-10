@@ -167,7 +167,8 @@ Now we can start the app again with a link to the database container:
 $ docker run --name microblog -d -p 8000:5000 --rm \
     -e SECRET_KEY=my-secret-key \
     -e MAIL_SERVER=smtp.googlemail.com \
-    -e MAIL_PORT=587 -e MAIL_USE_TLS=true \
+    -e MAIL_PORT=587 \
+    -e MAIL_USE_TLS=true \
     -e MAIL_USERNAME=<your-gmail-username> \
     -e MAIL_PASSWORD=<your-gmail-password> \
     --link mysql:dbserver \
@@ -212,7 +213,8 @@ We can modify the start command to create a link to it and set the Elasticsearch
 $ docker run --name microblog -d -p 8000:5000 --rm \
     -e SECRET_KEY=my-secret-key \
     -e MAIL_SERVER=smtp.googlemail.com \
-    -e MAIL_PORT=587 -e MAIL_USE_TLS=true \
+    -e MAIL_PORT=587 \
+    -e MAIL_USE_TLS=true \
     -e MAIL_USERNAME=<your-gmail-username> \
     -e MAIL_PASSWORD=<your-gmail-password> \
     --link mysql:dbserver \
@@ -221,6 +223,48 @@ $ docker run --name microblog -d -p 8000:5000 --rm \
     -e ELASTICSEARCH_URL=http://elasticsearch:9200 \
     microblog:latest
 ```
+
+## Redis server and RQ workers
+
+To add a Redis server, you first need to create a Redis container. For this you can use one of the official Redis images from the Docker registry:
+```
+$ docker run --name redis -d -p 6379:6379 redis:3-alpine
+```
+
+When you run your application you will need to link the redis container and set the REDIS_URL environment variable, similar to how a MySQL container is linked. Here is a complete command to start the application including a redis link:
+```
+$ docker run --name microblog -d -p 8000:5000 --rm \
+    -e SECRET_KEY=my-secret-key \
+    -e MAIL_SERVER=smtp.googlemail.com \
+    -e MAIL_PORT=587 \
+    -e MAIL_USE_TLS=true \
+    -e MAIL_USERNAME=<your-gmail-username> \
+    -e MAIL_PASSWORD=<your-gmail-password> \
+    --link mysql:dbserver \
+    --link redis:redis-server \
+    -e DATABASE_URL=mysql+pymysql://microblog:<db-password>@dbserver/microblog \
+    -e REDIS_URL=redis://redis-server:6379/0 \
+    microblog:latest
+```
+
+Finally, you will need to run one or more containers for the RQ workers. Because the workers are based on the same code as the main application, you can use the same container image you use for your application, overriding the start up command so that the worker is started instead of the web application. Here is an example docker run command that starts a worker:
+```
+$ docker run --name rq-worker -d --rm \
+    -e SECRET_KEY=my-secret-key \
+    -e MAIL_SERVER=smtp.googlemail.com \
+    -e MAIL_PORT=587 \
+    -e MAIL_USE_TLS=true \
+    -e MAIL_USERNAME=<your-gmail-username> \
+    -e MAIL_PASSWORD=<your-gmail-password> \
+    --link mysql:dbserver \
+    --link redis:redis-server \
+    -e DATABASE_URL=mysql+pymysql://microblog:<db-password>@dbserver/microblog \
+    -e REDIS_URL=redis://redis-server:6379/0 \
+    --entrypoint venv/bin/rq \
+    microblog:latest worker -u redis://redis-server:6379/0 microblog-tasks
+```
+
+Overriding the default start up command of a Docker image is a bit tricky because the command needs to be given in two parts. The --entrypoint argument takes just the executable name, but the arguments (if any) need to be given after the image and tag, at the end of the command line. Note that rq needs to be given as venv/bin/rq so that it works without having the virtual environment activated.
 
 ## The Docker Container Registry
 

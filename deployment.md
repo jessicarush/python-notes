@@ -454,6 +454,70 @@ $ sudo supervisorctl start microblog
 
 Miguel has more suggestions to improve the SSL security in his [tutorial](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https) regarding adding more instructions to the nginx file.
 
+## Redis Server & RQ workers
+
+On a Linux server, adding Redis should be as simple as installing the package from your operating system. For Ubuntu Linux, run:
+```
+$ sudo apt-get install redis-server.
+```
+
+You can start up the server as you normally would in a new ssh session:
+```
+$ redis-server
+```
+
+Or you can start it like this in the same window:
+```
+$ /etc/init.d/redis-server start
+```
+Note it can be stopped in the same way:
+```
+$ /etc/init.d/redis-server stop
+```
+
+Test that its running:
+```
+$ redis-cli ping
+```
+
+You need RQ (activate your venv first):
+```
+(venv) $ pip install rq
+```
+
+Now edit the supervisor config file to include an RQ worker:
+```
+$ sudo nano /etc/supervisor/conf.d/microblog.conf
+```
+
+Add this:
+```
+[program:rq_worker]
+; See http://python-rq.org/patterns/supervisor/
+command=/home/jessica/microblog/venv/bin/rq worker microblog-tasks
+numprocs=1
+directory=/home/jessica/microblog
+stopsignal=TERM
+autostart=true
+autorestart=true
+```
+
+Reload the supervisor:
+```
+$ sudo supervisorctl reload
+```
+
+To be safe:
+```
+$ sudo supervisorctl restart microblog
+$ sudo supervisorctl start rq_worker
+```
+
+Note, this tells you what's running:
+```
+$ sudo supervisorctl status
+```
+
 ## Misc
 
 Should you need to copy a file from your local machine to your server via SSH, not that the path for an Ubuntu user begins with `/home/`, for example:
