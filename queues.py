@@ -219,3 +219,146 @@ while not heap.empty():
 # (1, 'important task 2')
 # (2, 'medium-level task')
 # (3, 'low-level task')
+
+
+# Task Queues
+# -----------------------------------------------------------------------------
+# Task queues provide a convenient solution for an application to request the
+# execution of a task by a worker process. Worker processes run independently
+# of the application and can even be located on a different system. The
+# communication between the application and the workers is done through a
+# message queue. The application submits a job, and then monitors its progress
+# by interacting with the queue.
+
+# The most popular task queue for Python is Celery. This is a fairly
+# sophisticated package that has many options and supports several message
+# queues.
+
+# http://www.celeryproject.org/
+# https://blog.miguelgrinberg.com/post/using-celery-with-flask
+
+# Another popular Python task queue is Redis Queue or just RQ, which sacrifices
+# some flexibility, such as only supporting a Redis message queue, but in
+# exchange it is much simpler to set up than Celery.
+
+# http://python-rq.org/
+
+# RQ (task queues)
+# ----------------------------------------------------------------------------
+# The communication between an application and RQ workers is going to be
+# carried out in a Redis message queue, so you need to have a Redis server
+# running. See also: noSQL_datastores.py, networks.py, concurrency.py
+
+# $ pip install rq
+# $ redis-server
+
+# Example task (app/tasks.py):
+
+import time
+
+def example(seconds):
+    print('Starting task...')
+    for i in range(seconds):
+        print(i)
+        time.sleep(1)
+    print('Task completed.')
+
+# Run an RQ worker:
+
+# $ rq worker test
+
+# The worker process is now connected to Redis, and watching for any jobs that
+# may be assigned to it on a queue named 'test'. In cases where you
+# want multiple workers to have more throughput, all you need to do is run
+# more instances of rq worker, all connected to the same queue. Then when a
+# job shows up in the queue, any of the available worker processes will pick
+# it up. In a production environment you will probably want to have at least
+# as many workers as available CPUs.
+
+# Execute the tasks:
+
+# In another terminal window, start a python shell session.
+
+# >>> from redis import Redis
+# >>> import rq
+# >>> q = rq.Queue('test', connection=Redis.from_url('redis://localhost:6379'))
+# OR
+# >>> q = rq.Queue('test', connection=Redis())
+# >>> job = q.enqueue('app.tasks.example', 23)
+# >>> job.get_id()
+# >>> job.is_finished
+
+# Back in the first terminal window, where the worker is listening, you should
+# see it run example function above and then wait.
+
+# The Queue class from RQ represents the task queue as seen from the
+# application side. The arguments it takes are the queue name, and a Redis
+# connection object, which in this case we initialize with a default URL.
+# If you have your Redis server running on a different host or port number,
+# you'll need to use a different URL.
+
+# The enqueue() method on the queue is used to add a job to the queue. The
+# first argument is the name of the task you want to execute, given directly
+# as a function object, or as an import string. I find the string option much
+# more convenient, as that makes it unnecessary to import the function on the
+# application's side. Any remaining arguments given to enqueue() are going to
+# be passed to the function running in the worker.
+
+# The job.get_id() method can be used to obtain the unique identifier assigned
+# to the task. The job.is_finished expression will report False until its
+# done, then True. Test it!
+
+# Once the function completes, the worker goes back to waiting for new jobs,
+# so you can repeat the enqueue() call with different arguments if you want to
+# experiment more. The data that is stored in the queue regarding a task will
+# stay there for some time (500 seconds by default), but eventually will be
+# removed. This is important, the task queue does not preserve a history of
+# executed jobs.
+
+# Normally, for a long running task, you will want some sort of progress
+# information to be made available to the application, which in turn can show
+# it to the user. RQ supports this by using the meta attribute of the job
+# object. Here's the example tasks expanded out to include this:
+
+# Example task (app/tasks.py):
+
+import time
+from rq import get_current_job
+
+def example(seconds):
+    job = get_current_job()
+    print('Starting task...')
+    for i in range(seconds):
+        job.meta['progress'] = 100.0 * i / seconds
+        job.save_meta()
+        print(i)
+        time.sleep(1)
+    job.meta['progress'] = 100
+    job.save_meta()
+    print('Task completed.')
+
+# This new version of example() uses RQ's get_current_job() function to get a
+# job instance, which is similar to the one returned to the application when
+# it submits the task. The meta attribute of the job object is a dictionary
+# where the task can write any custom data that it wants to communicate to the
+# application. In this example, We're writing a 'progress' item that represents
+# the percentage of completion of the task. Each time the progress is updated
+# we call job.save_meta() to instruct RQ to write the data to Redis, where the
+# application can find it.
+
+# We can run this new task an monitor its progress like this:
+
+# >>> job = q.enqueue('app.tasks.example', 23)
+# >>> job.meta
+# {}
+# >>> job.refresh()
+# >>> job.meta
+# {'progress': 69.56521739130434}
+# >>> job.refresh()
+# >>> job.meta
+# {'progress': 100}
+# >>> job.is_finished
+# True
+
+# The refresh() method needs to be invoked for the contents to be updated
+# from Redis.
