@@ -111,7 +111,7 @@ print(dbm.whichdb('definitions'))
 #  – install the Server: brew install redis
 #  – launch Redis server: redis-server
 #  – test that the server is running: redis-cli ping (respose PONG)
-#  – to clear everyhting from memory: redis-cli flushall
+#  – to clear everything from memory: redis-cli flushall
 #  – shutdown server: redis-cli shutdown
 
 import redis
