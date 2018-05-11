@@ -132,7 +132,7 @@ print(repr(a))      # Word("Ha")
 # Another __str__ example
 # -----------------------------------------------------------------------------
 
-class Player(object):
+class Player():
 
     def __init__(self, name):
         self.name = name
@@ -175,6 +175,7 @@ print(os.__file__)
 import random
 print(random.__doc__)
 print(random.choice.__doc__)
+
 
 # __len__, __reversed__, __class__, __name__
 # -----------------------------------------------------------------------------

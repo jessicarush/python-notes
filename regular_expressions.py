@@ -14,6 +14,7 @@ r = re.match('You', 'Young Frankenstein')
 print(r)          # <_sre.SRE_Match object; span=(0, 3), match='You'>
 print(r.group())  # You
 
+
 # For more complex matches, you can compile your pattern first to speed up the
 # match. Then, you can perform your match against the compiled pattern:
 
@@ -41,7 +42,7 @@ print(r)           # None
 # print(r.group()) # AttributeError: 'NoneType' object has no attribute 'group'
 
 
-# Wildcards . *
+# Wildcards .*
 # -----------------------------------------------------------------------------
 # . means any character
 # * means any number of the preceding character
@@ -134,7 +135,7 @@ r = re.findall('\w', sample)
 # note \d and \w work on whatever Unicode defines as a digit or character
 # for example:
 
-test = 'abc' + '-/&' + '\u00ea' +'\u0115'
+test = 'abc-/&\u00ea\u0115'
 r = re.findall('\w', test)
 print(r)  # ['a', 'b', 'c', 'ê', 'ĕ']
 
