@@ -96,6 +96,11 @@ $ pip install requests
 $ pip install Flask-RESTful  
 ```
 
+## Task Queues
+```
+$ pip install rq
+```
+
 ## Git
 ```
 $ git init  
