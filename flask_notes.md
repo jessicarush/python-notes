@@ -48,10 +48,11 @@ $ pip install Flask-WTF
 $ pip install Flask-Login
 ```
 
-## Email & JSON web tokens
+## Email & web tokens
 ```
 $ pip install Flask-Mail
 $ pip install PyJWT
+$ pip install flask-httpauth
 ```
 
 ## Timezones
@@ -92,6 +93,12 @@ $ pip install requests
 ```
 
 ## RESTful API
+A command-line HTTP client that makes it easy to send API requests:
+```
+$ pip install httpie
+```
+
+Optional:
 ```
 $ pip install Flask-RESTful  
 ```
