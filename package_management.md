@@ -2,8 +2,16 @@
 
 ## Installing & upgrading packages
 
-- `pip` - you can install most python packages this way  
-- package managers (ie brew) - work like pip but not restricted to python
+*`pip`* - you can install most python packages this way  
+*package managers* - (ie brew) work like pip but not restricted to python
+
+NOTE: Depending on how your python3 is installed (or whether you're working in virtual environment), you may need to say 'pip3' instead of 'pip'. TBH, I'm not entirely certain what the implications of installing with pip versus pip3. Initially, I thought that I had to use pip3 for packages I intended to run with python3 but after setting up a new workstation I noticed that both pip and pip3 were pointing to python3. To be safe, I have upgraded pip AND pip3. Here's what I see my machines:
+```
+$ pip --version
+pip 10.0.1 from /usr/local/lib/python3.6/site-packages/pip (python 3.6)
+$ pip3 --version
+pip 10.0.1 from /usr/local/lib/python3.6/site-packages/pip (python 3.6)
+```
 
 to upgrade pip:
 ```
@@ -29,15 +37,6 @@ As of pip version 1.3 you can run the following command to check if any of
 your packages can be updated:
 ```
 $ pip list --outdated
-```
-
-NOTE: with regards to python3, depending on how your system configured (or whether or not you're working in  virtual environment), you may need to say 'pip3' instead of 'pip'. TBH, I'm not entirely certain what the implications of installing with pip versus pip3. I thought that I had to
-use pip3 for packages I intended to run with python3 but after setting up a new workstation I noticed that both pip and pip3 were pointing to my python3. To be safe, I have upgraded pip AND pip3. Here's what I see my machines:
-```
-$ pip --version
-pip 10.0.1 from /usr/local/lib/python3.6/site-packages/pip (python 3.6)
-$ pip3 --version
-pip 10.0.1 from /usr/local/lib/python3.6/site-packages/pip (python 3.6)
 ```
 
 NOTE: Sometimes I've seen this recommended for installing modules:
