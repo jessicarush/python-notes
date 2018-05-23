@@ -1,5 +1,18 @@
 '''Booleans: True False Logic'''
 
+# Boolean values are the two constant objects False and True. In numeric
+# contexts, they behave like the integers 0 and 1, respectively. The built-in
+# function bool() can be used to check any value as a Boolean, if the value can
+# be interpreted as a truth value.
+
+a = [1, 3, 6]
+b = []
+c = None
+
+print(bool(a))  # True
+print(bool(b))  # False
+print(bool(c))  # False
+
 # True
 # False
 # and
