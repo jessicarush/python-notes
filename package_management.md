@@ -102,6 +102,14 @@
 # That being said, the github page reports quite a few open issues.
 
 
+# Updates
+# -----------------------------------------------------------------------------
+# As of pip version 1.3 you can run the following command to check if any of
+# your packages can be updated:
+
+# $ pip list --outdated
+
+
 # Dependencies
 # -----------------------------------------------------------------------------
 # This will list package dependencies:
