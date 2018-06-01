@@ -2,6 +2,8 @@
 
 import re
 
+# https://docs.python.org/3/library/re.html
+
 
 # match()
 # -----------------------------------------------------------------------------
@@ -288,3 +290,24 @@ r = re.search(r'(escape).*(reality)', sample)
 
 print(r.group())   # escape from reality
 print(r.groups())  # ('escape', 'reality')
+
+
+# Even More testing
+# -----------------------------------------------------------------------------
+
+import re
+import sys
+
+pattern = sys.argv[1]
+search_string = sys.argv[2]
+# To use sys.argv, run the file like this:
+# $ python3 re_testing.py 'hello' 'hello world'
+
+match = re.match(pattern, search_string)
+
+if match:
+    template = "'{}' matches pattern '{}'"
+else:
+    template = "'{}' doesn't match pattern '{}'"
+
+print(template.format(search_string, pattern))

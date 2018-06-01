@@ -1,4 +1,4 @@
-'''Structured Text files'''
+'''Structured Text Files'''
 
 # In simple text files, the only level of organization is the line. Sometimes,
 # you need more structure than that. You might want to save data for your
@@ -38,13 +38,13 @@ singers = [
     ['Etta', 'James'],
     ]
 
-with open('singers.csv', 'w') as fout:
+with open('data/singers.csv', 'w') as fout:
     csv_out = csv.writer(fout)
     csv_out.writerows(singers)
 
 # This creates a file 'singers.csv'. Try reading it back in:
 
-with open('singers.csv', 'r') as fin:
+with open('data/singers.csv', 'r') as fin:
     csv_in = csv.reader(fin)
     singers = [row for row in csv_in]  # list comprehension
 
@@ -55,7 +55,7 @@ with open('singers.csv', 'r') as fin:
 
 # The data can be a list of dictionaries instead of a list of lists
 
-with open('singers.csv', 'r') as fin:
+with open('data/singers.csv', 'r') as fin:
     csv_in = csv.DictReader(fin, fieldnames=['first', 'last'])
     singers = [row for row in csv_in]
 
@@ -71,7 +71,7 @@ singers = [
     {'first': 'Annie', 'last': 'Lennox'},
     ]
 
-with open('singers.csv', 'w') as fout:
+with open('data/singers.csv', 'w') as fout:
     csv_out = csv.DictWriter(fout, ['first', 'last'])
     csv_out.writeheader()
     csv_out.writerows(singers)
@@ -79,7 +79,7 @@ with open('singers.csv', 'w') as fout:
 # This time when reading back in with DictReader(), we'll omit the fieldnames
 # argument. It will then use the values it finds on the first line instead.
 
-with open('singers.csv', 'r') as fin:
+with open('data/singers.csv', 'r') as fin:
     csv_in = csv.DictReader(fin)
     singers = [row for row in csv_in]
 
@@ -325,83 +325,7 @@ print(cfg['french']['greeting'])
 
 # Serialize with pickle
 # -----------------------------------------------------------------------------
-# Serialization is the process that allows objects to be saved to a file so
-# that they can be restored from the file later. Formats such as JSON might
-# require some custom converters to serialize all the data types from a Python
-# program. Python's pickle module can save and restore any object in a
-# special binary format.
-
-import pickle
-import datetime
-
-now1 = datetime.datetime.utcnow()
-pickled = pickle.dumps(now1)
-now2 = pickle.loads(pickled)
-
-print(now1 == now2) # True
-
-# Use dump() to pickle to a file, and load() to unpickle from one.
-
-import pickle
-
-unkle = ('The Road, Pt. 1', 'UNKLE', '2017', (
-         (1, 'Inter 1'),
-         (2, 'Farewell'),
-         (3, 'Looking for the Rain'),
-         (4, 'Cowboys or Indians')))
-
-with open('music.pickle', 'wb') as pickle_file:
-    pickle.dump(unkle, pickle_file)
-
-with open('music.pickle', 'rb') as unpickle_file:
-    unkle2 = pickle.load(unpickle_file)
-
-print(unkle == unkle2) # True
-
-# You can pickle as many objects as you want to one file, you just have to
-# remember to load them back in the same order:
-
-queens = ('Villians', 'QOTSA', '2017', (
-         (1, "Feet Don't Fail Me"),
-         (2, 'The Way You Used to Do'),
-         (3, 'Domesticated Animals'),
-         (4, 'Fortess')))
-
-arcade = ('Everything Now', 'Arcade Fire', '2017', (
-         (1, 'Everything Now'),
-         (2, 'Signs of Life'),
-         (3, 'Creature Comfort'),
-         (4, 'Peter Pan')))
-
-with open('music.pickle', 'wb') as pickle_file:
-    pickle.dump(unkle, pickle_file)
-    pickle.dump(queens, pickle_file)
-    pickle.dump(arcade, pickle_file)
-    pickle.dump(2348990008, pickle_file)
-
-with open('music.pickle', 'rb') as unpickle_file:
-    unkle2 = pickle.load(unpickle_file)
-    queens2 = pickle.load(unpickle_file)
-    arcade2 = pickle.load(unpickle_file)
-    x = pickle.load(unpickle_file)
-
-# pickle can use different protocols when serializing data. These protocols are
-# released with new versions of Python and will include better support for more
-# complex data objects. That being said, the protocols aren't backwards
-# compatible. If you pickle something with the latest version you may not be
-# able to load back in with an older version. Keep in mind too that some of the
-# older versions have major security issues. To specify a protocol:
-
-pickle.dump(unkle, pickle_file, protocol=3) # default released with Python 3
-pickle.dump(unkle, pickle_file, protocol=pickle.HIGHEST_PROTOCOL)
-pickle.dump(unkle, pickle_file, protocol=pickle.DEFAULT_PROTOCOL)
-
-# Final Note: as with PyYAML load(), pickle can create Python objects.
-# Don't unpickle something that you don't trust. Here's an example of code
-# that would delete a file called text.txt if run:
-
-pickle.loads(b"cos\nsystem\n(S'rm text.txt'\ntR.")      # mac/linux
-pickle.loads(b"cos\nsystem\n(S'del text.txt'\ntR.")     # windows
+# see pickling.py
 
 
 # Shelve module
