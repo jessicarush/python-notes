@@ -60,19 +60,19 @@ for i in range(6):
 # Fibonacci
 # -----------------------------------------------------------------------------
 
-def fib_r(n):
-    '''Calculates fibonacci recursively'''
-    if n  < 2:
-        return n
-    else:
-        return fib_r(n - 1) + fib_r(n - 2)
-
 def fib_i(n):
     '''Calculates fibonacci iteratively'''
     a, b = 0, 1
     for i in range(n):
         a, b = b, a + b
     return a
+
+def fib_r(n):
+    '''Calculates fibonacci recursively'''
+    if n  < 2:
+        return n
+    else:
+        return fib_r(n - 1) + fib_r(n - 2)
 
 def fib_g(n):
     '''Calculates fibonacci with a generator'''
@@ -85,10 +85,10 @@ def fib_g(n):
 
 # testing:
 for i in range(10):
-    print(fib_r(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+    print(fib_i(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
 for i in range(10):
-    print(fib_i(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+    print(fib_r(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
 fib_generator = fib_g(10)
 for i in fib_generator:
@@ -100,29 +100,35 @@ for i in fib_generator:
 
 import os
 
-# os.walk() returns a list of tuples. Each tuple contains a directory name and
-# two lists, one for the directories and one for the files. This is a
-# non-recursive example:
+# os.walk() creates a generator object that yields a 3-item tuple
+# (dirpath, dirnames, filenames). dirpath is a string of the path to the
+# directory. dirnames is a list of the names of the subdirectories in dirpath
+# (excluding '.' and '..'). filenames is a list of the names of the
+# non-directory files in dirpath.
 
-# listing = os.walk('.')
-# for root, directories, files in listing:
-#     print(root)
-#     for d in directories:
-#         print(d)
-#     for f in files:
-#         print(f)
+# This is a non-recursive example:
+
+listing = os.walk('.')
+
+print(next(listing))
+
+for root, directories, files in listing:
+    print('Root: ', root)
+    for d in directories:
+        print('Directories: ', d)
+    for f in files:
+        print('Files: ', f)
 
 # here we use os.listdir and os.path to create a recursive example:
 
 def list_directory(s):
-
     def dir_list(d):
         nonlocal tab_stop
         files = os.listdir(d)
         for f in files:
             current_dir = os.path.join(d, f)
             if os.path.isdir(current_dir):
-                print('\t' * tab_stop + 'Directory' + f)
+                print('\t' * tab_stop + 'Directory':  + f)
                 tab_stop += 1
                 dir_list(current_dir)
                 tab_stop -= 1
@@ -137,7 +143,7 @@ def list_directory(s):
         print(s + ' does not exist')
 
 
-list_directory('.')
+list_directory('./data')
 
 
 # Tips:

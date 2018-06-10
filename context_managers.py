@@ -65,7 +65,7 @@ import string
 class StringJoiner(list):
     def __enter__(self):
         return self
-    def __exit__(self, type, value, tb):
+    def __exit__(self, type, value, traceback):
         self.result = ''.join(self)
 
 with StringJoiner() as j:
@@ -74,13 +74,13 @@ with StringJoiner() as j:
 
 print(j)
 # ['T', 'h', '9', 'M', 'F', 'v', 'y', 'Q', 'A', 'b', '6', 'n', 'r', 'x', 'i']
+
 print(j.result)
 # Th9MFvyQAb6nrxi
 
 # Here's an example of a file opening context manager:
 
 class File():
-
     def __init__(self, filename, method):
         self.file_obj = open(filename, method)
 
@@ -92,18 +92,18 @@ class File():
         return True   # if you want exceptions to be ignored
         return False  # if you want to pass the exception up the line
 
-# Just by defining __enter__ and __exit__ methods we can use it in a with
-# statement:
+# By defining __enter__() and __exit__() methods we can use this object
+# in a with statement:
 
 with File('data/test.txt', 'w') as opened_file:
     opened_file.write('Hola!')
 
-# You can also construct your own context managers using the contextmanager
-# decorator from contextlib.
 
-
-# example 1
+# @contextmanager - example 1
 # -----------------------------------------------------------------------------
+# You can also construct your own context managers using the contextmanager
+# decorator from contextlib. In this case it's the 'yield' keyword that
+# separates the enter and exit instructions.
 
 from contextlib import contextmanager
 
@@ -117,7 +117,7 @@ with tag("h1"):
     print("Heading", end='')  # <h1>Heading</h1>
 
 
-# example 2
+# @contextmanager - example 2
 # -----------------------------------------------------------------------------
 # This could be used when you have to change the current directory temporarily
 # and then return to where you were:
@@ -134,19 +134,21 @@ def working_directory(path):
     finally:
         os.chdir(current_dir)
 
-with working_directory("data"):
-    pass # do something within data/stuff
+with working_directory("data") as wd:
+    pass # do something within data
 
-# Then here you are back again in the original working directory
+# Then you'll be back again in the original working directory
 
 
-# example 3
+# @contextmanager - example 3
 # -----------------------------------------------------------------------------
-# This example  creates a temporary folder and cleans it up when leaving
+# This example creates a temporary folder and cleans it up when leaving
 # the context:
 
+from contextlib import contextmanager
 from tempfile import mkdtemp
 import shutil
+import time
 
 @contextmanager
 def temporary_dir(*args, **kwargs):
@@ -157,4 +159,5 @@ def temporary_dir(*args, **kwargs):
         shutil.rmtree(name)
 
 with temporary_dir() as dirname:
+    time.sleep(10)
     pass # do whatever

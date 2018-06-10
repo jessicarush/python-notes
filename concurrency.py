@@ -1,7 +1,7 @@
 '''Concurrency and Networks'''
 
 # Normally we run programs in one place (on a single machine) and one line at
-# a time (sequential). Concurrency is running more than one thing at at time.
+# a time (sequential). Concurrency is running more than one thing at a time.
 # Distributed computing or Networking is running in more than one place.
 
 # Concurrency: https://docs.python.org/3/library/concurrency.html
@@ -174,9 +174,9 @@ dish_queue.join()  # see below (note that dish_queue is its own process)
 # method. This method can be applied to anything that it a process or a thread.
 
 # This example does a better job of specifically demonstrating what join()
-# does. Without join, the main program will start new_process, sleep for 2
+# does. Without join, the main program will start "new_process", sleep for 2
 # seconds and then move on to the rest of the code. With join, the program will
-# wait until process has finished before moving on to the rest of the program.
+# wait until new_process has finished before moving on.
 
 import multiprocessing as mp
 import time
@@ -199,7 +199,7 @@ print("ok, our main loop can run again!")
 # which has it's own unique process going on behind the scenes that we need to
 # wait for before exiting from the main program. If in that example we removed
 # the join, we'd see the dishes not get a chance to dry because the program
-# exits. Interestingly though, if you also remove .daemon = True on the
+# exits. Alternatively though, if you also remove .daemon = True on the
 # dryer_process, the queue will have time to finish its job because the
 # dryer_process now blocks the main program from ever exiting.
 
@@ -455,7 +455,7 @@ for num in range(DRYERS):
 
 # One process reads the quit ID and quits, but the other two linger for
 # 20 seconds, then timeout and quit. After the last dryer subprocess quits,
-# the main dryer program should end. # BUG: but it doesn't!
+# the main dryer program should end. # BUG: but sometimes it doesn't!
 
 # don't forget to shutdown the server: redis-cli shutdown
 
