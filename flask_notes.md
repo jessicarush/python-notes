@@ -18,7 +18,6 @@ $ mkdir app/static/img
 ```
 $ python3 -m venv venv  
 $ source venv/bin/activate  
-
 ```  
 
 ## Flask
@@ -120,6 +119,7 @@ $ touch .gitignore
 venv  
 .env
 ```
+Initial commit:
 ```
 $ git add -A  
 $ git commit -m 'Initial commit'  
@@ -137,17 +137,13 @@ Procfile contents if using uwsgi:
 ```
 web: uwsgi uwsgi.ini
 ```
-
+Create a runtime file:
 ```
 $ touch runtime.txt  
 ```
 runtime.txt contents ([check current version on heroku](https://devcenter.heroku.com/articles/python-runtimes)):  
 ```
 python-3.6.4  
-```
-
-```
-$ pip freeze > requirements.txt
 ```
 if using gunicorn:
 ```
@@ -158,13 +154,17 @@ if using uwsgi:
 $ pip install uwsgi  
 touch uwsgi.ini  
 ```
-for contents see [deployment_heroku.py](https://github.com/jessicarush/python-examples/blob/master/deployment_heroku.md)
+for contents of uwsgi.ini see [deployment_heroku.py](https://github.com/jessicarush/python-examples/blob/master/deployment_heroku.md)  
+Create your requirements list:
+```
+$ pip freeze > requirements.txt
+```
 
 ## Digitalocean  
 
 see [deployment_digitalocean.py](https://github.com/jessicarush/python-examples/blob/master/deployment_digitalocean.md)
 
-# Regarding Contexts
+# Application Contexts
 
 If you try to perform database operations outside an application context (ie outside a view function), you will see the following error:
 
@@ -183,3 +183,36 @@ For more explanation see:
 [Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)  
 <http://flask.pocoo.org/docs/0.12/appcontext/#creating-an-application-context>  
 <http://flask-sqlalchemy.pocoo.org/2.3/contexts/>
+
+# Jinja Filters
+
+There are many [pre-built filters](http://jinja.pocoo.org/docs/2.10/templates/#builtin-filters). To use any of these filters in your HTML template:
+
+```
+{{ current_user.username|title }}
+```
+You can chain filters together:
+
+```
+{{ current_user.username|reverse|title }}
+```
+
+To create a custom filter for a **basic** flask app (in routes.py):
+```python
+@app.template_filter('testing')
+def test(name):
+    '''An example of a jinja2 filter'''
+    return name[::-1].upper()
+```
+To create a custom filter for a flask app that uses **blueprints** (in routes.py):
+```python
+@bp.app_template_filter('testing')
+def test(name):
+    '''An example of a jinja2 filter'''
+    return name[::-1].upper()
+```
+
+The argument passed to the decorator is the name of the filter:
+```
+{{ current_user.username|testing }}
+```
