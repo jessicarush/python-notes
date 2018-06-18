@@ -26,21 +26,28 @@ def my_range(first=0, last=10, step=1):
         number += step
 
 # The original function is a normal function:
-print(type(my_range))  # <class 'function'>
+print(type(my_range))
+# <class 'function'>
 
-# Because of Yield, what's returned is a generator object:
+# The result of the functions 'yield' keyword (instead of 'return')
+# produces a generator object:
 ranger = my_range(1, 5)
-print(type(ranger))  # <class 'generator'>
+print(type(ranger))
+# <class 'generator'>
 
-# You can iterate over the generator object"
+# You can iterate over the generator object:
 for x in ranger:
     print(x)
+# 1
+# 2
+# 3
+# 4
 
 
 # Reduced size
 # -----------------------------------------------------------------------------
-# To illustrate the size difference between generators and a full list
-# equivalent (keep in mind these sizes are using up memory):
+# This example illustrates the size difference between generators and a full
+# list equivalent (keep in mind these sizes are using up memory):
 
 import sys
 
@@ -49,10 +56,10 @@ big_range = my_range(1, 10000)
 print('big_range is {} bytes'.format(sys.getsizeof(big_range)))
 # big_range is 88 bytes
 
-big_list = list(my_range(1, 10000))
+big_list = list(range(1, 10000))
 
 print('big_list is {} bytes'.format(sys.getsizeof(big_list)))
-# big_list is 83112 bytes
+# big_list is 90096 bytes
 
 
 # Another Generator example
@@ -68,7 +75,7 @@ def search(keyword, filename):
             if keyword in line:
                 yield line
 
-search_generator = search('Mama', 'bohemian_rhapsody_lyrics.txt')
+search_generator = search('Mama', 'data/bohemian_rhapsody_lyrics.txt')
 
 # At this point, nothing is printed because the body code of the search
 # function doesn't actually run. The generator function will only return a
@@ -76,8 +83,8 @@ search_generator = search('Mama', 'bohemian_rhapsody_lyrics.txt')
 
 print(next(search_generator))  # generator started, Mama, just killed a man
 print(next(search_generator))  # Mama, life had just begun
-print(next(search_generator))  # Mama, ooh, didn't mean to make you cry
-print(next(search_generator))  # Mama, ooh, I don't want to die
+print(next(search_generator))  # Mama, ooo
+print(next(search_generator))  # Mama, ooo (anyway the wind blows)
 
 
 # Another Generator example
@@ -97,6 +104,17 @@ test_fibonacci = fibonacci(10)
 
 for i in test_fibonacci:
     print(i)
+# ok go
+# 1
+# 1
+# 2
+# 3
+# 5
+# 8
+# 13
+# 21
+# 34
+# 55
 
 
 # Multiple Yields
