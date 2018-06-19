@@ -6,12 +6,15 @@
 # strengths of the Leaflet.js library. Manipulate your data in Python, then
 # visualize it in on a Leaflet map via Folium.
 
+# $ pip install folium
+
 import folium
 import pandas
 
 
 # Folium classes & methods
 # -----------------------------------------------------------------------------
+
 print(dir(folium))
 # ['Circle', 'CircleMarker', 'ClickForMarker', 'ColorMap', 'CssLink',
 # 'CustomIcon', 'Div', 'DivIcon', 'Element', 'FeatureGroup', 'Figure',
@@ -24,6 +27,7 @@ print(dir(folium))
 
 # Basics
 # -----------------------------------------------------------------------------
+
 # print(help(folium.Map()))
 
 # There are many, many parameters for this class. Note that the 'tiles'
@@ -75,7 +79,7 @@ icon2 = folium.Icon(color='green',
 # map_1.add_child(folium.Marker(location=loc[1], popup='Info', icon=icon1))
 # map_1.add_child(folium.Marker(location=loc[2], popup='Info', icon=icon2))
 
-# or this way (make more sense to me):
+# or this way (makes more sense to me):
 # folium.Marker(location=loc[1], popup='Info', icon=icon1).add_to(map_1)
 # folium.Marker(location=loc[2], popup='Info', icon=icon2).add_to(map_1)
 
@@ -131,9 +135,9 @@ def hex_color_elev(elevation):
 # circle markers:
 # print(help(folium.CircleMarker))
 
-for lat, lon, e, n in zip(latitudes, longitudes, elevation, name):
+for la, lo, e, n in zip(latitudes, longitudes, elevation, name):
     folium.CircleMarker(
-        location=[lat, lon],
+        location=[la, lo],
         popup=folium.Popup(str(n) + ' – elevation: ' + str(e) + ' m', parse_html=True),
         radius=7,
         color=hex_color_elev(e),
