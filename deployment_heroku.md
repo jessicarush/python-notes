@@ -246,6 +246,23 @@ When you're ready to quit this PostrgeSQL utility, type `\q`
 
 Final note: If you created your database on Heroku only, don't forget to add **psycopg2** to your requirements.txt. SQLAlchemy requires it to communicate with PostgreSQL.
 
+## Setting environment variables
+
+As we've seen above for the FLASK_APP variable, you can set environment variables on heroku with `heroku config:set`:
+```
+$ heroku config:set FLASK_APP=microblog.py
+```
+
+Anything variables that currently live in your `.env` file should be added this way. For example:
+```
+$ heroku config:set SECRET_KEY=supersecretkeyokay
+$ heroku config:set MAIL_SERVER=smtp.googlemail.com
+$ heroku config:set MAIL_PORT=587
+$ heroku config:set MAIL_USE_TLS=1
+$ heroku config:set MAIL_USERNAME=jessicakrush@gmail.com
+$ heroku config:set MAIL_PASSWORD=mypassword
+```
+
 ## Logging to stdout
 
 If your app currently writes its own logs to file, you'll need to make some changes. Heroku expects applications to log directly to stdout. Anything the application prints to the standard output is saved and returned when you use the heroku logs command `heroku logs --app kusshi`.
