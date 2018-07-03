@@ -69,8 +69,7 @@ output_file('scatter_plot1.html')
 
 # regarding output_file('file.html')
 # -----------------------------------------------------------------------------
-
-# Note that there are is a mode parameter that you can pass to the output_file
+# Note that there is a mode parameter that you can pass to the output_file
 # function that will determine whether the html creates links to the
 # necessary javascript and css or whether these files are created and saved to
 # your working directory. The default mode is 'cdn' which stands for
@@ -121,7 +120,6 @@ output_file('scatter_plot2.html')
 
 # Time series plots
 # -----------------------------------------------------------------------------
-
 # The data for this plot comes from:
 # https://www.kaggle.com/sudalairajkumar/cryptocurrencypricehistory
 # https://www.cryptocompare.com/coins/neo/charts/BTC?p=ALL
@@ -163,7 +161,6 @@ output_file('line_plot1.html')
 
 # Hover tools
 # -----------------------------------------------------------------------------
-
 # The data for this plot comes from:
 # https://www.kaggle.com/sudalairajkumar/cryptocurrencypricehistory
 # https://www.cryptocompare.com/coins/neo/charts/BTC?p=ALL
