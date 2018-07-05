@@ -452,6 +452,31 @@ $ sudo service nginx reload
 $ sudo supervisorctl start microblog
 ```
 
+## Renewing your SSL certifcates
+
+At some point you will recieve email reminders that your certificates are up for renewal. SSH into your server and run the following command from any directory:
+```
+$ sudo certbot renew
+```
+
+Provided everything goes well, you should receive a message like:
+```
+-------------------------------------------------------------------------------
+new certificate deployed with reload of nginx server; fullchain is
+/etc/letsencrypt/live/review.zebro.id/fullchain.pem
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Congratulations, all renewals succeeded. The following certs have been renewed:
+  /etc/letsencrypt/live/review.zebro.id/fullchain.pem (success)
+-------------------------------------------------------------------------------
+```
+
+At this point you should restart your web server:
+```
+$ sudo supervisorctl restart microblog
+```
+
 Miguel has more suggestions to improve the SSL security in his [tutorial](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https) regarding adding more instructions to the nginx file.
 
 ## Redis Server & RQ workers
