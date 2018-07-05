@@ -471,7 +471,7 @@ At this point you should restart your web server:
 ```
 $ sudo supervisorctl restart microblog
 ```
-Note that in order to renew, the server_name in your nginx file must match the domain names you entered when setting up certbot. If you have more than one domain name, they should be separated by spaces, not commas. For example:
+Note that in order to renew, the `server_name` in your nginx file (`nano /etc/nginx/sites-enabled/microblog`) must match the domain name(s) you entered when setting up certbot. If you have more than one domain name, they should be separated by spaces, not commas. For example:
 ```
 server {
     # listen on port 80 (http)
