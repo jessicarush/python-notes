@@ -452,7 +452,7 @@ $ sudo service nginx reload
 $ sudo supervisorctl start microblog
 ```
 
-### Renewing your SSL certifcates
+### Renewing your SSL certificates
 
 At some point you will receive an email reminder that your certificate(s) are up for renewal. SSH into your server and run the following command from any directory:
 ```
