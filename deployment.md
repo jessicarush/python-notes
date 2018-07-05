@@ -332,7 +332,7 @@ with the following content:
 server {
     # listen on port 80 (http)
     listen 80;
-    server_name _;
+    server_name example.com;
     location / {
         # redirect any requests to the same URL but on https
         return 301 https://$host$request_uri;
@@ -341,7 +341,7 @@ server {
 server {
     # listen on port 443 (https)
     listen 443 ssl;
-    server_name _;
+    server_name example.com;
 
     # location of the self-signed SSL certificate
     ssl_certificate /home/jessica/microblog/certs/cert.pem;
@@ -452,18 +452,17 @@ $ sudo service nginx reload
 $ sudo supervisorctl start microblog
 ```
 
-## Renewing your SSL certifcates
+### Renewing your SSL certifcates
 
-At some point you will recieve email reminders that your certificates are up for renewal. SSH into your server and run the following command from any directory:
+At some point you will receive an email reminder that your certificate(s) are up for renewal. SSH into your server and run the following command from any directory:
 ```
 $ sudo certbot renew
 ```
 
-Provided everything goes well, you should receive a message like:
+Provided everything goes well, you should receive a message like so:
 
 >new certificate deployed with reload of nginx server; fullchain is
 >  /etc/letsencrypt/live/review.zebro.id/fullchain.pem
-
 >Congratulations, all renewals succeeded. The following certs have been renewed:
 >  /etc/letsencrypt/live/review.zebro.id/fullchain.pem (success)
 
@@ -471,6 +470,23 @@ Provided everything goes well, you should receive a message like:
 At this point you should restart your web server:
 ```
 $ sudo supervisorctl restart microblog
+```
+Note that in order to renew, the server_name in your nginx file must match the domain names you entered when setting up certbot. If you have more than one domain name, they should be separated by spaces, not commas. For example:
+```
+server {
+    # listen on port 80 (http)
+    listen 80;
+    server_name zebro.id microblog.zebro.id;
+    location / {
+        # redirect any requests to the same URL but on https
+        return 301 https://$host$request_uri;
+    }
+}
+server {
+    # listen on port 443 (https)
+    listen 443 ssl;
+    server_name zebro.id microblog.zebro.id;
+    ...
 ```
 
 Miguel has more suggestions to improve the SSL security in his [tutorial](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https) regarding adding more instructions to the nginx file.
