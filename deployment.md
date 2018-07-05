@@ -401,7 +401,7 @@ Miguel has written a detailed article: [Run your Flask application over HTTPS](h
 3. Set up the A, AAAA Records to map to your droplet.
 
 
-## SSL Certificate
+## SSL Certificates
 
 On visiting the [Let's Encrypt](https://letsencrypt.org/) website, you'll be directed to one of several ACME clients which software that uses the Acme protocol which typically runs on your web hosts and demonstrates you are the controller of the domain. The recommended one for those will shell access is [Cerbot](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
 
@@ -421,7 +421,7 @@ Your certificate and chain have been saved at:
 Your key file has been saved at:  
 /etc/letsencrypt/live/zebro.id/privkey.pem  
 
-> Your cert will expire on 2018-07-01. To obtain a new or tweaked version of this certificate in the future, simply run certbot again with the "certonly" option. To non-interactively renew *all* of your certificates, run "certbot renew"
+>Your cert will expire on 2018-07-01. To obtain a new or tweaked version of this certificate in the future, simply run certbot again with the "certonly" option. To non-interactively renew *all* of your certificates, run "certbot renew"
 
 So now we need to add these two paths to the nginx config from above:
 
@@ -460,17 +460,13 @@ $ sudo certbot renew
 ```
 
 Provided everything goes well, you should receive a message like:
-```
--------------------------------------------------------------------------------
-new certificate deployed with reload of nginx server; fullchain is
-/etc/letsencrypt/live/review.zebro.id/fullchain.pem
--------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------
-Congratulations, all renewals succeeded. The following certs have been renewed:
-  /etc/letsencrypt/live/review.zebro.id/fullchain.pem (success)
--------------------------------------------------------------------------------
-```
+>new certificate deployed with reload of nginx server; fullchain is
+>  /etc/letsencrypt/live/review.zebro.id/fullchain.pem
+
+>Congratulations, all renewals succeeded. The following certs have been renewed:
+>  /etc/letsencrypt/live/review.zebro.id/fullchain.pem (success)
+
 
 At this point you should restart your web server:
 ```
