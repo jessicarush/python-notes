@@ -192,7 +192,7 @@ name, _, country = person
 print(name, country)
 
 
-# Variables names using Python keywords
+# Variable names using Python keywords
 # -----------------------------------------------------------------------------
 # If you're desperate to name something using one of Pythons keywords, the
 # accepted standard is to follow the with an underscore:
@@ -200,34 +200,76 @@ print(name, country)
 from_ = 'example'
 
 
-# Type hints and function annotation
+# Type hints (variable, function and class annotation)
 # -----------------------------------------------------------------------------
 # Python 3 introduced a syntax addition called function annotation syntax.
-# It allows adding annotations to function parameters and their return values.
-# It can serve as a way of documenting a function, for example, by using
-# string descriptions like this:
+# Python 3.6 introduced a syntax for annotating variables. Python 3.7 introduced
+# the dataclasses decorator which requires annotation on class variables.
+# Annotations serve as a way of documenting a variable, class or function by
+# indicating the type expected and type returned.
 
-def example(name: "name of such and such",
-            date: "using such and such",
-            other: "other description"):
-    pass
+# For simple built-in types:
+x: int = 1
+x: float = 1.0
+x: bool = True
+x: str = 'test'
+x: bytes = b'test'
 
-# Or by indicating the type expected and type returned:
+# In Python 3.5 and earlier you can use a type comment instead
+x = 1  # type: int
+
+# Note, you don't need to initialize a variable to annotate it
+x: int
+
+# For collections, the types must be imported from the typing module.
+# You can specify the types within the colection in brackets.
+
+from typing import List, Set, Dict, Tuple, Optional, Union, Any
+
+x: List[int] = [1]
+x: Set[int] = {6, 7}
+
+# For dictionaries, we need the types of both keys and values:
+x: Dict[str, float] = {'field': 2.0}
+
+# For tuples, specify the types of all the elements
+x: Tuple[int, str, float] = (3, "yes", 7.5)
+
+# Use Optional[] for values that could be None
+x: Optional[str] = some_function()
+
+# Use Union when something could be one of a few types
+x: List[Union[int, str]] = [3, 5, "test", "fun"]
+
+# Use Any if you don't know the type of or it's too dynamic to pick one:
+x: Any = some_function()
+
+# An annotated function would look like this:
 
 import datetime
 
 def to_date(date_string: str) -> datetime:
-    return datetime.strptime(date_string,'%Y-%m-%d')
+    return datetime.strptime(date_string, '%Y-%m-%d')
 
-# The above is considered a type hint. Type hints are a type of function
-# annotation in function and method declarations. See the following PEP shit:
+# multiple arguments
+def add(num1: int, num2: int) -> int:
+    return num1 + num2
 
+# You can split a function annotation over multiple lines
+def send_email(address: Union[str, List[str]],
+               sender: str,
+               cc: Optional[List[str]],
+               bcc: Optional[List[str]],
+               subject: str = '',
+               body: Optional[List[str]] = None) -> bool:
+    pass
+
+# There are many more types. See the documentation for more information:
+
+# https://docs.python.org/3.7/library/typing.html#module-typing
 # https://www.python.org/dev/peps/pep-0484/
 # https://www.python.org/dev/peps/pep-3107/
-
-# Expected types can also simply be commented like this:
-
-a = []  # type: List[str]
+# https://www.python.org/dev/peps/pep-0526/
 
 
 # Code Tags
