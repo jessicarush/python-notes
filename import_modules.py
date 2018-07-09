@@ -1,8 +1,10 @@
 '''Importing Modules'''
 
-# Import your own python file as a module or a standard library module:
+# You can import your own python file as a module or a module from the 
+# python standard library in the same way:
 
 import random
+import myfile
 
 # when you import this way, you need to include the module name as a prefix
 # to any functions you want to use from that module. This is to avoid any
@@ -34,7 +36,7 @@ mix(possibilities)
 
 # Import a class from a module:
 
-from my_classes import Person
+from myclasses import Person
 
 # When importing, Python looks in the current directory first (so if you have a
 # file named random.py in your current directory, it will use that over the one
@@ -52,3 +54,6 @@ from my_classes import Person
 
 if __name__ == '__main__':
     pass # call the function that starts the script
+
+
+# see also packages.py
