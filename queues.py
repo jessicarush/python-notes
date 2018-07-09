@@ -92,6 +92,12 @@ print('empty: ', stack.empty())
 # empty:  True
 
 
+# SimpleQueue
+# -----------------------------------------------------------------------------
+# New to python 3.7 are SimpleQueues which are unbounded FIFO queues.
+# Simple queues lack advanced functionality such as task tracking.
+
+
 # deques (double-ended queue)
 # -----------------------------------------------------------------------------
 # Deques (from collections.deque) are a more advanced, extended versions of a
@@ -242,6 +248,7 @@ while not heap.empty():
 # exchange it is much simpler to set up than Celery.
 
 # http://python-rq.org/
+
 
 # RQ (task queues)
 # ----------------------------------------------------------------------------
