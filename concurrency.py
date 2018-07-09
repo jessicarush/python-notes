@@ -204,6 +204,18 @@ print("ok, our main loop can run again!")
 # dryer_process now blocks the main program from ever exiting.
 
 
+# Note: Python 3.7 introduced two new multiprocessing methods:
+
+# The new Process.close() method explicitly closes the process object and
+# releases all resources associated with it. A ValueError is raised if the
+# underlying process is still running.
+
+# The new Process.kill() method can be used to terminate the process using the
+# SIGKILL signal on Unix.
+
+# Non-daemonic threads created by Process are now joined on process exit.
+
+
 # Threading
 # -----------------------------------------------------------------------------
 # A thread runs within a process and has access to everything within that
