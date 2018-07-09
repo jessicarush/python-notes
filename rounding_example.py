@@ -8,7 +8,7 @@
 
 # The other method of dealing with this rounding error is to work strictly
 # with integers instead of floats. This would mean multiplying by 100 and
-# essential doing all calculations as pennies, then dividing by 100 to
+# essentially doing all calculations as pennies, then dividing by 100 to
 # convert back to dollars for the final show_balance.
 
 
@@ -65,8 +65,7 @@ if __name__ == '__main__':
 from decimal import *
 
 class Account2():
-
-    # class constant, accessible without creating an instance
+    # class constant, accessible without creating an instance:
     _qb = Decimal('0.00')
 
     def __init__(self, name: str, opening_balance: float=0.0):
