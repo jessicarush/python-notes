@@ -26,7 +26,8 @@
 # Row (record)
 #    – a single set of data containing all the columns in the table
 # Key
-#    – a key in a table is indexed, so searches (and joins) are much faster.
+#    – a column in a table whoisw values are indexed, so searches (and joins)  
+#      are much faster.
 # Primary key
 #    – a column whose values must be unique in the table. If you try to insert
 #      a primary key that's already being used in the table, you will get an
@@ -41,7 +42,7 @@
 #      constraint on the table, each row must contain a unique combination of
 #      values in the columns.
 # Flat File database
-#    – stored all data in a single table (not so great)
+#    – stores all data in a single table (not so great)
 # Normalization
 #    – the process of organizing tables and columns to remove redundant, or
 #      irrelevant information and improve data integrity. The idea is to use
@@ -163,20 +164,27 @@ conn.close()
 # NULL, INTEGER, REAL, TEXT, BLOB
 
 # The link above also lists the other acceptable names for these data types.
-# For example FLOAT is actual REAL.
+# For example FLOAT is actually REAL.
+
+# For some descriptions of datatypes in other databases see:
+# https://www.w3schools.com/sql/sql_datatypes.asp
+# http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/sql/sql_datatypes_general.asp.html
+# http://www.vertabelo.com/blog/technical-articles/comparing-char-and-varchar-data-types-in-different-database-engines
 
 
 # SQLite Commands
 # -----------------------------------------------------------------------------
-# $ sqlite3 contacts.db (creates the database if it doesn't exist)
-# $ .help
-# $ .headers on
-# $ .tables
-# $ .schema
-# $ .dump (dump the entire database or table into a text file)
-# $ .backup contacts_backup.db
-# $ .restore contacts_backup.db
-# $ .quit
+# $ sqlite3 contacts.db 
+#     - this creates the database if it doesn't exist and starts a sqlite3 
+#       session. The terminal prompt will change say: sqlite>
+# .help
+# .headers on
+# .tables
+# .schema
+# .dump (dump the entire database or table into a text file)
+# .backup contacts_backup.db
+# .restore contacts_backup.db
+# .quit
 # CREATE TABLE contacts (name text, phone integer, email text);
 # CREATE TABLE IF NOT EXISTS ...
 # INSERT INTO contacts (name, email) VALUES('Bob', 'mail@me.com');
@@ -190,12 +198,12 @@ conn.close()
 # SELECT * FROM contacts ORDER BY name;
 # SELECT * FROM contacts ORDER BY name COLLATE NOCASE;
 #    – ignores case when sorting
-# SELECT * FROM contacts ORDER BY name COLLATE NOCASE DESC
+# SELECT * FROM contacts ORDER BY name COLLATE NOCASE DESC;
 #    – DESC for descending, ASC for ascending
 # SELECT * FROM albums ORDER BY artist, name;
 #    – order first by one column, then by another
 # SELECT email FROM contacts WHERE name='Morty';
-# SELECT * FROM inventory WHERE color='black' LIMIT 1
+# SELECT * FROM inventory WHERE color='black' LIMIT 1;
 #    - returns the first row only
 # SELECT count(*) FROM contacts;
 #    – returns the number of records
@@ -251,20 +259,12 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 # INNER JOIN artists ON albums.artist = artists._id
 # ORDER BY artists.name, albums.name, songs.track;
 
-# NOTE the ordering of the keyword commands must go like this:
+# Note the ordering of the keyword commands must go like this:
 
 # SELECT artists.name, albums.name, songs.track, songs.title
 # FROM songs INNER JOIN albums ON songs.album = albums._id
 # INNER JOIN artists ON albums.artist = artists._id
 # WHERE artists.name = 'Rolling Stones'
-# ORDER BY artists.name, albums.name, songs.track;
-
-# WHERE wildcards: (Where a name contains something)
-
-# SELECT artists.name, albums.name, songs.track, songs.title
-# FROM songs INNER JOIN albums ON songs.album = albums._id
-# INNER JOIN artists ON albums.artist = artists._id
-# WHERE albums.name LIKE '%Live%'
 # ORDER BY artists.name, albums.name, songs.track;
 
 # Select the duplicate album names:
@@ -279,6 +279,15 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 # WHERE albums.name IN (SELECT albums.name FROM albums
 # GROUP BY albums.name HAVING COUNT(albums.name) > 1)
 # ORDER BY albums.name, artists.name
+
+
+# WHERE wildcards: (Where a name contains something)
+# -----------------------------------------------------------------------------
+# SELECT artists.name, albums.name, songs.track, songs.title
+# FROM songs INNER JOIN albums ON songs.album = albums._id
+# INNER JOIN artists ON albums.artist = artists._id
+# WHERE albums.name LIKE '%Live%'
+# ORDER BY artists.name, albums.name, songs.track;
 
 
 # VIEWS: (save a SELECT query)
@@ -298,8 +307,8 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 # If you try to SELECT a name though, you'll have difficulty as two columns are
 # now called name (actually one has been renamed name:1). Since we are not
 # actually pointing to the original table, album.name will no longer work
-# because the is actually the view artist_list. What you should do is rename
-# the columns where needed so there's no conflict (like import random as ran).
+# (we are queriing the view artist_list). What you should do is rename
+# the columns where needed so there's no name conflict.
 
 # SELECT songs.title FROM artist_list WHERE albums.name = 'Forbidden';
 #    – Will NOT work
@@ -318,8 +327,8 @@ CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
 
 # SQLite Review 1
 # -----------------------------------------------------------------------------
-import sqlite3
 
+import sqlite3
 
 conn = sqlite3.connect('contacts.sqlite')
 curs = conn.cursor()
@@ -367,6 +376,7 @@ conn.close()
 
 # SQLite Review 2
 # -----------------------------------------------------------------------------
+
 import sqlite3
 
 # Note: INTEGER PRIMARY KEYS do not need to be given a value. See (NULL, ?, ?).
@@ -703,6 +713,7 @@ third = Inventory('peanuts', 1200, 6.99)
 # get the ORM to take us to SQL. create a session to talk to the database:
 
 from sqlalchemy.orm import sessionmaker
+
 Session = sessionmaker(bind=conn)
 session = Session()
 
