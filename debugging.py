@@ -71,7 +71,8 @@ def process_cities(filename):
             country = country.strip()
             print(city.title(), country.title(), sep=',')
 
-import pdb; pdb.set_trace()  # this will launch the debugger
+# import pdb; pdb.set_trace()  # this will launch the debugger
+breakpoint()                   # this will launch the debugger as of Python 3.7
 
 process_cities('data/cities.csv')
 
@@ -120,3 +121,13 @@ process_cities('data/cities.csv')
 # For the example above if we drop a breakpoint at line 68 and continue our
 # program, when it stops if we type line to see the current value of line we
 # see our problem: ecuador,quito.
+
+
+# breakpoint(*args, **kws)
+# ------------------------------------------------------------------------------
+# New to Python 3.7, this function drops you into the debugger where ever you
+# call it in your code. Specifically, it calls sys.breakpointhook(), passing
+# *args and **kws straight through. By default, sys.breakpointhook() calls
+# pdb.set_trace() expecting no arguments. It is purely a convenience function
+# so you don’t have to explicitly import pdb or type as much code to enter the
+# debugger.
