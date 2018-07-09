@@ -16,6 +16,8 @@ for word in keyword.kwlist:
 # and
 # as
 # assert
+# async
+# await
 # break
 # class
 # continue
