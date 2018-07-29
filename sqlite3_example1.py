@@ -114,7 +114,7 @@ print('-' * 50)
 # When writing datetime objects to a database, the object will be saved as a
 # string. There are a number of ways to convert back to a datetime object if
 # you needed to. One way would be to use the strptime() function to convert
-# back to a structured time object. I this example, we can ask sqlite to do it
+# back to a structured time object. In this example, we can ask sqlite to do it
 # for us with the parameter: detect_types=sqlite3.PARSE_DECLTYPES
 
 # Note this method doesn't handle timezone aware dates, but you can convert

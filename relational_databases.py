@@ -26,7 +26,7 @@
 # Row (record)
 #    – a single set of data containing all the columns in the table
 # Key
-#    – a column in a table whoisw values are indexed, so searches (and joins)  
+#    – a column in a table whoisw values are indexed, so searches (and joins)
 #      are much faster.
 # Primary key
 #    – a column whose values must be unique in the table. If you try to insert
@@ -156,7 +156,7 @@ conn.close()
 # another column as demonstrated above.
 
 
-# SQLite Datatypes
+# Datatypes
 # -----------------------------------------------------------------------------
 # https://www.sqlite.org/datatype3.html
 
@@ -167,6 +167,7 @@ conn.close()
 # For example FLOAT is actually REAL.
 
 # For some descriptions of datatypes in other databases see:
+# http://flask-sqlalchemy.pocoo.org/2.3/models/
 # https://www.w3schools.com/sql/sql_datatypes.asp
 # http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/sql/sql_datatypes_general.asp.html
 # http://www.vertabelo.com/blog/technical-articles/comparing-char-and-varchar-data-types-in-different-database-engines
@@ -174,8 +175,8 @@ conn.close()
 
 # SQLite Commands
 # -----------------------------------------------------------------------------
-# $ sqlite3 contacts.db 
-#     - this creates the database if it doesn't exist and starts a sqlite3 
+# $ sqlite3 contacts.db
+#     - this creates the database if it doesn't exist and starts a sqlite3
 #       session. The terminal prompt will change say: sqlite>
 # .help
 # .headers on

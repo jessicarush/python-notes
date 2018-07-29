@@ -5,18 +5,36 @@
 *`pip`* - you can install most python packages this way  
 *package managers* - (ie brew) work like pip but not restricted to python
 
-NOTE: Depending on how your python3 is installed (or whether you're working in virtual environment), you may need to say 'pip3' instead of 'pip'. TBH, I'm not entirely certain what the implications of installing with pip versus pip3. Initially, I thought that I had to use pip3 for packages I intended to run with python3 but after setting up a new workstation I noticed that both pip and pip3 were pointing to python3. To be safe, I have upgraded pip AND pip3. Here's what I see my machines:
+NOTE: Depending on how your python3 is installed (or whether you're working in virtual environment), you may need to say 'pip3' instead of 'pip'. TBH, The whole thing is a bit of a mess. Here's what I see my machine:
+```
+$ which pip
+/usr/local/bin/pip
+
+$ which pip2
+/usr/local/bin/pip2
+
+$ which pip3
+/usr/local/bin/pip3
+```
 ```
 $ pip --version
-pip 10.0.1 from /usr/local/lib/python3.6/site-packages/pip (python 3.6)
+pip 10.0.1 from /usr/local/lib/python2.7/site-packages/pip (python 2.7)
+
+$ pip2 --version
+pip 10.0.1 from /usr/local/lib/python2.7/site-packages/pip (python 2.7)
+
 $ pip3 --version
-pip 10.0.1 from /usr/local/lib/python3.6/site-packages/pip (python 3.6)
+pip 10.0.1 from /usr/local/lib/python3.7/site-packages/pip (python 3.7)
 ```
 
-to upgrade pip:
+to upgrade pip (the order matters):
 ```
+$ pip3 install --upgrade pip
+$ pip2 install --upgrade pip
 $ pip install --upgrade pip
 ```
+>Note: the pip command belongs to whichever Python installed pip last; this is unavoidable if python and python3 install scripts to the same prefix. See [pypa/pip#2973](https://github.com/pypa/pip/issues/2973). Run python -m pip -U --force-reinstall pip to force reinstalling pip on python2 which will rewrite the script again.
+
 install the most recent version of something:
 ```
 $ pip install flask
@@ -37,6 +55,10 @@ As of pip version 1.3 you can run the following command to check if any of
 your packages can be updated:
 ```
 $ pip list --outdated
+```
+To see where a package is installed:
+```
+$ pip show flask
 ```
 
 NOTE: Sometimes I've seen this recommended for installing modules:
