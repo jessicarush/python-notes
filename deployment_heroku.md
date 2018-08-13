@@ -222,7 +222,7 @@ web: flask db upgrade; gunicorn microblog:app
 ```
 Because the first command is based on the flask command, you'll need to add the FLASK_APP environment variable:
 ```
-$ heroku config:set FLASK_APP=microblog.py
+$ heroku config:set FLASK_APP=microblog.py --app kusshi
 ```
 
 ### Query the Heroku PostgreSQL database
@@ -250,17 +250,17 @@ Final note: If you created your database on Heroku only, don't forget to add **p
 
 As we've seen above for the FLASK_APP variable, you can set environment variables on heroku with `heroku config:set`:
 ```
-$ heroku config:set FLASK_APP=microblog.py
+$ heroku config:set FLASK_APP=microblog.py --app kusshi
 ```
 
-Anything variables that currently live in your `.env` file should be added this way. For example:
+Any variables that currently live in your `.env` file should be added this way. For example:
 ```
-$ heroku config:set SECRET_KEY=supersecretkeyokay
-$ heroku config:set MAIL_SERVER=smtp.googlemail.com
-$ heroku config:set MAIL_PORT=587
-$ heroku config:set MAIL_USE_TLS=1
-$ heroku config:set MAIL_USERNAME=jessicakrush@gmail.com
-$ heroku config:set MAIL_PASSWORD=mypassword
+$ heroku config:set SECRET_KEY=supersecretkeyokay --app kusshi
+$ heroku config:set MAIL_SERVER=smtp.googlemail.com --app kusshi
+$ heroku config:set MAIL_PORT=587 --app kusshi
+$ heroku config:set MAIL_USE_TLS=1 --app kusshi
+$ heroku config:set MAIL_USERNAME=jessicakrush@gmail.com --app kusshi
+$ heroku config:set MAIL_PASSWORD=mypassword --app kusshi
 ```
 
 ## Logging to stdout
@@ -292,7 +292,7 @@ $ heroku addons:create searchbox:starter
 ```
 Also, try this (I don't know if it will work or if there's any point):
 ```
-$ heroku addons:create searchbox:starter ----app kusshi
+$ heroku addons:create searchbox:starter --app kusshi
 ```
 
 This command will deploy an Elasticsearch service and leave the connection URL for the service in a SEARCHBOX_URL environment variable associated with your application. My application looks for the Elasticsearch connection URL in the ELASTICSEARCH_URL variable, so I need to add this variable and set it to the connection URL assigned by SearchBox:
