@@ -22,7 +22,7 @@ On Digital Ocean, servers are called *droplets*. To create a new server, find th
 - **monitoring:** adds a droplet with metrics and monitoring features.
 
 ### Add your SSH keys
-Highly recommended. If you haven't already added your SSH Keys to your account, do it first. It's much harder to add your keys to your droplet afterwards. It can be done, but its a pain in the ass.
+Highly recommended. If you haven't already added your SSH Keys to your account, do it first. It's much harder to add your keys to your droplet afterwards. It can be done, but its a bit more work... Basically you have to add your public key manually to the droplets `~/.ssh/authorized_keys` file.
 
 ### Finalize and create
 Choose how many droplets, pick a hostname. If you added an SSH key you should now be able to connect to the server via your own terminal:
