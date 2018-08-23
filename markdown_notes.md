@@ -4,12 +4,12 @@ Examples of some of the most common usages. Yes, there are many demos and cheats
 
 ## Table of contents
 - [links](#links)
-- [headings](#headings)
+- [headings](#heading1)
 - [code](#code)
 - [blockquotes](#blockquotes)
-- [line breaks](#line-breaks)
+- [line breaks & paragraphs](#line-breaks-&-paragraphs)
 - [lists](#lists)
-- [emphasis, strong, strikethrough](#emphasis,-strong,-strikethrough)
+- [test styles](#text-styles)
 - [images](#images)
 - [horizontal rules](#horizontal-rules)
 - [tables](#tables)
@@ -65,11 +65,12 @@ print('Python syntax highlighting')
 > Or if you're soft wrapping you can just add > to the first line.
 
 
-## line breaks
+## line breaks & paragraphs
 
-Two spaces at the end of a line ensure a new line.  
+Two spaces at the end of a line forces a new line.  
 Here's my new line.
 
+An empty line creates a new paragraph.
 
 ## lists
 
@@ -91,7 +92,7 @@ Task lists:
 - [ ] This is an incomplete item
 
 
-## emphasis, strong, strikethrough
+## text styles
 
 Surround text with single \* or \_ for
 *emphasized text*
