@@ -7,7 +7,7 @@ Examples of some of the most common usages. Yes, there are many demos and cheats
 - [headings](#heading-1)
 - [code](#code)
 - [blockquotes](#blockquotes)
-- [line breaks & paragraphs](#line-breaks-and-paragraphs)
+- [line breaks and paragraphs](#line-breaks-and-paragraphs)
 - [lists](#lists)
 - [text styles](#text-styles)
 - [images](#images)
