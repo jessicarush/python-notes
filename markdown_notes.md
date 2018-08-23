@@ -7,7 +7,7 @@ Examples of some of the most common usages. Yes, there are many demos and cheats
 - [headings](#heading-1)
 - [code](#code)
 - [blockquotes](#blockquotes)
-- [line breaks & paragraphs](#line-breaks-&-paragraphs)
+- [line breaks & paragraphs](#line-breaks-and-paragraphs)
 - [lists](#lists)
 - [text styles](#text-styles)
 - [images](#images)
@@ -65,7 +65,7 @@ print('Python syntax highlighting')
 > Or if you're soft wrapping you can just add > to the first line.
 
 
-## line breaks & paragraphs
+## line breaks and paragraphs
 
 Two spaces at the end of a line forces a new line.  
 Here's my new line.
