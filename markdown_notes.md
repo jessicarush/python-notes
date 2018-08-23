@@ -4,12 +4,12 @@ Examples of some of the most common usages. Yes, there are many demos and cheats
 
 ## Table of contents
 - [links](#links)
-- [headings](#heading1)
+- [headings](#heading-1)
 - [code](#code)
 - [blockquotes](#blockquotes)
 - [line breaks & paragraphs](#line-breaks-&-paragraphs)
 - [lists](#lists)
-- [test styles](#text-styles)
+- [text styles](#text-styles)
 - [images](#images)
 - [horizontal rules](#horizontal-rules)
 - [tables](#tables)
