@@ -22,6 +22,7 @@
 from bokeh.plotting import figure, output_file, show
 
 
+# https://bokeh.pydata.org/en/latest/docs/reference/colors.html#bokeh-colors-named
 c = ['red', 'olive', 'darkred', 'goldenrod', 'skyblue', 'orange', 'salmon']
 
 # create a figure object
@@ -97,13 +98,14 @@ output_file('scatter_plot1.html')
 from bokeh.plotting import figure, output_file, show
 import pandas
 
+
 df = pandas.read_excel('data/verlegenhuken.xlsx', sheet_name=0)
 
 print(df.columns)
 # Index(['Year', 'Month', 'Day', 'Hour', 'Temperature', 'Pressure'],...)
 
-temperatures = df.Temperature/10  # <class 'pandas.core.series.Series'>
-pressure = df.Pressure/10
+temperatures = df.Temperature / 10  # <class 'pandas.core.series.Series'>
+pressure = df.Pressure / 10
 toools = "pan, wheel_zoom, box_zoom, reset"
 
 p2 = figure(plot_width=900, plot_height=600, tools=toools)
@@ -113,6 +115,7 @@ p2.xaxis.axis_label = 'Temperature (ºC)'
 p2.toolbar_location = 'right'  # below, above, left, right, None
 
 p2.circle(temperatures, pressure, size=3, color=c[5], alpha=0.2)
+
 output_file('scatter_plot2.html')
 
 # show(p2)

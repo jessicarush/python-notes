@@ -152,13 +152,6 @@ def execution_order1():
     finally:
         print('Finally')
 
-print('\nExecution order demo 1:')
-e = execution_order1()
-print(e)
-# Execution order demo 1:
-# Try
-# Finally
-# Return
 
 def execution_order2():
     try:
@@ -171,6 +164,15 @@ def execution_order2():
         return 'Return'
     finally:
         print('Finally')
+
+
+print('\nExecution order demo 1:')
+e = execution_order1()
+print(e)
+# Execution order demo 1:
+# Try
+# Finally
+# Return
 
 print('\nExecution order demo 2:')
 e = execution_order2()

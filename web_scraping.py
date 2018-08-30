@@ -5,15 +5,15 @@
 # -----------------------------------------------------------------------------
 
 import webbrowser
+
 url = "http://www.python.org/"
+
 webbrowser.open(url)
 
 # to open in a new window:
-
 webbrowser.open_new(url)
 
 # to open in a new tab (some browsers do this already via their own prefs):
-
 webbrowser.open_new_tab(url)
 
 
@@ -21,7 +21,7 @@ webbrowser.open_new_tab(url)
 # -----------------------------------------------------------------------------
 # Sometimes, you might want a little bit of information available only in HTML
 # pages, surrounded by ads and extraneous content. An automated web fetcher
-# (called a crawler or spider) retrieves contents from the remote web servers,
+# (called a crawler or spider) retrieves content from the remote web servers,
 # and a scraper parses the content to find the needle in the haystack.
 
 # If you need an industrial-strength combined crawler and scraper, Scrapy is
@@ -78,9 +78,9 @@ for item in a:
 
 # Scrape with BeautifulSoup - links example
 # -----------------------------------------------------------------------------
-# The following example uses it to get all the links from a web page. A
-# function get_links() will do most of the work, and a main program to get one
-# or more URLs as command-line arguments.
+# The following example uses it to get all the links from a web page.
+# A function get_links() will do most of the work, and a main program to get
+# one or more URLs as command-line arguments.
 
 import requests
 from bs4 import BeautifulSoup as soup
