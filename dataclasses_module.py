@@ -138,7 +138,7 @@ from dataclasses import fields, asdict, astuple, is_dataclass
 from pprint import pprint
 
 # This method returns a tuple of field objects for a given dataclass.
-print(fields(i))
+pprint(fields(i))
 #TL;DR
 
 # This method returns a dict of fields for a given dataclass.
