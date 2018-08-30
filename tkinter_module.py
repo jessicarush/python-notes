@@ -1,6 +1,6 @@
 '''tkinter'''
 
-# a graphic library, Tkinter is Python's standard GUI (Graphical User Interface)
+# A graphic library, Tkinter is Python's standard GUI (Graphical User Interface)
 # package. It is a thin object-oriented layer on top of Tcl/Tk.
 
 # https://docs.python.org/3/library/tk.html
@@ -83,6 +83,8 @@ mainWindow.mainloop()
 # work for the axis opposite to their side. (i.e. if you've aligned to the left
 # you can only anchor n, s).
 
+# FYI relief types: flat, groove, raised, ridge, solid, or sunken
+
 
 # .place()
 # -----------------------------------------------------------------------------
@@ -136,8 +138,6 @@ b1 = tk.Button(window, text='convert', command=kg_to_other)
 b1.grid(row=3, column=0, sticky='w')
 
 window.mainloop()
-
-# FYI relief types: flat, groove, raised, ridge, solid, or sunken
 
 
 # sticky

@@ -8,7 +8,7 @@
 # why you assigned a value. Point out why you called a variable whatever.
 
 def example():
-    '''A brief, clear description.
+    '''A brief, clear summary of the function.
 
     Extended description - the docstring should describe the function,
     class, or method in a way that is easy to understand.
@@ -24,7 +24,7 @@ def example():
 # documenting styles including reST (reStructuredText ), Numpy style, and
 # Google has there own style too.
 
-def example(arg1=0.0, arg2=None):
+def rest_example(arg1=0.0, arg2=None):
     '''
     reST style docstring.
 
@@ -35,7 +35,7 @@ def example(arg1=0.0, arg2=None):
     '''
     pass
 
-def example(arg1=0.0, arg2=None):
+def google_example(arg1=0.0, arg2=None):
     '''
     Google style docstring.
 
@@ -57,7 +57,7 @@ def example(arg1=0.0, arg2=None):
     '''
     pass
 
-def example(arg1, arg2=0.0):
+def numpy_example(arg1, arg2=0.0):
     '''
     Numpy style docstring (numpydoc).
 
@@ -82,8 +82,8 @@ def example(arg1, arg2=0.0):
     '''
     pass
 
-help(example)  # output all the docstrings (a class could have many)
-print(example.__doc__)  # print just the one docstring
+help(google_example)  # output all the docstrings (a class could have many)
+print(google_example.__doc__)  # print just the one docstring
 
 
 # Example
@@ -91,7 +91,7 @@ print(example.__doc__)  # print just the one docstring
 # if you were writing a Fahrenheit to Celsius converter:
 
 def ftoc(f_temp):
-    '''Convert Fahrenheit temperature <f_temp> to Celsius and return it.'''
+    '''Convert Fahrenheit <f_temp> to Celsius <c_temp> and return it.'''
     f_boil_temp = 212.0
     f_freeze_temp = 32.0
     c_boil_temp = 100.0
@@ -102,12 +102,12 @@ def ftoc(f_temp):
     c_temp = (f_temp - f_freeze_temp) * f_c_ratio + c_freeze_temp
     return c_temp
 
-# And a little test code wouldn't hurt:
+# A little test code:
 
 if __name__ == '__main__':
     for f_temp in [-40.0, 0.0, 32.0, 100.0, 212.0]:
         c_temp = ftoc(f_temp)
-        print('%f F => %f C' % (f_temp, c_temp))
+        print('{:15f} F {:15f} C'.format(f_temp, c_temp))
 
 
 # Constants
@@ -129,7 +129,7 @@ C_RANGE = C_BOIL_TEMP - C_FREEZE_TEMP
 F_C_RATIO = C_RANGE / F_RANGE
 
 def ftoc(f_temp):
-    "Convert Fahrenheit temperature <f_temp> to Celsius and return it."
+    "Convert Fahrenheit <f_temp> to Celsius <c_temp> and return it."
     c_temp = (f_temp - F_FREEZE_TEMP) * F_C_RATIO + C_FREEZE_TEMP
     return c_temp
 
@@ -141,14 +141,14 @@ def ftoc(f_temp):
 # underscore. Python programmers will interpret this as "this is an internal
 # variable, think carefully before accessing it directly".
 
-def _guts():
+def _internal():
     pass
 
 
 # Protected attributes or methods (name mangling)
 # -----------------------------------------------------------------------------
 # This method is for when you want to strongly suggest that outside objects
-# don't access an attribute, property or method in a classe. The naming
+# don't access an attribute, property or method in a class. The naming
 # convention is a leading double underscore. Python "mangles" the names of
 # attributes that start with two underscores to make it more difficult to
 # accidentally mess with it. The mangling is this: _Classname__attibutename
