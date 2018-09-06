@@ -21,7 +21,7 @@
 
 import shelve
 
-with shelve.open('plants_shelf') as plants:
+with shelve.open('data/plants_shelf') as plants:
     plants['succulent'] = "a kind of cactus"
     plants['spider'] = "long slender leaves"
     plants['fern'] = "grows well in the forest"
@@ -34,7 +34,7 @@ print(type(plants)) #class 'shelve.DbfilenameShelf
 # Items can be continually added to the database. If a key exists, it will be
 # overwritten. Print and delete the same way as with dicts:
 
-with shelve.open('plants_shelf') as plants:
+with shelve.open('data/plants_shelf') as plants:
     plants['aloe'] = "healing gel inside"
     plants['jade'] = "round, waxy leaves"
     plants['fern'] = "full feathery leaves"
@@ -60,7 +60,7 @@ with shelve.open('plants_shelf') as plants:
 # Check for keys
 # -----------------------------------------------------------------------------
 
-plants = shelve.open('plants_shelf')
+plants = shelve.open('data/plants_shelf')
 while True:
     plant_key = input('Enter a plant (q to quit): ').lower()
     if plant_key == 'q':
@@ -89,7 +89,7 @@ pesto = ['pesto', 'artichoke', 'olives']
 prosciutto = ['prosciutto', 'arugula', 'parmesan']
 italian = ['chorizo', 'red onion', 'pancetta']
 
-with shelve.open('pizzas') as pizzas:
+with shelve.open('data/pizzas') as pizzas:
     pizzas['Margarita'] = margarita
     pizzas['Pesto'] = pesto
     pizzas['Prosciutto'] = prosciutto
@@ -102,7 +102,7 @@ with shelve.open('pizzas') as pizzas:
 # because the data is actually appended to a copy of the list in memory.
 # Instead you would have to do:
 
-with shelve.open('pizzas') as pizzas:
+with shelve.open('data/pizzas') as pizzas:
     temp_list = pizzas['Pesto']
     temp_list.append('garlic')
     pizzas['Pesto'] = temp_list
@@ -110,7 +110,7 @@ with shelve.open('pizzas') as pizzas:
 
 # or use the 'writeback' parameter:
 
-with shelve.open('pizzas', writeback=True) as pizzas:
+with shelve.open('data/pizzas', writeback=True) as pizzas:
     pizzas['Italian'].append('mushroom')
     print(pizzas['Italian'])
 
@@ -130,23 +130,23 @@ with shelve.open('pizzas', writeback=True) as pizzas:
 # in a variable it would normally look like this:
 
 topics = {'plants' : {'succulents' : ['Blue star', 'Chinesis', 'Black Prince'],
-                     'orchids' : ['Phaleanopsis', 'Cattleya', 'Paphiopedilum'],
-                     'tropicals' : ['Spider', 'Mandevilla', 'Red Ginger']},
+                      'orchids' : ['Phaleanopsis', 'Cattleya', 'Paphiopedilum'],
+                      'tropicals' : ['Spider', 'Mandevilla', 'Red Ginger']},
 
-         'pizzas' : {'margarita' : ['tomato', 'basil', 'mozzarella'],
-                     'pesto' : ['pesto', 'artichoke', 'olives'],
-                     'prosciutto' : ['prosciutto', 'arugula', 'parmesan'],
-                     'italian' : ['chorizo', 'red onion', 'pancetta']},
+          'pizzas' : {'margarita' : ['tomato', 'basil', 'mozzarella'],
+                      'pesto' : ['pesto', 'artichoke', 'olives'],
+                      'prosciutto' : ['prosciutto', 'arugula', 'parmesan'],
+                      'italian' : ['chorizo', 'red onion', 'pancetta']},
 
-         'house' : {'kitchen' : ['appliances', 'cookware', 'cabinets'],
-                    'bedroom' : ['bed', 'closet', 'shelves'],
-                    'bathroom' : ['toilet', 'shower', 'sink']}}
+          'house' : {'kitchen' : ['appliances', 'cookware', 'cabinets'],
+                     'bedroom' : ['bed', 'closet', 'shelves'],
+                     'bathroom' : ['toilet', 'shower', 'sink']}}
 
 # But for a shelve, you would add like this:
 
 import shelve
 
-topics = shelve.open('topics')
+topics = shelve.open('data/topics')
 
 topics['plants'] = {'succulents' : ['Blue star', 'Chinesis', 'Black Prince'],
                     'orchids' : ['Phaleanopsis', 'Cattleya', 'Paphiopedilum'],

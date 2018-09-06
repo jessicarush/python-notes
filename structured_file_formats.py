@@ -29,6 +29,7 @@
 # There can be column names in the first line.
 
 import csv
+from pprint import pprint
 
 singers = [
     ['Maynard', 'James Keenan'],
@@ -53,11 +54,18 @@ with open('data/singers.csv', 'r') as fin:
 
 # DictReader()
 
-# The data can be a list of dictionaries instead of a list of lists
+# The data can be interpreted as list of dictionaries instead of lists:
 
 with open('data/singers.csv', 'r') as fin:
     csv_in = csv.DictReader(fin, fieldnames=['first', 'last'])
     singers = [row for row in csv_in]
+
+pprint(singers)
+# [OrderedDict([('first', 'Maynard'), ('last', 'James Keenan')]),
+#  OrderedDict([('first', 'Thom'), ('last', 'York')]),
+#  OrderedDict([('first', 'Alison'), ('last', 'Mosshart')]),
+#  OrderedDict([('first', 'Win'), ('last', 'Butler')]),
+#  OrderedDict([('first', 'Etta'), ('last', 'James')])]
 
 # DictWriter() will use a list of dictionaries to write the CSV file.
 

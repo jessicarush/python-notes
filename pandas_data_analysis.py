@@ -41,7 +41,7 @@ print(df1)
 # 0, 1, 2 at the top are the names of the columns. You can create your own
 # column names by passing a list of values to the columns arg:
 
-col_names = ['A','B','C']
+col_names = ['A', 'B', 'C']
 df1 = pandas.DataFrame([[2, 4, 6], [10, 20, 30]], columns=col_names)
 
 print(df1)
@@ -53,7 +53,7 @@ print(df1)
 # index at its default numbering (typically a data set will have a fixed number
 # of columns but many, many, many rows).
 
-cols = ['A','B','C']
+cols = ['A', 'B', 'C']
 rows = ['one', 'two']
 df1 = pandas.DataFrame([[2, 4, 6], [10, 20, 30]], columns=cols, index=rows)
 

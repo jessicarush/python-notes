@@ -168,7 +168,7 @@ print(list1)  # []
 list2.clear()
 print(list2)  # []
 
-# -----------------------------------------------------------------------------
+
 # .pop()
 # -----------------------------------------------------------------------------
 # The .pop() method also deletes an item from a list but also lets you work
@@ -191,7 +191,7 @@ print('popped: ', popped_item)  # popped item:  one
 print(list3.index('two'))  # 0
 
 
-# Check if a a value is in a list
+# Check if a value is in a list
 # -----------------------------------------------------------------------------
 
 print('four' in list3)      # True
