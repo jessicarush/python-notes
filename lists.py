@@ -58,19 +58,19 @@ a_list = a_string.split('-')  # ['11', '7', '24', '19', '74']
 # Accessing list values by index
 # -----------------------------------------------------------------------------
 # Get an item by [position]
-
+print(a_list)     # ['11', '7', '24', '19', '74']
 print(a_list[2])  # 24
 
 # Lists inside lists
 
-dates = [months, weekdays, 'another']
-print(dates)
-print(dates[0])     # ['Jan', 'Feb']
-print(dates[0][1])  # Feb
+many_lists = [months, weekdays, 'another']
+print(many_lists)
+print(many_lists[0])     # ['Jan', 'Feb']
+print(many_lists[0][1])  # Feb
 
 # Change a list item
 
-dates[0] = a_list
+many_lists[0] = a_list
 
 
 # Slice a list [start : end : step]
@@ -96,14 +96,17 @@ print(test)  # ['a', 'x', 'y', 'h', 'i']
 # -----------------------------------------------------------------------------
 # Add a list item with .append()
 
-months.append('apr')
+print(months)  # ['Jan', 'Feb']
+months.append('Apr')
+print(months)  # ['Jan', 'Feb', 'Apr']
 
 
 # .insert()
 # -----------------------------------------------------------------------------
 # Add/insert a list item by position with .insert()
 
-months.insert(2, 'mar')
+months.insert(2, 'Mar')
+print(months)  # ['Jan', 'Feb', 'Mar', 'Apr']
 
 
 # .extend()
@@ -133,7 +136,9 @@ list3 = list1 + list2   # creates one list
 # Remove an item by value with .remove(). Note this will only remove the first
 # occurrence of the value in the list. Use a loop to delete more than one.
 
+print(list2)  # ['three', 'four', 'one', 'two', 'three', 'four']
 list2.remove('four')
+print(list2)  # ['three', 'one', 'two', 'three', 'four']
 
 while 'four' in list2:
     list2.remove('four')
@@ -142,7 +147,7 @@ while 'four' in list2:
 # breaks the rule of "never modify a list in a for loop". I'm not clear as to
 # whether this particular example is bad or not:
 
-items = [{"name": "shoes", "price": 20.99}, {"name": "eggs", "price": 1.99}]
+items = [{'name': 'shoes', 'price': 20.99}, {'name': 'eggs', 'price': 1.99}]
 
 for item in items:
     if item['name'] == 'eggs':
@@ -153,7 +158,9 @@ for item in items:
 # -----------------------------------------------------------------------------
 # Delete an item by position with del
 
-del list1[3]
+list1 = ['one', 'two', 'three']
+del list1[1]
+print(list1)  # ['one', 'three']
 
 # Delete all items using a slice:
 
@@ -165,8 +172,9 @@ print(list1)  # []
 # -----------------------------------------------------------------------------
 # In Python 3.3 and higher you can also use clear() to delete all items:
 
-list2.clear()
-print(list2)  # []
+list1 = ['one', 'two', 'three']
+list1.clear()
+print(list1)  # []
 
 
 # .pop()
@@ -175,10 +183,12 @@ print(list2)  # []
 # with that item after removing it. This is helpful for when you want to move
 # an item from place to another.
 
-print("List3: ", list3)         # List3: ['one', 'two', 'three', 'four'...]
-popped_item = list3.pop(0)
-print("List3: ", list3)         # List3: ['two', 'three', 'four'...]
-print('popped: ', popped_item)  # popped item:  one
+list1 = ['one', 'two', 'three', 'four']
+popped_first = list1.pop(0)
+popped_last = list1.pop(-1)
+print(list1)         # ['two', 'three']
+print(popped_first)  # one
+print(popped_last)   # four
 
 # see while_loops.py for another example using.pop()
 
@@ -188,20 +198,23 @@ print('popped: ', popped_item)  # popped item:  one
 # Find the the index position of a value with .index()
 # Note that if the value isn't in the list, an exception will be raised.
 
-print(list3.index('two'))  # 0
+list1 = ['one', 'two', 'three', 'four']
+print(list1.index('two'))  # 1
 
 
 # Check if a value is in a list
 # -----------------------------------------------------------------------------
 
-print('four' in list3)      # True
-print('four' not in list3)  # False
+list1 = ['one', 'two', 'three', 'four']
+print('four' in list1)      # True
+print('four' not in list1)  # False
 
 
 # .count()
 # -----------------------------------------------------------------------------
 # Count the occurrences of a value with .count()
 
+list1 = ['one', 'two', 'three', 'four', 'four', 'four']
 print(list3.count('one'))   # 1
 print(list3.count('four'))  # 3
 
