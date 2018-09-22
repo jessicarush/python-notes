@@ -251,8 +251,8 @@ import sys
 filename = sys.argv[0]
 
 with open(filename) as file:
-   for index, line in enumerate(file, 1):
-       print("{}: {}".format(index, line), end='')
+    for index, line in enumerate(file, 1):
+        print("{}: {}".format(index, line), end='')
 # 1:  import sys
 # 2:  filename = sys.argv[0]
 # 3:
@@ -291,6 +291,7 @@ exec(program)
 # -----------------------------------------------------------------------------
 # In simple words, the filter() method filters a given iterable with the help
 # of a function that tests each element in the iterable to be true or not.
+# You can use any function, but it must return either true or false.
 
 # filter(function, iterable)
 
@@ -310,13 +311,13 @@ print(filtered_example)    # [1, '0', 'a', True]
 
 letters = ['a', 'b', 'd', 'e', 'i', 'j', 'k', 's', 'o']
 
-def vowels(item):
+def check_vowels(item):
     vowels = ['a', 'e', 'i', 'o', 'u']
     if item in vowels:
         return True
     return False
 
-filtered_letters = list(filter(vowels, letters))
+filtered_letters = list(filter(check_vowels, letters))
 print(filtered_letters)  # ['a', 'e', 'i', 'o']
 
 # Using a lambda function:
@@ -339,7 +340,7 @@ print(filtered_data)  # ['one', 'two', 'three']
 listcomp_example = [x for x in example if x != False]
 print(listcomp_example)  # [1, '0', 'a', True]
 
-listcomp_letters = [x for x in letters if vowels(x)]
+listcomp_letters = [x for x in letters if check_vowels(x)]
 print(listcomp_letters)  # ['a', 'e', 'i', 'o']
 
 listcomp_data = [x for x in data if x != 'n/a']
@@ -388,7 +389,7 @@ print(listcomp_data)  # ['one', 'two', 'three']
 
 # hasattr(object, name)
 
-class Person:
+class Person():
     age = 23
     name = 'Raja'
 
@@ -759,7 +760,7 @@ print(round(2.675, 2))  # 2.67
 # dot notation, there are times when dot notation does't work, for example
 # when the name of the attribute you want to set is a variable (see below):
 
-class Person:
+class Person():
     name = 'Adam'
 
 p = Person()
