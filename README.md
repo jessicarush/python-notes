@@ -26,4 +26,4 @@ Very special thanks to [aleph2c](https://github.com/aleph2c) for the unending ex
 ## images
 
 From [**matplotlib_example.py**](matplotlib_example.py)  
-![Matplotlib Random Walk Plot](img/matplotlib-examplet.png "Random Walk Plot")
+![Matplotlib Random Walk Plot](img/matplotlib-example.png "Random Walk Plot")
