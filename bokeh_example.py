@@ -23,7 +23,7 @@ from bokeh.plotting import figure, output_file, show
 
 
 # https://bokeh.pydata.org/en/latest/docs/reference/colors.html#bokeh-colors-named
-c = ['red', 'olive', 'darkred', 'goldenrod', 'skyblue', 'orange', 'salmon']
+c = ['re', 'olive', 'darkred', 'goldenrod', 'skyblue', 'orange', 'salmon']
 
 # create a figure object
 p = figure(plot_width=600, plot_height=400, title='Practice Plot')
@@ -108,17 +108,17 @@ temperatures = df.Temperature / 10  # <class 'pandas.core.series.Series'>
 pressure = df.Pressure / 10
 toools = "pan, wheel_zoom, box_zoom, reset"
 
-p2 = figure(plot_width=900, plot_height=600, tools=toools)
+p2 = figure(sizing_mode='stretch_both', tools=toools)
 p2.title.text = 'Temperature and Air Pressure - Verlegenhuken'
 p2.yaxis.axis_label = 'Pressure (hPa)'
 p2.xaxis.axis_label = 'Temperature (ºC)'
 p2.toolbar_location = 'right'  # below, above, left, right, None
 
-p2.circle(temperatures, pressure, size=3, color=c[5], alpha=0.2)
+p2.circle(temperatures, pressure, size=3, color=c[0], alpha=0.2)
 
 output_file('scatter_plot2.html')
 
-# show(p2)
+show(p2)
 
 
 # Time series plots
@@ -205,4 +205,4 @@ p4.line(x="Date", y="Close", line_width=2, color=c[4], alpha=0.9, source=cds)
 
 output_file('line_plot2.html')
 
-show(p4)
+# show(p4)
