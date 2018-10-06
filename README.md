@@ -56,4 +56,4 @@ From [**tkinter_module.py**](tkinter_module.py)
 ![Tkinter Example](data/img/tkinter-module.png "Tkinter unit converter")
 
 From [**tkinter_example.py**](tkinter_example.py)  
-![Tkinter Example](data/img/tkinte-_example.png "Tkinter example")
+![Tkinter Example](data/img/tkinter-example.png "Tkinter example")
