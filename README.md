@@ -44,10 +44,10 @@ From [**pygal_intro.py**](pygal_intro.py)
 ![Pygal Plot Example](data/img/pygal-intro.png "Pygal Bar Plots")
 
 From [**pygal_json_example.py**](pygal_json_example.py)  
-![Pygal Mapping Tools Example](data/img/pygal-json-example.svg "Pygal Mapping Tools")
+![Pygal Mapping Tools Example](data/img/pygal-json-example.png "Pygal Mapping Tools")
 
 From [**pygal_api_example1.py**](pygal_api_example1.py)  
-![Pygal Plot Example](data/img/pygal-example1.png "Pygal Plot from Hacker News API")
+![Pygal Plot Example](data/img/pygal-example-1.png "Pygal Plot from Hacker News API")
 
 From [**pygal_api_example2.py**](pygal_api_example2.py)  
-![Pygal Plot Example](data/img/pygal-example2.png "Pygal Plot from Github API")
+![Pygal Plot Example](data/img/pygal-example-2.png "Pygal Plot from Github API")
