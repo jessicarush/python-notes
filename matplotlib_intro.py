@@ -152,7 +152,7 @@ plt.ylabel('square of value', fontsize=10)
 plt.tick_params(axis='both', which='major', labelsize=8)
 plt.axis([0, 1100, 0, 1000000])
 
-# plt.show()
+plt.show()
 
 
 # Save to a File

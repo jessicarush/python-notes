@@ -47,7 +47,7 @@ print(location.raw)
 #     {'long_name': 'San Francisco County', 'short_name': 'San Francisco County',
 #       'types': ['administrative_area_level_2', 'political']},
 #     {'long_name': 'California', 'short_name': 'CA', 'types':
-#       ['administrative_area_level_1', 'political']}, 
+#       ['administrative_area_level_1', 'political']},
 #     {'long_name': 'United States', 'short_name': 'US', 'types':
 #       ['country', 'political']},
 #     {'long_name': '94114', 'short_name': '94114', 'types': ['postal_code']},

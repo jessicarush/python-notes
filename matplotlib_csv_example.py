@@ -56,7 +56,7 @@ plt.plot(dates, highs, c='tomato', alpha=0.6)
 plt.plot(dates, lows, c='darkturquoise', alpha=0.6)
 
 # format the plot:
-plt.fill_between(dates, highs, lows, facecolor='gold', alpha=0.2)
+plt.fill_between(dates, highs, lows, facecolor='papayawhip', alpha=0.6)
 title = 'Daily high and low temperatures, 2014\n{}'.format(placename)
 plt.title(title, fontsize=10)
 plt.xlabel('', fontsize=9)
