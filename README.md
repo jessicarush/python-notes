@@ -28,5 +28,8 @@ Very special thanks to [aleph2c](https://github.com/aleph2c) for the unending ex
 From [**bokeh_example.py**](bokeh_example.py)  
 ![Bokeh Scatter Plot](data/img/bokeh-example.png "Bokeh Scatter Plot")
 
+From [**folium_webmaps.py**](folium_webmaps.py)  
+![Folium Webmap](data/img/folium-example.png "Volcano Plot")
+
 From [**matplotlib_example.py**](matplotlib_example.py)  
 ![Matplotlib Random Walk Plot](data/img/matplotlib-example.png "Random Walk Plot")
