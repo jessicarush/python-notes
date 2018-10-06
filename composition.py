@@ -26,7 +26,7 @@ class Room():
         self.windows = Windows(windows)
     def about(self):
         print('This room has', self.floor.material, 'floors and',
-               self.windows.quantity, 'windows')
+              self.windows.quantity, 'windows')
 
 bathroom = Room('tiled', 0)
 bathroom.about()  # This room has tiled floors and 0 windows

@@ -63,14 +63,14 @@ map_1 = folium.Map(location=loc[0],
                    tiles="CartoDB positron")
 
 icon1 = folium.Icon(color='purple',
-                   icon_color='orange',
-                   icon='fa-heart fa-inverse',
-                   prefix='fa')
+                    icon_color='orange',
+                    icon='fa-heart fa-inverse',
+                    prefix='fa')
 
 icon2 = folium.Icon(color='green',
-                   icon_color='darkgreen',
-                   icon='fa-tree fa-inverse',
-                   prefix='fa')
+                    icon_color='darkgreen',
+                    icon='fa-tree fa-inverse',
+                    prefix='fa')
 
 # BUG: If you try to apply the same icon variable to more than one marker,
 # it doesn't work... only one marker will show.
@@ -152,8 +152,8 @@ for la, lo, e, n in zip(latitudes, longitudes, elevation, name):
 json_file = open('data/world.json', 'r', encoding='utf-8-sig').read()
 json_style = lambda x: {
     'fillColor': 'green' if x['properties']['POP2005'] < 10000000
-    else 'blue' if 10000000 <= x['properties']['POP2005'] < 20000000
-    else 'orange'}
+                 else 'blue' if 10000000 <= x['properties']['POP2005'] < 20000000
+                 else 'orange'}
 
 fgp.add_child(folium.GeoJson(data=json_file, style_function=json_style))
 
