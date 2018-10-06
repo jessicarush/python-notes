@@ -56,4 +56,4 @@ From [**tkinter_module.py**](tkinter_module.py)
 <img src="data/img/tkinter-module.png" width=500 alt="Tkinter unit converter" title="Tkinter unit converter">
 
 From [**tkinter_example.py**](tkinter_example.py)  
-<img src="data/img/tkinter-example.png" width=320 alt="Tkinter Example" title="Tkinter Example">
+<img src="data/img/tkinter-example.png" width=300 alt="Tkinter Example" title="Tkinter Example">
