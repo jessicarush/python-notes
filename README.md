@@ -31,5 +31,11 @@ From [**bokeh_example.py**](bokeh_example.py)
 From [**folium_webmaps.py**](folium_webmaps.py)  
 ![Folium Webmap](data/img/folium-example.png "Volcano Plot")
 
+From [**matplotlib_intro.py**](matplotlib_intro.py)  
+![Matplotlib Plots](data/img/matplotlib-examples.png "Matplotlib Plots")
+
 From [**matplotlib_example.py**](matplotlib_example.py)  
 ![Matplotlib Random Walk Plot](data/img/matplotlib-example.png "Random Walk Plot")
+
+From [**matplotlib_csv_example.py**](matplotlib_csv_example.py)  
+![Matplotlib Example Line Plot](data/img/matplotlib-csv-example.png "Line Plot")
