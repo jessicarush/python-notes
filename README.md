@@ -47,7 +47,13 @@ From [**pygal_json_example.py**](pygal_json_example.py)
 ![Pygal Mapping Tools Example](data/img/pygal-json-example.png "Pygal Mapping Tools")
 
 From [**pygal_api_example1.py**](pygal_api_example1.py)  
-![Pygal Plot Example](data/img/pygal-example-1.png "Pygal Plot from Hacker News API")
+![Pygal Plot Example](data/img/pygal-example-1.png "Pygal Plot from Github API")
 
 From [**pygal_api_example2.py**](pygal_api_example2.py)  
-![Pygal Plot Example](data/img/pygal-example-2.png "Pygal Plot from Github API")
+![Pygal Plot Example](data/img/pygal-example-2.png "Pygal Plot from Hacker News API")
+
+From [**tkinter_module.py**](tkinter_module.py)  
+![Tkinter Example](data/img/tkinter-module.png "Tkinter unit converter")
+
+From [**tkinter_example.py**](tkinter_example.py)  
+![Tkinter Example](data/img/tkinte-_example.png "Tkinter example")
