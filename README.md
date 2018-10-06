@@ -25,5 +25,8 @@ Very special thanks to [aleph2c](https://github.com/aleph2c) for the unending ex
 
 ## images
 
+From [**bokeh_example.py**](bokeh_example.py)  
+![Bokeh Scatter Plot](data/img/bokeh-example.png "Bokeh Scatter Plot")
+
 From [**matplotlib_example.py**](matplotlib_example.py)  
 ![Matplotlib Random Walk Plot](data/img/matplotlib-example.png "Random Walk Plot")
