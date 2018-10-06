@@ -39,3 +39,6 @@ From [**matplotlib_example.py**](matplotlib_example.py)
 
 From [**matplotlib_csv_example.py**](matplotlib_csv_example.py)  
 ![Matplotlib Example Line Plot](data/img/matplotlib-csv-example.png "Line Plot")
+
+From [**pygal_json_example.py**](pygal_json_example.py)  
+![Pygal Mapping Tools Example](data/img/pygal-json-example.png "Pygal Mapping Tools")
