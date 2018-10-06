@@ -53,9 +53,7 @@ From [**pygal_api_example2.py**](pygal_api_example2.py)
 ![Pygal Plot Example](data/img/pygal-example-2.png "Pygal Plot from Hacker News API")
 
 From [**tkinter_module.py**](tkinter_module.py)  
-![Tkinter Example](data/img/tkinter-module.png "Tkinter unit converter")
-<img src="data/img/tkinter-module.png" width=300 alt="Tkinter unit converter" title="Tkinter unit converter">
+<img src="data/img/tkinter-module.png" width=500 alt="Tkinter unit converter" title="Tkinter unit converter">
 
 From [**tkinter_example.py**](tkinter_example.py)  
-![Tkinter Example](data/img/tkinter-example.png "Tkinter example")
-<img src="data/img/tkinter-example.png" width=300 alt="Tkinter Example" title="Tkinter Example">
+<img src="data/img/tkinter-example.png" width=350 alt="Tkinter Example" title="Tkinter Example">
