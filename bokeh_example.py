@@ -23,7 +23,7 @@ from bokeh.plotting import figure, output_file, show
 
 
 # https://bokeh.pydata.org/en/latest/docs/reference/colors.html#bokeh-colors-named
-c = ['re', 'olive', 'darkred', 'goldenrod', 'skyblue', 'orange', 'salmon']
+c = ['deepskyblue', 'olive', 'darkred', 'goldenrod', 'skyblue', 'orange', 'salmon']
 
 # create a figure object
 p = figure(plot_width=600, plot_height=400, title='Practice Plot')
