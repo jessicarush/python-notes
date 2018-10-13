@@ -7,9 +7,11 @@
 # https://pylint.readthedocs.io/en/latest/
 # https://pypi.python.org/pypi/pycodestyle/2.2.0
 # pylint - $ pip3 install pylint
-# pycodestyle - $ pip3 install ppycodestyle
+# pycodestyle - $ pip3 install pycodestyle
 
-# Test this file: $ pylint myfile.py or $ pep8 ch12_3.py
+# Test a file via the command line:
+# $ pylint myfile.py
+# $ pycodestyle myfile.py
 
 A = 1
 B = 2
@@ -19,7 +21,7 @@ print(B)
 print(C)
 
 # pylint message types can be:
-#     - [R]efactor for a “good practice” metric violation
+#     - [R]efactor for a "good practice" metric violation
 #     - [C]onvention for coding standard violation
 #     - [W]arning for stylistic problems, or minor programming issues
 #     - [E]rror for important programming issues (i.e. probably bug)
@@ -31,8 +33,8 @@ print(C)
 # constant and as such, wants the name to be all caps and underscores (see
 # documenting_naming.py). The error will read: Invalid constant name
 
-# pep8 always expects 2 blank lines following an import, function def or class.
-# pep8 expects all imports to be at the top of the file.
+# pycodestyle always expects 2 blank lines following an import, function def
+# or class. It also expects all imports to be at the top of the file.
 
 
 # NOTE: Atom linter-pylint package
@@ -69,6 +71,12 @@ def test_with_apostrophes():
 test_one_word()
 test_many_words()
 test_with_apostrophes()
+# Traceback (most recent call last):
+#   File "testing.py", line 73, in <module>
+#     test_with_apostrophes()
+#   File "testing.py", line 69, in test_with_apostrophes
+#     assert words("I'm a duck") == "I'm A Duck", 'Apostrophe fail!'
+# AssertionError: Apostrophe fail!
 
 
 # Code tester: pytest
@@ -94,7 +102,7 @@ def test_answer():
 
 # run pytest: $ pytest myfile.py
 
-# NOTE: you can write all your tests in one file a import the module and
+# NOTE: you can write all your tests in one file and import the module and
 # functions that you want to test.
 
 
