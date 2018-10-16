@@ -1,5 +1,6 @@
 # Ajax
 
+
 In the traditional server-side model there is a client (a web browser commanded by a user) making HTTP requests to an application server. In this model the server does all the work, while the client just displays the web pages and accepts user input.
 
 There is a different model in which the client takes a more active role. In this model, the client issues a request to the server and the server responds with a web page, but unlike the previous case, not all the page data is HTML, there is also sections of the page with code, typically written in Javascript. Once the client receives the page it displays the HTML portions, and executes the code. From then on you have an active client that can do work on its own without little or no contact with the server.

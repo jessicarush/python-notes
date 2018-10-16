@@ -1,5 +1,6 @@
 '''Data visualization using a web API'''
 
+
 # A program that downloads current information about the most-starred
 # Python projects in GitHub. Some helpful links:
 

@@ -1,5 +1,6 @@
 '''Matplotlib – Weather Data'''
 
+
 # The weather data for this example was originally obtained from:
 # https://www.wunderground.com/history/
 # Some other good data sources for historical weather data:

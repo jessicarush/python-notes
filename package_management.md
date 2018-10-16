@@ -1,5 +1,6 @@
 # Package Management
 
+
 ## Installing & upgrading packages
 
 *`pip`* - you can install most python packages this way  

@@ -1,5 +1,6 @@
 '''sqlite3 Example'''
 
+
 # This example contains several useful techniques for storing and retrieving
 # datetime objects as well as displaying UTC time as local time when needed.
 # There is also an example of performing a rollback, should an exception occur

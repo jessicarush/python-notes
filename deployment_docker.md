@@ -1,5 +1,6 @@
 # Deployment using Docker Containers
 
+
 Containers are built on a lightweight virtualization technology that allows an application, along with its dependencies and configuration to run in complete isolation, but without the need to use a full blown virtualization solution such as virtual machines, which need a lot more resources and can sometimes have a significant performance degradation in comparison to the host. A system configured as a container host can execute many containers, all of them sharing the host's kernel and direct access to the host's hardware. This is in contrast to virtual machines, which have to emulate a complete system, including CPU, disk, other hardware, kernel, etc. A container has its own file system, and can be based on an operating system that is different than the one used by the container host.
 
 ## Install Docker

@@ -1,5 +1,6 @@
 '''Pygal - Mapping Global Data Sets: JSON format'''
 
+
 # The data in this example comes from:
 # http://data.okfn.org/
 

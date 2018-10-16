@@ -1,5 +1,6 @@
 # New Flask project
 
+
 Command line steps and reminders of packages to install for setting up a new Flask project. Obviously, there are other options, these are just the ones I like to use.
 
 ## Directory

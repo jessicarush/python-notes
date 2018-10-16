@@ -1,5 +1,6 @@
 '''Booleans: True False Logic'''
 
+
 # Boolean values are the two constant objects False and True. In numeric
 # contexts, they behave like the integers 0 and 1, respectively. The built-in
 # function bool() can be used to check any value as a Boolean, if the value can

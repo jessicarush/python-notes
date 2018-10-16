@@ -1,5 +1,6 @@
 '''Matplotlib – Random Walk'''
 
+
 # A random walk is a path that has no clear direction but is determined by a
 # series of random decisions. For example, a grain of pollen floating on a drop
 # of water moves across the surface in a random walk. It is pushed around by

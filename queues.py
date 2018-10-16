@@ -1,5 +1,6 @@
 '''Queues'''
 
+
 # Queues are peculiar data structures because, like sets, their functionality
 # can be handled entirely using lists. However, while lists are extremely
 # versatile, they are not always the most efficient data structor for container

@@ -1,5 +1,6 @@
 '''Special (Magic) Methods'''
 
+
 # Names of these methods begin and end with __. An example is __init__ which
 # initializes a newly created object from its class and any arguments that were
 # passed in. Many basic tasks in python can be done with non-object-oriented

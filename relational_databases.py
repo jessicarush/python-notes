@@ -1,5 +1,6 @@
 '''Relational Databases'''
 
+
 # In relational databases, data is stored in table rows and columns, with a row
 # corresponding to a single record and the columns representing the fields that
 # make up a the record such as name, address, phone number, date of birth.

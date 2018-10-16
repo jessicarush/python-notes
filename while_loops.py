@@ -1,5 +1,6 @@
 '''While loops, break and continue'''
 
+
 # while is a looping mechanism that's used with if, elif, else or try. A while
 # loop will loop forever unless you, break, continue, pass or return something.
 # Break is useful when you want to terminate the loop early if some condition

@@ -1,5 +1,6 @@
 '''A brief look at NumPy (Numercical Python).'''
 
+
 # http://www.numpy.org/
 
 # NumPy is a library for Python that adds support for "large, multi-dimensional

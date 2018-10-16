@@ -1,5 +1,6 @@
 # Python Design Patterns
 
+
 ## Object-oriented analysis (OOA)
 
 This is the process of looking at a problem, system, or task (that somebody wants to turn into an application) and identifying the objects and interactions between those objects. The analysis stage is all about what needs to be done. The output of the analysis stage is a set of requirements. If we were to complete the analysis stage in one step, we would have turned a task, such as, I need a website, into a set of requirements. For example:

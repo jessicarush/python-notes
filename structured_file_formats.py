@@ -1,5 +1,6 @@
 '''Structured Text Files'''
 
+
 # In simple text files, the only level of organization is the line. Sometimes,
 # you need more structure than that. You might want to save data for your
 # program to use later, or send data to another program. There are many

@@ -1,5 +1,6 @@
 '''Demo: Helper functions can be more readable than complex expressions.'''
 
+
 # Consider we're receiving some rgba values from a query string of a url.
 # The output we want is an integer for each r, g, b, and a. Lets say if the
 # values are missing, we want them to be 0.

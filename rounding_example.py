@@ -1,5 +1,6 @@
 '''Rounding Issue with Floats and Solutions'''
 
+
 # Floating point numbers are subject to rounding errors as they convert between
 # binary and decimal. One solution is to use the decimal module that comes with
 # python. The decimal module provides support for fast correctly-rounded

@@ -1,5 +1,6 @@
 '''Binary data and Unicode Strings'''
 
+
 # Unicode
 # -----------------------------------------------------------------------------
 # Note: in Python 3 strings (str) are Unicode strings and bytes are raw 8-bit

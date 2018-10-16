@@ -1,5 +1,6 @@
 # Deployment - Traditional Hosting
 
+
 Traditional hosting, means that the application is installed manually or through a scripted installer on a stock server machine. The process involves installing the application, its dependencies and a production scale web server and configure the system so that it is secure.
 
 ## Operating Systems

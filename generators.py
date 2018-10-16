@@ -1,5 +1,6 @@
 '''Generators'''
 
+
 # A generator is a Python sequence creation object. With it you can iterate
 # through huge sequences without creating and storing the entire sequence in
 # memory at once. range() is an example of a generator. Every time you iterate

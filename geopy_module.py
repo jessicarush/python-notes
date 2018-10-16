@@ -1,5 +1,6 @@
 '''A Brief look at Geopy'''
 
+
 # https://geopy.readthedocs.io/en/1.10.0/
 
 # geopy is a Python client for several popular geocoding web services. geopy

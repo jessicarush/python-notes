@@ -1,5 +1,6 @@
 '''Flask Bootstrap'''
 
+
 # https://getbootstrap.com/docs/3.3/getting-started/
 
 # For people who don't want to write their own CSS, a CSS framework can be

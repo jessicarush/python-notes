@@ -1,5 +1,6 @@
 '''JSON Example'''
 
+
 # see also structured_file_formats.py
 
 # The JSON (JavaScript Object Notation) module allows you to dump simple python

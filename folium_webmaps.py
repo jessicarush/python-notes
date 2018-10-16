@@ -1,5 +1,6 @@
 '''Basic Webmaps with Folium'''
 
+
 # https://folium.readthedocs.io/en/latest/
 
 # Folium builds on the data wrangling strengths of Python and the mapping

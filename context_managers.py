@@ -1,5 +1,6 @@
 '''Context managers: with expression as variable'''
 
+
 # Context managers allow the execution of initialization and finalization
 # code around another block of code. In simpler terms, its helpful for when you
 # have two related operations you'd like to execute as a pair, with a block of

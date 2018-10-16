@@ -1,5 +1,6 @@
 '''Decorators'''
 
+
 # A decorator is a function that takes one function as an input and returns
 # another function. Here is a simplified example:
 

@@ -1,5 +1,6 @@
 '''Comprehensions'''
 
+
 # List Comprehensions
 # -----------------------------------------------------------------------------
 # [expression for item in iterable]
@@ -93,7 +94,6 @@ print(flat)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 # helper functions (see helper_functions.py)
 
 
-
 # List Comprehensions: practical example from data plotting
 # -----------------------------------------------------------------------------
 import pandas
@@ -122,7 +122,6 @@ df['color'] = [color_by_value(open_price, close_price) \
 # see also: pygal_intro.py
 
 
-
 # Dictionary Comprehensions
 # -----------------------------------------------------------------------------
 # {key_expression : value_expression for expression in iterable}:
@@ -146,7 +145,6 @@ squares = {number: (number * number) for number in range(7)}
 print(squares)  # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36}
 
 
-
 # Set comprehensions
 # -----------------------------------------------------------------------------
 # {expression for expression in iterable}
@@ -158,7 +156,6 @@ print(a_set)  # {64, 1, 4, 36, 9, 16, 49, 81, 25}
 
 odds = {number for number in range(10) if number % 2 != 0}
 print(odds)  # {1, 3, 5, 7, 9}
-
 
 
 # Generator comprehensions (see also generators.py)

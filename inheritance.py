@@ -1,5 +1,6 @@
 '''A study of inheritance'''
 
+
 # see first: classes.py, composition.py
 
 # This is a demonstration of multiple inheritance through a simple real estate

@@ -1,5 +1,6 @@
 '''sqlite3 Example'''
 
+
 # This is a modified version of sqlite3_example1.py. In continuing to explore
 # ways of storing and retrieving both UTC and local time, this example includes
 # a column in the history table that contains a pickled datetime object which

@@ -1,5 +1,6 @@
 # Deployment to Digital Ocean
 
+
 See first: [deployment.md](https://github.com/jessicarush/python-examples/blob/master/deployment.md)
 
 These notes were made by patching together instructions from a FLASK RESTful-API course and various Digital Ocean tutorials. Since then, I've also made notes following the instructions from Miguel Grinberg's [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux) which are located in the link above. I believe those instructions to be much clearer and simpler but I'm keeping these ones here for completeness. In addition, this doc describes creating a postgreSQL database, the other describes creating a MySQL database.

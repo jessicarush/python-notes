@@ -1,5 +1,6 @@
 '''Documenting and Naming'''
 
+
 # docstrings
 # -----------------------------------------------------------------------------
 # For obvious reasons, it helps to document your code. Documentation can

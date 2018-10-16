@@ -1,5 +1,6 @@
 # python notes
 
+
 ## description
 In my path to learning Python, I'll be collecting my notes and example code here for reference and review purposes. Filenames reflect the topic as much as possible. The data directory contains resources for some of the examples. To date, my training is self-guided through the use of text books and online resources.
 

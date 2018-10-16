@@ -1,5 +1,6 @@
 # Jupyter Notebook
 
+
 Jupyter Notebook is a hybrid editor and interactive shell that runs in the browser. It works really well for exploring large sets of data. It does not replace your regular editor or IDE (which is more useful for working with multiple files and projects) but definitely worth considering if you need to explore your datasets and test your code before implementing.
 
 ```

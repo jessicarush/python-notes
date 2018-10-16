@@ -1,5 +1,6 @@
 '''Serializing with pickle'''
 
+
 # Serialization is the process that allows objects to be saved to a file so
 # that they can be restored from the file later. Formats such as JSON might
 # require some custom converters to serialize all the data types from a Python

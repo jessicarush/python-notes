@@ -1,5 +1,6 @@
 '''Data Classes'''
 
+
 # https://docs.python.org/3.7/library/dataclasses.html#module-dataclasses
 
 # Python 3.7 introduced a new module: dataclasses.py. The new dataclass()

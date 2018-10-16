@@ -1,5 +1,6 @@
 # Virtual Environments
 
+
 A Virtual Environment, put simply, is an isolated working copy of Python that allows you to work on a specific project without affecting any other projects. It creates a directory which contains all the necessary executables to use the packages that a Python project would need.
 
 The basic problem being addressed is one of dependencies and versions, and indirectly permissions. Imagine you have an application that needs version 1 of Libray-xyz, but another application requires version 2. How can you use both these applications? It’s easy to end up in a situation where you unintentionally upgrade an application that shouldn’t be.
