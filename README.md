@@ -7,20 +7,20 @@ In my path to learning Python, I'll be collecting my notes and example code here
 ## credits
 Some examples and comments may come from the following:
 
-- 'Python: Master the Art of Design Patterns' - *Phillips, Girighar, Kasampalis*
-- 'Python Playground' - *Mahesh Venkitachalam*  
-- 'Python Crash Course' - *Eric Matthes*  
-- 'Introducing Python' - *Bill Lubanovic*  
-- 'The Python 3 Standard Library by Example' - *Doug Hellmann*  
-- 'Effective Python' - *Brett Slatkin*  
-- 'The Flask Mega-Tutorial' - *Miguel Grinberg*
-- 'Flask Web Development' - *Miguel Grinberg*
-- 'Complete Python Masterclass' - *Udemy course*  
-- 'The Python Mega Course: Build 10 Real World Applications' - *Udemy course*  
-- 'REST APIs with Flask and Python' - *Udemy course*
-- 'Think Python' - *Allen B. Downey*  
-- 'Learn Python the Hard Way" - *Zed A. Shaw*  
-- Python documentation - <https://docs.python.org/3/index.html>  
+- [Python: Master the Art of Design Patterns](https://www.oreilly.com/library/view/python-master-the/9781787125186/) - *Phillips, Girighar, Kasampalis*
+- [Python Playground](https://nostarch.com/pythonplayground) - *Mahesh Venkitachalam*  
+- [Python Crash Course](https://nostarch.com/pythoncrashcourse) - *Eric Matthes*  
+- [Introducing Python](http://shop.oreilly.com/product/0636920028659.do) - *Bill Lubanovic*  
+- [The Python 3 Standard Library by Example](https://doughellmann.com/blog/the-python-3-standard-library-by-example/) - *Doug Hellmann*  
+- [Effective Python](https://effectivepython.com/) - *Brett Slatkin*  
+- [The Flask Mega-Tutorial](https://courses.miguelgrinberg.com/) - *Miguel Grinberg*
+- [Flask Web Development](http://shop.oreilly.com/product/0636920089056.do) - *Miguel Grinberg*
+- [Complete Python Masterclass](https://www.udemy.com/python-the-complete-python-developer-course/) - *Udemy course*  
+- [The Python Mega Course: Build 10 Real World Applications](https://www.udemy.com/the-python-mega-course/) - *Udemy course*  
+- [REST APIs with Flask and Python](https://www.udemy.com/rest-api-flask-and-python/) - *Udemy course*
+- [Think Python](https://greenteapress.com/wp/think-python/) - *Allen B. Downey*  
+- [Learn Python the Hard Way](https://learnpythonthehardway.org/) - *Zed Shaw*  
+- [Python documentation](https://docs.python.org/3/index.html) - Python Software Foundation  
 
 Very special thanks to [aleph2c](https://github.com/aleph2c) for the unending explanations, knowledge and support. Check out his epic [statechart library; Miros here](https://aleph2c.github.io/miros/index.html).
 
