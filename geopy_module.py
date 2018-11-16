@@ -22,11 +22,13 @@
 # from geopy.geocoders import GoogleV3
 # from geopy.geocoders import Yandex
 # from geopy.geocoders import DataBC
+# from geopy.geocoders import Nominatim
 from geopy.geocoders import Photon
 
 # geolocator = GoogleV3(scheme='http')
 # geolocator = Yandex(lang='en', scheme='http')
 # geolocator = DataBC(scheme='http')
+# geolocator = Nominatim(scheme='http', user_agent='my-application')
 geolocator = Photon(scheme='http')
 
 
