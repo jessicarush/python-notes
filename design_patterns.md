@@ -1,5 +1,23 @@
-# Python Design Patterns
+# Design Patterns
 
+A collection of notes relating to general design patterns in programming. This by no means thorough or complete.
+
+## Table of contents
+
+<!-- toc -->
+
+- [Object-oriented analysis (OOA)](#object-oriented-analysis-ooa)
+- [Object-oriented design (OOD)](#object-oriented-design-ood)
+- [Object-oriented programming (OOP)](#object-oriented-programming-oop)
+- [Unified Modeling Language (UML)](#unified-modeling-language-uml)
+- [Manager Objects](#manager-objects)
+- [Database Relationships](#database-relationships)
+  * [One to Many](#one-to-many)
+  * [Many to Many](#many-to-many)
+  * [Many-to-One](#many-to-one)
+  * [One-to-One](#one-to-one)
+
+<!-- tocstop -->
 
 ## Object-oriented analysis (OOA)
 
@@ -37,12 +55,9 @@ A general-purpose, developmental, modeling language in the field of software eng
 Higher-level objects that manage other objects. These are the objects that tie everything together. Analogously, the attributes on a management class tend to refer to other objects that do the "visible" work; the behaviors on such a class delegate to those other classes at the right time, and pass messages between them.
 
 
+## Database Relationships
 
-
-
-# Database Relationships
-
-## One to Many
+### One to Many
 
 Using the example of a microblog, the two entities linked by this relationship are users and posts. A user has many posts, and a post has one user (or author). The relationship is represented in the database with the use of a foreign key on the "many" side. In the relationship below, the foreign key is the user_id field added to the posts table. This field links each post to the record of its author in the user table.
 
@@ -59,7 +74,7 @@ class Post(db.Model):
 
 It is pretty clear that the user_id field provides direct access to the author of a given post, but what about the reverse direction? For the relationship to be useful I should be able to get the list of posts written by a given user. The user_id field in the posts table is also sufficient to answer this question, as databases have indexes that allow for efficient queries such us "retrieve all posts that have a user_id of X".
 
-## Many to Many
+### Many to Many
 
 A many-to-many relationship is a bit more complex. As an example, consider a database that has students and teachers. I can say that a student has many teachers, and a teacher has many students. It's like two overlapped one-to-many relationships from both ends. For a relationship of this type I should be able to query the database and obtain the list of teachers that teach a given student, and the list of students in a teacher's class. This is actually non-trivial to represent in a relational database, as it cannot be done by adding foreign keys to the existing tables.
 
@@ -87,10 +102,10 @@ u3           u2
 u4           u1
 ```
 
-## Many-to-One
+### Many-to-One
 
 A many-to-one is similar to a one-to-many relationship. The difference is that this relationship is looked at from the "many" side.
 
-##  One-to-One
+###  One-to-One
 
 A one-to-one relationship is a special case of a one-to-many. The representation is similar, but a constrain is added to the database to prevent the "many" side to have more than one link. While there are cases in which this type of relationship is useful, it isn't as common as the other types.

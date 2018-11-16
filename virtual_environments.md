@@ -1,5 +1,17 @@
 # Virtual Environments
 
+## Table of contents
+
+<!-- toc -->
+
+- [Introduction](#introduction)
+- [Create a virtual environment](#create-a-virtual-environment)
+- [Run your program in the virtual environment](#run-your-program-in-the-virtual-environment)
+- [Keep track of requirements](#keep-track-of-requirements)
+
+<!-- tocstop -->
+
+## Introduction
 
 A Virtual Environment, put simply, is an isolated working copy of Python that allows you to work on a specific project without affecting any other projects. It creates a directory which contains all the necessary executables to use the packages that a Python project would need.
 

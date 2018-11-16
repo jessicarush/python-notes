@@ -3,6 +3,37 @@
 
 Traditional hosting, means that the application is installed manually or through a scripted installer on a stock server machine. The process involves installing the application, its dependencies and a production scale web server and configure the system so that it is secure.
 
+## Table of contents
+
+<!-- toc -->
+
+- [Operating Systems](#operating-systems)
+- [Paid Public Servers](#paid-public-servers)
+- [Free Private Server](#free-private-server)
+- [SSH](#ssh)
+- [Create a new user](#create-a-new-user)
+- [Securing Your Server](#securing-your-server)
+  * [1. Disable root logins & password logins via SSH](#1-disable-root-logins--password-logins-via-ssh)
+  * [2. Install a Firewall](#2-install-a-firewall)
+- [Installing Base Dependencies](#installing-base-dependencies)
+  * [Elasticsearch](#elasticsearch)
+- [Use Git to Install the Application from GitHub](#use-git-to-install-the-application-from-github)
+- [Create a Virtual Environment and Install Dependencies](#create-a-virtual-environment-and-install-dependencies)
+- [Recreate the .env file](#recreate-the-env-file)
+- [Set the FLASK_APP variable](#set-the-flask_app-variable)
+- [Compile Translations](#compile-translations)
+- [Set up MySQL](#set-up-mysql)
+- [Set up Gunicorn and Supervisor](#set-up-gunicorn-and-supervisor)
+- [Set up Nginx](#set-up-nginx)
+- [Deploying Updates](#deploying-updates)
+- [Mapping a Domain to Digital Ocean](#mapping-a-domain-to-digital-ocean)
+- [SSL Certificates](#ssl-certificates)
+  * [Renewing your SSL certificates](#renewing-your-ssl-certificates)
+- [Redis Server & RQ workers](#redis-server--rq-workers)
+- [Misc](#misc)
+
+<!-- tocstop -->
+
 ## Operating Systems
 
 From a technical point of view, many application can be deployed on any of the major operating systems, a list which includes a large variety of open-source Linux and BSD distributions, and the commercial OS X and Microsoft Windows. Since OS X and Windows are desktop operating systems that are not optimized to work as servers, it makes more sense to choose between a Linux or a BSD operating system. The most popular of the two is Linux. As far as Linux distributions, the most popular is Ubuntu.

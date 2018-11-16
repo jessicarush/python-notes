@@ -1,5 +1,17 @@
 # Package Management
 
+## Table of contents
+
+<!-- toc -->
+
+- [Installing & upgrading packages](#installing--upgrading-packages)
+- [Listing all packages](#listing-all-packages)
+- [Requirements files](#requirements-files)
+  * [pipreqs](#pipreqs)
+- [Dependencies](#dependencies)
+  * [pipdeptree](#pipdeptree)
+
+<!-- tocstop -->
 
 ## Installing & upgrading packages
 

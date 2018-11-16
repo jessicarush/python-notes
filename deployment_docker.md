@@ -3,6 +3,22 @@
 
 Containers are built on a lightweight virtualization technology that allows an application, along with its dependencies and configuration to run in complete isolation, but without the need to use a full blown virtualization solution such as virtual machines, which need a lot more resources and can sometimes have a significant performance degradation in comparison to the host. A system configured as a container host can execute many containers, all of them sharing the host's kernel and direct access to the host's hardware. This is in contrast to virtual machines, which have to emulate a complete system, including CPU, disk, other hardware, kernel, etc. A container has its own file system, and can be based on an operating system that is different than the one used by the container host.
 
+## Table of contents
+
+<!-- toc -->
+
+- [Install Docker](#install-docker)
+- [Build a Container Image](#build-a-container-image)
+- [Starting a Container](#starting-a-container)
+- [Using Third-Party "Containerized" Services](#using-third-party-containerized-services)
+- [Adding a MySQL Container](#adding-a-mysql-container)
+- [Adding a Elasticsearch Container](#adding-a-elasticsearch-container)
+- [Redis server and RQ workers](#redis-server-and-rq-workers)
+- [The Docker Container Registry](#the-docker-container-registry)
+- [Deployment of Containerized Applications](#deployment-of-containerized-applications)
+
+<!-- tocstop -->
+
 ## Install Docker
 
 There are two editions of Docker, a [free community edition (CE)](https://www.docker.com/community-edition) and a subscription based enterprise edition (EE). Once Installed you can check that its running by typing:

@@ -1,7 +1,34 @@
-# New Flask project
+# New Flask Project
 
 
-Command line steps and reminders of packages to install for setting up a new Flask project. Obviously, there are other options, these are just the ones I like to use.
+This is a collection of notes, command line steps and reminders of packages to install for setting up a new Flask project. Obviously, there are many options, these are just the ones I like to use.
+
+## Table of contents
+
+<!-- toc -->
+
+  * [Directory](#directory)
+  * [Virtual environment](#virtual-environment)
+  * [Flask](#flask)
+  * [Environmental variables](#environmental-variables)
+  * [Database](#database)
+  * [Forms](#forms)
+  * [User logins](#user-logins)
+  * [Email & web tokens](#email--web-tokens)
+  * [Timezones](#timezones)
+  * [Gathering Data](#gathering-data)
+  * [Full-Text Search](#full-text-search)
+  * [Internationalization & Localization (I18n L10n)](#internationalization--localization-i18n-l10n)
+  * [Translation](#translation)
+  * [RESTful API](#restful-api)
+  * [Task Queues](#task-queues)
+  * [Git](#git)
+  * [Heroku](#heroku)
+  * [Digitalocean](#digitalocean)
+- [Application Contexts](#application-contexts)
+- [Jinja Filters](#jinja-filters)
+
+<!-- tocstop -->
 
 ## Directory
 ```

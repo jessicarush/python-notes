@@ -5,7 +5,34 @@ See first: [deployment.md](https://github.com/jessicarush/python-examples/blob/m
 
 These notes were made by patching together instructions from a FLASK RESTful-API course and various Digital Ocean tutorials. Since then, I've also made notes following the instructions from Miguel Grinberg's [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux) which are located in the link above. I believe those instructions to be much clearer and simpler but I'm keeping these ones here for completeness. In addition, this doc describes creating a postgreSQL database, the other describes creating a MySQL database.
 
+## Table of contents
+
+<!-- toc -->
+
+- [Create a new Droplet](#create-a-new-droplet)
+  * [Basic settings:](#basic-settings)
+  * [Additional options:](#additional-options)
+  * [Add your SSH keys](#add-your-ssh-keys)
+  * [Finalize and create](#finalize-and-create)
+- [Creating a New User](#creating-a-new-user)
+- [Installing sqlite3](#installing-sqlite3)
+- [Installing postgreSQL](#installing-postgresql)
+- [Creating and linking a new postgreSQL user](#creating-and-linking-a-new-postgresql-user)
+- [Installing nginx & enabling a Firewall](#installing-nginx--enabling-a-firewall)
+- [Configure nginx](#configure-nginx)
+- [Create directories, git clone your app from GitHub](#create-directories-git-clone-your-app-from-github)
+- [Create a virtual env, install python and required packages](#create-a-virtual-env-install-python-and-required-packages)
+- [Set up uwsgi.ini](#set-up-uwsgiini)
+- [Set up an ubuntu service](#set-up-an-ubuntu-service)
+- [Updating your app](#updating-your-app)
+- [Attaching a domain name to your digitalocean droplet](#attaching-a-domain-name-to-your-digitalocean-droplet)
+- [Setting up an SSL certificate (https://)](#setting-up-an-ssl-certificate-https)
+- [Troubleshooting](#troubleshooting)
+
+<!-- tocstop -->
+
 ## Create a new Droplet
+
 On Digital Ocean, servers are called *droplets*. To create a new server, find the 'create new droplet' option.
 
 ### Basic settings:
@@ -16,6 +43,7 @@ On Digital Ocean, servers are called *droplets*. To create a new server, find th
 - **Choose a datacenter region:** choose closest to your users for speed.
 
 ### Additional options:
+
 - **private networking:** allows droplets to communicate with each other without going through the internet.
 - **backups:** adds weekly backups for extra $
 - **IPv6:** default droplets run on IPv4
@@ -23,9 +51,11 @@ On Digital Ocean, servers are called *droplets*. To create a new server, find th
 - **monitoring:** adds a droplet with metrics and monitoring features.
 
 ### Add your SSH keys
+
 Highly recommended. If you haven't already added your SSH Keys to your account, do it first. It's much harder to add your keys to your droplet afterwards. It can be done, but its a bit more work... Basically you have to add your public key manually to the droplets `~/.ssh/authorized_keys` file.
 
 ### Finalize and create
+
 Choose how many droplets, pick a hostname. If you added an SSH key you should now be able to connect to the server via your own terminal:
 ```
 $ ssh root@<the.droplets.ip.address>
@@ -42,6 +72,7 @@ This tells apt (Ubuntu's pip) to check if there's anything already installed on 
 
 
 ## Creating a New User
+
 It's a good idea to create a new user on your server so you're not always using root. Root is a super user and should only be used when necessary.
 
 ```
@@ -96,6 +127,7 @@ $ ssh jessica@<the.droplets.ip.address>
 These instructions came from [Digital Ocean.](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)
 
 ## Installing sqlite3
+
 The sqlite3 module is part of the standard Python library, so on a standard Ubuntu installation or any system with Python installed, no further installation is strictly necessary. To install the Sqlite command line interface on Ubuntu, use these commands:
 ```
 sudo apt-get update
@@ -103,6 +135,7 @@ sudo apt-get install sqlite3 libsqlite3-dev
 ```
 
 ## Installing postgreSQL
+
 ```
 $ apt-get install postgresql postgresql-contrib
 ```
@@ -304,6 +337,7 @@ Note, reload will reload the configuration for nginx.
 
 
 ## Create directories, git clone your app from GitHub
+
 Create the directory where the application files will be placed, give access to the user, and then cd into that directory. This is the same path we wrote in the config file:
 
 ```
@@ -324,6 +358,7 @@ $ mkdir log
 ```
 
 ## Create a virtual env, install python and required packages
+
 ```
 $ sudo apt-get install python-pip python3-dev libpq-dev
 $ sudo apt-get install python3-venv
@@ -335,6 +370,7 @@ $ pip install -r requirements.txt
 ```
 
 ## Set up uwsgi.ini
+
 ```
 $ cd /var/www/html/<app-name>
 $ vi uwsgi.ini
@@ -376,6 +412,7 @@ Note in the above `%n` is a uwsgi magic variable for the filename.
 See here for more information on [configuring uwsgi.](http://uwsgi-docs.readthedocs.io/en/latest/Configuration.html)
 
 ## Set up an ubuntu service
+
 ```
 $ cd /var/www/html/<app-name>
 ```
@@ -412,6 +449,7 @@ $ sudo systemctl start uwsgi_<app-name>
 ```
 
 ## Updating your app
+
 If you've made changes to your app on your local machine, you'll need to git commit, push to github, then on the server do a git pull then restart the uwsgi_<app-name> process:
 
 local machine:
@@ -498,6 +536,7 @@ Another tutorial for [Installing SSL certificaltes here.](https://www.digitaloce
 
 
 ## Troubleshooting
+
 If you get locked out of SSH, try using the console.
 See here to [set up a password for the console.](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-console-to-access-your-droplet)
 

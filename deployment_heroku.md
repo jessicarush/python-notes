@@ -3,6 +3,32 @@
 
 [Heroku](https://www.heroku.com/) is a container-based cloud Platform as a Service (PaaS). What this means is all you need to provide to have your application deployed is the actual application and a few instruction files. The hardware, operating system, scripting language interpreters, database, etc. are all managed by the service.
 
+## Table of contents
+
+<!-- toc -->
+
+- [Overview](#overview)
+- [Install the Heroku CLI](#install-the-heroku-cli)
+- [Create a Heroku App](#create-a-heroku-app)
+- [Install Gunicorn](#install-gunicorn)
+- [Install uWSGI](#install-uwsgi)
+- [Create Instruction Files for Heroku](#create-instruction-files-for-heroku)
+- [Upload files to Heroku using a local Git repo](#upload-files-to-heroku-using-a-local-git-repo)
+- [Upload files to Heroku using a GitHib repo](#upload-files-to-heroku-using-a-githib-repo)
+- [Misc](#misc)
+- [Creating a PostgreSQL database on Heroku](#creating-a-postgresql-database-on-heroku)
+  * [Build your Tables with db.create_all()](#build-your-tables-with-dbcreate_all)
+  * [Build your tables using Flask-Migrate](#build-your-tables-using-flask-migrate)
+  * [Query the Heroku PostgreSQL database](#query-the-heroku-postgresql-database)
+- [Setting environment variables](#setting-environment-variables)
+- [Logging to stdout](#logging-to-stdout)
+- [Language Translation Compiling](#language-translation-compiling)
+- [Elasticsearch hosting](#elasticsearch-hosting)
+- [Redis server and RQ workers](#redis-server-and-rq-workers)
+
+<!-- tocstop -->
+
+## Overview
 
 Heroku uses an ephemeral file system that runs on a virtualized platform. They use the term 'dynos'. What it means is that at any time, Heroku can reset the virtual server on which your server runs back to a clean state. You cannot assume that any data that you save to the file system will persist, and in fact, Heroku recycles servers very often.
 

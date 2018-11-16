@@ -1,14 +1,32 @@
 # REST and API Design
 
+## Table of contents
 
-## Representational State Transfer (REST) and Application Programming Interfaces (API)
+<!-- toc -->
 
-An API is a collection of HTTP routes that are designed as low-level entry points into an application. Instead of defining routes and view functions that return HTML pages to be consumed by web browsers, APIs allow the client to work directly with the application's resources, leaving the decision of how to present the information to the user
-entirely to the client. Clients access your service by making requests to URLs and getting back responses containing status and data. Instead of HTML pages, the data is in formats that are easier for programs to consume, such as JSON or XML. JSON is especially well suited to web client-server data interchange and is popular in web-based APIs, such as OpenStack.
+- [Introduction](#introduction)
+- [The Six Principles](#the-six-principles)
+- [HTTP Verbs](#http-verbs)
+- [Example](#example)
+  * [Summarize the routes to be implemented](#summarize-the-routes-to-be-implemented)
+  * [Create a skeleton structure (flask)](#create-a-skeleton-structure-flask)
+  * [Decide on a JSON representation for each resource](#decide-on-a-json-representation-for-each-resource)
+  * [Return the JSON representation in the route](#return-the-json-representation-in-the-route)
+- [notes](#notes)
+
+<!-- tocstop -->
+
+## Introduction
+
+Representational State Transfer (REST)  
+Application Programming Interfaces (API)  
+
+An API is a collection of HTTP routes that are designed as low-level entry points into an application. Instead of defining routes and view functions that return HTML pages to be consumed by web browsers, APIs allow the client to work directly with the application's resources, leaving the decision of how to present the information to the user entirely to the client. Clients access your service by making requests to URLs and getting back responses containing status and data. Instead of HTML pages, the data is in formats that are easier for programs to consume, such as JSON or XML. JSON is especially well suited to web client-server data interchange and is popular in web-based APIs, such as OpenStack.
 
 Many products claim to have a REST or RESTful interface. In practice, this often only means that they have a web interface (definitions of URLs to access a web service). For a good overview see [Miguel's intro](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xxiii-application-programming-interfaces-apis).
 
 ## The Six Principles
+
 The REST architecture was proposed by Dr. Roy Fielding in his [doctoral dissertation](http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm). He presents six defining characteristics of REST in a fairly abstract and generic way:
 
 1. Client-Server  
@@ -135,7 +153,7 @@ class User(db.Model):
         return data
 ```
 
-### Return the JSON respresenation in the route
+### Return the JSON representation in the route
 
 The skeleton example from above could be fleshed out like this:
 
