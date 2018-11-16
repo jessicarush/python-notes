@@ -133,7 +133,7 @@ u = UpdatedURL('https://news.ycombinator.com/')
 # __dict__, pickle checks to see whether a __getstate__ method exists. If it
 # does, it will store the return value of that method instead of the __dict__.
 
-# Basically, Ww can use, __getstate__ and __setstate__, to give pickle special
+# Basically, We can use, __getstate__ and __setstate__, to give pickle special
 # instructions to do before pickling and after pickling. In the __getstate__
 # we delete the offending timer attribute. In the __setstate__, which is called
 # when the pickled object is restored, we can reset the __dict__ object and
