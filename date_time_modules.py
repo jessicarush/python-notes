@@ -4,10 +4,11 @@
 # Working with dates and times can be a bit of a pain on account of varying
 # formats, time zones, daylight savings times, and so on. Python's standard
 # library has many date and time modules: datetime, time, calendar, locale
-# and others. There's some overlap, and a bit confusing:
+# and others. There's some overlap, and is a bit confusing:
 
 # calendar module:
-#   General calendar-related functions.
+#   General calendar-related functions. It focuses on printing full clalendars
+#   in various formats.
 
 # datetime module:
 #   Object-oriented interface to dates and times with similar functionality
@@ -15,7 +16,7 @@
 
 # time module:
 #   Low-level time related functions (time access and conversions)
-#
+
 # locale module:
 #   Internationalization services. The locale setting affects the
 #   interpretation of many format specifiers in strftime() and strptime().
@@ -26,21 +27,53 @@
 
 import calendar
 
+# print a month as lists of dates (the first index[0] defaluts to Monday):
+print(calendar.monthcalendar(2018, 11))
+# [[0, 0, 0, 1, 2, 3, 4],
+#  [5, 6, 7, 8, 9, 10, 11],
+#  [12, 13, 14, 15, 16, 17, 18],
+#  [19, 20, 21, 22, 23, 24, 25],
+#  [26, 27, 28, 29, 30, 0, 0]]
+
 # test if a year is a leap year:
 print(calendar.isleap(2016))  # True
 print(calendar.isleap(2017))  # False
 
+# The TextCalendar and HTMLCalendar classes can produce preformatted output
+c = calendar.TextCalendar(calendar.MONDAY)
+
+# the prmonth() method prints the formatted text output for a given month
+c.prmonth(1974, 11)
+
+#   November 1974
+# Mo Tu We Th Fr Sa Su
+#              1  2  3
+#  4  5  6  7  8  9 10
+# 11 12 13 14 15 16 17
+# 18 19 20 21 22 23 24
+# 25 26 27 28 29 30
+
+# the HTMLCalendar class and formatmonth() method output an HTML table
+c = calendar.HTMLCalendar(calendar.MONDAY)
+print(c.formatmonth(1974, 11))
+
+# <table border="0" cellpadding="0" cellspacing="0" class="month">
+# <tr><th colspan="7" class="month">November 1974</th></tr>
+# <tr><th class="mon">Mon</th><th class="tue">Tue</th><th class="wed">Wed</th>
+# ... etc ...
+
+
 
 # datetime module overview
 # -----------------------------------------------------------------------------
-# Note with datetime objects some are considered naive and some are aware.
-# Aware objects are aware of the timezone offset and naive objects are not.
-
 # The datetime module defines four main objects, each with many methods:
 # – datetime.date() for years, months, days
 # – datetime.time() for hours, minutes, seconds, and fractions
 # – datetime.datetime() for dates and times together
 # – datetime.timedelta() for date and/or time intervals
+
+# Note with datetime objects, some are considered naive and some are aware.
+# Aware objects are aware of the timezone offset and naive objects are not.
 
 
 # datetime.date()
