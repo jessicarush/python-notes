@@ -1,10 +1,10 @@
 '''While loops, break and continue'''
 
 
-# while is a looping mechanism that's used with if, elif, else or try. A while
+# while is a looping mechanism that's used with if, elif, else and try. A while
 # loop will loop forever unless you, break, continue, pass or return something.
-# Break is useful when you want to terminate the loop early if some condition
-# is met. Continue is for when you want to skip past an iteration to the next.
+# break is useful when you want to terminate the loop early if some condition
+# is met. continue is for when you want to skip past an iteration to the next.
 
 x = 5
 while x > 0:
@@ -32,7 +32,7 @@ while x > 0:
 
 import random
 
-print('Guess a number between 1 and 10 (0 to quit)')
+print('Guess a number between 1 and 10 (0 to quit):')
 
 answer = random.randint(1, 9)
 
@@ -58,13 +58,13 @@ while True:
 
 def squared():
     while True:
-        value = input('Integer [q to quit]:')
+        value = input('Enter an integer (q to quit): ')
         if value == 'q':
             break
         try:
             number = int(value)
         except ValueError:
-            print("That's not an integer")
+            print("That's not an integer.")
             continue
         number = int(value)
         print(number, 'squared is', number * number)
@@ -75,16 +75,16 @@ squared()
 # Example using try and return
 # -----------------------------------------------------------------------------
 
-print('Enter two numbers please.')
+print('Enter two numbers.')
 
 def get_inputs(arg):
     while True:
         try:
-            x = input('enter {} number: '.format(arg))
+            x = input('{} number: '.format(arg))
             x = int(x)
             return x
         except:
-            print('I need an integer please')
+            print('I need an integer.')
 
 a = get_inputs('first')
 b = get_inputs('second')
@@ -94,12 +94,12 @@ print('{} * {} = {}'.format(a, b, a * b))
 
 # A slightly different approach
 # -----------------------------------------------------------------------------
-# A 'flag' variable is a great way of signaling a while loop when you have
+# A 'flag' variable is a great way of signaling to a while loop when you have
 # many things that could/should end the loop. Using a flag variable, our loop
 # only has to check one condition.
 
-print('Kilograms to Pounds converter')
-prompt = 'Enter kilos (q to quit): '
+print('Kilograms to Pounds converter.')
+prompt = 'Enter kilograms (q to quit): '
 KILO_POUNDS = 2.20462
 active = True  # this is a flag variable!
 
@@ -137,6 +137,7 @@ for user in confirmed_users:
 
 # Filling a dict with user input
 # -----------------------------------------------------------------------------
+
 shopping_list = {}
 
 while True:

@@ -4,9 +4,9 @@
 # http://pandas.pydata.org/
 
 # The pandas library allows you to take in data from a variety of sources
-# (ie JSON, CSV, excel, from data mining activities such as web scraping),
-# then analyze the data in python and then output the results (ie tables,
-# or data visualization – with the help of additional libraries such as bokeh).
+# (e.g. JSON, CSV, excel, from data mining activities such as web scraping),
+# then analyze the data in python, then output the results (e.g. as tables or
+# data visualizations – with the help of additional libraries such as bokeh).
 
 # $ pip3 install pandas
 
@@ -52,7 +52,7 @@ print(df1)
 
 # You can also create your own index names. However, you will usually leave
 # index at its default numbering (typically a data set will have a fixed number
-# of columns but many, many, many rows).
+# of columns but many, many rows).
 
 cols = ['A', 'B', 'C']
 rows = ['one', 'two']
@@ -119,15 +119,17 @@ df1.set_index('ID', inplace=True)
 
 print(df1.columns)
 # Index(['Address', 'City', 'State', 'Country', 'Name', 'Employees'], dtype='object')
+
 print(type(df1.columns))
 # <class 'pandas.core.indexes.base.Index'>
+
 print(df1.index)
 # Int64Index([1, 2, 3, 4, 5, 6], dtype='int64', name='ID')
+
 print(type(df1.index))
 # <class 'pandas.core.indexes.numeric.Int64Index'>
 
 # This method returns the total number of rows, columns in the DataFrame:
-
 print(df1.shape)
 # (6, 7)
 
@@ -352,7 +354,7 @@ print(df1['Full_Address'])
 
 from geopy.geocoders import Nominatim
 
-geolocator = Nominatim(scheme='http')
+geolocator = Nominatim(scheme='http', user_agent='my-application')
 
 df1['g'] = df1['Full_Address'].apply(geolocator.geocode)
 
@@ -363,7 +365,6 @@ df1['latitude'] = df1['g'].apply(lambda x: x.latitude if x != None else None)
 df1['longitude'] = df1['g'].apply(lambda x: x.longitude if x != None else None)
 
 df1 = df1.drop('g', 1)
-df1 = df1.drop('website', 1)
 #                                     Full_Address   latitude   longitude
 # ID
 # 1      3666 21st St, San Francisco, CA 94114, US  37.757051 -122.418804
