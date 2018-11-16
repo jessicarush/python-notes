@@ -21,14 +21,19 @@ __email__ =      "jesskrush@me.com"
 __status__ =     "Production"
 
 
+print('template finished')
+
 # Explanation: The above is a recommended example source code file header.
 # The main things to note here:
 
-# 1. The first line of each file should be #!/usr/bin/env python3 (or the path
+# 1. The first line of each file should be #!/usr/bin/env python (or the path
 #    to wherever your installation is... see which python3 for your path).
 #    This makes it possible to run the file as a script invoking the
-#    interpreter implicitly, (basically, just type $ templates.py in the
-#    command line instead of $ python3 templates.py).
+#    interpreter implicitly, (basically, just type $ ./template.py in the
+#    command line instead of $ python3 template.py). Note that the file
+#    permissions need to allow for the file to be executeable. For example,
+#    the command $ sudo chmod 744 template.py, would give the file the
+#    permissions: -rwxr--r-- 
 
 # 2. Next should be the docstring with a description. If the description is
 #    long, the first line should be a short summary that makes sense on its
