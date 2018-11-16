@@ -87,9 +87,9 @@ for repo_dict in repo_dicts:
 # NOTE: You can add custom tooltips by passing a list of dictionaries instead
 # of a list of values to chart.add() like so:
 # plot_dict = [
-#     {'value': 1314, 'label': 'Description of ...'},
-#     {'value': 5670, 'label': 'Description of ...'},
-#     {'value': 3224, 'label': 'Description of ...'},]
+#     {'value': 1314, 'label': 'Description...'},
+#     {'value': 5670, 'label': 'Description...'},
+#     {'value': 3224, 'label': 'Description...'},]
 
 names, plot_dicts = [], []
 for repo_dict in repo_dicts:
