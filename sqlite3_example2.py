@@ -13,7 +13,7 @@ import datetime
 import pytz
 import pickle # <-- added
 
-db = sqlite3.connect('accounts.sqlite')
+db = sqlite3.connect('data/accounts.sqlite')
 db.execute('''CREATE TABLE IF NOT EXISTS accounts
               (name TEXT PRIMARY KEY NOT NULL,
               balance INTEGER NOT NULL)''')
@@ -101,13 +101,13 @@ if __name__ == '__main__':
 
     db.close()
 
-print('-' * 50)
+print('-' * 75)
 
 
 # Get the pickled timezone
 # -----------------------------------------------------------------------------
 
-db = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+db = sqlite3.connect('data/accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 for row in db.execute("SELECT * FROM history"):
     utc_time = row[0]

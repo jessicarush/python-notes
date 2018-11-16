@@ -44,7 +44,7 @@ ValueError  # provides information on the ValueError exception
 
 # you don't have to enter the help utility to get help either, you can pass
 # the name of a function or module directly (this method doesn't work for
-# Topics, Keywords or Symbols).
+# keywords, symbols or topics).
 
 help(print)
 help(ValueError)
@@ -68,6 +68,11 @@ help(datetime.datetime)
 
 import random
 dir(random)
+# [..., 'betavariate', 'choice', 'choices', 'expovariate', 'gammavariate', 
+# 'gauss', 'getrandbits', 'getstate', 'lognormvariate', 'normalvariate',
+# 'paretovariate', 'randint', 'random', 'randrange', 'sample', 'seed',
+# 'setstate', 'shuffle', 'triangular', 'uniform', 'vonmisesvariate',
+# 'weibullvariate']
 
 # To find out what attributes are provided in objects of built-in types, run
 # dir on a literal or an existing instance of the desired type. For example,

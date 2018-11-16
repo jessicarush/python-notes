@@ -35,7 +35,6 @@ def change_local():
 
 change_local()
 print('global animal:', animal, id(animal))
-
 # local animal: wombat 4316476056
 # global animal: fruitbat 4316756144
 
@@ -57,19 +56,21 @@ change_and_print_global()
 # -----------------------------------------------------------------------------
 # Python 3 introduced the nonlocal keyword that allows you to assign to
 # variables in an outer, but non-global, scope.
+
 x = 'orange'
+
 def testing_nonlocal():
     x = 'lemon'
     def inside():
-        nonlocal x  # if this statement is removed, the printed output
-        x = 'lime'  # would be 'lime', then 'lemon' because we actually
-        print(x)    # would have 3 unique 'x' variables.
+        nonlocal x    # if this statement is removed, the printed output
+        x = 'lime'    # would be 'lime', then 'lemon' because we would
+        print(x)      # have 3 unique 'x' variables.
     inside()
     print(x)
 
 print(x)
-# orange
 testing_nonlocal()
+# orange
 # lime
 # lime
 
@@ -99,8 +100,8 @@ testing_local()
 
 print('globals:')
 g = sorted(globals())
-for x in g:
-    print(x)
+for i in g:
+    print(i)
 # globals:
 # __annotations__
 # __builtins__
@@ -133,3 +134,6 @@ def amazing():
     print('The main program running is assigned a special name:', __name__)
 
 amazing()
+# This function is named: amazing
+# Its docstring says: This is the functions description
+# The main program running is assigned a special name: __main__
