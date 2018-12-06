@@ -450,7 +450,7 @@ This is a three step process. First you need to get a certificate and a key. The
 1. **Getting the certificate & key:**  
 This will be different depending on what "certificate authority" you're using. If cloudflare, you'd go to the 'crypto' tab. Then there a spot to enable SSL then lower down the page, create a certificate. When you create a certificate, it will give you two strings... an 'origin certificate' and a 'private key'. There may be an option for format, just use PEM (default).
 
-2. **Copying the certifiacte/key to your server:**
+2. **Copying the certificate/key to your server:**
 ```
 $ ssh jessica@<your.droplet.ip>
 $ sudo mkdir /var/www/ssl
