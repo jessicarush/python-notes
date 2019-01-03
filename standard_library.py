@@ -1,11 +1,12 @@
-'''Misc from the Standard Library'''
+'''Misc examples from the Standard Library'''
 
 
 # https://docs.python.org/3/library/index.html
 
 
-# Timer()
+# threading.Timer()
 # -----------------------------------------------------------------------------
+
 from threading import Timer
 
 def do_something():
@@ -16,8 +17,47 @@ t.start()
 # will print 'doing something...' after 10 seconds. The rest of the code will
 # have time to run first.
 
-# random, string
+
+# string
 # -----------------------------------------------------------------------------
+
+import string
+
+print(string.ascii_letters)
+# abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.ascii_lowercase)
+# abcdefghijklmnopqrstuvwxyz
+print(string.ascii_uppercase)
+# ABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.digits)
+# 0123456789
+print(string.hexdigits)
+# 0123456789abcdefABCDEF
+print(string.octdigits)
+# 01234567
+print(string.punctuation)
+# !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+print(string.whitespace)
+#  \t\n\r\x0b\x0c
+print(string.printable)
+# all of the above
+
+
+# string.capwords()
+# -----------------------------------------------------------------------------
+# capwords() from the string library does a better job of capitalizing:
+
+from string import capwords
+
+example = "I'm super fun."
+
+print(example.title())    # I'M Super Fun.
+print(capwords(example))  # I'm Super Fun.
+
+
+# random.choice()
+# -----------------------------------------------------------------------------
+
 import random
 import string
 
@@ -31,8 +71,9 @@ print(test)
 # 40Sfk7NFmRjecSSezU9M
 
 
-# Counter()
+# collections.Counter()
 # -----------------------------------------------------------------------------
+
 from collections import Counter
 
 jellybeans = ['red', 'red', 'orange', 'red', 'green', 'green']
@@ -57,21 +98,24 @@ jb_counter2 = Counter(jellybeans2)
 
 print(type(jb_counter1))
 # <class 'collections.Counter'>
+
 print(jb_counter1 + jb_counter2)
 # Counter({'red': 4, 'green': 2, 'yellow': 2, 'orange': 1, 'black': 1})
+
 print(jb_counter1 - jb_counter2)
 # Counter({'red': 2, 'green': 2, 'orange': 1})
+
 print(jb_counter2 - jb_counter1)
 # Counter({'yellow': 2, 'black': 1})
+
 print(jb_counter1 & jb_counter2)
 # Counter({'red': 1})
 
 
 # itertools
 # -----------------------------------------------------------------------------
-# itertools are special purpose iterator functions.
-# Each returns one item at a time when called within a for loop and
-# remembers its state between calls.
+# itertools are special purpose iterator functions. Each returns one item at
+# a time when called within a for loop and remembers its state between calls.
 
 import itertools
 
@@ -109,8 +153,8 @@ for item in itertools.accumulate([1, 2, 3, 4], multiply):
 # os.walk recursively visits each directory from the root, and for each one,
 # returns a tuple. The first item in the tuple is a string containing the
 # current directory (path). Next is a list of all the directories in the
-# current directory (directories). The last item on the tuple is a list
-# containing all the file names (files). Note os.walk is a generator. If you
+# current directory (directories). The last item in the tuple is a list
+# containing all the file names (files). Note: os.walk is a generator. If you
 # add an input to pause the loop, you can get a sense of how its drilling down
 # and through the root directory.
 
@@ -119,28 +163,37 @@ import os
 # Put the directory path here:
 root = 'data/music'
 
-for path, directories, files in os.walk(root, topdown=True):
-    print(path)
-    print(directories)
-    for f in files:
-        print('\t', f)
+# for path, directories, files in os.walk(root, topdown=True):
+#     print(path)
+#     print(directories)
+#     for f in files:
+#         print('\t', f)
 
-# Use split and split text to strip out the information you want.
+# Use split() and splittext() to strip out the information you want.
+# split() breaks a string into a tuple, splitext() will remove file extensions
 
 for path, directories, files in os.walk(root, topdown=True):
     if files:
-        print(path)                  # <--path is a string
+        print(path)                        # <--path is a string
+        # data/music/Beatles/Sgt. Pepper's Lonely Hearts Club Band
         first_split = os.path.split(path)
-        print(first_split)           # <--first_split is a tuple
-        print(first_split[1])        # <--contains the album name
+        print(first_split)                 # <--first_split is a tuple
+        # ('data/music/Beatles', "Sgt. Pepper's Lonely Hearts Club Band")
+        print(first_split[1])              # <--contains the album name
+        # Sgt. Pepper's Lonely Hearts Club Band
         second_split = os.path.split(first_split[0])
-        print(second_split)          # <--second_split is a tuple
-        print(second_split[1])       # <--contains the artist name
-        for f in files:              # <--f is a string, files is a list
-            # splitext() will remove any file extension
-            f = os.path.splitext(f)  # f is now a tuple
-            f = f[0].split(' - ')    # f is now a list
+        print(second_split)                # <--second_split is a tuple
+        # ('data/music', 'Beatles')
+        print(second_split[1])             # <--contains the artist name
+        # Beatles
+
+        for f in files:                    # <--f is a string, files is a list
+            f = os.path.splitext(f)        # f is now a tuple
             print(f)
+            # ('13 - A Day In The Life', '.emp3')
+            f = f[0].split(' - ')          # f is now a list
+            print(f)
+            # ['13', 'A Day In The Life']
         print('-' * 50)
 
 # Using this you could easily create a database or structured file format,
@@ -186,7 +239,7 @@ from difflib import get_close_matches
 #    - Optional arg ration cutoff (default 0.6) is a float in [0, 1].
 #      Possibilities that don't score at least that similar to word are ignored
 
-possibilities = ['train', 'car', 'grain', 'arithmetic', 'rain', 'ball']
+possibilities = ['train', 'car', 'grain', 'moose', 'rain', 'ball']
 
 print(get_close_matches('rainn', possibilities))
 # ['rain', 'train', 'grain']
