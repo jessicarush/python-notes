@@ -70,7 +70,7 @@ def fib_i(n):
 
 def fib_r(n):
     '''Calculates fibonacci recursively'''
-    if n  < 2:
+    if n < 2:
         return n
     else:
         return fib_r(n - 1) + fib_r(n - 2)
@@ -80,20 +80,23 @@ def fib_g(n):
     a, b = 0, 1
     counter = 0
     while counter < n:
-        yield b
+        yield a
         a, b = b, a + b
         counter += 1
 
 # testing:
 for i in range(10):
-    print(fib_i(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+    print(fib_i(i))
+    # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
 for i in range(10):
-    print(fib_r(i))  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+    print(fib_r(i))
+    # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
 fib_generator = fib_g(10)
 for i in fib_generator:
-    print(i)        # 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+    print(i)
+    # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
 
 # Directory Listings
@@ -129,7 +132,7 @@ def list_directory(s):
         for f in files:
             current_dir = os.path.join(d, f)
             if os.path.isdir(current_dir):
-                print('\t' * tab_stop + 'Directory':  + f)
+                print('\t' * tab_stop + 'Directory: '  + f)
                 tab_stop += 1
                 dir_list(current_dir)
                 tab_stop -= 1
