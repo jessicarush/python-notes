@@ -2,7 +2,7 @@
 
 
 # Consider we're receiving some rgba values from a query string of a url.
-# The output we want is an integer for each r, g, b, and a. Lets say if the
+# The output we want is an integer for each r, g, b, and a. Let's say if the
 # values are missing, we want them to be 0.
 
 # Let's first see what type of data we get:
@@ -34,8 +34,8 @@ print('opacity:', opacity)
 
 # So, if I just want the number, I would have to specfify the first item in the
 # list[0]. And if the list is empty I'd have to say 'or 0'. And if the value
-# didn't exist at all (None), then I'd have to pass an optional value in
-# the get method:
+# didn't exist at all (None), then I'd have to pass an optional value to the
+# get method (an empty list):
 
 red = values.get('red', [''])[0] or 0
 green = values.get('green', [''])[0] or 0
