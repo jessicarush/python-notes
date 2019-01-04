@@ -29,9 +29,9 @@ class Person():
 # its first parameter should always be self. Although self is not a reserved
 # word in Python, it's common usage.
 
-# NOTE: It's NOT necessary to have an __init__ method in every class definition.
-# It's used to do anything that's needed to distinguish this object from
-# others created from the same class.
+# NOTE: While it's not required to have an __init__ method in every class
+# definition, it's used to do define attributes that will distinguish this
+# object from others created from the same class.
 
 class Person():
     def __init__(self, name, age):
@@ -59,13 +59,15 @@ astronaut.age = 20
 baker.friend = 'Todd'
 
 # Data attributes can be obtained in several ways when it comes to working with
-# replacement fields. The second example is easier to read.
+# replacement fields. The last example (f-strings) is available as of v3.6.
 
 print('Name {} age {}, name {} age {}'.format(
     astronaut.name, astronaut.age, baker.name, baker.age))
 
 print('Name {0.name} age {0.age}, name {1.name} age {1.age}'.format(
     astronaut, baker))
+
+print(f'Name {astronaut.name} age {astronaut.age}, name {baker.name} age {baker.age}')
 
 
 # Class attributes (class variables)
@@ -87,7 +89,7 @@ class Contact():
 # Contact. If you use the second method, it will check first in the object for
 # the value then, if it doesn't find it there it will look in the class... and
 # thus refer to the same single list. Note that if you do an assignment via the
-# Class, the the variable is changed, but if you do it via an instance, you are
+# Class, then the variable is changed, but if you do it via an instance, you're
 # not reassigning the original variable, you are creating a new local instance
 # variable with the same name:
 
@@ -109,7 +111,7 @@ Contact.all_contacts = list(Contact.all_contacts)
 # Default values
 # -----------------------------------------------------------------------------
 # Looking at the example above, we could imagine using class variables like a
-# default value. If the value isn;t found in the object, it will look in the
+# default value. If the value isn't found in the object, it will look in the
 # class. In these cases, it makes more sense to specify this initial value in
 # the body of the __init__ method. If the intention is for instances to have
 # their own value, we should see this instantiated with self. Note that if you
@@ -201,8 +203,8 @@ class Parent():
         print('Parent method')
 
 class Child1():                # Child1 will use the Parents __init__,
-    def __init__(self):        # but will have no access to the parents method
-        Parent.__init__(self)
+    def __init__(self):        # as well as it's own,
+        Parent.__init__(self)  # but will have no access to the parents method
         print('Child 1')
 
 class Child2(Parent):          # Child2 will use its own __init__,
@@ -222,9 +224,9 @@ class Child4(Parent):          # Child4 will use the Parents __init__,
 class Child5(Parent):          # Child5 will use the Parents __init__,
     def __init__(self):        # as well as it's own,
         super().__init__()     # and will use its own method
-        print('Child 5')       # Note: using super allows you to specify which
-    def method(self):          # parts of the parent __init__ to inherit
-        print('Child method')
+        print('Child 5')
+    def method(self):          # Note: using super allows you to specify which
+        print('Child method')  # parts of the parent __init__ to inherit
 
 child1 = Child1()
 # Parent
@@ -387,11 +389,23 @@ pprint(Dog.mro())
 # One thing that .super() does is resolve a problem with diamond inheritance.
 # Diamond inheritance happens when you have a subclass that inherits from two
 # superclasses, and those two superclasses inherit from the same base class.
-# If you draw this out, it creates a diamond shape. Technically, all classes
-# inherit from the Object base class so it's a thing. What ends of happening
-# here is the base class' __init__ method ends up being called twice. That's
-# relatively harmless with the Object class, but in some situations, it could
-# be bad... imagine trying to connect to a database twice for every request.
+# If you draw this out, it creates a diamond shape.
+
+#    base class
+#        /\
+#       /  \
+#      /    \
+#   super  super
+#      \    /
+#       \  /
+#        \/
+#     subclass
+
+# Technically, all classes inherit from the Object base class so it's a thing.
+# What ends up happening here is the base class' __init__ method is called
+# twice. That's relatively harmless with the Object class, but in some
+# situations, it could be bad... imagine trying to connect to a database twice
+# for every request.
 
 
 class Base():
@@ -421,6 +435,7 @@ s = Subclass()
 # Right initializing
 # Subclass initializing
 
+# We can resolve this issue simply bt using .super():
 
 class Base():
     def __init__(self):
@@ -480,6 +495,9 @@ s = Subclass(name='bob', phone=6041234567, street=1234)
 # Left initializing
 # Subclass initializing
 
+print(s.__dict__)
+# {'address': '', 'street': 1234, 'name': 'bob', 'email': '', 'phone': 6041234567}
+
 # Basic multiple inheritance can be handy but, in many cases, we may want to
 # choose a more transparent way of combining two disparate classes, usually
 # using composition or another design pattern.
@@ -489,13 +507,14 @@ s = Subclass(name='bob', phone=6041234567, street=1234)
 # -----------------------------------------------------------------------------
 # A mixin is generally a superclass that is not meant to exist on its own, but
 # is meant to be inherited by some other class to provide extra functionality.
-# Fr example, lets say we wanted to add emailing functionality to a class.
+# For example, lets say we wanted to add emailing functionality to a class.
 # Since sending email is a common task that we might want to use on many other
 # classes, a mixin is a good solution.
 
 class Emailer():
     def send_email(self, message):
-        print("Sending mail to " + self.email)
+        print('Sending mail to ' + self.email)
+        print('Message: ' + message)
         # email logic goes here
 
 class Subscriber(Contact, Emailer):
@@ -505,9 +524,10 @@ s = Subscriber('bob', 'bob@email.com')
 
 s.send_email('Hello, this is a test.')
 # Sending mail to bob@email.com
+# Message: Hello, this is a test.
 
 
-# Extending built-ins with inheritance
+# Extending built-in classes with inheritance
 # -----------------------------------------------------------------------------
 # Referring back to the Contact class from above. Imagine that we wanted to
 # include a search function. We could add this to the Contact class, but it
@@ -515,11 +535,11 @@ s.send_email('Hello, this is a test.')
 
 class ContactList(list):
 
-    def search(self, name):
+    def search(self, search_name):
         '''Return all contacts that contain the search value in the name.'''
         matching_contacts = []
         for contact in self:
-            if name in contact.name:
+            if search_name in contact.name:
                 matching_contacts.append(contact)
         return matching_contacts
 
@@ -542,6 +562,9 @@ search = Contact.all_contacts.search('sum')
 
 print(search)
 # [<__main__.Contact object at 0x101ce1860>]
+
+print(search[0].email)
+# summer@email.com
 
 print(search[0].name)
 # summer
@@ -573,26 +596,36 @@ class Person():
         self._name = value
 
     def getName(self):
-        print('Getting name')
+        print('Getting name: ' + self._name)
         return self._name
 
     def setName(self, value):
-        print('Setting name to ' + value)
+        print('Setting name to: ' + value)
         self._name = value
 
     def delName(self):
         print('Deleting name')
         del self._name
 
-    # Set property to use getName, setName and delName methods
+    # Set a property called name to use getName, setName and delName methods
     name = property(getName, setName, delName, 'Name property')
 
 
 p = Person('Adam')
-print(p.name)  # Adam
+
+print(p.name)
+# Getting name: Adam
 
 p.name = 'John'
+# Setting name to: John
+
 del p.name
+# Deleting name
+
+# NOTE: The big question here though is why would you want to go to all the
+# trouble. The simple answer is that using methods, you could run additional
+# code in the getting and setting of the property (say checking a database)
+# but from the outside it still looks and acts like a plain old property.
 
 # NOTE: The deletion function is often left empty because object attributes
 # are rarely deleted. If a coder does try to delete a property that doesn't
@@ -610,12 +643,12 @@ class Person():
 
     @property
     def name(self):
-        print('Getting name')
+        print('Getting name: ' + self._name)
         return self._name
 
     @name.setter
     def name(self, value):
-        print('Setting name to ' + value)
+        print('Setting name to: ' + value)
         self._name = value
 
     @name.deleter
@@ -625,10 +658,15 @@ class Person():
 
 
 p = Person('Tim')
-print(p.name)  # Tim
+
+print(p.name)
+# Getting name: Tim
 
 p.name = 'Paul'
+# Setting name to: Paul
+
 del p.name
+# Deleting name
 
 
 # Uses for Getters and Setters
@@ -700,7 +738,7 @@ class Circle():
 c = Circle(5)
 print(c.diameter) # 10
 
-c.diameter = 20  # now this will also work
+c.diameter = 20  # now this will work
 print(c.radius)  # 10.0
 
 
@@ -708,9 +746,9 @@ print(c.radius)  # 10.0
 # caching a value that is difficult to calculate or expensive to lookup
 # (for example, requiring a network request or database query). The goal is to
 # store the value locally to avoid repeated calls to the expensive calculation.
-# We do this with a this custom getter @property. The first time the value
-# is retrieved, we perform the lookup or calculation. The next time the value
-# is requested, we return the stored data. Here's an example:
+# We do this with a custom getter @property. The first time the value is
+# retrieved, we perform the lookup or calculation. The next time the value is
+# requested, we return the stored data. Here's an example:
 
 from time import time, sleep
 from urllib.request import urlopen
@@ -774,7 +812,7 @@ class A():
 
     @classmethod
     def children(cls):
-        print("A has", A.count, "objects made from it.")
+        print(f'Class {cls.__name__} has {A.count} instances.')
 
 # testing:
 test1 = A()
@@ -783,11 +821,14 @@ test3 = A()
 test4 = A()
 
 A.children()
+# Class A has 4 instances.
 
 # Here's another example that compares a regular method to a class method
 # in terms of inheritance.
 
-# Example A (no class method):
+# Example A (no class method)
+# ---------------------------
+
 class Parent():
     def __init__(self, name, age):
         self.name = name
@@ -813,7 +854,9 @@ print(child)        # <__main__.Child object at 0x10150e668>
 print(friend)       # <__main__.Parent object at 0x10150e6a0>
 
 
-# Example B (class method):
+# Example B (class method)
+# ------------------------
+
 class Parent():
     def __init__(self, name, age):
         self.name = name
@@ -847,6 +890,8 @@ print(friend)        # <__main__.Child object at 0x10150e780>
 
 # NOTE: you can also write class methods outside of classes. You might do this
 # if you wanted to create a class method that you could call on many classes.
+
+# TODO: example of class method outside of class
 
 
 # Static methods
