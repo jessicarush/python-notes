@@ -90,8 +90,8 @@ fgv = folium.FeatureGroup(name='Volcanoes')
 fgp = folium.FeatureGroup(name='Population')
 
 # markers can then be added this way:
-# folium.Marker(location=loc[1], popup='Info', icon=icon1).add_to(fgv)
-# folium.Marker(location=loc[2], popup='Info', icon=icon2).add_to(fgv)
+folium.Marker(location=loc[1], popup='Info', icon=icon1).add_to(fgv)
+folium.Marker(location=loc[2], popup='Info', icon=icon2).add_to(fgv)
 
 
 # Add Markers by iterating through data from a file
@@ -172,4 +172,4 @@ map_1.add_child(folium.LatLngPopup())
 map_1.add_child(folium.LayerControl())
 
 # save the map as an html file:
-map_1.save('map1.html')
+map_1.save('data/map1.html')
