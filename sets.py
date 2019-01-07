@@ -39,13 +39,15 @@ from_string = set('letters')
 from_list = set(['one', 'two', 'three', 'one'])
 from_tuple = set(('four', 'five', 'six'))
 from_dict = set({'apple' : 'red', 'pear' : 'green', 'banana' : 'yellow'})
+from_dict_vals = set({'apple' : 'red', 'pear' : 'green', 'banana' : 'yellow'}.values())
 from_range = set(range(1, 5))
 
-print(from_string)  # {'l', 't', 's', 'e', 'r'}
-print(from_list)    # {'one', 'three', 'two'}
-print(from_tuple)   # {'four', 'five', 'six'}
-print(from_dict)    # {'apple', 'banana', 'pear'}
-print(from_range)   # {1, 2, 3, 4}
+print(from_string)     # {'l', 't', 's', 'e', 'r'}
+print(from_list)       # {'one', 'three', 'two'}
+print(from_tuple)      # {'four', 'five', 'six'}
+print(from_dict)       # {'apple', 'banana', 'pear'}
+print(from_dict_vals)  # {'red', 'green', 'yellow'}
+print(from_range)      # {1, 2, 3, 4}
 
 
 # add()
@@ -131,6 +133,7 @@ def test3():
 test3()
 # test 3:  black russian
 # test 3:  white russian
+# test 3:  screwdriver
 
 # get even more specific with if, in, and, not, or
 
@@ -147,7 +150,7 @@ test4()
 
 def test5():
     for name, ingredients in drinks.items():
-        # if has vermouth or orange juice
+        # if has vermouth or orange juice:
         if ingredients & {'vermouth', 'orange juice'}:
             print('test 5: ', name)
 test5()
@@ -212,13 +215,13 @@ print(bruss.symmetric_difference(wruss))  # {cream}
 # for all of these (union, intersection, difference, symmetric_difference),
 # you can update the set to the result using update() or _update():
 
-a.intersection_update(b)
 a.update(b)  # union
+a.intersection_update(b)
 a.difference_update(b)
 a.symmetric_difference_update(b)
 
-# test if one set is a subset of another (all items in first set
-# are also in the second):
+# test if one set is a subset of another
+# (all items in first set are also in the second):
 
 print(a <= b)                             # False
 print(a.issubset(b))                      # False
@@ -226,8 +229,8 @@ print(a.issubset(b))                      # False
 print(bruss <= wruss)                     # True
 print(bruss.issubset(wruss))              # True
 
-# test if one set is a subset of another(all items in second set
-# are also in the first):
+# test if one set is a subset of another
+# (all items in second set are also in the first):
 
 print(a >= b)                             # False
 print(a.issuperset(b))                    # False
@@ -245,7 +248,7 @@ print(bruss.issuperset(wruss))            # False
 # compare the two and process only the new data.
 
 # Finally, it is valuable to know that sets are much more efficient than lists
-# when checking for membership using the in keyword. If you use the syntax
+# when checking for membership using the 'in' keyword. If you use the syntax
 # value in container on a set or a list, it will return True if one of the
 # elements in container is equal to value and False otherwise. However, in a
 # list, it will look at every object in the container until it finds the value,

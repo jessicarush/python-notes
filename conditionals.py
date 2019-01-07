@@ -43,7 +43,7 @@ elif age >= 65:
 else:
     admission = 10
 
-print(admission)
+print(admission)  # 10
 
 # Note you are not required to have a final else statement. It may be more
 # readable to use another elif. Keep in mind if you do it this way, there is no
