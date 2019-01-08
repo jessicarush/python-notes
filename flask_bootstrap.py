@@ -19,7 +19,7 @@
 
 # (venv) $ pip install flask-bootstrap
 
-# In yur project, Flask-Bootstrap needs to be initialized like most other
+# In your project, Flask-Bootstrap needs to be initialized like most other
 # Flask extensions:
 
 # from flask_bootstrap import Bootstrap
@@ -29,6 +29,7 @@
 # available, and can be referenced from your templates with the extends
 # clause. In our own base template, we would basically remove our <html>,
 # <head> and <body> tags and replace these with the following block structure.
+
 # Note that flask-bootstrap uses the name content in {% block content %}.
 # This mean we have to rename ours. Any {% block content %}{% endblock %} we
 # had in our base.html will need to change to another name like:
@@ -62,7 +63,7 @@
 
 # Form handling
 # -----------------------------------------------------------------------------
-# An area where Flask-Bootstrap does a fantastic job is in rendering of forms.
+# An area where Flask-Bootstrap does a fantastic job is in rendering forms.
 # Instead of having to style the form fields one by one, Flask-Bootstrap comes
 # with a macro that accepts a Flask-WTF form object as an argument and renders
 # the complete form using Bootstrap styles. Essentailly, all our normal code
