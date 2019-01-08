@@ -17,7 +17,7 @@ import json
 
 numbers = [4, 5, 7, 9, 11, 13]
 username = input("What is your name? ")
-filename = 'numbers.json'
+filename = 'data/numbers.json'
 
 with open(filename, 'w') as fob:
     json.dump((numbers, username), fob)
@@ -27,7 +27,10 @@ with open(filename, 'w') as fob:
 with open(filename) as fob:
     data = json.load(fob)
 
+print(type(data))          # <class 'list'>
+
 numbers2, username2 = data
+
 print(type(numbers2))      # <class 'list'>
 print(type(username2))     # <class 'str'>
 print('Hello', username2)  # Hello Raja
