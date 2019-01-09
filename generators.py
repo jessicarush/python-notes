@@ -142,9 +142,18 @@ def pi_series():
 
 approx_pi = pi_series()
 
-# The hight the range, the closer it gets to pi. Not really sure why this
+# The higher the range, the closer it gets to pi. Not really sure why this
 # formula is useful because I'm not mathy, but the interesting point here
 # is the multiple yields which execute in turn with each loop.
 
 for x in range(100):
     print(next(approx_pi))
+    # ...
+    # ...
+    # 3.1315929035585537
+
+
+# Generator comprehensions
+# -----------------------------------------------------------------------------
+
+# see comprehensions.py
