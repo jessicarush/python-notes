@@ -53,6 +53,7 @@ for x in ranger:
 import sys
 
 big_range = my_range(1, 10000)
+# rememeber, range() is actually a generator
 
 print('big_range is {} bytes'.format(sys.getsizeof(big_range)))
 # big_range is 88 bytes
@@ -153,7 +154,105 @@ for x in range(100):
     # 3.1315929035585537
 
 
+# generator.send(value)
+# -----------------------------------------------------------------------------
+# Up to now, we have just iterated through generator with next() to get the
+# value. Generators also have access to a .send() method which allows is to
+# pass new data to the generator. This method is similar to next() in that it
+# resumes the execution of the generator, but it also "sends" a value into the
+# generator function. The value argument becomes the result of the current
+# yield expression. The send() method then returns the next value yielded by
+# the generator.
+
+# The syntax is send() or send(value). Without any value, the send method is
+# equivalent to a next() call. This method can also use None as a value.
+# In both cases, the result will be that the generator advances its execution
+# to the first yield expression.
+
+# First, lets look at a basic example using the odd_generator from above:
+
+def odds_generator():
+    '''generate infinite odd numbers'''
+    number = 1
+    while True:
+        x = yield number  # assigned the yield to a variable
+        print(x, number)  # this will let us see what's happening
+        number += 2
+
+odds = odds_generator()
+
+next(odds)
+next(odds)
+next(odds)
+odds.send('Hello')
+odds.send('Hi')
+odds.send('Howdy')
+# None 1
+# None 3
+# Hello 5
+# Hi 7
+# Howdy 9
+
+# Here's another example. First lets look at it without the send value.
+# As mentioned above, by default send() will just return the next value:
+
+def times_ten_generator():
+    number = 1
+    while True:
+        yield number * 100
+        number += 1
+
+tt = times_ten_generator()
+
+print(next(tt))    # 100
+print(next(tt))    # 200
+print(next(tt))    # 300
+print(tt.send(8))  # 400
+
+# Now lets assign the yielded value to a value to be used with send().
+# On the last line we've incremented the number so that it can be used
+# with both next() and send().
+
+def times_ten_generator():
+    number = 1
+    while True:
+        x = yield number * 100
+        number = x if x else number + 1
+
+tt = times_ten_generator()
+print(next(tt))      # 100
+print(next(tt))      # 200
+print(next(tt))      # 300
+print(tt.send(8))    # 800
+print(next(tt))      # 900
+print(tt.send(0.5))  # 50.0
+print(next(tt))      # 150.0
+print(next(tt))      # 250.0
+
+
+# generator.close()
+# -----------------------------------------------------------------------------
+# The .close() method allows us to shut down a generator early. This could
+# be built in as part of some sort of error handling... say an error happens
+# somewhere else and you want to reset the generator. If you try to iterate
+# over a closed generator, you'll raise an Excpetion.
+
+def odds_generator():
+    '''generate infinite odd numbers'''
+    number = 1
+    while True:
+        yield number
+        number += 2
+
+odds = odds_generator()
+
+print(next(odds))    # 1
+print(next(odds))    # 3
+print(next(odds))    # 5
+odds.close()
+# print(next(odds))  # Exception: Stop Iteration
+
+
 # Generator comprehensions
 # -----------------------------------------------------------------------------
-
 # see comprehensions.py
