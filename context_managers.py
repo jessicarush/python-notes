@@ -12,10 +12,10 @@ try:
 finally:
     print('tear things down')  # finalization code
 
-# Here, “set things up” could be opening a file, or acquiring some external
-# resource, and “tear things down” would then be closing the file, or releasing
+# Here, "set things up" could be opening a file, or acquiring some external
+# resource, and "tear things down" would then be closing the file, or releasing
 # or removing the resource. The try-finally construct guarantees that the
-# “tear things down” part is always executed, even if the code that does the
+# "tear things down" part is always executed, even if the code that does the
 # work doesn’t finish. Perhaps the most common (and important) use of context
 # managers is to properly manage resources. The act of opening a file consumes
 # a resource (called a file descriptor), and this resource is limited by your
@@ -58,7 +58,7 @@ with controlled_execution() as thing:
 # be required, even if an exception occurred.
 
 # Here's another example of a context manager that will take a sequence
-# (of random ascii characters in this case) and convert it to string.
+# of random ascii characters and convert it to string.
 
 import random
 import string
@@ -109,12 +109,12 @@ with File('data/test.txt', 'w') as opened_file:
 from contextlib import contextmanager
 
 @contextmanager
-def tag(name):
+def html_element(name):
     print("<{}>".format(name), end='')
     yield
     print("</{}>".format(name))
 
-with tag("h1"):
+with html_element("h1"):
     print("Heading", end='')  # <h1>Heading</h1>
 
 
