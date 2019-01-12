@@ -80,18 +80,18 @@ menu('merlot', 'brie', guests=2, courses=4)
 # still has one item from the previous call. The reason for this is that
 # default argument values are evaluated only once per module load (which
 # usually happens when a program starts up). To be precise, the default values
-# are generate at the point the function is defined, not when it's called.
+# are generated at the point the function is defined, not when it's called.
 
 def buggy(arg, result=[]):
     result.append(arg)
     print(result)
 
-buggy('a')  # ['a']
-buggy('b')  # ['a', 'b']
-buggy('c', ['hello', 'hello'])  # ['hello', 'hello', 'c']
+buggy('a')      # ['a']
+buggy('b')      # ['a', 'b']
+buggy('c', [])  # ['c']
 
-# This works better to have an empty list each time, however we no longer
-# have the option of passing in a list:
+# This next example works better to ensure we have an empty list each time,
+# however we no longer have the option of passing in a list:
 
 def works(arg):
     result=[]
@@ -101,7 +101,7 @@ def works(arg):
 works('a')  # ['a']
 works('b')  # ['b']
 
-# Correct the first one by passing in None to indicate the first call:
+# Correct the first example by passing in None to indicate the first call:
 
 def nonbuggy(arg, result=None):
     if result is None:
@@ -118,7 +118,7 @@ def nonbuggy(arg, result=None):
 
 nonbuggy('a')  # ['a']
 nonbuggy('b')  # ['b']
-nonbuggy('new list', ['hello', 'hello'])  # ['hello', 'hello', 'new list']
+nonbuggy('new list', ['hello'])  # ['hello', 'new list']
 
 # A more practical example of this situation would be where we want to set
 # a default value using a timestamp. In this case, we want to use a function
