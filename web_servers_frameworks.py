@@ -17,17 +17,19 @@
 
 from urllib import request
 
-url = 'http://cyan.red'
+url = 'https://news.ycombinator.com/'
 conn = request.urlopen(url)
+
 print(conn)
-# <http.client.HTTPResponse object at 0x103313470>
+# <http.client.HTTPResponse object at 0x10492fbe0>
 
 # conn is an HTTPResponse object with a number of methods. It's read() method
 # will give us data from the web page:
 
 data = conn.read()
+
 print(data)
-# prints the html as a big, continuous blob
+# tl:dr - prints the html as a big, continuous blob
 
 # An important part of an HTTP response is the status code:
 
@@ -53,7 +55,7 @@ print(conn.status)
 # the HTTP response header value with the name Content-Type:
 
 print(conn.getheader('Content-Type'))
-# text/html
+# text/html; charset=utf-8
 
 # The above returns a MIME type: text/plain and text/html are two examples.
 
@@ -61,13 +63,44 @@ print(conn.getheader('Content-Type'))
 
 for key, value in conn.getheaders():
     print(key, ':\t', value)
-# Date :              Fri, 02 Mar 2018 19:52:00 GMT
-# Server :            Apache
-# Last-Modified :     Mon, 27 Mar 2017 18:59:53 GMT
-# Accept-Ranges :     bytes
-# Content-Length :    6175
-# Connection :        close
-# Content-Type :      text/html
+# Server :                     nginx
+# Date :                       Wed, 16 Jan 2019 16:01:25 GMT
+# Content-Type :               text/html; charset=utf-8
+# Transfer-Encoding :          chunked
+# Connection :                 close
+# Vary :                       Accept-Encoding
+# Cache-Control :              private; max-age=0
+# X-Frame-Options :            DENY
+# X-Content-Type-Options :     nosniff
+# X-XSS-Protection :           1; mode=block
+# Referrer-Policy :            origin
+# Strict-Transport-Security :  max-age=31556900
+# Content-Security-Policy :    default-src 'self'; script-src 'self'...
+
+# Just as a word of warning, the types headers retrieved seem to change over
+# time. I'm not sure if this is due to an update in the browser to python or
+# something else but as an example, this was the output from a personal site:
+
+# Date :                       Fri, 02 Mar 2018 19:52:00 GMT
+# Server :                     Apache
+# Last-Modified :              Mon, 27 Mar 2017 18:59:53 GMT
+# Accept-Ranges :              bytes
+# Content-Length :             6175
+# Connection :                 close
+# Content-Type :               text/html
+
+# An this is the header output a year later (no changes to the site):
+
+# Date :                       Wed, 16 Jan 2019 16:08:11 GMT
+# Last-Modified :              Mon, 27 Mar 2017 18:59:53 GMT
+# Vary :                       Accept-Encoding,User-Agent
+# Content-Type :               text/html
+# X-Varnish :                  1774261
+# Age :                        0
+# X-Cache :                    MISS
+# Accept-Ranges :              bytes
+# Transfer-Encoding :          chunked
+# Connection :                 close
 
 
 # Requests Library
@@ -79,7 +112,7 @@ for key, value in conn.getheaders():
 
 import requests
 
-url = 'http://cyan.red'
+url = 'https://news.ycombinator.com/'
 resp = requests.get(url)
 print(resp)
 # <Response [200]>
@@ -220,7 +253,9 @@ run(host='localhost', port=9999)
 # Functions direct users to a page or 'endpoint' are often called 'view
 # functions' or routes, and are decorated with @app.route.
 
+
 # flask1.py:
+# -----------------------------------------------------------------------------
 
 from flask import Flask
 
@@ -243,6 +278,7 @@ app.run(debug=True)
 # (current directory) and the URL prefix to '' (empty) to allow the URL / to
 # map to a loose index.html. To confirm, in the following example, index.html
 # should be located in a folder called 'static'
+
 
 # flask2.py:
 # -----------------------------------------------------------------------------
@@ -311,7 +347,6 @@ app.run(port=9999, debug=True)
 
 # flask4.py:
 # -----------------------------------------------------------------------------
-
 # This example allows you to pass a second argument. You will need to add
 # {{ other }} somewhere in flask_test.html to receive the additional value.
 
@@ -330,7 +365,6 @@ app.run(port=9999, debug=True)
 
 # flask5.py:
 # -----------------------------------------------------------------------------
-
 # You can also provide arguments as 'GET' parameters:
 
 from flask import Flask, render_template, request
@@ -352,7 +386,6 @@ app.run(port=9999, debug=True)
 
 # flask6.py:
 # -----------------------------------------------------------------------------
-
 # You can also use the dictionary operator ** to pass multiple arguments
 # to a template from a single dictionary/
 
