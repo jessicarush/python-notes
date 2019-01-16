@@ -50,7 +50,8 @@ colour_tuple = ('green', 'Pantone 17-5641', 'rgb(0, 148, 115)')
 
 print(colour_tuple[1])  # Pantone 17-5641
 
-text = "spot colour: {0[1]} \nname: {0[0]} \nscreen value: {0[2]}"
+text = 'spot colour: {0[1]} \nname: {0[0]} \nscreen value: {0[2]}'
+
 print(text.format(colour_tuple))
 # spot colour: Pantone 17-5641
 # name: green
@@ -60,6 +61,7 @@ print(text.format(colour_tuple))
 # This is called 'tuple unpacking'
 
 a, b, c = colour_tuple
+
 print(a)  # green
 print(b)  # Pantone 17-5641
 print(c)  # rgb(0, 148, 115)
@@ -119,8 +121,8 @@ print(bedroom.windows)  # 2
 print(bedroom.sqft)     # 250
 
 # Named tuples look and act like an immutable object. You can access attributes
-# by using dot notation instead of the dict style['key']. Because tuples are
-# immutable, you can use then as a dict key.
+# by using dot notation instead of the dict style['key']. Since tuples are
+# immutable, you can use them as a dict key.
 
 apartment = {bedroom : 'stuff...', kitchen: 'things...'}
 
@@ -141,9 +143,8 @@ name, floor, windows, sqft = bedroom
 # Benefits of using tuples
 # -----------------------------------------------------------------------------
 # - Tuples use less space
-# - You can't mess with tuple items by mistake
-# - You can use tuples as dictionary keys (you can't use a list because lists
-#   are mutable and dictionary keys are not allowed to be mutable)
+# - You can't mess with tuple items by mistake (immutable)
+# - You can use tuples as dictionary keys (dictionary keys cannot be mutable)
 # - Named tuples can be a simple alternative to class objects (if you don't
 #   need any behaviours)
 # - Function arguments are passed as tuples
