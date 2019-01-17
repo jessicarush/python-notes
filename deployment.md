@@ -452,7 +452,7 @@ Your certificate and chain have been saved at:
 /etc/letsencrypt/live/zebro.id/fullchain.pem  
 Your key file has been saved at:  
 /etc/letsencrypt/live/zebro.id/privkey.pem  
-
+>
 >Your cert will expire on 2018-07-01. To obtain a new or tweaked version of this certificate in the future, simply run certbot again with the "certonly" option. To non-interactively renew *all* of your certificates, run "certbot renew"
 
 So now we need to add these two paths to the nginx config from above:
@@ -486,7 +486,7 @@ $ sudo supervisorctl start microblog
 
 ### Renewing your SSL certificates
 
-At some point you will receive an email reminder that your certificate(s) are up for renewal. SSH into your server and run the following command from any directory:
+At some point you will receive an email reminder that your certificate(s) are up for renewal. Also, you can check the expiration date of your certificates through the browser by clicking on the lock icon next to the url. SSH into your server and run the following command from any directory:
 ```
 $ sudo certbot renew
 ```
