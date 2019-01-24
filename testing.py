@@ -1,17 +1,22 @@
 '''Testing Python Code'''
 
 
-# Code checkers: pylint or pycodestyle
+# Code checkers: pylint, pycodestyle or pyflakes
 # -----------------------------------------------------------------------------
 # These check for code errors and style issues:
 # https://pylint.readthedocs.io/en/latest/
 # https://pypi.python.org/pypi/pycodestyle/2.2.0
-# pylint - $ pip3 install pylint
-# pycodestyle - $ pip3 install pycodestyle
+# https://pypi.org/project/pyflakes/
+
+# Install:
+# pylint       $ pip3 install pylint
+# pycodestyle  $ pip3 install pycodestyle
+# pyflakes     $ pip3 install pyflakes
 
 # Test a file via the command line:
 # $ pylint myfile.py
 # $ pycodestyle myfile.py
+# $ pyflakes myfile.py
 
 A = 1
 B = 2
@@ -35,6 +40,11 @@ print(C)
 
 # pycodestyle always expects 2 blank lines following an import, function def
 # or class. It also expects all imports to be at the top of the file.
+
+# Some developers that actually code for python say that they hate pylint,
+# because it's way too opinionated. For example, they get 40% marks on average
+# and they are ideal python developers. These people say they prefer pyflakes
+# and I tend to agree.
 
 
 # NOTE: Atom linter-pylint package
