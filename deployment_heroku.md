@@ -105,6 +105,11 @@ Now we need to make sure to include three files before we upload. These should b
    ```
    web: gunicorn app:app
    ```
+   If you're also using flask-migrate:
+
+   ```
+   web: flask db upgrade; gunicorn app:app
+   ```
    or:
    ```
    web: uwsgi uwsgi.ini
@@ -275,7 +280,7 @@ Final note: If you created your database on Heroku only, don't forget to add **p
 
 ## Setting environment variables
 
-As we've seen above for the FLASK_APP variable, you can set environment variables on heroku with `heroku config:set`:
+As we've seen above for the FLASK_APP variable, you can set environment variables on heroku with `heroku config:set` or you get add them all via the dashboard under Settings > Config Vars.
 ```
 $ heroku config:set FLASK_APP=microblog.py --app kusshi
 ```
