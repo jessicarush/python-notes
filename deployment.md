@@ -440,9 +440,10 @@ On visiting the [Let's Encrypt](https://letsencrypt.org/) website, you'll be dir
 ```
 $ sudo apt-get update
 $ sudo apt-get install software-properties-common
+$ sudo add-apt-repository universe
 $ sudo add-apt-repository ppa:certbot/certbot
 $ sudo apt-get update
-$ sudo apt-get install python-certbot-nginx
+$ sudo apt-get install certbot python-certbot-nginx
 $ sudo certbot --nginx
 ```
 
@@ -484,9 +485,19 @@ $ sudo service nginx reload
 $ sudo supervisorctl start microblog
 ```
 
+**Note:** In February 2019, Let's Encrypt ended TLS-SNI-01 type validation. Basically, that meant I needed to reinstall Certbot so that it used the an alternate validation method (HTTP-01, DNS-01, or TLS-ALPN-01). During the update I received the following recommendation:
+
+> IMPORTANT NOTES:
+  Your account credentials have been saved in your Certbot
+  configuration directory at /etc/letsencrypt. You should make a
+  secure backup of this folder now. This configuration directory will
+  also contain certificates and private keys obtained by Certbot so
+  making regular backups of this folder is ideal.
+
+
 ### Renewing your SSL certificates
 
-At some point you will receive an email reminder that your certificate(s) are up for renewal. Also, you can check the expiration date of your certificates through the browser by clicking on the lock icon next to the url. SSH into your server and run the following command from any directory:
+At some point you will likely receive an email reminder that your certificate(s) are up for renewal. Also, you can check the expiration date of your certificates through the browser by clicking on the lock icon next to the url. SSH into your server and run the following command from any directory:
 ```
 $ sudo certbot renew
 ```
