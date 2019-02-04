@@ -215,6 +215,7 @@ conn.close()
 # SELECT count(DISTINCT title) FROM artist_list WHERE artist='Pixies';
 # UPDATE contacts SET email='Danger! this will replace ALL email fields'
 # UPDATE contacts SET email='updates the one record' WHERE name='Bob';
+# DELETE FROM activity_list WHERE user_id IS NULL;
 # DELETE FROM contacts WHERE name='Bob';
 # DELETE FROM inventory WHERE quantity < 5
 #    – note, all operators work here
