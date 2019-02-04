@@ -22,7 +22,7 @@ Some examples and comments may come from the following:
 - [Learn Python the Hard Way](https://learnpythonthehardway.org/) - *Zed Shaw*  
 - [Python documentation](https://docs.python.org/3/index.html) - Python Software Foundation  
 
-Very special thanks to [aleph2c](https://github.com/aleph2c) for the unending explanations, knowledge and support. Check out his epic [statechart library; Miros here](https://aleph2c.github.io/miros/index.html).
+Very special thanks to [aleph2c](https://github.com/aleph2c) for the unending explanations, knowledge and support. Check out his epic [python statechart library; Miros here](https://aleph2c.github.io/miros/index.html).
 
 ## images
 
