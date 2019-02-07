@@ -65,9 +65,15 @@ upgrade an already installed package:
 $ pip install --upgrade flask
 ```
 As of pip version 1.3 you can run the following command to check if any of
-your packages can be updated:
+your packages can be updated. If you're in a virtual environment, add the `--local` option.
 ```
 $ pip list --outdated
+$ pip list --outdated --local
+```
+There's another library that actually format's this list even better:
+```
+$ pip install pip-check
+$ pip-check
 ```
 To see where a package is installed:
 ```
