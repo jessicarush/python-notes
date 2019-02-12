@@ -909,6 +909,18 @@ class A():
 
 A.note()
 
+# Note also that if you want to use the static method within the class istelf,
+# you can call it in the very same way:
+
+class A():
+    @staticmethod
+    def note():
+        print('This static method can be used throughout the class')
+
+    def do_something(self):
+        # do something
+        A.note()
+
 
 # Review: an interesting example
 # -----------------------------------------------------------------------------
