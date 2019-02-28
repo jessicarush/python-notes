@@ -10,14 +10,14 @@
 # create a list, then use an iterator and range() like this:
 
 squares = []
-for number in range(1,11):
+for number in range(1, 11):
     squares.append(number ** 2)
 
 print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 # or we could do it this way:
 
-squares = list(range(1,11))
+squares = list(range(1, 11))
 for number in squares:
     squares[number-1] = number ** 2
 
@@ -26,7 +26,7 @@ print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 # or we could use list comprehensions:
 # [expression for item in iterable]
 
-squares = [number ** 2 for number in range(1,11)]
+squares = [number ** 2 for number in range(1, 11)]
 
 print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
@@ -34,35 +34,56 @@ print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 # then write a for loop to generate the numbers you want to feed into the
 # expression:
 
-bottles = [(str(number) + ' bottles') for number in range(12,49,12)]
+bottles = [(str(number) + ' bottles') for number in range(12, 49, 12)]
 
 print(bottles)  # ['12 bottles', '24 bottles', '36 bottles', '48 bottles']
 
-# List comprehension with conditionals:
+# List comprehension with if conditional:
 # [expression for item in iterable if condition]
 
-odds = [number for number in range(1,10) if number % 2 == 1]
+odds = [number for number in range(1, 10) if number % 2 == 1]
 
 print(odds)  # [1, 3, 5, 7, 9]
 
 # The above is the same as:
 
 odds = []
-for number in range(1,10):
+for number in range(1, 10):
     if number % 2 == 1:
         odds.append(number)
 
 # Because this expression is so simple we could obviously just do this:
 
-odds = list(range(1,10,2))
+odds = list(range(1, 10, 2))
 
-# But the point here is to illustrate the syntax. The idea is to use an
-# actual expression instead of just the number as is.
+# But the point here is to illustrate the syntax.
 
-# Another example with nested loops. Here's the traditional way:
+# List comprehension with if/else conditionals:
+# [expression if condition else expression for item in iterable]
 
-rows = range(1,4)
-cols = range(1,3)
+# For this example, the values in 'reps' belong to the 'sets' in 'units'.
+# I want to fill out the reps list with zero values for the other units so
+# that both lista re the same length and could be zipped togtether:
+
+units = ['laps', 'seconds', 'sets', 'twirls', 'sets']
+reps = ['10', '6']
+
+# My onstincts would be to add the else at the end, but this is wrong!
+# new_reps = [reps.pop() for unit in units if unit == 'sets' else '0']
+
+new_reps = [reps.pop(0) if unit == 'sets' else '0' for unit in units]
+
+print(new_reps)
+# ['0', '0', '10', '0', '6']
+
+
+# List Comprehensions: nested loops example
+# ----------------------------------------------------------------------------
+# Another example using nested loops.
+# Here's the traditional way:
+
+rows = range(1, 4)
+cols = range(1, 3)
 
 cells = []
 for row in rows:
@@ -73,8 +94,8 @@ print(cells)  # [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]
 
 # or use a comprehension:
 
-rows = range(1,4)
-cols = range(1,3)
+rows = range(1, 4)
+cols = range(1, 3)
 
 cells = [(row, col) for row in rows for col in cols]
 
@@ -96,6 +117,7 @@ print(flat)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 # List Comprehensions: practical example from data plotting
 # -----------------------------------------------------------------------------
+
 import pandas
 
 # An example from a pandas, bokeh data plot. What we're trying to do is create
@@ -116,7 +138,7 @@ def color_by_value(open_price, close_price):
         color = 'red'
     return color
 
-df['color'] = [color_by_value(open_price, close_price) \
+df['color'] = [color_by_value(open_price, close_price)
                for open_price, close_price in zip(df.open, df.close)]
 
 # see also: pygal_intro.py
