@@ -355,7 +355,7 @@ for name, phone, email in cursor:
 
 # You can dump into a variable to use (not so good with a big db)
 curs.execute('SELECT * FROM contacts')
-stuff = cursor.fetchall()
+stuff = curs.fetchall()
 
 print(stuff)
 for name, phone, email in stuff:
