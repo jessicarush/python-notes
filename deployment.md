@@ -165,15 +165,65 @@ $ sudo apt-get -y install sqlite3 libsqlite3-dev
 - **ngnix** - the server that accepts all requests that come from the outside world, and forwards them to the application.
 - **git** - to download the application directly from its github repo.
 
+### Postfix
+
 Note that the default installation of postfix is likely insufficient for sending email in a production environment. To avoid spam and malicious emails, many servers require the sender server to identify itself through security extensions, which means at the very least you have to have a domain name associated with your server. If you want to learn how to fully configure an email server so that it passes standard security tests, see the following Digital Ocean guides:
 
 
 - [Postfix Configuration](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-as-a-send-only-smtp-server-on-ubuntu-16-04)
+- [Postfix Configuration updated for Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-on-ubuntu-18-04)
 - [Adding an SPF Record](https://www.digitalocean.com/community/tutorials/how-to-use-an-spf-record-to-prevent-spoofing-improve-e-mail-reliability)
 - [DKIM Installation and Configuration](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-dkim-with-postfix-on-debian-wheezy)
 
+Some highlights:
+
+#### 1. Make sure your hostname matches your domain name
+The instructions say:
+
+> Note that your server's hostname should match this domain or subdomain. You can verify the server's hostname by typing hostname at the command prompt. The output should match the name you gave the Droplet when it was being created.
+
+Just to be safe I make sure my domain name (e.g. `microblog.zebro.id`) matches the hostname in all the following places (I also name my droplet to match my domain name though I don't know if this is necessary):
+```
+sudo nano /etc/hostname
+sudo nano /etc/mailname
+sudo nano /etc/hosts
+sudo hostname microblog.zebro.id
+```
+
+After you do this you should reboot your server:
+```
+sudo reboot
+```
+
+#### 2. Modify the postfix config
+
 > Postfix is set up with a default configuration. If you need to make
 changes, edit */etc/postfix/main.cf* (and others) as needed. After modifying *main.cf*, be sure to run *'/etc/init.d/postfix reload'*.
+
+```
+sudo nano /etc/postfix/main.cf
+```
+Change the following options like so:
+```
+myhostname = micrblog.zebro.id
+inet_interfaces = loopback-only
+mydestination = $myhostname, localhost.$mydomain, $mydomain
+```
+After making changes :
+```
+/etc/init.d/postfix reload
+sudo systemctl restart postfix
+```
+
+#### 3. Having issues?
+
+First thing to do is check the log:
+```
+sudo nano /var/log/mail.log
+```
+
+Note that Apple email addresses are a pain in the ass. If an Apple email address is used as the 'sender' (in your actual flask application email functions), you may get blocked by this site called Proof Point. It may also happen if the `to:` address is an Apple email. Proof Point will block your ip. You'll have to go to their site (the address will be in the error logs) and fill out a f***ing form for them to let you send emails.
+
 
 ### Elasticsearch
 
