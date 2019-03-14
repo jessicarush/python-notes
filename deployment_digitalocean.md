@@ -38,14 +38,14 @@ On Digital Ocean, servers are called *droplets*. To create a new server, find th
 ### Basic settings:
 
 - **Choose an image:** This is the operating system that will be installed on the 'server'. Typically Ubuntu 16.04 x64 is the way to go. This is an 'LTS' (longterm support) distribution.
-- **Choose a size:** the smallest to start, you can always upgrade it later.
-- **Add block storage:** leave blank
+> Note: as of March 2019, Ubuntu 18.04 x64 is the default distro.
+- **Choose a plan/size:** the smallest to start, you can always upgrade it later.
+- **Add backups, block storage:** choose or leave blank
 - **Choose a datacenter region:** choose closest to your users for speed.
 
 ### Additional options:
 
 - **private networking:** allows droplets to communicate with each other without going through the internet.
-- **backups:** adds weekly backups for extra $
 - **IPv6:** default droplets run on IPv4
 - **user data:** fancy cloud init feature
 - **monitoring:** adds a droplet with metrics and monitoring features.

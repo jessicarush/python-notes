@@ -70,7 +70,7 @@ For more information see the [vagrant commend line documentation].(https://www.v
 
 ## SSH
 
-Most of your interactions with the server will be through SSH. On Linux and Mac OS, OpenSSH is already installed. If you are using a third party virtual server, you'll want to make sure to look into adding your ssh keys so you don't have to enter passwords all the time. On Digital Ocean its under settings/security.
+Most of your interactions with the server will be through SSH. On Linux and Mac OS, OpenSSH is already installed. If you are using a third party virtual server, you'll want to make sure to look into adding your ssh keys so you don't have to enter passwords all the time. On Digital Ocean it's under settings/security.
 ```
 $ ssh root@165.227.40.207
 ```
@@ -139,12 +139,15 @@ $ sudo ufw status
 
 ## Installing Base Dependencies
 
-At the time of this writing, Digital Ocean's Ubuntu 16.04 comes with Python 3.5. If you want to upgrade try this (untested!):
+Digital Ocean's Ubuntu 16.04 comes with Python 3.5. If you want to upgrade try this (untested!):
 ```
 $ sudo add-apt-repository ppa:jonathonf/python-3.6
 $ sudo apt-get update
 $ sudo apt-get install python3.6
 ```
+
+**Note as of 2019, Digital Ocean's default Ubuntu is 18.04 and this comes with Python 3.6.7 pre-intalled.**
+
 
 Otherwise, consider the following:
 ```
@@ -155,7 +158,7 @@ $ sudo apt-get -y install mysql-server
 $ sudo apt-get -y install sqlite3 libsqlite3-dev
 ```
 
-- **mysql-server** - MySQL for the database (for postgreSQL, see deployment_digitalocean.md).
+- **mysql-server** - MySQL for the database (for postgreSQL, see [deployment_digitalocean.md](deployment_digitalocean.md)).
 - **sqlite3** - dev tools for sqlite3 if you're using that instead.
 - **postfix**  - mail transfer agent, for sending out email.
 - **supervisor**  - a tool to monitor the Flask server process. It automatically restarts it if it ever crashes, or if the server is rebooted.
@@ -435,7 +438,7 @@ Miguel has written a detailed article: [Run your Flask application over HTTPS](h
 
 ## SSL Certificates
 
-On visiting the [Let's Encrypt](https://letsencrypt.org/) website, you'll be directed to one of several ACME clients which software that uses the Acme protocol which typically runs on your web hosts and demonstrates you are the controller of the domain. The recommended one for those will shell access is [Cerbot](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
+On visiting the [Let's Encrypt](https://letsencrypt.org/) website, you'll be directed to one of several ACME clients which is software that uses the Acme protocol which typically runs on your web hosts and demonstrates you are the controller of the domain. The recommended one for those will shell access is [Cerbot](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
 
 ```
 $ sudo apt-get update
@@ -456,7 +459,7 @@ Your key file has been saved at:
 >
 >Your cert will expire on 2018-07-01. To obtain a new or tweaked version of this certificate in the future, simply run certbot again with the "certonly" option. To non-interactively renew *all* of your certificates, run "certbot renew"
 
-So now we need to add these two paths to the nginx config from above:
+So now we need to add these two paths to the nginx config from above. **Note:** As of the certbot version 0.31.0, it automatically puts the news paths in your config. Be sure to check though.
 
 ```
 $ sudo nano /etc/nginx/sites-enabled/microblog
@@ -600,7 +603,7 @@ $ sudo supervisorctl status
 
 ## Misc
 
-Should you need to copy a file from your local machine to your server via SSH, not that the path for an Ubuntu user begins with `/home/`, for example:
+Should you need to copy a file from your local machine to your server via SSH, note that the path for an Ubuntu user begins with `/home/`, for example:
 ```
 scp /Users/jessicarush/Documents/Coding/Projects/review/data.db review@165.227.39.154:/home/review/backup
 ```
