@@ -19,10 +19,10 @@ print(dir(dict))
 # create a dict with = {}
 
 person = {
-    'first' : 'Mary',
-    'last' : 'Jane',
-    'age' : 70,
-    'height' : 165,
+    'first': 'Mary',
+    'last': 'Jane',
+    'age': 70,
+    'height': 165,
     }
 
 # Add or change an item
@@ -59,11 +59,11 @@ print(dict_from_args)
 # this would be like extend() for lists
 
 location = {
-    'apt' : '2',
-    'number' : '1234',
-    'street' : 'Main',
-    'city' : 'Vancouver',
-    'prov' : 'BC',
+    'apt': '2',
+    'number': '1234',
+    'street': 'Main',
+    'city': 'Vancouver',
+    'prov': 'BC',
     }
 
 person.update(location)
@@ -71,7 +71,7 @@ person.update(location)
 # If there are duplicate keys, the first dict will get updated with the
 # values from the second dict:
 
-new_address = { 'number': '1011', 'street': 'Beach'}
+new_address = {'number': '1011', 'street': 'Beach'}
 
 location.update(new_address)
 print(location)
@@ -97,7 +97,7 @@ person.clear()
 #   2. pop() lets you choose the key, whearas .popitem() takes no arguments;
 #      it removes an arbitrary item from the dict.
 
-person = {'first' : 'Mary', 'last' : 'Jane', 'age' : 70, 'height' : 165,}
+person = {'first': 'Mary', 'last': 'Jane', 'age': 70, 'height': 165}
 
 popped = person.popitem()
 print(person)                # {'first': 'Mary', 'last': 'Jane', 'age': 70}
@@ -125,8 +125,8 @@ print(location['street'])
 # get() function. Provide the key and an optional value. If the exists, you'll
 # get its value. If not, you'll get None or the optional value:
 
-print(location.get('country')) # returns None
-print(location.get('country', 'country not specified')) # country not specified
+print(location.get('country'))  # returns None
+print(location.get('country', 'not specified'))  # not specified
 
 # Or use 'in' to test when looking for a key:
 
@@ -252,7 +252,7 @@ print(location_copy)
 # also takes an optional single value parameter (if no value is specified,
 # the values will all be set to None).
 
-person = {'first' : 'Mary', 'last' : 'Jane', 'age' : 70, 'height' : 165,}
+person = {'first': 'Mary', 'last': 'Jane', 'age': 70, 'height': 165}
 things = ['thing1', 'thing2', 'thing3', 'thing4']
 
 new_dict = dict.fromkeys(things, 0.0)
