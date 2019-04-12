@@ -21,6 +21,9 @@
 #   Internationalization services. The locale setting affects the
 #   interpretation of many format specifiers in strftime() and strptime().
 
+# see also:
+# https://pythontic.com/modules/datetime/introduction
+
 
 # calendar module
 # -----------------------------------------------------------------------------
