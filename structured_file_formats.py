@@ -167,46 +167,63 @@ print(len(root[0])) # number of breakfast items
 # subset of JavaScript, and often legal Python syntax as well. Its close fit
 # to Python makes it a good choice for data interchange among programs.
 
-# The JSON module encodes (dumps) data to a JSON string and decodes (loads)
-# a JSON string back to data.
+# The JSON module can encode python data to a JSON *string* (dumps) and
+# decode a JSON string back to python data (loads).
+
+# The module also includes methods that can encode to a JSON *file* (dump) and
+# decode from a JSON file (load).
+
+import json
 
 # Here's a pythonic data structure to use:
 
 menu = {
-'breakfast': {
-    'hours': '7-11',
-    'items': {
-        'breakfast burritos': '$6.00',
-        'pancakes': '$4.00',
-        'bagel': '$2.50',
+    'breakfast': {
+        'hours': '7-11',
+        'items': {
+            'breakfast burritos': '$6.00',
+            'pancakes': '$4.00',
+            'bagel': '$2.50',
+            }
+        },
+    'lunch': {
+        'hours': '11-3',
+        'items': {'sandwich': '$8.00'}
+        },
+    'dinner': {
+        'hours': '3-10',
+        'items': {'spaghetti': '$9.00'}
         }
-    },
-'lunch': {
-    'hours': '11-3',
-    'items': {'sandwich': '$8.00'}
-    },
-'dinner': {
-    'hours': '3-10',
-    'items': {'spaghetti': '$9.00'}
-    }
 }
 
-# Encode the data structure (menu) to a JSON string (menu_json) by using:
-# dumps()
+# Encode the data structure to a JSON *string* by using dumps():
 
-import json
 menu_json = json.dumps(menu)
 
-print(menu_json)
+print(type(menu_json))
+# <class 'str'>
 
-# Decode the JSON string back into a python data structure using:
-# loads()
+# Decode the JSON string back into a python data structure using loads():
 
-menu2 = json.loads(menu_json)
+menu_from_string = json.loads(menu_json)
 
-print(menu2)
+print(type(menu_from_string))
+# <class 'dict'>
 
 # Note that the order of the keys may be different from when we started.
+
+# Encode the data structure to a JSON *file* by using dump():
+
+with open('data/menu.json', 'w') as fob:
+    json.dump(menu, fob)
+
+# Load the JSON file back into a python data structure using load():
+
+with open('data/menu.json', 'r') as fob:
+    menu_from_file = json.load(fob)
+
+print(menu_from_file['lunch']['items'])
+# {'sandwich': '$8.00'}
 
 # You might get an exception while trying to encode or decode some objects,
 # such as datetime. This can happen because the JSON standard does not define
@@ -247,6 +264,8 @@ json.dumps(now, cls=DTEncoder)
 # type-appropriate methods to examine their values. For example, if one of
 # the items is a dictionary, you can extract contents through keys(),
 # values(), and items().
+
+# see also: json_example.py
 
 
 # YAML
