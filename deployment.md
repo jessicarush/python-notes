@@ -362,6 +362,7 @@ $ mysql -u microblog -p
 $ USE microblog;
 $ SHOW TABLES;
 $ DESCRIBE tablename;
+$ exit;
 ```
 
 ## Set up Gunicorn and Supervisor
