@@ -29,6 +29,7 @@ This is a collection of notes, command line steps and reminders of packages to i
 - [Application Contexts](#application-contexts)
 - [Jinja Filters](#jinja-filters)
 - [JSON strings](#json-strings)
+- [Request object](#request-object)
 
 <!-- tocstop -->
 
@@ -317,4 +318,52 @@ source is now what we want:
     let data = {"2019-04-10": 6, "2019-04-8": 2, "2019-04-6": 8};
     // do stuff
 </script>
+```
+
+
+## Request object
+
+Flask's `request` object (`from flask import request`), is a subclass of the [Werkzeug Request](https://werkzeug.palletsprojects.com/en/0.15.x/wrappers/#base-wrappers) and provides all of the attributes Werkzeug defines plus a few Flask specific ones. See the [flask docs for a complete list](http://flask.pocoo.org/docs/1.0/api/?highlight=make_response#incoming-request-data).
+
+In short, there are various ways to get at the data being sent, depending on how it is being sent, for example:
+
+```python
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
+    # For url query parameters:
+    data = request.args
+    data = request.args.get('key')
+
+    # For form input:
+    data = request.form
+    data = request.form.get('key')
+    data = request.form.getlist('key')
+
+    # For content-type application/json, use request.get_json():
+    data = request.get_json()
+
+    # As a last resort use request.data:
+    data = request.data
+```
+
+Some other helpful attributes:
+
+```python
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
+
+    print(request.path)
+    # /demo
+    print(request.full_path)
+    # /demo?x=y
+    print(request.url)
+    # http://127.0.0.1:5007/demo?x=y
+    print(request.base_url)
+    # http://127.0.0.1:5007/demo
+    print(request.url_root)
+    # http://127.0.0.1:5007/
+    print(request.content_type)
+    # application/json (for example)
+    print(request.args)
+    # The parsed URL parameters (the part in the URL after the question mark).
 ```
