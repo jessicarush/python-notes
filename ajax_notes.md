@@ -19,6 +19,7 @@
   * [Issue the request](#issue-the-request-2)
   * [Handle the request](#handle-the-request-2)
 - [Example 4: send form data as request to a server](#example-4-send-form-data-as-request-to-a-server)
+- [jsonify vs json.dumps](#jsonify-vs-jsondumps)
 - [XMLHttpRequest Object Methods](#xmlhttprequest-object-methods)
 - [XMLHttpRequest Object Properties](#xmlhttprequest-object-properties)
 - [GET or POST?](#get-or-post)
@@ -145,7 +146,7 @@ function ajaxRequest() {
 
 ### Handle the request
 
-To handle the Ajax request, set up an endpoint similar to any other route or view function in the application, with the only difference being that instead of returning HTML or a redirect, it just returns data, formatted as JSON using Flask's `jsonify` method (don't forget to import it).
+To handle the Ajax request, set up an endpoint similar to any other route or view function in the application, with the only difference being that instead of returning HTML or a redirect, it just returns data, formatted as JSON using Flask's `jsonify` method (don't forget to import it). More on `jsonify()` vs `json.dumps()` below.
 
 ```python
 @app.route('/ajax_demo', methods=['GET'])
@@ -212,6 +213,38 @@ def ajax_demo():
 
 ## Example 4: send form data as request to a server
 
+coming soon.
+
+## jsonify vs json.dumps
+
+Note that when we send a response, we need to also send a `Content-Type` header which is used to indicate the media type of the resource being sent. A media type (also known as a Multipurpose Internet Mail Extensions or MIME type) is a standard that indicates the nature and format of a document, file, or assortment of bytes. Browsers use this MIME type, not the file extension, to determine how to process a URL, so it's important that web servers send the correct MIME type in the response's `Content-Type` header.
+
+See [MDN for a complete list of MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#Important_MIME_types_for_Web_developers).
+
+The `json.dumps()` method returns an encoded string, which would require manually adding a MIME type header. Flask's `jsonify()` method wraps the `json.dumps()` method and adds a few enhancements to make life easier. It returns a `flask.Response()` object that already has the appropriate content-type header: `application/json`. For convenience, it also converts multiple arguments into an array or multiple keyword arguments into a dict. This means that both `jsonify(1,2,3)` and `jsonify([1,2,3])` serialize to `[1,2,3]`.
+
+Here's an example of what the response might look like without using `jsonify`:
+
+```python
+@app.route('/ajax_demo', methods=['POST'])
+def ajax_demo():
+
+    data = request.get_json()
+    print(type(data), data)  # <class 'dict'> {'fruit': 'apples'}
+
+    if data['fruit'] == 'apples':
+        response = make_response(json.dumps({'have some': 'oranges'}))
+    else:
+        response = make_response(json.dumps({'have some': 'bananas'}))
+
+    response.status = '200'
+    response.mimetype = 'application/javascript'
+    # response.headers['Access-Control-Allow-Origin'] = '*'
+
+    return response
+```
+
+More about the [response object here](http://flask.pocoo.org/docs/1.0/api/?highlight=make_response#response-objects).
 
 
 ## XMLHttpRequest Object Methods
