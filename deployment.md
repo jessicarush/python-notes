@@ -179,6 +179,10 @@ Note that the default installation of postfix is likely insufficient for sending
 - [Adding an SPF Record](https://www.digitalocean.com/community/tutorials/how-to-use-an-spf-record-to-prevent-spoofing-improve-e-mail-reliability)
 - [DKIM Installation and Configuration](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-dkim-with-postfix-on-debian-wheezy)
 
+In addition I've heard it's good to set up DMARC. Here's a couple of links that explain further:  
+[How to eliminate spam and protect your name with DMARC](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)  
+[What is DMARC?](https://www.proofpoint.com/us/corporate-blog/post/what-is-dmarc)  
+
 Some highlights:
 
 #### 1. Make sure your hostname matches your domain name
