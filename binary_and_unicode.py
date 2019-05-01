@@ -9,9 +9,9 @@
 
 # Therefor in Python 3 you can use unicode IDs or names in a string:
 
-print('Caf\u00E9') # use \u for four hex numbers
-print('Ghost: \U0001F47B') # use \U for eight hex numbers
-print('Infinity: \N{INFINITY}') # use \N{name} for unicode names
+print('Caf\u00E9')               # use \u for four hex numbers
+print('Ghost: \U0001F47B')       # use \U for eight hex numbers
+print('Infinity: \N{INFINITY}')  # use \N{name} for unicode names
 
 # The python unicodedata module has functions that translate in both directions
 # lookup() takes a case-insensitive name and returns the unicode character
@@ -22,15 +22,17 @@ print('Infinity: \N{INFINITY}') # use \N{name} for unicode names
 
 import unicodedata
 
+
 def unicode_test(value):
     '''Unicode character name lookup function.'''
     name = unicodedata.name(value)
     value2 = unicodedata.lookup(name)
     print(value, '–', name, '–', value2)
 
-unicode_test('A')      # A – LATIN CAPITAL LETTER A – A
-unicode_test('\u00E9') # é – LATIN SMALL LETTER E WITH ACUTE – é
-unicode_test('∞')      # ∞ – INFINITY – ∞
+
+unicode_test('A')       # A – LATIN CAPITAL LETTER A – A
+unicode_test('\u00E9')  # é – LATIN SMALL LETTER E WITH ACUTE – é
+unicode_test('∞')       # ∞ – INFINITY – ∞
 
 
 # Encoding
@@ -134,7 +136,7 @@ def to_bytes(bytes_or_str):
 
 # Formatting as binary, hex, octal
 # -----------------------------------------------------------------------------
-# {:b) will format numbers as binary (base 2):
+# {:b} will format numbers as binary (base 2):
 
 for i in range(17):
     print("{0:>2} in binary is {0:>08b}".format(i))
@@ -150,60 +152,37 @@ for i in range(17):
     print("{0:>2} in octal is {0:>4o}".format(i))
 
 
-# Inputing binary, hex, octal
+# Integers from binary, hex, octal format
 # -----------------------------------------------------------------------------
 
-w = 32        # normal number (base 10)
-x = 0x20      # hexadecimal (base 16) starts with 0x
-y = 0b100000  # binary number (base 2) starts with 0b
-z = 0o40      # octal number (base 8) starts with 0o
+n = 32             # normal number (base 10)
+h = 0x20           # hexadecimal (base 16) starts with 0x
+b = 0b100000       # binary (base 2) starts with 0b
+o = 0o40           # octal (base 8) starts with 0o
 
-print(w, x, y, z)  # 32 32 32 32
+print(n, type(n))  # 32 <class 'int'>
+print(h, type(h))  # 32 <class 'int'>
+print(b, type(b))  # 32 <class 'int'>
+print(o, type(o))  # 32 <class 'int'>
 
 
-# Converting integers to binary, hex, octal
+# Converting integers to binary, hex, octal strings
 # -----------------------------------------------------------------------------
 
-x = hex(32)   # hexadecimal (base 16)
-y = bin(32)   # binary number (base 2)
-z = oct(32)   # octal number (base 8)
+h = hex(32)        # hexadecimal (base 16)
+b = bin(32)        # binary (base 2)
+o = oct(32)        # octal (base 8)
 
-print(x, y, z)  # 0x20 0b100000 0o40
-
-
-# bytes() and bytearray()
-# -----------------------------------------------------------------------------
-# These two objects are sequences of eight-bit integers, with possible values
-# of 0 to 255:
-
-a_list = [1, 2, 3, 255]
-string = 'Sample Text'
-
-list_bytes = bytes(a_list)                 # b'\x01\x02\x03\xff'
-string_bytes = bytes(string, 'utf-8')      # b'Sample Text'
-
-list_array = bytearray(a_list)             # bytearray(b'\x01\x02\x03\xff')
-string_array = bytearray(string, 'utf-8')  # bytearray(b'Sample Text')
-
-print(type(list_bytes))                    # class 'bytes'
-print(type(list_array))                    # class 'bytearray'
-
-list_array[1] = 127     # works because bytearray is mutable
-# list_bytes[1] = 127   # doesn't work because bytes is immutable
-
-# The representation of a bytes value begins with a b'' and a quote character,
-# followed by hex sequences such as \x02 or ASCII characters, and ends with a
-# matching quote character. When printing bytes or bytearray data, Python uses
-# \x xx for non-printable bytes and their ASCII equivalents for printable ones
-# (plus some common escape characters, such as \n).
+print(h, type(h))  # 0x20 <class 'str'>
+print(b, type(b))  # 0b100000 <class 'str'>
+print(o, type(o))  # 0o40 <class 'str'>
 
 
 # to_bytes() and from_bytes()
 # -----------------------------------------------------------------------------
-# These two are methods that can be applied to integer objects.
-
-# to_bytes() - return an array of bytes representing an integer. The first
-# arg is the length
+# These two are methods that can be used with integer objects.
+# to_bytes() will return an array of bytes representing an integer.
+# The first arg is the length, the second declares the byteorder (see below).
 
 x = (1024).to_bytes(2, byteorder='big')
 y = (1024).to_bytes(2, byteorder='little')
@@ -211,14 +190,19 @@ y = (1024).to_bytes(2, byteorder='little')
 print("to_bytes:", x, y)
 # to_bytes: b'\x04\x00' b'\x00\x04'
 
-x = (1024).to_bytes(6, byteorder='big')
-y = (1024).to_bytes(6, byteorder='little')
+x = (1024).to_bytes(10, byteorder='big')
+y = (1024).to_bytes(10, byteorder='little')
 
-print("to_bytes:", x, y)
-# to_bytes: b'\x00\x00\x00\x00\x04\x00' b'\x00\x04\x00\x00\x00\x00'
+print("big endian bytes:", x)
+print("little endian bytes:", y)
+# big endian bytes:    b'\x00\x00\x00\x00\x00\x00\x00\x00\x04\x00'
+# little endian bytes: b'\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00'
 
 print(type(x))
 # class 'bytes'
+
+# Note that if you don't specify a length large enough to accomade the number,
+# you'll get a OverflowError: int too big to convert
 
 # from_bytes() - return the integer represented by the given array of bytes.
 
@@ -233,6 +217,50 @@ y = int.from_bytes(b'\x00\x04', byteorder='big')
 
 print("from_bytes:", x, y)
 # from_bytes: 4 4
+
+
+# big endian and little endian
+# -----------------------------------------------------------------------------
+# Big Endian Byte Order: The most significant byte (the "big end") of the data
+# is placed at the byte with the lowest address. The rest of the data is placed
+# in order in the next three bytes in memory.
+
+# Little Endian Byte Order: The least significant byte (the "little end") of
+# the data is placed at the byte with the lowest address. The rest of the data
+# is placed in order in the next three bytes in memory.
+
+# https://en.wikipedia.org/wiki/Endianness
+
+
+# bytes() and bytearray()
+# -----------------------------------------------------------------------------
+# These two objects are sequences of eight-bit integers, with possible values
+# of 0 to 255. The main difference between them is that bytearray() is mutable
+# while bytes() is not.
+
+a_list = [1, 2, 3, 255]
+string = 'Sample Text'
+
+list_bytes = bytes(a_list)                     # b'\x01\x02\x03\xff'
+string_bytes = bytes(string, 'utf-8')          # b'Sample Text'
+
+list_bytearray = bytearray(a_list)             # bytearray(b'\x01\x02\x03\xff')
+string_bytearray = bytearray(string, 'utf-8')  # bytearray(b'Sample Text')
+
+print(type(list_bytes))                        # class 'bytes'
+print(type(list_bytearray))                    # class 'bytearray'
+
+list_bytearray[1] = 127  # works because bytearray is mutable
+# list_bytes[1] = 127    # doesn't work because bytes is immutable
+
+# The representation of a bytes value begins with a b' and a quote character,
+# followed by hex sequences such as \x02 or ASCII characters, and ends with a
+# matching quote character. When printing bytes or bytearray data, Python uses
+# \x xx for non-printable bytes and their ASCII equivalents for printable ones
+# (plus some common escape characters, such as \n).
+
+# See also:
+# https://en.wikiversity.org/wiki/Python_Concepts/Bytes_objects_and_Bytearrays
 
 
 # Convert Binary Data with struct
@@ -317,16 +345,35 @@ print(testing)  # (154, 141)
 # Skip the final 6 bytes (6x)
 
 
-# big endian and little endian
+# Summary
 # -----------------------------------------------------------------------------
-# Big Endian Byte Order: The most significant byte (the "big end") of the data
-# is placed at the byte with the lowest address. The rest of the data is placed
-# in order in the next three bytes in memory.
 
-# Little Endian Byte Order: The least significant byte (the "little end") of
-# the data is placed at the byte with the lowest address. The rest of the data
-# is placed in order in the next three bytes in memory.
+some_string = 'hello'      # <class 'str'>
+some_bytes = b'hello'      # <class 'bytes'>
+some_num = 31              # <class 'int'>
+some_binary_num = b'\x1f'  # <class 'bytes'>
 
-# https://en.wikipedia.org/wiki/Endianness
+# encode() and decode()
+encoded = some_string.encode('utf-8')  # <class 'bytes'>
+decoded = some_bytes.decode('utf-8')   # <class 'str'>
+
+# bytes() and bytearray()
+bytes_instance = bytes(some_string, 'utf-8')          # <class 'bytes'>
+bytearray_instance = bytearray(some_string, 'utf-8')  # <class 'bytearray'>
+
+# to_bytes() and from_bytes()
+x = some_num.to_bytes(1, byteorder='big')             # <class 'bytes'>
+y = int.from_bytes(some_binary_num, byteorder='big')  # <class 'int'>
+
+# struct.pack() and struct.unpack()
+packed = struct.pack('>L', some_num)
+unpacked = struct.unpack('>5s', some_bytes)
+
+print(packed, type(packed))      # b'\x00\x00\x00\x1f' <class 'bytes'>
+print(unpacked, type(unpacked))  # (b'hello',) <class 'tuple'>
+
+
+# Next review: clarify the differences between these.
+
 
 # To read and write binary files see files_read_write.py
