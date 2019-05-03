@@ -34,6 +34,7 @@ Traditional hosting, means that the application is installed manually or through
 - [SSL Certificates](#ssl-certificates)
   * [Renewing your SSL certificates](#renewing-your-ssl-certificates)
 - [Redis Server & RQ workers](#redis-server--rq-workers)
+- [Security](#security)
 - [Misc](#misc)
 
 <!-- tocstop -->
@@ -494,7 +495,6 @@ Miguel has written a detailed article: [Run your Flask application over HTTPS](h
 
 3. Set up the A, AAAA Records to map to your droplet.
 
-
 ## SSL Certificates
 
 On visiting the [Let's Encrypt](https://letsencrypt.org/) website, you'll be directed to one of several ACME clients which is software that uses the Acme protocol which typically runs on your web hosts and demonstrates you are the controller of the domain. The recommended one for those will shell access is [Cerbot](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
@@ -659,6 +659,12 @@ Note, this tells you what's running:
 ```
 $ sudo supervisorctl status
 ```
+
+## Security
+
+[OWASP top ten](https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet)  
+[What Are The OWASP Top 10?](https://www.cloudflare.com/learning/security/threats/owasp-top-10/)  
+[10 Best Practices to Build Secure Applications](https://blog.sqreen.com/best-practices-build-secure-applications/)  
 
 ## Misc
 
