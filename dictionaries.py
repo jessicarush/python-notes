@@ -31,6 +31,34 @@ person['age'] = 40
 person['weight'] = 140
 
 
+# About dictionary keys
+# -----------------------------------------------------------------------------
+# Dictionary keys are unique and immutable. This means some data structures can
+# be used for keys and some cannot. For example:
+
+# Dictionary keys can be: strings, numbers, tuples, named tuples, frozensets
+# Dictionary keys cannot be: lists, other dictionaries
+
+from collections import namedtuple
+from pprint import pprint
+
+my_dict = {}
+User = namedtuple('User', 'first last age')
+
+my_dict['string'] = 'string'
+my_dict[25] = 'number'
+my_dict[('tuple',)] = 'tuple'
+my_dict[frozenset(('frozen', 'set'))] = 'frozenset'
+my_dict[User('Mary', 'Jane', 70)] = 'named tuple'
+
+pprint(my_dict)
+# {'string': 'string',
+#  User(first='Mary', last='Jane', age=70): 'named tuple',
+#  frozenset({'set', 'frozen'}): 'frozenset',
+#  25: 'number',
+#  ('tuple',): 'tuple'}
+
+
 # Convert to a dict with .dict()
 # -----------------------------------------------------------------------------
 
@@ -38,13 +66,16 @@ list_of_lists = [['a', 'A'], ['b', 'B'], ['c', 'C']]
 list_of_tuples = [('d', 'D'), ('e', 'E'), ('f', 'F')]
 tuple_of_lists = (['g', 'G'], ['h', 'H'], ['i', 'I'])
 list_of_two_char_strings = ['jJ', 'kK', 'lL']
-tuple_of_two_char_strings = ('mM', 'nM', 'oO')
 
 dict_from_lol = dict(list_of_lists)
 dict_from_lot = dict(list_of_tuples)
 dict_from_tol = dict(tuple_of_lists)
 dict_from_los = dict(list_of_two_char_strings)
-dict_from_tos = dict(tuple_of_two_char_strings)
+
+print(dict_from_lol)  # {'a': 'A', 'b': 'B', 'c': 'C'}
+print(dict_from_lot)  # {'d': 'D', 'e': 'E', 'f': 'F'}
+print(dict_from_tol)  # {'g': 'G', 'h': 'H', 'i': 'I'}
+print(dict_from_los)  # {'j': 'J', 'k': 'K', 'l': 'L'}
 
 # You can also use standard keyword arguments with dict():
 
@@ -74,8 +105,12 @@ person.update(location)
 new_address = {'number': '1011', 'street': 'Beach'}
 
 location.update(new_address)
-print(location)
-# {'apt': 2, 'number': 1011, 'street': 'Beach', 'city': 'Vancouver', 'prov': 'BC'}
+pprint(location)
+# {'apt': '2',
+#  'city': 'Vancouver',
+#  'number': '1011',
+#  'prov': 'BC',
+#  'street': 'Beach'}
 
 
 # Delete an item by key with del
@@ -125,8 +160,8 @@ print(location['street'])
 # get() function. Provide the key and an optional value. If the exists, you'll
 # get its value. If not, you'll get None or the optional value:
 
-print(location.get('country'))  # returns None
-print(location.get('country', 'not specified'))  # not specified
+print(location.get('country'))                   # returns None
+print(location.get('country', 'not specified'))  # returns 'not specified'
 
 # Or use 'in' to test when looking for a key:
 
@@ -158,6 +193,7 @@ while True:
 location.setdefault('country', 'Canada')
 print(location['country'])
 # Canada
+
 location.setdefault('country', 'USA')
 print(location['country'])
 # Canada
@@ -168,8 +204,8 @@ print(location['country'])
 # When iterating over keys, values or both,
 # keep in mind that keys are the default:
 
-for i in location.keys():
-    print(i)
+for k in location.keys():
+    print(k)
 # apt
 # number
 # street
@@ -186,8 +222,8 @@ for i in location:
 # prov
 
 # but the other two methods (values and items) are still required:
-for i in location.values():
-    print(i)
+for v in location.values():
+    print(v)
 # 2
 # 1234
 # Main
@@ -226,6 +262,12 @@ for key in ordered_keys:
 
 for key in sorted(location.keys()):
     print(key, '–', location[key])
+# apt – 2
+# city – Vancouver
+# country – Canada
+# number – 1011
+# prov – BC
+# street – Beach
 
 
 # Sort by dict values
@@ -233,17 +275,24 @@ for key in sorted(location.keys()):
 # this trick returns a list of tuples from a dict, sorted by value:
 
 ordered_vals = sorted(location.items(), key=lambda x: x[1])
-print(ordered_vals)
+
+pprint(ordered_vals)
+# [('number', '1011'),
+#  ('apt', '2'),
+#  ('prov', 'BC'),
+#  ('street', 'Beach'),
+#  ('country', 'Canada'),
+#  ('city', 'Vancouver')]
 
 
 # Copy a dict with .copy()
 # -----------------------------------------------------------------------------
 
 location_copy = location.copy()
-location['city'] = 'montreal'
+location['city'] = 'Montreal'
 
-print(location)
-print(location_copy)
+print(location)       # {..., 'city': 'Montreal',...}
+print(location_copy)  # {..., 'city': 'Vancouver',...}
 
 
 # Create a new dict from a sequence with .fromkeys()
@@ -287,6 +336,7 @@ from collections import defaultdict
 
 jellybeans = defaultdict(int)
 jellybeans['red']
+print(jellybeans)  # defaultdict(<class 'int'>, {'red': 0})
 
 # The argument to defaultdict() is a function. The function returns the value
 # for the missing key.
@@ -298,14 +348,16 @@ def missing():
 
 jellybeans = defaultdict(missing)
 jellybeans['orange']
-print(jellybeans['orange'])
+print(jellybeans['orange'])  # 0.0
 
-# you can use int(), list(), or dict() functions to return empty values for
-# those types:
+# you can use int(), list(), set(), tuple() or dict() functions to return
+# empty values for those types:
 
-jellybeans = defaultdict(int)   # returns 0
-jellybeans = defaultdict(list)  # returns an empty list
-jellybeans = defaultdict(dict)  # returns an empty dictionary
+jellybeans = defaultdict(int)    # returns 0
+jellybeans = defaultdict(list)   # returns an empty list
+jellybeans = defaultdict(set)    # returns an empty set
+jellybeans = defaultdict(tuple)  # returns an empty tuple
+jellybeans = defaultdict(dict)   # returns an empty dictionary
 
 # you could also use lambda
 
