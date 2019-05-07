@@ -90,8 +90,8 @@ The end
 
 # This writes the contents of text to the file testfile1:
 
-with open('testfile1.txt', 'w') as f_object:
-    f_object.write(text1)
+with open('testfile1.txt', 'w') as fob:
+    fob.write(text1)
 
 # If you have a very large source string, you can write it in chunks
 # (because a very large source could be quite taxing on memory, or
@@ -101,31 +101,30 @@ size = len(text2)
 offset = 0
 chunk = 100
 
-with open('testfile1.txt', 'w') as f_object:
+with open('testfile1.txt', 'w') as fob:
     while True:
         if offset > size:
             break
-        f_object.write(text2[offset : offset + chunk])
+        fob.write(text2[offset: offset + chunk])
         offset += chunk
 
 # Test 'x' with our own exception handler:
 
 try:
-    f_object = open('testfile1.txt', 'x')
-    f_object.write('stuff')
+    fob = open('testfile1.txt', 'x')
+    fob.write('stuff')
 except FileExistsError:
     print('testfile1 file already exists!')
 
 
 # print() to a file
 # -----------------------------------------------------------------------------
-# You can also print to a text file. Note: when typing out file=fileoject, its
-# actually the convention to NOT have spaces around the equals sign because
-# these are named arguments as opposed to variable assignments. Same goes for
-# sep='' and end='' coming up.
+# You can also print to a text file. Note: when typing out file=fileobject,
+# it's the convention to NOT have spaces around the equals sign because
+# these are named arguments as opposed to variable assignments.
 
-with open('testfile2.txt', 'w') as f_object:
-    print(text1, file=f_object)
+with open('testfile2.txt', 'w') as fob:
+    print(text1, file=fob)
 
 # When printing additional data to a file you'll get a space between each
 # argument and a newline at the end. These are due to the following arguments:
@@ -135,8 +134,8 @@ with open('testfile2.txt', 'w') as f_object:
 
 # If you want to change these print() defaults:
 
-with open('testfile2.txt', 'w') as f_object:
-    print(text1, file=f_object, sep='', end='')
+with open('testfile2.txt', 'w') as fob:
+    print(text1, file=fob, sep='', end='')
 
 
 # read()
@@ -188,7 +187,7 @@ with open("testfile1.txt", 'r') as fob:
     line = fob.readline()
     while line:
         print(line, end='')
-        line = fob.readline() # moves to the next line
+        line = fob.readline()  # moves to the next line
 
 
 # Read a file by iterating
@@ -235,7 +234,7 @@ with open(filename + '.txt', 'w') as fob1:
 
 # readlines() *plural
 # -----------------------------------------------------------------------------
-# readlines() - the previous examples read and built up a single string.
+# readlines() - the previous examples read and build up a single string.
 # This call reads a line at a time and returns a list of one-line strings:
 
 with open('testfile1.txt', 'r') as fob:
@@ -249,7 +248,7 @@ print(type(lines))  # <class 'list'>
 # with readlines() you can go from the last line to the first:
 
 with open("testfile1.txt", 'r') as fob:
-    lines  = fob.readlines()
+    lines = fob.readlines()
     for line in lines[::-1]:
         print(line, end='')
 
@@ -259,7 +258,7 @@ with open("testfile1.txt", 'r') as fob:
 
 # eval()
 # -----------------------------------------------------------------------------
-# Problems can arise when trying to read data structure from files. Example:
+# Problems can arise when trying to read data structures from files. Example:
 
 unkle = ('The Road, Pt. 1', 'UNKLE', '2017', (
          (1, 'Inter 1'),
@@ -274,7 +273,7 @@ with open('music.txt', 'w') as music_file:
 # back in as a tuple because it's now just a string with brackets. That's when
 # eval() can help:
 
-with open ('music.txt', 'r') as music_file:
+with open('music.txt', 'r') as music_file:
     music_contents = music_file.readline()
 
 unkle = eval(music_contents)
@@ -304,7 +303,7 @@ with open('testbinary', 'wb') as fob:
     while True:
         if offset > size:
             break
-        fob.write(bdata[offset : offset + chunk])
+        fob.write(bdata[offset: offset + chunk])
         offset += chunk
 
 # read() a Binary file:
