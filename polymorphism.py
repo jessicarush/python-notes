@@ -16,24 +16,24 @@
 class AudioFile():
     def __init__(self, filename):
         if not filename.endswith(self.ext):
-            raise Exception("Invalid file format")
+            raise Exception('Invalid file format')
 
         self.filename = filename
 
 class Mp3File(AudioFile):
     ext = 'mp3'
     def play(self):
-        print(f"playing mp3: {self.filename}")
+        print(f'playing mp3: {self.filename}')
 
 class WavFile(AudioFile):
     ext = 'wav'
     def play(self):
-        print(f"playing wav: {self.filename}")
+        print(f'playing wav: {self.filename}')
 
 class AacFile(AudioFile):
     ext = 'aac'
     def play(self):
-        print(f"playing aac: {self.filename}")
+        print(f'playing aac: {self.filename}')
 
 a = Mp3File('sing.mp3')
 b = WavFile('sang.wav')
@@ -58,13 +58,13 @@ c.play()
 
 class FlacFile():
     def __init__(self, filename):
-        if not filename.endswith(".flac"):
-            raise Exception("Invalid file format")
+        if not filename.endswith('.flac'):
+            raise Exception('Invalid file format')
 
         self.filename = filename
 
         def play(self):
-            print(f"playing flac: {self.filename}")
+            print(f'playing flac: {self.filename}')
 
 # Duck typing in Python allows us to use any object that provides the required
 # behavior (the play method) without forcing it to be a subclass. The dynamic
@@ -80,7 +80,7 @@ class FlacFile():
 
 # Abstract base classes
 # -----------------------------------------------------------------------------
-# Abstract base classes, or ABCs define set of methods and properties that a
+# Abstract base classes, or ABCs define a set of methods and properties that a
 # class must implement in order to be considered a duck-type instance of that
 # class. The class can extend the abstract base class but it must supply all
 # the appropriate methods. Most of the abstract base classes that exist in the
@@ -112,15 +112,15 @@ print(isinstance(odds_container, Container))
 print(issubclass(OddsContainer, Container))
 # True
 
-# And that is why duck typing is way more interesting than classical
-# polymorphism. We can create 'is a' relationships without the overhead of using
-# inheritance (or worse, multiple inheritance). The interesting thing about the
-# Container ABC is that any class that implements it gets to use the in keyword
-# for free. In fact, in is just syntax sugar that delegates to the __contains__
+# And that's why duck typing is more interesting than classical polymorphism.
+# We can create 'is a' relationships without the overhead of using inheritance
+# (or worse, multiple inheritance). The interesting thing about the Container
+# ABC is that any class that implements it gets to use the 'in' keyword for
+# free. In fact, 'in' is just syntax sugar that delegates to the __contains__
 # method. Any class that has a __contains__ method is a Container and can
-# therefore be queried by the in keyword.
+# therefore be queried by the 'in' keyword.
 
-print(1 in odds_container)
+print(13 in odds_container)
 # True
 
 print(24 in odds_container)
@@ -132,7 +132,7 @@ print(24 in odds_container)
 # It's not necessary to have an abstract base class to enable duck typing.
 # However, imagine we were creating a media player with third-party plugins.
 # It is advisable to create an abstract base class in this case to document
-# what API the third- party plugins should provide. The abc module provides
+# what API the third- party plugins should provide. The 'abc' module provides
 # the tools you need to do this. A warning, this requires some of Python's
 # most arcane concepts...
 
@@ -155,7 +155,7 @@ class MediaLoader(metaclass=abc.ABCMeta):
                 return True
         return NotImplemented
 
-# The first weird thing is metaclass keyword argument passed into the class
+# The first weird thing is the metaclass keyword argument passed into the class
 # where you would normally see the list of parent classes. This is a rarely
 # used construct from the mystic art of metaclass programming. All you need
 # to know is that by assigning the ABCMeta metaclass, you are giving your
@@ -165,18 +165,19 @@ class MediaLoader(metaclass=abc.ABCMeta):
 # implement subclasses that do or don't supply those properties:
 
 class Flac(MediaLoader):
-    ext = 'flac'
+    # ext = 'flac'
     def play(self):
-        print(f"playing flac: {self.filename}")
+        print(f'playing flac: {self.filename}')
 
 f = Flac()
+
 # TypeError: Can't instantiate abstract class Flac with abstract methods ext
 # If a subclass fails to implement the abstract attributes, it is not possible
 # to instantiate that class.
 
-# Going back to the abc, the __subclasshook__. This special method is called
-# by the Python interpreter to answer the question, Is the class C a subclass
-# of this class?method is basically saying that any class that supplies
+# Going back to the ABC: the __subclasshook__. This special method is called
+# by the Python interpreter to answer the question: Is the class 'C' a subclass
+# of this class? The method is basically saying that any class that supplies
 # concrete implementations of all the abstract attributes of this ABC should
 # be considered a subclass of MediaLoader, even if it doesn't actually inherit
 # from the MediaLoader class...
@@ -184,7 +185,7 @@ f = Flac()
 class Mpeg():
     ext = 'mpeg'
     def play(self):
-        print(f"playing mpeg: {self.filename}")
+        print(f'playing mpeg: {self.filename}')
 
 print(issubclass(Mpeg, MediaLoader))
 # True
