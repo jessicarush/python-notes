@@ -14,11 +14,11 @@
 
 import dbm
 
-db = dbm.open('definitions', 'c')
+db = dbm.open('data/definitions', 'c')
 
-# The second argument to the following open() method is 'r' to read, 'w' to
-# write, and 'c' for both, creating the file if it doesn't exist. There's also
-# an 'n' option which will always create a new file, overwriting the old.
+# The second argument to the open() method is 'r' to read, 'w' to write, and
+# 'c' for both, creating the file if it doesn't exist. There's also an 'n'
+# option which will always create a new file, overwriting the old.
 # To create key-value pairs, just assign a value to a key just as you would
 # a dictionary. The keys of the database must be strings. The values must be
 # strings or None.
@@ -35,6 +35,11 @@ test = db['vert']
 print(type(test))  # <class 'bytes'>
 print(test)        # b'green'
 
+test = test.decode('utf-8')
+
+print(type(test))  # <class 'str'>
+print(test)        # green
+
 # close the database:
 db.close()
 
@@ -46,7 +51,7 @@ db.close()
 # reopen and read into a new dict:
 test_dict = {}
 
-with dbm.open('definitions', 'r') as db:
+with dbm.open('data/definitions', 'r') as db:
     print(db.keys())
     # [b'rouge', b'jaune', b'vert']
     for k in db.keys():
@@ -60,16 +65,16 @@ print(test_dict)
 
 test_dict_decoded = {}
 for k, v in test_dict.items():
-    test_dict_decoded[k.decode("utf-8")] = test_dict[k].decode("utf-8")
+    test_dict_decoded[k.decode('utf-8')] = test_dict[k].decode('utf-8')
 
 print(test_dict_decoded)
 # {'rouge': 'red', 'jaune': 'yellow', 'vert': 'green'}
 
 # the whichdb() method reports the type of database that was created. This will
-# vary depending on which modules are intalled on your system... either dbm.gnu,
-# dbm.ndbm or dbm.dumb.
+# vary depending on which modules are intalled on your system... one of either
+# dbm.gnu, dbm.ndbm or dbm.dumb.
 
-print(dbm.whichdb('definitions'))
+print(dbm.whichdb('data/definitions'))
 # dbm.ndbm
 
 
@@ -143,7 +148,7 @@ print(conn.getset('item', 'seahorse'))  # b'octopus'
 print(conn.get('item'))  # b'seahorse'
 
 # getrange() to get a substring , 0=start, -1=end
-print(conn.getrange('item', -5, -1 ))  # b'horse'
+print(conn.getrange('item', -5, -1))  # b'horse'
 
 # setrange() to replace a substring, using 0 based offset
 conn.setrange('item', 3, 'monkey')
@@ -292,7 +297,7 @@ conn.zadd('logins', 'bran', now+(2*60*60))
 # add another the next day:
 conn.zadd('logins', 'aria', now+(24*60*60))
 
-# get the order off a value:
+# get the order of a value:
 conn.zrank('logins', 'bran')
 
 # get the timestamp (score):
@@ -370,7 +375,7 @@ import time
 key = 'ned'
 conn.set(key, 'ned_will_expire')
 conn.expire(key, 5)
-conn.ttl(key)
+conn.ttl(key)   # returns the total time left: 5
 conn.get(key)   # returns ned_will_expire
 time.sleep(6)
 conn.get(key)   # returns None
