@@ -666,19 +666,35 @@ $ sudo supervisorctl status
 [What Are The OWASP Top 10?](https://www.cloudflare.com/learning/security/threats/owasp-top-10/)  
 [10 Best Practices to Build Secure Applications](https://blog.sqreen.com/best-practices-build-secure-applications/)  
 
-## Misc
+## Misc commands
 
 Should you need to copy a file from your local machine to your server via SSH, note that the path for an Ubuntu user begins with `/home/`, for example:
 ```
 scp /Users/jessicarush/Documents/Coding/Projects/review/data.db review@165.227.39.154:/home/review/backup
 ```
 
-Check your digitalocean droplet size:
+Check your digital ocean droplet size:
 ```
 $ df / -h
 ```
 
-Shutdown your droplet (for say resizing):
+Check your digital ocean droplet kernel and system architecture:
+```
+uname -ir
+```
+
+To upgrade your digital ocean droplet kernel and system packages:
+```
+$ sudo apt-get upgrade
+$ sudo apt-get dist-upgrade
+```
+
+Shutdown your droplet (for say resizing) with the Ubuntu command:
 ```
 $ sudo shutdown -h now
+```
+
+or using the digital ocean command:
+```
+$ sudo poweroff
 ```
