@@ -4,6 +4,7 @@
 
 <!-- toc -->
 
+- [pip](#pip)
 - [Installing & upgrading packages](#installing--upgrading-packages)
 - [Listing all packages](#listing-all-packages)
 - [Requirements files](#requirements-files)
@@ -13,7 +14,7 @@
 
 <!-- tocstop -->
 
-## Installing & upgrading packages
+## pip
 
 *`pip`* - you can install most python packages this way  
 *package managers* - (ie brew) work like pip but not restricted to python
@@ -47,6 +48,9 @@ $ pip2 install --upgrade pip
 $ pip install --upgrade pip
 ```
 >Note: the pip command belongs to whichever Python installed pip last; this is unavoidable if python and python3 install scripts to the same prefix. See [pypa/pip#2973](https://github.com/pypa/pip/issues/2973). Run python -m pip -U --force-reinstall pip to force reinstalling pip on python2 which will rewrite the script again.
+
+
+## Installing & upgrading packages
 
 install the most recent version of something:
 ```
