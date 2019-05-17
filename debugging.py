@@ -132,3 +132,13 @@ process_cities('data/cities.csv')
 # pdb.set_trace() expecting no arguments. It is purely a convenience function
 # so you don’t have to explicitly import pdb or type as much code to enter the
 # debugger.
+
+images = ['pickle.png', 'dog.jpg', 'car.png', 'apple.gif', 'baloon.psd']
+todo = []
+
+for i in images:
+    if not i.endswith('.png'):
+        breakpoint()
+        todo.append(i)
+
+print(todo)
