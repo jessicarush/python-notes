@@ -10,12 +10,13 @@
 # Therefor in Python 3 you can use unicode IDs or names in a string:
 
 print('Caf\u00E9')               # use \u for four hex numbers
+print('Caf\xe9')                 # if the unicode starts with 2 zeros
 print('Ghost: \U0001F47B')       # use \U for eight hex numbers
 print('Infinity: \N{INFINITY}')  # use \N{name} for unicode names
 
 # The python unicodedata module has functions that translate in both directions
 # lookup() takes a case-insensitive name and returns the unicode character
-# name() takes a unicode character and returns the upper case name
+# name() takes a unicode character and returns the upper case name.
 
 # This function will take a unicode character, look up its name, then look up
 # the character again (it should match the original character)
@@ -32,7 +33,15 @@ def unicode_test(value):
 
 unicode_test('A')       # A – LATIN CAPITAL LETTER A – A
 unicode_test('\u00E9')  # é – LATIN SMALL LETTER E WITH ACUTE – é
+unicode_test('\xE9')    # é – LATIN SMALL LETTER E WITH ACUTE – é
 unicode_test('∞')       # ∞ – INFINITY – ∞
+
+# Note that unicode numbers that start with two zeros can be written in two
+# ways, for example: `\u00e9` and `\xe9` produce the same thing. A simple way
+# to find the uniode character from the actual inserted character is using the
+# built-in ascii() method:
+
+print(ascii('é'))  # '\xe9'
 
 
 # Encoding
