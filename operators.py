@@ -8,24 +8,24 @@ b = 5
 # Arithmetic operators
 # -----------------------------------------------------------------------------
 
-print(a + b)  # Add
-print(a - b)  # Subtract
-print(a * b)  # Multiply
-print(a / b)  # Divide
-print(a // b) # Floor division: digits after the decimal are dropped
-print(a % b)  # Modulus: divides and returns the remainder of the first number
-print(a ** b) # Exponent calculation
+print(a + b)   # Add
+print(a - b)   # Subtract
+print(a * b)   # Multiply
+print(a / b)   # Divide
+print(a // b)  # Floor division: digits after the decimal are dropped
+print(a % b)   # Modulus: divides and returns the remainder of the first number
+print(a ** b)  # Exponent calculation
 
 
 # Comparison operators
 # -----------------------------------------------------------------------------
 
-print(a > b)  # Greater than
-print(a < b)  # Less than
-print(a >= b) # Greater or equal to
-print(a <= b) # Less or equal to
-print(a == b) # Equal to
-print(a != b) # Not equal to
+print(a > b)   # Greater than
+print(a < b)   # Less than
+print(a >= b)  # Greater or equal to
+print(a <= b)  # Less or equal to
+print(a == b)  # Equal to
+print(a != b)  # Not equal to
 
 
 # Assignment operators
@@ -55,9 +55,9 @@ print(a)  # 1.0
 a = 4
 b = 5
 
-c = divmod(a, b) # will return the quotient and the remainder as a tuple
-print(c)         # (0, 4)
-print(type(c))   # <class 'tuple'>
+c = divmod(a, b)  # will return the quotient and the remainder as a tuple
+print(c)          # (0, 4)
+print(type(c))    # <class 'tuple'>
 
 # NOTE: when working with modulus or divmod, keep in mind that when dividing
 # a larger number into a smaller number, the quotient will be always be zero
