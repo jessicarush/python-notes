@@ -70,7 +70,7 @@ for words in codewords:
 for words in codewords:
     for animal in animals:
         if animal in words:
-            print('4. There is an animal in the words')
+            print('There is an animal in the words')
 
 
 # ascii()
@@ -78,23 +78,25 @@ for words in codewords:
 # return a string containing a printable representation of an object but
 # escape the non-ASCII characters. Useful for finding out the unicode:
 
-print(ascii('café'))  # 'caf\xe9'
-print('caf\xe9')      # café
+print(ascii('café'))     # 'caf\xe9'
+print(ascii('Ʉ'))        # '\u0244'
+print('caf\xe9 \u0244')  # café
 
 
 # bin()
 # -----------------------------------------------------------------------------
 # converts and returns the binary equivalent string of a given integer. It
-# takes one parameter, in integer. If not an integer, you can implement the
+# takes one parameter, an integer. If not an integer, you can implement the
 # __index__() method to return an integer.
 
 number = 5
 print('The binary equivalent of 5 is:', bin(number))  # 0b101
 
-class Inventory:
+class Inventory():
     apple = 1
     orange = 2
     grapes = 2
+
     def __index__(self):
         return self.apple + self.orange + self.grapes
 
@@ -106,7 +108,21 @@ print('The binary equivalent of Inventory is:', bin(Inventory()))  # 0b101
 # see reflection.py
 # converts a value to Boolean (True or False)
 
-#
+
+# breakpoint()
+# -----------------------------------------------------------------------------
+# new to Python 3.7, drops you into the debugger where it is called
+# essentially it replaces import pdb; pdb.set_trace()
+
+images = ['pickle.png', 'dog.jpg', 'car.png', 'apple.gif', 'baloon.psd']
+non_png = []
+
+for i in images:
+    if not i.endswith('.png'):
+        breakpoint()
+        non_png.append(i)
+
+
 # bytearray()
 # -----------------------------------------------------------------------------
 # see binary_data.py
@@ -127,19 +143,20 @@ print('The binary equivalent of Inventory is:', bin(Inventory()))  # 0b101
 def test():
     pass
 
-callable(test)  #True
+callable(test)  # True
 
 
 # chr()
 # -----------------------------------------------------------------------------
 # returns a character (string) from an integer. The integer represents the
 # unicode code point of the character. The valid range of the integer is from
-# 0 through 1,114,111. The opposite method of chr() is ord()
+# 0 through 1,114,111. The opposite method of chr() is ord().
 
 print(chr(45))     # -
 print(chr(454))    # ǆ
 print(chr(4540))   # ᆼ
 print(chr(45400))  # 녘
+print(chr(233))    # é (233 = \u00e9)
 
 
 # classmethod()
@@ -170,6 +187,26 @@ print(complex())        # 0j
 print(complex(1))       # (1+0j)
 print(complex(2, -3))   # (2-3j)
 print(complex('5-9j'))  # (5-9j)
+
+
+# copyright()
+# -----------------------------------------------------------------------------
+# When printed or called prints copyright:
+# Copyright (c) 2001-2018 Python Software Foundation.
+# All Rights Reserved.
+# Copyright (c) 2000 BeOpen.com.
+# All Rights Reserved.
+# Copyright (c) 1995-2001 Corporation for National Research Initiatives.
+# All Rights Reserved.
+# Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
+# All Rights Reserved.
+
+
+# credits()
+# -----------------------------------------------------------------------------
+# When printed or called print python credits:
+# Thanks to CWI, CNRI, BeOpen.com, Zope Corporation and a cast of thousands
+# for supporting Python development. See www.python.org for more information.
 
 
 # delattr()
@@ -249,11 +286,13 @@ for colour in enumerate(colours):
 # of 0. The output below assumes the following snippet is in a file by itself.
 
 import sys
+
 filename = sys.argv[0]
 
 with open(filename) as file:
     for index, line in enumerate(file, 1):
         print("{}: {}".format(index, line), end='')
+
 # 1:  import sys
 # 2:  filename = sys.argv[0]
 # 3:
@@ -284,8 +323,11 @@ with open(filename) as file:
 program = 'a = 5\nb=10\nprint("Sum =", a + b)'
 exec(program)
 
-program = input('Enter a program:') # for num in range(1, 10): print(num)
-exec(program)
+
+# exit()
+# ----------------------------------------------------------------------------
+# quits a program running in the shell. You would never use exit() in
+# production code. sys.exit() is intended for use in programs.
 
 
 # filter()
@@ -323,9 +365,9 @@ print(filtered_letters)  # ['a', 'e', 'i', 'o']
 
 # Using a lambda function:
 
-data = ['one', 'two', 'n/a', 'three']
+data = ['one', 'two', 'n/a', 'three', '']
 
-filtered_data = list(filter(lambda x: x != 'n/a', data))
+filtered_data = list(filter(lambda x: x != 'n/a' and x != '', data))
 print(filtered_data)  # ['one', 'two', 'three']
 
 # Often, filters can be written as list comprehensions instead.
@@ -338,13 +380,13 @@ print(filtered_data)  # ['one', 'two', 'three']
 
 # Here's the above three examples written as list comprehensions:
 
-listcomp_example = [x for x in example if x != False]
+listcomp_example = [x for x in example if x is not False]
 print(listcomp_example)  # [1, '0', 'a', True]
 
 listcomp_letters = [x for x in letters if check_vowels(x)]
 print(listcomp_letters)  # ['a', 'e', 'i', 'o']
 
-listcomp_data = [x for x in data if x != 'n/a']
+listcomp_data = [x for x in data if x != 'n/a' and x != '']
 print(listcomp_data)  # ['one', 'two', 'three']
 
 # The concept of list comprehensions is more popular in Python but doesn't
@@ -453,8 +495,11 @@ help(documenting_naming)
 
 # input()
 # -----------------------------------------------------------------------------
-# see while_loops.py
 # returns a string of user input
+
+name = input('What is your name? ')
+print(f'Well hello {name}!')
+print(type(name))  # <class 'str'>
 
 
 # int()
@@ -484,8 +529,19 @@ help(documenting_naming)
 
 # len()
 # -----------------------------------------------------------------------------
-# see noSQL_datastores.py
-# returns the number of items (length) of an object
+# returns the number of items (length) of an object. note this works with many
+# differemt kinds of objects, for example see noSQL_datastores.py
+
+mylist = [1, 100, 3, 6]
+mydict = {'a': 'A', 'b': 'B'}
+
+print(len(mylist), len(mydict))  # 4 2
+
+
+# license()
+# -----------------------------------------------------------------------------
+# along the same lines as copyright() and credit(), if called prints the
+# license and short history.
 
 
 # list()
@@ -563,7 +619,7 @@ print(max(num1, num2, num3, key=add))  # [6, 66, 899, 790]
 # object by creating a memory view object.
 
 # Whenever we perform some action on an object (call a function of an object,
-# slice an list), Python needs to create a copy of the object. If we have a
+# slice a list), Python needs to create a copy of the object. If we have a
 # large data object to work with (eg. binary data of an image), we would
 # create copies of huge chunks of data, which serves almost no use.
 
@@ -636,6 +692,7 @@ print(ord('-'))    # 45
 print(ord('ǆ'))    # 454
 print(ord('ᆼ'))    # 4540
 print(ord('녘'))    # 45400
+print(ord('é'))    # 223
 
 
 # pow()
@@ -685,6 +742,15 @@ for i in range(0, 6):
 # – fdel (Optional) - function for deleting the attribute value
 # – doc (Optional) - string that contains the docstring for the attribute
 
+# note this method can also be used as a decorator: @property
+
+
+# quit()
+# -----------------------------------------------------------------------------
+# similar to exit() will end a running script in the shell. Unlike exit(),
+# it will raise a SystemExit exception behind the scenes. You would never
+# use quit() in production code.
+
 
 # range()
 # -----------------------------------------------------------------------------
@@ -699,6 +765,7 @@ print(numbers[0:50:2] == range(0, 50, 2)) # True
 # repr()
 # -----------------------------------------------------------------------------
 # returns a printable representation of the given object:
+
 import datetime
 
 now = datetime.datetime.utcnow()
@@ -774,7 +841,8 @@ print(p.name)  # Raja
 
 attributes = {'name': 'Paul', 'age': 50, 'email': 'paul@email.com'}
 
-# doesn't work and I don't know why:
+# this doesn't work because when using dot notation,
+# the property name must be the actual name:
 for key, value in attributes.items():
     p.key = value
 
@@ -915,7 +983,16 @@ print(vars())
 # elements based on the iterables passed, and returns an iterator of tuples
 
 
-#__import__()
+# __import__()
 # -----------------------------------------------------------------------------
 # see import.py
 # This is an advanced function that is called by the import statement.
+
+# __build_class__
+# __debug__
+# __doc__
+# __import__
+# __loader__
+# __name__
+# __package__
+# __spec__
