@@ -227,6 +227,9 @@ x: int
 
 from typing import List, Set, Dict, Tuple, Optional, Union, Any
 
+def some_function():
+    pass
+
 x: List[int] = [1]
 x: Set[int] = {6, 7}
 
