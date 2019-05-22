@@ -303,6 +303,11 @@ sum(testing)
 
 # Create your own exceptions
 # -----------------------------------------------------------------------------
+# WARNING! The standard library has over 165 differnt types of exceptions so
+# chances are you don't need to make your own. Keep in mind that creating your
+# own adds complexity to your code in that it forces others to do more work in
+# order to understnd your code. That being said...
+
 # More often than anything else, raise is used in conjunction with writing
 # your own exceptions in an effort to catch potential problems with your code.
 # Ideally, when your exception ends up being raised, it's a signal for you to
