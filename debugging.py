@@ -60,17 +60,19 @@ for each line in the text file:
         print the capital, a comma, and the country
 '''
 
+
 # Here's the actual code:
 def process_cities(filename):
     with open(filename, 'rt') as file:
         for line in file:
             line = line.strip()
-            if 'quit' in line.lower(): # should be if 'quit' == line.lower():
+            if 'quit' in line.lower():  # should be if 'quit' == line.lower():
                 return
             country, city = line.split(',')
             city = city.strip()
             country = country.strip()
             print(city.title(), country.title(), sep=',')
+
 
 # import pdb; pdb.set_trace()  # this will launch the debugger
 breakpoint()                   # this will launch the debugger as of Python 3.7
