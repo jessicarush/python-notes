@@ -8,31 +8,34 @@ from time import sleep
 # Write a function with def()
 # -----------------------------------------------------------------------------
 # Function names can start with letters or _ and contain only letters, numbers
-# and _. Pass means do noting but move on. It's a placeholder.
+# and _. Pass means do noting but move on. It's a placeholder for future code.
 # NOTE: it's good practice to put two spaces after each function definition,
 # unless they're nested inside another function or class.
 
-def myfunction(num1, num2): # num1, num2 are parameters
+def myfunction(num1, num2):  # num1, num2 are *parameters*
     pass
 
 
 # Call the function()
 # -----------------------------------------------------------------------------
-myfunction(1, 2) # 1, 2 are arguments
+myfunction(1, 2)  # 1, 2 are *arguments*
 
 
 # Reminder: return vs print
 # -----------------------------------------------------------------------------
 
 def myfunction1(num1, num2):
-    print(num1 * num2) # prints the result but returns None
+    print(num1 * num2)  # prints the result but returns None
+
 
 def myfunction2(num1, num2):
-    return num1 * num2 # prints nothing but returns the result
+    return num1 * num2  # prints nothing but returns the result
+
 
 # example:
 def heading(arg):
     return('{0:-^80}'.format(str(arg).title()))
+
 
 h = heading('Positional Arguments')
 print(h)
@@ -43,6 +46,7 @@ print(h)
 
 def menu(wine, cheese, dessert):
     return {'wine': wine, 'cheese': cheese, 'dessert': dessert}
+
 
 print(menu('chardonnay', 'cake', 'swiss'))
 # {'wine': 'chardonnay', 'cheese': 'cake', 'dessert': 'swiss'}
@@ -66,6 +70,7 @@ print(menu(wine='chardonnay', dessert='cake', cheese='swiss'))
 def menu(wine, cheese, *, courses=3, guests=1):
     return {'wine': wine, 'cheese': cheese}
 
+
 # menu('merlot', 'brie', 2, 4)
 # TypeError: menu() takes 2 positional arguments but 4 were given
 
@@ -86,28 +91,33 @@ def buggy(arg, result=[]):
     result.append(arg)
     print(result)
 
+
 buggy('a')      # ['a']
 buggy('b')      # ['a', 'b']
 buggy('c', [])  # ['c']
+
 
 # This next example works better to ensure we have an empty list each time,
 # however we no longer have the option of passing in a list:
 
 def works(arg):
-    result=[]
+    result = []
     result.append(arg)
     print(result)
 
+
 works('a')  # ['a']
 works('b')  # ['b']
+
 
 # Correct the first example by passing in None to indicate the first call:
 
 def nonbuggy(arg, result=None):
     if result is None:
-        result=[]
+        result = []
     result.append(arg)
     print(result)
+
 
 # or more common method of writing it:
 
@@ -116,9 +126,11 @@ def nonbuggy(arg, result=None):
     result.append(arg)
     print(result)
 
+
 nonbuggy('a')  # ['a']
 nonbuggy('b')  # ['b']
 nonbuggy('new list', ['hello'])  # ['hello', 'new list']
+
 
 # A more practical example of this situation would be where we want to set
 # a default value using a timestamp. In this case, we want to use a function
@@ -128,17 +140,20 @@ nonbuggy('new list', ['hello'])  # ['hello', 'new list']
 def log(message, timestamp=datetime.now()):
     print(f'{timestamp}: {message}')
 
+
 log('hello')
 sleep(1)
 log('hello again')
 # 2018-02-06 15:46:31.847122: hello
 # 2018-02-06 15:46:31.847122: hello again
 
-# Instead use None as the default, also a more compact expression:
+
+# Instead use None as the default, along with a compact expression:
 
 def log(message, timestamp=None):
     timestamp = timestamp if timestamp else datetime.now()
     print(f'{timestamp}: {message}')
+
 
 log('hello')
 sleep(1)
@@ -157,8 +172,10 @@ log('hello again')
 def print_args(*args):
     print(args, type(args))
 
+
 print_args(1, 2, 3, 'hello')  # (1, 2, 3, 'hello') <class 'tuple'>
 print_args(1)                 # (1,) <class 'tuple'>
+
 
 # The * operator can also be used when calling functions and here it means the
 # analogous thing. A variable prefaced by * when calling a function means that
@@ -167,8 +184,10 @@ print_args(1)                 # (1,) <class 'tuple'>
 def add(x, y):
     return x + y
 
+
 nums = [13, 7]
 add(*nums)  # returns 20
+
 
 # This example uses both methods at the same time:
 
@@ -178,8 +197,10 @@ def add(*args):
         result += num
     return result
 
+
 nums = [13, 7, 10, 40, 30]
 add(*nums)  # returns 100
+
 
 # You can have required and optional parameters. The required ones come first:
 
@@ -187,6 +208,7 @@ def print_more(required1, required2, *args):
     print('first argument is required:', required1)
     print('second argument is required:', required2)
     print('the rest:', args)
+
 
 print_more('red', 'green')
 # first argument is required: red
@@ -208,21 +230,26 @@ print_more('red', 'green', 'one', 'two', 'three')
 def print_kwargs(**kwargs):
     print(kwargs, type(kwargs))
 
+
 print_kwargs(x=1, y=2, z='hi')  # {'x': 1, 'y': 2, 'z': 'hi'} <class 'dict'>
+
 
 # And here we're using it in the function call:
 
 def add(x, y):
     return x + y
 
+
 nums = {'x': 13, 'y': 7}
 add(**nums)  # returns 20
+
 
 # And here we're using it in both places"
 
 def print_kwargs(**kwargs):
     for key in kwargs:
         print(key, 'en francais est', kwargs[key])
+
 
 colours = {'red': 'rouge', 'yellow': 'jaune', 'green': 'vert', 'black': 'noir'}
 
@@ -243,6 +270,7 @@ def myfunction1(arg):
     '''This is where you can provide a brief description of the function'''
     print(arg)
 
+
 def myfunction2(arg):
     '''
     The first line should be a short concise description.
@@ -252,6 +280,7 @@ def myfunction2(arg):
     for more information and examples.
     '''
     print(arg)
+
 
 print(myfunction1.__doc__)
 print(myfunction2.__doc__)
@@ -266,10 +295,13 @@ print(myfunction2.__doc__)
 def answer():
     print(100)
 
+
 def run_something(func):
     func()
 
+
 run_something(answer)  # 100
+
 
 # If the function you're passing as an arg requires its own args, just pass
 # them following the function name:
@@ -277,18 +309,23 @@ run_something(answer)  # 100
 def add_numbers(a, b):
     print(a + b)
 
+
 def run_something_with_args(func, arg1, arg2):
     func(arg1, arg2)
 
+
 run_something_with_args(add_numbers, 5, 10)  # 15
+
 
 # An example with a variable number of arguments:
 
 def sum_numbers(*args):
     print(sum(args))
 
+
 def run_with_positional_args(func, *args):
     return func(*args)
+
 
 run_with_positional_args(sum_numbers, 2, 3, 1, 4)  # 10
 
@@ -303,20 +340,21 @@ class A():
     def method(self):
         print("I'm from class A")
 
+
 def function():
     print("I'm not from class A")
 
+
 a = A()
-a.method()
+a.method()  # I'm from class A
 a.method = function
-a.method()
-# I'm from class A
-# I'm not from class A
+a.method()  # I'm not from class A
+
 
 # This method of adding or replacing functions is often referred to as
 # monkey-patching. Doing this kind of thing can cause situations that are
-# difficult to debug. That being said, it does have its uses though. Often, it's
-# used in automated testing. For example, if testing a client-server application,
+# difficult to debug. That being said, it does have its uses. Often, it's
+# used in automated testing. For example, if testing a client-server app,
 # we may not want to actually connect to the server while testing it; this may
 # result in accidental transfers of funds or test e-mails being sent to real
 # people. Instead, we can set up our test code to replace some of the key
@@ -344,6 +382,7 @@ def outer():
         print(x)
     inner()
 
+
 outer()  # 1
 
 
@@ -358,6 +397,7 @@ def outer():
     def inner():
         print(x)
     return inner
+
 
 a = outer()
 print(outer)  # <function outer at 0x1014a3510>
@@ -379,6 +419,7 @@ def outer(x):
     def inner():
         print(x)
     return inner
+
 
 a = outer(2)
 b = outer(3)
@@ -402,10 +443,13 @@ def edit_story(words, func):
     for word in words:
         print(func(word))
 
+
 sounds = ['thud', 'hiss', 'meow', 'tweet']
+
 
 def headline(testing):
     return testing.capitalize() + '!'
+
 
 edit_story(sounds, headline)
 
