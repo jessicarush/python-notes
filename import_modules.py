@@ -46,6 +46,17 @@ from myclasses import Person
 # Library/Frameworks/Python.framework/Versions/3.5/lib/python3.6
 
 
+# import ordering
+# -----------------------------------------------------------------------------
+# According to PEP8, imports should be listed in the following order.
+# Some also put a space between each group and some separate the regular
+# import statements from the 'from' import statements. Up to you.
+
+# 1. Standard library imports
+# 2. Third-party imports
+# 3. Applications imports
+
+
 # __name__ == '__main__'
 # -----------------------------------------------------------------------------
 # If you intend for your module to be imported, remember that your program
@@ -54,7 +65,7 @@ from myclasses import Person
 # itself use this:
 
 if __name__ == '__main__':
-    pass # call the function that starts the script
+    pass  # call the function that starts the script
 
 
 # see also packages.py
