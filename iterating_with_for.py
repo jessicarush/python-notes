@@ -4,7 +4,7 @@
 # Iterating over lists, tuples and sets returns individual items:
 # -----------------------------------------------------------------------------
 
-list1 = ['one' , 'two', 'three']
+list1 = ['one', 'two', 'three']
 tuple1 = ('four', 'five', 'six')
 set1 = {'seven', 'eight', 'nine'}
 
@@ -26,7 +26,7 @@ for item in set1:
 # nine
 # seven
 
-# Iterate using a slice.
+# You cab also iterate over a slice.
 for item in list1[2:]:
     print(item)
 # three
@@ -44,19 +44,18 @@ for char in string1:
 # n
 
 
-# Iterating over dictionaries returns keys
+# Iterating over dictionaries
 # -----------------------------------------------------------------------------
 
-dict1 = {'eleven' : '11', 'twelve': '12', 'thirteen': '13'}
+dict1 = {'eleven': '11', 'twelve': '12', 'thirteen': '13'}
 
-for item in dict1: # will choose keys
+for item in dict1:  # will choose keys
     print(item)
 # eleven
 # twelve
 # thirteen
 
-# same as:
-for item in dict1.keys():
+for item in dict1.keys():  # works the same as above
     print(item)
 # eleven
 # twelve
