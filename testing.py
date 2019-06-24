@@ -56,8 +56,8 @@ print(C)
 # $ pylint --generate-rcfile > ~/.pylintrc
 
 # In this file, find the variable 'disable=...'. It will be located in the
-# [MESSAGES] category. At the end of the disable assignment, add another comma
-# and the code C0103.
+# [MESSAGES CONTROL] category. At the end of the disable assignment, add a
+# comma followd by the code C0103 (this is the code is found in the warning).
 
 
 # Testing code with assert
@@ -69,14 +69,18 @@ def words(text):
     # from string import capwords
     # return capwords(text)
 
+
 def test_one_word():
     assert words('duck') == 'Duck', 'Single word failed!'
 
+
 def test_many_words():
-    assert words('flock of ducks') == 'Flock Of Ducks', 'Multiple words failed!'
+    assert words('flock of ducks') == 'Flock Of Ducks', 'Multiple words fail!'
+
 
 def test_with_apostrophes():
     assert words("I'm a duck") == "I'm A Duck", 'Apostrophe fail!'
+
 
 test_one_word()
 test_many_words()
@@ -106,6 +110,7 @@ test_with_apostrophes()
 
 def func1(x):
     return x + 1
+
 
 def test_answer():
     assert func1(4) == 5
@@ -139,6 +144,7 @@ def format_name(first, last, middle=' '):
 import unittest
 # import the function(s) to be tested
 
+
 class NamesTestCase(unittest.TestCase):
     '''Tests for format_name()'''
 
@@ -151,6 +157,7 @@ class NamesTestCase(unittest.TestCase):
         '''Do names like Martin Luther King work?'''
         formatted = format_name('martin', 'king', 'luther')
         self.assertEqual(formatted, 'Martin Luther King')
+
 
 unittest.main()
 
@@ -171,6 +178,7 @@ unittest.main()
 # testing the methods in the class, but there are a few differences.
 
 # Example class to test:
+
 
 class AnonymousSurvey():
     '''Collect anonymous answers to a survey question'''
@@ -218,6 +226,7 @@ my_survey.show_results()
 import unittest
 # import the class(es) to be tested
 
+
 class TestAnonymousSurvey(unittest.TestCase):
     '''Tests for the class AnonymousSurvey'''
 
@@ -260,6 +269,7 @@ def func3(x):
     """
     return x + 1
 
+
 def func2(text):
     """
     >>> func2('duck')
@@ -271,6 +281,7 @@ def func2(text):
     """
     from string import capwords
     return capwords(text)
+
 
 if __name__ == '__main__':
     import doctest
