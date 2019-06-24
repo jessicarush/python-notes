@@ -256,6 +256,17 @@ The argument passed to the decorator is the name of the filter:
 {{ current_user.username|testing }}
 ```
 
+## Jinja misc notes
+
+To use a jinja variable in a `<script>` in your document you must either add a filter, usually either `safe` if working with lists or data objects or `tojson` if working with strings.
+
+```html
+<script type="text/javascript">
+  let my_string = {{ name|tojson }};
+  let my_array = {{ list|safe }};
+</script>
+```
+
 ## JSON strings
 
 If you want to pass a python data structure to a javascript `<script>` in your HTML template, first pass the encoded object to the template using `json.dumps()`:
