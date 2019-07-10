@@ -334,7 +334,7 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 # UTC time is 2017-11-08 00:28:23
 
 
-# Read and Write Dates & Times
+# Read and Write Dates & Times with strftime() and strptime()
 # -----------------------------------------------------------------------------
 # isoformat() for date, time and datetime objects and, ctime() for epochs
 # aren't the only way to write dates and times as strings. We can also convert
@@ -357,6 +357,7 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 # %p  AM/PM                         PM
 # %M  minute                        59
 # %S  second                        59
+# %f  microsecond as a decimal      886007
 # %c  date and time                 Wed Aug 30 17:26:39 2017
 # %x  date                          08/30/17
 # %X  time                          17:26:39
@@ -416,6 +417,20 @@ a_date = time.strptime('2017-08-16', fmt)
 print(a_date)
 # time.struct_time(tm_year=2017, tm_mon=8, tm_mday=16, tm_hour=0, tm_min=0,
 # tm_sec=0, tm_wday=2, tm_yday=228, tm_isdst=-1)
+
+# NOTE: strptime is actually super useful when working with databases.
+# For example, if you create a DateTime type column in an sqlite3 database,
+# it will require a datetime object but depending on how you retrieve the
+# data, my return a date string. Using strptime, you can convert these
+# strimgs back again:
+
+n = datetime.now()  # 2019-07-08 09:57:26.976697 <class 'datetime.datetime'>
+s = str(n)
+f = '%Y-%m-%d %H:%M:%S.%f'
+d = datetime.strptime(s, f)
+
+print(s, type(s))  # 2019-07-08 09:57:26.976697 <class 'str'>
+print(d, type(d))  # 2019-07-08 09:57:26.976697 <class 'datetime.datetime'>
 
 
 # locale module
