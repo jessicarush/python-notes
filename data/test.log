@@ -1,0 +1,19 @@
+2019-07-16 12:05:51,303 DEBUG 23 debug message
+2019-07-16 12:05:51,303 INFO 24 info message
+2019-07-16 12:05:51,304 WARNING 25 warning message
+2019-07-16 12:05:51,304 ERROR 26 error message
+2019-07-16 12:05:51,304 CRITICAL 27 critical message
+2019-07-16 12:05:51,304 DEBUG 48 here is my debug message
+2019-07-16 12:38:03,511 DEBUG 23 debug message
+2019-07-16 12:38:03,511 INFO 24 info message
+2019-07-16 12:38:03,511 WARNING 25 warning message
+2019-07-16 12:38:03,512 ERROR 26 error message
+2019-07-16 12:38:03,512 CRITICAL 27 critical message
+2019-07-16 12:38:03,512 DEBUG 48 here is my debug message
+2019-07-16 12:45:12,277 DEBUG 23 debug message
+2019-07-16 12:45:12,277 INFO 24 info message
+2019-07-16 12:45:12,277 WARNING 25 warning message
+2019-07-16 12:45:12,277 ERROR 26 error message
+2019-07-16 12:45:12,277 CRITICAL 27 critical message
+2019-07-16 12:45:12,278 DEBUG 48 here is my debug message
+2019-07-16 12:45:12,278 SPECIAL_INFO 83 Hey, this is special
