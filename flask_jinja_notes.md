@@ -256,7 +256,7 @@ The argument passed to the decorator is the name of the filter:
 {{ current_user.username|testing }}
 ```
 
-## Jinja misc notes
+## Jinja variables in <script>'s
 
 To use a jinja variable in a `<script>` in your document you must either add a filter, usually either `safe` if working with lists or data objects or `tojson` if working with strings.
 
@@ -339,6 +339,9 @@ Flask's `request` object (`from flask import request`), is a subclass of the [We
 In short, there are various ways to get at the data being sent, depending on how it is being sent, for example:
 
 ```python
+from flask import request
+
+
 @app.route('/demo', methods=['GET', 'POST'])
 def demo():
     # For url query parameters:
@@ -374,7 +377,7 @@ def demo():
     print(request.url_root)
     # http://127.0.0.1:5007/
     print(request.content_type)
-    # application/json (for example)
+    # application/json
     print(request.args)
-    # The parsed URL parameters (the part in the URL after the question mark).
+    # the parsed URL parameters (the part in the URL after the question mark).
 ```
