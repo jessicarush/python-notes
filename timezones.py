@@ -17,7 +17,6 @@
 
 # pytz module
 # -----------------------------------------------------------------------------
-
 import datetime
 import pytz
 
@@ -34,53 +33,51 @@ for x in sorted(pytz.country_names):
 
 # see all country names:
 for x in sorted(pytz.country_names):
-    print("{}: {}: {}".format(
-          x, pytz.country_names[x], pytz.country_timezones.get(x)))
+    print(f'{x}: {pytz.country_names[x]}: {pytz.country_timezones.get(x)}')
 
 # see names, zones and their times:
 for x in sorted(pytz.country_names):
-    print("{}: {}".format(x, pytz.country_names[x]))
+    print(f'{x}: {pytz.country_names[x]}')
     if x in pytz.country_timezones:
         for zone in sorted(pytz.country_timezones[x]):
             tz_to_display = pytz.timezone(zone)
             local_time = datetime.datetime.now(tz=tz_to_display)
-            print("\t{}: {}:".format(zone, local_time))
+            print(f'\t{zone}: {local_time}')
     else:
-        print("\tNo timezone defined")
+        print('\tNo timezone defined')
 
 
 # pytz example
 # -----------------------------------------------------------------------------
-
 import datetime
 import pytz
+
 
 country = "Europe/Moscow"
 tz = pytz.timezone(country)
 world_time = datetime.datetime.now(tz=tz)
 
-print("UTC is {}".format(datetime.datetime.utcnow()))
+print(f'UTC is {datetime.datetime.utcnow()}')
 # UTC is 2018-03-28 19:39:09.028962
 
-print("The time in {} is {}".format(country, world_time))
+print(f'The time in {country} is {world_time}')
 # The time in Europe/Moscow is 2018-03-28 22:39:09.028943+03:00
 
-print("In {} it's {} - {}".format(
-  country, world_time.strftime('%A %x %X'), world_time.tzname()))
-# In Europe/Moscow it's Wednesday 03/28/18 22:39:09 - MSK
+print(f'In {country} it is {world_time.strftime("%A %x %X")} - {world_time.tzname()}')
+# In Europe/Moscow it is Wednesday 03/28/18 22:39:09 - MSK
 
 
 # convert a naive datetime to an aware datetime
 # -----------------------------------------------------------------------------
-
 import datetime
 import pytz
 
-local_time = datetime.datetime.now()
-utc_time = datetime.datetime.utcnow()
 
-print("Naive local time: {}".format(local_time))
-print("Naive UTC: {}".format(utc_time))
+naive_local_time = datetime.datetime.now()
+naive_utc_time = datetime.datetime.utcnow()
+
+print(f'Naive local time: {naive_local_time}')
+print(f'Naive UTC: {naive_utc_time}')
 
 # Naive local time: 2018-03-28 12:39:09.029068
 # Naive UTC: 2018-03-28 19:39:09.0290701
@@ -88,26 +85,23 @@ print("Naive UTC: {}".format(utc_time))
 # When these next two print you can tell they are aware because they now
 # include an offset at the end. Both will show the same time zone and same
 # offset (+00:00, UTC) because the naive datetimes we supplied to it don't
-# carry that information.
+# carry that information. The third example shows how to get the correct local
+# offset and time zone:
 
-aware_local_time = pytz.utc.localize(local_time)
-aware_utc_time = pytz.utc.localize(utc_time)
+aware_local_time = pytz.utc.localize(naive_local_time)
+aware_utc_time = pytz.utc.localize(naive_utc_time)
+aware_local_time_zone = pytz.utc.localize(naive_utc_time).astimezone()
 
-print("Aware local time: {} - time zone: {}".format(
-  aware_local_time, aware_local_time.tzinfo))
-
-print("Aware UTC: {} - time zone: {}".format(
-  aware_utc_time, aware_utc_time.tzinfo))
-
-# Try this instead to show the correct local offset and time zone:
-
-aware_local_time = pytz.utc.localize(utc_time).astimezone()
-
-print("Aware local time: {} - time zone: {}".format(
-  aware_local_time, aware_local_time.tzinfo))
-
+print(f'Aware local time: {aware_local_time} - '
+      f'time zone: {aware_local_time.tzinfo}')
 # Aware local time: 2018-03-28 12:39:09.029068+00:00 - time zone: UTC
+
+print(f'Aware UTC: {aware_utc_time} - '
+      f'time zone: {aware_utc_time.tzinfo}')
 # Aware UTC: 2018-03-28 19:39:09.029070+00:00 - time zone: UTC
+
+print(f'Aware local time: {aware_local_time_zone} - '
+      f'time zone: {aware_local_time_zone.tzinfo}')
 # Aware local time: 2018-03-28 12:39:09.029070-07:00 - time zone: PDT
 
 
@@ -122,12 +116,12 @@ print("Aware local time: {} - time zone: {}".format(
 s = 1445733000
 t = s + (60 * 60)
 
-gb = pytz.timezone("GB")
-dt1 = pytz.utc.localize(datetime.datetime.utcfromtimestamp(s)).astimezone(gb)
-dt2 = pytz.utc.localize(datetime.datetime.utcfromtimestamp(t)).astimezone(gb)
+tz = pytz.timezone("Canada/Pacific")
+dt1 = pytz.utc.localize(datetime.datetime.utcfromtimestamp(s)).astimezone(tz)
+dt2 = pytz.utc.localize(datetime.datetime.utcfromtimestamp(t)).astimezone(tz)
 
-print('{} seconds since epoch is {}'.format(s, dt1))
-print('{} seconds since epoch is {}'.format(t, dt2))
+print(f'{s} seconds since epoch is {dt1}')
+print(f'{t} seconds since epoch is {dt2}')
 
-# 1445733000 seconds since epoch is 2015-10-25 01:30:00+01:00
-# 1445736600 seconds since epoch is 2015-10-25 01:30:00+00:00
+# 1445733000 seconds since epoch is 2015-10-24 17:30:00-07:00
+# 1445736600 seconds since epoch is 2015-10-24 18:30:00-07:00
