@@ -30,21 +30,21 @@ for x in sorted(pytz.country_names):
 # Program
 # -----------------------------------------------------------------------------
 
-timezones = {'vancouver' : 'America/Vancouver',
-             'luxembourg' : 'Europe/Luxembourg',
-             'hong kong' : 'Hongkong',
-             'switzerland' : 'Europe/Zurich',
-             'shanghai' : 'Asia/Shanghai',
-             'cuba' : 'America/Havana',
-             'berlin' : 'Europe/Berlin',
-             'turks & caicos' : 'America/Grand_Turk',
-             'singapore' : 'Singapore'}
+timezones = {'vancouver': 'America/Vancouver',
+             'luxembourg': 'Europe/Luxembourg',
+             'hong kong': 'Hongkong',
+             'switzerland': 'Europe/Zurich',
+             'shanghai': 'Asia/Shanghai',
+             'cuba': 'America/Havana',
+             'berlin': 'Europe/Berlin',
+             'turks & caicos': 'America/Grand_Turk',
+             'singapore': 'Singapore'}
 
 for zone in sorted(timezones):
     print(zone.title())
 
 while True:
-    selection = input('Choose a country (q to quit): ').lower()
+    selection = input('Choose a q (q to quit): ').lower()
     if selection == 'q':
         break
     if selection in timezones:
