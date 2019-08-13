@@ -87,8 +87,8 @@ Then the function that issues the request:
 ```javascript
 function ajaxRequest() {
   let el = document.getElementById('js-ajax-response');
-
   let xhttp = new XMLHttpRequest();
+
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       el.innerHTML = this.responseText;
@@ -131,8 +131,8 @@ The only thing we need to change here is to add the endpoint (`app.route`) name 
 ```javascript
 function ajaxRequest() {
   let el = document.getElementById('js-ajax-response');
-
   let xhttp = new XMLHttpRequest();
+
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       el.innerHTML = this.responseText;
@@ -174,19 +174,18 @@ This time we'll add a Request Header using `setRequestHeader()`. This method mus
 ```javascript
 function ajaxRequest() {
   let el = document.getElementById('js-ajax-response');
-
   let xhttp = new XMLHttpRequest();
+  let data = JSON.stringify({'fruit': 'apples'});             // <--- data
+
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       el.innerHTML = this.responseText;
     }
   };
 
-  let data = JSON.stringify({'fruit': 'apples'});             // <--- data
-
-  xhttp.open('POST', '/ajax_demo', true);
+  xhttp.open('POST', '/ajax_demo', true);                     // <--- POST
   xhttp.setRequestHeader('Content-Type', 'application/json'); // <--- header
-  xhttp.send(data);                                           // <--- send
+  xhttp.send(data);                                           // <--- send data
 }
 ```
 
@@ -244,7 +243,7 @@ def ajax_demo():
     return response
 ```
 
-More about the [response object here](http://flask.pocoo.org/docs/1.0/api/?highlight=make_response#response-objects).
+More about the [response object here](https://flask.palletsprojects.com/en/1.1.x/api/#response-objects).
 
 
 ## XMLHttpRequest Object Methods
