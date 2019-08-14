@@ -8,21 +8,25 @@
 - [Summary of Events](#summary-of-events)
 - [Example 1: request to a file](#example-1-request-to-a-file)
   * [Trigger the request](#trigger-the-request)
-  * [Issue the request](#issue-the-request)
+  * [Send the request (& receive the response)](#send-the-request--receive-the-response)
   * [Handle the request](#handle-the-request)
 - [Example 2: request to a server](#example-2-request-to-a-server)
   * [Trigger the request](#trigger-the-request-1)
-  * [Issue the request](#issue-the-request-1)
+  * [Send the request (& receive the response)](#send-the-request--receive-the-response-1)
   * [Handle the request](#handle-the-request-1)
 - [Example 3: send JSON data with request to a server](#example-3-send-json-data-with-request-to-a-server)
   * [Trigger the request](#trigger-the-request-2)
-  * [Issue the request](#issue-the-request-2)
+  * [Send the request (& receive the response)](#send-the-request--receive-the-response-2)
   * [Handle the request](#handle-the-request-2)
-- [Example 4: send form data as request to a server](#example-4-send-form-data-as-request-to-a-server)
+- [Example 4: send form data through request to a server](#example-4-send-form-data-through-request-to-a-server)
+  * [Trigger the request](#trigger-the-request-3)
+  * [Send the request (& receive the response)](#send-the-request--receive-the-response-3)
+  * [Handle the request](#handle-the-request-3)
 - [jsonify vs json.dumps](#jsonify-vs-jsondumps)
 - [XMLHttpRequest Object Methods](#xmlhttprequest-object-methods)
 - [XMLHttpRequest Object Properties](#xmlhttprequest-object-properties)
 - [GET or POST?](#get-or-post)
+- [Alternate methods for receiving responses](#alternate-methods-for-receiving-responses)
 
 <!-- tocstop -->
 
@@ -67,7 +71,7 @@ In my javascript I'll create an event listener for the button:
 
 ```javascript
 // Event listener
-window.addEventListener('click', function(e) {
+window.addEventListener('click', function (e) {
   if (e.target.matches('#js-ajax-requester')) {
     ajaxRequest();
   }
@@ -80,23 +84,23 @@ This way works too:
 document.getElementById('js-ajax-requester').addEventListener('click', ajaxRequest);
 ```
 
-### Issue the request
+### Send the request (& receive the response)
 
 Then the function that issues the request:
 
 ```javascript
 function ajaxRequest() {
   let el = document.getElementById('js-ajax-response');
-  let xhttp = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
 
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
       el.innerHTML = this.responseText;
     }
   };
 
-  xhttp.open('GET', 'ajax_demo.json', true);
-  xhttp.send();
+  xhr.open('GET', 'ajax_demo.json', true);
+  xhr.send();
 }
 ```
 
@@ -124,23 +128,23 @@ Now we'll do the same thing but instead send the request to the server running F
 
 Same as Example 1.
 
-### Issue the request
+### Send the request (& receive the response)
 
 The only thing we need to change here is to add the endpoint (`app.route`) name for the second url parameter of the `open()` method.
 
 ```javascript
 function ajaxRequest() {
   let el = document.getElementById('js-ajax-response');
-  let xhttp = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
 
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
       el.innerHTML = this.responseText;
     }
   };
 
-  xhttp.open('GET', '/ajax_demo', true);  // <--- only this changed
-  xhttp.send();
+  xhr.open('GET', '/ajax_demo', true);  // <--- only this changed
+  xhr.send();
 }
 ```
 
@@ -166,29 +170,27 @@ def ajax_demo():
 
 Same as Example 1.
 
-
-### Issue the request
+### Send the request (& receive the response)
 
 This time we'll add a Request Header using `setRequestHeader()`. This method must come after the `open()` method but before the `send()` method. We'll set the value to `application/json`. Next we need to `stringify` whatever data we want to send then pass that data to the `send()` method:
 
 ```javascript
 function ajaxRequest() {
   let el = document.getElementById('js-ajax-response');
-  let xhttp = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   let data = JSON.stringify({'fruit': 'apples'});             // <--- data
 
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
       el.innerHTML = this.responseText;
     }
   };
 
-  xhttp.open('POST', '/ajax_demo', true);                     // <--- POST
-  xhttp.setRequestHeader('Content-Type', 'application/json'); // <--- header
-  xhttp.send(data);                                           // <--- send data
+  xhr.open('POST', '/ajax_demo', true);                     // <--- POST
+  xhr.setRequestHeader('Content-Type', 'application/json'); // <--- header
+  xhr.send(data);                                           // <--- send data
 }
 ```
-
 
 ### Handle the request
 
@@ -210,9 +212,68 @@ def ajax_demo():
 ```
 
 
-## Example 4: send form data as request to a server
+## Example 4: send form data through request to a server
 
-coming soon.
+### Trigger the request
+
+This time, the thing that will trigger the request will be a form. To make things simple on the JavaScript end I'm going give the form and inputs id names.
+
+```html
+<form id="test-form" action="" method="">
+  <label for="name">name</label>
+  <input id="name" name="name" type="text">
+
+  <label for="email">email</label>
+  <input id="email" name="email" type="email">
+
+  <button id="submit" type="submit">submit</button>
+</form>
+```
+
+This time the event listener will on the form's submit event:
+
+```javascript
+document.getElementById('test-form').addEventListener('submit', handleForm);
+```
+
+### Send the request (& receive the response)
+
+I'm going to use the same function from the previous example but have it take an object as a parameter. Then I'll make a function that pulls data from the form and calls the ajaxRequest function with that data:
+
+```javascript
+function ajaxRequest(obj) {
+  let el = document.getElementById('js-ajax-response');
+  let xhr = new XMLHttpRequest();
+  let data = JSON.stringify(obj);
+
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      el.innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open('POST', '/ajax_demo', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(data);
+}
+
+
+function handleForm(e) {
+  // prevent any default action on submitting the form
+  e.preventDefault();
+  // retrieve form values and pass them to the ajaxRequest()
+  let data = {
+      'name': e.target.name.value,
+      'email': e.target.email.value
+  }
+  ajaxRequest(data);
+}
+```
+
+### Handle the request
+
+Same as Example 3
+
 
 ## jsonify vs json.dumps
 
@@ -280,3 +341,10 @@ However, always use POST requests when:
 - A cached file is not an option
 - Sending a large amount of data to the server (POST has no size limitations).
 - Sending user input (which can contain unknown characters), POST is more robust and secure than GET
+
+
+## Alternate methods for receiving responses
+
+There are two other ways of coding the part where you recieve the response from the server. One uses event handlers and the other uses event listeners. These are both newer methods and may not work in older browsers.
+
+See: [javascript-notes/ajax.md](https://github.com/jessicarush/javascript-notes/blob/master/ajax.md)
