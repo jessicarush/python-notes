@@ -28,8 +28,10 @@ This is a collection of notes, command line steps and reminders of packages to i
 - [Digitalocean requirements](#digitalocean-requirements)
 - [Application Contexts](#application-contexts)
 - [Jinja Filters](#jinja-filters)
+- [Jinja variables in 's](#jinja-variables-in-s)
 - [JSON strings](#json-strings)
 - [Request object](#request-object)
+- [Flask-wtf csrf protection](#flask-wtf-csrf-protection)
 
 <!-- tocstop -->
 
@@ -380,4 +382,26 @@ def demo():
     # application/json
     print(request.args)
     # the parsed URL parameters (the part in the URL after the question mark).
+```
+
+
+## Flask-wtf csrf protection
+
+Flask-wtf has csrf protection built-in by default when you build your forms off of `FlaskForm` for example:
+
+```python
+class MyForm(FlaskForm):
+    pass
+```
+
+The csrf token is generated when the form is initially rendered (i.e. when the page is loaded) and by default expires after 3600 seconds (1 hour). This is means that if you leave the page open for more than than hour without reloading/refreshing, the csrf token will be expired and if you try to submit the form, it will be a quiet failure. There are a number of ways around this but the simplest is to change the global timeout from 3600 seconds to something more reasonable or to not have an expiry at all.
+
+To do this you would set the constant variable in your config:
+
+```python
+# Extend csrf token expiry to 1 week
+WTF_CSRF_TIME_LIMIT = 3600 * 24 * 7
+
+# If set to None, the CSRF token is valid for the life of the session
+WTF_CSRF_TIME_LIMIT = None
 ```
