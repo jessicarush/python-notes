@@ -244,35 +244,35 @@ print(r)  # ['real', 'reality', 'really', 'surreal']
 # beginning of the string, and $ anchors it to the end.
 
 # find Intro at the beginning:
-r = re.findall('^Intro', sample)
+r = re.findall(r'^Intro', sample)
 print(r)  # []
 
 # find \nIntro at the beginning:
-r = re.findall('^\nIntro', sample)
+r = re.findall(r'^\nIntro', sample)
 print(r)  # ['\nIntro']
 
 # find surreal at the end:
-r = (re.findall('surreal$', sample))
+r = (re.findall(r'surreal$', sample))
 print(r)  # ['surreal']
 
 # find w or f or d followed by ish:
-r = re.findall('[wfd]ish', sample)
+r = re.findall(r'[wfd]ish', sample)
 print(r)  # ['dish', 'wish', 'fish']
 
 # find one or more runs of b or c:
-r = re.findall('[bc]+\w*', sample)
+r = re.findall(r'[bc]+\w*', sample)
 print(r)  # ['cape', 'boy', 'cause', 'come', 'blows']
 
 # find me followed by a non-alphanumeric:
-r = re.findall('me\W', sample)
+r = re.findall(r'me\W', sample)
 print(r)  # ['me,', 'me,', 'me.']
 
 # find poor followed by boy:
-r = re.findall('poor (?=boy)', sample)
+r = re.findall(r'poor (?=boy)', sample)
 print(r)  # ['poor ']
 
 # find blows preceded by wind:
-r = re.findall('(?<=wind) blows', sample)
+r = re.findall(r'(?<=wind) blows', sample)
 print(r)  # [' blows']
 
 # find words that contain 3 vowels in a row:
@@ -301,6 +301,7 @@ import sys
 
 pattern = sys.argv[1]
 search_string = sys.argv[2]
+
 # To use sys.argv, run the file like this:
 # $ python3 re_testing.py 'hello' 'hello world'
 
