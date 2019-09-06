@@ -81,7 +81,7 @@ $ usermod -aG sudo jessica
 $ su - jessica
 ```
 
-This creates a new user and a new 'group', adds sudo privileges to the new user, then switches the the new user. Next you'll want to set up SSH for your new user. Start by manually coping your public key on your local machine:
+This creates a new user and a new 'group', adds sudo privileges to the new user, then switches the the new user. Next you'll want to set up SSH for your new user. Start by manually copying your public key on your local machine:
 
 ```
 $ cat ~/.ssh/id_rsa.pub
@@ -219,10 +219,10 @@ Detailed information about the [postgres config file here.](https://www.postgres
 
 ## Installing nginx & enabling a Firewall
 
-NGINX is a free, open-source, HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server. In layman's terms, it can act at a gateway between our app and external users. It will accept and direct incoming requests. We can configure it so that the request goes straight to our app. The reason we would want to use ngnix to do this is:
+NGINX is a free, open-source, HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server. In layman's terms, it can act as a gateway between our app and external users. It will accept and direct incoming requests. We can configure it so that the request goes straight to our app. The reason we would want to use ngnix to do this is:
 - it communicates well with uwsgi
 - enables multi-threaded operations in our flask app
-- also allows you to run multiple flask apps simultaneously on a server.
+- allows you to run multiple flask apps simultaneously on a server.
 - it can direct incoming requests to different apps based on some parameters.
 
 Assuming you're logged into your server:
@@ -307,7 +307,7 @@ When you're done `esc` then, `:wq`. Here's a breakdown:
 *include uwsgi_params;*
 >allows it to communicate with uwsgi which we're using in part because it allows our program to run multiple threads more efficiently and to restart threads if they fail. uwsgi is pretty complicated but these two apparently work well together.
 
-*uwsgi_pass unix:/var/www/html/<app-name>/socket.sock;*
+*uwsgi_pass unix:/var/www/html/\<app-name>/socket.sock;*
 >the connection point between our flask app and ngnix. socket.sock is a file we'll need to create shortly.
 
 *uwsgi_modifier1 30;*
