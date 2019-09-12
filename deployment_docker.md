@@ -59,7 +59,7 @@ EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
 ```
 
-The `FROM` command specifies the base container image on which the new image will be built. The idea is that you start from an existing image, add or change some things, and end up with a derived image. Images are referenced by a name and a tag, separated by a colon. The name of our chosen image is python, which is the official Docker image for Python. The tags for this image allow you to specify the interpreter version and base operating system. The 3.6-alpine tag selects a Python 3.6 interpreter installed on Alpine Linux. The Alpine Linux distribution is often used instead of more popular ones such as Ubuntu because of its small size. You can see what tags are available for the Python image [here](https://hub.docker.com/r/library/python/tags/).
+The `FROM` command specifies the base container image on which the new image will be built. The idea is that you start from an existing image, add or change some things, and end up with a derived image. Images are referenced by a name and a tag, separated by a colon. The name of our chosen image is python, which is the official Docker image for Python. The tags for this image allow you to specify the interpreter version and base operating system. The 3.6-alpine tag selects a Python 3.6 interpreter installed on Alpine Linux. The Alpine Linux distribution is often used instead of more popular ones such as Ubuntu because of its small size. You can [see what tags are available for Python here](https://hub.docker.com/r/library/python/tags/).
 
 The `WORKDIR` command sets a default directory where the application is going to be installed. The new default directory is going to apply to any remaining commands in the Dockerfile, and also later when the container is executed.
 
@@ -149,11 +149,11 @@ A good design strategy for a container application is to make the application co
 
 But of course, this means that the data must be put somewhere outside of the application container. The Docker Container Registry contains images for many other languages, databases and other services. The effort to install third party services is reduced to finding an appropriate image in the registry, and starting it with a docker run command with proper arguments.
 
-What we can do is create additional containers, say one for a MySQL database, and another one for the Elasticsearch service, and then access to these two new containers through the `run` command.
+What we can do is create additional containers, say one for a MySQL database, and another one for the Elasticsearch service, and then access these two new containers through the `run` command.
 
 ## Adding a MySQL Container
 
-MySQL has public container images available on the Docker registry. Like your own app container, MySQL relies on environment variables that need to be passed to docker run. There are many MySQL images in the registry, you can find detailed information about one that is officially maintained by the [MySQL team here](https://hub.docker.com/r/mysql/mysql-server/).
+MySQL has public container images available on the Docker registry. Like your own app container, MySQL relies on environment variables that need to be passed to docker run. There are many MySQL images in the registry, you can find detailed information about one that is [officially maintained by the MySQL team here](https://hub.docker.com/r/mysql/mysql-server/).
 
 The docker run command that starts a MySQL server:
 ```
@@ -212,7 +212,7 @@ flask translate compile
 exec gunicorn -b :5000 --access-logfile - --error-logfile - microblog:app
 ```
 
-## Adding a Elasticsearch Container
+## Adding an Elasticsearch Container
 
 The [Elasticsearch documentation for Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html) shows how to run the service as a *single-node* for development, and as a *two-node* production-ready deployment. This example just uses single-node:
 
