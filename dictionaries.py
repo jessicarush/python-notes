@@ -411,3 +411,16 @@ numbers = OrderedDict([
 numbers['five'] = 'cinqo'
 print(numbers)
 # OrderedDict([('one', 'uno'), ('two', 'dos'), ('three', 'tres'), ...])
+
+
+# unpack a dictionary
+# -----------------------------------------------------------------------------
+# You can unpack any sequence (including dictionary) into variables. The only
+# requirement is that the number of variables should match the number of items
+# in the sequence:
+
+data = {'color': 'orange', 'size': 'small', 'date': [1, 1, 2020]}
+color, size, (month, day, year) = data.values()
+
+print(size)  # small
+print(year)  # 2020

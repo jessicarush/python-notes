@@ -57,16 +57,43 @@ print(text.format(colour_tuple))
 # name: green
 # screen value: rgb(0, 148, 115)
 
-# Tuples let you assign multiple variables at once:
-# This is called 'tuple unpacking'
 
-a, b, c = colour_tuple
+# Tuple unpacking
+# -----------------------------------------------------------------------------
+# Tuples let you assign multiple variables from a sequence at once:
+# This is called 'tuple unpacking'. Note that the sequence can be any iterable
+# but the number of variables must match the number of items in the sequnece:
+
+a, b, c = colour_list
 
 print(a)  # green
-print(b)  # Pantone 17-5641
-print(c)  # rgb(0, 148, 115)
+print(b)  # blue
+print(c)  # red
 
-# You can use tuples to assign or swap variable values in one line:
+# If you don't care about all the variables, the common method is to use '_':
+
+_, color, _ = colour_list
+
+print(color)  # blue
+
+# If you hava a variable length iterable, you can assign the rest using '*':
+color, *etc = colour_list
+
+print(color)  # green
+print(etc)    # ['blue', 'red']
+
+# This can be used to select anywhere in the assignemnt. The '*' variable will
+# always be a list:
+
+long_color_list = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+
+c1, c2, *rest, c3 = long_color_list
+print(c1)    # red
+print(c2)    # orange
+print(c3)    # purple
+print(rest)  # [yellow, green, blue]
+
+# You can use also tuples to assign or swap variable values in one line:
 
 a, b = 'A', 'B'
 print('a is {}, b is {}'.format(a, b))  # a is A, b is B
@@ -74,6 +101,9 @@ print('a is {}, b is {}'.format(a, b))  # a is A, b is B
 a, b = b, a
 print('a is {}, b is {}'.format(a, b))  # a is B, b is A
 
+
+# tuple()
+# -----------------------------------------------------------------------------
 # The tuple() function lets you convert something to a tuple:
 
 colours_list = ['orange', 'yellow', 'purple']

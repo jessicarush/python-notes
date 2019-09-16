@@ -50,6 +50,19 @@ print(from_dict_vals)  # {'red', 'green', 'yellow'}
 print(from_range)      # {1, 2, 3, 4}
 
 
+# unpack a set
+# -----------------------------------------------------------------------------
+# You can unpack any sequence (including lists) into variables. The only
+# requirement is that the number of variables should match the number of items
+# in the sequence:
+
+data = {'orange', 'small', (1, 1, 2020), '2.99'}
+color, size, (month, day, year), price = data
+
+print(month)  # 1
+print(year)   # 2020
+
+
 # add()
 # -----------------------------------------------------------------------------
 # add to a set with .add():
