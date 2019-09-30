@@ -35,7 +35,8 @@ Traditional hosting, means that the application is installed manually or through
   * [Renewing your SSL certificates](#renewing-your-ssl-certificates)
 - [Redis Server & RQ workers](#redis-server--rq-workers)
 - [Security](#security)
-- [Misc](#misc)
+- [Misc commands](#misc-commands)
+- [Troubleshooting lessons learned](#troubleshooting-lessons-learned)
 
 <!-- tocstop -->
 
@@ -477,6 +478,7 @@ Miguel has written a detailed article: [Run your Flask application over HTTPS](h
 ```
 (venv) $ git pull                              # download the new version
 (venv) $ sudo supervisorctl stop microblog     # stop the current server
+(venv) $ pip install -r requirements.txt       # if you added a library
 (venv) $ flask db upgrade                      # upgrade the database
 (venv) $ flask translate compile               # upgrade the translations
 (venv) $ sudo supervisorctl start microblog    # start a new server
@@ -697,4 +699,43 @@ $ sudo shutdown -h now
 or using the digital ocean command:
 ```
 $ sudo poweroff
+```
+
+## Troubleshooting lessons learned
+
+When deploying updates things can break and from my experience the reason is usually pretty straight forward (we forgot to do something) or is weird but easy to fix (an ubuntu specific issue). Often, it's simply getting the right error message that's important.
+
+Ubuntu has a tonne of error logs located in `/var/log/` and so far, in my experience, most of them are cryptic and unhelpful. If having issues reloading or starting your app with:
+
+```
+$ sudo supervisorctl restart microblog
+$ sudo supervisorctl start microblog
+```
+
+The FIRST thing to go is try starting it like you would in your local environment with:
+
+```
+$ flask run
+```
+
+This way, when it fails, we can see the flask error messages right away. The flask messages tend to be way more useful than the supervisor error logs or the nginx logs.
+
+Some common mistakes I've made and discovered in this way:
+
+- Forgot to pip install a new library that I added to my app
+- Used unicode character names e.g. `\N{PARTY POPPER}`. Just don't, some names work on my local env but not on the server. Stick with the hex numbers.
+- Forgot to restart the supervisor when making changes to `/etc/supervisor/conf.d/myapp.conf`
+- Forgot to restart ssh when making changes to `/etc/ssh/sshd_config`
+- Forgot to reload nginx when making changes to `/etc/nginx/sites-enabled/myapp`
+- Forgot to `flask db upgrade` the database when columns were added
+
+
+Summary of the various restart commands:
+
+```
+$ sudo reboot
+$ sudo service ssh restart
+$ sudo service ssh nginx reload
+$ sudo supervisorctl reload
+$ sudo supervisorctl restart myapp
 ```

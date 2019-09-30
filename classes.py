@@ -489,7 +489,7 @@ class Subclass(Left, Right):
         print("Subclass initializing")
 
 
-s = Subclass(name='bob', phone=6041234567, street=1234)
+s = Subclass(name='bob', phone=6041234567, street=1234, email='test@test.com')
 # Base initializing
 # Right initializing
 # Left initializing
@@ -497,7 +497,7 @@ s = Subclass(name='bob', phone=6041234567, street=1234)
 
 print(s.__dict__)
 # {'address': '', 'street': 1234, 'name': 'bob', 'email': '', 'phone': 6041234567}
-
+exit()
 # Basic multiple inheritance can be handy but, in many cases, we may want to
 # choose a more transparent way of combining two disparate classes, usually
 # using composition or another design pattern.

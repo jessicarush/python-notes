@@ -7,14 +7,15 @@ In my path to learning Python, I'll be collecting my notes and example code here
 ## credits
 Some examples and comments may come from the following:
 
-- [Python: Master the Art of Design Patterns](https://www.oreilly.com/library/view/python-master-the/9781787125186/) - *Phillips, Girighar, Kasampalis*
-- [Python Playground](https://nostarch.com/pythonplayground) - *Mahesh Venkitachalam*  
-- [Python Crash Course](https://nostarch.com/pythoncrashcourse) - *Eric Matthes*  
 - [Introducing Python](http://shop.oreilly.com/product/0636920028659.do) - *Bill Lubanovic*  
+- [Python Crash Course](https://nostarch.com/pythoncrashcourse) - *Eric Matthes*  
+- [Python Playground](https://nostarch.com/pythonplayground) - *Mahesh Venkitachalam*  
 - [The Python 3 Standard Library by Example](https://doughellmann.com/blog/the-python-3-standard-library-by-example/) - *Doug Hellmann*  
-- [Effective Python](https://effectivepython.com/) - *Brett Slatkin*  
 - [The Flask Mega-Tutorial](https://courses.miguelgrinberg.com/) - *Miguel Grinberg*
-- [Flask Web Development](http://shop.oreilly.com/product/0636920089056.do) - *Miguel Grinberg*
+- [Flask Web Development](http://shop.oreilly.com/product/0636920089056.do) - *Miguel Grinberg*  
+- [Python Cookbook](http://shop.oreilly.com/product/0636920027072.do) - *David Beazley & Brian K. Jones*  
+- [Python: Master the Art of Design Patterns](https://www.oreilly.com/library/view/python-master-the/9781787125186/) - *Phillips, Girighar, Kasampalis*
+- [Effective Python](https://effectivepython.com/) - *Brett Slatkin*  
 - [Complete Python Masterclass](https://www.udemy.com/python-the-complete-python-developer-course/) - *Udemy course*  
 - [The Python Mega Course: Build 10 Real World Applications](https://www.udemy.com/the-python-mega-course/) - *Udemy course*  
 - [REST APIs with Flask and Python](https://www.udemy.com/rest-api-flask-and-python/) - *Udemy course*

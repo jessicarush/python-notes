@@ -48,18 +48,18 @@ results = [die.roll() for roll_num in range(1000)]
 
 # analyze the die results:
 # frequencies = []
-# for value in range(1, die.sides+1):
+# for value in range(1, die.sides + 1):
 #     frequency = results.count(value)
 #     frequencies.append(frequency)
 
 # or use a list comprehension:
-frequencies = [results.count(value) for value in range(1, die.sides+1)]
+frequencies = [results.count(value) for value in range(1, die.sides + 1)]
 
 # visualize the results:
 histogram = pygal.Bar()
 
 histogram.title = 'Results of rolling D6 1000 times'
-histogram.x_labels = list(range(1, die.sides+1))
+histogram.x_labels = list(range(1, die.sides + 1))
 histogram.x_title = 'result'
 histogram.y_title = 'frequency of result'
 
@@ -75,12 +75,12 @@ die_2 = Die()
 
 results = [(die_1.roll() + die_2.roll()) for roll_num in range(1000)]
 max_result = die_1.sides + die_2.sides
-frequencies = [results.count(value) for value in range(1, max_result+1)]
+frequencies = [results.count(value) for value in range(1, max_result + 1)]
 
 hist2 = pygal.Bar()
 
 hist2.title = 'Results of rolling two D6 1000 times'
-hist2.x_labels = list(range(1, max_result+1))
+hist2.x_labels = list(range(1, max_result + 1))
 hist2.x_title = 'result'
 hist2.y_title = 'frequency of result'
 
@@ -96,12 +96,12 @@ die_2 = Die(10)
 
 results = [(die_1.roll() + die_2.roll()) for roll_num in range(1000)]
 max_result = die_1.sides + die_2.sides
-frequencies = [results.count(value) for value in range(1, max_result+1)]
+frequencies = [results.count(value) for value in range(1, max_result + 1)]
 
 hist2 = pygal.Bar()
 
 hist2.title = 'Results of rolling a D6 and D10 10,000 times'
-hist2.x_labels = list(range(1, max_result+1))
+hist2.x_labels = list(range(1, max_result + 1))
 hist2.x_title = 'result'
 hist2.y_title = 'frequency of result'
 
@@ -181,16 +181,62 @@ pie_chart = pygal.Pie(style=my_style)
 my_style.title_font_size = 16
 my_style.label_font_size = 10
 
-# a list of available style properties can be found here:
-# # http://pygal.org/en/stable/documentation/custom_styles.html
+# A list of available style properties can be found here:
+# http://pygal.org/en/stable/documentation/custom_styles.html
 
-# The biggest complaint I have so far, is there doesn't seem to be an easy
-# way to adjust the position of elements. There are a few things I can do like:
-# – config the legend to be at the bottom
-# – add margins around the whole chart
-# – specify a size for the chart
+# The biggest complaint I have so far, is that there's granular styling for
+# some things but not others. For example, I can set the plot's background to
+# be transparent, but that also changes the tooltip box to transparent. You can
+# set the border radius of the tooltip box, but not the border color or
+# background independent from the resst of the plot. The main axis seem to be
+# random. For the life of me I can't seem to get just one line along the x and
+# y axis. It's like you get one or the other or all the grod lines in between.
 
-# But if I want to say left align the title or add space above the legend only,
-# or add space between the legend and the chart without changing the size of
-# the chart... it appears to be limited. Perhaps this functionality will
-# improve over time.
+# Other issues:
+# - can't adjust line colors independent from label colors
+# - can't align the title
+# - can't adjust space between the labels and the chart
+
+# Update:
+# I've managed to work out some of these issues by modifying (hacking) the
+# library's css. Look at:
+# venv/lib/python3.7/site-packages/pygal/css
+
+
+# Embedding the svg in an HTML page
+# -----------------------------------------------------------------------------
+# When you render_to_file('mychart.svg'), there are a number of ways to include
+# it in your html. So far I've experimented with <iframe>, <embed> and <object>
+# like so:
+
+# iframe:
+# <div class="chart-container"">
+#   <iframe src="{{ url_for('static', filename='mychart.svg')}}"></iframe>
+# </div>
+
+# embed:
+# <figure class="chart-container">
+#   <embed class="js-chart-container" type="image/svg+xml"
+#    src="{{ url_for('static', filename='mychart.svg')}}">
+# </figure>
+
+# object:
+# <figure class="chart-container">
+#   <object class="js-chart-container" type="image/svg+xml"
+#    data="{{ url_for('static', filename='mychart.svg')}}"></object>
+# </figure>
+
+# The method that I'm going to be using going forward is the <object> method
+# for two main reasons:
+
+# 1. The object element (like embed and unlike iframe) is less fussy in terms
+#    of having to apply a bunch of css to make the content fill the frame.
+
+# 2. The object element uses the HTMLObjectElement DOM interface which (like
+#    iframe and unlike embed) has a contentDocument and contentWindow property
+#    which allow you to apply the location.reload() method. This method is
+#    helpful for when you need the svg to refresh when the HTML page loads
+#    instead of displaying a cached version. For example:
+
+# document.querySelector('.js-chart-container').contentDocument.location.reload();
+# document.querySelector('.js-chart-container').contentWindow.location.reload();

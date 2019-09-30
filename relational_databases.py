@@ -225,6 +225,7 @@ conn.close()
 #    – deletes a table (be careful!)
 # ALTER TABLE contacts RENAME TO customers;
 # ALTER TABLE contacts ADD COLUMN newcol TEXT;
+# UPDATE tableName SET destinationField=sourceField;
 
 
 # JOIN (a column in one table corresponds to a column in another)

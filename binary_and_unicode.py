@@ -36,12 +36,30 @@ unicode_test('\u00E9')  # é – LATIN SMALL LETTER E WITH ACUTE – é
 unicode_test('\xE9')    # é – LATIN SMALL LETTER E WITH ACUTE – é
 unicode_test('∞')       # ∞ – INFINITY – ∞
 
-# Note that unicode numbers that start with two zeros can be written in two
-# ways, for example: `\u00e9` and `\xe9` produce the same thing. A simple way
-# to find the uniode character from the actual inserted character is using the
+# Note that I've had some issues with unicode names. A name may work in your
+# local environment, but crash on say your ubuntu deployment server. As it
+# turns out, the names are different everywhere and it's not clear which are
+# the standard. Though names are more readable, I highly recommend going with
+# hex numbers.
+
+# Note that four hex unicode numbers that start with two zeros can be written
+# in two ways: `\u00e9` and `\xe9` produce the same thing. A simple way to find
+# the uniode character from the actual inserted character is using the
 # built-in ascii() method:
 
 print(ascii('é'))  # '\xe9'
+
+# Also note that when looking up unicode hex numbers, if you see only five
+# characters listed, you have to pad the front with 3 zeros. For example, in
+# these websites:
+
+# https://unicode.org/emoji/charts/full-emoji-list.html
+# https://www.toptal.com/designers/htmlarrows/arrows/
+
+# ...you'll see unicode numbers listed as U+027F6 and U+1F984. To display these
+# in python, drop the + sign pad the zeros:
+
+print('\U000027F6', '\U0001F984')
 
 
 # Encoding
