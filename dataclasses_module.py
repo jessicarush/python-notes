@@ -4,9 +4,10 @@
 # https://docs.python.org/3.7/library/dataclasses.html#module-dataclasses
 
 # Python 3.7 introduced a new module: dataclasses.py. The new dataclass()
-# decorator provides a way to declare data classes. When you use it, the
-# class constructor (__init__ method) and other magic methods, such as
-# __repr__(), __eq__(), and __hash__() are generated automatically.
+# decorator provides a way to declare data classes. A data class is a class
+# that typically contains mainly data. When you use it, the class constructor
+# (__init__ method) and other magic methods, such as __repr__(), __eq__(), and
+# __hash__() are generated automatically.
 
 # When using this decorator, you need to describe the attributes using
 # class variable annotations - type hints (introduced in Python 3.6).
@@ -22,7 +23,7 @@ class Point():
     z: float = 0.0
 
 p = Point(1.5, 2.5)
-print(p)  # Point(x=1.5, y=2.5, z=0.0
+print(p)  # Point(x=1.5, y=2.5, z=0.0)
 
 
 # Annotationg varibales
@@ -121,15 +122,15 @@ class InventoryItem():
 
 
 i = InventoryItem('pencils', 0.5, 5, 100)
-i.mylist += [10, 5, 16]
+i.mylist += [10]
 i.mylist += [20, 2]
 
 print(i)
-# InventoryItem(name='pencils', price=0.5, quantity=100, mylist=[])
+# InventoryItem(name='pencils', price=0.5, quantity=100, mylist=[10, 20, 2])
 print(i.total_value())
 # 50.0
-print(i.mylist)
-# [10, 5, 16, 20, 2]
+print(i.rating)
+# 5
 
 
 # fields(), asdict(), astuple(), is_dataclass()
@@ -145,7 +146,7 @@ pprint(fields(i))
 # This method returns a dict of fields for a given dataclass.
 pprint(asdict(i))
 # {'min': 10,
-#  'mylist': [10, 5, 16, 20, 2],
+#  'mylist': [10, 20, 2],
 #  'name': 'pencils',
 #  'price': 0.5,
 #  'quantity': 100,
@@ -153,7 +154,7 @@ pprint(asdict(i))
 
 # This method returns a tuple of fields for a given dataclass.
 pprint(astuple(i))
-# ('pencils', 0.5, 5, 100, 10, [10, 5, 16, 20, 2])
+# ('pencils', 0.5, 5, 100, 10, [10, 20, 2])
 
 # This method returns True if the given arg is a dataclass or instance of one.
 pprint(is_dataclass(i))

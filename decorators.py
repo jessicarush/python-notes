@@ -26,7 +26,7 @@ squares(6)
 # -----------------------------------------------------------------------------
 # When you use a decorator, you're replacing one function (squares) with
 # another (wrapper). While inside the decorator we can see the original
-# function being used but now when when outside, look what happens:
+# function being used but now when outside, look what happens:
 
 print(squares.__name__)  # wrapper
 print(squares.__doc__)   # None
@@ -73,24 +73,24 @@ def document_it(func):
         return result
     return wrapper
 
-# Here's our simple test function, first we'll do it without a decorator:
-def add_mulyiply(a, b, multiplyer=1):
+# Here's our simple test function, first we'll run it without a decorator:
+def add_multiply(a, b, multiplyer=1):
     return (a + b) * multiplyer
 
-decorated_add_ints = document_it(add_mulyiply)
+decorated_add_ints = document_it(add_multiply)
 decorated_add_ints(3, 5, multiplyer=100)
-# Running function: add_mulyiply
+# Running function: add_multiply
 # Positional arguments: (3, 5)
 # Keyword arguments: {'multiplyer': 100}
 # Result: 800
 
 # Now with a decorator... a little less code:
 @document_it
-def add_mulyiply(a, b, multiplyer=1):
+def add_multiply(a, b, multiplyer=1):
     return (a + b) * multiplyer
 
-add_mulyiply(4, 5, multiplyer=100)
-# Running function: add_mulyiply
+add_multiply(4, 5, multiplyer=100)
+# Running function: add_multiply
 # Positional arguments: (4, 5)
 # Keyword arguments: {'multiplyer': 100}
 # Result: 900
@@ -188,11 +188,11 @@ import time
 def timing(func):
     '''Outputs the time a function takes to execute.'''
     @wraps(func)
-    def wrapper():
+    def wrapper(*args, **kwargs):
         t1 = time.time()
-        func()
+        func(*args, **kwargs)
         t2 = time.time()
-        return "Time it took to run the function: " + str((t2 - t1))
+        return 'Time it took to run the function: ' + str((t2 - t1))
     return wrapper
 
 @timing

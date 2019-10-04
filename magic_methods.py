@@ -6,8 +6,9 @@
 # passed in. Many basic tasks in python can be done with non-object-oriented
 # looking syntax (a + b, for example). What's really happening here is a
 # kind of "syntactic sugar" that maps to an object-oriented pattern underneath.
-# For example, the __contains__ method allows us to use the 'in' keyword (see
-# polymorphism.py), __add__ allows us to use the '+' operator and so on.
+# For example, the __add__ method allows us to use the '+' operator, the
+# __contains__ method allows us to use the 'in' keyword (see polymorphism.py),
+# and so on.
 
 # Example: override the __add__ method will in turn affect the '+' operator.
 
@@ -109,6 +110,21 @@ print(dir(list))
 # '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend',
 # 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
 
+# You can list all the magic methods related to functions by using dir():
+
+def my_function():
+    '''Test function that does nothing'''
+    pass
+
+print(dir(my_function))
+# ['__annotations__', '__call__', '__class__', '__closure__', '__code__',
+# '__defaults__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__',
+# '__format__', '__ge__', '__get__', '__getattribute__', '__globals__',
+# '__gt__', '__hash__', '__init__', '__init_subclass__', '__kwdefaults__',
+# '__le__', '__lt__', '__module__', '__name__', '__ne__', '__new__',
+# '__qualname__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__',
+# '__sizeof__', '__str__', '__subclasshook__']
+
 
 # __str__ and __repr__
 # -----------------------------------------------------------------------------
@@ -134,7 +150,6 @@ print(repr(a))      # Word("Ha")
 # -----------------------------------------------------------------------------
 
 class Player():
-
     def __init__(self, name):
         self.name = name
         self.lives = 3
@@ -160,13 +175,18 @@ print(player1.__dict__)
 
 # __file__
 # -----------------------------------------------------------------------------
-# If you want to take a look at the actual file to read the comments and
-# docstring there, you can use the __file__ magic method to show you the
-# path to where this module lives:
+# This magic method is available to modules loaded in. If you want to take a
+# look at the actual file to read the comments and docstring there, you can
+# use the __file__ method to show you the path to where this module lives:
 
 import os
+import flask
+
 print(os.__file__)
 # /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/os.py
+
+print(flask.__file__)
+# /usr/local/lib/python3.7/site-packages/flask/__init__.py
 
 
 # __doc__
@@ -174,8 +194,10 @@ print(os.__file__)
 # prints the docstring of a module, function or class:
 
 import random
+
 print(random.__doc__)
 print(random.choice.__doc__)
+# tl:dr
 
 
 # __len__, __reversed__, __class__, __name__
@@ -195,10 +217,11 @@ class CustomReversed():
         return 'Reversed!'
 
 
-for seq in normal_sequence, CustomSequence(), CustomReversed():
-    print('\n{}: '.format(seq.__class__.__name__), end='')
-    for i in reversed(seq):
+for item in normal_sequence, CustomSequence(), CustomReversed():
+    print('\n{}: '.format(item.__class__.__name__), end='')
+    for i in reversed(item):
         print(i, end=", ")
+
 print('')
 # list: 5, 4, 3, 2, 1,
 # CustomSequence: x4, x3, x2, x1, x0,
