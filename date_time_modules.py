@@ -574,7 +574,6 @@ print('Elapsed time: {} seconds'.format(end_time - start_time))
 # time.get_clock_info()
 # -----------------------------------------------------------------------------
 # argument names that can be used:
-# – 'clock': time.clock()
 # – 'monotonic': time.monotonic()
 # – 'perf_counter': time.perf_counter()
 # – 'process_time': time.process_time()
@@ -582,17 +581,11 @@ print('Elapsed time: {} seconds'.format(end_time - start_time))
 
 import time
 
-clock_i = time.get_clock_info('clock')
 monotonic_i = time.get_clock_info('monotonic')
 perfcounter_i = time.get_clock_info('perf_counter')
 processtime_i = time.get_clock_info('process_time')
 time_i = time.get_clock_info('time')
 
-print(type(clock_i)) # <class 'types.SimpleNamespace'>
-
-print(clock_i)
-# namespace(adjustable=False, implementation='clock()',
-#   monotonic=True, resolution=1e-06)
 print(monotonic_i)
 # namespace(adjustable=False, implementation='mach_absolute_time()',
 #   monotonic=True, resolution=1e-09)
