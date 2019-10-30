@@ -63,3 +63,41 @@ print(type(c))    # <class 'tuple'>
 # a larger number into a smaller number, the quotient will be always be zero
 # and the remainder will be the first number. This may seem obvious but still
 # worth noting.
+
+
+# Walrus operator :=
+# -----------------------------------------------------------------------------
+# New to Python 3.8 and the thing we lost Guido over, the walrus operator
+# allows you to make and assignment and use the result at the same time.
+
+# For example:
+
+a = [1, 2, 3, 4, 5, 6, 7]
+
+# Without walrus:
+
+if (len(a)) > 5:
+    print(f'List too long (expected 5, got {len(a)}).')
+    # List too long (expected 5, got 7).
+
+# With walrus:
+
+# if (n := len(a)) > 5:
+    # print(f'List too long (expected 5, got {n}).')
+    # List too long (expected 5, got 7).
+
+# Another example use case could be a list comprehensions where
+# a value computed in the filtering condition is also needed in
+# the expression body. In other words, share a subexpression
+# between a comprehension filter clause and its output.
+
+# For example:
+
+# Without walrus
+
+# With walrus:
+# filtered_data = [y for x in data if (y := f(x)) is not None]
+
+# A loop that can't be trivially rewritten using 2-arg iter()
+# while chunk := file.read(8192):
+   # process(chunk)
