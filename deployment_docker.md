@@ -12,7 +12,7 @@ Containers are built on a lightweight virtualization technology that allows an a
 - [Starting a Container](#starting-a-container)
 - [Using Third-Party "Containerized" Services](#using-third-party-containerized-services)
 - [Adding a MySQL Container](#adding-a-mysql-container)
-- [Adding a Elasticsearch Container](#adding-a-elasticsearch-container)
+- [Adding an Elasticsearch Container](#adding-an-elasticsearch-container)
 - [Redis server and RQ workers](#redis-server-and-rq-workers)
 - [The Docker Container Registry](#the-docker-container-registry)
 - [Deployment of Containerized Applications](#deployment-of-containerized-applications)
