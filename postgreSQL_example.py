@@ -55,6 +55,7 @@ db = ("dbname='test1'"
       "host='localhost'"
       "port='5432'")
 
+
 def create():
     conn = psycopg2.connect(db)
     curs = conn.cursor()
@@ -120,7 +121,7 @@ print(display())
 
 import sqlite3
 
-db = 'test.db'
+db = 'data/test.db'
 
 def create():
     conn = sqlite3.connect(db)
