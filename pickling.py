@@ -7,7 +7,6 @@
 # program. Python's pickle module can save and restore any object in a
 # special binary format.
 
-
 import pickle
 import datetime
 
@@ -17,15 +16,17 @@ now2 = pickle.loads(pickled)
 
 assert now1 == now2
 
+
 # Use dump() to pickle to a file, and load() to unpickle from one.
+# -------------------------------------------------------------------------------
 
 import pickle
 
 unkle = ('The Road, Pt. 1', 'UNKLE', '2017', (
-         (1, 'Inter 1'),
-         (2, 'Farewell'),
-         (3, 'Looking for the Rain'),
-         (4, 'Cowboys or Indians')))
+          (1, 'Inter 1'),
+          (2, 'Farewell'),
+          (3, 'Looking for the Rain'),
+          (4, 'Cowboys or Indians')))
 
 with open('data/music.pickle', 'wb') as pickle_file:
     pickle.dump(unkle, pickle_file)
@@ -39,16 +40,16 @@ assert unkle == unkle2
 # remember to load them back in the same order:
 
 queens = ('Villians', 'QOTSA', '2017', (
-         (1, "Feet Don't Fail Me"),
-         (2, 'The Way You Used to Do'),
-         (3, 'Domesticated Animals'),
-         (4, 'Fortess')))
+           (1, "Feet Don't Fail Me"),
+           (2, 'The Way You Used to Do'),
+           (3, 'Domesticated Animals'),
+           (4, 'Fortess')))
 
 arcade = ('Everything Now', 'Arcade Fire', '2017', (
-         (1, 'Everything Now'),
-         (2, 'Signs of Life'),
-         (3, 'Creature Comfort'),
-         (4, 'Peter Pan')))
+           (1, 'Everything Now'),
+           (2, 'Signs of Life'),
+           (3, 'Creature Comfort'),
+           (4, 'Peter Pan')))
 
 with open('data/music.pickle', 'wb') as pickle_file:
     pickle.dump(unkle, pickle_file)
@@ -71,7 +72,7 @@ with open('data/music.pickle', 'rb') as unpickle_file:
 
 with open('data/music.pickle', 'wb') as pickle_file:
     pickle.dump(unkle, pickle_file, protocol=3) # default released with Python 3
-    pickle.dump(unkle, pickle_file, protocol=2) # for python 2
+    pickle.dump(unkle, pickle_file, protocol=2) # python 2
     pickle.dump(unkle, pickle_file, protocol=pickle.HIGHEST_PROTOCOL)
     pickle.dump(unkle, pickle_file, protocol=pickle.DEFAULT_PROTOCOL)
 

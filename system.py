@@ -12,7 +12,7 @@
 # Create a file with open()
 # open() function is used to open a file or create one if it doesn't exist:
 
-with open('practice.txt', 'w') as fob:
+with open('data/practice.txt', 'w') as fob:
     print('File created.', file=fob)
 
 # Check Existence with exists()
@@ -20,18 +20,18 @@ with open('practice.txt', 'w') as fob:
 
 import os
 
-os.path.exists('practice.txt')
-os.path.exists('./practice.txt')
-os.path.exists('.')
+print(os.path.exists('data/practice.txt'))    # True
+print(os.path.exists('./data/practice.txt'))  # True
+print(os.path.exists('.'))                    # True
 
 # Check Type with isfile(), isdir(), isabs()
 # These functions check whether a name refers to a file, directory, or path
 
-name = 'practice.txt'
+name = 'data/practice.txt'
 
-os.path.isfile(name)
-os.path.isdir(name)
-os.path.isabs('/templates/home.html')
+print(os.path.isfile(name))                   # True
+print(os.path.isdir(name))                    # False
+print(os.path.isabs('/templates/home.html'))  # True
 
 # Copy with copy()
 # The copy() function comes from another module, shutil:
@@ -39,38 +39,54 @@ os.path.isabs('/templates/home.html')
 
 import shutil
 
-shutil.copy('practice.txt', 'practice_copy.txt')
+shutil.copy('data/practice.txt', 'data/practice_copy.txt')
+shutil.move('data/practice.txt', 'data/practice1.txt')
 
 # Change Name with rename()
 
-os.rename('practice_copy.txt', 'practice2.txt')
+os.rename('data/practice_copy.txt', 'data/practice2.txt')
 
-# Link with link() or symlink()
-# Make a hard link to practice.txt from the new file p_link.txt:
+# Create a hard link with link() or a soft link with symlink()
 
-os.link('practice.txt', 'p_link')
+# Soft Links (symbolic links) are shortcuts (aliases) to files or directories.
+# These shortcuts can lead to different a partition with a different "inode"
+# number from original. If the original copy is deleted, the link will no
+# longer work.
 
-# Make a symbolic link (alias, shortcut) to practice.txt from the new file:
+# Hard Links are for files only; you cannot link to a file on different
+# partition with a different "inode" number. If the original copy is deleted
+# the link will still work, because it accesses the underlying data that the
+# real copy was accessing.
 
-os.symlink('practice.txt', 'p_slink')
+# Make a hard link to practice1.txt from the new file p_link:
+
+os.link('data/practice1.txt', 'data/p_link')
+
+# Make a symbolic link (alias, shortcut) to practice1.txt from the new file:
+
+os.symlink('data/practice1.txt', 'data/p_slink')
 
 # Check if a file is a symbolic link (alias, shortcut):
 
-os.path.islink('p_slink')
+print(os.path.islink('data/p_slink'))  # True
 
 # Get a Pathname with abspath()
 # This function expands a relative name to an absolute one.
 
-print(os.path.abspath('practice.txt'))
+print(os.path.abspath('data/practice1.txt'))
+# /Users/jessicarush/Documents/Coding/Python/github_python/data/practice1.txt
 
 # Get a symlink Pathname with realpath()
 
-print(os.path.realpath('p_slink'))
+print(os.path.realpath('data/p_slink'))
+# /Users/jessicarush/Documents/Coding/Python/github_python/data/data/practice1.txt
+
+# NOTE: I have no idea why the output says data/data/
 
 # Delete a File with remove()
 
-os.remove('p_link')
-os.remove('p_slink')
+os.remove('data/p_link')
+os.remove('data/p_slink')
 
 # Change Permissions with chmod()
 
@@ -79,7 +95,7 @@ os.remove('p_slink')
 # and the rest of the world. The command takes a compressed octal (base 8)
 # value that combines user, group, and other permissions.
 
-os.chmod('practice.txt', 0o4644)
+os.chmod('data/practice1.txt', 0o4644)
 
 # There's a great octal calculator: http://permissions-calculator.org
 
@@ -91,49 +107,61 @@ os.chmod('practice.txt', 0o4644)
 
 uid = 501
 gid = 20
-os.chown('practice.txt', uid, gid)
+os.chown('data/practice1.txt', uid, gid)
 
 
 # Directories
 # -----------------------------------------------------------------------------
 # Create with mkdir()
 
-os.mkdir('practice')
+os.mkdir('data/practice')
 
 # Check that it's there:
 
-os.path.exists('practice')
+print(os.path.exists('data/practice'))  # True
 
 # Delete with rmdir() - remember this only works on empty directories
 
-os.rmdir('practice')
+os.rmdir('data/practice')
 
 # List Contents with listdir()
 
-os.mkdir('practice')
-os.mkdir('practice/stuff')
-print(os.listdir('practice'))
+os.mkdir('data/practice')
+os.mkdir('data/practice/stuff')
+
+print(os.listdir('data/practice'))  # ['stuff']
+
+os.rmdir('data/practice/stuff')
+os.rmdir('data/practice')
 
 # Change Current Directory with chdir()
-# go from one directory to another:
 
 os.chdir('../')         # go up one directory
-print(os.listdir('.'))  # list content of current directory
+print(os.listdir('.'))  # list contents of current directory
+# ['.DS_Store', 'resources', 'programs', 'courses', 'templates', 'github_python']
+
+os.chdir('github_python/')
 
 # copy a directory and all of it's contents recursively
 # - this WILL NOT overwrite directories that already exist:
 
 import shutil
-src = 'my_files/'
-dst ='/Users/username/Documents/Backups/'
+
+os.mkdir('data/my_files')
+with open('data/my_files/test.txt', 'w') as fob:
+    print('File created.', file=fob)
+
+src = 'data/my_files'
+dst ='data/backups'
 shutil.copytree(src, dst)
 
 # copy a directory and all of it's contents recursively
 # - this WILL overwrite directories that already exist:
 
 import distutils.dir_util
-src = 'my_files/'
-dst ='/Users/username/Documents/Backups/'
+
+src = 'data/my_files'
+dst ='data/backups'
 distutils.dir_util.copy_tree(src, dst)
 
 
@@ -156,6 +184,7 @@ print(glob.glob('[Tt]*'))
 # begins with 'n' or 'N' and ends in py:
 
 os.chdir('data')
+
 print(glob.glob('[nN]*csv'))
 
 
@@ -172,7 +201,7 @@ print(os.getpid())  # 6047
 
 # Get current working directory:
 
-print(os.getcwd())  # /Users/jessicarush/github/python-examples
+print(os.getcwd())  # /Users/jessicarush/Documents/Coding/Python/github_python
 
 # Get user and group IDs:
 
