@@ -1,7 +1,7 @@
 # Deployment - Traditional Hosting
 
 
-Traditional hosting, means that the application is installed manually or through a scripted installer on a stock server machine. The process involves installing the application, its dependencies and a production scale web server and configure the system so that it is secure.
+Traditional hosting, means that the application is installed manually or through a scripted installer on a stock server machine. The process involves installing the application, its dependancies a production scale web server and configuring the system so that it is secure.
 
 ## Table of contents
 
@@ -42,19 +42,22 @@ Traditional hosting, means that the application is installed manually or through
 
 ## Operating Systems
 
-From a technical point of view, many application can be deployed on any of the major operating systems, a list which includes a large variety of open-source Linux and BSD distributions, and the commercial OS X and Microsoft Windows. Since OS X and Windows are desktop operating systems that are not optimized to work as servers, it makes more sense to choose between a Linux or a BSD operating system. The most popular of the two is Linux. As far as Linux distributions, the most popular is Ubuntu.
+From a technical point of view, many applications can be deployed on any of the major operating systems, a list which includes a large variety of open-source Linux and BSD distributions, and the commercial OSX and Microsoft Windows. Since OSX and Windows are desktop operating systems that are not optimized to work as servers, it makes more sense to choose between a Linux or a BSD operating system. The most popular of the two is Linux. As far as Linux distributions go, the most popular is Ubuntu.
 
 ## Paid Public Servers
 
-For $5 per month, the following will rent you a virtualized Linux server:
+For approximately $5-25 per month, the following will rent you a virtualized Linux server:
 
 - [Digital Ocean](https://www.digitalocean.com/) (entry level servers have 1GB of RAM)
 - [Linode](https://www.linode.com/pricing) (entry level servers have 1GB of RAM)
 - [Amazon Lightsail](https://aws.amazon.com/lightsail/) (entry level servers have 512MB of RAM)
+- [Microsoft Azure](https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux/)
+- [Heroku](https://www.heroku.com/pricing) (has a free hobby tier)
+- [Firebase](https://firebase.google.com/pricing) (has a free hobby plan)
 
 ## Free Private Server
 
-[Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) are two tools that combined allow you to create a virtual server similar to the paid ones on your own computer. To use these, install both and then create a file name *Vagrantfile* to describe the specs of your virtual machine:
+[Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) are two tools that combined allow you to create a virtual server similar to the paid ones on your own computer. To use these, install both and then create a file named *Vagrantfile* to describe the specs of your virtual machine:
 
 This file configures a Ubuntu 16.04 server with 1GB of RAM, which you will be able to access from the host computer at IP address 192.168.33.10.
 ```
@@ -72,7 +75,7 @@ To create the server, run the following command:
 $ vagrant up
 ```
 
-For more information see the [vagrant commend line documentation].(https://www.vagrantup.com/docs/cli/)
+For more information see the [vagrant command line documentation].(https://www.vagrantup.com/docs/cli/)
 
 ## SSH
 
@@ -115,7 +118,7 @@ There are a few steps that you can take, directed at closing a number of potenti
 
 ### 1. Disable root logins & password logins via SSH
 
-Since we now have a new user account that can run administrator commands via sudo, there is really no need to expose the root account. To disable root logins, you need to edit the /etc/ssh/sshd_config file on your server. You probably have the vi and nano text editors installed in your server to edit files:
+Since we now have a new user account that can run administrator commands via sudo, there is really no need to expose the root account. To disable root logins, you need to edit the `/etc/ssh/sshd_config` file on your server. You probably have the vim and nano text editors installed in your server to edit files:
 ```
 $ sudo vi /etc/ssh/sshd_config
 $ sudo nano /etc/ssh/sshd_config
@@ -145,17 +148,9 @@ $ sudo ufw status
 
 ## Installing Base Dependencies
 
-Digital Ocean's Ubuntu 16.04 comes with Python 3.5. If you want to upgrade try this (untested!):
-```
-$ sudo add-apt-repository ppa:jonathonf/python-3.6
-$ sudo apt-get update
-$ sudo apt-get install python3.6
-```
+As of 2019, Digital Ocean's default Ubuntu is 18.04 and this comes with Python 3.6.7 pre-installed.
 
-**Note as of 2019, Digital Ocean's default Ubuntu is 18.04 and this comes with Python 3.6.7 pre-intalled.**
-
-
-Otherwise, consider the following:
+Consider the following:
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install python3 python3-venv python3-dev
@@ -164,12 +159,13 @@ $ sudo apt-get -y install mysql-server
 $ sudo apt-get -y install sqlite3 libsqlite3-dev
 ```
 
-- **mysql-server** - MySQL for the database (for postgreSQL, see [deployment_digitalocean.md](deployment_digitalocean.md)).
-- **sqlite3** - dev tools for sqlite3 if you're using that instead.
 - **postfix**  - mail transfer agent, for sending out email.
 - **supervisor**  - a tool to monitor the Flask server process. It automatically restarts it if it ever crashes, or if the server is rebooted.
 - **ngnix** - the server that accepts all requests that come from the outside world, and forwards them to the application.
 - **git** - to download the application directly from its github repo.
+- **mysql-server** - MySQL for the database (for postgreSQL, see [deployment_digitalocean.md](deployment_digitalocean.md)).
+- **sqlite3** - dev tools for sqlite3 if you're using that instead.
+
 
 ### Postfix
 
@@ -182,12 +178,13 @@ Note that the default installation of postfix is likely insufficient for sending
 - [DKIM Installation and Configuration](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-dkim-with-postfix-on-debian-wheezy)
 
 In addition I've heard it's good to set up DMARC. Here's a couple of links that explain further:  
-[How to eliminate spam and protect your name with DMARC](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)  
-[What is DMARC?](https://www.proofpoint.com/us/corporate-blog/post/what-is-dmarc)  
+- [How to eliminate spam and protect your name with DMARC](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)  
+- [What is DMARC?](https://www.proofpoint.com/us/corporate-blog/post/what-is-dmarc)  
 
 Some highlights:
 
 #### 1. Make sure your hostname matches your domain name
+
 The instructions say:
 
 > Note that your server's hostname should match this domain or subdomain. You can verify the server's hostname by typing hostname at the command prompt. The output should match the name you gave the Droplet when it was being created.
@@ -208,7 +205,7 @@ sudo reboot
 #### 2. Modify the postfix config
 
 > Postfix is set up with a default configuration. If you need to make
-changes, edit */etc/postfix/main.cf* (and others) as needed. After modifying *main.cf*, be sure to run *'/etc/init.d/postfix reload'*.
+changes, edit */etc/postfix/main.cf* (and others) as needed. After modifying *main.cf*, be sure to run */etc/init.d/postfix reload*.
 
 ```
 sudo nano /etc/postfix/main.cf
@@ -265,7 +262,7 @@ Now edit the config:
 ```
 $ sudo nano /etc/elasticsearch/elasticsearch.yml
 ```
-uncomment the following two lines and provide your own names:
+uncomment the following lines and provide your own names:
 ```
 cluster.name: micrblog-cluster
 node.name: "My First Node"
@@ -274,7 +271,8 @@ network.host: 0.0.0.0
 
 This is the bare minimum. For more information, see this tutorial:
 
-[Install and Configure Elasticsearch on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04)
+- [Install and Configure Elasticsearch on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04)
+- [How To Install Elasticsearch, Logstash, and Kibana (Elastic Stack) on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elastic-stack-on-ubuntu-18-04)
 
 Lastly:
 ```
@@ -288,7 +286,7 @@ $ curl localhost:9200
 
 ## Use Git to Install the Application from GitHub
 
-You'll need to create a new repo in Github and then push your local repo to it. Once its there you can clone it onto your remote server. First, make sure you're in your home directory:
+You'll need to create a new repo on Github and then push your local repo to it. Once its there you can clone it onto your remote server. First, on your server, make sure you're in your home directory:
 ```
 $ cd ~/
 $ git clone https://github.com/username/reponame.git
@@ -306,11 +304,11 @@ $ source venv/bin/activate
 (venv) $ pip install gunicorn pymysql
 ```
 
-In addition to the requirements we install the gunicorn package which is a production web server for Python applications and the pymysql package which contains the MySQL driver that enables SQLAlchemy to work with MySQL databases.
+In addition to the requirements we install the *gunicorn* package which is a production web server for Python applications and the *pymysql* package which contains the MySQL driver that enables SQLAlchemy to work with MySQL databases.
 
 ## Recreate the .env file
 
-Assuming this file is in the .gitignore, we'll need to create it on the server:
+Assuming this file is in the `.gitignore`, we'll need to create it on the server:
 ```
 $ nano .env
 ```
