@@ -67,8 +67,9 @@ print(type(c))    # <class 'tuple'>
 
 # Walrus operator :=
 # -----------------------------------------------------------------------------
-# New to Python 3.8 and the thing we lost Guido over, the walrus operator
-# allows you to make and assignment and use the result at the same time.
+# New to Python 3.8 and the thing we lost Guido over, the assignment-expression
+# operat (walrus) allows you to make an assignment and use the result at the
+# same time.
 
 # For example:
 
@@ -76,14 +77,14 @@ a = [1, 2, 3, 4, 5, 6, 7]
 
 # Without walrus:
 
-if (len(a)) > 5:
+if len(a) > 5:
     print(f'List too long (expected 5, got {len(a)}).')
     # List too long (expected 5, got 7).
 
 # With walrus:
 
-# if (n := len(a)) > 5:
-    # print(f'List too long (expected 5, got {n}).')
+if (n := len(a)) > 5:
+    print(f'List too long (expected 5, got {n}).')
     # List too long (expected 5, got 7).
 
 # Another example use case could be a list comprehensions where
@@ -93,11 +94,32 @@ if (len(a)) > 5:
 
 # For example:
 
-# Without walrus
+data = ['one', 'two', 'cheese', 'xxxxxxxxxx']
 
-# With walrus:
-# filtered_data = [y for x in data if (y := f(x)) is not None]
+def func(arg):
+    # pretend a bunch of processing happening here
+    if len(arg) < 10:
+        result = arg
+    else:
+        result = None
+    return result
 
-# A loop that can't be trivially rewritten using 2-arg iter()
-# while chunk := file.read(8192):
-   # process(chunk)
+
+filtered = [result.title() for d in data if (result := func(d)) is not None]
+
+print(filtered)
+# ['One', 'Two', 'Cheese']
+
+# The operator is also useful with while-loops that compute a value
+# to test loop termination and then need that same value again in the
+# body of the loop.
+
+# For example:
+
+def process(block):
+    # pretend a bunch of processing happening here
+    print(block)
+
+with open('data/example.txt', 'r') as file:
+    while (block := file.read(5)) != '':
+        process(block)
