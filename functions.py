@@ -55,7 +55,7 @@ print(menu('chardonnay', 'cake', 'swiss'))
 # Keyword Arguments
 # -----------------------------------------------------------------------------
 
-print(menu(wine='chardonnay', dessert='cake', cheese='swiss'))
+print(menu(dessert='cake', cheese='swiss', wine='chardonnay'))
 # {'wine': 'chardonnay', 'cheese': 'swiss', 'dessert': 'cake'}
 
 
@@ -75,6 +75,24 @@ def menu(wine, cheese, *, courses=3, guests=1):
 # TypeError: menu() takes 2 positional arguments but 4 were given
 
 menu('merlot', 'brie', guests=2, courses=4)
+
+
+# Positional-only arguments
+# -----------------------------------------------------------------------------
+# Python 3.8 introduced a new function parameter syntax / to indicate that some
+# function parameters must be specified positionally and cannot be used as
+# keyword arguments. I think one of the reasons they did this was to allow
+# pure python functions to emulate behaviors of existing C coded functions.
+
+def menu(wine, cheese, /, *, courses=3, guests=1):
+    return {'wine': wine, 'cheese': cheese}
+
+
+# print(menu(cheese='burrata', wine='chardonnay', guests=2, courses=4))
+# TypeError: menu() got some positional-only arguments passed as keyword arguments: 'wine, cheese'
+
+print(menu('chardonnay', 'burrata', guests=2, courses=4))
+# {'wine': 'chardonnay', 'cheese': 'burrata'}
 
 
 # Use None to specify dynamic default values
