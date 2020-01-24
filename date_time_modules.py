@@ -30,7 +30,7 @@
 
 import calendar
 
-# print a month as lists of dates (the first index[0] defaluts to Monday):
+# Print a month as lists of dates (the first index[0] defaluts to Monday):
 print(calendar.monthcalendar(2018, 11))
 # [[0, 0, 0, 1, 2, 3, 4],
 #  [5, 6, 7, 8, 9, 10, 11],
@@ -38,14 +38,14 @@ print(calendar.monthcalendar(2018, 11))
 #  [19, 20, 21, 22, 23, 24, 25],
 #  [26, 27, 28, 29, 30, 0, 0]]
 
-# test if a year is a leap year:
+# Test if a year is a leap year:
 print(calendar.isleap(2016))  # True
 print(calendar.isleap(2017))  # False
 
-# The TextCalendar and HTMLCalendar classes can produce preformatted output
+# The TextCalendar and HTMLCalendar classes can produce preformatted output:
 c = calendar.TextCalendar(calendar.MONDAY)
 
-# the prmonth() method prints the formatted text output for a given month
+# The prmonth() method prints the formatted text output for a given month:
 c.prmonth(1974, 11)
 
 #   November 1974
@@ -56,7 +56,7 @@ c.prmonth(1974, 11)
 # 18 19 20 21 22 23 24
 # 25 26 27 28 29 30
 
-# the HTMLCalendar class and formatmonth() method output an HTML table
+# The HTMLCalendar class and formatmonth() method output an HTML table:
 c = calendar.HTMLCalendar(calendar.MONDAY)
 print(c.formatmonth(1974, 11))
 
@@ -64,7 +64,6 @@ print(c.formatmonth(1974, 11))
 # <tr><th colspan="7" class="month">November 1974</th></tr>
 # <tr><th class="mon">Mon</th><th class="tue">Tue</th><th class="wed">Wed</th>
 # ... etc ...
-
 
 
 # datetime module overview
@@ -84,65 +83,63 @@ print(c.formatmonth(1974, 11))
 
 from datetime import date
 
-# make a date() object by specifying a year, month, and day.
-# Those values are then available as attributes:
-
-future = date(2024, 11, 9)
-
-print(future.day)    # 9
-print(future.month)  # 11
-print(future.year)   # 2024
-
-# print a date with isoformat() method:
-
-print(future.isoformat())  # 2024-11-09
-
-# The iso refers to ISO 8601, an international standard for representing dates
-# and times. It goes from most general (year) to most specific (day). It also
-# sorts correctly: by year, then month, then day.
-
-# weekday() method tells you the day of the week.
-# Monday is 0, Sunday is 6
-
-print(future.weekday())  # 5 (Saturday)
-
 # Use the today() method to generate today's date:
 
 now = date.today()
 
 print(now)  # 2017-11-07
 
+# Make a date() object by passing a year, month, and day:
 
-# datetime.timedelta()
-# -----------------------------------------------------------------------------
+future = date(2024, 11, 9)
 
-from datetime import timedelta
+# Those values are then available as attributes:
 
-# A timedelta() object can be used to add a time interval to a date:
+print(future.day)    # 9
+print(future.month)  # 11
+print(future.year)   # 2024
 
-one_week = timedelta(days=7)
-next_week = now + one_week
+# Print a date with isoformat() method:
 
-print(next_week)             # 2017-11-14
-print(now + 52 * one_week)   # 2018-11-06
+print(future.isoformat())  # 2024-11-09
 
-# subtracting two dates will give you a timedelta object:
+# isocalendar() returns a tuple of the year, week number and weekday number:
 
-time_diff = future - now
+print(future.isocalendar())  # (2024, 45, 6)
 
-print(time_diff)        # 2505 days, 0:00:00
-print(type(time_diff))  # <class 'datetime.timedelta'>
+# isoweekday() returns the weekday from above where 1=Monday, 7=Sunday
 
-# You can use any combination of the following intervals with timedelta:
-# days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0
+print(future.isoweekday())  # 6
 
-minute_and_a_half = timedelta(minutes=1, seconds=30)
+# The iso refers to ISO 8601, an international standard for representing dates
+# and times. It goes from most general (year) to most specific (day). It also
+# sorts correctly: by year, then month, then day.
 
-# Note: The range of date is from date.min (year=1, month=1, day=1) to
-# date.max (year=9999, month=12, day=31). As a result, you can't use it for
-# historic or astronomical calculations.
+# The weekday() method works the same as isoweekday except 0=Monday, 6=Sunday
 
-# See also: timedelta_example.py
+print(future.weekday())  # 5
+
+# fromisoformat() lets you convert an isoformat string into a date object:
+
+date_from_iso = date.fromisoformat('2024-11-09')
+
+print(date_from_iso.month)  # 11
+
+# fromtimestamp() lets you convert a timestamp into a date object:
+
+date_from_timestamp = date.fromtimestamp(1731139200)
+
+print(date_from_timestamp.month)  # 11
+
+# NOTE: you cannot create a timestamp from a date object or a time object,
+# only a datetime object has a timestamp() method! For example:
+# t = datetime(2024, 11, 9).timestamp()
+
+# As of Python 3.8, you can also create a date object from isocalendar:
+
+date_from_isocalendar = date.fromisocalendar(2024, 45, 6)
+
+print(date_from_isocalendar.month)  # 11
 
 
 # datetime.time()
@@ -174,32 +171,55 @@ from datetime import datetime
 
 a_day = datetime(2017, 8, 16, 14, 9, 5, 6)
 
+# Note that if you skip the time, it will be midnight:
+
+print(datetime(2024, 11, 9))  # 2024-11-09 00:00:00
+
 # The datetime object also has an isoformat() method:
 
 print(a_day.isoformat())  # 2017-08-16T14:09:05.000006
 
-# datetime has methods with which you can get the current date and time, utc:
+# As with date(), the isocalendar() method returns the week and weekday:
+
+print(a_day.isocalendar())  # (2017, 33, 3)
+
+# The datetime object has a timestamp() method:
+
+print(a_day.timestamp())  # 1502917745.000006
+
+# You can covert back to a datetime from isoformat, isocalendar and timestamp:
+
+date_from_iso = datetime.fromisoformat("2017-08-16T14:09:05")
+date_from_isocalendar = datetime.fromisocalendar(2017, 33, 3)
+date_from_timestamp = datetime.fromtimestamp(1502917745)
+
+print(date_from_iso)          # 2017-08-16 14:09:05
+print(date_from_isocalendar)  # 2017-08-16 00:00:00
+print(date_from_timestamp)    # 2017-08-16 14:09:05
+
+# datetime has methods that return the current date and time, local and utc:
 
 print(datetime.today())   # 2017-11-07 16:17:15.343399
 print(datetime.now())     # 2017-11-07 16:17:15.343410
 print(datetime.utcnow())  # 2017-11-08 00:17:15.343416
 
-# now() and today() are similar. now() allows us to provide timezone with a
-# tzinfo object (see timezones.py)
+# now() and today() are similar but now() allows us to provide timezone info
+# with a tzinfo object (see timezones.py)
 
 now = datetime.now()
 
-print(now.isoformat())  # 2017-11-07T16:18:22.570422
-print(now.year)         # 2017
-print(now.month)        # 11
-print(now.day)          # 7
-print(now.hour)         # 16
-print(now.minute)       # 18
-print(now.second)       # 22
-print(now.microsecond)  # 570422
-
-print('{}/{}/{}'.format(now.month, now.day, now.year))
-# 12/31/2017
+print(now.isoformat())    # 2020-01-24T12:52:39.572236
+print(now.isocalendar())  # (2020, 4, 5)
+print(now.timestamp())    # 1579899159.572236
+print(now.weekday())      # 4 (Monday=0, Sunday=6)
+print(now.isoweekday())   # 5 (Monday=1, Sunday=7)
+print(now.year)           # 2020
+print(now.month)          # 1
+print(now.day)            # 24
+print(now.hour)           # 12
+print(now.minute)         # 54
+print(now.second)         # 39
+print(now.microsecond)    # 572236
 
 # You can merge a date object and a time object into a datetime object by
 # using combine():
@@ -210,14 +230,50 @@ noonish = time(12, 3, 0)
 this_day = date.today()
 noonish_today = datetime.combine(this_day, noonish)
 
-print(noonish_today)       # 2017-11-07 12:03:00
-print(type(noonish_today)) # <class 'datetime.datetime'>
+print(noonish_today)        # 2017-11-07 12:03:00
+print(type(noonish_today))  # <class 'datetime.datetime'>
 
 # You can pull the date and time out from a datetime object by using the
 # date() and time() methods:
 
-print(noonish_today.date()) # 2017-11-07
-print(noonish_today.time()) # 12:03:00
+print(noonish_today.date())  # 2017-11-07
+print(noonish_today.time())  # 12:03:00
+
+
+# datetime.timedelta()
+# -----------------------------------------------------------------------------
+
+from datetime import timedelta
+
+# The timedelta() object can be used to add/subtract a time interval to a date,
+# time or datetime object. You can pass in any of the following intervals:
+# days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0
+
+now = date.today()
+one_week = timedelta(days=7)
+five_years = timedelta(weeks=52)
+minute_and_a_half = timedelta(minutes=1, seconds=30)
+
+print(now + one_week)               # 2020-01-31
+print(now + five_years)             # 2021-01-22
+print(now + five_years - one_week)  # 2021-01-15
+
+# subtracting two dates, datetimes or times will give you a timedelta object.
+# Note that for this, the two operands must be the same type, i.e. you cannot
+# subtract a datetime object from a date object.
+
+future = date(2025, 1, 1)
+
+time_diff = future - now
+
+print(time_diff)        # 1804 days, 0:00:00
+print(type(time_diff))  # <class 'datetime.timedelta'>
+
+# Note: The range of date is from date.min (year=1, month=1, day=1) to
+# date.max (year=9999, month=12, day=31). As a result, you can't use it for
+# historic or astronomical calculations.
+
+# See also: timedelta_example.py
 
 
 # Time module
@@ -239,16 +295,19 @@ import time
 # value (number of seconds since 1970-01-01):
 
 now = time.time()
+
 print(now)                # 1510100475.260867
 print(type(now))          # <class 'float'>
 
 # convert an epoch value to a string by using ctime():
 
 str_now = time.ctime(now)
+
 print(str_now)            # Tue Nov  7 16:21:15 2017
 print(type(str_now))      # <class 'str'>
 
 test_time = time.ctime()  # if no arg is provided, the current time is used
+
 print(test_time)          # Tue Nov  7 16:21:15 2017
 
 # Sometimes, though, you need actual days, hours, and so on, which time
@@ -280,8 +339,9 @@ print(type(time.localtime(now))) # <class 'time.struct_time'>
 
 t = time.localtime()
 
-print(('Year {0[0]}, Month {0[1]}, Day {0[2]}, Hour {0[3]}, Minute {0[4]}, '
-       'Second {0[5]}, Weekday {0[6]}, Yearday {0[7]}, DST {0[8]}').format(t))
+print(f'Year {t.tm_year}, Month {t.tm_mon}, Day {t.tm_mday},'
+      f'Hour {t.tm_hour}, Minute {t.tm_min}, Second {t.tm_sec},'
+      f'Weekday {t.tm_wday}, Yearday {t.tm_yday}, DST {t.tm_isdst}')
 # Year 2017, Month 11, Day 7, Hour 16, Minute 28, Second 23, Weekday 1,
 # Yearday 311, DST 0
 
@@ -316,14 +376,13 @@ import time
 # The int offset of the local (non-DST) timezone, in seconds west of UTC
 # (negative in most of Western Europe, positive in the US, zero in the UK).
 
-print('current timezone is {0} with offset of {1} seconds'.format(
-       time.tzname[0], time.timezone))
-# current timezone is PST with offset of 28800 seconds
+print(f'timezone is {time.tzname[0]} with offset of {time.timezone} seconds')
+# timezone is PST with offset of 28800 seconds
 
 if time.daylight != 0:
     print('\tDST is in effect')
     print('\tThe DST timezone is ' + time.tzname[1])
-    print('\tOffset is actually {} seconds'.format(time.timezone - (60 * 60)))
+    print(f'\tOffset is actually {time.timezone - (60 * 60)} seconds')
     # DST is in effect
     # The DST timezone is PDT
     # Offset is actually 25200 seconds
@@ -336,9 +395,9 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 
 # Read and Write Dates & Times with strftime() and strptime()
 # -----------------------------------------------------------------------------
-# isoformat() for date, time and datetime objects and, ctime() for epochs
-# aren't the only way to write dates and times as strings. We can also convert
-# dates and times to strings using strftime().
+# isoformat() for date, time and datetime objects and, ctime() aren't the only
+# way to write dates and times as strings. We can also convert dates and times
+# to strings using strftime().
 
 # This is provided as a METHOD in the datetime, date, and time objects, and
 # as a FUNCTION in the time module. strftime() uses format strings to specify
@@ -372,47 +431,48 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 # UTC of the form +HHMM or -HHMM, where H represents decimal hour digits and M
 # represents decimal minute digits [-23:59, +23:59].
 
-# Here's the strftime() function with the time module. It converts a
+# Here's the strftime() FUNCTION with the time module. It converts a
 # struct_time object to a string:
 
 import time
 
-# For this method a Tuple or struct_time argument is required at 't':
+# For this method a Tuple or struct_time argument is required at 'a_time':
 
-fmt = "It's %A, %B %d, %Y, local time: %I:%M:%S%p"
-t = time.localtime()
-print(time.strftime(fmt, t))
+format = "It's %A, %B %d, %Y, local time: %I:%M:%S%p"
+
+a_time = time.localtime()
+
+print(time.strftime(format, a_time))
 # It's Tuesday, November 07, 2017, local time: 04:28:23PM
 
-# If we try with a date object, the time defaults to midnight:
+# Here's the strftime() METHOD with a date object (the time defaults to midnight):
 
-a_day = date(2017, 8, 16)
-print(a_day.strftime(fmt))
+a_date = date(2017, 8, 16)
+
+print(a_date.strftime(format))
 # It's Wednesday, August 16, 2017, local time: 12:00:00AM
 
 # If we try with a time object, we get a default date of 1900-01-01.
-# Import time again otherwise it will try to use time from import time:
 
-from datetime import time
+import datetime
 
-a_time = time(12, 3, 0)
-print(a_time.strftime(fmt))
+a_dt_time = datetime.time(12, 3, 0)
+
+print(a_dt_time.strftime(format))
 # It's Monday, January 01, 1900, local time: 12:03:00PM
 
 # Another way to write it:
-import datetime
 
-time_str = datetime.datetime.now().strftime('%m-%d-%Y, %H:%M %p')
-print(time_str)  # 12-31-2017, 10:47 AM
+datetime_string = datetime.datetime.now().strftime('%m-%d-%Y, %H:%M %p')
+
+print(datetime_string)  # 12-31-2017, 10:47 AM
 
 # To go the other way and convert a string to a date or time, use strptime()
 # the nonformat parts of the string (without %) need to match EXACTLY.
 # Example: specify a format that matches year-month-day, such as 2017-08-16.
 
-import time
-
-fmt = '%Y-%m-%d'
-a_date = time.strptime('2017-08-16', fmt)
+format = '%Y-%m-%d'
+a_date = time.strptime('2017-08-16', format)
 
 print(a_date)
 # time.struct_time(tm_year=2017, tm_mon=8, tm_mday=16, tm_hour=0, tm_min=0,
@@ -424,10 +484,10 @@ print(a_date)
 # data, my return a date string. Using strptime, you can convert these
 # strimgs back again:
 
-n = datetime.now()  # 2019-07-08 09:57:26.976697 <class 'datetime.datetime'>
+n = datetime.datetime.now()  # 2019-07-08 09:57:26.976697 <class 'datetime.datetime'>
 s = str(n)
 f = '%Y-%m-%d %H:%M:%S.%f'
-d = datetime.strptime(s, f)
+d = datetime.datetime.strptime(s, f)
 
 print(s, type(s))  # 2019-07-08 09:57:26.976697 <class 'str'>
 print(d, type(d))  # 2019-07-08 09:57:26.976697 <class 'datetime.datetime'>
