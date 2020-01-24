@@ -252,10 +252,10 @@ print(value_string)  # 2, 1234, Main, Vancouver, BC
 # Sort by dict keys
 # -----------------------------------------------------------------------------
 
-ordered_keys = list(location.keys())
+sorted_keys = list(location.keys())
 
-ordered_keys.sort()
-for key in ordered_keys:
+sorted_keys.sort()
+for key in sorted_keys:
     print(key, '–', location[key])
 
 # location.keys() behaves like a sequence and can therefor be passed to sorted:
@@ -274,9 +274,9 @@ for key in sorted(location.keys()):
 # -----------------------------------------------------------------------------
 # this trick returns a list of tuples from a dict, sorted by value:
 
-ordered_vals = sorted(location.items(), key=lambda x: x[1])
+sorted_vals = sorted(location.items(), key=lambda x: x[1])
 
-pprint(ordered_vals)
+pprint(sorted_vals)
 # [('number', '1011'),
 #  ('apt', '2'),
 #  ('prov', 'BC'),
@@ -396,8 +396,11 @@ print(dict(dd))
 
 # OrderedDict()
 # -----------------------------------------------------------------------------
+# NOTE: As of Python 3.7, dictionaries remember the order of items inserted.
+
 # OrderedDict() remembers the order of key addition and returns them in that
-# same order (remember, dictionaries are NOT usually ordered like lists)
+# same order. Prior to Python 3.7, standard a dict() was NOT ordered, so this
+# class may still useful:
 
 from collections import OrderedDict
 
@@ -413,7 +416,7 @@ print(numbers)
 # OrderedDict([('one', 'uno'), ('two', 'dos'), ('three', 'tres'), ...])
 
 
-# unpack a dictionary
+# Unpack a dictionary
 # -----------------------------------------------------------------------------
 # You can unpack any sequence (including dictionary) into variables. The only
 # requirement is that the number of variables should match the number of items
