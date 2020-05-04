@@ -6,6 +6,7 @@
 
 - [pip](#pip)
 - [Installing & upgrading packages](#installing--upgrading-packages)
+- [pip help](#pip-help)
 - [Listing all packages](#listing-all-packages)
 - [Requirements files](#requirements-files)
   * [pipreqs](#pipreqs)
@@ -90,6 +91,17 @@ $ python3 -m pip install PyYaml
 ```
 One guy said the '-m' is an argument that allows python to locate modules
 for execution as scripts. I get the sense that it's more of a Windows thing.
+
+
+## pip help
+
+To access pip's help documentation you can type `pip help` in the command line. You can also follow that with a specfic command you want help with, for example:
+
+```bash
+pip help install
+```
+
+This will give you all sorts of useful stuff including what all the various flags mean.
 
 
 ## Listing all packages
