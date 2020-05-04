@@ -68,7 +68,7 @@ help(datetime.datetime)
 
 import random
 dir(random)
-# [..., 'betavariate', 'choice', 'choices', 'expovariate', 'gammavariate', 
+# [..., 'betavariate', 'choice', 'choices', 'expovariate', 'gammavariate',
 # 'gauss', 'getrandbits', 'getstate', 'lognormvariate', 'normalvariate',
 # 'paretovariate', 'randint', 'random', 'randrange', 'sample', 'seed',
 # 'setstate', 'shuffle', 'triangular', 'uniform', 'vonmisesvariate',
