@@ -148,6 +148,17 @@ for item in itertools.accumulate([1, 2, 3, 4], multiply):
     # 1, 2, 6, 24
 
 
+
+# os.system()
+# -----------------------------------------------------------------------------
+# os.system is a simple way to run a shell command, for example to following
+# will print the contents of the current directory:
+
+import os
+
+os.system(ls -alh)
+
+
 # os.walk()
 # -----------------------------------------------------------------------------
 # os.walk recursively visits each directory from the root, and for each one,
@@ -247,7 +258,7 @@ print(get_close_matches('rainn', possibilities, n=1))
 # ['rain']
 
 
-# itemgetter()
+# operator.itemgetter()
 # -----------------------------------------------------------------------------
 # This method allows us to sort lists of dictionaries or tuples by something
 # other than their first value. For example:
