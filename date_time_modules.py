@@ -404,23 +404,31 @@ print('UTC time is ' + time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()))
 # the output:
 
 # %Y  year                          2017
-# %y  year 0-99                     17
+# %y  year 00-99                    17
+# %-y  year 0-99 decimal            17
 # %m  month                         08
+# %-m month decimal                 8
 # %B  month name                    August
 # %b  month abbreviation            Aug
-# %d  day of month                  16
+# %d  day of month                  06
+# %-d day of month decimal          6
 # %A  weekday name                  Wednesday
 # %a  weekday abbreviation          Wed
 # %H  hour (24 hr)                  15
+# %-H  hour (24 hr) decimal         15
 # %I  hour (12 hr)                  03
+# %-I hour (12 hr) decimal          3
 # %p  AM/PM                         PM
 # %M  minute                        59
+# %-M minute decimal                59
 # %S  second                        59
+# %-S second decimal                59
 # %f  microsecond as a decimal      886007
 # %c  date and time                 Wed Aug 30 17:26:39 2017
 # %x  date                          08/30/17
 # %X  time                          17:26:39
 # %j  day in 1-366                  242
+# %-j day in 1-366 decimal          242
 # %U  week in 1-53 (Sun start)      35
 # %W  week in 1-53 (Mon start)      35
 # %w  weekday as a decimal 0-6      3
