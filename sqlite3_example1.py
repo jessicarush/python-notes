@@ -10,7 +10,7 @@ import sqlite3
 import datetime
 import pytz
 
-db = sqlite3.connect('data/accounts.sqlite')
+db = sqlite3.connect('data/accounts1.sqlite')
 db.execute('''CREATE TABLE IF NOT EXISTS accounts
               (name TEXT PRIMARY KEY NOT NULL,
               balance INTEGER NOT NULL)''')
@@ -123,7 +123,7 @@ print('-' * 50)
 # Note this method doesn't handle timezone aware dates, but you can convert
 # the utc afterward as shown here:
 
-db = sqlite3.connect('data/accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+db = sqlite3.connect('data/accounts1.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 for row in db.execute('SELECT * FROM history'):
     utc_time = row[0]
@@ -139,7 +139,7 @@ db.close()
 
 print('-' * 50)
 
-db = sqlite3.connect('data/accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+db = sqlite3.connect('data/accounts1.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 for row in db.execute('SELECT * FROM history'):
     local_time = pytz.utc.localize(row[0]).astimezone()
@@ -160,7 +160,7 @@ print('-' * 50)
 # be a format string, then the time value then a modifier which causes the UTC
 # time to be converted to local time.
 
-db = sqlite3.connect('data/accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+db = sqlite3.connect('data/accounts1.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 for row in db.execute('''
   SELECT strftime('%Y-%m-%d %H:%M:%f', history.time, 'localtime')
@@ -178,7 +178,7 @@ db.close()
 
 print('-' * 50)
 
-db = sqlite3.connect('data/accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+db = sqlite3.connect('data/accounts1.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 db.execute('''
   CREATE VIEW IF NOT EXISTS localhistory
