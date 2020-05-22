@@ -16,6 +16,7 @@ def example():
     '''
     pass
 
+
 # In larger or more complex projects however, it's often a good idea to give
 # more information like, what it does, any exceptions it may raise, what it
 # returns, or relevant details about the parameters, arguments, methods,
@@ -35,6 +36,7 @@ def rest_example(arg1=0.0, arg2=None):
     :raises keyError: raises an exception
     '''
     pass
+
 
 def google_example(arg1=0.0, arg2=None):
     '''
@@ -57,6 +59,7 @@ def google_example(arg1=0.0, arg2=None):
         KeyError: Raises an exception.
     '''
     pass
+
 
 def numpy_example(arg1, arg2=0.0):
     '''
@@ -83,6 +86,7 @@ def numpy_example(arg1, arg2=0.0):
     '''
     pass
 
+
 help(google_example)  # output all the docstrings (a class could have many)
 print(google_example.__doc__)  # print just the one docstring
 
@@ -102,6 +106,7 @@ def ftoc(f_temp):
     f_c_ratio = c_range / f_range
     c_temp = (f_temp - f_freeze_temp) * f_c_ratio + c_freeze_temp
     return c_temp
+
 
 # A little test code:
 
@@ -128,6 +133,7 @@ C_FREEZE_TEMP = 0.0
 F_RANGE = F_BOIL_TEMP - F_FREEZE_TEMP
 C_RANGE = C_BOIL_TEMP - C_FREEZE_TEMP
 F_C_RATIO = C_RANGE / F_RANGE
+
 
 def ftoc(f_temp):
     "Convert Fahrenheit <f_temp> to Celsius <c_temp> and return it."
@@ -159,8 +165,8 @@ class Person():
         self.name = name       # public attribute
         self.__alias = alias   # private attribute
 
-x = Person(name='Bob', alias='boktoktok')
 
+x = Person(name='Bob', alias='boktoktok')
 print(x.name)
 # Bob
 
@@ -187,9 +193,7 @@ print(x._Person__alias)
 # information, but I need to give it a name in order to unpack the rest:
 
 person = ('Kali', '50', 'Peru')
-
 name, _, country = person
-
 print(name, country)
 
 
@@ -204,22 +208,25 @@ from_ = 'example'
 # Type hints (variable, function and class annotation)
 # -----------------------------------------------------------------------------
 # Python 3 introduced a syntax addition called function annotation syntax.
-# Python 3.6 introduced a syntax for annotating variables. Python 3.7 introduced
-# the dataclasses decorator which requires annotation on class variables.
-# Annotations serve as a way of documenting a variable, class or function by
-# indicating the type expected and type returned.
+# Python 3.6 introduced a syntax for annotating variables. Python 3.7
+# introduced the dataclasses decorator which requires annotation on class
+# variables. Annotations serve as a way of documenting a variable, class or
+# function by indicating the type expected and type returned.
 
 # For simple built-in types:
+
 x: int = 1
 x: float = 1.0
 x: bool = True
 x: str = 'test'
 x: bytes = b'test'
 
-# In Python 3.5 and earlier you can use a type comment instead
+# In Python 3.5 and earlier you can use a type comment instead:
+
 x = 1  # type: int
 
-# Note, you don't need to initialize a variable to annotate it
+# Note, you don't need to initialize a variable to annotate it:
+
 x: int
 
 # For collections, the types must be imported from the typing module.
@@ -227,39 +234,51 @@ x: int
 
 from typing import List, Set, Dict, Tuple, Optional, Union, Any
 
+
 def some_function():
     pass
+
 
 x: List[int] = [1]
 x: Set[int] = {6, 7}
 
 # For dictionaries, we need the types of both keys and values:
+
 x: Dict[str, float] = {'field': 2.0}
 
-# For tuples, specify the types of all the elements
+# For tuples, specify the types of all the elements:
+
 x: Tuple[int, str, float] = (3, "yes", 7.5)
 
-# Use Optional[] for values that could be None
+# Use Optional[] for values that could be None:
+
 x: Optional[str] = some_function()
 
-# Use Union when something could be one of a few types
+# Use Union when something could be one of a few types:
+
 x: List[Union[int, str]] = [3, 5, "test", "fun"]
 
 # Use Any if you don't know the type of or it's too dynamic to pick one:
+
 x: Any = some_function()
 
 # An annotated function would look like this:
 
 import datetime
 
+
 def to_date(date_string: str) -> datetime:
     return datetime.strptime(date_string, '%Y-%m-%d')
 
-# multiple arguments
+
+# multiple arguments:
+
 def add(num1: int, num2: int) -> int:
     return num1 + num2
 
-# You can split a function annotation over multiple lines
+
+# You can split a function annotation over multiple lines:
+
 def send_email(address: Union[str, List[str]],
                sender: str,
                cc: Optional[List[str]],
