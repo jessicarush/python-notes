@@ -18,8 +18,8 @@ import tkinter as tk
 # managers'. The most useful is the grid manager. The pack manager and place
 # are the simplest.
 
-print(tk.TkVersion)
-print(tk.TclVersion)
+print(tk.TkVersion)   # 8.5
+print(tk.TclVersion)  # 8.5
 
 
 # .pack()
@@ -54,16 +54,16 @@ label2.pack(side='top', anchor='e', pady=(3, 0))
 label3.pack(side='top', anchor='e', pady=(3, 0))
 label4.pack(side='top', anchor='e', pady=(3, 0))
 
-e1=tk.Entry(rightFrame, width=14)
+e1 = tk.Entry(rightFrame, width=14)
 e1.pack(side='top', anchor='w')
 
-t1=tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
+t1 = tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
 t1.pack(side='top', anchor='w')
 
-t2=tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
+t2 = tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
 t2.pack(side='top', anchor='w')
 
-t3=tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
+t3 = tk.Text(rightFrame, height=1, width=14, relief='solid', borderwidth=1)
 t3.pack(side='top', anchor='w')
 
 b1 = tk.Button(rightFrame, text='convert')
@@ -110,6 +110,7 @@ window.title('Unit Converter')
 window.geometry('480x125-100-100')
 window['padx'] = 15
 window['pady'] = 15
+
 font1 = ('Helvetica', 18, 'bold')
 font2 = ('Helvetica', 11)
 
@@ -117,6 +118,7 @@ l1 = tk.Label(window, text='kilograms (kg)', font=font2)
 l2 = tk.Label(window, text='grams (gm)', font=font2)
 l3 = tk.Label(window, text='pounds (lb)', font=font2)
 l4 = tk.Label(window, text='ounces (oz)', font=font2)
+
 l1.grid(row=0, column=0, sticky='w')
 l2.grid(row=0, column=1, sticky='w')
 l3.grid(row=0, column=2, sticky='w')
@@ -126,13 +128,13 @@ e1_value = tk.StringVar()
 e1 = tk.Entry(window, width=12, textvariable=e1_value, font=font1, fg='azure4')
 e1.grid(row=1, column=0, padx=(0, 20))
 
-t1=tk.Text(window, height=1, width=13)
+t1 = tk.Text(window, height=1, width=13)
 t1.grid(row=1, column=1, sticky='n')
 
-t2=tk.Text(window, height=1, width=13)
+t2 = tk.Text(window, height=1, width=13)
 t2.grid(row=1, column=2, sticky='n')
 
-t3=tk.Text(window, height=1, width=13)
+t3 = tk.Text(window, height=1, width=13)
 t3.grid(row=1, column=3, sticky='n')
 
 b1 = tk.Button(window, text='convert', command=kg_to_other)
