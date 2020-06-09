@@ -13,13 +13,13 @@ packages_example
 └─ weather.py
 ```
 
-## sources/__init__.py
+## package: sources/__init__.py
 
 In the sources directory you'll need to create a file named __init__.py. This file can be empty. Python needs it to treat the directory containing it as a package.
 
 Note that this __init__.py file runs as soon as you import anything from the package. It can be used to set some shared variables or execute some "initialization" code. That being said, programmers do not expect actual logic to happen in this file so keep it at that.
 
-## Module 1: sources/daily.py
+## module 1: sources/daily.py
 
 ```python
 def forecast():
@@ -28,7 +28,7 @@ def forecast():
 ```
 
 
-## Module 2: sources/weekly.py
+## module 2: sources/weekly.py
 
 ```python
 def forecast():
@@ -37,7 +37,7 @@ def forecast():
 ```
 
 
-## Main program: weather.py
+## main program: weather.py
 
 ```python
 from sources import daily, weekly
