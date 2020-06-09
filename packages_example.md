@@ -13,11 +13,11 @@ packages_example
 └─ weather.py
 ```
 
-## package: sources/__init__.py
+## package: sources/\__init__.py
 
-In the sources directory you'll need to create a file named __init__.py. This file can be empty. Python needs it to treat the directory containing it as a package.
+In the sources directory you'll need to create a file named `__init__.py`. This file can be empty. Python needs it to treat the directory containing it as a package.
 
-Note that this __init__.py file runs as soon as you import anything from the package. It can be used to set some shared variables or execute some "initialization" code. That being said, programmers do not expect actual logic to happen in this file so keep it at that.
+Note that this `__init__.py` file runs as soon as you import anything from the package. It can be used to set some shared variables or execute some "initialization" code. That being said, programmers do not expect actual logic to happen in this file so keep it at that.
 
 ## module 1: sources/daily.py
 
