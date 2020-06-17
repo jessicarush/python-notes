@@ -148,7 +148,6 @@ for item in itertools.accumulate([1, 2, 3, 4], multiply):
     # 1, 2, 6, 24
 
 
-
 # os.system()
 # -----------------------------------------------------------------------------
 # os.system is a simple way to run a shell command, for example to following
@@ -156,7 +155,7 @@ for item in itertools.accumulate([1, 2, 3, 4], multiply):
 
 import os
 
-os.system(ls -alh)
+os.system('ls -alh')
 
 
 # os.walk()
@@ -283,3 +282,23 @@ pprint(l)
 # [{'email': 'zed@email.com', 'id': 1, 'username': 'zed'},
 #  {'email': 'jane@email.com', 'id': 4, 'username': 'jane'},
 #  {'email': 'bob@email.com', 'id': 6, 'username': 'bob'}]
+
+
+# sys.argv
+# -----------------------------------------------------------------------------
+# This variable is a list of all the arguments passed in the command line.
+# The first item will be the filename invoked with python, for example:
+
+# $ python3 standard_library.py
+
+import sys
+
+print(f'sys.argv is {sys.argv}')
+
+# Any additional variables passed in the command line can be accessed using
+# list index syntax. For example:
+
+# $ python3 standard_library.py hello
+
+print(f'sys.argv[1] is {sys.argv[1]} and is {type(sys.argv[1])}')
+# sys.argv[1] is hello and is <class 'str'>
