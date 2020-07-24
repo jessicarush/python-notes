@@ -109,7 +109,6 @@ For example, the get_user route:
 {
     "id": 123,
     "username": "susan",
-    "password": "my-password",
     "email": "susan@example.com",
     "last_seen": "2017-10-20T15:04:27Z",
     "about_me": "Hello, my name is Susan!",
