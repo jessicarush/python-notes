@@ -40,8 +40,12 @@ months.append('Feb')
 
 a_dict = {'a' : 'A', 'b': 'B', 'c': 'C'}
 a_tuple = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul')
+
 a_list = list(a_tuple)  # ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul']
-a_list = list(a_dict)   # ['a', 'b', 'c']
+a_list = list(a_dict)  # ['a', 'b', 'c']
+a_list = list(a_dict.keys())  # ['a', 'b', 'c']
+a_list = list(a_dict.values())  # ['A', 'B', 'C']
+a_list = list(a_dict.items())  # [('a', 'A'), ('b', 'B'), ('c', 'C')]
 
 # as above, you can also use the list function to start with an empty list
 
