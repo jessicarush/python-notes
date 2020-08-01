@@ -70,6 +70,19 @@ test = random_string(20)
 print(test)
 # 40Sfk7NFmRjecSSezU9M
 
+# random.choice() takes any sequence. In python, a sequence is and orderd set
+# like a list, tuple or string. If you wanted to get a random item from another
+# data type like a dictionary, simply convert it to a list. For example:
+
+colors = {
+  'aliceblue': '#f0f8ff',
+  'antiquewhite': '#faebd7',
+  'aqua': '#00ffff'
+}
+
+name, hex = random.choice(list(colors.items()))
+
+print(name, hex)
 
 # collections.Counter()
 # -----------------------------------------------------------------------------
