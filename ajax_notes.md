@@ -26,6 +26,7 @@
 - [XMLHttpRequest Object Methods](#xmlhttprequest-object-methods)
 - [XMLHttpRequest Object Properties](#xmlhttprequest-object-properties)
 - [GET or POST?](#get-or-post)
+- [Access-Control-Allow-Origin](#access-control-allow-origin)
 - [Alternate methods for receiving responses](#alternate-methods-for-receiving-responses)
 
 <!-- tocstop -->
@@ -194,7 +195,7 @@ function ajaxRequest() {
 
 ### Handle the request
 
-We can receive our request data using the `request.get_json()` method:
+We can receive our request data using the `request.get_json()` method.
 
 ```python
 @app.route('/ajax_demo', methods=['POST'])
@@ -211,6 +212,7 @@ def ajax_demo():
     return jsonify(response)
 ```
 
+To access other forms of request data (e.g. query strings) see: [flask_jinja_notes.md](flask_jinja_notes.md).
 
 ## Example 4: send form data through request to a server
 
@@ -343,8 +345,27 @@ However, always use POST requests when:
 - Sending user input (which can contain unknown characters), POST is more robust and secure than GET
 
 
+## Access-Control-Allow-Origin
+
+In order for requests outside the response origin (domain) to access the response, the `Access-Control-Allow-Origin` header must be set. In the following example, `*` is a wildcard allowing any site to receive the response. You should only use this for public APIs. Private APIs should never use `*`, and should instead have a specific domain or domains set. In addition, the wildcard only works for requests made with the crossorigin attribute set to anonymous, and it prevents sending credentials like cookies in requests. [See MDN for more on this](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin).
+
+```python
+@app.route('/api_demo', methods=['GET'])
+def api_demo():
+    '''Demo API returns a random html color'''
+    data = {
+        'name': 'jessica',
+        'date': '2019-04-11',
+        'stuff': [100, 'hello', 2.5]
+        }
+    response = jsonify(data)
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+```
+
+
 ## Alternate methods for receiving responses
 
-There are two other ways of coding the part where you recieve the response from the server. One uses event handlers and the other uses event listeners. These are both newer methods and may not work in older browsers.
+There are two other ways of coding the part where you receive the response from the server. One uses event handlers and the other uses event listeners. These are both newer methods and may not work in older browsers.
 
 See: [javascript-notes/ajax.md](https://github.com/jessicarush/javascript-notes/blob/master/ajax.md)
