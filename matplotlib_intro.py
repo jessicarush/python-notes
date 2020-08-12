@@ -103,6 +103,7 @@ plt.show()
 # (0.016, 0.859, 0.643), rounded to 3 decimal places.
 
 def rgb_convert(r, g, b):
+    '''Converts noraml 0-255 RGB color values to a float between 0 and 1.'''
     c = r/255, g/255, b/255
     return c
 
