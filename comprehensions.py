@@ -77,6 +77,22 @@ print(new_reps)
 # ['0', '0', '10', '0', '6']
 
 
+# List Comprehensions: add a value
+# ----------------------------------------------------------------------------
+# You can add values at the end of your comprehension using the + operator:
+
+import random
+
+rgba = [random.random() for i in range(3)]
+rgba.append(1)
+
+# same as:
+rgba = [random.random() for i in range(3)] + [1]
+
+print(rgba)
+# [0.2785526331653764, 0.2124238306054994, 0.6514248582355008, 1]
+
+
 # List Comprehensions: nested loops example
 # ----------------------------------------------------------------------------
 # Another example using nested loops.
