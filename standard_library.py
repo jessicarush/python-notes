@@ -84,6 +84,15 @@ name, hex = random.choice(list(colors.items()))
 
 print(name, hex)
 
+
+# random.random()
+# -----------------------------------------------------------------------------
+# Gives you a random float between 0 and 1
+
+random_zero_to_one = random.random()
+print(f'random.random() gave me: {random_zero_to_one}')
+
+
 # collections.Counter()
 # -----------------------------------------------------------------------------
 
