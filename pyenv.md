@@ -6,6 +6,14 @@ These instruction come from [this Real Python article](https://realpython.com/in
 
 <!-- toc -->
 
+- [Install pyenv](#install-pyenv)
+- [Install python versions](#install-python-versions)
+- [Remove a version](#remove-a-version)
+- [Using your versions](#using-your-versions)
+- [Other commands](#other-commands)
+
+<!-- tocstop -->
+
 ## Install pyenv
 
 Install dependencies:
