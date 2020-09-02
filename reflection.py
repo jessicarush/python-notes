@@ -207,3 +207,15 @@ pprint(vars())
 #  'x': [],
 #  'y': ['one'],
 #  'z': None}
+
+
+# self-document expressions
+# -----------------------------------------------------------------------------
+# As of Python 3.8, use f-strings and an = sign to self-document expressions.
+# This can be really helpful for debugging. For example:
+
+user1 = 'scott'
+user2 = 'jessica'
+
+print(f'{user1=} {user2=}')
+# user='eric_idle' member_since=datetime.date(2020, 1, 20)

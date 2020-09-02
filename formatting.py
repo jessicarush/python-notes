@@ -144,7 +144,7 @@ user = 'eric_idle'
 
 member_since = date(2020, 1, 20)
 
-print(f'{user=} {member_since=}')
+# print(f'{user=} {member_since=}')
 # user='eric_idle' member_since=datetime.date(2020, 1, 20)
 
 # By default f-strings use str() on values but you can also use flags:
@@ -192,9 +192,16 @@ print(f'alignment: {golden_ratio:^10.3}')
 print(f'alignment: {golden_ratio:~^10.3}')
 # alignment: ~~~1.62~~~
 
-# Sepcfiying date formats:
+# Specfiying date formats:
 print(f'date formatting: {member_since:%A, %B %d, %Y}')
 # Date formatting: Monday, January 20, 2020
+
+# Specfiying a comma separator:
+number = 11555
+print(f'number formatting: {number:,}')
+
+# If you want to add decimal places, make it a float
+print(f'number formatting: {number:,.2f}')
 
 # Finally, to compare the last example from the .format() section:
 

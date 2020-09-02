@@ -75,7 +75,7 @@ To create the server, run the following command:
 $ vagrant up
 ```
 
-For more information see the [vagrant command line documentation].(https://www.vagrantup.com/docs/cli/)
+For more information see the [vagrant command line documentation](https://www.vagrantup.com/docs/cli/).
 
 ## SSH
 
@@ -518,7 +518,7 @@ Your key file has been saved at:
 >
 >Your cert will expire on 2018-07-01. To obtain a new or tweaked version of this certificate in the future, simply run certbot again with the "certonly" option. To non-interactively renew *all* of your certificates, run "certbot renew"
 
-So now we need to add these two paths to the nginx config from above. **Note:** As of the certbot version 0.31.0, it automatically puts the news paths in your config. Be sure to check though.
+So now we need to add these two paths to the nginx config from above. **Note:** As of the certbot version 0.31.0, it automatically puts the new paths in your config. Be sure to check though.
 
 ```
 $ sudo nano /etc/nginx/sites-enabled/microblog
