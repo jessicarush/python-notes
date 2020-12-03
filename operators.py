@@ -123,3 +123,20 @@ def process(block):
 with open('data/example.txt', 'r') as file:
     while (block := file.read(5)) != '':
         process(block)
+
+
+# Dictionary merge and update operators
+# -----------------------------------------------------------------------------
+# Python 3.9 introduced the '|' and '|=' operators for dictionaries to
+# "complement" existing dict.update and {**d1, **d2} methods of merging
+# dictionaries.
+
+d = {'spam': 1, 'eggs': 2, 'cheese': 3}
+e = {'cheese': 'cheddar', 'fruit': 'apple'}
+
+f = d | e
+# {'spam': 1, 'eggs': 2, 'cheese': 'cheddar', 'fruit': 'apple'}
+g = e | d
+# {'cheese': 3, 'fruit': 'apple', 'spam': 1, 'eggs': 2}
+d |= e
+# {'spam': 1, 'eggs': 2, 'cheese': 'cheddar', 'fruit': 'apple'}
