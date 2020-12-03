@@ -42,6 +42,12 @@ print(string.whitespace)
 print(string.printable)
 # all of the above
 
+# For example, here I'm using string.digits to clean up a string:
+device_name = 'invchg123'
+device_type = device_name.rstrip(string.digits)
+print(device_type)
+# invchg
+
 
 # string.capwords()
 # -----------------------------------------------------------------------------
