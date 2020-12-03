@@ -403,7 +403,7 @@ $ sudo supervisorctl reload
 
 The microblog application server powered by gunicorn is now running privately port 8000. What we need to do now to expose the application to the outside world is to enable the public facing web server on ports 80 and 443.
 
-To be a secure deployment, we'll configure port 80 to forward all traffic to port 443, which is going to be encrypted. We start by creating an SSL certificate. For now it's going to ba a *self-signed SSL certificate*, which is okay for testing but not good for a real deployment (because web browsers will warn users that the certificate was not issued by a trusted certificate authority).
+To be a secure deployment, we'll configure port 80 to forward all traffic to port 443, which is going to be encrypted. We start by creating an SSL certificate. For now it's going to be a *self-signed SSL certificate*, which is okay for testing but not good for a real deployment (because web browsers will warn users that the certificate was not issued by a trusted certificate authority).
 ```
 $ cd ~/microblog
 $ mkdir certs
@@ -497,7 +497,7 @@ Miguel has written a detailed article: [Run your Flask application over HTTPS](h
 
 ## SSL Certificates
 
-On visiting the [Let's Encrypt](https://letsencrypt.org/) website, you'll be directed to one of several ACME clients which is software that uses the Acme protocol which typically runs on your web hosts and demonstrates you are the controller of the domain. The recommended one for those will shell access is [Cerbot](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
+On visiting the [Let's Encrypt](https://letsencrypt.org/) website, you'll be directed to one of several ACME clients which is software that uses the Acme protocol which typically runs on your web hosts and demonstrates you are the controller of the domain. The recommended one for those with shell access is [Certbot](https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
 
 ```
 $ sudo apt-get update
