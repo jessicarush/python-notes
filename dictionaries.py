@@ -113,6 +113,23 @@ pprint(location)
 #  'street': 'Beach'}
 
 
+# Dictionary merge and update operators
+# -----------------------------------------------------------------------------
+# Python 3.9 introduced the '|' and '|=' operators for dictionaries to
+# "complement" existing dict.update and {**d1, **d2} methods of merging
+# dictionaries.
+
+d = {'spam': 1, 'eggs': 2, 'cheese': 3}
+e = {'cheese': 'cheddar', 'fruit': 'apple'}
+
+f = d | e
+# {'spam': 1, 'eggs': 2, 'cheese': 'cheddar', 'fruit': 'apple'}
+g = e | d
+# {'cheese': 3, 'fruit': 'apple', 'spam': 1, 'eggs': 2}
+d |= e
+# {'spam': 1, 'eggs': 2, 'cheese': 'cheddar', 'fruit': 'apple'}
+
+
 # Delete an item by key with del
 # -----------------------------------------------------------------------------
 del person['age']
