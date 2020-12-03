@@ -40,6 +40,7 @@ isinstance(now, datetime.datetime)  # True
 isinstance('hello', str)            # True
 isinstance(234, int)                # True
 isinstance(234, float)              # False
+isinstance(y, list)                 # True
 
 
 # issubclass()
