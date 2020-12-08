@@ -1,8 +1,8 @@
 # Working with Multiple Databases in Flask
 
-See [flask-sqlalchemy multiple databases with binds](https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/)  
-See [Sqlite in-memory databases](https://sqlite.org/inmemorydb.html)  
-See [flask-migrate multiple database support](https://flask-migrate.readthedocs.io/en/latest/#multiple-database-support)  
+See also: [flask-sqlalchemy multiple databases with binds](https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/)  
+See also: [flask-migrate multiple database support](https://flask-migrate.readthedocs.io/en/latest/#multiple-database-support)  
+See also: [Sqlite in-memory databases](https://sqlite.org/inmemorydb.html)  
 
 
 ## Table of contents
@@ -72,6 +72,7 @@ To associate a model with a specific database, add the `__bind_key__` attribute.
 ```python
 class Test1(db.Model):
     '''Model for the testing first database'''
+    # This table will be built in the default database
     id = db.Column(db.Integer, primary_key=True)
     color = db.Column(db.String(64), default='red')
 
