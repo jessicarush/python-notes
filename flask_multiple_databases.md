@@ -16,6 +16,7 @@ See also:
 - [Add a Bind Key to a Model](#add-a-bind-key-to-a-model)
 - [Tell flask-migrate that we're using multiple databases](#tell-flask-migrate-that-were-using-multiple-databases)
 - [Sqlite In-Memory Databses](#sqlite-in-memory-databses)
+- [Cross database joins](#cross-database-joins)
 
 <!-- tocstop -->
 
@@ -170,4 +171,4 @@ class Tree(db.Model):
     name = db.Column(db.String(16), index=True)
 ```
 
-However, this did not work for me and I have not found a solution. 
+However, this did not work for me and I have not found a solution.
