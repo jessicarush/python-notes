@@ -1,8 +1,10 @@
 # Working with Multiple Databases in Flask
 
-See also: [flask-sqlalchemy multiple databases with binds](https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/)  
-See also: [flask-migrate multiple database support](https://flask-migrate.readthedocs.io/en/latest/#multiple-database-support)  
-See also: [Sqlite in-memory databases](https://sqlite.org/inmemorydb.html)  
+See also:
+- [flask-sqlalchemy multiple databases with binds](https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/)  
+- [flask-migrate multiple database support](https://flask-migrate.readthedocs.io/en/latest/#multiple-database-support)  
+- [Sqlite in-memory databases](https://sqlite.org/inmemorydb.html)  
+- [In-memory SQLite database and Flask: a threading trap](https://gehrcke.de/2015/05/in-memory-sqlite-database-and-flask-a-threading-trap/)
 
 
 ## Table of contents
@@ -125,7 +127,7 @@ SQLALCHEMY_BINDS = {
     }
 ```
 
-The final piece of the puzzle for an in-memory database is that we need to create the tables when the app starts (flask-migrate won't help us here). So, somewhere in the app's initialization or, in the example below, using flasks `before_first_request` decorator:
+The final piece of the puzzle for an in-memory database is that we need to create the tables when the app starts (flask-migrate won't help us here). In the example below, uses Flask's `before_first_request` decorator. Be sure to read the link at the top of this page about SQLite in-memory and threading.
 
 ```python
 @app.before_first_request
