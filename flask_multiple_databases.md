@@ -1,16 +1,21 @@
 # Working with Multiple Databases in Flask
 
-See [flask-sqlalchemy multiple databases with binds](https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/).
-See [Sqlite in-memory databases](https://sqlite.org/inmemorydb.html).
-See [flask-migrate multiple database support](https://flask-migrate.readthedocs.io/en/latest/#multiple-database-support)
+See [flask-sqlalchemy multiple databases with binds](https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/)  
+See [Sqlite in-memory databases](https://sqlite.org/inmemorydb.html)  
+See [flask-migrate multiple database support](https://flask-migrate.readthedocs.io/en/latest/#multiple-database-support)  
 
 
 ## Table of contents
 
 <!-- toc -->
 
-<!-- tocstop -->
+- [Introduction](#introduction)
+- [SQLAlchemy Binds](#sqlalchemy-binds)
+- [Add a Bind Key to a Model](#add-a-bind-key-to-a-model)
+- [Tell flask-migrate that we're using multiple databases](#tell-flask-migrate-that-were-using-multiple-databases)
+- [Sqlite In-Memory Databses](#sqlite-in-memory-databses)
 
+<!-- tocstop -->
 
 ## Introduction
 
