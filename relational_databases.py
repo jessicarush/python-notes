@@ -179,14 +179,19 @@ conn.close()
 # $ sqlite3 contacts.db
 #     - this creates the database if it doesn't exist and starts a sqlite3
 #       session. The terminal prompt will change say: sqlite>
+
 # .help
 # .headers on
+# .mode column (formats the output so is easier to read)
 # .tables
 # .schema
 # .dump (dump the entire database or table into a text file)
 # .backup contacts_backup.db
 # .restore contacts_backup.db
 # .quit
+
+# For a complete list of dot commands see https://sqlite.org/cli.html
+
 # CREATE TABLE contacts (name text, phone integer, email text);
 # CREATE TABLE IF NOT EXISTS ...
 # INSERT INTO contacts (name, email) VALUES('Bob', 'mail@me.com');
@@ -215,6 +220,8 @@ conn.close()
 # SELECT count(DISTINCT title) FROM artist_list WHERE artist='Pixies';
 # UPDATE contacts SET email='Danger! this will replace ALL email fields'
 # UPDATE contacts SET email='updates the one record' WHERE name='Bob';
+# UPDATE system_info SET ap_ssid = ? WHERE id=1
+#   - curs.execute(query, (value,))
 # DELETE FROM activity_list WHERE user_id IS NULL;
 # DELETE FROM contacts WHERE name='Bob';
 # DELETE FROM inventory WHERE quantity < 5
@@ -226,6 +233,7 @@ conn.close()
 # ALTER TABLE contacts RENAME TO customers;
 # ALTER TABLE contacts ADD COLUMN newcol TEXT;
 # UPDATE tableName SET destinationField=sourceField;
+# PRAGMA table_info(table_name);
 
 
 # JOIN (a column in one table corresponds to a column in another)
