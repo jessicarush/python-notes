@@ -134,8 +134,40 @@ The final piece of the puzzle for an in-memory database is that we need to creat
 def before_first_request_func():
     '''Create in-memory database tables.'''
     db.create_all(bind='memory_db')
-    test1 = Testing1(color='yellow')
-    db.session.add(test1)
-    db.session.commit()
-    print('Commited to memory databases')
+    print('Tables built in memory database')
 ```
+
+## Cross database joins
+
+Here's where the bus stops. It seems like creating a foreign key a table in another database should be possible using Flask-SQLAlchemy but I hit a road block when I would try to build my tables using flask-migrate.
+
+The error would be something like:
+```
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'tablename.field' could not find table 'tablename' with which to generate a foreign key to target column 'field'
+```
+
+Searches seemed to indicate that you could references tables in other databases by adding the "schema name" to the foreign key definition like so:
+
+```python
+class Nuts(db.Model):
+    '''Model for a table to store nuts'''
+    __tablename__ = 'nuts'
+    __bind_key__ = 'in_memory_db'
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(16), index=True)
+    # many to one relationship:
+    tree_name = db.Column(db.String(32), db.ForeignKey('main_schema.tree.name'))
+```
+
+The schema name is supposedly defined using the `__table_args__` attribute:
+
+```python
+class Tree(db.Model):
+    '''Model for a table to store Trees'''
+    __tablename__ = 'tree'
+    __table_args__ = {'schema': 'main_schema'}
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(16), index=True)
+```
+
+However, this did not work for me and I have not found a solution. 
