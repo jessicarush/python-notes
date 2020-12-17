@@ -238,14 +238,25 @@ conn.close()
 
 # JOIN (a column in one table corresponds to a column in another)
 # -----------------------------------------------------------------------------
+# See also: https://www.sql-join.com/sql-join-types
 # For the following examples imagine this schema:
 
 '''
-CREATE TABLE songs
-  (_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL, album INTEGER);
-CREATE TABLE albums
-  (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
-CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+CREATE TABLE songs (
+  _id INTEGER PRIMARY KEY,
+  track INTEGER,
+  title TEXT NOT NULL,
+  album INTEGER
+  );
+CREATE TABLE albums (
+  _id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  artist INTEGER
+  );
+CREATE TABLE artists (
+  _id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL
+  );
 '''
 
 # SELECT songs.title, albums.name
