@@ -210,3 +210,10 @@ def heading(text, width):
 
 heading('the end', 77)
 # ----------------------------------------------------------------------The End
+
+# Long f-strings can be formatted like:
+message = (
+    f'Hi {user}. '
+    f'Your number is {number}. '
+    f'Double your number is {number * 2}.'
+    )
