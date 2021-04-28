@@ -763,6 +763,6 @@ session.commit()
 # best fit your needs:
 
 # – Plain DB-API, as in the earlier SQLite section
-# – The SQLAlchemy engine room
+# – The SQLAlchemy Engine Layer
 # – The SQLAlchemy Expression Language
 # – The SQLAlchemy ORM
