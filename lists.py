@@ -38,7 +38,7 @@ months.append('Feb')
 
 # Convert a tuple, dict, set or ... into a list using the list() function
 
-a_dict = {'a' : 'A', 'b': 'B', 'c': 'C'}
+a_dict = {'a': 'A', 'b': 'B', 'c': 'C'}
 a_tuple = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul')
 
 a_list = list(a_tuple)  # ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul']
@@ -128,11 +128,11 @@ list2 += list1
 
 # To confirm:
 
-list3 = [list1, list2]  # creates a list of two lists
+list3 = [list1, list2]   # creates a list of two lists
 
-list3 = [list1 + list2] # creates a list of one list
+list3 = [list1 + list2]  # creates a list of one list
 
-list3 = list1 + list2   # creates one list
+list3 = list1 + list2    # creates one list
 
 
 # .remove()
