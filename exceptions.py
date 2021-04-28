@@ -14,7 +14,7 @@
 # When a Python script "raises an exception", it must "handle" the exception
 # immediately or the program terminates (crashes).
 
-# https://docs.python.org/3.4/library/exceptions.html
+# https://docs.python.org/3/library/exceptions.html
 
 # In terms of class hierarchy, most exceptions are subclasses of the
 # Exception class. Exception itself actually inherits from a class called
