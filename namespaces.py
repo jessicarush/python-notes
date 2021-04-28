@@ -51,6 +51,9 @@ change_and_print_global()
 # inside change_and_print_global: fruitbat
 # after the change: wombat
 
+print(f'global animal: {animal}')
+# global animal: wombat
+
 
 # nonlocal
 # -----------------------------------------------------------------------------
