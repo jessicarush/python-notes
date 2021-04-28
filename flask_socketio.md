@@ -85,7 +85,7 @@ I prefer not to use jquery these days as vanilla javascript can accomplish the s
 <script src="{{ url_for('static', filename='js/socket.io.js' )}}" defer></script>
 ```
 
-In the html page that will be recieving and sending messages, we create another `<script>`. The following examples (first in jquery, then vanilla javascript) will:
+In the html page that will be receiving and sending messages, we create another `<script>`. The following examples (first in jquery, then vanilla javascript) will:
 
 - create a socket.io connection
 - create an event handler that will listen for events called 'my_reponse' then place the message data into the DOM
