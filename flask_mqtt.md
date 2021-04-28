@@ -125,3 +125,18 @@ mqtt.publish('home/mytopic', 'this is my message')
 - The clean session flag tells the broker whether the client wants to establish a persistent session or not. In a persistent session (CleanSession = false), the broker stores all subscriptions for the client and all missed messages for the client that subscribed with a Quality of Service (QoS) level 1 or 2. If the session is not persistent (CleanSession = true), the broker does not store anything for the client and purges all information from any previous persistent session. Note in the Flask-MQTT github readme example, they have a config: `app.config['MQTT_CLEAN_SESSION'] = True` but this config is missing from the documentation.
 
 - In MQTT, you use the Last Will and Testament (LWT) feature to notify other clients about an ungracefully disconnected client. Each client can specify its last will message when it connects to a broker. The last will message is a normal MQTT message with a topic, retained message flag, QoS, and payload. The broker stores the message until it detects that the client has disconnected ungracefully. In response to the ungraceful disconnect, the broker sends the last-will message to all subscribed clients of the last-will message topic. If the client disconnects gracefully with a correct DISCONNECT message, the broker discards the stored LWT message. Clients can specify an LWT message in the CONNECT message that initiates the connection between the client and the broker.
+
+
+## Mosquitto broker
+
+To restart the broker:
+```
+sudo systemctl restart mosquitto
+```
+
+To clear out (reset) the broker
+```
+sudo systemctl stop mosquitto
+sudo rm /var/lib/mosquitto/mosquitto.db
+sudo systemctl start mosquitto
+```
