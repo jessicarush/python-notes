@@ -140,3 +140,13 @@ sudo systemctl stop mosquitto
 sudo rm /var/lib/mosquitto/mosquitto.db
 sudo systemctl start mosquitto
 ```
+
+To publish via the command line:
+```
+mosquitto_pub -t "xnet/sts/scc1/status" -m "offline"
+```
+
+To subscribe via the command line:
+```
+mosquitto_sub -t "xnet/sts/scc1/status"
+```
