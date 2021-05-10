@@ -364,12 +364,12 @@ conn.execute('INSERT INTO contacts VALUES("Morty", 7395, "morty@email.com")')
 
 # database cursors are generators and they are iterable!
 curs.execute('SELECT * FROM contacts')
-for row in cursor:
+for row in curs:
     print(row)
 
 # unpack the tuples if you want:
 curs.execute('SELECT * FROM contacts')
-for name, phone, email in cursor:
+for name, phone, email in curs:
     print(name, '–', phone, '–', email)
     print('-' * 20)
 
