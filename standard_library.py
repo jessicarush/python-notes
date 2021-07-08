@@ -99,6 +99,28 @@ random_zero_to_one = random.random()
 print(f'random.random() gave me: {random_zero_to_one}')
 
 
+# random.randbytes()
+# -----------------------------------------------------------------------------
+# Gives you a random number of bytes
+
+rb = random.randbytes(4)
+
+print(rb)
+# b'=k\xbf4'
+
+
+# secrets
+# -----------------------------------------------------------------------------
+# The secrets module is used for generating cryptographically strong random
+# numbers suitable for managing data such as passwords, account authentication,
+# security tokens, and related secrets. In particular, secrets should be used
+# in preference to the default pseudo-random number generator in the random
+# module, which is designed for modelling and simulation, not security or
+# cryptography.
+
+# https://docs.python.org/3/library/secrets.html
+
+
 # collections.Counter()
 # -----------------------------------------------------------------------------
 
@@ -330,3 +352,42 @@ print(f'sys.argv is {sys.argv}')
 
 print(f'sys.argv[1] is {sys.argv[1]} and is {type(sys.argv[1])}')
 # sys.argv[1] is hello and is <class 'str'>
+
+
+# zoneinfo
+# -----------------------------------------------------------------------------
+# This module was added in Python 3.9. The zoneinfo module brings support for
+# the IANA time zone database to the standard library. It adds
+# zoneinfo.ZoneInfo, a concrete datetime.tzinfo implementation backed by the
+# system’s time zone data.
+
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
+# Daylight Savings
+dt = datetime(2021, 10, 31, 12, tzinfo=ZoneInfo('America/Vancouver'))
+
+print(dt)
+# 2021-10-31 12:00:00-07:00
+print(dt.tzname())
+# 'PDT'
+
+# Standard time
+dt += timedelta(days=7)
+
+print(dt)
+# 2020-11-07 12:00:00-08:00
+print(dt.tzname())
+# PST
+
+# https://www.python.org/dev/peps/pep-0615/
+# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+
+# graphlib
+# -----------------------------------------------------------------------------
+# This module was added in Python 3.9. This new module, graphlib contains the
+# graphlib.TopologicalSorter class to offer functionality to perform topological
+# sorting of graphs.
+
+# https://docs.python.org/3/library/graphlib.html#module-graphlib
