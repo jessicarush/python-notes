@@ -32,7 +32,7 @@ print('The %s is %f' % (name, golden_ratio))
 # The golden ratio is 1.618034
 
 
-# New Style formatting - with .format()
+# Newer Style formatting - with .format()
 # -----------------------------------------------------------------------------
 
 print('The {0} is {1}'.format(name, golden_ratio))
@@ -141,10 +141,9 @@ print(f_string)
 from datetime import date
 
 user = 'eric_idle'
-
 member_since = date(2020, 1, 20)
 
-# print(f'{user=} {member_since=}')
+print(f'{user=} {member_since=}')
 # user='eric_idle' member_since=datetime.date(2020, 1, 20)
 
 # By default f-strings use str() on values but you can also use flags:

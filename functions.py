@@ -34,7 +34,7 @@ def myfunction2(num1, num2):
 
 # example:
 def heading(arg):
-    return('{0:-^80}'.format(str(arg).title()))
+    return '{0:-^80}'.format(str(arg).title())
 
 
 h = heading('Positional Arguments')
@@ -260,7 +260,6 @@ def add(x, y):
 
 nums = {'x': 13, 'y': 7}
 add(**nums)  # returns 20
-
 
 # And here we're using it in both places"
 

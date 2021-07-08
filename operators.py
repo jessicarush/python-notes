@@ -65,11 +65,11 @@ print(type(c))    # <class 'tuple'>
 # worth noting.
 
 
-# Walrus operator :=
+# Assignment-expression (walrus) operator :=
 # -----------------------------------------------------------------------------
-# New to Python 3.8 and the thing we lost Guido over, the assignment-expression
-# operat (walrus) allows you to make an assignment and use the result at the
-# same time.
+# New to Python 3.8 and one of the things we lost Guido over, the
+# assignment-expression operator (walrus) allows you to make an assignment and
+# use the result at the same time.
 
 # For example:
 
