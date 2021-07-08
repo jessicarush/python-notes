@@ -172,6 +172,54 @@ test_string = test_string.replace('Unicorn', 'Dragon')
 print(test_string)  # Yeti, Bigfoot, Loch, Ness, Dragon...
 
 
+# Remove a prefix or suffix with removeprefix(), removesuffix()
+# ----------------------------------------------------------------------------
+# Python 3.9 added str.removeprefix(prefix) and str.removesuffix(suffix) to
+# easily remove an unneeded prefix or a suffix from a string.
+
+og_string = 'test_foo_abc'
+
+print(og_string.removeprefix('test_'))
+# foo_abc
+
+print(og_string.removesuffix('_abc'))
+# test_foo
+
+# Note that while these look like lstrp() and rstrip(), they are not.
+# The main difference is the parameters of removeprefix() and removesuffix()
+# are considered substrings while the parameters of lstrip() are considered
+# a set of characters. This results in the following:
+
+# 1. lstrip() and rstrip() will remove characters in any order:
+
+og_string = 'ab_python'
+
+print(og_string.lstrip('ba'))
+# _python
+
+print(og_string.removeprefix('ba'))
+# ab_python
+
+# 2. lstrip() and rstrip() will remove duplicates of the characters:
+
+og_string = 'ababbbaab_python'
+
+print(og_string.lstrip('ba'))
+# _python
+
+print(og_string.removeprefix('ba'))
+# ababbbaab_python
+
+# 3. If no parameter is passed in, lstrip() and rstrip() will remove spaces.
+# Ommitting the parameter in removeprefix() and removesuffix() results in a
+# TypeError.
+
+og_string = '   python'
+
+print(og_string.lstrip())
+# python
+
+
 # Change Case
 # -----------------------------------------------------------------------------
 
@@ -250,3 +298,6 @@ name = ' Raja.JPEG   '
 name = name.strip().lower().replace('jpeg', 'png')
 print(name)
 # raja.png
+
+
+# See also: formatting.py
