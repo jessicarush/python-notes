@@ -302,6 +302,23 @@ pprint(sorted_vals)
 #  ('city', 'Vancouver')]
 
 
+# Reverse dict order with reverse()
+# -----------------------------------------------------------------------------
+# Since Python 3.7, dictionaries preserve the order of insertion of keys.
+# Python 3.8 added support for the reversed() built-in with dictionaries.
+
+d = {'a': 'A', 'b': 'B', 'c': 'C'}
+
+print(reversed(d))
+# <dict_reversekeyiterator object at 0x7f552b499220>
+
+print(list(reversed(d)))
+# ['c', 'b', 'a']
+
+print(list(reversed(d.items())))
+# [('c', 'C'), ('b', 'B'), ('a', 'A')]
+
+
 # Copy a dict with .copy()
 # -----------------------------------------------------------------------------
 
