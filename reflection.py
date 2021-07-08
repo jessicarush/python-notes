@@ -42,6 +42,11 @@ isinstance(234, int)                # True
 isinstance(234, float)              # False
 isinstance(y, list)                 # True
 
+# NOTE: As of Python 3.10, you can use a union operator '|' in isinstance():
+
+# isinstance(1, int | str)
+# True
+
 
 # issubclass()
 # -----------------------------------------------------------------------------
@@ -62,6 +67,12 @@ t = Triangle()                                # This polygon is a triangle
 print(issubclass(Triangle, Polygon))          # True
 print(issubclass(Triangle, list))             # False
 print(issubclass(Triangle, (list, Polygon)))  # True
+
+
+# NOTE: As of Python 3.10, you can use a union operator '|' in issubclass():
+
+# issubclass(Triangle, list | Polygon)
+# True
 
 
 # repr()
