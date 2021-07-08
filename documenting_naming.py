@@ -232,6 +232,12 @@ x: int
 # For collections, the types must be imported from the typing module.
 # You can specify the types within the colection in brackets.
 
+# NOTE: As of Python 3.9, you can use built-in collection types like list and
+# dict instead of importing from typing (see below).
+
+# NOTE: As of Python 3.10, you can use a union opertator '|' instead of
+# Union[] (see below).
+
 from typing import List, Set, Dict, Tuple, Optional, Union, Any
 
 
@@ -268,8 +274,11 @@ import datetime
 
 
 def to_date(date_string: str) -> datetime:
-    return datetime.strptime(date_string, '%Y-%m-%d')
+    return datetime.datetime.strptime(date_string, '%Y-%m-%d')
 
+test = to_date('2021-07-06')
+print(test, type(test))
+# 2021-07-06 00:00:00 <class 'datetime.datetime'>
 
 # multiple arguments:
 
@@ -293,6 +302,34 @@ def send_email(address: Union[str, List[str]],
 # https://www.python.org/dev/peps/pep-0484/
 # https://www.python.org/dev/peps/pep-3107/
 # https://www.python.org/dev/peps/pep-0526/
+
+# NOTE: As of Python 3.9, you can now use built-in collection types such as
+# list and dict as generic types instead of importing the corresponding
+# capitalized types (e.g. List or Dict) from typing. Some other types in the
+# standard library are also now generic, for example queue.Queue.
+
+def greet_all(names: list[str]) -> None:
+    for name in names:
+        print('Hello', name)
+
+# https://www.python.org/dev/peps/pep-0585/
+
+# NOTE: As of Python 3.10, you can use a union operator '|' instead of
+# Union[], for example:
+
+def square(number: Union[int, float]) -> Union[int, float]:
+    return number ** 2
+
+# Type hints can now be written like:
+
+def square(number: int | float) -> int | float:
+    return number ** 2
+
+# This new syntax is also accepted as the second argument to isinstance()
+# and issubclass():
+
+isinstance(1, int | str)
+# True
 
 
 # Code Tags
