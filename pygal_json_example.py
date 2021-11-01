@@ -34,7 +34,7 @@ for pop_dict in pop_data:
 # To use pygals mapping tools, countries need to be provided as country codes.
 # Pygals country codes are stored in a module called pygal_maps_world is a
 # dictionary called COUNTRIES. You have to do a separate pip install for this:
-# $ pip3 install pygal_maps_world. Then: pygal.maps.world import COUNTRIES
+# $ pip install pygal_maps_world. Then: pygal.maps.world import COUNTRIES
 
 for country_code in sorted(COUNTRIES.keys()):
     print(country_code, COUNTRIES[country_code])

@@ -112,7 +112,7 @@ print(dbm.whichdb('data/definitions'))
 
 # The Redis data types are a close match to Python's, and a Redis server can
 # be a useful intermediary for one or more Python applications to share data.
-#  – install the Python driver redis-py: pip3 install redis
+#  – install the Python driver redis-py: pip install redis
 #  – install the Server: brew install redis
 #  – launch Redis server: redis-server
 #  – test that the server is running: redis-cli ping (respose PONG)

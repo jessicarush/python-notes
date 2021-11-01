@@ -4,7 +4,7 @@
 # Pygal is a python visualization package which produces scalable vector
 # graphics. If you plan to use your visualizations online, this is ideal.
 
-# pip3 install pygal
+# pip install pygal
 
 # http://pygal.org/en/stable/
 # http://pygal.org/en/stable/documentation/types/index.html

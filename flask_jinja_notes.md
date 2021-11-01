@@ -27,11 +27,31 @@ This is a collection of notes, command line steps and reminders of packages to i
 - [Heroku requirements](#heroku-requirements)
 - [Digitalocean requirements](#digitalocean-requirements)
 - [Application Contexts](#application-contexts)
+- [The g object](#the-g-object)
+- [The session object](#the-session-object)
+- [Jinja delimiters](#jinja-delimiters)
 - [Jinja Filters](#jinja-filters)
-- [Jinja variables in 's](#jinja-variables-in-s)
+  * [selectattr() & map() filters](#selectattr--map-filters)
+- [Jinja variables in script elements](#jinja-variables-in-script-elements)
+- [Jinja whitespace](#jinja-whitespace)
 - [JSON strings](#json-strings)
 - [Request object](#request-object)
 - [Flask-wtf csrf protection](#flask-wtf-csrf-protection)
+- [Flask-SQLAlchemy notes](#flask-sqlalchemy-notes)
+  * [.count()](#count)
+  * [.all()](#all)
+  * [.first()](#first)
+  * [.one()](#one)
+  * [.filter()](#filter)
+  * [.filter_by()](#filter_by)
+  * [.join()](#join)
+  * [.add_columns()](#add_columns)
+  * [.with_entities()](#with_entities)
+  * [.delete()](#delete)
+  * [session.add()](#sessionadd)
+  * [session.delete()](#sessiondelete)
+- [Flask-moment notes](#flask-moment-notes)
+- [Testing a Flask on on your network](#testing-a-flask-on-on-your-network)
 
 <!-- tocstop -->
 
@@ -159,51 +179,6 @@ $ git add -A
 $ git commit -m 'Initial commit'  
 ```
 
-## Heroku requirements
-```
-$ touch Procfile  
-```
-
-Procfile contents if using gunicorn:
-```
-web: gunicorn app:app
-```
-
-Procfile contents if using uwsgi:  
-```
-web: uwsgi uwsgi.ini
-```
-
-Create a runtime file:
-```
-$ touch runtime.txt  
-```
-
-runtime.txt contents ([check current version on heroku](https://devcenter.heroku.com/articles/python-runtimes)):  
-```
-python-3.6.4  
-```
-
-if using gunicorn:
-```
-$ pip install gunicorn
-```
-
-if using uwsgi:
-```
-$ pip install uwsgi  
-touch uwsgi.ini  
-```
-
-for contents of uwsgi.ini see [deployment_heroku.py](https://github.com/jessicarush/python-examples/blob/master/deployment_heroku.md)  
-Create your requirements list:
-```
-$ pip freeze > requirements.txt
-```
-
-## Digitalocean requirements
-
-see [deployment_digitalocean.py](https://github.com/jessicarush/python-examples/blob/master/deployment_digitalocean.md)
 
 ## Application Contexts
 
@@ -221,9 +196,47 @@ def my_function():
 ```
 
 For more explanation see:
-[Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)  
-<http://flask.pocoo.org/docs/0.12/appcontext/#creating-an-application-context>  
+[Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)   
+<https://flask.palletsprojects.com/en/1.1.x/appcontext/>  
 <http://flask-sqlalchemy.pocoo.org/2.3/contexts/>
+
+## The g object
+
+## The session object
+
+## Jinja delimiters
+
+`{% ... %}` for [Statements](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-control-structures)
+
+`{{ ... }}` for [Expressions](https://jinja.palletsprojects.com/en/2.11.x/templates/#expressions) to print to the template output
+
+`{# ... #}` for Comments not included in the template output
+
+## Jinja Variables
+
+```
+{% set icon %}
+  <img src="{{ url_for('static', filename='img/icon.svg')}}" />
+{% endset %}
+```
+or
+
+```
+{% set something = false %}
+```
+
+Keep in mind you cannot use variables set inside a scoped block (like a for loop) outside of the block. See the [Jinja docs on assignments](https://jinja.palletsprojects.com/en/2.11.x/templates/#assignments). But there is a weird thing called namespace objects which you can use like so:
+
+```
+{% set ns = namespace(found=false) %}
+{% for item in items %}
+    {% if item.check_something() %}
+        {% set ns.found = true %}
+    {% endif %}
+    * {{ item.title }}
+{% endfor %}
+Found item having something: {{ ns.found }}
+```
 
 ## Jinja Filters
 
@@ -258,7 +271,19 @@ The argument passed to the decorator is the name of the filter:
 {{ current_user.username|testing }}
 ```
 
-## Jinja variables in <script>'s
+### selectattr() & map() filters
+
+```
+{{ activities|selectattr("name", "equalto", name)|map(attribute='day')|first }}
+
+{{ activities|selectattr("name", "equalto", name)|map(attribute='count')|first|strip_decimal_zeros }}
+{{ activities|selectattr("name", "equalto", name)|map(attribute='unit')|first }}
+{% if activities|selectattr("name", "equalto", name)|map(attribute='reps')|first %}
+of {{ activities|selectattr("name", "equalto", name)|map(attribute='reps')|first }}
+{% endif %
+```
+
+## Jinja variables in script elements
 
 To use a jinja variable in a `<script>` in your document you must either add a filter, usually either `safe` if working with lists or data objects or `tojson` if working with strings.
 
@@ -268,6 +293,25 @@ To use a jinja variable in a `<script>` in your document you must either add a f
   let my_array = {{ list|safe }};
 </script>
 ```
+
+## Jinja whitespace
+
+Note that jinja templates will leave whitespace in the rendered code in place of the blocks. If you want to remove all these spaces you can set `trim_blocks` and `lstrip_blocks` on the env:
+
+```python
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
+```
+
+...or you can manage it manually in each block, for example:
+```
+{%- if ... %} strips space before
+{%- if ... -%} strips space before and after
+{%+ if ... %} preserves space before
+{%+ if ... -%} preserves space before and strips after
+```
+
+The first option is untested. For more information see the [Jinja Environment API](https://jinja.palletsprojects.com/en/2.11.x/api/?highlight=trim_blocks#jinja2.Environment).
 
 ## JSON strings
 
@@ -384,6 +428,22 @@ def demo():
     # the parsed URL parameters (the part in the URL after the question mark).
 ```
 
+Note that in order to work with the request object, your route must specify `methods=['GET', 'POST']` even if the request is sent via a GET request with query parameters OR works with the `socketio.on` decorator.
+
+
+```python
+referrer = request.headers.get('Referer')
+print('referrer', referrer)
+```
+
+
+## The response object
+
+```python
+response.headers['Access-Control-Allow-Origin'] = '*'
+```
+
+Note the `Access-Control-Allow-Origin` header. In order for requests outside the response origin to access the response, this header must be set. `*` is a wildcard allowing any site to receive the response. You should only use this for public APIs. Private APIs should never use `*`, and should instead have a specific domain or domains set. In addition, the wildcard only works for requests made with the crossorigin attribute set to anonymous, and it prevents sending credentials like cookies in requests. [See MDN for more on this](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin).
 
 ## Flask-wtf csrf protection
 
@@ -404,4 +464,97 @@ WTF_CSRF_TIME_LIMIT = 3600 * 24 * 7
 
 # If set to None, the CSRF token is valid for the life of the session
 WTF_CSRF_TIME_LIMIT = None
+```
+
+## Flask-SQLAlchemy notes
+
+### .count()
+### .all()
+### .first()
+### .one()
+### .filter()
+### .filter_by()
+### .join()
+### .add_columns()
+### .with_entities()
+
+If you only want to get the results a specific (1 or more columns) you would normally have to do something like `session.query(Model.col)`. For some reason if you try to at call brackets to a Model query like `Model.query(Model.code)` you'll get an error: `'BaseQuery' object is not callable`.
+
+Instead, you can use `with_entities()`:
+
+```python
+codes = Alert.query.with_entities(Alert.code).filter_by(device_name=device, type='fault').all()
+```
+
+### .delete()
+
+For example:
+```python
+Activity.query.filter_by(session_id=session_id).delete()
+```
+
+### session.add()
+
+### session.delete()
+
+For example:
+```python
+activities = Activity.query.filter_by(session_id=session_id).all()
+for activity in activities:
+    db.session.delete(activity)
+```
+
+## Flask-moment notes
+
+{{ moment(activities|selectattr("name", "equalto", name)|map(attribute='day')|first, local=True).format('ll') }}
+
+
+## Testing a Flask on your network
+
+```
+flask run --host=0.0.0.0
+```
+or
+```python
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=5000, debug=True)
+```
+
+Then find your machines ip (e.g. 10.0.0.57)
+
+```
+http://10.0.0.57:5000
+```
+
+If you have a login in your site, you'll be blocked for privacy. You're supposed to be able to apply temporary ssl certs with:
+
+```
+flask run --cert=adhoc
+```
+or
+```python
+if __name__ == '__main__':
+    app.run(port=5000, debug=True, ssl_context='adhoc')
+```
+
+To use adhoc certificates with Flask, you need to install an additional dependency in your virtual environment:
+```
+pip install pyopenssl
+```
+
+Even with this though, you'll be presented with a non-private connection page which you'll have to dig through the advanced button in order to ok the site.
+
+Do these things together:
+```
+flask run --host=0.0.0.0 --cert=adhoc
+```
+or
+```python
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=5000, debug=True, ssl_context='adhoc')
+```
+
+Then find your machines ip (e.g. 10.0.0.57)
+```
+https://10.0.0.57:5000
 ```

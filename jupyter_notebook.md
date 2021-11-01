@@ -4,13 +4,13 @@
 Jupyter Notebook is a hybrid editor and interactive shell that runs in the browser. It works really well for exploring large sets of data. It does not replace your regular editor or IDE (which is more useful for working with multiple files and projects) but definitely worth considering if you need to explore your datasets and test your code before implementing.
 
 ```
-$ pip3 install jupyter
+$ pip install jupyter
 ```
 
 If you intend on working with excel files, you should also install:
 
 ```
-$ pip3 install xlrd
+$ pip install xlrd
 ```
 
 Once installed, start a jupyter session by navigating to your working directory in the command line, then launch:

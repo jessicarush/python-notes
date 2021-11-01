@@ -42,13 +42,14 @@ class FourDigitInts(list):
         if not isinstance(integer, int):
             raise TypeError('Only integers can be added.')
         if len(str(integer)) != 4:
-            raise ValueError('Only 4-digit numbers can be added.')
+            raise ValueError('Only 4-digit integers can be added.')
         super().append(integer)
+
 
 f = FourDigitInts()
 f.append(5678)
-# f.append('5678')
-# f.append(56)
+# f.append('5678')  # TypeError
+# f.append(56)      # ValueError
 
 
 # Handling Exceptions
@@ -73,7 +74,7 @@ try:
 except Exception:
     print('Caught an exception. Need an index between 0 –', len(fruit)-1)
 
-print("Program continues...")
+print('Program continues...')
 
 
 # Choose which type of exceptions you want to handle
@@ -102,7 +103,7 @@ while True:
     except Exception:
         print('Something else broke')
 
-print("Program continues...")
+print('Program continues...')
 
 
 # Else and finally
@@ -169,7 +170,6 @@ def execution_order2():
 print('\nExecution order demo 1:')
 e = execution_order1()
 print(e)
-# Execution order demo 1:
 # Try
 # Finally
 # Return
@@ -185,8 +185,8 @@ print(e)
 
 # Another example with handlers
 # -----------------------------------------------------------------------------
-
 print('\nEnter two numbers.')
+
 
 def get_inputs(arg):
     while True:
@@ -199,6 +199,7 @@ def get_inputs(arg):
             print('\nGoodbye')
             sys.exit(1)
 
+
 a = get_inputs('first')
 b = get_inputs('second')
 
@@ -208,6 +209,7 @@ def divide_inputs(x, y):
         print(f'{x} \u00F7 {y} = {x / y}')
     except ZeroDivisionError:
         print("You can't divide by zero, moving on...")
+
 
 divide_inputs(a, b)
 
@@ -240,11 +242,11 @@ while True:
 
 # Handle, then Raise an Exception
 # -----------------------------------------------------------------------------
-# In the examples above we've handles the exceptions. Sometimes though, you
+# In the examples above we've handled the exceptions. Sometimes though, you
 # may want to be alerted to a problem but let your code finish first.
 # Compare the following:
 
-def sum(numbers):
+def sum_v1(numbers):
     total = 0
     for num in numbers:
         try:
@@ -253,8 +255,9 @@ def sum(numbers):
         except TypeError:
             print('non integer ignored')
 
-testing = [2, 6, 3, 'blerk', 8, 11 ]
-sum(testing)
+
+testing = [2, 6, 3, 'blerk', 8, 11]
+sum_v1(testing)
 # 2
 # 8
 # 11
@@ -265,7 +268,8 @@ sum(testing)
 # The following will still handle the exception and complete the iteration
 # but when it's done it will raise the exception and terminate the program.
 
-def sum(numbers):
+
+def sum_v2(numbers):
     total = 0
     for num in numbers:
         try:
@@ -278,8 +282,8 @@ def sum(numbers):
     #     raise problem
 
 
-testing = [2, 6, 3, 'blerk', 8, 11 ]
-sum(testing)
+testing = [2, 6, 3, 'blerk', 8, 11]
+sum_v2(testing)
 # 2
 # 8
 # 11
@@ -329,7 +333,7 @@ class InvalidWithdrawal(Exception):
 try:
     raise InvalidWithdrawal(balance=10, amount=50)
 except InvalidWithdrawal as e:
-    print(f"Sorry, your withdrawal is more than your balance by ${e.short()}")
+    print(f'Sorry, your withdrawal is more than your balance by ${e.short()}')
 
 
 # Exception vs. if statements
@@ -349,6 +353,7 @@ def index_with_if(x, group):
         print(f'The value at index {x} is: {group[x]}')
     else:
         print(f'There is no index {x}.')
+
 
 # But we shouldn't do this. There are too many possibilities for us to miss
 # checking something in our if statement. For example, lists support negative
@@ -375,6 +380,7 @@ index_with_if(-2, fruit)
 # sure we don't sell the same item to two different customers, we can 'lock'
 # items to ensure only one person can updates it at a time.
 
+
 class Inventory:
     def lock(self, item):
         '''Select the item that is going to be manipulated.
@@ -394,6 +400,7 @@ class Inventory:
         If the item is available:
         subtract one item and return the number of items left.'''
         pass
+
 
 item = 'widget'
 inv = Inventory()

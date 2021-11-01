@@ -25,7 +25,7 @@ webbrowser.open_new_tab(url)
 # and a scraper parses the content to find the needle in the haystack.
 
 # If you need an industrial-strength combined crawler and scraper, Scrapy is
-# worth downloading: $ pip3 install scrapy
+# worth downloading: $ pip install scrapy
 
 # Scrapy is a framework, not a module. It does more, but it's more complex to
 # set up. Learn more at: https://scrapy.org
@@ -38,7 +38,7 @@ webbrowser.open_new_tab(url)
 # much of the HTML on public web pages is technically invalid: unclosed tags,
 # incorrect nesting, and other complications.
 
-# $ pip3 install beautifulsoup4
+# $ pip install beautifulsoup4
 
 import requests
 from bs4 import BeautifulSoup as soup

@@ -105,7 +105,7 @@ for key, value in conn.getheaders():
 
 # Requests Library
 # -----------------------------------------------------------------------------
-# install: $ pip3 install requests
+# install: $ pip install requests
 # documentation: http://docs.python-requests.org/en/master/
 
 # a simple HTTP library (module) for Python web client tasks
@@ -200,7 +200,7 @@ print(resp.text)
 # Bottle consists of a single Python file, so it's very easy to try out, and
 # to deploy later.
 
-# $ pip3 install bottle
+# $ pip install bottle
 # http://http://bottlepy.org/docs/dev/
 
 # Save as bottle1.py:

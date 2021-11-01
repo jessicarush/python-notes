@@ -9,9 +9,9 @@
 # https://pypi.org/project/pyflakes/
 
 # Install:
-# pylint       $ pip3 install pylint
-# pycodestyle  $ pip3 install pycodestyle
-# pyflakes     $ pip3 install pyflakes
+# pylint       $ pip install pylint
+# pycodestyle  $ pip install pycodestyle
+# pyflakes     $ pip install pyflakes
 
 # Test a file via the command line:
 # $ pylint myfile.py

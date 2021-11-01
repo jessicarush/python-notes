@@ -17,7 +17,7 @@
 # As of July 2018 Google requires each request to have a paid API key.
 # https://developers.google.com/maps/documentation/geocoding/usage-and-billing
 
-# $ pip3 install geopy
+# $ pip install geopy
 
 # from geopy.geocoders import GoogleV3
 # from geopy.geocoders import Yandex

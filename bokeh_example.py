@@ -7,7 +7,11 @@
 # with high-performance interactivity over very large or streaming datasets.
 # Bokeh is good for creating interactive plots, dashboards & data applications.
 
-# pip3 install bokeh
+# pip install bokeh
+
+# In examples below, we'll also use pandas:
+
+# pip install pandas, openpyxl
 
 # https://bokeh.pydata.org/en/latest/
 # https://bokeh.pydata.org/en/latest/docs/user_guide/styling.html
@@ -63,10 +67,10 @@ p.circle([1, 2, 3, 4, 5], [10, 3, 8, 4, 7], size=12, color=c[6], alpha=0.5)
 p.x([1, 2, 3], [5, 6, 2], size=[10, 15, 20], color=c[5], alpha=0.7)
 
 # define an output file
-output_file('scatter_plot1.html')
+output_file('demos/scatter_plot1.html')
 
 # show the plot
-# show(p)
+show(p)
 
 
 # regarding output_file('file.html')
@@ -117,7 +121,7 @@ p2.toolbar_location = 'right'  # below, above, left, right, None
 
 p2.circle(temperatures, pressure, size=3, color=c[0], alpha=0.2)
 
-output_file('scatter_plot2.html')
+output_file('demos/scatter_plot2.html')
 
 show(p2)
 
@@ -158,9 +162,9 @@ p3.min_border_top = 50
 
 p3.line(dates, close, line_width=2, color=c[5], alpha=0.9)
 
-output_file('line_plot1.html')
+output_file('demos/line_plot1.html')
 
-# show(p3)
+show(p3)
 
 
 # Hover tools
@@ -204,6 +208,6 @@ p4.add_tools(hover)
 
 p4.line(x="Date", y="Close", line_width=2, color=c[4], alpha=0.9, source=cds)
 
-output_file('line_plot2.html')
+output_file('demos/line_plot2.html')
 
-# show(p4)
+show(p4)

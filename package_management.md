@@ -50,6 +50,14 @@ $ pip install --upgrade pip
 ```
 >Note: the pip command belongs to whichever Python installed pip last; this is unavoidable if python and python3 install scripts to the same prefix. See [pypa/pip#2973](https://github.com/pypa/pip/issues/2973). Run python -m pip -U --force-reinstall pip to force reinstalling pip on python2 which will rewrite the script again.
 
+When using a virtual environment, you don't have to worry so much:
+
+```
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install --upgrade pip
+```
+
 
 ## Installing & upgrading packages
 

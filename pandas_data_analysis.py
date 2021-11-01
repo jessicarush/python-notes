@@ -8,7 +8,7 @@
 # then analyze the data in python, then output the results (e.g. as tables or
 # data visualizations – with the help of additional libraries such as bokeh).
 
-# $ pip3 install pandas
+# $ pip install pandas
 
 # NOTE: Jupyter Notebook is a helpful tool for this kind of work.
 # see jupyter_notebook.py

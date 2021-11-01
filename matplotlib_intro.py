@@ -1,7 +1,7 @@
 '''Matplotlib - Mathematical Plotting Library'''
 
 
-# $ pip3 install matplotlib
+# $ pip install matplotlib
 # http://matplotlib.org
 # https://matplotlib.org/examples/index.html
 # https://matplotlib.org/users/pyplot_tutorial.html
