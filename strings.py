@@ -289,7 +289,7 @@ print(raw_str)
 # Note: chaining methods
 # -----------------------------------------------------------------------------
 # One thing that I'm clear on now but for some reason was never really pointed
-# out my early training is the fact that you can 'chain' methods together.
+# out in my early training is the fact that you can 'chain' methods together.
 # This is really helpful for shortening code, just make sure it's not at the
 # cost of readability. In my early days I remember seeing these long, complex
 # chains and it was so hard to understand what was going on.

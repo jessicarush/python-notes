@@ -88,7 +88,7 @@ pyenv versions
   3.8.5
 ```
 
-The start indicates which version is currently running. In the above output it's the system os version (2.7.16).
+The asterisk indicates which version is currently running. In the above output it's the system os version (2.7.16).
 
 To switch you can use the `global` command:
 ```
@@ -110,7 +110,7 @@ A great way to get peace of mind that the version of Python you just installed i
 python -m test
 ```
 
-If you ever want to go back to th esystem version:
+If you ever want to go back to the system version:
 ```
 pyenv global system
 ```
