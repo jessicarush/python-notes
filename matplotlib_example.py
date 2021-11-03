@@ -6,6 +6,11 @@
 # of water moves across the surface in a random walk. It is pushed around by
 # water molecules and molecular motion in a water drop happens to be random.
 
+# See also: matplotlib_example.py
+
+# This example uses the matplotlib.pyplot.scatter plot:
+# https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html?highlight=scatter#matplotlib.pyplot.scatter
+
 
 # Ideally the following class would be saved as a module: random_walk.py
 # -----------------------------------------------------------------------------

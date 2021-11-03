@@ -20,7 +20,7 @@ plt.plot(squares, color='#FB4847', linewidth=1.5, antialiased=True)
 # or like this:
 lines = plt.plot(squares)
 plt.setp(lines, color='#D3F382', linewidth=4.5, antialiased=False,
-    solid_capstyle='round')
+         solid_capstyle='round')
 
 # set the title and label axes:
 plt.title('Square Numbers', fontsize=14)
@@ -107,6 +107,7 @@ def rgb_convert(r, g, b):
     c = r/255, g/255, b/255
     return c
 
+
 mint = rgb_convert(4, 219, 164)
 coral = rgb_convert(255, 110, 103)
 yella = rgb_convert(255, 204, 0)
@@ -114,14 +115,17 @@ yella = rgb_convert(255, 204, 0)
 
 # Colormaps
 # -----------------------------------------------------------------------------
-# https://matplotlib.org/examples/color/colormaps_reference.html
+# https://matplotlib.org/stable/api/cm_api.html
+# https://matplotlib.org/stable/gallery/color/colormap_reference.html
+
+from matplotlib import cm
 
 # Color mapping is using a gradient of two or more colors to emphasize
 # patterns in data.
 
 x_vals = list(range(1, 1001))
 y_vals = [(x ** 2) for x in x_vals]
-plt.scatter(x_vals, y_vals, c=y_vals, cmap=plt.cm.plasma, s=40)
+plt.scatter(x_vals, y_vals, c=y_vals, cmap=cm.plasma, s=40)
 
 plt.title('Color Maps', fontsize=14)
 plt.xlabel('value', fontsize=10)
@@ -169,7 +173,7 @@ plt.show()
 #         transparent=False, bbox_inches=None, pad_inches=0.1,
 #         frameon=None)
 
-plt.savefig('sample_plot.png', dpi=300, bbox_inches='tight')
+plt.savefig('demos/sample_plot.png', dpi=300, bbox_inches='tight')
 
 
 # Misc
