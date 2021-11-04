@@ -24,6 +24,29 @@ with open(filename) as fob:
     header_row = next(reader)
     for index, column_header in enumerate(header_row):
         print(index, column_header)
+# 0 PST
+# 1 Max TemperatureF
+# 2 Mean TemperatureF
+# 3 Min TemperatureF
+# 4 Max Dew PointF
+# 5 MeanDew PointF
+# 6 Min DewpointF
+# 7 Max Humidity
+# 8  Mean Humidity
+# 9  Min Humidity
+# 10  Max Sea Level PressureIn
+# 11  Mean Sea Level PressureIn
+# 12  Min Sea Level PressureIn
+# 13  Max VisibilityMiles
+# 14  Mean VisibilityMiles
+# 15  Min VisibilityMiles
+# 16  Max Wind SpeedMPH
+# 17  Mean Wind SpeedMPH
+# 18  Max Gust SpeedMPH
+# 19 PrecipitationIn
+# 20  CloudCover
+# 21  Events
+# 22  WindDirDegrees
 
 
 # Extracting and reading data:

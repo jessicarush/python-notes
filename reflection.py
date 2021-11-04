@@ -230,4 +230,4 @@ user1 = 'scott'
 user2 = 'jessica'
 
 print(f'{user1=} {user2=}')
-# user='eric_idle' member_since=datetime.date(2020, 1, 20)
+# user1='scott' user2='jessica'
