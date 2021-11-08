@@ -223,11 +223,11 @@ class Coordinate:
 
 point1 = Coordinate()
 
-print(dir(point1)) # [..., 'x', 'y', 'z']
+print(dir(point1))  # [..., 'x', 'y', 'z']
 
 delattr(Coordinate, 'z')
 
-print(dir(point1)) # [..., 'x', 'y']
+print(dir(point1))  # [..., 'x', 'y']
 
 
 # dict()
@@ -253,6 +253,7 @@ print(dir(list))
 
 # show the names in the random module:
 import random
+
 print(dir(random))
 
 # print just the useful ones:
