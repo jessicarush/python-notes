@@ -15,6 +15,7 @@
 
 from random import randint
 
+
 class Die():
     '''A class representing a single Die.'''
 
@@ -27,7 +28,6 @@ class Die():
         return randint(1, self.sides)
 
 
-
 # Ideally the following would be in it's own file and we'd import the class
 # -----------------------------------------------------------------------------
 
@@ -36,15 +36,16 @@ import pygal
 
 # create a D6:
 die = Die()
+num_rolls = 1000
 
 # make some rolls and store the results in a list:
 # results = []
-# for roll_num in range(1000):
+# for roll_num in range(num_rolls):
 #     result = die.roll()
 #     results.append(result)
 
 # or use a list comprehension:
-results = [die.roll() for roll_num in range(1000)]
+results = [die.roll() for roll_num in range(num_rolls)]
 
 # analyze the die results:
 # frequencies = []
@@ -58,13 +59,13 @@ frequencies = [results.count(value) for value in range(1, die.sides + 1)]
 # visualize the results:
 histogram = pygal.Bar()
 
-histogram.title = 'Results of rolling D6 1000 times'
+histogram.title = f'Results of rolling D6 {num_rolls} times'
 histogram.x_labels = list(range(1, die.sides + 1))
 histogram.x_title = 'result'
 histogram.y_title = 'frequency of result'
 
 histogram.add('D6', frequencies)
-histogram.render_to_file('die_visual_1.svg')
+histogram.render_to_file('demos/die_visual_1.svg')
 
 
 # Two dice
@@ -73,19 +74,19 @@ histogram.render_to_file('die_visual_1.svg')
 die_1 = Die()
 die_2 = Die()
 
-results = [(die_1.roll() + die_2.roll()) for roll_num in range(1000)]
+results = [(die_1.roll() + die_2.roll()) for roll_num in range(num_rolls)]
 max_result = die_1.sides + die_2.sides
 frequencies = [results.count(value) for value in range(1, max_result + 1)]
 
 hist2 = pygal.Bar()
 
-hist2.title = 'Results of rolling two D6 1000 times'
+hist2.title = f'Results of rolling two D6 {num_rolls} times'
 hist2.x_labels = list(range(1, max_result + 1))
 hist2.x_title = 'result'
 hist2.y_title = 'frequency of result'
 
 hist2.add('D6 + D6', frequencies)
-hist2.render_to_file('die_visual_2.svg')
+hist2.render_to_file('demos/die_visual_2.svg')
 
 
 # Two different dice
@@ -94,19 +95,19 @@ hist2.render_to_file('die_visual_2.svg')
 die_1 = Die()
 die_2 = Die(10)
 
-results = [(die_1.roll() + die_2.roll()) for roll_num in range(1000)]
+results = [(die_1.roll() + die_2.roll()) for roll_num in range(num_rolls)]
 max_result = die_1.sides + die_2.sides
 frequencies = [results.count(value) for value in range(1, max_result + 1)]
 
 hist2 = pygal.Bar()
 
-hist2.title = 'Results of rolling a D6 and D10 10,000 times'
+hist2.title = f'Results of rolling a D6 and D10 {num_rolls} times'
 hist2.x_labels = list(range(1, max_result + 1))
 hist2.x_title = 'result'
 hist2.y_title = 'frequency of result'
 
 hist2.add('D6 + D10', frequencies)
-hist2.render_to_file('die_visual_3.svg')
+hist2.render_to_file('demos/die_visual_3.svg')
 
 
 # Misc notes: configuration
@@ -167,11 +168,11 @@ pie_chart = pygal.Pie(style=my_style)
 from pygal.style import Style
 
 my_style = Style(
-  background='transparent',
-  plot_background='transparent',
-  foreground='#53E89B',
-  legend_font_size=9,
-  colors=('#E853A0', '#E8537A', '#E95355', '#E87653', '#E89B53'))
+    background='transparent',
+    plot_background='transparent',
+    foreground='#53E89B',
+    legend_font_size=9,
+    colors=('#E853A0', '#E8537A', '#E95355', '#E87653', '#E89B53'))
 
 pie_chart = pygal.Pie(style=my_style)
 
