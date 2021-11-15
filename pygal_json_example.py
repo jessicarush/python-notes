@@ -4,6 +4,9 @@
 # The data in this example comes from:
 # http://data.okfn.org/
 
+# To use the pygal world maps, you need to install it:
+# pip install pygal_maps_world
+
 import json
 import pygal
 from pygal.maps.world import COUNTRIES
@@ -83,6 +86,7 @@ for cc, pop in cc_populations.items():
 
 # see how many countries are in each group:
 print(len(cc_pop1), len(cc_pop2), len(cc_pop3))
+# 85, 69, 2
 
 my_style = Style(
     legend_font_size=9,
@@ -99,4 +103,4 @@ wm.add('0-10m', cc_pop1)
 wm.add('10m-1b', cc_pop2)
 wm.add('>1b', cc_pop3)
 
-wm.render_to_file('americas.svg')
+wm.render_to_file('demos/americas.svg')
