@@ -13,6 +13,7 @@ See also: [MQTT Essentials](https://www.hivemq.com/blog/mqtt-essentials-part-4-m
 - [Client side](#client-side)
 - [Server side](#server-side)
 - [Notes](#notes)
+- [Mosquitto broker](#mosquitto-broker)
 
 <!-- tocstop -->
 

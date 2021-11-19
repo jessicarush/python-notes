@@ -3,6 +3,7 @@
 
 This is a collection of notes, command line steps and reminders of packages to install for setting up a new Flask project. Obviously, there are many options, these are just the ones I like to use.
 
+
 ## Table of contents
 
 <!-- toc -->
@@ -24,18 +25,18 @@ This is a collection of notes, command line steps and reminders of packages to i
   * [RESTful API](#restful-api)
   * [Task Queues](#task-queues)
 - [Git](#git)
-- [Heroku requirements](#heroku-requirements)
-- [Digitalocean requirements](#digitalocean-requirements)
 - [Application Contexts](#application-contexts)
 - [The g object](#the-g-object)
 - [The session object](#the-session-object)
 - [Jinja delimiters](#jinja-delimiters)
+- [Jinja Variables](#jinja-variables)
 - [Jinja Filters](#jinja-filters)
   * [selectattr() & map() filters](#selectattr--map-filters)
 - [Jinja variables in script elements](#jinja-variables-in-script-elements)
 - [Jinja whitespace](#jinja-whitespace)
 - [JSON strings](#json-strings)
 - [Request object](#request-object)
+- [The response object](#the-response-object)
 - [Flask-wtf csrf protection](#flask-wtf-csrf-protection)
 - [Flask-SQLAlchemy notes](#flask-sqlalchemy-notes)
   * [.count()](#count)
@@ -51,7 +52,7 @@ This is a collection of notes, command line steps and reminders of packages to i
   * [session.add()](#sessionadd)
   * [session.delete()](#sessiondelete)
 - [Flask-moment notes](#flask-moment-notes)
-- [Testing a Flask on on your network](#testing-a-flask-on-on-your-network)
+- [Testing Flask on your network](#testing-flask-on-your-network)
 
 <!-- tocstop -->
 
@@ -67,11 +68,13 @@ $ mkdir app/static/js
 $ mkdir app/static/img  
 ```
 
+
 ## Virtual environment
 ```
 $ python3 -m venv venv  
 $ source venv/bin/activate  
 ```  
+
 
 ## Packages
 
@@ -200,9 +203,12 @@ For more explanation see:
 <https://flask.palletsprojects.com/en/1.1.x/appcontext/>  
 <http://flask-sqlalchemy.pocoo.org/2.3/contexts/>
 
+
 ## The g object
 
+
 ## The session object
+
 
 ## Jinja delimiters
 
@@ -211,6 +217,7 @@ For more explanation see:
 `{{ ... }}` for [Expressions](https://jinja.palletsprojects.com/en/2.11.x/templates/#expressions) to print to the template output
 
 `{# ... #}` for Comments not included in the template output
+
 
 ## Jinja Variables
 
@@ -237,6 +244,7 @@ Keep in mind you cannot use variables set inside a scoped block (like a for loop
 {% endfor %}
 Found item having something: {{ ns.found }}
 ```
+
 
 ## Jinja Filters
 
@@ -271,6 +279,7 @@ The argument passed to the decorator is the name of the filter:
 {{ current_user.username|testing }}
 ```
 
+
 ### selectattr() & map() filters
 
 ```
@@ -283,6 +292,7 @@ of {{ activities|selectattr("name", "equalto", name)|map(attribute='reps')|first
 {% endif %
 ```
 
+
 ## Jinja variables in script elements
 
 To use a jinja variable in a `<script>` in your document you must either add a filter, usually either `safe` if working with lists or data objects or `tojson` if working with strings.
@@ -293,6 +303,7 @@ To use a jinja variable in a `<script>` in your document you must either add a f
   let my_array = {{ list|safe }};
 </script>
 ```
+
 
 ## Jinja whitespace
 
@@ -312,6 +323,7 @@ app.jinja_env.lstrip_blocks = True
 ```
 
 The first option is untested. For more information see the [Jinja Environment API](https://jinja.palletsprojects.com/en/2.11.x/api/?highlight=trim_blocks#jinja2.Environment).
+
 
 ## JSON strings
 
@@ -430,7 +442,6 @@ def demo():
 
 Note that in order to work with the request object, your route must specify `methods=['GET', 'POST']` even if the request is sent via a GET request with query parameters OR works with the `socketio.on` decorator.
 
-
 ```python
 referrer = request.headers.get('Referer')
 print('referrer', referrer)
@@ -444,6 +455,7 @@ response.headers['Access-Control-Allow-Origin'] = '*'
 ```
 
 Note the `Access-Control-Allow-Origin` header. In order for requests outside the response origin to access the response, this header must be set. `*` is a wildcard allowing any site to receive the response. You should only use this for public APIs. Private APIs should never use `*`, and should instead have a specific domain or domains set. In addition, the wildcard only works for requests made with the crossorigin attribute set to anonymous, and it prevents sending credentials like cookies in requests. [See MDN for more on this](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin).
+
 
 ## Flask-wtf csrf protection
 
@@ -465,6 +477,7 @@ WTF_CSRF_TIME_LIMIT = 3600 * 24 * 7
 # If set to None, the CSRF token is valid for the life of the session
 WTF_CSRF_TIME_LIMIT = None
 ```
+
 
 ## Flask-SQLAlchemy notes
 
@@ -504,12 +517,13 @@ for activity in activities:
     db.session.delete(activity)
 ```
 
+
 ## Flask-moment notes
 
 {{ moment(activities|selectattr("name", "equalto", name)|map(attribute='day')|first, local=True).format('ll') }}
 
 
-## Testing a Flask on your network
+## Testing Flask on your network
 
 ```
 flask run --host=0.0.0.0
