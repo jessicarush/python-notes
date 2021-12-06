@@ -198,9 +198,11 @@ print(f'date formatting: {member_since:%A, %B %d, %Y}')
 # Specfiying a comma separator:
 number = 11555
 print(f'number formatting: {number:,}')
+# number formatting: 11,555
 
 # If you want to add decimal places, make it a float
 print(f'number formatting: {number:,.2f}')
+# number formatting: 11,555.00
 
 # Finally, to compare the last example from the .format() section:
 

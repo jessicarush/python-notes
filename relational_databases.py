@@ -97,7 +97,7 @@
 
 import sqlite3
 
-conn = sqlite3.connect('practice.db') # creates the file if it doesn't exist
+conn = sqlite3.connect('practice.db')  # creates the file if it doesn't exist
 curs = conn.cursor()
 
 curs.execute('''CREATE TABLE IF NOT EXISTS inventory
@@ -282,7 +282,7 @@ CREATE TABLE artists (
 # INNER JOIN artists ON albums.artist = artists._id
 # ORDER BY artists.name, albums.name, songs.track;
 
-# Note the ordering of the keyword commands must go like this:
+#    Note the ordering of the keyword commands must go like this:
 
 # SELECT artists.name, albums.name, songs.track, songs.title
 # FROM songs INNER JOIN albums ON songs.album = albums._id
@@ -290,12 +290,12 @@ CREATE TABLE artists (
 # WHERE artists.name = 'Rolling Stones'
 # ORDER BY artists.name, albums.name, songs.track;
 
-# Select the duplicate album names:
+#    Select the duplicate album names:
 
 # SELECT albums.name, COUNT(albums.name) AS num_albums
 # FROM albums GROUP BY albums.name HAVING num_albums > 1
 
-# Select all the details of the duplicate album names:
+#    Select all the details of the duplicate album names:
 
 # SELECT artists._id, artists.name, albums.name FROM artists
 # INNER JOIN albums ON albums.artist = artists._id
@@ -523,19 +523,16 @@ conn = sqlite3.connect('contacts.sqlite')
 name = input('enter a name: ')
 
 # Method 1
-
 for row in conn.execute("SELECT * FROM contacts WHERE name='{}'".format(name)):
     print(row)
 
 # Method 2
-
 for row in conn.execute('SELECT * FROM contacts WHERE name=?', (name,)):
     print(row)
 
 # Method 3
-
 lookup = 'SELECT * FROM contacts WHERE name=?'
-for row in conn.execute(lookup,(name,)):
+for row in conn.execute(lookup, (name,)):
     print(row)
 
 # The big lesson in the last to situations where we're using parameter
@@ -576,6 +573,17 @@ conn = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 # MySQL Connector - http://bit.ly/mysql-cpdg
 # PYMySQL - https://github.com/petehunt/PyMySQL/
 # oursql - http://pythonhosted.org/oursql/
+
+
+# MariaDB
+# -----------------------------------------------------------------------------
+# MariaDB is a community-developed, commercially supported fork of MySQL,
+# intended to remain free and open-source software under the GNU General Public
+# License. Development is led by some of the original developers of MySQL, who
+# forked it due to concerns over its acquisition by Oracle Corporation in 2009.
+
+# https://mariadb.org/
+# https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb/
 
 
 # PostgreSQL
