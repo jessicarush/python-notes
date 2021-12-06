@@ -30,13 +30,27 @@
 
 import calendar
 
-# Print a month as lists of dates (the first index[0] defaluts to Monday):
-print(calendar.monthcalendar(2018, 11))
+# Print a month as lists of dates (the first index[0] defaults to Monday):
+print(calendar.monthcalendar(2021, 12))
 # [[0, 0, 0, 1, 2, 3, 4],
 #  [5, 6, 7, 8, 9, 10, 11],
 #  [12, 13, 14, 15, 16, 17, 18],
 #  [19, 20, 21, 22, 23, 24, 25],
 #  [26, 27, 28, 29, 30, 0, 0]]
+
+# Check the start day of the week (0=Monday, 6=Sunday):
+print(calendar.firstweekday())  # 0
+
+# Set the start day of the week:
+calendar.setfirstweekday(calendar.SUNDAY)
+print(calendar.firstweekday())  # 6
+
+print(calendar.monthcalendar(2021, 12))
+# [[0, 0, 0, 1, 2, 3, 4],
+#  [5, 6, 7, 8, 9, 10, 11],
+#  [12, 13, 14, 15, 16, 17, 18],
+#  [19, 20, 21, 22, 23, 24, 25],
+#  [26, 27, 28, 29, 30, 31, 0]]
 
 # Test if a year is a leap year:
 print(calendar.isleap(2016))  # True
@@ -490,7 +504,7 @@ print(a_date)
 # For example, if you create a DateTime type column in an sqlite3 database,
 # it will require a datetime object but depending on how you retrieve the
 # data, my return a date string. Using strptime, you can convert these
-# strimgs back again:
+# strings back again:
 
 n = datetime.datetime.now()  # 2019-07-08 09:57:26.976697 <class 'datetime.datetime'>
 s = str(n)
@@ -603,15 +617,16 @@ print(de_names)  # ['de_at', 'de_be', 'de_ch', 'de_de', 'de_lu']
 # not include time elapsed with sleep. Is apparently useful for profiling code.
 
 import time
-# from time import time as my_timer          # try all three
+from time import time as my_timer          # try all three
 # from time import perf_counter as my_timer  # try all three
-from time import process_time as my_timer  # try all three
+# from time import process_time as my_timer  # try all three
 import random
 
 input('Press enter to start')
+start_time = my_timer()
+
 wait_time = random.randint(1,6)
 time.sleep(wait_time)
-start_time = my_timer()
 
 input('Press enter to stop')
 end_time = my_timer()
