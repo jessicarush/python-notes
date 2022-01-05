@@ -34,8 +34,8 @@ timestamp = datetime.datetime.now().strftime('%a %x')
 backdated = datetime.date(2017, 8, 7).strftime('%a %x')
 # Mon 08/07/17  <class 'str'>
 
-print('{}/{}/{}'.format(now.month, now.day, now.year))
-# 12/31/2017  <class 'str'>
+print(f'{now.month}/{now.day}/{now.year}')
+# 1/5/2022
 
 
 # timedelta example
