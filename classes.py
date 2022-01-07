@@ -64,9 +64,6 @@ baker.friend = 'Todd'
 print('Name {} age {}, name {} age {}'.format(
     astronaut.name, astronaut.age, baker.name, baker.age))
 
-print('Name {0.name} age {0.age}, name {1.name} age {1.age}'.format(
-    astronaut, baker))
-
 print(f'Name {astronaut.name} age {astronaut.age}, name {baker.name} age {baker.age}')
 
 
@@ -74,7 +71,6 @@ print(f'Name {astronaut.name} age {astronaut.age}, name {baker.name} age {baker.
 # -----------------------------------------------------------------------------
 
 class Contact():
-
     all_contacts = []  # class variable
 
     def __init__(self, name, email):
@@ -282,7 +278,7 @@ class Doctor(Person):
         self.email = email
         self.age = age
         self.email = email
-        self.satus = status
+        self.status = status
 
 # But then not only are we duplicating a bunch of code, but we are also loosing
 # our inheritance. By using super(), if the definition of the parent class
@@ -299,7 +295,7 @@ class Enemy():
         self.lives = lives
 
     def __str__(self):
-        return "{0.name} – Lives: {0.lives}, Hit points: {0.hp}".format(self)
+        return "{0.name} - Lives: {0.lives}, Hit points: {0.hp}".format(self)
 
 class Vampire(Enemy):
         def __init__(self, name):
@@ -497,7 +493,7 @@ s = Subclass(name='bob', phone=6041234567, street=1234, email='test@test.com')
 
 print(s.__dict__)
 # {'address': '', 'street': 1234, 'name': 'bob', 'email': '', 'phone': 6041234567}
-exit()
+
 # Basic multiple inheritance can be handy but, in many cases, we may want to
 # choose a more transparent way of combining two disparate classes, usually
 # using composition or another design pattern.
@@ -785,9 +781,9 @@ print('{:.5f}'.format(time() - start))
 
 # Instance methods
 # -----------------------------------------------------------------------------
-# Some data(attributes) and functions(methods) are part of the class itself and
-# some are part of the objects that are created from that class. When you see
-# an initial self argument in methods within a class def, it's an instance
+# Some data (attributes) and functions (methods) are part of the class itself
+# and some are part of the objects that are created from that class. When you
+# see an initial self argument in methods within a class def, it's an instance
 # method. These are the types of methods you normally write. The first
 # parameter of an instance method is self. Any change made to the class
 # affects all of its objects.
@@ -909,7 +905,7 @@ class A():
 
 A.note()
 
-# Note also that if you want to use the static method within the class istelf,
+# Note also that if you want to use the static method within the class itself,
 # you can call it in the very same way:
 
 class A():
@@ -920,6 +916,9 @@ class A():
     def do_something(self):
         # do something
         A.note()
+
+test_static = A()
+test_static.note()
 
 
 # Review: an interesting example
