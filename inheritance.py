@@ -16,17 +16,17 @@ class Property():
         self.baths = baths
 
     def display(self):
-        print("property details".title())
-        print("–" * 16)
-        print(f"square footage: {self.sqft}")
-        print(f"bedrooms: {self.beds}")
-        print(f"bathrooms: {self.baths}\n")
+        print('property details'.title())
+        print('–' * 16)
+        print(f'square footage: {self.sqft}')
+        print(f'bedrooms: {self.beds}')
+        print(f'bathrooms: {self.baths}\n')
 
     @staticmethod
     def prompt_init():
-        return dict(sqft=input("Enter the square feet: "),
-                    beds=input("Enter number of bedrooms: "),
-                    baths=input("Enter number of baths: "))
+        return dict(sqft=input('Enter the square feet: '),
+                    beds=input('Enter number of bedrooms: '),
+                    baths=input('Enter number of baths: '))
 
 # We've included a call to super().__init__ in case we are not the last call
 # in the multiple inheritance chain. In this case, we're consuming the keyword
@@ -36,8 +36,8 @@ class Property():
 
 class Apartment(Property):
     '''A representation of a apartment property.'''
-    valid_laundries = ("coin", "ensuite", "none")
-    valid_balconies = ("yes", "no", "solarium")
+    valid_laundries = ('coin', 'ensuite', 'none')
+    valid_balconies = ('yes', 'no', 'solarium')
 
     def __init__(self, balcony='', laundry='', **kwargs):
         super().__init__(**kwargs)
@@ -46,16 +46,16 @@ class Apartment(Property):
 
     def display(self):
         super().display()
-        print("apartment details".title())
-        print(f"laundry: {self.laundry}")
-        print(f"balcony: {self.balcony}")
+        print('apartment details'.title())
+        print(f'laundry: {self.laundry}')
+        print(f'balcony: {self.balcony}')
 
     @staticmethod
     def prompt_init():
         parent_init = Property.prompt_init()
-        laundry = get_valid_input("What kind of laundry facilities... ",
+        laundry = get_valid_input('What kind of laundry facilities... ',
             Apartment.valid_laundries)
-        balcony = get_valid_input("Does it have a balcony... ",
+        balcony = get_valid_input('Does it have a balcony... ',
             Apartment.valid_balconies)
         parent_init.update({'laundry': laundry, 'balcony': balcony})
         return parent_init
@@ -66,8 +66,8 @@ class Apartment(Property):
 
 class House(Property):
     '''A representation of a house property.'''
-    valid_garage = ("attached", "detached", "none")
-    valid_fence = ("yes", "no")
+    valid_garage = ('attached', 'detached', 'none')
+    valid_fence = ('yes', 'no')
 
     def __init__(self, floors='', garage='', fence='', **kwargs):
         super().__init__(**kwargs)
@@ -77,29 +77,29 @@ class House(Property):
 
     def display(self):
         super().display()
-        print("house details".title())
-        print(f"floors: {self.floors}")
-        print(f"garage: {self.garage}")
-        print(f"fence: {self.fence}")
+        print('house details'.title())
+        print(f'floors: {self.floors}')
+        print(f'garage: {self.garage}')
+        print(f'fence: {self.fence}')
 
     @staticmethod
     def prompt_init():
         parent_init = Property.prompt_init()
-        floors = input("How many floors? ")
-        garage = get_valid_input("Does it have a garage... ",
+        floors = input('How many floors? ')
+        garage = get_valid_input('Does it have a garage... ',
             House.valid_garage)
-        fence = get_valid_input("Is there a fenced yard... ",
+        fence = get_valid_input('Is there a fenced yard... ',
             House.valid_fence)
         parent_init.update({'floors': floors, 'garage': garage, 'fence': fence})
         return parent_init
 
 
-def get_valid_input(input_string, valid_options):
+def get_valid_input(input_label, valid_options):
     '''A helper function: get user input and check against valid options'''
-    input_string += f"{', '.join(valid_options)}? "
-    response = input(input_string)
+    input_label += f'{", ".join(valid_options)}? '
+    response = input(input_label)
     while response.lower() not in valid_options:
-        response = input(input_string)
+        response = input(input_label)
     return response
 
 
@@ -112,14 +112,14 @@ class Purchase():
 
     def display(self):
         super().display()
-        print("purchase details".title())
-        print(f"selling price: {self.price}")
-        print(f"estimated taxes: {self.taxes}")
+        print('purchase details'.title())
+        print(f'selling price: {self.price}')
+        print(f'estimated taxes: {self.taxes}')
 
     @staticmethod
     def prompt_init():
-        return dict(price=input("Selling price? "),
-                    taxes=input("Estimated taxes? "))
+        return dict(price=input('Selling price? '),
+                    taxes=input('Estimated taxes? '))
 
 # These two classes don't have a superclass (other than object), but we still
 # call super().__init__ because they are going to be combined with the other
@@ -136,16 +136,16 @@ class Rental():
 
     def display(self):
         super().display()
-        print("rental details".title())
-        print(f"rent: {self.rent}")
-        print(f"estimated utilities: {self.utilities}")
-        print(f"furnished: {self.furnished}")
+        print('rental details'.title())
+        print(f'rent: {self.rent}')
+        print(f'estimated utilities: {self.utilities}')
+        print(f'furnished: {self.furnished}')
 
     @staticmethod
     def prompt_init():
-        return dict(rent=input("Monthly rent? "),
-                    utilities=input("Estimated utilities? "),
-                    furnished = get_valid_input("Furnished? ", ("yes", "no")))
+        return dict(rent=input('Monthly rent? '),
+                    utilities=input('Estimated utilities? '),
+                    furnished = get_valid_input('Furnished? ', ('yes', 'no')))
 
 # The interface of Rental and Purchase is similar to that used for House and
 # Apartment, which is very useful when we combine the functionality of these
@@ -248,9 +248,9 @@ class Agent():
 
     def add_property(self):
         property_type = get_valid_input(
-            "What type of property... ", ("house", "apartment")).lower()
+            'What type of property... ', ('house', 'apartment')).lower()
         payment_type = get_valid_input(
-            "Payment... ", ("purchase", "rental")).lower()
+            'Payment... ', ('purchase', 'rental')).lower()
         PropertyClass = self.type_map[(property_type, payment_type)]
         init_args = PropertyClass.prompt_init()
         self.property_list.append(PropertyClass(**init_args))
