@@ -39,18 +39,25 @@ location = geolocator.geocode(address1)
 
 print(type(location))
 # <class 'geopy.location.Location'>
+
 print(dir(location))
 # [... 'address', 'altitude', 'latitude', 'longitude', 'point', 'raw']
+
 print(location)
 # 3995 23rd St, San Francisco, CA 94114, USA
+
 print(location.address)
 # 3995 23rd St, San Francisco, CA 94114, USA
+
 print(location.altitude)
 # 0.0
+
 print((location.latitude, location.longitude))
 # (37.7529648, -122.4317141)
+
 print(location.point)
 # 37 45m 10.6733s N, 122 25m 54.1708s W
+
 print(location.raw)
 # {'address_components': [
 #     {'long_name': '3995', 'short_name': '3995', 'types': ['street_number']},
