@@ -22,12 +22,12 @@
   * [Trigger the request](#trigger-the-request-3)
   * [Send the request (& receive the response)](#send-the-request--receive-the-response-3)
   * [Handle the request](#handle-the-request-3)
+- [Example 5: request and reponse using Fetch API](#example-5-request-and-reponse-using-fetch-api)
 - [jsonify vs json.dumps](#jsonify-vs-jsondumps)
 - [XMLHttpRequest Object Methods](#xmlhttprequest-object-methods)
 - [XMLHttpRequest Object Properties](#xmlhttprequest-object-properties)
 - [GET or POST?](#get-or-post)
 - [Access-Control-Allow-Origin](#access-control-allow-origin)
-- [Alternate methods for receiving responses](#alternate-methods-for-receiving-responses)
 
 <!-- tocstop -->
 
@@ -202,7 +202,7 @@ We can receive our request data using the `request.get_json()` method.
 def ajax_demo():
     data = request.get_json()
 
-    print(type(data), data)  
+    print(type(data), data)
     # <class 'dict'> {'fruit': 'apples'}
 
     if data['fruit'] == 'apples':
@@ -276,6 +276,91 @@ function handleForm(e) {
 
 Same as Example 3
 
+
+## Example 5: request and reponse using Fetch API
+
+This is a more up-to-date example. It collects data from a form, and sends it to the Flask server using the Fetch API instead of the old XMLHttpRequest.
+
+```javascript
+/**
+ * Send request and data using Fetch API
+ */
+const submitPost = async (title, body) => {
+  try {
+    const response = await fetch('/save_post', {
+      method: 'POST',
+      body: JSON.stringify({title: title, body: body}),
+      // The header is crucial in order to receive data on the flask side
+      // using request.get_json()
+      headers: new Headers({"content-type": "application/json"})
+    });
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      console.log(jsonResponse);
+      return jsonResponse;
+    } else {
+        throw new Error('Request failed!');
+    }
+  }
+  catch(error) {
+    console.log(error);
+  }
+};
+
+function handleSubmit(e) {
+  // Prevent page reload
+  e.preventDefault();
+  // Collect form data
+  const { csrf_token, title, body, submit } = e.target.elements;
+  // Pass on to function to handle the request
+  submitPost(title.value, body.value)
+}
+
+// Event listener
+document.getElementById('my-form').addEventListener('submit', (e) => {
+  handleSubmit(e);
+});
+```
+
+```Python
+from flask import jsonify
+from flask import request
+from flask import render_template
+
+from app import app
+from app import db
+from app.forms import PostForm
+from app.models import Post
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    '''View function for the main landing page.'''
+    form = PostForm()
+    return render_template('index.html', title='Demo', form=form)
+
+@app.route('/save_post', methods=['GET', 'POST'])
+def save_post():
+    '''Receive posts and save to db'''
+    # Receive request data
+    data = request.get_json()
+    title = data['title']
+    body = data['body']
+    # Save to database
+    post = Post(title=title, body=body)
+    db.session.add(post)
+    db.session.commit()
+    # Get the id
+    print(post.id)
+    # Send response
+    response = jsonify({
+        'id': post.id,
+        'title': title,
+        'body': body
+        })
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+```
 
 ## jsonify vs json.dumps
 
@@ -362,10 +447,3 @@ def api_demo():
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 ```
-
-
-## Alternate methods for receiving responses
-
-There are two other ways of coding the part where you receive the response from the server. One uses event handlers and the other uses event listeners. These are both newer methods and may not work in older browsers.
-
-See: [javascript-notes/ajax.md](https://github.com/jessicarush/javascript-notes/blob/master/ajax.md)
