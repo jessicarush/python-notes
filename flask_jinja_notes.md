@@ -1,8 +1,7 @@
 # New Flask Project
 
 
-This is a collection of notes, command line steps and reminders of packages to install for setting up a new Flask project. Obviously, there are many options, these are just the ones I like to use.
-
+This is a collection of notes, command line steps and reminders of packages to install for setting up a new Flask project. This doc is very much a WIP pile of crap at the moment.
 
 ## Table of contents
 
@@ -11,7 +10,6 @@ This is a collection of notes, command line steps and reminders of packages to i
 - [Directory structure](#directory-structure)
 - [Virtual environment](#virtual-environment)
 - [Packages](#packages)
-  * [Flask](#flask)
   * [Environmental variables](#environmental-variables)
   * [Database](#database)
   * [Forms](#forms)
@@ -57,129 +55,147 @@ This is a collection of notes, command line steps and reminders of packages to i
 <!-- tocstop -->
 
 ## Directory structure
-```
-$ mkdir projectname  
-$ cd projectname/  
-$ mkdir app  
-$ mkdir app/templates  
-$ mkdir app/static  
-$ mkdir app/static/css  
-$ mkdir app/static/js  
-$ mkdir app/static/img  
+
+```bash
+mkdir projectname
+cd projectname/
+mkdir app
+mkdir app/templates
+mkdir app/static
+mkdir app/static/css
+mkdir app/static/js
+mkdir app/static/img
 ```
 
 
 ## Virtual environment
-```
-$ python3 -m venv venv  
-$ source venv/bin/activate  
-```  
 
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
 ## Packages
 
-### Flask
-```
-$ pip install flask
+```bash
+pip install flask
 ```
 
 ### Environmental variables
-```
-$ pip install python-dotenv
+
+```bash
+pip install python-dotenv
 ```
 
 ### Database
-```
-$ pip install psycopg2  
-$ pip install Flask-SQLAlchemy
-$ pip install Flask-Migrate
+
+```bash
+pip install psycopg2
+pip install Flask-SQLAlchemy
+pip install Flask-Migrate
 ```
 
 ### Forms
-```
-$ pip install Flask-WTF  
+
+```bash
+pip install Flask-WTF
 ```
 
-### User logins  
-```
-$ pip install Flask-Login
+### User logins
+
+```bash
+pip install Flask-Login
 ```
 
 ### Email & web tokens
-```
-$ pip install Flask-Mail
-$ pip install PyJWT
-$ pip install flask-httpauth
+
+```bash
+pip install Flask-Mail
+pip install PyJWT
+pip install flask-httpauth
 ```
 
 ### Timezones
-```
-$ pip install Flask-Moment
+
+```bash
+pip install Flask-Moment
 ```
 
 ### Gathering Data
-```
-$ pip install requests
+
+```bash
+pip install requests
 ```
 
 ### Full-Text Search
-```
-$ brew install elasticsearch
-$ pip install elasticsearch
+
+```bash
+brew install elasticsearch
+pip install elasticsearch
 ```
 
 Elasticsearch must be running in order to use it.
 First cd to the directory where it lives, then run it.
 In my case it's:
+
+```bash
+sudo cd /usr/local/bin/
+elasticsearch
 ```
-$ sudo cd /usr/local/bin/
-$ elasticsearch
-```
+
 Check that it's running here: http://localhost:9200/
 To quit elasticsearch, ctrl-c in the terminal window where you launched it.
 
 ### Internationalization & Localization (I18n L10n)
-```
-$ pip install Flask-Babel
+
+```bash
+pip install Flask-Babel
 ```
 
 ### Translation
-```
-$ pip install guess-language_spirit
-$ pip install requests
+
+```bash
+pip install guess-language_spirit
+pip install requests
 ```
 
 ### RESTful API
+
 A command-line HTTP client that makes it easy to send API requests:
-```
-$ pip install httpie
-$ pip install Flask-RESTful  
+
+```bash
+pip install httpie
+pip install Flask-RESTful
 ```
 
 ### Task Queues
-```
-$ pip install rq
+
+```bash
+pip install rq
 ```
 
 ## Git
-```
-$ git init  
-$ touch .gitignore
+
+```bash
+git init
+touch .gitignore
 ```
 
-.gitignore contents:  
-```
-.DS_Store  
-__pycache__  
-venv  
+.gitignore contents:
+
+```bash
+.DS_Store
+__pycache__
+venv
 .env
 working_files
 ```
 
 Initial commit:
-```
-$ git add -A  
-$ git commit -m 'Initial commit'  
+
+```bash
+git add -A
+git commit -m 'Initial commit'
 ```
 
 
@@ -199,9 +215,10 @@ def my_function():
 ```
 
 For more explanation see:
-[Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)   
+
+[Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)  
 <https://flask.palletsprojects.com/en/1.1.x/appcontext/>  
-<http://flask-sqlalchemy.pocoo.org/2.3/contexts/>
+<http://flask-sqlalchemy.pocoo.org/2.3/contexts/>  
 
 
 ## The g object
@@ -226,6 +243,7 @@ For more explanation see:
   <img src="{{ url_for('static', filename='img/icon.svg')}}" />
 {% endset %}
 ```
+
 or
 
 ```
@@ -249,16 +267,19 @@ Found item having something: {{ ns.found }}
 ## Jinja Filters
 
 There are many [pre-built filters](http://jinja.pocoo.org/docs/2.10/templates/#builtin-filters). To use any of these filters in your HTML template:
+
 ```
 {{ current_user.username|title }}
 ```
 
 You can chain filters together:
+
 ```
 {{ current_user.username|reverse|title }}
 ```
 
 To create a custom filter for a **basic** flask app (in routes.py):
+
 ```python
 @app.template_filter('testing')
 def test(name):
@@ -267,6 +288,7 @@ def test(name):
 ```
 
 To create a custom filter for a flask app that uses **blueprints** (in routes.py):
+
 ```python
 @bp.app_template_filter('testing')
 def test(name):
@@ -275,6 +297,7 @@ def test(name):
 ```
 
 The argument passed to the decorator is the name of the filter:
+
 ```
 {{ current_user.username|testing }}
 ```
@@ -315,6 +338,7 @@ app.jinja_env.lstrip_blocks = True
 ```
 
 ...or you can manage it manually in each block, for example:
+
 ```
 {%- if ... %} strips space before
 {%- if ... -%} strips space before and after
@@ -344,16 +368,19 @@ def index():
 In your template, if you just wanted to print the data as a string you could access it normally through the template variable `{{ data }}`. However, if you want to be able to use that data as a JSON object in a script, you will need to explicitly confirm that any special characters such as `"` or  `'` which would normally be escaped, should be left alone applying the `safe` filter. For example:
 
 In the html template:
+
 ```
 {{ data }}
 ```
 
 outputs to the browser and in the source as:
+
 ```
 {"2019-04-10": 6, "2019-04-8": 2, "2019-04-6": 8}
 ```
 
 used in a script however:
+
 ```html
 <div>
   <script type="text/javascript">
@@ -364,6 +391,7 @@ used in a script however:
 ```
 
 the source code will look like:
+
 ```html
 <script type="text/javascript">
     let data = {&#34;2019-04-10&#34;: 6, &#34;2019-04-8&#34;: 2, &#34;2019-04-6&#34;: 8};
@@ -372,6 +400,7 @@ the source code will look like:
 ```
 
 so here we need to apply the safe filter:
+
 ```html
 <div>
   <script type="text/javascript">
@@ -382,6 +411,7 @@ so here we need to apply the safe filter:
 ```
 
 source is now what we want:
+
 ```html
 <script type="text/javascript">
     let data = {"2019-04-10": 6, "2019-04-8": 2, "2019-04-6": 8};
@@ -466,7 +496,7 @@ class MyForm(FlaskForm):
     pass
 ```
 
-The csrf token is generated when the form is initially rendered (i.e. when the page is loaded) and by default expires after 3600 seconds (1 hour). This is means that if you leave the page open for more than than hour without reloading/refreshing, the csrf token will be expired and if you try to submit the form, it will be a quiet failure. There are a number of ways around this but the simplest is to change the global timeout from 3600 seconds to something more reasonable or to not have an expiry at all.
+The csrf token is generated when the form is initially rendered (i.e. when the page is loaded) and by default expires after 3600 seconds (1 hour). This means that if you leave the page open for more than than hour without reloading/refreshing, the csrf token will be expired and if you try to submit the form, it will be a quiet failure. There are a number of ways around this but the simplest is to change the global timeout from 3600 seconds to something more reasonable or to not have an expiry at all.
 
 To do this you would set the constant variable in your config:
 
@@ -502,6 +532,7 @@ codes = Alert.query.with_entities(Alert.code).filter_by(device_name=device, type
 ### .delete()
 
 For example:
+
 ```python
 Activity.query.filter_by(session_id=session_id).delete()
 ```
@@ -511,6 +542,7 @@ Activity.query.filter_by(session_id=session_id).delete()
 ### session.delete()
 
 For example:
+
 ```python
 activities = Activity.query.filter_by(session_id=session_id).all()
 for activity in activities:
@@ -528,7 +560,9 @@ for activity in activities:
 ```
 flask run --host=0.0.0.0
 ```
+
 or
+
 ```python
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
@@ -545,13 +579,16 @@ If you have a login in your site, you'll be blocked for privacy. You're supposed
 ```
 flask run --cert=adhoc
 ```
+
 or
+
 ```python
 if __name__ == '__main__':
     app.run(port=5000, debug=True, ssl_context='adhoc')
 ```
 
 To use adhoc certificates with Flask, you need to install an additional dependency in your virtual environment:
+
 ```
 pip install pyopenssl
 ```
@@ -559,16 +596,20 @@ pip install pyopenssl
 Even with this though, you'll be presented with a non-private connection page which you'll have to dig through the advanced button in order to ok the site.
 
 Do these things together:
+
 ```
 flask run --host=0.0.0.0 --cert=adhoc
 ```
+
 or
+
 ```python
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True, ssl_context='adhoc')
 ```
 
 Then find your machines ip (e.g. 10.0.0.57)
+
 ```
 https://10.0.0.57:5000
 ```
