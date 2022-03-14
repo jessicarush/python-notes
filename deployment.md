@@ -533,9 +533,9 @@ Miguel has written a detailed article: [Run your Flask application over HTTPS](h
 ## Mapping a Domain to Digital Ocean
 
 1. Updated the nameservers on the domain to digital ocean's (note you can usually do this at the time of purchase):
-    ns1.digitalocean.com,
-    ns2.digitalocean.com,
-    ns3.digitalocean.com
+    ns1.digitalocean.com,  
+    ns2.digitalocean.com,  
+    ns3.digitalocean.com  
 
 2. Go to the Networking > Domains section of your dashboard and add the domain:
     see this [DNS guide](https://www.digitalocean.com/community/tutorials/an-introduction-to-digitalocean-dns)
