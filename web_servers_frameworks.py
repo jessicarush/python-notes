@@ -247,7 +247,7 @@ run(host='localhost', port=9999)
 # Flask supports many useful web development extensions such as facebook
 # authentication and database integration. The Flask package includes the
 # werkzeug WSGI library and jinja2 template library. Flask was built to be
-# extendened. There are tonnes of third party flask extensions that allow you
+# extended. There are tonnes of third party flask extensions that allow you
 # use flask and choose whatever additional tools you want.
 
 # Functions direct users to a page or 'endpoint' are often called 'view
