@@ -29,18 +29,29 @@ Install pyenv
 curl https://pyenv.run | bash
 ```
 
-Add to your `.bash_profile` the output provided in the console. It will look like the following but with your info:
+There will be a message in the console saying that you need to update your PATH. Be sure to read because the instructions seem to change as they update pyenv. 
+
+Basically, I have to add to my `.bash_profile`:
 
 ```
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/shims:$PATH"
+```
+
+Howevever, they have a longer, roundabout way of doing this:
+
+```
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 ```
 
-Restart `.bash_profile`:
+The reasons are explained in the [penv docs](https://github.com/pyenv/pyenv#advanced-configuration).
+
+Be sure to restart `.bash_profile`:
 
 ```
-source /.bash_profile
+source ~/.bash_profile
 ```
 
 ## Install python versions
