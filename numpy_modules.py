@@ -1,4 +1,4 @@
-'''A brief look at NumPy (Numercical Python).'''
+'''A brief look at NumPy (Numerical Python).'''
 
 
 # http://www.numpy.org/
@@ -22,6 +22,9 @@ n = numpy.arange(27)
 
 print(n)        # [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 ...]
 print(type(n))  # <class 'numpy.ndarray'>
+
+n_start_stop_step = numpy.arange(0, 100, 10)
+print(n_start_stop_step)  # [ 0 10 20 30 40 50 60 70 80 90]
 
 
 # Two Dimensional Arrays
