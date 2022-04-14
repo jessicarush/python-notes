@@ -113,6 +113,20 @@ pprint(location)
 #  'street': 'Beach'}
 
 
+# unpack dict key/value pairs with **
+# -----------------------------------------------------------------------------
+# You can place ** in front of a dict variable to unpack it. As a result, you
+# can use this to copy dicts into a new dict. For example:
+
+user = {'name': 'bob', 'rank': 'beginner'}
+prefs = {'mode': 'dark', 'color': 'red'}
+
+user_info = {**user, **prefs}
+
+print(user_info)
+# {'name': 'bob', 'rank': 'beginner', 'mode': 'dark', 'color': 'red'}
+
+
 # Dictionary merge and update operators
 # -----------------------------------------------------------------------------
 # Python 3.9 introduced the '|' and '|=' operators for dictionaries to
@@ -132,11 +146,13 @@ d |= e
 
 # Delete an item by key with del
 # -----------------------------------------------------------------------------
+
 del person['age']
 
 
 # Delete all items with .clear()
 # -----------------------------------------------------------------------------
+
 person.clear()
 
 
@@ -171,6 +187,7 @@ print(popped, type(popped))  # nope <class 'str'>
 
 # get a value by [key] and .get()
 # -----------------------------------------------------------------------------
+
 print(location['street'])
 
 # if the key is not present, you'll get an exception. To avoid this use the
@@ -362,7 +379,7 @@ for k, v, in new_dict.items():
 
 # defaultdict()
 # -----------------------------------------------------------------------------
-# defaultdict() is smilar to setdefault() but it specifies a default value for
+# defaultdict() is similar to setdefault() but it specifies a default value for
 # any new key up front when the dictionary is created. In this example, any
 # missing value will be an integer with a value 0
 
