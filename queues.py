@@ -3,7 +3,7 @@
 
 # Queues are peculiar data structures because, like sets, their functionality
 # can be handled entirely using lists. However, while lists are extremely
-# versatile, they are not always the most efficient data structor for container
+# versatile, they are not always the most efficient data structure for container
 # operations. If a program is using a small dataset (hundreds or thousands of
 # elements), then lists will probably be ok. However, if you need to scale your
 # data into the millions, you may need a more efficient container. Python
@@ -43,7 +43,9 @@ q.put('three')
 q.put('four')
 q.put('five')
 # q.put('six', timeout=5)  # raise Full, queue.Full
+
 print('full: ', q.full())
+# full:  True
 
 q.get()
 q.get()
@@ -51,11 +53,10 @@ q.get()
 q.get()
 last = q.get()
 # q.get(block=False)  # raise Empty, queue.Empty
-print('last: ', last)
-print('empty: ', q.empty())
 
-# full:  True
+print('last: ', last)
 # last:  five
+print('empty: ', q.empty())
 # empty:  True
 
 
@@ -63,7 +64,7 @@ print('empty: ', q.empty())
 # -----------------------------------------------------------------------------
 # These queues are more frequently called stacks (think of a stack of papers
 # where you can only access the top-most paper). Traditionally, operations on
-# stacks are names push and pop, but since python uses the same API as for
+# stacks are named push and pop, but since python uses the same API as for
 # FIFO queues, we use put() and get() still, but they'll both operate off the
 # top of the stack.
 
@@ -77,7 +78,9 @@ stack.put('three')
 stack.put('four')
 stack.put('five')
 # stack.put('six', timeout=5)  # raise Full, queue.Full
+
 print('full: ', stack.full())
+# full:  True
 
 stack.get()
 stack.get()
@@ -85,11 +88,10 @@ stack.get()
 stack.get()
 last = stack.get()
 # q.get(block=False)  # raise Empty, queue.Empty
-print('last: ', last)
-print('empty: ', stack.empty())
 
-# full:  True
+print('last: ', last)
 # last:  one
+print('empty: ', stack.empty())
 # empty:  True
 
 
@@ -97,6 +99,7 @@ print('empty: ', stack.empty())
 # -----------------------------------------------------------------------------
 # New to python 3.7 are SimpleQueues which are unbounded FIFO queues.
 # Simple queues lack advanced functionality such as task tracking.
+# https://docs.python.org/3/library/queue.html#simplequeue-objects
 
 
 # deques (double-ended queue)
@@ -109,31 +112,42 @@ from collections import deque
 d = deque('abcdefg')
 
 print(d)
+# deque(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+
 print('length: ', len(d))
+# length:  7
+
 print('left end: ', d[0])
+# left end:  a
+
 print('right end: ', d[-1])
+# right end:  g
+
 print('pop left: ', d.popleft())
+# pop left:  a
+
 print('pop right: ', d.pop())
+# pop right:  g
+
 print('pop left: ', d.popleft())
+# pop left:  b
+
 print('pop right: ', d.pop())
+# pop right:  f
+
 print('removed: ', d.remove('c'))
+# removed:  None
+
 d.append('right')
 d.appendleft('left')
+
 print('appended: ', d)
+# appended:  deque(['left', 'd', 'e', 'right'])
+
 d.extend('456')
 d.extendleft('321')
-print('extended :', d)
 
-# deque(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
-# length:  7
-# left end:  a
-# right end:  g
-# pop left:  a
-# pop right:  g
-# pop left:  b
-# pop right:  f
-# removed:  None
-# appended:  deque(['left', 'd', 'e', 'right'])
+print('extended :', d)
 # extended : deque(['1', '2', '3', 'left', 'd', 'e', 'right', '4', '5', '6'])
 
 
@@ -173,9 +187,9 @@ def burn(end, source):
         except IndexError:
             break
         else:
-            print('{:>6}: {}'.format(end, next))
+            print(f'{end:>6}: {next}')
             time.sleep(0.1)
-    print('{:>6}: done.'.format(end))
+    print(f'{end:>6}: done.')
     return
 
 left = threading.Thread(target=burn, args=('Left', candle.popleft))
@@ -227,6 +241,8 @@ while not heap.empty():
 # (2, 'medium-level task')
 # (3, 'low-level task')
 
+print(heap.qsize())
+# 0
 
 # Task Queues
 # -----------------------------------------------------------------------------
@@ -260,7 +276,7 @@ while not heap.empty():
 # $ pip install rq
 # $ redis-server
 
-# Example task (app/tasks.py):
+# Example task (demo/tasks.py):
 
 import time
 
@@ -294,7 +310,9 @@ def example(seconds):
 # >>> q = rq.Queue('test', connection=Redis())
 # >>> job = q.enqueue('app.tasks.example', 23)
 # >>> job.get_id()
+# '37469594-8f5d-41f1-91e5-ec996df18243'
 # >>> job.is_finished
+# True
 
 # Back in the first terminal window, where the worker is listening, you should
 # see it run example function above and then wait.
@@ -328,7 +346,7 @@ def example(seconds):
 # it to the user. RQ supports this by using the meta attribute of the job
 # object. Here's the example tasks expanded out to include this:
 
-# Example task (app/tasks.py):
+# Example task (demos/tasks_with_info.py):
 
 import time
 from rq import get_current_job
@@ -356,7 +374,7 @@ def example(seconds):
 
 # We can run this new task an monitor its progress like this:
 
-# >>> job = q.enqueue('app.tasks.example', 23)
+# >>> job = q.enqueue('demos.tasks_with_info.example', 23)
 # >>> job.meta
 # {}
 # >>> job.refresh()
@@ -370,3 +388,22 @@ def example(seconds):
 
 # The refresh() method needs to be invoked for the contents to be updated
 # from Redis.
+
+
+# Redis cleanup
+# -----------------------------------------------------------------------------
+
+# To kill your worker: ctrl + c
+
+# If, at any time, the worker receives SIGINT (via Ctrl+C) or SIGTERM (via kill),
+# the worker wait until the currently running task is finished, stop the work
+# loop and gracefully register its own death.
+
+# To shutdown the redis server: redis-cli shutdown
+# Note this command must be run not in the same terminal window as the Redis
+# server. Also, this is a mac command. If on linux, you would do:
+
+# /etc/init.d/redis-server restart
+# /etc/init.d/redis-server stop
+# /etc/init.d/redis-server start
+
