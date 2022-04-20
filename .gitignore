@@ -15,6 +15,7 @@ __pycache__/
 
 # database
 app.db
+dump.rdb
 
 # misc
 .DS_Store
