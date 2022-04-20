@@ -32,7 +32,7 @@ print('The %s is %f' % (name, golden_ratio))
 # The golden ratio is 1.618034
 
 
-# Newer Style formatting - with .format()
+# Less Old Style formatting - with .format()
 # -----------------------------------------------------------------------------
 
 print('The {0} is {1}'.format(name, golden_ratio))
