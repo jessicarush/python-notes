@@ -1,7 +1,8 @@
 '''Basic Webmaps with Folium'''
 
 
-# https://folium.readthedocs.io/en/latest/
+# https://python-visualization.github.io/folium/
+# https://github.com/python-visualization/folium
 
 # Folium builds on the data wrangling strengths of Python and the mapping
 # strengths of the Leaflet.js library. Manipulate your data in Python, then
@@ -17,13 +18,17 @@ import pandas
 # -----------------------------------------------------------------------------
 
 print(dir(folium))
-# ['Circle', 'CircleMarker', 'ClickForMarker', 'ColorMap', 'CssLink',
-# 'CustomIcon', 'Div', 'DivIcon', 'Element', 'FeatureGroup', 'Figure',
-# 'FitBounds', 'GeoJson', 'Html', 'IFrame', 'Icon', 'JavascriptLink',
-# 'LatLngPopup', 'LayerControl', 'LinearColormap', 'Link', 'MacroElement',
-# 'Map', 'Marker', 'PolyLine', 'Popup', 'RegularPolygonMarker', 'StepColormap',
-# 'TileLayer','TopoJson', 'Vega', 'VegaLite', 'WmsTileLayer', 'absolute_import',
-# 'division', 'features', 'folium', 'map', 'print_function', 'utilities' ...]
+# ['Choropleth', 'Circle', 'CircleMarker', 'ClickForMarker', 'ColorLine',
+# 'ColorMap', 'CssLink', 'CustomIcon', 'Div', 'DivIcon', 'Element',
+# 'FeatureGroup', 'Figure', 'FitBounds', 'GeoJson', 'GeoJsonPopup',
+# 'GeoJsonTooltip', 'Html', 'IFrame', 'Icon', 'JavascriptLink', 'LatLngPopup',
+# 'LayerControl', 'LinearColormap', 'Link', 'MacroElement', 'Map', 'Marker',
+# 'PolyLine', 'Polygon', 'Popup', 'Rectangle', 'RegularPolygonMarker',
+# 'StepColormap', 'TileLayer', 'Tooltip', 'TopoJson', 'Vega', 'VegaLite',
+# 'WmsTileLayer', '__all__', '__builtins__', '__cached__', '__doc__', '__file__',
+# '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__',
+# '_version', 'branca', 'elements', 'features', 'folium', 'map', 'raster_layers',
+# 'sys', 'utilities', 'vector_layers']
 
 
 # Basics
