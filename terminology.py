@@ -7,21 +7,24 @@
 # for example:
 
 # assign a string literal to message
-message = "some information"
+message = 'some information'
 
 # assign an int literal to x
 x = 100
 
 # assign a dictionary literal to plants
-plants = {'spider': 'long, slender leaves',
-          'succulent': 'like a cactus',
-          'fern': 'prefers the forest'}
+plants = {
+    'spider': 'long, slender leaves',
+    'succulent': 'like a cactus',
+    'fern': 'prefers the forest',
+}
 
 
 # None
 # -----------------------------------------------------------------------------
 # None is not the same as False. Though it may look false when evaluated as a
 # boolean, None is technically none as seen here:
+
 
 def is_none(thing):
     if thing is None:
@@ -30,6 +33,7 @@ def is_none(thing):
         print("it's True")
     else:
         print("it's False")
+
 
 thing = None
 is_none(thing)
@@ -45,11 +49,13 @@ is_none(thing)
 # The keyword argument **h extracts the keys and values from a dictionary
 # and supplies them as arguments to the class Element()
 
-class Element():
+
+class Element:
     def __init__(self, name, symbol, number):
         self.name = name
         self.symbol = symbol
         self.number = number
+
 
 h = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
 
@@ -81,6 +87,7 @@ print(hydrogen.symbol)
 # When you create a directory for your modules, you also create an empty file
 # in that folder called: __init__.py. This file tells python to use the that
 # directory name for importing modules within. For example:
+
 '''
 from myfolder import myfile
 from myfolder.myfile import myfunction, myClass
@@ -121,10 +128,12 @@ from myfolder.myfile import myfunction, myClass
 # A value associated with an object which is referenced by name using dot
 # notation. For example:
 
-class Person():
+
+class Person:
     def __init__(self, name):
         self.name = name
         self.alive = True
+
 
 snape = Person('Severus Snape')
 
@@ -136,11 +145,14 @@ snape.name
 # -----------------------------------------------------------------------------
 # A value defined within the class, not within a classes method:
 
-class Person():
+
+class Person:
     homo = 'Sapien'
+
     def __init__(self, name):
         self.name = name
         self.alive = True
+
 
 snape = Person('Severus Snape')
 
@@ -168,13 +180,15 @@ snape.homo
 # A function that is defined inside of a class. It can be called 'on' an
 # instance of that class if self was included as its first argument.
 
-class Person():
+
+class Person:
     def __init__(self, name):
         self.name = name
         self.alive = True
 
     def deceased(self):
         self.alive = False
+
 
 snape = Person('Severus Snape')
 
