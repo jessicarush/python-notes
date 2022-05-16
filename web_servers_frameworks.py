@@ -36,8 +36,8 @@ print(data)
 print(conn.status)
 # 200
 
-# A 200 means everything is good. There dozens of HTTP status codes grouped
-# into five rages by their first digit:
+# A 200 means everything is good. There are dozens of HTTP status codes grouped
+# into five ranges by their first digit:
 
 # 1.. (information)
 #     server received the request but has some extra information for the client
@@ -46,9 +46,9 @@ print(conn.status)
 # 3.. (redirection)
 #     the resource moved, so the response returns the new URL to the client
 # 4.. (client error)
-#     some problem from the client side such as the 404(not found)
+#     some problem from the client side such as the 404 (not found)
 # 5.. (server error)
-#     500 is the generic, you might see 502(bad gateway) if there's a
+#     500 is the generic, you might see 502 (bad gateway) if there's a
 #     disconnect between web server and backend application server.
 
 # Web servers can send data back in any format. The data format is specified by
@@ -77,7 +77,7 @@ for key, value in conn.getheaders():
 # Strict-Transport-Security :  max-age=31556900
 # Content-Security-Policy :    default-src 'self'; script-src 'self'...
 
-# Just as a word of warning, the types headers retrieved seem to change over
+# Just as a word of warning, the types of headers retrieved seem to change over
 # time. I'm not sure if this is due to an update in the browser to python or
 # something else but as an example, this was the output from a personal site:
 
@@ -105,20 +105,35 @@ for key, value in conn.getheaders():
 
 # Requests Library
 # -----------------------------------------------------------------------------
-# install: $ pip install requests
-# documentation: http://docs.python-requests.org/en/master/
+# install: pip install requests
+# documentation: https://docs.python-requests.org/en/master/
 
 # a simple HTTP library (module) for Python web client tasks
 
 import requests
 
-url = 'https://news.ycombinator.com/'
-resp = requests.get(url)
-print(resp)
+
+# r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
+r = requests.get('https://log.zebro.id/api_demo_one')
+
+print(r)
 # <Response [200]>
 
-print(resp.text)
-# prints the html formatted nicely
+print(r.status_code)
+# 200
+
+print(r.headers['content-type'])
+# application/json
+
+print (r.encoding)
+# utf-8
+
+print(r.text)
+# {"aquamarine":"#7fffd4"}
+# If html, prints the html formatted nicely
+
+print(r.json())
+# {'aquamarine': '#7fffd4'}
 
 
 # Web Servers
@@ -200,8 +215,8 @@ print(resp.text)
 # Bottle consists of a single Python file, so it's very easy to try out, and
 # to deploy later.
 
-# $ pip install bottle
-# http://http://bottlepy.org/docs/dev/
+# pip install bottle
+# http://bottlepy.org/docs/dev/
 
 # Save as bottle1.py:
 
