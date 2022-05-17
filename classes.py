@@ -6,7 +6,7 @@
 # like an instruction manual for making integer objects. To make your own
 # objects, you'll need to first define a class:
 
-class Person():
+class Person:
     pass
 
 # You can create an instance of a class (instantiating) by calling it as if it
@@ -17,7 +17,7 @@ henry = Person()
 # In this case, Person() creates an individual object from the Person class and
 # assigns it the name henry.
 
-class Person():
+class Person:
     def __init__(self):
         pass
 
@@ -33,13 +33,18 @@ class Person():
 # definition, it's used to do define attributes that will distinguish this
 # object from others created from the same class.
 
-class Person():
+class Person:
     def __init__(self, name, age):
         self.name = name
         self.age = age
 
 astronaut = Person('Roberta Bondar', 40)
 baker = Person('Mrs. Lovett', 35)
+
+# note you can pass as keword arguments if you like:
+creature = Person(age=47, name='Jessica')
+
+print(creature.name)  # Jessica
 
 # The name and age variables have the prefix self. Any variable prefixed with
 # self is available to every method in the class and we'll also be able to
@@ -70,7 +75,7 @@ print(f'Name {astronaut.name} age {astronaut.age}, name {baker.name} age {baker.
 # Class attributes (class variables)
 # -----------------------------------------------------------------------------
 
-class Contact():
+class Contact:
     all_contacts = []  # class variable
 
     def __init__(self, name, email):
@@ -114,7 +119,7 @@ Contact.all_contacts = list(Contact.all_contacts)
 # specify a default value for an attribute like this, you don't need to include
 # it as a mandatory parameter in the __init__ methods parenthesis.
 
-class Person():
+class Person:
 
     def __init__(self, name, age):
         self.name = name
@@ -125,7 +130,7 @@ class Person():
 # instance, you would do that the same way as above: instance.attribute = 'xyz'
 # That being said, you can also set default values this way:
 
-class Person():
+class Person:
 
     def __init__(self, name, age, nationality='Canadian'):
         self.name = name
@@ -159,7 +164,7 @@ print(Person.__dict__)
 # -----------------------------------------------------------------------------
 # There are a couple of ways to call a method from a class:
 
-class Person():
+class Person:
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -192,13 +197,13 @@ print(snape.alive)
 # The Child will do their thing, but also the parents thing, unless there is an
 # override of a parents function in the child's:
 
-class Parent():
+class Parent:
     def __init__(self):
         print('Parent')
     def method(self):
         print('Parent method')
 
-class Child1():                # Child1 will use the Parents __init__,
+class Child1:                # Child1 will use the Parents __init__,
     def __init__(self):        # as well as it's own,
         Parent.__init__(self)  # but will have no access to the parents method
         print('Child 1')
@@ -257,7 +262,7 @@ child5.method()
 # If you override a method like __init__ , you can retrieve attributes back
 # from the parent using super():
 
-class Person():
+class Person:
     def __init__(self, name, age, email, status):
         self.name = name
         self.email = email
@@ -288,7 +293,7 @@ class Doctor(Person):
 # .super() with default values
 # -----------------------------------------------------------------------------
 
-class Enemy():
+class Enemy:
     def __init__(self, name='Enemy', hp=0, lives=1):
         self.name = name
         self.hp = hp
@@ -404,7 +409,7 @@ pprint(Dog.mro())
 # for every request.
 
 
-class Base():
+class Base:
     def __init__(self):
         print("Base initializing")
 
@@ -433,7 +438,7 @@ s = Subclass()
 
 # We can resolve this issue simply bt using .super():
 
-class Base():
+class Base:
     def __init__(self):
         print("Base initializing")
 
@@ -460,7 +465,7 @@ s = Subclass()
 
 # Use **kwargs to handle multiple parameters:
 
-class Base():
+class Base:
     def __init__(self):
         print("Base initializing")
 
@@ -507,7 +512,7 @@ print(s.__dict__)
 # Since sending email is a common task that we might want to use on many other
 # classes, a mixin is a good solution.
 
-class Emailer():
+class Emailer:
     def send_email(self, message):
         print('Sending mail to ' + self.email)
         print('Message: ' + message)
@@ -540,7 +545,7 @@ class ContactList(list):
         return matching_contacts
 
 
-class Contact():
+class Contact:
 
     all_contacts = ContactList()
 
@@ -587,7 +592,7 @@ print(search[0].name)
 
 # property(fget=None, fset=None, fdel=None, doc=None)
 
-class Person():
+class Person:
     def __init__(self, value):
         self._name = value
 
@@ -633,7 +638,7 @@ del p.name
 # Getter and Setter methods using @decorators
 # -----------------------------------------------------------------------------
 
-class Person():
+class Person:
     def __init__(self, value):
         self._name = value
 
@@ -676,7 +681,7 @@ del p.name
 # name from the property (__name, name) because we were trying to hide the,
 # attribute, but it should be pointed out that these names have to be different.
 
-class Player():
+class Player:
     def __init__(self, name):
         self.name = name
         self._lives = 3
@@ -700,7 +705,7 @@ class Player():
 # Uses for property()
 # -----------------------------------------------------------------------------
 
-class Circle():
+class Circle:
     def __init__(self, radius):
         self.radius = radius
 
@@ -719,7 +724,7 @@ print(c.diameter)  # 14
 
 # Create a setter to make the diameter method also accept new values:
 
-class Circle():
+class Circle:
     def __init__(self, radius):
         self.radius = radius
 
@@ -750,7 +755,7 @@ from time import time, sleep
 from urllib.request import urlopen
 
 
-class Website():
+class Website:
     def __init__(self, url):
         self.url = url
         self._content = None
@@ -798,7 +803,7 @@ print('{:.5f}'.format(time() - start))
 
 # This class method will count how many objects have been made from it:
 
-class A():
+class A:
     count = 0
     def __init__(self):
         A.count += 1
@@ -825,7 +830,7 @@ A.children()
 # Example A (no class method)
 # ---------------------------
 
-class Parent():
+class Parent:
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -853,7 +858,7 @@ print(friend)       # <__main__.Parent object at 0x10150e6a0>
 # Example B (class method)
 # ------------------------
 
-class Parent():
+class Parent:
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -898,7 +903,7 @@ print(friend)        # <__main__.Child object at 0x10150e780>
 # nothing about the class or instance they were called on and behave like plain
 # functions except that you can call them from an instance or the class.
 
-class A():
+class A:
     @staticmethod
     def note():
         print('This is a static method')
@@ -908,7 +913,7 @@ A.note()
 # Note also that if you want to use the static method within the class itself,
 # you can call it in the very same way:
 
-class A():
+class A:
     @staticmethod
     def note():
         print('This static method can be used throughout the class')
@@ -924,7 +929,7 @@ test_static.note()
 # Review: an interesting example
 # -----------------------------------------------------------------------------
 
-class Coordinate():
+class Coordinate:
     def __init__(self, x, y):
         self.x = x
         self.y = y
