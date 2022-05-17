@@ -37,17 +37,17 @@ print(conn.status)
 # 200
 
 # A 200 means everything is good. There are dozens of HTTP status codes grouped
-# into five ranges by their first digit:
+# into five ranges:
 
-# 1.. (information)
+# 100-199 (informational responses)
 #     server received the request but has some extra information for the client
-# 2.. (success)
+# 200-299 (successful responses)
 #     it worked, every success code other than 200 conveys extra details
-# 3.. (redirection)
+# 300-399 (redirection messages)
 #     the resource moved, so the response returns the new URL to the client
-# 4.. (client error)
+# 400-499 (client error responses)
 #     some problem from the client side such as the 404 (not found)
-# 5.. (server error)
+# 500-599 (server error responses)
 #     500 is the generic, you might see 502 (bad gateway) if there's a
 #     disconnect between web server and backend application server.
 
