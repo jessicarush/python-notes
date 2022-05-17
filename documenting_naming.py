@@ -160,7 +160,7 @@ def _internal():
 # attributes that start with two underscores to make it more difficult to
 # accidentally mess with it. The mangling is this: _Classname__attibutename
 
-class Person():
+class Person:
     def __init__(self, name, alias):
         self.name = name       # public attribute
         self.__alias = alias   # private attribute
@@ -230,12 +230,12 @@ x = 1  # type: int
 x: int
 
 # For collections, the types must be imported from the typing module.
-# You can specify the types within the colection in brackets.
+# You can specify the types within the collection in brackets.
 
 # NOTE: As of Python 3.9, you can use built-in collection types like list and
 # dict instead of importing from typing (see below).
 
-# NOTE: As of Python 3.10, you can use a union opertator '|' instead of
+# NOTE: As of Python 3.10, you can use a union operator '|' instead of
 # Union[] (see below).
 
 from typing import List, Set, Dict, Tuple, Optional, Union, Any
@@ -298,10 +298,7 @@ def send_email(address: Union[str, List[str]],
 
 # There are many more types. See the documentation for more information:
 
-# https://docs.python.org/3.7/library/typing.html#module-typing
-# https://www.python.org/dev/peps/pep-0484/
-# https://www.python.org/dev/peps/pep-3107/
-# https://www.python.org/dev/peps/pep-0526/
+# https://docs.python.org/3/library/typing.html
 
 # NOTE: As of Python 3.9, you can now use built-in collection types such as
 # list and dict as generic types instead of importing the corresponding
