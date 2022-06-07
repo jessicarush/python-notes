@@ -44,7 +44,7 @@ unicode_test('∞')       # ∞ – INFINITY – ∞
 
 # Note that four hex unicode numbers that start with two zeros can be written
 # in two ways: `\u00e9` and `\xe9` produce the same thing. A simple way to find
-# the uniode character from the actual inserted character is using the
+# the unicode character from the actual inserted character is using the
 # built-in ascii() method:
 
 print(ascii('é'))  # '\xe9'
@@ -56,10 +56,10 @@ print(ascii('é'))  # '\xe9'
 # https://unicode.org/emoji/charts/full-emoji-list.html
 # https://www.toptal.com/designers/htmlarrows/arrows/
 
-# ...you'll see unicode numbers listed as U+027F6 and U+1F984. To display these
+# ...you'll see unicode numbers listed as U+1F308 and U+1F984. To display these
 # in python, drop the + sign pad the zeros:
 
-print('\U000027F6', '\U0001F984')
+print('\U0001F308', '\U0001F984')
 
 
 # Encoding
@@ -166,17 +166,21 @@ def to_bytes(bytes_or_str):
 # {:b} will format numbers as binary (base 2):
 
 for i in range(17):
-    print("{0:>2} in binary is {0:>08b}".format(i))
+    print(f"{i:>2} in binary is {i:>08b}")
 
 # {:x} will format numbers as hex (base 16):
 
 for i in range(17):
-    print("{0:>2} in hex is {0:>02x}".format(i))
+    print(f"{i:>2} in hex is {i:>02x}")
 
 # {:o} as octal (base 8):
 
 for i in range(17):
-    print("{0:>2} in octal is {0:>4o}".format(i))
+    print(f"{i:>2} in octal is {i:>4o}")
+
+# Simple convert rgb to hex:
+r, g, b = (255, 120, 137)
+print(f"{r:x}{g:x}{b:x}") #ff7889
 
 
 # Integers from binary, hex, octal format
@@ -228,7 +232,7 @@ print("little endian bytes:", y)
 print(type(x))
 # class 'bytes'
 
-# Note that if you don't specify a length large enough to accomade the number,
+# Note that if you don't specify a length large enough to accommodate the number,
 # you'll get a OverflowError: int too big to convert
 
 # from_bytes() - return the integer represented by the given array of bytes.
