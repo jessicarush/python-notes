@@ -27,7 +27,7 @@
 # Row (record)
 #    – a single set of data containing all the columns in the table
 # Key
-#    – a column in a table whoisw values are indexed, so searches (and joins)
+#    – a column in a table whose values are indexed, so searches (and joins)
 #      are much faster.
 # Primary key
 #    – a column whose values must be unique in the table. If you try to insert
@@ -97,7 +97,7 @@
 
 import sqlite3
 
-conn = sqlite3.connect('practice.db')  # creates the file if it doesn't exist
+conn = sqlite3.connect('demos/practice.db')  # creates the file if it doesn't exist
 curs = conn.cursor()
 
 curs.execute('''CREATE TABLE IF NOT EXISTS inventory
@@ -139,8 +139,10 @@ print(rows)
 
 # retrieve item with the highest count:
 
-curs.execute('''SELECT * FROM inventory WHERE
-  count = (SELECT MAX(count) FROM inventory)''')
+curs.execute('''
+  SELECT * FROM inventory
+  WHERE count = (SELECT MAX(count) FROM inventory)
+  ''')
 rows = curs.fetchall()
 print(rows)  # [('pencils', 100, 0.5)]
 
@@ -330,7 +332,7 @@ CREATE TABLE artists (
 # If you try to SELECT a name though, you'll have difficulty as two columns are
 # now called name (actually one has been renamed name:1). Since we are not
 # actually pointing to the original table, album.name will no longer work
-# (we are queriing the view artist_list). What you should do is rename
+# (we are querying the view artist_list). What you should do is rename
 # the columns where needed so there's no name conflict.
 
 # SELECT songs.title FROM artist_list WHERE albums.name = 'Forbidden';
@@ -353,7 +355,7 @@ CREATE TABLE artists (
 
 import sqlite3
 
-conn = sqlite3.connect('contacts.sqlite')
+conn = sqlite3.connect('demos/contacts.sqlite')
 curs = conn.cursor()
 
 conn.execute('''CREATE TABLE IF NOT EXISTS contacts
@@ -363,26 +365,37 @@ conn.execute('''INSERT INTO contacts(name, phone, email)
 conn.execute('INSERT INTO contacts VALUES("Morty", 7395, "morty@email.com")')
 
 # database cursors are generators and they are iterable!
+
 curs.execute('SELECT * FROM contacts')
 for row in curs:
     print(row)
+# ('Rick', 4362, 'rick@email.com')
+# ('Morty', 7395, 'morty@email.com')
 
 # unpack the tuples if you want:
+
 curs.execute('SELECT * FROM contacts')
 for name, phone, email in curs:
-    print(name, '–', phone, '–', email)
-    print('-' * 20)
+    print(f'{name}, {phone}, {email}')
+    print('-' * 30)
+# Rick, 4362, rick@email.com
+# ------------------------------
+# Morty, 7395, morty@email.com
+# ------------------------------
 
 # You can dump into a variable to use (not so good with a big db)
+
 curs.execute('SELECT * FROM contacts')
 stuff = curs.fetchall()
 
 print(stuff)
+
 for name, phone, email in stuff:
-    print(name, '\n', phone, '\n', email)
-    print('-' * 20)
+    print(f'{name}, {phone}, {email}')
+    print('-' * 30)
 
 # You can also fetch one at a time:
+
 curs.execute('SELECT * FROM contacts')
 one = curs.fetchone()
 two = curs.fetchone()
@@ -405,7 +418,7 @@ import sqlite3
 # Note: INTEGER PRIMARY KEYS do not need to be given a value. See (NULL, ?, ?).
 # Note: Feed multiple tuples into a query with executemany()
 
-conn = sqlite3.connect('data.db')
+conn = sqlite3.connect('demos/data.db')
 curs = conn.cursor()
 
 table = '''CREATE TABLE IF NOT EXISTS users
@@ -442,7 +455,8 @@ conn = sqlite3.connect('contacts.sqlite')
 for row in conn.execute('SELECT * FROM contacts'):
     print(row)
 
-# tuple unpacking again
+# tuple unpacking again:
+
 for name, phone, email in conn.execute('SELECT * FROM contacts'):
     print(name)
     print(phone)
@@ -551,7 +565,7 @@ conn.close()
 # time object, or you could ask sqlite to do it for you with the following
 # parameter: detect_types=sqlite3.PARSE_DECLTYPES
 
-conn = sqlite3.connect('accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
+conn = sqlite3.connect('demos/accounts.sqlite', detect_types=sqlite3.PARSE_DECLTYPES)
 
 # There are also a couple of ways to convert the UTC string to local time.
 # see sqlite3_example1.py & sqlite3_example2.py
