@@ -305,12 +305,35 @@ sum_v2(testing)
 # you could manually raise the error as a way of testing the handling.
 
 
+# Adding notes for exception (new to Python 3.11)
+# -----------------------------------------------------------------------------
+# To make tracebacks more context rich, Python allows you to add notes to
+# exception objects, which get stored in the exceptions, and displayed when the
+# exception is raised. For example:
+
+def get_seconds(data):
+    try:
+        milliseconds = float(data['milliseconds'])
+    except ValueError as error:
+        error.add_note(
+            "The time field should always be a number, this is a critical bug. "
+            "Please report this to the backend team immediately."
+        )
+        raise  # re-raises the exception, instead of silencing it
+
+    seconds = milliseconds / 1000
+    return seconds
+
+get_seconds({'milliseconds': 'foo'})  # 'foo' is not a number!
+
+
+
 # Create your own exceptions
 # -----------------------------------------------------------------------------
-# WARNING! The standard library has over 165 differnt types of exceptions so
+# WARNING! The standard library has over 165 different types of exceptions so
 # chances are you don't need to make your own. Keep in mind that creating your
 # own adds complexity to your code in that it forces others to do more work in
-# order to understnd your code. That being said...
+# order to understand your code. That being said...
 
 # More often than anything else, raise is used in conjunction with writing
 # your own exceptions in an effort to catch potential problems with your code.
@@ -422,7 +445,7 @@ finally:
 # written with an if...elif...else structure, but it wouldn't be as easy to
 # read or maintain. We can also use exceptions to pass messages between
 # different methods. For example, the OutOfStock exception could provide a
-# method that instructs the inventory object to reorder or backorder an item.
+# method that instructs the inventory object to reorder or back-order an item.
 
 # Using exceptions for flow control can make for some handy program designs.
 # The important thing to take from this is that exceptions are not a bad thing
