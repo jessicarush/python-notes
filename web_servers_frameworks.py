@@ -153,8 +153,9 @@ print(r.json())
 # The 0.0.0.0 means any TCP address, so web clients can access the server no
 # matter what address it has.
 
-# Type http://localhost:8000 in your web browser to see a listing of your
-# current directory. The server will print access log lines like:
+# Type http://localhost:8000 or http://<your.ip.address>:8000 in your web browser
+# to see a listing of your current directory. The server will print access log
+# lines like:
 
 # 127.0.0.1 - - [14/Aug/2017 13:10:46] "GET / HTTP/1.1" 200 -
 
@@ -176,6 +177,10 @@ print(r.json())
 # This Python-only server is best used for quick tests. It has no way to
 # handle dynamic content. Stop it by killing its process (ctrl+c). For a busy
 # website you would use a traditional web server such as Apache or nginx.
+
+# Note that if you navigate to the server using the actual ip address as
+# opposed to localhost, you should be able to access it via other devices
+# on your local network.
 
 
 # Web Server Gateway Interface - WSGI
