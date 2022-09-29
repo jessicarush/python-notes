@@ -313,6 +313,10 @@ now = time.time()
 print(now)                # 1510100475.260867
 print(type(now))          # <class 'float'>
 
+# Note you can drop the decimal:
+
+epoch_time = int(time.time())
+
 # convert an epoch value to a string by using ctime():
 
 str_now = time.ctime(now)
