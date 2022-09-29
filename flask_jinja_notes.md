@@ -444,6 +444,9 @@ def demo():
     # For content-type application/json, use request.get_json():
     data = request.get_json()
 
+    # Ignore the mimetype and always try to parse JSON:
+    data = request.get_json(force=True)
+
     # As a last resort use request.data:
     data = request.data
 ```
@@ -511,10 +514,15 @@ WTF_CSRF_TIME_LIMIT = None
 
 ## Flask-SQLAlchemy notes
 
+### Column data types
+<https://docs.sqlalchemy.org/en/14/core/type_basics.html#generic-camelcase-types>
+A string field has a limit of 255 characters, whereas a text field has a character limit of 30,000 characters.
+
 ### .count()
 ### .all()
 ### .first()
 ### .one()
+### .one_or_none()
 ### .filter()
 ### .filter_by()
 ### .join()
