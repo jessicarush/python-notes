@@ -7,7 +7,6 @@
 - [pip](#pip)
 - [Installing & upgrading packages](#installing--upgrading-packages)
 - [pip help](#pip-help)
-- [Listing all packages](#listing-all-packages)
 - [Requirements files](#requirements-files)
   * [pipreqs](#pipreqs)
 - [Dependencies](#dependencies)
