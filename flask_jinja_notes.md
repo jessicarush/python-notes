@@ -8,39 +8,22 @@ This is a collection of notes, command line steps and reminders of packages to i
 <!-- toc -->
 
 - [Directory structure](#directory-structure)
-- [Virtual environment](#virtual-environment)
 - [Packages](#packages)
-  * [Environmental variables](#environmental-variables)
-  * [Database](#database)
-  * [Forms](#forms)
-  * [User logins](#user-logins)
-  * [Email & web tokens](#email--web-tokens)
-  * [Timezones](#timezones)
-  * [Gathering Data](#gathering-data)
-  * [Full-Text Search](#full-text-search)
-  * [Internationalization & Localization (I18n L10n)](#internationalization--localization-i18n-l10n)
-  * [Translation](#translation)
-  * [RESTful API](#restful-api)
-  * [Task Queues](#task-queues)
-- [Git](#git)
-- [Application Contexts](#application-contexts)
 - [The g object](#the-g-object)
 - [The session object](#the-session-object)
-- [Jinja delimiters](#jinja-delimiters)
-- [Jinja Variables](#jinja-variables)
-- [Jinja Filters](#jinja-filters)
-  * [selectattr() & map() filters](#selectattr--map-filters)
-- [Jinja variables in script elements](#jinja-variables-in-script-elements)
-- [Jinja whitespace](#jinja-whitespace)
-- [JSON strings](#json-strings)
 - [Request object](#request-object)
 - [The response object](#the-response-object)
 - [Flask-wtf csrf protection](#flask-wtf-csrf-protection)
+- [Application Contexts](#application-contexts)
+- [JSON strings](#json-strings)
+- [Flask-moment notes](#flask-moment-notes)
 - [Flask-SQLAlchemy notes](#flask-sqlalchemy-notes)
+  * [Column data types](#column-data-types)
   * [.count()](#count)
   * [.all()](#all)
   * [.first()](#first)
   * [.one()](#one)
+  * [.one_or_none()](#one_or_none)
   * [.filter()](#filter)
   * [.filter_by()](#filter_by)
   * [.join()](#join)
@@ -49,153 +32,241 @@ This is a collection of notes, command line steps and reminders of packages to i
   * [.delete()](#delete)
   * [session.add()](#sessionadd)
   * [session.delete()](#sessiondelete)
-- [Flask-moment notes](#flask-moment-notes)
+- [Jinja](#jinja)
+  * [Jinja delimiters](#jinja-delimiters)
+  * [Jinja Variables](#jinja-variables)
+  * [Jinja Filters](#jinja-filters)
+  * [selectattr() & map() filters](#selectattr--map-filters)
+  * [Jinja variables in script elements](#jinja-variables-in-script-elements)
+  * [Jinja whitespace](#jinja-whitespace)
 - [Testing Flask on your network](#testing-flask-on-your-network)
 
 <!-- tocstop -->
 
 ## Directory structure
 
-```bash
-mkdir projectname
-cd projectname/
-mkdir app
-mkdir app/templates
-mkdir app/static
-mkdir app/static/css
-mkdir app/static/js
-mkdir app/static/img
+
+For a basic flask app:
+
+```text
+├── .git
+├── app
+│   ├── __init__.py
+│   ├── errors.py
+│   ├── models.py
+│   ├── routes.py
+│   ├── static
+│   │   ├── css
+│   │   ├── fonts
+│   │   ├── img
+│   │   └── js
+│   └── templates
+├── logs
+├── venv
+├── .env
+├── .flaskenv
+├── .gitignore
+├── config.py
+├── README.md
+├── requirements.txt
+└── run.py
 ```
 
+For a blueprints app:
 
-## Virtual environment
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
+```text
 ```
+
 
 ## Packages
 
 ```bash
+# create a virtual environment
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+
+# flask common
 pip install flask
-```
-
-### Environmental variables
-
-```bash
 pip install python-dotenv
-```
 
-### Database
-
-```bash
-pip install psycopg2
+# database 
 pip install Flask-SQLAlchemy
 pip install Flask-Migrate
-```
+pip install psycopg2
 
-### Forms
-
-```bash
+# forms
 pip install Flask-WTF
-```
+pip install email-validator
 
-### User logins
-
-```bash
+# user logins
 pip install Flask-Login
-```
 
-### Email & web tokens
-
-```bash
+# email and web tokens
 pip install Flask-Mail
 pip install PyJWT
 pip install flask-httpauth
-```
 
-### Timezones
-
-```bash
+# timezone display
 pip install Flask-Moment
-```
 
-### Gathering Data
-
-```bash
+# gathering request data
 pip install requests
-```
 
-### Full-Text Search
-
-```bash
+# full text search
 brew install elasticsearch
 pip install elasticsearch
+
+# internationalization & localization (I18n L10n)
+pip install Flask-Babel
+
+# translation
+pip install guess-language_spirit
+
+# restful APIs
+pip install httpie
+pip install Flask-RESTful
+
+# task queues
+pip install rq
+
+# ssl certificates 
+pip install pyopenssl
+
+# deployment
+pip install gunicorn
 ```
 
-Elasticsearch must be running in order to use it.
-First cd to the directory where it lives, then run it.
-In my case it's:
+Note for Elasticsearch, it must be running in order to use it. First cd to the directory where it lives, then run:
 
 ```bash
 sudo cd /usr/local/bin/
 elasticsearch
 ```
+Check that it's running here: `http://localhost:9200/`
+To quit elasticsearch, `ctrl-c` in the terminal window where you launched it.
 
-Check that it's running here: http://localhost:9200/
-To quit elasticsearch, ctrl-c in the terminal window where you launched it.
 
-### Internationalization & Localization (I18n L10n)
+## The g object
 
-```bash
-pip install Flask-Babel
+Todo...
+
+
+## The session object
+
+Todo...
+
+
+## Request object
+
+Flask's `request` object (`from flask import request`), is a subclass of the [Werkzeug Request](https://werkzeug.palletsprojects.com/en/0.15.x/wrappers/#base-wrappers) and provides all of the attributes Werkzeug defines plus a few Flask specific ones. See the [flask docs for a complete list](http://flask.pocoo.org/docs/1.0/api/?highlight=make_response#incoming-request-data).
+
+In short, there are various ways to get at the data being sent, depending on how it is being sent, for example:
+
+```python
+# ...
+from flask import request
+
+
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
+    # url query parameters:
+    data = request.args
+    data = request.args.get('key')
+
+    # form input:
+    data = request.form
+    data = request.form.get('key')
+    data = request.form.getlist('key')
+
+    # content-type application/json, use request.get_json():
+    data = request.get_json()
+
+    # ignore the mimetype and always try to parse JSON:
+    data = request.get_json(force=True)
+
+    # as a last resort use request.data:
+    data = request.data
 ```
 
-### Translation
+Some other helpful attributes:
 
-```bash
-pip install guess-language_spirit
-pip install requests
+```python
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
+
+    print(request.path)
+    # /demo
+    print(request.full_path)
+    # /demo?x=y
+    print(request.url)
+    # http://127.0.0.1:5007/demo?x=y
+    print(request.base_url)
+    # http://127.0.0.1:5007/demo
+    print(request.url_root)
+    # http://127.0.0.1:5007/
+    print(request.content_type)
+    # application/json
+    print(request.args)
+    # the parsed URL parameters (the part in the URL after the question mark).
 ```
 
-### RESTful API
+You can access request headers like so:
 
-A command-line HTTP client that makes it easy to send API requests:
+```python
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
 
-```bash
-pip install httpie
-pip install Flask-RESTful
+    header_keys = dict(request.headers).keys()
+
+    print(header_keys)
+    # dict_keys(['Host', 'Connection', 'Sec-Ch-Ua', 'Sec-Ch-Ua-Mobile',
+    # 'Sec-Ch-Ua-Platform', 'Upgrade-Insecure-Requests', 'User-Agent', 'Accept',
+    # 'Sec-Fetch-Site', 'Sec-Fetch-Mode', 'Sec-Fetch-User', 'Sec-Fetch-Dest',
+    # 'Referer', 'Accept-Encoding', 'Accept-Language', 'Cookie'])
+
+    referrer = request.headers.get('Referer')
+
+    # If I was on /register and then navigated to this route:
+    print('referrer', referrer)
+    # referrer http://127.0.0.1:5000/register
 ```
 
-### Task Queues
+Note that in order to work with the request object, your route must specify `methods=['GET', 'POST']` even if the request is sent via a GET request with query parameters OR works with the `socketio.on` decorator.
 
-```bash
-pip install rq
+
+## The response object
+
+Add headers:
+
+```python
+response.headers['Access-Control-Allow-Origin'] = '*'
 ```
 
-## Git
+Note the `Access-Control-Allow-Origin` header. In order for requests outside the response origin to access the response, this header must be set. `*` is a wildcard allowing any site to receive the response. You should only use this for public APIs. Private APIs should never use `*`, and should instead have a specific domain or domains set. In addition, the wildcard only works for requests made with the crossorigin attribute set to anonymous, and it prevents sending credentials like cookies in requests. [See MDN for more on this](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin).
 
-```bash
-git init
-touch .gitignore
+See also: [react-notes/react_with_flask_api.md](https://github.com/jessicarush/react-notes/blob/master/react_with_flask_api.md)
+
+
+## Flask-wtf csrf protection
+
+Flask-wtf has csrf protection built-in by default when you build your forms off of `FlaskForm` for example:
+
+```python
+class MyForm(FlaskForm):
+    pass
 ```
 
-.gitignore contents:
+The csrf token is generated when the form is initially rendered (i.e. when the page is loaded) and by default expires after 3600 seconds (1 hour). This means that if you leave the page open for more than than hour without reloading/refreshing, the csrf token will be expired and if you try to submit the form, it will be a quiet failure. There are a number of ways around this but the simplest is to change the global timeout from 3600 seconds to something more reasonable or to not have an expiry at all.
 
-```bash
-.DS_Store
-__pycache__
-venv
-.env
-working_files
-```
+To do this you would set the constant variable in your config:
 
-Initial commit:
+```python
+# Extend csrf token expiry to 1 week
+WTF_CSRF_TIME_LIMIT = 3600 * 24 * 7
 
-```bash
-git add -A
-git commit -m 'Initial commit'
+# If set to None, the CSRF token is valid for the life of the session
+WTF_CSRF_TIME_LIMIT = None
 ```
 
 
@@ -206,6 +277,7 @@ If you try to perform database operations outside an application context (ie out
 > No application found. Either work inside a view function or push an application context.
 
 In a nutshell, do something like this:
+
 ```python
 def my_function():
     with app.app_context():
@@ -216,137 +288,9 @@ def my_function():
 
 For more explanation see:
 
-[Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)  
-<https://flask.palletsprojects.com/en/1.1.x/appcontext/>  
-<http://flask-sqlalchemy.pocoo.org/2.3/contexts/>  
-
-
-## The g object
-
-
-## The session object
-
-
-## Jinja delimiters
-
-`{% ... %}` for [Statements](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-control-structures)
-
-`{{ ... }}` for [Expressions](https://jinja.palletsprojects.com/en/2.11.x/templates/#expressions) to print to the template output
-
-`{# ... #}` for Comments not included in the template output
-
-
-## Jinja Variables
-
-```
-{% set icon %}
-  <img src="{{ url_for('static', filename='img/icon.svg')}}" />
-{% endset %}
-```
-
-or
-
-```
-{% set something = false %}
-```
-
-Keep in mind you cannot use variables set inside a scoped block (like a for loop) outside of the block. See the [Jinja docs on assignments](https://jinja.palletsprojects.com/en/2.11.x/templates/#assignments). But there is a weird thing called namespace objects which you can use like so:
-
-```
-{% set ns = namespace(found=false) %}
-{% for item in items %}
-    {% if item.check_something() %}
-        {% set ns.found = true %}
-    {% endif %}
-    * {{ item.title }}
-{% endfor %}
-Found item having something: {{ ns.found }}
-```
-
-
-## Jinja Filters
-
-There are many [pre-built filters](http://jinja.pocoo.org/docs/2.10/templates/#builtin-filters). To use any of these filters in your HTML template:
-
-```
-{{ current_user.username|title }}
-```
-
-You can chain filters together:
-
-```
-{{ current_user.username|reverse|title }}
-```
-
-To create a custom filter for a **basic** flask app (in routes.py):
-
-```python
-@app.template_filter('testing')
-def test(name):
-    '''An example of a jinja2 filter'''
-    return name[::-1].upper()
-```
-
-To create a custom filter for a flask app that uses **blueprints** (in routes.py):
-
-```python
-@bp.app_template_filter('testing')
-def test(name):
-    '''An example of a jinja2 filter'''
-    return name[::-1].upper()
-```
-
-The argument passed to the decorator is the name of the filter:
-
-```
-{{ current_user.username|testing }}
-```
-
-
-### selectattr() & map() filters
-
-```
-{{ activities|selectattr("name", "equalto", name)|map(attribute='day')|first }}
-
-{{ activities|selectattr("name", "equalto", name)|map(attribute='count')|first|strip_decimal_zeros }}
-{{ activities|selectattr("name", "equalto", name)|map(attribute='unit')|first }}
-{% if activities|selectattr("name", "equalto", name)|map(attribute='reps')|first %}
-of {{ activities|selectattr("name", "equalto", name)|map(attribute='reps')|first }}
-{% endif %
-```
-
-
-## Jinja variables in script elements
-
-To use a jinja variable in a `<script>` in your document you must either add a filter, usually either `safe` if working with lists or data objects or `tojson` if working with strings.
-
-```html
-<script type="text/javascript">
-  let my_string = {{ name|tojson }};
-  let my_array = {{ list|safe }};
-</script>
-```
-
-
-## Jinja whitespace
-
-Note that jinja templates will leave whitespace in the rendered code in place of the blocks. If you want to remove all these spaces you can set `trim_blocks` and `lstrip_blocks` on the env:
-
-```python
-app.jinja_env.trim_blocks = True
-app.jinja_env.lstrip_blocks = True
-```
-
-...or you can manage it manually in each block, for example:
-
-```
-{%- if ... %} strips space before
-{%- if ... -%} strips space before and after
-{%+ if ... %} preserves space before
-{%+ if ... -%} preserves space before and strips after
-```
-
-The first option is untested. For more information see the [Jinja Environment API](https://jinja.palletsprojects.com/en/2.11.x/api/?highlight=trim_blocks#jinja2.Environment).
+- [Miguel's explanation](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-a-better-application-structure)  
+- [Flask docs](https://flask.palletsprojects.com/en/1.1.x/appcontext/)  
+- [Flask-SQLAlchemy docs](http://flask-sqlalchemy.pocoo.org/2.3/contexts/)  
 
 
 ## JSON strings
@@ -390,7 +334,7 @@ used in a script however:
 </div>
 ```
 
-the source code will look like:
+the source code will not look like what we want:
 
 ```html
 <script type="text/javascript">
@@ -420,116 +364,92 @@ source is now what we want:
 ```
 
 
-## Request object
+## Flask-moment notes
 
-Flask's `request` object (`from flask import request`), is a subclass of the [Werkzeug Request](https://werkzeug.palletsprojects.com/en/0.15.x/wrappers/#base-wrappers) and provides all of the attributes Werkzeug defines plus a few Flask specific ones. See the [flask docs for a complete list](http://flask.pocoo.org/docs/1.0/api/?highlight=make_response#incoming-request-data).
+- [moment.js](https://momentjs.com/)
+- [flask-moment](https://flask-moment.readthedocs.io/en/latest/index.html)
 
-In short, there are various ways to get at the data being sent, depending on how it is being sent, for example:
+Basic usage:
 
-```python
-from flask import request
-
-
-@app.route('/demo', methods=['GET', 'POST'])
-def demo():
-    # For url query parameters:
-    data = request.args
-    data = request.args.get('key')
-
-    # For form input:
-    data = request.form
-    data = request.form.get('key')
-    data = request.form.getlist('key')
-
-    # For content-type application/json, use request.get_json():
-    data = request.get_json()
-
-    # Ignore the mimetype and always try to parse JSON:
-    data = request.get_json(force=True)
-
-    # As a last resort use request.data:
-    data = request.data
+```html
+<!-- moment(timestamp=None, local=False) -->
+<p>Date: {{ moment(date).format('ll') }}</p>
 ```
 
-Some other helpful attributes:
+Parameters:
 
-```python
-@app.route('/demo', methods=['GET', 'POST'])
-def demo():
+*timestamp* – The datetime object representing the timestamp.
 
-    print(request.path)
-    # /demo
-    print(request.full_path)
-    # /demo?x=y
-    print(request.url)
-    # http://127.0.0.1:5007/demo?x=y
-    print(request.base_url)
-    # http://127.0.0.1:5007/demo
-    print(request.url_root)
-    # http://127.0.0.1:5007/
-    print(request.content_type)
-    # application/json
-    print(request.args)
-    # the parsed URL parameters (the part in the URL after the question mark).
-```
+*local* – If True, the timestamp argument is given in the local client time. In most cases this argument will be set to False and all the timestamps managed by the server will be in the UTC timezone.
 
-Note that in order to work with the request object, your route must specify `methods=['GET', 'POST']` even if the request is sent via a GET request with query parameters OR works with the `socketio.on` decorator.
+This crazy long jinja filter basically grabs the first entry of a particular name, gets the 'day' attribute and passes that to the moment function. 
 
-```python
-referrer = request.headers.get('Referer')
-print('referrer', referrer)
-```
-
-
-## The response object
-
-```python
-response.headers['Access-Control-Allow-Origin'] = '*'
-```
-
-Note the `Access-Control-Allow-Origin` header. In order for requests outside the response origin to access the response, this header must be set. `*` is a wildcard allowing any site to receive the response. You should only use this for public APIs. Private APIs should never use `*`, and should instead have a specific domain or domains set. In addition, the wildcard only works for requests made with the crossorigin attribute set to anonymous, and it prevents sending credentials like cookies in requests. [See MDN for more on this](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin).
-
-
-## Flask-wtf csrf protection
-
-Flask-wtf has csrf protection built-in by default when you build your forms off of `FlaskForm` for example:
-
-```python
-class MyForm(FlaskForm):
-    pass
-```
-
-The csrf token is generated when the form is initially rendered (i.e. when the page is loaded) and by default expires after 3600 seconds (1 hour). This means that if you leave the page open for more than than hour without reloading/refreshing, the csrf token will be expired and if you try to submit the form, it will be a quiet failure. There are a number of ways around this but the simplest is to change the global timeout from 3600 seconds to something more reasonable or to not have an expiry at all.
-
-To do this you would set the constant variable in your config:
-
-```python
-# Extend csrf token expiry to 1 week
-WTF_CSRF_TIME_LIMIT = 3600 * 24 * 7
-
-# If set to None, the CSRF token is valid for the life of the session
-WTF_CSRF_TIME_LIMIT = None
+```html
+  {% for name in activity_list %}
+    <ul>
+      <li>{{ name }}</li>
+      <li>
+        {{ moment(activities|selectattr("name", "equalto", name)|map(attribute='day')|first, local=True).format('ll') }}
+      </li>
+      <li class="flex-row__item">
+        {{ activities|selectattr("name", "equalto", name)|map(attribute='count')|first|strip_decimal_zeros }}
+        {{ activities|selectattr("name", "equalto", name)|map(attribute='unit')|first }}
+      </li>
+      <li class="flex-row__item u-relative">
+        {{ activities|selectattr("name", "equalto", name)|list|count }}
+      </li>
+    </ul>
+  {% endfor %}
 ```
 
 
 ## Flask-SQLAlchemy notes
 
 ### Column data types
-<https://docs.sqlalchemy.org/en/14/core/type_basics.html#generic-camelcase-types>
-A string field has a limit of 255 characters, whereas a text field has a character limit of 30,000 characters.
+
+- [SQLAlchemy docs](https://docs.sqlalchemy.org/en/14/core/type_basics.html#generic-camelcase-types). 
+
+Note a string field has a limit of 255 characters, whereas a text field has a character limit of 30,000 characters.
 
 ### .count()
+
+Todo...
+
 ### .all()
+
+Todo...
+
 ### .first()
+
+Todo...
+
 ### .one()
+
+Todo...
+
 ### .one_or_none()
+
+Todo...
+
 ### .filter()
+
+Todo...
+
 ### .filter_by()
+
+Todo...
+
 ### .join()
+
+Todo...
+
 ### .add_columns()
+
+Todo...
+
 ### .with_entities()
 
-If you only want to get the results a specific (1 or more columns) you would normally have to do something like `session.query(Model.col)`. For some reason if you try to at call brackets to a Model query like `Model.query(Model.code)` you'll get an error: `'BaseQuery' object is not callable`.
+If you only want to get the results a specific (1 or more columns) you would normally have to do something like `session.query(Model.col)`. For some reason if you try to do call brackets on a Model query like `Model.query(Model.code)` you'll get an error: `'BaseQuery' object is not callable`.
 
 Instead, you can use `with_entities()`:
 
@@ -558,9 +478,140 @@ for activity in activities:
 ```
 
 
-## Flask-moment notes
+## Jinja 
 
-{{ moment(activities|selectattr("name", "equalto", name)|map(attribute='day')|first, local=True).format('ll') }}
+### Jinja delimiters
+
+`{% ... %}` for [Statements](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-control-structures)
+
+`{{ ... }}` for [Expressions](https://jinja.palletsprojects.com/en/2.11.x/templates/#expressions) to print to the template output
+
+`{# ... #}` for Comments not included in the template output
+
+
+### Jinja Variables
+
+```
+{% set icon %}
+  <img src="{{ url_for('static', filename='img/icon.svg')}}" />
+{% endset %}
+```
+
+or
+
+```
+{% set something = false %}
+```
+
+Keep in mind you cannot use variables set inside a scoped block (like a for loop) outside of the block. See the [Jinja docs on assignments](https://jinja.palletsprojects.com/en/2.11.x/templates/#assignments). But there is a weird thing called namespace objects which you can use like so:
+
+```
+{% set ns = namespace(found=false) %}
+{% for item in items %}
+    {% if item.check_something() %}
+        {% set ns.found = true %}
+    {% endif %}
+    * {{ item.title }}
+{% endfor %}
+Found item having something: {{ ns.found }}
+```
+
+### Jinja Filters
+
+There are many [pre-built filters](http://jinja.pocoo.org/docs/2.10/templates/#builtin-filters). To use any of these filters in your HTML template:
+
+```
+{{ current_user.username|title }}
+```
+
+You can chain filters together:
+
+```
+{{ current_user.username|reverse|title }}
+```
+
+To create a custom filter for a **basic** flask app (in routes.py):
+
+```python
+@app.template_filter('testing')
+def test(name):
+    '''An example of a jinja2 filter'''
+    return name[::-1].upper()
+```
+
+To create a custom filter for a flask app that uses **blueprints** (in routes.py):
+
+```python
+@bp.app_template_filter('testing')
+def test(name):
+    '''An example of a jinja2 filter'''
+    return name[::-1].upper()
+```
+
+The argument passed to the decorator is the name of the filter:
+
+```
+{{ current_user.username|testing }}
+```
+
+
+### selectattr() & map() filters
+
+This one works with an *activities* object passed in:
+
+```html
+{% for name in activity_list %}
+<ul>
+  <li>{{ name }}</li>
+  <li>{{ activities|selectattr("name", "equalto", name)|list|count }}</li>
+</ul>
+{% endfor %}
+```
+
+More examples:
+
+```html
+{{ activities|selectattr("name", "equalto", name)|map(attribute='day')|first }}
+{{ activities|selectattr("name", "equalto", name)|map(attribute='count')|first|strip_decimal_zeros }}
+{{ activities|selectattr("name", "equalto", name)|map(attribute='unit')|first }}
+{% if activities|selectattr("name", "equalto", name)|map(attribute='reps')|first %}
+of {{ activities|selectattr("name", "equalto", name)|map(attribute='reps')|first }}
+{% endif %
+```
+
+
+### Jinja variables in script elements
+
+To use a jinja variable in a `<script>` in your document you must either add a filter, usually either `safe` if working with lists or data objects or `tojson` if working with strings.
+
+```html
+<script type="text/javascript">
+  let my_string = {{ name|tojson }};
+  let my_array = {{ list|safe }};
+</script>
+```
+
+
+### Jinja whitespace
+
+Note that jinja templates will leave whitespace in the rendered code in place of the blocks. If you want to remove all these spaces you can set `trim_blocks` and `lstrip_blocks` on the env:
+
+```python
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
+```
+
+...or you can manage it manually in each block, for example:
+
+```
+{%- if ... %} strips space before
+{%- if ... -%} strips space before and after
+{%+ if ... %} preserves space before
+{%+ if ... -%} preserves space before and strips after
+```
+
+The first option is untested. For more information see the [Jinja Environment API](https://jinja.palletsprojects.com/en/2.11.x/api/?highlight=trim_blocks#jinja2.Environment).
+
 
 
 ## Testing Flask on your network
