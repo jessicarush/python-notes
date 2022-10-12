@@ -405,6 +405,12 @@ This crazy long jinja filter basically grabs the first entry of a particular nam
 
 ## Flask-SQLAlchemy notes
 
+- Capital letters is SQLAlchemy denote underscores so if your class name is `FooBarBaz` then your table name will be `foo_bar_baz`.
+
+- If working with an exisiting database, you don't need to define alll the columns in your table model, only the ones you need to work with.
+
+- If working with an exisiting database, there are tools that let you autogenerate the table models: See [SQLAlchemy Automap](https://docs.sqlalchemy.org/en/14/orm/extensions/automap.html) and [flask-sqlacodegen](https://github.com/ksindi/flask-sqlacodegen).
+
 ### Column data types
 
 - [SQLAlchemy docs](https://docs.sqlalchemy.org/en/14/core/type_basics.html#generic-camelcase-types). 
