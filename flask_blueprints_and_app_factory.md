@@ -312,6 +312,7 @@ from app.main import models
 ```
 
 Other setups:
+
 ```python
 # Flask docs
 def create_app(config_filename):
@@ -326,23 +327,10 @@ def create_app(config_filename):
     app.register_blueprint(admin)
     app.register_blueprint(frontend)
 
+    with app.app_context():
+        init_something()
+
     return app
-```
-
-```python
-# Hackers and slackers
-def create_app():
-    app = Flask(__name__, instance_relative_config=False)
-    app.config.from_object('config.Config')
-
-    with app.app_context(): # <-- why?
-        # Import parts of our application
-        from .home import routes
-
-        # Register Blueprints
-        app.register_blueprint(home.home_bp)
-
-        return app
 ```
 
 Most Flask extensions are initialized by creating an instance of the extension and passing the application as an argument. When the application does not exist as a global variable, there is an alternative mode in which extensions are initialized in two phases. The extension instance is first created in the global scope as before, but no arguments are passed to it. This creates an instance of the extension that is not attached to the application. At the time the application instance is created in the factory function, the `init_app()` method must be invoked on the extension instances to bind it to the now known application.
@@ -351,7 +339,23 @@ To register a blueprint, the register_blueprint() method of the Flask applicatio
 
 The `register_blueprint()` call has an optional argument, `url_prefix`. Flask gives you the option to attach a blueprint under a URL prefix, so any routes defined in the blueprint get this prefix in their URLs. In many cases this is useful as a sort of *namespacing* that keeps all the routes in the blueprint separated from other routes in the application or other blueprints. 
 
-For the `auth`, it might be nice to have all the routes starting with `/auth`, so we added the prefix. Now any login URL is going to be `http://localhost:5000/auth/`. Note that if you use `url_for()`, all URLs will automatically incorporate the prefix.
+For the `auth`, it might be nice to have all the routes starting with `/auth`, so we added the prefix. Now any login URL is going to be `http://localhost:5000/auth/`. Note that if you use `url_for()`, all URLs will automatically incorporate the prefix, however we DO need to update our references to include the blueprint name as shown below (e.g. `url_for('login')` becomes `url_for('auth.login')`).
+
+Lastly, in our main `app.py` file where we're running the app, we would import `create_app`:
+
+```python
+# from app import app
+
+# if __name__ == '__main__':
+#     app.run(port=5007, debug=False)
+
+from app import create_app
+
+app = create_app()
+
+if __name__ == '__main__':
+    app.run(port=5007, debug=False)
+```
 
 
 ## current_app instead of global app
@@ -366,6 +370,24 @@ from flask import current_app
 
 # project = app.config['PROJECT_NAME']
 project = current_app.config['PROJECT_NAME']
+```
+
+## url_for
+
+Update all occurrences of `url_for()` to include the bluprint name. For example: `url_for('login')` might become `url_for('auth.login')`.
+
+```python
+@bp.route('/logout')
+def logout():
+    '''View function for the logout link.'''
+    logout_user()
+    return redirect(url_for('auth.login')) # <-- url_for('bp_name.route')
+```
+
+Also do this in your templates:
+
+```html
+<li><a href="{{ url_for('main.index') }}">home</a></li>
 ```
 
 ## app_context 
