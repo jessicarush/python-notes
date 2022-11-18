@@ -341,14 +341,10 @@ The `register_blueprint()` call has an optional argument, `url_prefix`. Flask gi
 
 For the `auth`, it might be nice to have all the routes starting with `/auth`, so we added the prefix. Now any login URL is going to be `http://localhost:5000/auth/`. Note that if you use `url_for()`, all URLs will automatically incorporate the prefix, however we DO need to update our references to include the blueprint name as shown below (e.g. `url_for('login')` becomes `url_for('auth.login')`).
 
-Lastly, in our main `app.py` file where we're running the app, we would import `create_app`:
+Lastly, in our main `app.py` file where we're running the app, we would import `create_app` and instantiate it:
 
 ```python
 # from app import app
-
-# if __name__ == '__main__':
-#     app.run(port=5007, debug=False)
-
 from app import create_app
 
 app = create_app()
@@ -374,7 +370,7 @@ project = current_app.config['PROJECT_NAME']
 
 ## url_for
 
-Update all occurrences of `url_for()` to include the bluprint name. For example: `url_for('login')` might become `url_for('auth.login')`.
+Update all occurrences of `url_for()` to include the blueprint name. For example: `url_for('login')` might become `url_for('auth.login')`.
 
 ```python
 @bp.route('/logout')
