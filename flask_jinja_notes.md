@@ -93,7 +93,7 @@ pip install python-dotenv
 # database 
 pip install Flask-SQLAlchemy
 pip install Flask-Migrate
-pip install psycopg2
+pip install psycopg2 # <-- check on this, might need to do psycopg2-binary instead (see: https://www.psycopg.org/docs/install.html)
 
 # forms
 pip install Flask-WTF
