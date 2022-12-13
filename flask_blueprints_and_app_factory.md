@@ -423,3 +423,31 @@ For more explanation see:
 
 - [Flask docs](https://flask.palletsprojects.com/en/2.2.x/appcontext/)
 - [Flask-SQLAlchemy docs](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/contexts/)
+
+
+## Tests 
+
+As mentioned earlier, blueprints and the app factory pattern make it easier to set up new app instances with different configurations in order to run tests. 
+
+Example configuration classes:
+
+```python 
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    CSRF_ENABLED = True
+    SECRET_KEY = '57e19ea558d4967a552d03deece34a70'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+class ProductionConfig(Config):
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+
+class DevelopmentConfig(Config):
+    ENV="development"
+    DEVELOPMENT=True
+    DEBUG=True
+    SQLALCHEMY_DATABASE_URI="sqlite:///development_database.db"
+```
+
+See [Flask's docs on testing using pyenv](https://flask.palletsprojects.com/en/latest/testing/)
