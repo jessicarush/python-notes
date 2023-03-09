@@ -91,3 +91,14 @@ if (4 > hour or hour > 20) and (day != 'Friday') and (day != 'Saturday'):
     print('Time for bed!')
 else:
     print('Carry on.')
+
+
+# if, else assignments
+# -----------------------------------------------------------------------------
+
+flag = True
+
+x = 100 if flag else 0
+
+print(f'{flag=}, {x=}')
+# flag=True, x=100
