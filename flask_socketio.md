@@ -91,7 +91,8 @@ In the html page that will be receiving and sending messages, we create another 
 - create an event handler that will listen for events called 'my_reponse' then place the message data into the DOM
 - create an event listener on a button that that will send data from a form field in an event called 'my_event'
 
-jquery
+jquery:
+
 ```html
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
@@ -99,7 +100,7 @@ jquery
     let namespace = '/test';
     var socket = io(namespace);
 
-    // listen for events called 'my_reponse'
+    // listen for events called 'my_response'
     socket.on('my_response', function(msg) {
       $('#log').append( msg.count + ' Received: ' + msg.data + '</br>');
     });
@@ -115,7 +116,8 @@ jquery
 <div id="log"><!-- my_response messages will go here--></div>
 ```
 
-javascript
+javascript:
+
 ```html
 <script type="text/javascript" charset="utf-8">
   document.addEventListener('DOMContentLoaded', function() {
@@ -123,7 +125,7 @@ javascript
     let namespace = '/test';
     const socket = io(namespace);
 
-    // listen for events called 'my_reponse'
+    // listen for events called 'my_response'
     socket.on('my_response', function(msg, cb) {
       const logItem = document.createElement('p');
       logItem.textContent = `${msg.count} Received: ${msg.data}`
@@ -179,8 +181,8 @@ def test_callback():
 
 @socketio.on('my_event', namespace='/test')
 def test_message(message):
-    '''A test function for receiveing client messages'''
-    print(f'Recieved: {message["data"]}')
+    '''A test function for receiving client messages'''
+    print(f'Received: {message["data"]}')
     session['receive_count'] = session.get('receive_count', 0) + 1
     response_data = {'data': message['data'], 'count': session['receive_count']}
     emit('my_response', response_data, callback=test_callback)
@@ -188,7 +190,7 @@ def test_message(message):
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
-    '''This function is called when there is a succesfull connection'''
+    '''This function is called when there is a successful connection'''
     print('Server connected')
     emit('my_response', {'data': 'Server connected', 'count': 0})
 
