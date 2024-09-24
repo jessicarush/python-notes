@@ -30,7 +30,7 @@ Install pyenv:
 curl https://pyenv.run | bash
 ```
 
-Note: the most recent instructon in the pyenv docs say  you can just do this: 
+Note: the most recent instruction in the pyenv docs say you can just do this: 
 
 ```bash
 brew update
